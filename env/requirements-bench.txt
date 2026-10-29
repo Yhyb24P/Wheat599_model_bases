@@ -1,0 +1,26 @@
+# Benchmark-layer requirements — installed AFTER the M0 smoke passes and only
+# into the `wheat599` env. These pull the model stacks referenced in
+# configs/core.yaml. The TabPFN *weights* are still not vendored here; they are
+# fetched separately and SHA-256-verified before any run.
+#
+# Torch: pick a build matching the host CUDA. The dev box has an RTX 5090 D
+# (CUDA 13.x capable). Install the matching wheel from pytorch.org first, e.g.:
+#   pip install torch==2.9.0 --index-url https://download.pytorch.org/whl/cu130
+# then install the rest below.
+#
+# TabPFN is pinned to the version whose ModelVersion.V3_5 checkpoint is used
+# (9.2.0 per the lead's read of the HF checkpoint header).
+torch==2.9.0
+tabpfn==9.2.0
+
+# rtdl-revisiting-models — Apache-2.0 CONFIRMED 2026-10-29 (lead's GitHub + PyPI
+# dist-info check; the earlier 404 was a wrong path). Pin the exact version at
+# freeze; the FT-Transformer baseline depends on it.
+rtdl-revisiting-models
+
+# TabM (yandex-research/tabm), Apache-2.0.
+tabm
+
+# LightGBM/XGBoost only needed for the LassoNet extension comparison; deferred.
+# lightgbm
+# xgboost

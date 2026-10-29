@@ -1,0 +1,8 @@
+# M0 base requirements — installed into the `wheat599` conda env.
+# These are the minimum for data loading, splits, metrics, bootstrap, and CLI.
+# Versions are floors; the resolved set is pinned to env/lock.txt at freeze.
+numpy>=1.26
+scipy>=1.11
+scikit-learn>=1.4
+pandas>=2.0
+pyyaml>=6.0

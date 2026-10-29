@@ -1,0 +1,110 @@
+protocol:
+  name: stage1
+  data: data/raw/wheat.RData
+  data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+  environments: ["1", "2", "4", "5"]
+  outer_folds: 5
+  inner_folds: 3
+  outer_repeats: 3
+  seeds: [20261029, 20261030, 20261031]
+  split_protocols: [random]
+  metrics: [pcc, rmse, mae, r2]
+  reference: linear
+  inner_selection_metric: rmse
+  inner_selection_unit: environment
+  refit_epochs: median_inner_best_epoch
+  refit_epochs_cap: 200
+
+splits:
+  random:
+    stratify_by: row_mean_y_5bin
+    n_bins: 5
+    per_stratum_offset: random
+    fold_size_target: [115, 125]
+    check_per_fold: [env_mean_y, marker_mean]
+
+environment:
+  python_env: venv:/home/yhshy/venvs/wheat599
+  lockfile: env/lock.txt
+  device_order: [cuda, cpu]
+  record_device: true
+
+models:
+  linear:
+    role: reference
+    implementation: sklearn.linear_model.Ridge
+    fit_intercept: true
+    alpha: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+    n_configs: 7
+  ft_transformer:
+    role: primary
+    implementation: rtdl-revisiting-models
+    d_token: [16, 32]
+    n_layers: [1, 2]
+    dropout: [0.0, 0.1]
+    learning_rate: [0.001, 0.003]
+    weight_decay: [0.00001, 0.0001]
+    n_configs: 32
+    max_epochs: 200
+    optimizer: AdamW
+    batch_size: 64
+    patience: 20
+    early_stopping: inner_validation
+    marker_encoding: "documentation-only: t_j(0)=b_j; t_j(1)=b_j+w_j; implemented in src"
+    positional_encoding: "documentation-only: none; implemented in src"
+    note: "d=16/32 and 1-2 layers are this project's small-model choice for n~480, not the paper/rtdl default (3 layers, embedding 192, 8 heads; tuning space layers [1,4], embedding [64,512])."
+  tabpfn_v3_5:
+    role: primary
+    implementation: tabpfn==9.2.0
+    version: ModelVersion.V3_5
+    checkpoint: tabpfn-v3.5-20260909.safetensors
+    finetune: false
+    tuning: none
+    categorization: auto_default
+    n_configs: 1
+
+checkpoint_metadata:
+  read_only: true
+  participates_in_tuning: false
+  note: "Observed from the pinned checkpoint header; recorded for interpretation, not swept."
+  tabpfn_v3_5:
+    n_estimators: 8
+    feature_subsampling: balanced
+    max_features_per_estimator: 768
+    global_transformer: null
+    max_number_of_features: 20000
+    min_unique_for_numerical_features: 4
+
+gate:
+  delta_estimation: "smoke fold-level paired-difference SD; delta_pcc = t(0.975,14)*SD/sqrt(15), rounded; fallback 0.03"
+  delta_pcc_fallback: 0.03   # smoke calibration aid (diagnostic)
+  delta_pcc: 0.03            # FROZEN pre-run gate delta (never re-estimated from the formal run)
+  delta_rmse: 0.05
+  criterion: "T1 or T2: >=3/4 environments mean > 0 and cross-environment mean >= 1.2*delta"
+  trigger_threshold_multiplier: 1.2
+  record_band_multipliers: [0.8, 1.2]
+  metric_rule: "OR: either PCC or RMSE meets the criterion (cross-environment mean >= 1.2*delta and >=3/4 environments >0); each metric uses its own delta (PCC fallback 0.03, RMSE 0.05); record trigger metric source; if the other metric is <= -delta in >=3/4 environments, trigger holds and the tension is recorded; [0.8delta, 1.2delta) is a record band, not triggering"
+  weak_signal: "both metrics < 1.2*delta, but either cross-environment mean in [0.8delta, 1.2delta) and >=3/4 environments same direction; recorded, not triggering"
+  gray_zone: [0.8, 1.2]
+  negative_rule: ">=3/4 environments mean < -delta records a negative signal"
+  trigger_file: "results/<stage1_run>/trigger.md"
+
+reporting:
+  first_glance: true
+  stable_improvement_claim: false
+  fold_level_values: true
+  fold_level_t_df14: true
+  fold_level_t_caveat: "material reuse and fold correlation not adjusted; optimistic; magnitude only; not a stable improvement claim"
+
+budget:
+  gpu_hours_cap: 2
+  budget_exhaustion: stop_and_report
+  cpu_preferred: true
+
+audit:
+  save_splits: true
+  save_oof: true
+  recompute_metrics_from_oof: true
+  record_versions: true
+  leak_injection_test: true
+  fold_level_intervals: true

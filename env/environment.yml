@@ -1,0 +1,33 @@
+# Wheat599 model-base benchmark — conda environment
+#
+# Two layers:
+#   * wheat599        — M0 base: data loading, splits, metrics, bootstrap, CLI.
+#                       Enough to run the SMOKE_ONLY pipeline and audit leakage.
+#   * wheat599-bench  — adds torch + the model stacks (tabpfn, rtdl-revisiting-
+#                       models, tabm). Build only after M0 smoke passes; the
+#                       TabPFN weights are still NOT downloaded until env is
+#                       validated and SHA-256 is recorded.
+#
+# Create:
+#   conda env create -f env/environment.yml -n wheat599
+#   conda activate wheat599
+#   pip install -r env/requirements-base.txt
+#
+# For the benchmark layer, after activating wheat599:
+#   pip install -r env/requirements-bench.txt
+#
+# Then pin the resolved versions into env/lock.txt (see AGENTS.md §6).
+
+name: wheat599
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - numpy>=1.26
+  - scipy>=1.11
+  - scikit-learn>=1.4
+  - pandas>=2.0
+  - pyyaml>=6.0
+  - pip
+  - pip:
+      - -r requirements-base.txt

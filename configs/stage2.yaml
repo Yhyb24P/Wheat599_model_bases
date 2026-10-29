@@ -1,0 +1,206 @@
+protocol:
+  name: core
+  data: data/raw/wheat.RData
+  data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+  environments: ["1", "2", "4", "5"]
+  outer_folds: 5
+  inner_folds: 3
+  repeats:
+    primary_arms: 10
+    exploratory_arms: 5
+  seeds:
+    primary: [20261029, 20261030, 20261031, 20261032, 20261033, 20261034, 20261035, 20261036, 20261037, 20261038]
+    exploratory: [20261029, 20261030, 20261031, 20261032, 20261033]
+  split_protocols: [random, relatedness_cluster]
+  primary_arms: [random, relatedness_cluster]
+  exploratory_arms: [a_cluster_arm, relatedness_ibs_075_sensitivity]
+  primary_contrasts:
+    - [tabpfn_v3_5, linear]
+    - [tabpfn_v3_5, ft_transformer]
+    - [tabpfn_v3_5, tabm]
+    - [tabpfn_v3_5, rkhs_gaussian]
+    - [tabpfn_v3_5, svr_rbf]
+    - [ft_transformer, linear]
+    - [ft_transformer, tabm]
+    - [ft_transformer, rkhs_gaussian]
+  holm_family: same_arm_same_environment_same_metric
+  arm_delta: descriptive
+  relatedness_thresholds: {ibs: 0.8, a: 1.5, ibs_sensitivity: 0.75}
+  metrics: [pcc, rmse, mae, r2]
+  reference: linear
+  inner_cv: full_3fold_average_then_refit
+  inner_selection_metric: rmse
+  inner_selection_unit: environment
+  refit_epochs: median_inner_best_epoch
+  refit_epochs_cap: 200
+
+splits:
+  random:
+    stratify_by: row_mean_y_5bin
+    n_bins: 5
+    per_stratum_offset: random
+    fold_size_target: [115, 125]
+    check_per_fold: [env_mean_y, marker_mean]
+  relatedness_cluster:
+    name: high_similarity_family_holdout
+    status: primary
+    method: threshold_connected_components
+    distance: ibs_similarity
+    threshold: 0.8
+    assembly: families_whole_singletons_balanced
+    family_order: random_per_seed
+    fold_offset: random_per_seed
+    fold_size_target: [115, 130]
+    fold_size_tolerance: 10
+    inner_grouped: true
+    report: [fold_n, family_size_distribution, family_x_fold, pct_in_multiline_families, mean_ibs_train_test, mean_A_train_test, component_table]
+  relatedness_ibs_075_sensitivity:
+    name: high_similarity_family_holdout_075
+    status: sensitivity
+    method: threshold_connected_components
+    distance: ibs_similarity
+    threshold: 0.75
+    assembly: families_whole_singletons_balanced
+    family_order: random_per_seed
+    fold_offset: random_per_seed
+    fold_size_target: [100, 150]
+  a_cluster_arm:
+    name: close_relative_holdout
+    status: exploratory
+    method: threshold_connected_components
+    distance: A
+    threshold: 1.5
+    assembly: families_whole_singletons_balanced
+    family_order: random_per_seed
+    fold_offset: random_per_seed
+
+uncertainty:
+  primary: repeat_level_t_df9
+  primary_repeats: 10
+  exploratory_repeats: 5
+  secondary: material_bootstrap_per_repeat
+  cluster: cluster_bootstrap
+  bootstrap_resamples: 10000
+  material_bootstrap_aggregation: none_per_repeat
+  estimand_boundary: "repeat-level interval covers split/retrain noise; not population sampling of 599 materials"
+
+environment:
+  python_env: wheat599
+  lockfile: env/lock.txt
+  device_order: [cuda, cpu]
+  record_device: true
+
+models:
+  linear:
+    role: primary
+    implementation: sklearn.linear_model.Ridge
+    fit_intercept: true
+    alpha: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+    n_configs: 7
+  kernel_ridge_gblup:
+    role: equivalence_check
+    implementation: numpy closed form
+    kernel: G = X X^T / p
+    note: "Uncentered XX^T/p with intercept is equivalent to Ridge; VanRaden G=ZZ^T/sum(2p(1-p)) is a separately noted parameterization; equivalence test must use the same form and alpha."
+    lambda: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+  rkhs_gaussian:
+    role: primary
+    implementation: numpy closed form
+    kernel: exp(-d2 / (2 * sigma2))
+    d2: mean squared marker difference
+    sigma2_multipliers: [0.25, 0.5, 1.0, 2.0, 4.0]
+    sigma2_base: median pairwise d2 on training fold
+    lambda: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0]
+    n_configs: 30
+  svr_rbf:
+    role: primary
+    implementation: sklearn.svm.SVR
+    C: [0.1, 1.0, 10.0, 100.0]
+    gamma: ["scale", 0.001, 0.01, 0.1]
+    gamma_scale_sentinel: true
+    epsilon: [0.01, 0.05, 0.1]
+    n_configs: 48
+  tabm:
+    role: primary
+    implementation: yandex-research/tabm
+    k: [8, 16]
+    width: [64, 128]
+    learning_rate: [0.001, 0.003]
+    weight_decay: [0.00001, 0.0001]
+    n_configs: 16
+    max_epochs: 200
+    optimizer: AdamW
+    batch_size: 64
+    patience: 20
+    early_stopping: inner_validation
+  ft_transformer:
+    role: primary
+    implementation: rtdl-revisiting-models
+    d_token: [16, 32]
+    n_layers: [1, 2]
+    dropout: [0.0, 0.1]
+    learning_rate: [0.001, 0.003]
+    weight_decay: [0.00001, 0.0001]
+    n_configs: 32
+    max_epochs: 200
+    optimizer: AdamW
+    batch_size: 64
+    patience: 20
+    early_stopping: inner_validation
+    marker_encoding: "documentation-only: t_j(0)=b_j; t_j(1)=b_j+w_j; implemented in src"
+    positional_encoding: "documentation-only: none; implemented in src"
+  tabpfn_v3_5:
+    role: primary
+    implementation: tabpfn==9.2.0
+    version: ModelVersion.V3_5
+    checkpoint: tabpfn-v3.5-20260909.safetensors
+    finetune: false
+    tuning: none
+    categorization: auto_default
+    n_configs: 1
+  lightgbm:
+    role: secondary_control
+    implementation: lightgbm
+    num_leaves: [15, 31]
+    learning_rate: [0.05, 0.1]
+    min_child_samples: [10, 20]
+    n_estimators_max: 2000
+    n_configs: 8
+    early_stopping: inner_validation
+    cpu_only: true
+
+checkpoint_metadata:
+  read_only: true
+  participates_in_tuning: false
+  note: "Observed from the pinned checkpoint header; recorded for interpretation, not swept."
+  tabpfn_v3_5:
+    n_estimators: 8
+    feature_subsampling: balanced
+    max_features_per_estimator: 768
+    global_transformer: null
+    max_number_of_features: 20000
+    min_unique_for_numerical_features: 4
+
+sensitivity:
+  maf_filter: [none, 0.05]
+  tabpfn_categorization: [auto_default, forced_numerical]
+  tabpfn_forced_numerical_override:
+    min_unique_for_numerical_features: 2
+  bglr_wheat_sets_10fold: true
+  bglr_wheat_sets_mark_availability: true
+  seed_stability: true
+
+reporting:
+  family_only_metrics: true
+  singleton_only_metrics: true
+  lightgbm_secondary: true
+  gpu_budget_hours: 20
+  budget_exhaustion: stop_and_report
+
+audit:
+  save_splits: true
+  save_oof: true
+  recompute_metrics_from_oof: true
+  record_versions: true
+  leak_injection_test: true
+  repeat_level_intervals: true
