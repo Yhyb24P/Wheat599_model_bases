@@ -58,8 +58,9 @@ def main(argv=None) -> int:
                 t0 = time.time()
                 sx = rb.Scaler().fit(data.X[tr])
                 sy = rb.Scaler().fit(y[tr])
-                model = rb.build_model(data.X.shape[1], vmcfg)
-                model, hist, best_epoch, best_pcc = rb.train_one_fold(
+                model = rb.build_model(data.X.shape[1], vmcfg,
+                                       seed=int(cfg["training"]["seed"]))
+                model, hist, fit = rb.train_one_fold(
                     model, sx.transform(data.X[tr]), sy.transform(y[tr]),
                     sx.transform(data.X[va]), sy.transform(y[va]),
                     tcfg, device, seed=int(tcfg["seed"]))
@@ -69,13 +70,13 @@ def main(argv=None) -> int:
                     "variant": vname, "environment": env, "fold": k,
                     "val_pcc": float(pcc(yv, pv)),
                     "val_rmse": float(rmse(yv, pv)),
-                    "best_epoch": int(best_epoch),
-                    "best_val_pcc": float(best_pcc),
+                    "best_epoch": fit["best_pcc_epoch"],
+                    "best_val_pcc": fit["best_pcc"],
                     "seconds": round(time.time() - t0, 1),
                     "n_params": int(sum(p.numel() for p in model.parameters())),
                 })
                 print(f"  [{vname} env {env} fold {k}] val_pcc={rows[-1]['val_pcc']:.4f} "
-                      f"val_rmse={rows[-1]['val_rmse']:.4f} ep={best_epoch} "
+                      f"val_rmse={rows[-1]['val_rmse']:.4f} ep={fit['best_pcc_epoch']} "
                       f"{rows[-1]['seconds']}s", flush=True)
                 del model, hist
                 if device == "cuda":

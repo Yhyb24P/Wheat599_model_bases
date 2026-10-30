@@ -104,15 +104,32 @@ def test_tiny_cpu_training_wiring():
     y = X @ rng.normal(size=p) + rng.normal(0, 0.1, n)
     Xtr, ytr = X[:30], y[:30]
     Xva, yva = X[30:], y[30:]
-    model = rb.build_model(p, _tiny_cfg())
-    model, hist, best_epoch, best_pcc = rb.train_one_fold(
+    model = rb.build_model(p, _tiny_cfg(), seed=42)
+    model, hist, fit = rb.train_one_fold(
         model, Xtr, ytr, Xva, yva, _tiny_train_cfg(), device="cpu", seed=42)
     assert len(hist) == 3
-    assert 0 <= best_epoch < 3
-    assert np.isfinite(best_pcc)
+    assert 0 <= fit["best_pcc_epoch"] < 3
+    assert np.isfinite(fit["best_pcc"])
+    assert 0 <= fit["best_rmse_epoch"] < 3
+    assert np.isfinite(fit["best_rmse"])
+    assert fit["best_rmse_state"] is not None
+    assert fit["best_pcc"] == max(h["val_pcc"] for h in hist)
+    assert fit["best_rmse"] == min(h["val_rmse"] for h in hist)
     pred = rb.predict(model, Xva, "cpu")
     assert pred.shape == (10,) and np.isfinite(pred).all()
     assert sum(p_.numel() for p_ in model.parameters()) > 0
+
+
+def test_build_model_seeded_initialization():
+    torch = pytest.importorskip("torch")
+    pytest.importorskip("rtdl_revisiting_models")
+    p = 8
+    a = rb.build_model(p, _tiny_cfg(), seed=7)
+    b = rb.build_model(p, _tiny_cfg(), seed=7)
+    c = rb.build_model(p, _tiny_cfg(), seed=8)
+    sa, sb, sc = a.state_dict(), b.state_dict(), c.state_dict()
+    assert all(torch.equal(sa[k], sb[k]) for k in sa)
+    assert any(not torch.equal(sa[k], sc[k]) for k in sa)
 
 
 def test_manifest_only_cli_writes_coverage(tmp_path):

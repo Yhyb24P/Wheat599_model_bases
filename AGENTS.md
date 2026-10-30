@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**现行任务（2026-10-30）**：FT-Transformer 在 BGLR Wheat599 上的 10 折评价与失败诊断。seed 42；test 9×60+1×59、val 54、train 485/486；四环境共享；BGLR `wheat.X`/`wheat.Y`；每折 Train-only scaler、预测反变换后算指标；PCC/RMSE/MAE；Test 只评一次。正式结果、同折 RR-BLUP 对照、过拟合诊断与验证集变体选择已完成，见 `docs/RESULTS.md`。不跑 TabPFN；不做测试集调参。Stage 1 与六方法协议暂停，文档保留为历史。旧 C-order 加载结果全部作废，只作加载故障记录。
+**现行任务（2026-10-30）**：FT-Transformer 在 BGLR Wheat599 上的 10 折评价与失败诊断。seed 42；test 9×60+1×59、val 54、train 485/486；四环境共享；BGLR `wheat.X`/`wheat.Y`；每折 Train-only scaler、预测反变换后算指标；PCC/RMSE/MAE；Test 只评一次。已固定 `build_model()` 前的初始化种子，并完成同一训练轨迹内 val-PCC / val-RMSE 双 checkpoint 比较；正式结果、同折 RR-BLUP 对照、过拟合诊断与探索性变体选择见 `docs/RESULTS.md`。不跑 TabPFN；不做测试集调参。Stage 1 与六方法协议暂停，文档保留为历史。旧 C-order 加载结果全部作废，只作加载故障记录。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
@@ -8,11 +8,11 @@
 
 1. **只保留两件事：跑出数字；数字不被做假。** 无泄漏底线保留：scaler/选模只用 Train/Val，Test 不参与任何训练决策，泄漏测试通过。其余流程性检查、ARS 评审轮、签核链、G0_VERSION 仪式、结构化门文档一律不做。
 2. **只报数字与结论。** 不写长输入清单、不反复确认、不做过程汇报、不加 raw yield/尺度类注记；负结果如实报。
-3. **数据正确性优先。** R `as.vector` 是列主序，读取必须 `reshape(shape, order='F')`；全量 R/Python 逐元素对照；2×3 非方阵测试；旧 cache/scaler/checkpoint 隔离；旧结果标 `INVALID`，不作性能证据。
+3. **数据与初始化可复现。** R `as.vector` 是列主序，读取必须 `reshape(shape, order='F')`；全量 R/Python 逐元素对照；2×3 非方阵测试；旧 cache/scaler/checkpoint 隔离；旧结果标 `INVALID`，不作性能证据。每次 `build_model()` 前设置随机种子，模型初始化不依赖调用方遗留的 RNG 状态。
 4. **不做无意义检查或测试集调参。** 诊断只用于区分数据/欠拟合/泛化；RR-BLUP 是功能性检查，不要求固定 PCC；诊断性变体只用验证集选择，选中后 test 只评一次；不扩网格、不设第三轮架构搜索。
 5. **正式实现只有一套。** `src/wheat599/` + CLI；不新增平行脚本/临时入口；变体用 `configs/`；`data/raw/` 只读；结果按 `results/<run>/` 落盘。
 6. **Git 与结果。** 提交源码、配置、docs、小型结果；不提交数据、权重、大 OOF；权重 SHA/许可入 `docs/LICENSE_NOTES.md`；不重建 archive/legacy。
-7. **证据。** 结果对应数据 SHA、代码、配置、种子、划分；10 折不独立，只描述、不做 p/CI；失败显式记录，不过滤、不 `nanmean`；Test 不参与训练决策。
+7. **证据。** 结果对应数据 SHA、代码、配置、种子、划分；10 折不独立，只描述、不做 p/CI；失败显式记录，不过滤、不 `nanmean`；Test 不参与训练决策。折均 PCC 与合并 OOF PCC 分开标注；折内 z-score 只改变聚合尺度，不构成性能恢复证据。Checkpoint 规则须在测试前固定，test 不用于选规则或拼接环境最优结果。
 8. **文档各司其职。** README、当前任务、DATA_FACTS、RESULTS；失效流程文档不再执行，保留为历史；同一信息不重复。
 9. **写清楚条件和行动。** 避免流水账、免责声明、无必要标题；影响判断的限制具体写；已定条件直接写。
 10. **自主推进并承担执行责任。** 用户明确目标后自主选择方法、资源、实现、验证和交付；不把行动缩成讨论；不扩大范围；破坏性/不可逆操作须用户授权。

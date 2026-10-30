@@ -50,15 +50,17 @@ def main(argv=None) -> int:
             t0 = time.time()
             sx = rb.Scaler().fit(data.X[tr])
             sy = rb.Scaler().fit(y[tr])
-            model = rb.build_model(data.X.shape[1], mcfg)
-            model, hist, best_epoch, best_pcc = rb.train_one_fold(
+            model = rb.build_model(data.X.shape[1], mcfg,
+                                   seed=int(cfg["training"]["seed"]))
+            model, hist, fit = rb.train_one_fold(
                 model, sx.transform(data.X[tr]), sy.transform(y[tr]),
                 sx.transform(data.X[va]), sy.transform(y[va]),
                 tcfg, device, seed=int(tcfg["seed"]))
             for h in hist:
                 rows.append({"environment": env, "fold": k, **h})
-            print(f"  [env {env} fold {k}] best_epoch={best_epoch} "
-                  f"best_val_pcc={best_pcc:.4f} {time.time()-t0:.1f}s", flush=True)
+            print(f"  [env {env} fold {k}] best_epoch={fit['best_pcc_epoch']} "
+                  f"best_val_pcc={fit['best_pcc']:.4f} "
+                  f"{time.time()-t0:.1f}s", flush=True)
             del model, hist
             if device == "cuda":
                 torch.cuda.empty_cache()

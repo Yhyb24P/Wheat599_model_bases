@@ -14,6 +14,10 @@ Per the user's frozen 2026-10-29 spec (configs/bimsgp.yaml):
 * X and y scalers are fit on the TRAIN subset of each fold only; val/test
   are transform-only; predictions are inverse-transformed before metrics
   (PCC primary; RMSE/MAE on the same BGLR scale).
+* build_model() seeds random/numpy/torch before construction so the initial
+  state is reproducible. train_one_fold() also retains the best-val-RMSE state
+  for the pre-specified comparison in scripts/run_ckpt_rules.py; this runner
+  still reports the best-val-PCC checkpoint.
 * Test is evaluated once, after training and checkpoint selection.
 * 10 folds share materials (not independent): per-fold + mean/SD(ddof=1),
   descriptive only; failed folds are recorded, never filtered or nanmean'ed.
@@ -102,10 +106,16 @@ class Scaler:
 
 # ---------------------------------------------------------------- model ----
 
-def build_model(p: int, cfg_model: dict):
+def build_model(p: int, cfg_model: dict, seed: int):
+    import random
     import torch
     from rtdl_revisiting_models import FTTransformer
 
+    # Seed before construction: the initial state must not depend on whatever
+    # RNG state the caller happened to leave behind.
+    random.seed(int(seed))
+    np.random.seed(int(seed))
+    torch.manual_seed(int(seed))
     return FTTransformer(
         n_cont_features=p,
         cat_cardinalities=[],
@@ -124,10 +134,12 @@ def build_model(p: int, cfg_model: dict):
 def train_one_fold(
     model, X_tr, y_tr, X_val, y_val, cfg_training, device, seed=42,
 ):
-    """100-epoch training loop; returns (best_state, history, best_epoch).
+    """100-epoch training loop; returns (model, history, fit_info).
 
     y_tr/y_val are already standardized (train-fold scaler). LR scheduler and
-    checkpoint use val signals only; the test fold never enters this function.
+    both checkpoint rules use val signals only; the test fold never enters this
+    function. The returned model is loaded with the best-val-PCC state; the
+    best-val-RMSE state is returned separately for a pre-specified comparison.
     """
     import torch
 
@@ -157,7 +169,8 @@ def train_one_fold(
 
     gen = torch.Generator()
     gen.manual_seed(seed)
-    best_pcc, best_epoch, best_state = -np.inf, -1, None
+    best_pcc, best_pcc_epoch, best_pcc_state = -np.inf, -1, None
+    best_rmse, best_rmse_epoch, best_rmse_state = np.inf, -1, None
     history = []
     for epoch in range(epochs):
         model.train()
@@ -186,13 +199,24 @@ def train_one_fold(
                         "train_rmse": train_rmse,
                         "lr": opt.param_groups[0]["lr"]})
         sched.step(val_rmse)
+        if np.isfinite(val_rmse) and val_rmse < best_rmse:
+            best_rmse, best_rmse_epoch = float(val_rmse), epoch
+            best_rmse_state = {k: v.detach().clone()
+                               for k, v in model.state_dict().items()}
         if np.isfinite(val_pcc) and val_pcc > best_pcc:
-            best_pcc, best_epoch = float(val_pcc), epoch
-            best_state = {k: v.detach().clone() for k, v in model.state_dict().items()}
-    if best_state is not None:
-        model.load_state_dict(best_state)
+            best_pcc, best_pcc_epoch = float(val_pcc), epoch
+            best_pcc_state = {k: v.detach().clone()
+                              for k, v in model.state_dict().items()}
+    if best_pcc_state is not None:
+        model.load_state_dict(best_pcc_state)
     model.eval()
-    return model, history, best_epoch, best_pcc
+    return model, history, {
+        "best_pcc_epoch": int(best_pcc_epoch),
+        "best_pcc": float(best_pcc),
+        "best_rmse_epoch": int(best_rmse_epoch),
+        "best_rmse": float(best_rmse),
+        "best_rmse_state": best_rmse_state,
+    }
 
 
 def predict(model, X, device, batch_size: int = 64):
@@ -346,10 +370,12 @@ def main(argv=None) -> int:
             Xva_s = sx.transform(X[va])
             yva_s = sy.transform(y[va])
             Xte_s = sx.transform(X[te])
-            model = build_model(X.shape[1], mcfg)
-            model, hist, best_epoch, best_pcc = train_one_fold(
+            model = build_model(X.shape[1], mcfg, seed=int(tcfg["seed"]))
+            model, hist, fit = train_one_fold(
                 model, Xtr_s, ytr_s, Xva_s, yva_s, tcfg, device,
                 seed=int(tcfg["seed"]))
+            best_epoch = fit["best_pcc_epoch"]
+            best_pcc = fit["best_pcc"]
             y_pred_s = predict(model, Xte_s, device)
             y_pred = sy.inverse_transform(y_pred_s)  # back to BGLR units
             row = evaluate_fold(env, k, y[te], y_pred)

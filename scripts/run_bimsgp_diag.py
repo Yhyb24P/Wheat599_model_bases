@@ -177,14 +177,15 @@ def main(argv=None) -> int:
                 sx = rb.Scaler().fit(X[tr]); sy = rb.Scaler().fit(y[tr])
                 Xtr_s, Xva_s, Xte_s = sx.transform(X[tr]), sx.transform(X[va]), sx.transform(X[te])
                 ytr_s, yva_s = sy.transform(y[tr]), sy.transform(y[va])
-                model = rb.build_model(X.shape[1], mcfg)
-                model, hist, best_epoch, best_pcc = rb.train_one_fold(
+                model = rb.build_model(X.shape[1], mcfg, seed=int(tcfg["seed"]))
+                model, hist, fit = rb.train_one_fold(
                     model, Xtr_s, ytr_s, Xva_s, yva_s, tcfg, device,
                     seed=int(tcfg["seed"]))
                 pred = {k: sy.inverse_transform(rb.predict(model, Xz, device))
                         for k, Xz in (("train", Xtr_s), ("val", Xva_s), ("test", Xte_s))}
                 row = {"environment": env, "fold": fold["fold"],
-                       "best_epoch": int(best_epoch), "best_val_pcc": float(best_pcc),
+                       "best_epoch": fit["best_pcc_epoch"],
+                       "best_val_pcc": fit["best_pcc"],
                        "seconds": round(time.time() - t0, 1), "failed": False}
                 for k, yz in (("train", y[tr]), ("val", y[va]), ("test", y[te])):
                     row[f"{k}_pcc"] = float(pcc(yz, pred[k]))
@@ -196,7 +197,7 @@ def main(argv=None) -> int:
                 rows.append(row)
                 print(f"  [ftt env {env} fold {fold['fold']}] "
                       f"train {row['train_pcc']:.3f} val {row['val_pcc']:.3f} "
-                      f"test {row['test_pcc']:.3f} ep={best_epoch} "
+                      f"test {row['test_pcc']:.3f} ep={fit['best_pcc_epoch']} "
                       f"{row['seconds']}s", flush=True)
                 # per-run cleanup: a diag run must not grow VRAM across folds
                 del model, hist, pred

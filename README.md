@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 10 折评价与失败诊断
 
-**状态（2026-10-30）：** 正式 10 折评价、同折 RR-BLUP 对照、过拟合诊断与验证集变体选择完成。FT-Transformer 宏均 test PCC 0.4341，同折 RR-BLUP 0.4528；验证集选中的变体 test PCC 0.4324，未缩小差距。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
+**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较，以及同折 RR-BLUP 对照。val-PCC 规则宏均 test PCC 0.4342，val-RMSE 规则 0.4302、test RMSE 0.9242；两者都低于 RR-BLUP（PCC 0.4528、RMSE 0.8957）。切换 checkpoint 规则改善 RMSE 但降低 PCC，且没有恢复预测幅度。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 当前任务不跑 TabPFN；不做测试集调参。Stage 1（TabPFN-3.5 / FT-T / Ridge 门控）与六方法 Stage 2 协议已暂停，相关文档保留为历史。
 
@@ -51,6 +51,12 @@ python scripts/run_bimsgp_diag.py --config configs/bimsgp.yaml --parts ftt --out
 ```bash
 python scripts/run_trajectory.py --config configs/bimsgp.yaml --out results/bimsgp_trajectory_20261030
 python scripts/run_variants.py --config configs/bimsgp.yaml --out results/bimsgp_variants_20261030
+```
+
+同一条训练轨迹内比较两种预先固定的 checkpoint 规则（最高验证 PCC / 最低验证 RMSE），test 只作评价、不选规则：
+
+```bash
+python scripts/run_ckpt_rules.py --config configs/bimsgp.yaml --out results/bimsgp_ckpt_rules_20261030
 ```
 
 测试：
