@@ -1,6 +1,6 @@
 # Results — Wheat599 FT-Transformer 评价
 
-**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照，以及固定 RR-BLUP + A 骨干的残差修正首轮。残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 PCC −0.0011、RMSE +0.0218）；相对 A 的点估计改善为 PCC +0.0175、RMSE −0.0279，均属描述级。旧 C-order 结果全部无效；D 保留为探索性结果。
+**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照、固定 RR-BLUP + A 骨干的残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮。残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 PCC −0.0011、RMSE +0.0218）；完整重构宏均 test PCC 0.3382、RMSE 0.9764，预注册 GO=False。旧 C-order 结果全部无效；D 保留为探索性结果。
 
 ## 协议与可复现性
 
@@ -174,6 +174,53 @@ RR-BLUP 使用同一 seed-42 折；X/Y 只用训练折中心化，alpha 只用�
 - 验证 PCC 提升没有迁移到 test（val gain 与 test ΔPCC 的描述性相关 −0.109）；修正量越大，test RMSE 点估计增加越多（修正量/残差 SD 与 test ΔRMSE 的描述性相关 +0.435，折间不独立）。诊断与点估计提示残差分支主要增加了方差、未提高可泛化方向，但这只是描述性判断。
 - 已知限制：验证集同时用于 RR alpha 和分支/epoch 选择；RR 训练预测是 in-sample，残差目标偏小；seed-42 划分已参与多轮模型开发。即使分数提高也不是独立确认。checkpoint 规则本轮未再优化；没有把泛化差距归因于 tokenizer、CLS 或 attention。未设 FT-only + zero-init 对照，因此相对 A 的差异不能单独归因于 RR 分支；它只是“固定 RR 起点 + 修正”这一组合的描述。
 
+## 完整诱导注意力模型（首轮完整架构）
+
+这里的“完整模型”指用户定义的共享低秩标记编码 → 双向诱导注意力 → 多槽注意力读出 → 表型回归；首轮不做模块消融、不做参数搜索、不以 test 选结构。模型 marker-only；“A”是旧架构标签，不是 `wheat.A`。
+
+**实现与规模**
+
+- Tokenizer：$t_j=b_j+x_jUc_j$；$d=64$、rank $r=16$；$b_j$ 81,856 + $c_j$ 20,464 + $U$ 1,024 = **103,344** 参数。
+- 2 个独立双向诱导块：$H=\mathrm{MAB}(I,T)$、$T'=\mathrm{MAB}(T,H)$；$m=32$、4 heads、Pre-LN 残差、ReGLU FFN hidden 128；共 171,776 参数（每块 85,888）。
+- 读出：4 个可学习 query 的 Pre-LN 多头注意力池化（无 FFN），展平 4×64，MLP 256→32→1；读出 17,152，回归头 8,257。
+- **总参数 300,529**，相对 A 的 247,425 为 **+21.5%**；未加参数量匹配对照，比较按同数据/同折/同训练预算解释。
+- 注意力分数（含 heads）**675,312/样本**；A 实际为 4×1280²（首块全注意力）+4×1280（末块仅 CLS）= **6,558,720**，比值约 **1/9.7**（若把 A 两块都按全注意力算才约 1/19）。
+- 初始化：$b_j\sim N(0,0.01^2)$、$c_j\sim N(0,1)$、$U$ Kaiming-uniform；$b/c/U$ 在 weight-decay 组，LayerNorm/bias/latent/query 不衰减。
+
+**结果（40/40，0 失败；折均值 ± SD）**
+
+| 环境 | PCC | RMSE | MAE |
+|---|---:|---:|---:|
+| 1 | 0.4487 ± 0.1158 | 0.9261 ± 0.0926 | 0.7360 ± 0.0850 |
+| 2 | 0.2898 ± 0.1331 | 0.9987 ± 0.1060 | 0.7759 ± 0.0964 |
+| 4 | 0.2328 ± 0.1396 | 1.0024 ± 0.1080 | 0.7870 ± 0.0799 |
+| 5 | 0.3813 ± 0.0676 | 0.9782 ± 0.0740 | 0.7634 ± 0.0637 |
+| 宏均 | **0.3382** | **0.9764** | **0.7656** |
+
+- vs A：ΔPCC **−0.0961**、ΔRMSE **+0.0309**、ΔMAE **+0.0269**；PCC 更高仅 7/40 折，RMSE 更低 10/40 折；四个环境 ΔPCC 全为负。
+- vs RR-BLUP：ΔPCC **−0.1147**、ΔRMSE **+0.0806**、ΔMAE **+0.0688**；PCC 更高 7/40，RMSE 更低 6/40。
+- 合并 OOF PCC 宏均 0.3229，折均 0.3382；两种口径都明显低于 A/RR。
+
+**预注册 GO（运行前写入配置）**
+
+| 判据 | 实际 | 通过 |
+|---|---:|---|
+| G1：对 A 宏均 ΔPCC ≥ +0.01 且 ≥3/4 环境 ΔPCC > 0 | −0.0961；0 个环境为正 | 否 |
+| G2：对 A 宏均 ΔRMSE ≤ +0.01 | +0.0309 | 否 |
+| G3：对 RR 宏均 ΔPCC ≥ −0.01 | −0.1147 | 否 |
+
+**GO = False。** 按预注册不修改判据/配置重试，也未做模块消融；是否继续该架构由用户决定。
+
+**诊断**
+
+- 5/40 折 selected 预测 SD < 0.1σ_y：环境 4/折 1、环境 5/折 1、环境 4/折 4、环境 2/折 5、环境 4/折 7；对应 best epoch 11、0、2、0、1，PCC 0.090、0.348、0.207、0.089、0.088。属于近常数 checkpoint，不是漏行。
+- token identity 范数初始均值 0.0802，结束均值 0.1642（范围 0.0838–0.2639），未出现衰减导致的身份坍缩。
+- best epoch 均值/中位数 23.8/22.0；不是全部卡在 epoch 0。
+
+**冒烟/测试披露**
+
+fold-0 的四个 test 折在两次 smoke 中均已被观测（初始化/参数分组/计数修正前后各一次）；配置在 smoke #2 后冻结、未再变更。修正由实现正确性驱动，不是按 test 值选择。fold 0 因此不是干净留出，全部 40 折仅为协议内描述性评价，不是独立确认。
+
 ## 训练/验证/测试分解（旧初始化，历史诊断）
 
 用同一配置重建每折 train/val/test 指标（旧初始化；folds 0–7 来自运行日志，8–9 重新完整训练）。固定种子的 val-PCC 规则复现了相同的 val→test 关系，见下方说明。
@@ -218,7 +265,7 @@ RR-BLUP 使用同一 seed-42 折；X/Y 只用训练折中心化，alpha 只用�
 
 ## 聚合口径
 
-正式表按折均值报告。val-PCC 规则：折均 PCC 0.4342，合并 OOF PCC 0.3943；val-RMSE 规则：折均 0.4302，合并 OOF 0.3824。残差首轮 selected：折均 0.4517，合并 OOF 0.4346；RR-only：折均 0.4528，合并 OOF 0.4344。差异来自折间预测均值/尺度不同，是聚合口径差异，不是模型性能差异。折内 z-score 只改变合并尺度，不能作为性能恢复证据。跨折材料复用与折间相关仍使所有区间不可作独立推断。
+正式表按折均值报告。val-PCC 规则：折均 PCC 0.4342，合并 OOF PCC 0.3943；val-RMSE 规则：折均 0.4302，合并 OOF 0.3824。残差首轮 selected：折均 0.4517，合并 OOF 0.4346；RR-only：折均 0.4528，合并 OOF 0.4344。完整诱导模型：折均 0.3382，合并 OOF 0.3229；两种口径都明显低于 A/RR。差异来自折间预测均值/尺度不同，是聚合口径差异，不是模型性能差异。折内 z-score 只改变合并尺度，不能作为性能恢复证据。跨折材料复用与折间相关仍使所有区间不可作独立推断。
 
 ## 无效结果
 
@@ -232,18 +279,20 @@ RR-BLUP 使用同一 seed-42 折；X/Y 只用训练折中心化，alpha 只用�
 - marker-only，不使用谱系 A；不声称生物学上位互作、因果标记或育种收益。
 - FT-T 落后 RR-BLUP 只支持“该配置下预测精度较低”，不能单独归因于逐标记注意力机制；也未穷尽 FT-Transformer 的其它配置。
 - 残差首轮中，RR alpha 与 residual checkpoint 共用验证折；RR 训练预测是 in-sample，残差目标偏小；40/40 折选中 residual。这些使结果只在该协议下描述，不是独立确认。
+- 完整诱导模型首轮按预注册 GO 判据为 NO-GO，未做模块消融或规则/配置重试；5/40 折出现近常数预测；参数比 A 多 21.5%；fold-0 test 在两次 smoke 中被观测，配置在 smoke #2 后冻结；全部为协议内描述性评价，不是独立确认。
 - 近常数预测的成因未完全分离：PCC 对尺度不敏感、验证集波动、MSE 收缩和早期 checkpoint 选择都可能参与；本比较只说明 checkpoint 选择是少数折的触发因素之一，不是近常数预测的唯一原因。
 
 ## 产物
 
 - `results/bimsgp_ckpt_rules_20261030/`：固定种子；同一轨迹的 val-PCC / val-RMSE 双 checkpoint 结果（summary、per_fold、OOF、splits manifest、0 失败）。
 - `results/bimsgp_residual_20261030/`：固定 RR-BLUP + A 骨干残差修正首轮（per_fold、OOF、history、summary、0 失败；40/40 选中 residual）。
+- `results/bimsgp_induced_20261030/`：共享低秩编码 + 双向诱导注意力 + 多槽读出的完整模型首轮（per_fold、OOF、summary、notes、0 失败；GO=False）。
 - `results/bimsgp_ftt_fixed_20261029/`：旧 A 正式结果；与固定种子 val-PCC 规则宏均一致，保留作历史对照。
 - `results/bimsgp_diag_fixed_20261029/`：同折 RR-BLUP。
 - `results/bimsgp_diag_ftt_fixed_20261029/`：旧初始化的 train/val/test 分解。
 - `results/bimsgp_trajectory_20261030/`：逐 epoch 轨迹（fold 0/4）。
 - `results/bimsgp_variants_20261030/`：4 变体验证集结果与选择（探索性）。
 - `results/bimsgp_selected_test_20261030/`：D 的 test 结果（探索性）。
-- 配置：`configs/bimsgp.yaml`、`configs/bimsgp_selected_20261030.yaml`、`configs/bimsgp_residual.yaml`；运行入口：`scripts/run_ckpt_rules.py`、`scripts/run_residual.py`。
+- 配置：`configs/bimsgp.yaml`、`configs/bimsgp_selected_20261030.yaml`、`configs/bimsgp_residual.yaml`、`configs/bimsgp_induced.yaml`；运行入口：`scripts/run_ckpt_rules.py`、`scripts/run_residual.py`、`scripts/run_induced.py`；模型：`src/wheat599/induced_ftt.py`。
 
 Stage 1（TabPFN-3.5 / FT-T / Ridge 门控）与六方法 Stage 2 协议已暂停，保留在 `docs/STAGE1_PLAN.md` 与 `docs/STAGE2_PLAN.md`，不是本文件的当前结论。

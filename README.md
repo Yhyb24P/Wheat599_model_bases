@@ -1,6 +1,6 @@
-# Wheat599 FT-Transformer 10 折评价、失败诊断与残差修正
+# Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照，以及固定 RR-BLUP + A 骨干的残差修正首轮。val-PCC 规则宏均 test PCC 0.4342；残差修正的 40/40 折选中 residual，test PCC 0.4517、RMSE 0.9176，相对 A 的点估计改善为 +0.0175 / −0.0279，但未观察到相对 RR-BLUP（0.4528 / 0.8957）的可复现增量（点估计 −0.0011 / +0.0218）。RMSE 规则改善均值/尺度校准，但未提高跨材料相关性；预测 SD 小本身不是退化，MSE 最优尺度为 k=r。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
+**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照、固定 RR-BLUP + A 骨干的残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮。val-PCC 规则宏均 test PCC 0.4342；残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 −0.0011 / +0.0218）；完整重构宏均 PCC 0.3382、RMSE 0.9764，预注册 GO=False。预测 SD 小本身不是退化，MSE 最优尺度为 k=r。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 当前任务不跑 TabPFN；不做测试集调参。Stage 1（TabPFN-3.5 / FT-T / Ridge 门控）与六方法 Stage 2 协议已暂停，相关文档保留为历史。
 
@@ -63,6 +63,12 @@ python scripts/run_ckpt_rules.py --config configs/bimsgp.yaml --out results/bims
 
 ```bash
 python scripts/run_residual.py --config configs/bimsgp_residual.yaml --out results/bimsgp_residual_20261030
+```
+
+完整诱导注意力重构（共享低秩 tokenizer + 双向诱导块 + 多槽读出；首轮完整模型）：
+
+```bash
+python scripts/run_induced.py --config configs/bimsgp_induced.yaml --out results/bimsgp_induced_20261030
 ```
 
 测试：

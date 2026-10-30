@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**现行任务（2026-10-30）**：FT-Transformer 在 BGLR Wheat599 上的 10 折评价与失败诊断。seed 42；test 9×60+1×59、val 54、train 485/486；四环境共享；BGLR `wheat.X`/`wheat.Y`；每折 Train-only scaler、预测反变换后算指标；PCC/RMSE/MAE；Test 只评一次。已固定 `build_model()` 前的初始化种子，完成同一训练轨迹内 val-PCC / val-RMSE 双 checkpoint 比较，以及固定 RR-BLUP + A 骨干残差修正首轮（40/40 折选中 residual；未观察到相对 RR-BLUP 增量，相对 A 有点估计改善）。正式结果、同折 RR-BLUP 对照、过拟合诊断与探索性变体选择见 `docs/RESULTS.md`。不跑 TabPFN；不做测试集调参。Stage 1 与六方法协议暂停，文档保留为历史。旧 C-order 加载结果全部作废，只作加载故障记录。
+**现行任务（2026-10-30）**：FT-Transformer 在 BGLR Wheat599 上的 10 折评价与失败诊断。seed 42；test 9×60+1×59、val 54、train 485/486；四环境共享；BGLR `wheat.X`/`wheat.Y`；每折 Train-only scaler、预测反变换后算指标；PCC/RMSE/MAE；Test 只评一次。已固定 `build_model()` 前的初始化种子，完成同一训练轨迹内 val-PCC / val-RMSE 双 checkpoint 比较、固定 RR-BLUP + A 骨干残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮（预注册 GO=False，未做消融/重试）。正式结果、同折 RR-BLUP 对照、过拟合诊断与探索性变体选择见 `docs/RESULTS.md`。不跑 TabPFN；不做测试集调参。Stage 1 与六方法协议暂停，文档保留为历史。旧 C-order 加载结果全部作废，只作加载故障记录。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
@@ -42,6 +42,7 @@
 - 当前任务不跑 TabPFN；TabPFN 冻结 ICL 仅保留在 Stage 2 条件协议；不微调、不从零预训练。
 - “A 骨干”指现有 FT-Transformer 架构标签，不是谱系矩阵 `wheat.A`；当前模型仍为 marker-only。
 - 残差首轮只允许“固定 RR-BLUP + 同骨干修正”：零初始化只作用末层，RR-only/residual 只用合成验证预测选分支，test 不参与选择；不借机改 tokenizer、attention 或宽度。
+- 完整诱导重构首轮 GO=False 后不自动调参或补消融；若继续该架构须用户另立项。latent 只称交互单元，不解释为 LD/通路。
 - 不做测试集调参；诊断性变体只用验证集选择；不向用户要 BiMSGP 划分 ID/OOF/配置；自建 10 折，汇总比较。
 - GPformer、GP-WAITER 不作为工程基座；A 只用于 Stage 2 亲缘敏感性；不沿用旧 C1 半合成路径。
 - 旧 C-order 结果只作故障记录，不得引用为性能证据。

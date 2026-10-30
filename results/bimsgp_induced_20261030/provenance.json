@@ -1,0 +1,37 @@
+{
+ "run": "bimsgp_induced_20261030",
+ "config": "configs/bimsgp_induced.yaml",
+ "data": "data/raw/wheat.RData",
+ "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+ "folds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "seed": 42,
+ "model": {
+  "architecture": "shared_lowrank_tokenizer + bidirectional_induced_attention + multi_query_readout",
+  "d_block": 64,
+  "response_rank": 16,
+  "n_blocks": 2,
+  "n_latents": 32,
+  "attention_n_heads": 4,
+  "ffn_d_hidden": 128,
+  "readout_queries": 4,
+  "readout_mlp_hidden": 32,
+  "initialization": "identity N(0,0.01^2); coeff N(0,1); directions kaiming_uniform",
+  "tokenizer_weight_decay": true,
+  "attention_scores_include_heads": true,
+  "positional_encoding": "none; marker identity is carried by b_j"
+ },
+ "a_reference": "/home/yhshy/git_files/Wheat599_model_bases/results/bimsgp_ckpt_rules_20261030/per_fold.csv",
+ "rr_reference": "/home/yhshy/git_files/Wheat599_model_bases/results/bimsgp_diag_fixed_20261029/per_fold_rrblup.csv",
+ "timestamp": "2026-10-30T15:04:17+0800"
+}

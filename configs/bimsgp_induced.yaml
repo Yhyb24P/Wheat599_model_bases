@@ -1,0 +1,92 @@
+# Complete FT-Transformer-derived architecture: shared low-rank marker
+# encoding, bidirectional induced attention, and multi-query readout.
+# First round is the full model; no component ablation or grid search.
+#
+# Pre-registered GO rule (descriptive only; no p-values/CIs), fixed before the
+# first formal run:
+#   G1 vs A: macro dPCC >= +0.01 and >=3/4 environments with dPCC > 0;
+#   G2 vs A: macro dRMSE <= +0.01 (guardrail, improvement not required);
+#   G3 vs RR-BLUP: macro dPCC >= -0.01 (no clear degradation);
+#   GO = G1 and G2 and G3.
+# Any missed item => NO-GO, recorded without changing the rule or retrying.
+
+protocol:
+  name: bimsgp_induced_wheat599
+  data: data/raw/wheat.RData
+  data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+  # Optional raw-Y override (.npy or .csv, 599x4). Default: reuse the BGLR Y
+  # from `data` (mean 0, sd 1).
+  y_path: data/raw/wheat.RData
+  environments: ["1", "2", "4", "5"]
+  folds: 10
+  fold_seed: 42
+  # Standard 10-fold CV: every material is in the test set exactly once.
+  # 599 = 9*60 + 59. Val = 54 drawn from the remaining 539/540; train = rest.
+  test_sizes: [60, 60, 60, 60, 60, 60, 60, 60, 60, 59]
+  val_size: 54
+
+model:
+  model_type: induced_ftt
+  d_block: 64
+  response_rank: 16
+  n_blocks: 2
+  n_latents: 32
+  attention_n_heads: 4
+  ffn_d_hidden: 128
+  attention_dropout: 0.1
+  ffn_dropout: 0.1
+  residual_dropout: 0.0
+  readout_queries: 4
+  readout_mlp_hidden: 32
+
+training:
+  optimizer: AdamW
+  lr: 0.0005
+  weight_decay: 0.01
+  batch_size: 8
+  epochs: 100
+  early_stopping: false
+  lr_scheduler:
+    type: ReduceLROnPlateau
+    monitor: val_rmse_standardized
+    mode: min
+    factor: 0.5
+    patience: 10
+  checkpoint:
+    monitor: val_pcc
+    tie_break: earlier_epoch
+  loss: mse_on_standardized_y
+  precision:
+    forward: bfloat16
+    loss: float32
+  seed: 42
+
+scaling:
+  x_scaler: StandardScaler   # fit on train only, per fold, per environment
+  y_scaler: StandardScaler   # fit on train only, per fold, per environment
+  scope: train_only
+  inverse_transform_before_metrics: true
+
+eval:
+  metrics: [pcc, rmse, mae]
+  primary: pcc
+  per_fold_and_summary: true
+  summary: "mean +/- sample SD (ddof=1) over the 10 folds"
+  paired_vs_bimsgp: none   # summary-only comparison; no same-fold pairing
+  failure_policy: "explicit rows; no filtering; no nanmean"
+
+reporting:
+  oof: true
+  per_fold_table: true
+  failures_table: true
+  limits:
+    - "10 folds share materials -> not independent; descriptive only, no p-values/CIs"
+    - "single seed (42); no initialization variance"
+
+decision:
+  go:
+    vs_A_macro_dpcc_min: 0.01
+    vs_A_env_dpcc_positive_min: 3
+    vs_A_macro_drmse_max: 0.01
+    vs_RR_macro_dpcc_min: -0.01
+    note: "pre-registered before the first formal run; descriptive only"
