@@ -17,9 +17,11 @@ The 15 fold-level paired differences are saved per value (gate requirement).
 from __future__ import annotations
 
 import argparse
+import faulthandler
 import json
 import sys
 import time
+import traceback
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / "src"))
@@ -68,20 +70,49 @@ def device_info() -> dict:
     return info
 
 
-def run_adapter_oof(adapter, data, splits, smoke, seed) -> tuple[np.ndarray, np.ndarray, dict]:
+def _fit_predict(adapter, X_tr, y_tr, params, X_pred, errors, ctx):
+    """Fit one candidate and predict; a failure is recorded and skipped."""
+    try:
+        cand = type(adapter)()
+        cand.fit(X_tr, y_tr, params)
+        pred = np.asarray(cand.predict(X_pred), dtype=np.float64)
+        if pred.shape[0] != X_pred.shape[0]:
+            raise ValueError(
+                f"prediction length {pred.shape[0]} != {X_pred.shape[0]}")
+        if not np.all(np.isfinite(pred)):
+            raise FloatingPointError("non-finite prediction")
+        return cand, pred
+    except Exception as exc:  # noqa: BLE001 - per-candidate isolation
+        errors.append({
+            **ctx, "stage": "fit_or_predict",
+            "params": {k: v for k, v in params.items()
+                       if not str(k).startswith("_")},
+            "error": f"{type(exc).__name__}: {exc}",
+            "traceback_tail": traceback.format_exc().splitlines()[-6:],
+        })
+        return None, None
+
+
+def run_adapter_oof(adapter, data, splits, smoke, seed,
+                    errors: list | None = None) -> tuple[np.ndarray, np.ndarray, dict]:
     """OOF via inner-fold RMSE selection + refit on full outer_train.
 
-    Leakage contract (takeover fix, 2026-10-29): hyperparameters are chosen
-    ONLY from inner folds inside outer_train (mean RMSE over the 3 inner
-    folds); the final model refits on the full outer_train; the outer-valid
-    slice is used for prediction and metrics, never for selection. FT-T's
-    refit epoch count = median of its inner-fold best epochs (cap
-    max_epochs). Single-config grids (TabPFN frozen ICL) skip the inner loop
-    entirely — nothing to select.
+    Leakage contract: hyperparameters are chosen ONLY from inner folds inside
+    outer_train (mean RMSE over the inner folds); the final model refits on the
+    full outer_train; the outer-valid slice is used for prediction and metrics,
+    never for selection. FT-T's refit epoch count = median of its inner-fold
+    best epochs (cap max_epochs). Single-config grids skip the inner loop.
+
+    Fault isolation (2026-10-29 stage-1 incident): every candidate fit/predict
+    is wrapped; failed candidates are skipped and recorded in ``errors``; a fold
+    whose final refit fails is marked failed (NaN predictions) and the run
+    continues. Nothing here aborts the whole benchmark.
     """
     import itertools
 
-    preds = np.zeros((data.n, data.n_env))
+    errors = errors if errors is not None else []
+    # NaN init: a fold that fails stays explicitly NaN (never a fake 0.0)
+    preds = np.full((data.n, data.n_env), np.nan)
     fold_of = np.full(data.n, -1, dtype=np.int64)
     sel = []
     grid = adapter.param_grid(smoke=smoke)
@@ -95,7 +126,11 @@ def run_adapter_oof(adapter, data, splits, smoke, seed) -> tuple[np.ndarray, np.
         Xva = data.X[va]
         for j in range(data.n_env):
             ycol = data.Y[:, j]
-            rec: dict = {"fold": split.fold, "env": j, "n_configs": len(params_list)}
+            ctx = {"model": adapter.name, "seed": seed,
+                   "fold": split.fold, "env": j}
+            rec: dict = {"model": adapter.name, "seed": seed,
+                         "fold": split.fold, "env": j,
+                         "n_configs": len(params_list)}
             refit_epochs = None
             if len(params_list) == 1:
                 best = params_list[0]
@@ -106,37 +141,55 @@ def run_adapter_oof(adapter, data, splits, smoke, seed) -> tuple[np.ndarray, np.
                 for fi, ifold in enumerate(split.inner_folds):
                     Xiv, yiv = data.X[ifold.inner_valid], ycol[ifold.inner_valid]
                     for pi, p in enumerate(params_list):
-                        cand = type(adapter)()
                         cp = dict(p)
                         cp["_val"] = (Xiv, yiv)
                         cp["_seed"] = seed + 7 * split.fold + fi
-                        cand.fit(data.X[ifold.inner_train], ycol[ifold.inner_train], cp)
-                        scores[fi, pi] = rmse(yiv, cand.predict(Xiv))
-                        if supports_epochs:
-                            epochs[fi, pi] = cand.best_epoch()
-                mean_scores = np.nanmean(scores, axis=0)
+                        cand, pred = _fit_predict(
+                            adapter, data.X[ifold.inner_train],
+                            ycol[ifold.inner_train], cp, Xiv, errors,
+                            {**ctx, "inner_fold": fi, "config_index": pi})
+                        if cand is None:
+                            continue
+                        s_val = rmse(yiv, pred)
+                        if np.isfinite(s_val):
+                            scores[fi, pi] = s_val
+                            if supports_epochs:
+                                epochs[fi, pi] = cand.best_epoch()
+                with np.errstate(invalid="ignore"):
+                    mean_scores = np.nanmean(scores, axis=0)
+                if np.all(np.isnan(mean_scores)):
+                    errors.append({**ctx, "stage": "selection_all_failed",
+                                   "error": "every candidate failed or scored NaN"})
+                    sel.append({**rec, "failed": True, "fail_reason": "selection_all_failed"})
+                    continue
                 best_pi = int(np.nanargmin(mean_scores))
                 best = params_list[best_pi]
-                rec["inner_scores"] = [float(s) for s in mean_scores]
+                rec["inner_scores"] = [float(x) for x in mean_scores]
                 if supports_epochs:
                     refit_epochs = int(np.median(epochs[:, best_pi])) + 1
             rec["params"] = best
             rec["refit_epochs"] = refit_epochs
-            final = type(adapter)()
             fp = dict(best)
             fp["_seed"] = seed + 7 * split.fold
             if refit_epochs is not None:
                 fp["_refit_epochs"] = refit_epochs
-            final.fit(data.X[tr], ycol[tr], fp)
-            preds[va, j] = final.predict(Xva)
+            final, pred = _fit_predict(adapter, data.X[tr], ycol[tr], fp, Xva,
+                                       errors, {**ctx, "stage": "final_refit"})
+            if final is None:
+                errors.append({**ctx, "stage": "fold_failed",
+                               "error": "final refit failed; fold left NaN"})
+                sel.append({**rec, "failed": True, "fail_reason": "final_refit_failed"})
+                continue
+            preds[va, j] = pred
             sel.append(rec)
         fold_of[va] = split.fold
     if np.any(fold_of < 0):
         raise RuntimeError("material without outer-fold assignment")
-    return preds, fold_of, sel
+    return preds, fold_of, {"records": sel, "errors": errors}
 
 
 def main(argv=None) -> int:
+    faulthandler.enable()  # traceback on hard crashes (segfault/OOM stage)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--config", type=Path, default=Path("configs/stage1.yaml"))
     parser.add_argument("--data", type=Path, default=None)
@@ -194,22 +247,41 @@ def main(argv=None) -> int:
     oof_store = {m: {} for m in run_models}  # model -> env -> repeat -> y_pred
     fold_of_by_seed: dict = {}               # seed -> fold_of (shared by env/model)
     fold_rmses = {m: {} for m in run_models}  # model -> env -> repeat -> [per-fold rmse]
+    errors: list = []
+    fatal: list = []
+    ckpt_log = out / "checkpoints.jsonl"
     for m in run_models:
         adapter = get_adapter(m)
         for seed in seeds:
-            splits = build_splits(data, "random", seed=seed,
-                                  n_outer=n_outer, n_inner=n_inner)
-            for s in splits:
-                check_adapter(adapter.contract_adapter(), s, data)
-            preds, fold_of, _ = run_adapter_oof(adapter, data, splits, args.smoke, seed)
+            try:
+                splits = build_splits(data, "random", seed=seed,
+                                      n_outer=n_outer, n_inner=n_inner)
+                for s in splits:
+                    check_adapter(adapter.contract_adapter(), s, data)
+                preds, fold_of, run_info = run_adapter_oof(
+                    adapter, data, splits, args.smoke, seed, errors)
+            except Exception:  # noqa: BLE001 - model-seed isolation
+                fatal.append({"model": m, "seed": seed,
+                              "error": traceback.format_exc().splitlines()[-12:]})
+                print(f"  [{m} seed={seed}] CRASHED (isolated); continuing",
+                      flush=True)
+                (out / "errors.jsonl").write_text(
+                    "\n".join(json.dumps(e, ensure_ascii=False)
+                              for e in errors + fatal), )
+                continue
             fold_of_by_seed[seed] = fold_of
+            with ckpt_log.open("a") as fh:
+                fh.write(json.dumps({"model": m, "seed": seed,
+                                     "errors": len(errors),
+                                     "records": len(run_info["records"])},
+                                    ensure_ascii=False) + "\n")
             for j, env in enumerate(data.environments):
                 oof_store[m].setdefault(env, {})[seed] = preds[:, j]
                 fold_rmses[m].setdefault(env, {})[seed] = [
                     rmse(data.Y[s.outer_valid, j], preds[s.outer_valid, j])
                     for s in splits
                 ]
-            print(f"  [{m} seed={seed}] done")
+            print(f"  [{m} seed={seed}] done; errors so far={len(errors)}", flush=True)
 
     # save OOF + per-fold metrics
     for m in run_models:
@@ -309,7 +381,13 @@ def main(argv=None) -> int:
         "gate": gate,
         "comparisons": {t: c["agg"] for t, c in comparisons.items()},
     }, indent=2, default=str))
-    print(f"done. wrote {out}/")
+    (out / "errors.jsonl").write_text(
+        "\n".join(json.dumps(e, ensure_ascii=False) for e in errors + fatal))
+    if fatal:
+        print(f"[stage1] {len(fatal)} model-seed group(s) crashed; see errors.jsonl",
+              flush=True)
+        return 1
+    print(f"done. wrote {out}/ (fold-level errors: {len(errors)})", flush=True)
     return 0
 
 

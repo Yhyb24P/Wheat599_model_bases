@@ -105,6 +105,12 @@ def _export_with_r(rdata: Path, outdir: Path) -> str:
     return lines[-1] if lines else ",".join(EXPECTED_ENVIRONMENTS)
 
 
+# R exports matrices with as.vector(), which is COLUMN-MAJOR; the flat file must
+# be reinterpreted in Fortran order. A C-order reshape scrambles X/Y silently
+# (A is symmetric, so it masks the bug; X/Y are not — see tests/test_data_layout.py).
+LAYOUT_VERSION = "f-order-v2"
+
+
 def _read_flat(path: Path, dtype: np.dtype, shape: tuple[int, ...]) -> np.ndarray:
     expected_itemsize = np.dtype(dtype).itemsize
     raw = path.read_bytes()
@@ -113,7 +119,8 @@ def _read_flat(path: Path, dtype: np.dtype, shape: tuple[int, ...]) -> np.ndarra
             f"{path}: size {len(raw)} does not match shape {shape} "
             f"({int(np.prod(shape)) * expected_itemsize} bytes)"
         )
-    return np.frombuffer(raw, dtype=dtype).reshape(shape).copy()
+    return np.frombuffer(raw, dtype=dtype).reshape(
+        shape, order="F" if len(shape) > 1 else "C").copy()
 
 
 def load(
@@ -133,12 +140,20 @@ def load(
         cache_dir = rdata.parent.parent / "processed"
     cache_dir = Path(cache_dir)
     stamp = cache_dir / "source.sha256"
+    layout_stamp = cache_dir / "layout.version"
 
-    if cache_dir.exists() and stamp.exists() and stamp.read_text().strip() == expected_sha256:
+    cache_ok = (
+        cache_dir.exists() and stamp.exists()
+        and stamp.read_text().strip() == expected_sha256
+        and layout_stamp.exists()
+        and layout_stamp.read_text().strip() == LAYOUT_VERSION
+    )
+    if cache_ok:
         y_names_line = (cache_dir / "y_names.txt").read_text().strip()
     else:
         y_names_line = _export_with_r(rdata, cache_dir)
         stamp.write_text(expected_sha256)
+        layout_stamp.write_text(LAYOUT_VERSION)
         (cache_dir / "y_names.txt").write_text(y_names_line)
 
     y_names = tuple(y_names_line.split(","))

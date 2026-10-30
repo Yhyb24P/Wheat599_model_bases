@@ -1,0 +1,14 @@
+{
+ "config": "configs/bimsgp.yaml",
+ "folds": [
+  0,
+  4
+ ],
+ "environments": [
+  "1",
+  "2",
+  "4",
+  "5"
+ ],
+ "rows": 800
+}

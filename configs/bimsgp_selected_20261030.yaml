@@ -1,0 +1,78 @@
+protocol:
+  name: bimsgp_ftt_wheat599
+  data: data/raw/wheat.RData
+  data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+  y_path: data/raw/wheat.RData
+  environments:
+  - '1'
+  - '2'
+  - '4'
+  - '5'
+  folds: 10
+  fold_seed: 42
+  test_sizes:
+  - 60
+  - 60
+  - 60
+  - 60
+  - 60
+  - 60
+  - 60
+  - 60
+  - 60
+  - 59
+  val_size: 54
+model:
+  d_block: 64
+  n_blocks: 2
+  attention_n_heads: 4
+  ffn_d_hidden: 128
+  ffn_d_hidden_multiplier: null
+  ffn_activation: ReGLU
+  attention_dropout: 0.1
+  ffn_dropout: 0.2
+  residual_dropout: 0.0
+  positional_encoding: none
+training:
+  optimizer: AdamW
+  lr: 0.0005
+  weight_decay: 0.01
+  batch_size: 8
+  epochs: 100
+  early_stopping: false
+  lr_scheduler:
+    type: ReduceLROnPlateau
+    monitor: val_rmse_standardized
+    mode: min
+    factor: 0.5
+    patience: 10
+  checkpoint:
+    monitor: val_pcc
+    tie_break: earlier_epoch
+  loss: mse_on_standardized_y
+  precision:
+    forward: bfloat16
+    loss: float32
+  seed: 42
+scaling:
+  x_scaler: StandardScaler
+  y_scaler: StandardScaler
+  scope: train_only
+  inverse_transform_before_metrics: true
+eval:
+  metrics:
+  - pcc
+  - rmse
+  - mae
+  primary: pcc
+  per_fold_and_summary: true
+  summary: mean +/- sample SD (ddof=1) over the 10 folds
+  paired_vs_bimsgp: none
+  failure_policy: explicit rows; no filtering; no nanmean
+reporting:
+  oof: true
+  per_fold_table: true
+  failures_table: true
+  limits:
+  - 10 folds share materials -> not independent; descriptive only, no p-values/CIs
+  - single seed (42); no initialization variance

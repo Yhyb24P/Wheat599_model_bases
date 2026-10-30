@@ -14,6 +14,7 @@ models/
 results/**/oof/*.npz
 results/**/predictions/*.npy
 *.log
+*.pid
 .DS_Store
 .state/
 .qoder/

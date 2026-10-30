@@ -1,0 +1,20 @@
+{
+ "run": "bimsgp_ftt_fixed_20261029",
+ "config": "configs/bimsgp.yaml",
+ "data": "data/raw/wheat.RData",
+ "y_path": "data/raw/wheat.RData",
+ "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+ "folds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "timestamp": "2026-10-29T21:23:11+0800"
+}

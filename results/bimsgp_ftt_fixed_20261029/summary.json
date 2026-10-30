@@ -1,0 +1,110 @@
+{
+ "provenance": {
+  "run": "bimsgp_ftt_fixed_20261029",
+  "config": "configs/bimsgp.yaml",
+  "data": "data/raw/wheat.RData",
+  "y_path": "data/raw/wheat.RData",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "folds": [
+   0,
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9
+  ],
+  "timestamp": "2026-10-29T21:23:11+0800"
+ },
+ "summary": {
+  "1": {
+   "n_folds": 10,
+   "n_valid": 10,
+   "n_failed": 0,
+   "pcc": {
+    "mean": 0.4951119067889402,
+    "sd_ddof1": 0.09337560338430556,
+    "n": 10
+   },
+   "rmse": {
+    "mean": 0.9018164354860876,
+    "sd_ddof1": 0.07391816005395485,
+    "n": 10
+   },
+   "mae": {
+    "mean": 0.7170468256728011,
+    "sd_ddof1": 0.06873931355857725,
+    "n": 10
+   }
+  },
+  "2": {
+   "n_folds": 10,
+   "n_valid": 10,
+   "n_failed": 0,
+   "pcc": {
+    "mean": 0.429992863892411,
+    "sd_ddof1": 0.1009777978371719,
+    "n": 10
+   },
+   "rmse": {
+    "mean": 0.929876231012974,
+    "sd_ddof1": 0.08929324114372886,
+    "n": 10
+   },
+   "mae": {
+    "mean": 0.7148626849832354,
+    "sd_ddof1": 0.08878154849297144,
+    "n": 10
+   }
+  },
+  "4": {
+   "n_folds": 10,
+   "n_valid": 10,
+   "n_failed": 0,
+   "pcc": {
+    "mean": 0.3855328129096181,
+    "sd_ddof1": 0.06308440301308033,
+    "n": 10
+   },
+   "rmse": {
+    "mean": 0.9847978366401489,
+    "sd_ddof1": 0.10885717844097714,
+    "n": 10
+   },
+   "mae": {
+    "mean": 0.7662238146270367,
+    "sd_ddof1": 0.08791827574007462,
+    "n": 10
+   }
+  },
+  "5": {
+   "n_folds": 10,
+   "n_valid": 10,
+   "n_failed": 0,
+   "pcc": {
+    "mean": 0.42582793473147706,
+    "sd_ddof1": 0.06686646843696231,
+    "n": 10
+   },
+   "rmse": {
+    "mean": 0.965346624319823,
+    "sd_ddof1": 0.0711091541654585,
+    "n": 10
+   },
+   "mae": {
+    "mean": 0.75693138290869,
+    "sd_ddof1": 0.06187442531783424,
+    "n": 10
+   }
+  }
+ },
+ "n_runs": 40,
+ "n_failures": 0,
+ "limits": [
+  "10 folds share materials -> not independent; descriptive only, no p-values/CIs",
+  "single seed (42); no initialization variance"
+ ]
+}

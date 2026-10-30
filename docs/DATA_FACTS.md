@@ -125,3 +125,10 @@ IBS 臂取 ≥0.8：它是使最大分量 ≤60 的最低阈值（44），且 12
 python scripts/fetch_data.py
 Rscript -e 'load("data/raw/wheat.RData"); print(dim(wheat.X)); print(colnames(wheat.Y)); print(range(diag(wheat.A)))'
 ```
+
+## 加载校验（2026-10-29）
+
+- R `as.vector(matrix)` 为列主序；`src/wheat599/data.py::_read_flat` 必须用 `reshape(shape, order='F')`。先用 C-order 的旧实现会把非方阵 X/Y 打乱（A 对称，未暴露）。
+- 全量对照（R `write.csv` 参考 vs Python loader）：X 逐元素完全一致（maxdiff=0）；Y maxdiff=4.9e-15；X 1279 列（R 列名唯一，逐元素对照验证列顺序）、Y 列名 `"1","2","4","5"` 一致；MAF<0.05=96；Y 相关与上表一致。
+- 非方阵回归测试：`tests/test_data_reader_order.py`（2×3，R 列主序）通过。
+- 旧 C-order 结果目录已写 `INVALID.md`，只作加载故障记录，不作性能证据。

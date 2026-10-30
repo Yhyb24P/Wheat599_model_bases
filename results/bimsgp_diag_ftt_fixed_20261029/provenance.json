@@ -1,0 +1,10 @@
+{
+ "run": "bimsgp_diag_ftt_fixed_20261029",
+ "config": "/home/yhshy/git_files/Wheat599_model_bases/configs/bimsgp.yaml",
+ "parts": [
+  "ftt"
+ ],
+ "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+ "folds_seed": 42,
+ "timestamp": "2026-10-29T22:24:04+0800"
+}
