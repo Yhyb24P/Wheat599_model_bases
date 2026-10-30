@@ -62,7 +62,12 @@ def test_tabpfn_predict_non_constant():
     """TabPFN frozen-ICL predictions must not be constant."""
     X, y = _synthetic(n=100, p=8, seed=3)
     ad = get_adapter("tabpfn_v3_5")
-    ad.fit(X, y, {"categorization": "auto_default"})
+    try:
+        ad.fit(X, y, {"categorization": "auto_default"})
+    except Exception as exc:  # noqa: BLE001 - license is an external prerequisite
+        if type(exc).__name__ == "TabPFNLicenseError":
+            pytest.skip(f"TabPFN token/weights unavailable: {exc}")
+        raise
     pred = ad.predict(X)
     assert pred.shape == y.shape
     assert np.isfinite(pred).all()

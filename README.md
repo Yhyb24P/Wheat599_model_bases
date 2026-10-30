@@ -59,7 +59,7 @@ python scripts/run_variants.py --config configs/bimsgp.yaml --out results/bimsgp
 pytest tests/ -q
 ```
 
-`tests/test_torch_models.py` 的 TabPFN 用例需要 TabPFN 权重与 `TABPFN_TOKEN`；当前任务不跑 TabPFN。
+`tests/test_torch_models.py` 的 TabPFN 用例需要 TabPFN 权重与 `TABPFN_TOKEN`，缺失时自动跳过；当前任务不跑 TabPFN。
 
 ## 布局
 
