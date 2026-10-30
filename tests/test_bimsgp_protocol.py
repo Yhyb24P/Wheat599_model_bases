@@ -132,6 +132,24 @@ def test_build_model_seeded_initialization():
     assert any(not torch.equal(sa[k], sc[k]) for k in sa)
 
 
+def test_zero_init_output_and_residual_scale():
+    torch = pytest.importorskip("torch")
+    pytest.importorskip("rtdl_revisiting_models")
+    p = 6
+    model = rb.build_model(p, _tiny_cfg(), seed=11)
+    n_before = sum(x.numel() for x in model.parameters())
+    rb.zero_init_output(model)
+    assert sum(x.numel() for x in model.parameters()) == n_before
+    model.eval()
+    with torch.no_grad():
+        out = model(x_cont=torch.randn(4, p), x_cat=None)
+    assert torch.allclose(out, torch.zeros_like(out), atol=1e-6)
+    sy = rb.Scaler().fit(np.array([1.0, 2.0, 4.0]))
+    rr = np.array([0.5, -0.5])
+    g = np.array([0.2, -0.3])
+    assert np.allclose(rb.residual_prediction(rr, g, sy), rr + sy.std * g)
+
+
 def test_manifest_only_cli_writes_coverage(tmp_path):
     out = tmp_path / "manifest_run"
     rb.main(["--manifest-only", "--out", str(out)])

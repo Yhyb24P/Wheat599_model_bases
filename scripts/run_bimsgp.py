@@ -106,6 +106,59 @@ class Scaler:
 
 # ---------------------------------------------------------------- model ----
 
+RR_ALPHAS = (0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0)
+
+
+def fit_rrblup(X_tr, y_tr, X_val, y_val):
+    """The current RR-BLUP baseline: train-only centering, alpha on val RMSE."""
+    from sklearn.linear_model import Ridge
+
+    X_tr = np.asarray(X_tr, dtype=np.float64)
+    y_tr = np.asarray(y_tr, dtype=np.float64)
+    X_val = np.asarray(X_val, dtype=np.float64)
+    y_val = np.asarray(y_val, dtype=np.float64)
+    mu_x, mu_y = X_tr.mean(axis=0), float(y_tr.mean())
+    Xtr_c, Xva_c = X_tr - mu_x, X_val - mu_x
+    best_alpha, best_rmse = None, np.inf
+    for alpha in RR_ALPHAS:
+        m = Ridge(alpha=float(alpha), fit_intercept=True).fit(Xtr_c, y_tr - mu_y)
+        score = rmse(y_val, m.predict(Xva_c) + mu_y)
+        if np.isfinite(score) and score < best_rmse:
+            best_rmse, best_alpha = float(score), float(alpha)
+    if best_alpha is None:
+        raise RuntimeError("RR-BLUP: no finite validation RMSE")
+    model = Ridge(alpha=best_alpha, fit_intercept=True).fit(Xtr_c, y_tr - mu_y)
+    return {"model": model, "mu_x": mu_x, "mu_y": mu_y,
+            "alpha": best_alpha, "val_rmse": best_rmse}
+
+
+def predict_rrblup(fit, X):
+    X = np.asarray(X, dtype=np.float64)
+    return fit["model"].predict(X - fit["mu_x"]) + fit["mu_y"]
+
+
+def zero_init_output(model):
+    """Zero only the final regression linear layer; backbone stays initialized."""
+    import torch
+
+    output = model.backbone.output
+    last = output[-1] if isinstance(output, torch.nn.Sequential) else output
+    if not isinstance(last, torch.nn.Linear):
+        raise TypeError(f"unexpected output layer: {type(last).__name__}")
+    with torch.no_grad():
+        last.weight.zero_()
+        if last.bias is not None:
+            last.bias.zero_()
+    return last
+
+
+def residual_prediction(rr_pred, correction, y_scaler):
+    """RR prediction + s_T * g, with g in standardized phenotype units."""
+    rr_pred = np.asarray(rr_pred, dtype=np.float64)
+    correction = np.asarray(correction, dtype=np.float64)
+    return rr_pred + float(y_scaler.std) * correction
+
+
 def build_model(p: int, cfg_model: dict, seed: int):
     import random
     import torch
@@ -133,13 +186,16 @@ def build_model(p: int, cfg_model: dict, seed: int):
 
 def train_one_fold(
     model, X_tr, y_tr, X_val, y_val, cfg_training, device, seed=42,
+    base_tr=None, base_val=None,
 ):
     """100-epoch training loop; returns (model, history, fit_info).
 
     y_tr/y_val are already standardized (train-fold scaler). LR scheduler and
     both checkpoint rules use val signals only; the test fold never enters this
-    function. The returned model is loaded with the best-val-PCC state; the
-    best-val-RMSE state is returned separately for a pre-specified comparison.
+    function. When base_tr/base_val are given, the model output is a correction
+    and the metrics are computed on base + output (the combined prediction).
+    The returned model is loaded with the best-val-PCC state; the best-val-RMSE
+    state is returned separately for a pre-specified comparison.
     """
     import torch
 
@@ -188,12 +244,20 @@ def train_one_fold(
             with torch.autocast(device_type="cuda", dtype=torch.bfloat16, enabled=amp):
                 pv = model(x_cont=Xv, x_cat=None).squeeze(-1)
             pv = pv.float().cpu().numpy()
-        val_rmse = rmse(y_val, pv)
-        val_pcc = pcc(y_val, pv)
+        if base_val is None:
+            val_truth, val_pred = y_val, pv
+        else:
+            val_truth = y_val + base_val
+            val_pred = pv + base_val
+        val_rmse = rmse(val_truth, val_pred)
+        val_pcc = pcc(val_truth, val_pred)
         train_rmse = None
         if epoch % 5 == 0 or epoch == epochs - 1:
             ptr = predict(model, X_tr, device)
-            train_rmse = float(rmse(y_tr, ptr))
+            if base_tr is None:
+                train_rmse = float(rmse(y_tr, ptr))
+            else:
+                train_rmse = float(rmse(y_tr + base_tr, ptr + base_tr))
         history.append({"epoch": epoch, "val_rmse": float(val_rmse),
                         "val_pcc": float(val_pcc),
                         "train_rmse": train_rmse,

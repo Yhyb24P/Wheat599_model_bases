@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**现行任务（2026-10-30）**：FT-Transformer 在 BGLR Wheat599 上的 10 折评价与失败诊断。seed 42；test 9×60+1×59、val 54、train 485/486；四环境共享；BGLR `wheat.X`/`wheat.Y`；每折 Train-only scaler、预测反变换后算指标；PCC/RMSE/MAE；Test 只评一次。已固定 `build_model()` 前的初始化种子，并完成同一训练轨迹内 val-PCC / val-RMSE 双 checkpoint 比较；正式结果、同折 RR-BLUP 对照、过拟合诊断与探索性变体选择见 `docs/RESULTS.md`。不跑 TabPFN；不做测试集调参。Stage 1 与六方法协议暂停，文档保留为历史。旧 C-order 加载结果全部作废，只作加载故障记录。
+**现行任务（2026-10-30）**：FT-Transformer 在 BGLR Wheat599 上的 10 折评价与失败诊断。seed 42；test 9×60+1×59、val 54、train 485/486；四环境共享；BGLR `wheat.X`/`wheat.Y`；每折 Train-only scaler、预测反变换后算指标；PCC/RMSE/MAE；Test 只评一次。已固定 `build_model()` 前的初始化种子，完成同一训练轨迹内 val-PCC / val-RMSE 双 checkpoint 比较，以及固定 RR-BLUP + A 骨干残差修正首轮（40/40 折选中 residual；未观察到相对 RR-BLUP 增量，相对 A 有点估计改善）。正式结果、同折 RR-BLUP 对照、过拟合诊断与探索性变体选择见 `docs/RESULTS.md`。不跑 TabPFN；不做测试集调参。Stage 1 与六方法协议暂停，文档保留为历史。旧 C-order 加载结果全部作废，只作加载故障记录。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
@@ -9,9 +9,9 @@
 1. **只保留两件事：跑出数字；数字不被做假。** 无泄漏底线保留：scaler/选模只用 Train/Val，Test 不参与任何训练决策，泄漏测试通过。其余流程性检查、ARS 评审轮、签核链、G0_VERSION 仪式、结构化门文档一律不做。
 2. **只报数字与结论。** 不写长输入清单、不反复确认、不做过程汇报、不加 raw yield/尺度类注记；负结果如实报。
 3. **数据与初始化可复现。** R `as.vector` 是列主序，读取必须 `reshape(shape, order='F')`；全量 R/Python 逐元素对照；2×3 非方阵测试；旧 cache/scaler/checkpoint 隔离；旧结果标 `INVALID`，不作性能证据。每次 `build_model()` 前设置随机种子，模型初始化不依赖调用方遗留的 RNG 状态。
-4. **不做无意义检查或测试集调参。** 诊断只用于区分数据/欠拟合/泛化；RR-BLUP 是功能性检查，不要求固定 PCC；诊断性变体只用验证集选择，选中后 test 只评一次；不扩网格、不设第三轮架构搜索。
+4. **不做无意义检查或测试集调参。** 诊断只用于区分数据/欠拟合/泛化；RR-BLUP 是功能性检查，不要求固定 PCC；诊断性变体只用验证集选择，选中后 test 只评一次；不扩网格、不设第三轮架构搜索。预测 SD 小本身不等于退化：对固定方向，MSE 最优尺度是 k=r；目标是提高可泛化相关性，不是把预测 SD 拉到 1。
 5. **正式实现只有一套。** `src/wheat599/` + CLI；不新增平行脚本/临时入口；变体用 `configs/`；`data/raw/` 只读；结果按 `results/<run>/` 落盘。
-6. **Git 与结果。** 提交源码、配置、docs、小型结果；不提交数据、权重、大 OOF；权重 SHA/许可入 `docs/LICENSE_NOTES.md`；不重建 archive/legacy。
+6. **Git 与结果。** 提交源码、配置、docs、小型结果；不提交数据、权重、大 OOF；权重 SHA/许可入 `docs/LICENSE_NOTES.md`；不重建 archive/legacy。正式结果落盘后默认同步更新相关文档、提交并推送 GitHub，不再等待用户逐次提醒；推送前确认不包含数据、权重、无效或冒烟结果。
 7. **证据。** 结果对应数据 SHA、代码、配置、种子、划分；10 折不独立，只描述、不做 p/CI；失败显式记录，不过滤、不 `nanmean`；Test 不参与训练决策。折均 PCC 与合并 OOF PCC 分开标注；折内 z-score 只改变聚合尺度，不构成性能恢复证据。Checkpoint 规则须在测试前固定，test 不用于选规则或拼接环境最优结果。
 8. **文档各司其职。** README、当前任务、DATA_FACTS、RESULTS；失效流程文档不再执行，保留为历史；同一信息不重复。
 9. **写清楚条件和行动。** 避免流水账、免责声明、无必要标题；影响判断的限制具体写；已定条件直接写。
@@ -33,13 +33,15 @@
 
 - 用户是最终决策者。AIA 团队：主导者负责协议与裁决；gb 负责关键实现与验证；iq 只读支持，不写关键文件；law 独立监管，但精简检查。
 - 不再做 ARS 评审轮、签核链、G0_VERSION 仪式；只保留无泄漏底线与数字真实。
-- 冻结从简：一次本地提交＋标签；推送须用户明确授权。
+- 冻结从简：一次本地提交＋标签；用户已授权正式结果更新后自动提交并推送 GitHub；不推送数据、权重、无效/冒烟结果，破坏性操作仍须单独授权。
 - 共享工作树同一文件同一时间只留一个写者；改动共享文件前说明；不覆盖对方未提交改动。
 - GPU 共享：不设时间限制；不溢出共享显存；溢出立即停、修复后再跑；不干扰其他租户；任务结束释放显存。
 
 ## 硬边界
 
 - 当前任务不跑 TabPFN；TabPFN 冻结 ICL 仅保留在 Stage 2 条件协议；不微调、不从零预训练。
+- “A 骨干”指现有 FT-Transformer 架构标签，不是谱系矩阵 `wheat.A`；当前模型仍为 marker-only。
+- 残差首轮只允许“固定 RR-BLUP + 同骨干修正”：零初始化只作用末层，RR-only/residual 只用合成验证预测选分支，test 不参与选择；不借机改 tokenizer、attention 或宽度。
 - 不做测试集调参；诊断性变体只用验证集选择；不向用户要 BiMSGP 划分 ID/OOF/配置；自建 10 折，汇总比较。
 - GPformer、GP-WAITER 不作为工程基座；A 只用于 Stage 2 亲缘敏感性；不沿用旧 C1 半合成路径。
 - 旧 C-order 结果只作故障记录，不得引用为性能证据。

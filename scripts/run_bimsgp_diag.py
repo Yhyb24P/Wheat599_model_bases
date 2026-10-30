@@ -36,27 +36,17 @@ import run_bimsgp as rb
 from wheat599.data import load, sha256_of
 from wheat599.metrics import mae, pcc, rmse
 
-ALPHAS = [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]  # Stage-1 alpha grid, no expansion
+ALPHAS = list(rb.RR_ALPHAS)  # shared with the residual runner; no expansion
 
 
 # ----------------------------------------------------------------- Ridge ----
 
 def rrblup_one(env, fold, X_tr, y_tr, X_va, y_va, X_te, y_te) -> dict:
     """Train-only centering + Ridge; alpha chosen on val RMSE; test once."""
-    from sklearn.linear_model import Ridge
-
-    mu_x, mu_y = X_tr.mean(axis=0), float(y_tr.mean())
-    Xtr_c, Xva_c, Xte_c = X_tr - mu_x, X_va - mu_x, X_te - mu_x
-    best_alpha, best_rmse = None, np.inf
-    for a in ALPHAS:
-        m = Ridge(alpha=a, fit_intercept=True).fit(Xtr_c, y_tr - mu_y)
-        s = rmse(y_va, m.predict(Xva_c) + mu_y)
-        if s < best_rmse:
-            best_rmse, best_alpha = s, a
-    model = Ridge(alpha=best_alpha, fit_intercept=True).fit(Xtr_c, y_tr - mu_y)
-    pred_te = model.predict(Xte_c) + mu_y
-    row = {"environment": env, "fold": int(fold), "alpha": best_alpha,
-           "val_rmse": float(best_rmse),
+    fit = rb.fit_rrblup(X_tr, y_tr, X_va, y_va)
+    pred_te = rb.predict_rrblup(fit, X_te)
+    row = {"environment": env, "fold": int(fold), "alpha": fit["alpha"],
+           "val_rmse": fit["val_rmse"],
            "test_pcc": float(pcc(y_te, pred_te)),
            "test_rmse": float(rmse(y_te, pred_te)),
            "test_mae": float(mae(y_te, pred_te)),
