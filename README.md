@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照、固定 RR-BLUP + A 骨干的残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮。val-PCC 规则宏均 test PCC 0.4342；残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 −0.0011 / +0.0218）；完整重构宏均 PCC 0.3382、RMSE 0.9764，预注册 GO=False。预测 SD 小本身不是退化，MSE 最优尺度为 k=r。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
+**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照、固定 RR-BLUP + A 骨干的残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮。val-PCC 规则宏均 test PCC 0.4342；残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 −0.0011 / +0.0218）；完整重构宏均 PCC 0.3382、RMSE 0.9764，预注册 GO=False。该 NO-GO 只针对本配置/单 seed/固定十折，不构成对重构方向的一般性否定，也未做模块消融。预测 SD 小本身不是退化，MSE 最优尺度为 k=r。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 当前任务不跑 TabPFN；不做测试集调参。Stage 1（TabPFN-3.5 / FT-T / Ridge 门控）与六方法 Stage 2 协议已暂停，相关文档保留为历史。
 

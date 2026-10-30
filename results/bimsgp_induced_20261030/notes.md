@@ -51,11 +51,11 @@ Comparisons (same folds):
 | G2 vs A: macro ΔRMSE ≤ +0.01 | +0.0309 | No |
 | G3 vs RR: macro ΔPCC ≥ −0.01 | −0.1147 | No |
 
-**GO = False.** Per the pre-registration, no rule/config retry and no component ablation were performed. Whether to continue this architecture is a user decision.
+**GO = False.** Per the pre-registration, no rule/config retry and no component ablation were performed. Whether to continue this architecture is a user decision. This result is specific to this configuration, single seed, and fixed 10-fold protocol; it is not a general rejection of the reconstruction direction, and without ablation it does not identify whether the low-rank tokenizer or induced attention alone is useful.
 
 ## Diagnostics
 
-- Five folds have selected prediction SD < 0.1 × truth SD: (env 4, fold 1), (env 5, fold 1), (env 4, fold 4), (env 2, fold 5), (env 4, fold 7); their best epochs are 11, 0, 2, 0, 1 and PCC 0.090, 0.348, 0.207, 0.089, 0.088. These are near-constant checkpoint failures, not missing rows.
+- Five folds have selected prediction SD < 0.1 × truth SD: (env 4, fold 1), (env 5, fold 1), (env 4, fold 4), (env 2, fold 5), (env 4, fold 7); their best epochs are 11, 0, 2, 0, 1 and PCC 0.090, 0.348, 0.207, 0.089, 0.088. The 0.1σ_y threshold is a descriptive diagnostic, not pre-registered; these folds are not excluded and their PCC is included in the macro means. Four of five are in environments 4/5 with best epoch ≤2, suggesting initialization/early-training instability rather than a hidden prediction failure.
 - Token identity norm: initial mean 0.0802; final mean 0.1642 (range 0.0838–0.2639). Norms grew rather than collapsed; no evidence that weight decay removed marker identity in this run.
 - Best epoch mean/median: 23.8 / 22.0; the model was not uniformly stuck at epoch 0.
 
