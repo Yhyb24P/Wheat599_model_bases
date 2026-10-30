@@ -71,6 +71,12 @@ python scripts/run_residual.py --config configs/bimsgp_residual.yaml --out resul
 python scripts/run_induced.py --config configs/bimsgp_induced.yaml --out results/bimsgp_induced_20261030
 ```
 
+原 FT 编码 + 一层完整标记交互 + 因子化线性读出（第四候选，正式运行待执行）：
+
+```bash
+python scripts/run_direct.py --config configs/bimsgp_direct.yaml --out results/bimsgp_direct_20261030
+```
+
 测试：
 
 ```bash
