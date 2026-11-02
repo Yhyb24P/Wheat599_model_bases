@@ -159,6 +159,9 @@ def main():
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
     args = p.parse_args()
     cfg = yaml.safe_load(args.config.read_text())
+    if cfg.get('model') == 'spectral_icm':
+        from wheat599.spectral_icm import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'multienv_kernel':
         from wheat599.multienv_kernel import run
         return run(cfg, args, Path(__file__))
