@@ -25,6 +25,8 @@
 
 **原报告机制判断的必要修正：** 现有结果不能证明普通 ICM 的可分离结构是性能瓶颈，也不能由 RBF 增益推断真实上位性；同一核的谱滤波分支对易，不意味着其必然无预测收益。报告中声称“只要 `η_A≠η_R` 或 `γ>0` 就必然不可约化”也不成立，例如某一分支权重为零时，该分支的 η 不影响核。此前 OOF 可靠性实现的非对角缩放是 `sqrt(r_t r_t')`，不是 `r_t r_t'`；不同带宽按核分组并分别构造半正定任务矩阵，本身不会使联合核失效。[Bonilla 等](https://proceedings.neurips.cc/paper_files/paper/2007/file/66368270ffd51418ec58bd793f2d9b1b-Paper.pdf) 的完全区组任务间传递抵消结论以无噪声为条件，不能直接等同于有正则化的当前实现。[Burgueño 等](https://acsess.onlinelibrary.wiley.com/doi/abs/10.2135/cropsci2006.09.0564) 研究了加性和加性×加性环境互作，但不能据此把本项目 RBF 预测分量直接认定为生物学上位性。
 
+原报告将 Gianola 与 Schön 的文章列为 `Genetics`、DOI `10.1534/genetics.115.185850`；该文实际发表于 *G3*，正确 DOI 为 [`10.1534/g3.116.033381`](https://pubmed.ncbi.nlm.nih.gov/27489209/)。
+
 ## BH-LMC 与匹配范围 ICM（2026-11-02）
 
 BH-LMC 和匹配范围 ICM 各完成 40/40 环境折、0 失败。历史 ICM 实际使用训练标准化和 GLS 无惩罚截距，本轮按 GLS 投影计算固定核条件 LOO；训练标记核、表型统计、基础核选择及校准均仅使用当前拟合子集。48 组候选与匹配 ICM 子集按三折四环境平均 PCC 选定，完整开发集重拟合后评价 CV1。方案和固定阈值见 [Wheat599_BH-LMC.md](Wheat599_BH-LMC.md)，配置见 `configs/bh_lmc_nested.yaml`。
