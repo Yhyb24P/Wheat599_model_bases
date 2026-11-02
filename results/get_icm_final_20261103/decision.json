@@ -1,0 +1,11 @@
+{
+  "G1": false,
+  "G2": false,
+  "G3": false,
+  "wins": 15,
+  "losses": 13,
+  "ties": 12,
+  "nonzero_beta_folds": 7,
+  "non_tie_win_fraction": 0.5357142857142857,
+  "GO": false
+}
