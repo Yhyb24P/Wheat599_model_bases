@@ -1,5 +1,7 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
+当前主线是优化背景条件化联合收缩模型，并以 PCC 为主，与合理优化的 BiMSGP、MoEGP 和 RR-BLUP 按共同外层折比较；开发集内选模后用完整开发集重拟合。具体协议与进展见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。以下数字为已有首轮结果，不作为新协议下的公平对照。
+
 背景条件化联合收缩候选已完成 40/40 次：折均宏平均 PCC 0.4760、RMSE 0.8851、MAE 0.6868；相对同折 RR-BLUP 的 PCC 差 +0.0232、RMSE 差 −0.0106。详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 复现命令：`python scripts/run_background_ridge.py --config configs/background_ridge.yaml --out results/<新运行目录>`。
