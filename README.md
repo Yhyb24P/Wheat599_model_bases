@@ -1,5 +1,7 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
+联合基础核与任务参数选模已完成：GET、ICM 的宏 PCC 分别为 0.51511、0.51609，未超过当前保留的匹配范围 GLS ICM（PCC 0.52059、RMSE 0.85422、MAE 0.65753）。结果见 [docs/RESULTS.md](docs/RESULTS.md)。
+
 GET-ICM 四环境 CV1 评价已完成：宏 PCC 0.52002、RMSE 0.85457、MAE 0.65788，未达到预设门槛；保留匹配范围 GLS ICM（PCC 0.52059）。详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 当前完成四环境 CV1 多输出核比较：历史普通 ICM 的宏 PCC 为 **0.5202**，选择性分核＋OOF 可靠性模型为 **0.5107**，单环境加性＋RBF 为 **0.5092**。具体协议与证据范围见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md) 和 [docs/RESULTS.md](docs/RESULTS.md)。
