@@ -1,8 +1,10 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-当前主线是优化背景条件化联合收缩模型，并以 PCC 为主，与合理优化的 BiMSGP、MoEGP 和 RR-BLUP 按共同外层折比较；开发集内选模后用完整开发集重拟合。具体协议与进展见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。以下数字为已有首轮结果，不作为新协议下的公平对照。
+当前主线是背景条件化联合收缩及其 RBF 扩展，以 PCC 为主，与 BiMSGP、MoEGP 和 RR-BLUP 按共同外层折比较；开发集内选模后用完整开发集重拟合。具体协议与进展见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
-共同外层比较已完成：背景模型 / RR-BLUP / BiMSGP / MoEGP 的折均宏 PCC 分别为 **0.4774 / 0.4599 / 0.4708 / 0.4592**；详细指标、预算及局限见 [docs/RESULTS.md](docs/RESULTS.md)。
+背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折原背景模型 / RR-BLUP / BiMSGP / MoEGP 的宏 PCC 分别为 **0.4774 / 0.4599 / 0.4708 / 0.4592**。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
+
+运行新候选：`python scripts/run_background_nested.py --config configs/background_rbf_nested.yaml --out results/<开发选模目录>`；固定选择后追加 `--selection results/<开发选模目录>/selection.json` 并指定新的 `--out` 进行外层重拟合与评价。
 
 背景条件化联合收缩候选已完成 40/40 次：折均宏平均 PCC 0.4760、RMSE 0.8851、MAE 0.6868；相对同折 RR-BLUP 的 PCC 差 +0.0232、RMSE 差 −0.0106。详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
