@@ -1,5 +1,7 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
+按目标环境分别选模的 ICM 宏 PCC 为 0.51609、RMSE 为 0.85649；未超过保留模型，详见 [docs/RESULTS.md](docs/RESULTS.md)。
+
 REML 协方差拟合评价已完成：宏 PCC 0.51022、RMSE 0.86003，未超过保留的匹配范围 GLS ICM（PCC 0.52059）。见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 联合基础核与任务参数选模已完成：GET、ICM 的宏 PCC 分别为 0.51511、0.51609，未超过当前保留的匹配范围 GLS ICM（PCC 0.52059、RMSE 0.85422、MAE 0.65753）。结果见 [docs/RESULTS.md](docs/RESULTS.md)。

@@ -1,0 +1,60 @@
+{
+  "config": {
+    "model": "target_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "validation_source": "results/get_icm_joint_selection_20261103",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "tie_tolerance": 1e-12,
+    "error_floor": 0.4,
+    "error_ceiling": 0.9
+  },
+  "git_commit": "43f11b76358d2bbf86abaecfdbf0c3385e6927d3",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "validation_sha256": {
+    "0": "5f19ea71827db1b575f51cd23685f4e7576a4ae5d4b275e32e6b243b3e058b0b",
+    "1": "e4885b08afccee99e4dc521f03331ab8aa1c73bc80246130d2739bc401451f27",
+    "2": "970693c4f9ea19bfe59089b8153b34dd0ece96756029781ffeeda79bcf8ceccd",
+    "3": "efe32a9e1713bedf037eb979446aef6db4e8ef84a96f65111c86bb128f7f27c2",
+    "4": "dd33244a6c0c93112bb5ea815a0fd9f4ece4a362fb636d48ef5d1c12a82e7b0a",
+    "5": "7f830e9b7a7e935e97dba6762a34345f1caf68078faa07d651102b481272ef15",
+    "6": "26f06146a27d0f2741cd68cb6886544591bc04ca5315371e6c0af5711a00f8d5",
+    "7": "6dbc4376abfd537e23047d7271de112d5c36f40fe578fb87cef242d66575fcf5",
+    "8": "1e8d05f510d38c17b350d92b79db5e0e8c916045d3871bfa1eb7b5e72fd10de2",
+    "9": "6565afa3e6921092aa0e0032d5a9a495d59e1c016d1374d90edacd7056618e3a"
+  },
+  "source_provenance_sha256": "f945eb1bb0a9d26167092f7f434bd9ac8a0ce2b399de084dc2ac7c58666d6f34",
+  "model_sha256": "55268941369eacc988ba523ba0b3cc45b06fa08b7f176ec66e616112d6a309fd",
+  "solver_sha256": "556a35cc3a3e6be6d21b72d3aacb93222c15880cefddf0d360aa745e1ec7aefb",
+  "runner_sha256": "c00a2802259fea50a14e7efde8550803a9edaebc7b02b1e550c7c744a33a42bf",
+  "selection_sha256": "216d4d5ee3b2c729a4473dc74d5ca4940178a9ece79e13250e7df73993d487ff",
+  "rule": "per target mean inner PCC; ties prefer eta then configured base order"
+}
