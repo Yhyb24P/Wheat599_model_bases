@@ -1,0 +1,754 @@
+{
+  "config": {
+    "model": "kernel_baselines",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+    "seed": 42,
+    "inner_folds": 3,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+  "selected": [
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 0,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5430143505609656
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 0,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5317391118539869
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 0,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.3819402501606078
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 0,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.49227543812667224
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5463573519119803
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.75,
+      "inner_pcc": 0.5333093247367484
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.3986425412152636
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.49360271192304844
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 1,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5595538352901982
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 1,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4929041537288814
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 1,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.40695857558927434
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 1,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5190059727940756
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 1,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5595538352901982
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 1,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4929041537288814
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 1,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.41429771472997484
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 1,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5201642790624286
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 2,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5707594636340381
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 2,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4614418230698097
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.3828105634027168
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 2,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5019383565130792
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "ridge": 0.01,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5764696094684112
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.75,
+      "inner_pcc": 0.47037534135479414
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.39433896884300595
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 2,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5019383565130792
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 3,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5478304387308919
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 3,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5061270529577434
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.3997530155513516
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 3,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.49199220527702314
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 3,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5478304387308919
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.5166828570642842
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.4202227803033025
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 3,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.49199220527702314
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "ridge": 0.01,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5234620188820696
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 4,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4694264164075916
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 4,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.3736419924391474
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.47174719467792614
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5372261699678779
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.47726306981695094
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.3832514769160658
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.48472910756696724
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 5,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5339143824523975
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 5,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.46460070096034006
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 5,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.3626606269284309
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4628223953329251
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5432332441353999
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.48116881201224304
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.3768742983455248
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.47187152018517536
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 6,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5443419346411461
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 6,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4868933337388219
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 6,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4054361841471721
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 6,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.513675625167914
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 6,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5443419346411461
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.494716539023506
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.4136941187829908
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5150968531961078
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 7,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5057155473316285
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 7,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.45190063021036925
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.35700006744206436
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 7,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.49253932936289146
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "ridge": 0.001,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5216166391253061
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.4593885567203759
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.366271838012265
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.5033692060279499
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 8,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5488929649422517
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 8,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4627659653898597
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.38440837462254257
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 8,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.47243281761142814
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 8,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5488929649422517
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.5,
+      "inner_pcc": 0.47135370458563014
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.40043418524814506
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 8,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.47243281761142814
+    },
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "fold": 9,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5057701394540991
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "fold": 9,
+      "bandwidth": 0.25,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.4864823654448968
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "fold": 9,
+      "bandwidth": 1.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.3730297667532432
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "fold": 9,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5240207792228162
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "fold": 9,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5057701394540991
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "fold": 9,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.75,
+      "inner_pcc": 0.4900427099948282
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "fold": 9,
+      "bandwidth": 4.0,
+      "ridge": 1.0,
+      "additive_fraction": 0.25,
+      "inner_pcc": 0.39217578527212926
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "fold": 9,
+      "bandwidth": 1.0,
+      "ridge": 0.1,
+      "additive_fraction": 0.0,
+      "inner_pcc": 0.5240207792228162
+    }
+  ]
+}
