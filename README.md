@@ -1,5 +1,9 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
+背景条件化联合收缩候选已完成 40/40 次：折均宏平均 PCC 0.4760、RMSE 0.8851、MAE 0.6868；相对同折 RR-BLUP 的 PCC 差 +0.0232、RMSE 差 −0.0106。详见 [docs/RESULTS.md](docs/RESULTS.md)。
+
+复现命令：`python scripts/run_background_ridge.py --config configs/background_ridge.yaml --out results/<新运行目录>`。
+
 MoEGP 独立专家固定配置已完成同折评价：宏均 PCC 0.4454、RMSE 0.8966、MAE 0.6998；相对 RR-BLUP 的 PCC 差 −0.0074。配置和完整结果见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 复现 MoEGP 时，将官方仓库检出至 `configs/moegp.yaml` 的 `source` 路径，并保持配置中指定的提交及干净工作树；然后运行 `python scripts/run_moegp.py --out results/<新运行目录>`。原始数据和 OOF 预测不随 Git 分发。

@@ -1,0 +1,30 @@
+{
+  "config": {
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+    "seed": 42,
+    "pca_components": 16,
+    "gates": 4,
+    "global_penalty": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "background_penalty": [
+      0.1,
+      1.0,
+      10.0
+    ],
+    "gate_steps": 12,
+    "gate_lr": 0.03,
+    "gate_init_std": 0.05
+  },
+  "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+  "runner_sha256": "437010bbe72cc4d3f588712a722f19b454f5e1b95ba8584309569ad2f556ee92",
+  "config_sha256": "707940290c682f18066d2087bdf24a3ee62ebce3eea5fd04c4c1727aae467a72",
+  "selection": "minimum validation RMSE; ties use first configured pair",
+  "loo": "analytic leave-one-out conditional on training PCA and gate values; gates are not refit per held-out sample",
+  "kernel": "centered X X.T / p * (1/global_penalty + q q.T/background_penalty), unit noise, unpenalized intercept",
+  "test": "once after validation selection"
+}
