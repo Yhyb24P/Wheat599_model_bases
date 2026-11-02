@@ -79,8 +79,13 @@ def main():
     frozen = json.loads(args.selection.read_text()) if args.selection else None
     if frozen is not None and (frozen['config'] != cfg or frozen['candidates'] != candidates or frozen['splits_sha256'] != sha256_of(Path(cfg['splits']))):
         raise ValueError('Frozen selections do not match configuration or splits')
+    if frozen is not None:
+        keys = [(v['environment'], v['fold']) for v in frozen['selected']]
+        expected = {(e, f['fold']) for e in data.environments for f in folds}
+        if len(keys) != len(expected) or set(keys) != expected:
+            raise ValueError('Frozen selection is incomplete or duplicated')
     args.out.mkdir(parents=True, exist_ok=False)
-    (args.out/'provenance.json').write_text(json.dumps({'config':cfg,'splits_sha256':sha256_of(Path(cfg['splits'])),'runner_sha256':sha256_of(Path(__file__)),'core_sha256':sha256_of(ROOT/'scripts/run_background_ridge.py'),'selection':'mean inner-fold PCC, ties use first candidate; RR uses same PCC rule','refit':'entire outer development set; no test feedback','candidates':candidates},indent=2))
+    (args.out/'provenance.json').write_text(json.dumps({'config':cfg,'splits_sha256':sha256_of(Path(cfg['splits'])),'runner_sha256':sha256_of(Path(__file__)),'core_sha256':sha256_of(ROOT/'scripts/run_background_ridge.py'),'selection_sha256':sha256_of(args.selection) if args.selection else None,'selection':'mean inner-fold PCC, ties use first candidate; RR uses same PCC rule','refit':'entire outer development set; no test feedback','candidates':candidates},indent=2))
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if device.type == 'cuda':
         torch.cuda.set_per_process_memory_fraction(0.35)
