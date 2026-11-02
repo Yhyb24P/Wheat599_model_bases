@@ -1,0 +1,201 @@
+{
+  "config": {
+    "model": "bh_lmc",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+    "seed": 42,
+    "inner_folds": 3,
+    "base_folds": 3,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "gammas": [
+      0.0,
+      0.5,
+      1.0
+    ],
+    "tie_tolerance": 1e-12,
+    "reliability_floor": 0.1,
+    "reliability_ceiling": 0.5,
+    "weight_epsilon": 0.0001,
+    "correlation_floor": 1e-12
+  },
+  "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+  "selected": [
+    {
+      "fold": 0,
+      "bh": [
+        0.8,
+        0.0,
+        0.0
+      ],
+      "bh_inner_pcc": 0.4921117651926094,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4906877286013811
+    },
+    {
+      "fold": 1,
+      "bh": [
+        0.8,
+        0.6,
+        1.0
+      ],
+      "bh_inner_pcc": 0.49415253787664676,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4918169860553104
+    },
+    {
+      "fold": 2,
+      "bh": [
+        0.8,
+        0.8,
+        0.5
+      ],
+      "bh_inner_pcc": 0.47717593629260163,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.47601565731630346
+    },
+    {
+      "fold": 3,
+      "bh": [
+        0.8,
+        0.0,
+        0.0
+      ],
+      "bh_inner_pcc": 0.48787733257904525,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4872574886862828
+    },
+    {
+      "fold": 4,
+      "bh": [
+        0.8,
+        0.0,
+        0.0
+      ],
+      "bh_inner_pcc": 0.45851978479896044,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4560582994770825
+    },
+    {
+      "fold": 5,
+      "bh": [
+        0.8,
+        0.8,
+        0.5
+      ],
+      "bh_inner_pcc": 0.46509321988143815,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.46387206084148286
+    },
+    {
+      "fold": 6,
+      "bh": [
+        0.8,
+        0.8,
+        0.5
+      ],
+      "bh_inner_pcc": 0.4915983639700694,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4910557749868473
+    },
+    {
+      "fold": 7,
+      "bh": [
+        0.8,
+        0.8,
+        1.0
+      ],
+      "bh_inner_pcc": 0.4559317861326171,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4537664994332478
+    },
+    {
+      "fold": 8,
+      "bh": [
+        0.8,
+        0.6,
+        1.0
+      ],
+      "bh_inner_pcc": 0.46803025877341803,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4656150869018149
+    },
+    {
+      "fold": 9,
+      "bh": [
+        0.8,
+        0.0,
+        0.0
+      ],
+      "bh_inner_pcc": 0.4715262066165507,
+      "matched_icm": [
+        0.8,
+        0.8,
+        0.0
+      ],
+      "matched_icm_inner_pcc": 0.4686333681670612
+    }
+  ]
+}
