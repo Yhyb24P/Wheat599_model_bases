@@ -6,6 +6,8 @@
 
 背景模型及 RR 的 40 个开发单元已完成选模，未作本轮外层测试预测；选择记录位于 `results/background_nested_selection_20261102/`。BiMSGP 官方源码 `71084c8fa5444fbc747b0291ace627b1f2d6ef33`，预设 3 组候选、每组最多 100 轮；每个 epoch 汇总三折验证 PCC 选配置和轮数，完整开发集重拟合使用三折中位学习率轨迹。首次 FP16 开发运行出现非有限训练损失／验证 PCC 后停止，改用官方公开训练器支持的 FP32，失败记录保留在本地；未使用外层测试预测。作者论文表格使用 test 选 checkpoint，本项目不采用该选择方式。
 
+BiMSGP 的 FP32 开发选模已完成 40/40 单元，0 失败，选择记录见 `results/bimsgp_nested_fp32_selection_20261102/`；MoEGP 开发选模仍在运行。本轮外层测试尚未启动。
+
 BiMSGP 开发入口为 `scripts/run_bimsgp_nested.py`，路径和预算见 `configs/bimsgp_nested.yaml`；本机使用 PyTorch 2.9.0+cu130、`mamba-ssm` 2.3.2.post1 和 `causal-conv1d` 1.6.2.post1 的匹配预编译包。环境依赖安装在独立附加目录，不修改官方仓库。
 
 本轮 BiMSGP 适配入口的 ReduceLROnPlateau 使用 PyTorch 默认 `factor=0.1`、`min_lr=0`；作者训练器使用 `factor=0.5`、`min_lr=1e-6`。当前运行保持已固定的实际设置，最终比较需如实报告差异，不据此推断性能影响。

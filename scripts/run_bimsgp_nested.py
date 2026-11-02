@@ -75,8 +75,12 @@ def main():
     folds=json.loads(Path(cfg['splits']).read_text())['folds']; data=load(Path(cfg['data']),cfg['data_sha256'])
     frozen=json.loads(args.selection.read_text()) if args.selection else None
     if frozen is not None and (frozen['config']!=cfg or frozen['splits_sha256']!=sha256_of(Path(cfg['splits']))): raise ValueError('Selection mismatch')
+    if frozen is not None:
+        keys=[(v['environment'],v['fold']) for v in frozen['selected']]
+        expected={(e,f['fold']) for e in data.environments for f in folds}
+        if len(keys)!=len(expected) or set(keys)!=expected: raise ValueError('Frozen selection incomplete or duplicated')
     args.out.mkdir(parents=True,exist_ok=False)
-    (args.out/'provenance.json').write_text(json.dumps({'config':cfg,'source_commit':commit,'splits_sha256':sha256_of(Path(cfg['splits'])),'runner_sha256':sha256_of(Path(__file__)),'rule':'3-fold mean PCC selects candidate and epoch; refit uses per-epoch median inner LR; test after frozen selection','dependencies':'mamba-ssm 2.3.2.post1, causal-conv1d 1.6.2.post1'},indent=2))
+    (args.out/'provenance.json').write_text(json.dumps({'config':cfg,'source_commit':commit,'splits_sha256':sha256_of(Path(cfg['splits'])),'runner_sha256':sha256_of(Path(__file__)),'selection_sha256':sha256_of(args.selection) if args.selection else None,'rule':'3-fold mean PCC selects candidate and epoch; refit uses per-epoch median inner LR; test after frozen selection','dependencies':'mamba-ssm 2.3.2.post1, causal-conv1d 1.6.2.post1'},indent=2))
     device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if device.type!='cuda': raise RuntimeError('Official Mamba selective scan requires CUDA')
     torch.cuda.set_per_process_memory_fraction(0.25)
