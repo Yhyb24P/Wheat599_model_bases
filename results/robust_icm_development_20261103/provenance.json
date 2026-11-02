@@ -1,0 +1,61 @@
+{
+  "config": {
+    "model": "robust_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "base_source": "results/heterogeneous_icm_development_20261103",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "huber_deltas": [
+      1.345,
+      2.5
+    ],
+    "ridge_multipliers": [
+      0.3,
+      1.0,
+      3.0
+    ],
+    "max_iterations": 300,
+    "function_tolerance": 1e-11,
+    "gradient_tolerance": 1e-07,
+    "accepted_gradient": 1e-05,
+    "minimum_development_gain": 0.001,
+    "minimum_development_folds": 6,
+    "tie_tolerance": 1e-12
+  },
+  "git_commit": "deed0db1778d339f1d9942465a3efce845299c4d",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "base_source_sha256": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+  "model_sha256": "ff6d453c5f269e7aa399216fd3bd8288397252ded8e4ce615305172e466ff3a8",
+  "solver_sha256": "144a98aec1f2ddd5ea6200b6ed38d27916cfecc79bfff26d297979d75b203a05",
+  "runner_sha256": "86fb36116eaf1eb23396df4844f819b0aa58ac780df36e55849a02d086f1b1f6",
+  "selection_sha256": null,
+  "rule": "convex Huber loss; train-only shared base; macro development PCC selects eta, delta, penalty multiplier"
+}

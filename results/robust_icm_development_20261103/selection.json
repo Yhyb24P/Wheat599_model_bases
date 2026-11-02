@@ -1,0 +1,334 @@
+{
+  "config": {
+    "model": "robust_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "base_source": "results/heterogeneous_icm_development_20261103",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "huber_deltas": [
+      1.345,
+      2.5
+    ],
+    "ridge_multipliers": [
+      0.3,
+      1.0,
+      3.0
+    ],
+    "max_iterations": 300,
+    "function_tolerance": 1e-11,
+    "gradient_tolerance": 1e-07,
+    "accepted_gradient": 1e-05,
+    "minimum_development_gain": 0.001,
+    "minimum_development_folds": 6,
+    "tie_tolerance": 1e-12
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "base_source_sha256": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+  "development_gate": {
+    "pcc_gain": 0.006604726619000201,
+    "folds_improved": 10,
+    "per_fold_delta": [
+      0.005858562200542705,
+      0.002681802732870442,
+      0.0038108155579090752,
+      0.005534738247672366,
+      0.015927426481172124,
+      0.0049562859229750345,
+      0.007608446895417897,
+      0.006293379869667992,
+      0.0049327447592117935,
+      0.008443063522562577
+    ],
+    "pass": true
+  },
+  "selected": [
+    {
+      "fold": 0,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4906877286013815
+      },
+      "huber": {
+        "eta": 0.8,
+        "delta": 2.5,
+        "multiplier": 3.0,
+        "inner_pcc": 0.4965462908019242
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.48771285464719233
+      }
+    },
+    {
+      "fold": 1,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4918169860553105
+      },
+      "huber": {
+        "eta": 0.3,
+        "delta": 1.345,
+        "multiplier": 0.3,
+        "inner_pcc": 0.49449878878818093
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.5,
+        "ridge": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "base_pcc": 0.4897203158510458
+      }
+    },
+    {
+      "fold": 2,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4760156573163037
+      },
+      "huber": {
+        "eta": 0.0,
+        "delta": 1.345,
+        "multiplier": 0.3,
+        "inner_pcc": 0.47982647287421276
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.4786624920383774
+      }
+    },
+    {
+      "fold": 3,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4872574886862813
+      },
+      "huber": {
+        "eta": 0.8,
+        "delta": 2.5,
+        "multiplier": 3.0,
+        "inner_pcc": 0.4927922269339537
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.49169254424733877
+      }
+    },
+    {
+      "fold": 4,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4560582994770819
+      },
+      "huber": {
+        "eta": 0.6,
+        "delta": 1.345,
+        "multiplier": 3.0,
+        "inner_pcc": 0.471985725958254
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          1.0,
+          1.0,
+          1.0,
+          1.0
+        ],
+        "base_pcc": 0.46385898763534517
+      }
+    },
+    {
+      "fold": 5,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4638720608414831
+      },
+      "huber": {
+        "eta": 0.8,
+        "delta": 2.5,
+        "multiplier": 3.0,
+        "inner_pcc": 0.4688283467644581
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.46319127811020194
+      }
+    },
+    {
+      "fold": 6,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.49105577498684777
+      },
+      "huber": {
+        "eta": 0.8,
+        "delta": 1.345,
+        "multiplier": 0.3,
+        "inner_pcc": 0.49866422188226567
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.4894654446145995
+      }
+    },
+    {
+      "fold": 7,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.453766499433248
+      },
+      "huber": {
+        "eta": 0.6,
+        "delta": 1.345,
+        "multiplier": 0.3,
+        "inner_pcc": 0.460059879302916
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.4579527270690694
+      }
+    },
+    {
+      "fold": 8,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4656150869018147
+      },
+      "huber": {
+        "eta": 0.8,
+        "delta": 2.5,
+        "multiplier": 3.0,
+        "inner_pcc": 0.4705478316610265
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.25,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.4704721372132489
+      }
+    },
+    {
+      "fold": 9,
+      "squared": {
+        "eta": 0.8,
+        "delta": null,
+        "multiplier": 1.0,
+        "inner_pcc": 0.4686333681670616
+      },
+      "huber": {
+        "eta": 0.0,
+        "delta": 1.345,
+        "multiplier": 0.3,
+        "inner_pcc": 0.47707643168962416
+      },
+      "base": {
+        "bandwidth": 4.0,
+        "fraction": 0.5,
+        "ridge": [
+          0.1,
+          0.1,
+          0.1,
+          0.1
+        ],
+        "base_pcc": 0.4703359540919996
+      }
+    }
+  ]
+}
