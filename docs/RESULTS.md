@@ -1,5 +1,24 @@
 # Results — Wheat599 FT-Transformer 评价
 
+## 经典核岭对照（2026-11-02）
+
+Gaussian kernel ridge 与加性＋RBF kernel ridge 均采用当前外层十折、开发集内三折 PCC 选模及完整开发集重拟合，各 40/40 环境折完成、0 失败。训练集标记中心化后，加性核按平均对角线归一化；RBF 使用训练集两两 Hamming 距离中位数；两个方法都有无惩罚截距。预设带宽、ridge 参数和核混合比例见 `configs/kernel_baselines_nested.yaml`。Gaussian kernel ridge 不是 Crossa 2010 年 Bayesian RKHS 的精确复现。
+
+| 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
+|---|---:|---:|---:|---:|---:|---:|---:|
+| Gaussian kernel ridge | 0.5475 | 0.4942 | 0.4428 | 0.5254 | 0.5025 | 0.8628 | 0.6653 |
+| 加性＋RBF kernel ridge | 0.5408 | 0.4960 | 0.4598 | 0.5403 | 0.5092 | 0.8602 | 0.6625 |
+| 背景条件化三核 `1bd2578` | 0.5348 | 0.4745 | 0.4428 | 0.5156 | 0.4919 | 0.8680 | 0.6676 |
+| RR-BLUP | 0.4949 | 0.4938 | 0.4040 | 0.4468 | 0.4599 | 0.8870 | 0.6874 |
+| BiMSGP | 0.5566 | 0.4300 | 0.4003 | 0.4963 | 0.4708 | 0.9050 | 0.6980 |
+| MoEGP | 0.5142 | 0.4352 | 0.3964 | 0.4910 | 0.4592 | 0.9112 | 0.7022 |
+
+三核减 Gaussian：宏均 PCC −0.0105、RMSE +0.0052、MAE +0.0022；三核 PCC 较高 13/40 折。三核减加性＋RBF：PCC −0.0173、RMSE +0.0078、MAE +0.0051；三核 PCC 较高 14/40 折。两对照的选模预算和三核不同，结果不构成单独门控的因果归因；当前比较没有建立背景条件化方案相对成熟核岭方法的预测增量。划分已经多轮用于开发，以上均为探索性结果。
+
+Gaussian 的 `h=0.25/1/4` 分别选中 6/26/8 次；加性＋RBF 分别选中 1/9/30 次，其加性比例 `0/0.25/0.5/0.75/1` 分别选中 10/20/7/3/0 次。开发选择和最终逐折结果见 `results/kernel_baselines_selection_20261102/`、`results/kernel_baselines_final_20261102/`。
+
+**方法定位：** [Gönen 和 Alpaydın 的局部多核学习](https://icml.cc/Conferences/2008/papers/158.pdf)已使用输入相关门控组合局部核；[遗传异质性全基因组回归](https://pmc.ncbi.nlm.nih.gov/articles/PMC4666286/)已有群体相关的标记效应；[Gianola 与 Schön](https://pmc.ncbi.nlm.nih.gov/articles/PMC5068934/)已研究同一 Wheat599 数据上的解析交叉验证与多核。当前实现是连续背景门控、核岭和 RBF 的具体组合，不能将门控、多核或解析 LOO 单独宣称为首创。Crossa 等在相同 599×1,279 小麦数据上报告 marker-only RKHS；其划分和 Bayesian 方法不同，文献数字不与本表直接排名。[原文](https://pmc.ncbi.nlm.nih.gov/articles/PMC2954475/)
+
 ## 相关冗余加权 RBF（2026-11-02）
 
 冻结配置 `configs/background_weighted_rbf_nested.yaml`：仅用当前训练材料的原始 0/1 标记估计相关矩阵和收缩 0.5 的标记权重，按加权 Hamming 距离构造 RBF；内部三折选带宽、完整开发集重拟合。40/40 环境折完成，0 失败。

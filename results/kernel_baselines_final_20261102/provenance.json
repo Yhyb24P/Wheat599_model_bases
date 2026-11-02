@@ -1,0 +1,36 @@
+{
+  "config": {
+    "model": "kernel_baselines",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+    "seed": 42,
+    "inner_folds": 3,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+  "runner_sha256": "f19644bbb09536775b59c7ee2054e76eb23d8e109c7b944ab3c5389446fa86a5",
+  "model_sha256": "07bc4c1dc9feb4a38bd6ae2865a2d51cbfb424d09abe7a5e36ef3fbf5c7ef6d4",
+  "selection_sha256": "9becbf93b30268b0c8febb4866e0c3349bdeda85c38fbc931c7151f64d131606",
+  "rule": "mean inner PCC; first candidate on tie; full dev refit"
+}
