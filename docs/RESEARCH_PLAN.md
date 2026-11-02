@@ -8,6 +8,8 @@
 
 BiMSGP 开发入口为 `scripts/run_bimsgp_nested.py`，路径和预算见 `configs/bimsgp_nested.yaml`；本机使用 PyTorch 2.9.0+cu130、`mamba-ssm` 2.3.2.post1 和 `causal-conv1d` 1.6.2.post1 的匹配预编译包。环境依赖安装在独立附加目录，不修改官方仓库。
 
+本轮 BiMSGP 适配入口的 ReduceLROnPlateau 使用 PyTorch 默认 `factor=0.1`、`min_lr=0`；作者训练器使用 `factor=0.5`、`min_lr=1e-6`。当前运行保持已固定的实际设置，最终比较需如实报告差异，不据此推断性能影响。
+
 协作方另行进行的 A/RR 与 MoEGP 冒烟曾分别预测并查看外层折 0、环境 1 的测试指标；据其报告未据此改动配置。预测记录保留在本地，不能称该折未被观察；整个划分此前亦已用于多轮开发，本轮比较不作为独立确认。最终汇总保留全部折，显式披露测试接触。
 
 以下 2026-10-30 内容是历史 FT-T 任务记录。
