@@ -4,6 +4,8 @@
 
 BH-LMC 的宏 PCC 为 **0.51931**，匹配范围 ICM 为 **0.52059**；BH-LMC 未达到预设 GO 门槛，保留普通 ICM。详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
+原始报告采用算术均值截距与固定均值 LOO，另行复验得到 BH-LMC 宏 PCC **0.51916**、同截距 ICM **0.51971**；仍为 NO-GO，详见 [docs/RESULTS.md](docs/RESULTS.md)。
+
 谱选择性 ICM 的宏 PCC 为 0.52035，与普通 ICM 的 0.52019 差异很小；保留普通 ICM。见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
