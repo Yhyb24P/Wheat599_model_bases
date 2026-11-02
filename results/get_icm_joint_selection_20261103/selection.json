@@ -1,0 +1,278 @@
+{
+  "config": {
+    "model": "get_icm_joint",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "betas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "tie_tolerance": 1e-12,
+    "error_floor": 0.4,
+    "error_ceiling": 0.9
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selected": [
+    {
+      "fold": 0,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.49476510284947145
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.49476510284947145
+      }
+    },
+    {
+      "fold": 1,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.5,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4945708644185751
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.5,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4945708644185751
+      }
+    },
+    {
+      "fold": 2,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          1.0,
+          0.8
+        ],
+        "inner_pcc": 0.47982862561162903
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4793274842433572
+      }
+    },
+    {
+      "fold": 3,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          1.0,
+          0.8
+        ],
+        "inner_pcc": 0.4929000526656637
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4927546302317143
+      }
+    },
+    {
+      "fold": 4,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          1.0,
+          0.8
+        ],
+        "inner_pcc": 0.4745115745001496
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.47357194522719687
+      }
+    },
+    {
+      "fold": 5,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          1.0,
+          0.8
+        ],
+        "inner_pcc": 0.4648739078379123
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.46449276989017396
+      }
+    },
+    {
+      "fold": 6,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4950311232579929
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4950311232579929
+      }
+    },
+    {
+      "fold": 7,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          1.0,
+          0.8
+        ],
+        "inner_pcc": 0.4592080568182822
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.4590883398179249
+      }
+    },
+    {
+      "fold": 8,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          1.0,
+          0.8
+        ],
+        "inner_pcc": 0.47138111989586134
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.25,
+          0.1,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.47116309276869633
+      }
+    },
+    {
+      "fold": 9,
+      "joint_get": {
+        "candidate": [
+          4.0,
+          0.5,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.47431743864027903
+      },
+      "joint_icm": {
+        "candidate": [
+          4.0,
+          0.5,
+          1.0,
+          0.0,
+          0.8
+        ],
+        "inner_pcc": 0.47431743864027903
+      }
+    }
+  ]
+}

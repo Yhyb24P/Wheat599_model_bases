@@ -1,0 +1,53 @@
+{
+  "config": {
+    "model": "get_icm_joint",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "betas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "tie_tolerance": 1e-12,
+    "error_floor": 0.4,
+    "error_ceiling": 0.9
+  },
+  "git_commit": "0d3fafc26c7bee6f90192d0e5d377a5d6b672e33",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selection_sha256": null,
+  "code_sha256": "385e0b2a9d48b0a2036157d305583bf50f074dbd30a96bc7a63a78cf1bb7b01e",
+  "solver_sha256": "556a35cc3a3e6be6d21b72d3aacb93222c15880cefddf0d360aa745e1ec7aefb",
+  "runner_sha256": "acc5858c7bc2ad0c11792264dc2ee7b4de93279ab3c9cb4176de22141fd11db3",
+  "candidate_count": 1680,
+  "tie_rule": "beta, eta, configured base order within 1e-12"
+}
