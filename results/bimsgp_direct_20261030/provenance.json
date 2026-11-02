@@ -1,0 +1,98 @@
+{
+ "run": "bimsgp_direct_20261030",
+ "config": "/home/yhshy/git_files/Wheat599_model_bases/configs/bimsgp_direct.yaml",
+ "data": "data/raw/wheat.RData",
+ "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+ "folds": [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9
+ ],
+ "seed": 42,
+ "model": {
+  "architecture": "original_ft_tokenizer + one_full_marker_attention + factorized_linear_readout",
+  "d_block": 64,
+  "attention_n_heads": 4,
+  "ffn_d_hidden": 128,
+  "readout_rank": 4,
+  "readout": "y = bias + <H, G^T T1>; V=GH",
+  "position_semantics": "marker identity/index; no genomic coordinate or positional encoding",
+  "tokenizer_initialization": "b_j,w_j ~ Uniform(-1/sqrt(d),1/sqrt(d))",
+  "attention_implementation": "PyTorch scaled_dot_product_attention",
+  "tokenizer_weight_decay": false,
+  "readout_weight_decay": true
+ },
+ "a_reference": "results/bimsgp_ftt_fixed_20261029/per_fold_val_pcc_rule.csv",
+ "rr_reference": "/home/yhshy/git_files/Wheat599_model_bases/results/bimsgp_diag_fixed_20261029/per_fold_rrblup.csv",
+ "timestamp": "2026-10-30T16:35:52+0800",
+ "reference_finalization": {
+  "method": "post-hoc recompute from per_fold.csv against the fixed-seed official checkpoint reference; no retraining; test not re-evaluated",
+  "official_a_reference": {
+   "path": "results/bimsgp_ckpt_rules_20261030/per_fold.csv",
+   "sha256": "94622acf7723b56f453313435e015ba198b771f201a9a29ba1179a42b75905b5",
+   "rule": "val_pcc",
+   "rows": 40
+  },
+  "rr_reference": {
+   "path": "results/bimsgp_diag_fixed_20261029/per_fold_rrblup.csv",
+   "sha256": "86a5d56d9b955594570e9040bc42c8b0ea69f6eb415c9ccffcf574ce7c123181",
+   "rows": 40
+  },
+  "interim_a_reference_used_at_runtime": {
+   "path": "results/bimsgp_ftt_fixed_20261029/per_fold_val_pcc_rule.csv",
+   "sha256": "0d4de42f4d3b8e2018bfe0a0b412138b4e72789427ee668d161303c83ecd37d4",
+   "rows": 40,
+   "note": "converted from the earlier formal A run; used by the executed job; retained for audit only; must not be a routine dependency"
+  },
+  "recomputed_values": {
+   "vs_A_macro_dpcc": -0.014958141785578107,
+   "vs_A_macro_drmse": -0.006712035635700049,
+   "vs_RR_macro_dpcc": -0.03353956148067518
+  },
+  "go_official": {
+   "criteria": {
+    "vs_A_macro_dpcc_min": 0.01,
+    "vs_A_env_dpcc_positive_min": 3,
+    "vs_A_macro_drmse_max": 0.01,
+    "vs_RR_macro_dpcc_min": -0.01
+   },
+   "values": {
+    "vs_A_macro_dpcc": -0.014958141785578107,
+    "vs_A_env_dpcc_positive": 2,
+    "vs_A_macro_drmse": -0.006712035635700049,
+    "vs_RR_macro_dpcc": -0.03353956148067518
+   },
+   "G1": false,
+   "G2": true,
+   "G3": false,
+   "GO": false
+  },
+  "go_interim": {
+   "criteria": {
+    "vs_A_macro_dpcc_min": 0.01,
+    "vs_A_env_dpcc_positive_min": 3,
+    "vs_A_macro_drmse_max": 0.01,
+    "vs_RR_macro_dpcc_min": -0.01
+   },
+   "values": {
+    "vs_A_macro_dpcc": -0.014852011541089756,
+    "vs_A_env_dpcc_positive": 2,
+    "vs_A_macro_drmse": -0.006742084770173654,
+    "vs_RR_macro_dpcc": -0.03353956148067518
+   },
+   "G1": false,
+   "G2": true,
+   "G3": false,
+   "GO": false
+  },
+  "verdict_stable_under_reference_choice": true,
+  "timestamp": "2026-10-30T16:49:01"
+ }
+}

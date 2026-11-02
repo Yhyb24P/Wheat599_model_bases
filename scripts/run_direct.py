@@ -56,8 +56,6 @@ def _macro(per_env: dict, envs: list[str], metric: str) -> dict:
 
 
 def _load_reference(path: Path, rule: str | None = None) -> dict:
-    if not path.exists():
-        return {}
     out = {}
     with path.open() as f:
         for row in csv.DictReader(f):
@@ -65,7 +63,10 @@ def _load_reference(path: Path, rule: str | None = None) -> dict:
                 continue
             if str(row.get("failed", "")).lower() in ("true", "1"):
                 continue
-            out[(str(row["environment"]), int(row["fold"]))] = {
+            key = (str(row["environment"]), int(row["fold"]))
+            if key in out:
+                raise ValueError(f"duplicate reference row in {path}: {key}")
+            out[key] = {
                 "pcc": float(row["test_pcc"]),
                 "rmse": float(row["test_rmse"]),
                 "mae": float(row["test_mae"]),
@@ -93,14 +94,23 @@ def main(argv=None) -> int:
     if mcfg.get("model_type") != "direct_ftt":
         raise ValueError(f"unsupported model_type: {mcfg.get('model_type')}")
     envs = [str(e) for e in proto["environments"]]
-    out = args.out
-    out.mkdir(parents=True, exist_ok=True)
-
     folds = rb.make_folds(n=599, seed=int(proto["fold_seed"]),
                           test_sizes=proto["test_sizes"],
                           val_size=int(proto["val_size"]))
     if args.folds:
         folds = [f for f in folds if f["fold"] in set(args.folds)]
+    a_ref = _load_reference(args.a_reference, rule="val_pcc")
+    rr_ref = _load_reference(args.rr_reference)
+    expected = {(env, fold["fold"]) for env in envs for fold in folds}
+    for name, ref in (("A", a_ref), ("RR-BLUP", rr_ref)):
+        missing = expected - ref.keys()
+        if missing:
+            raise ValueError(f"{name} reference missing folds: {sorted(missing)}")
+        if any(not np.isfinite(v) for key in expected for v in ref[key].values()):
+            raise ValueError(f"{name} reference contains non-finite metrics")
+
+    out = args.out
+    out.mkdir(parents=True, exist_ok=True)
     (out / "splits_manifest.json").write_text(json.dumps({
         "seed": proto["fold_seed"], "test_sizes": proto["test_sizes"],
         "val_size": proto["val_size"], "folds": rb.fold_table(folds),
@@ -110,8 +120,6 @@ def main(argv=None) -> int:
     Y = rb.load_y(Path(proto["y_path"]), Path(proto["data"]),
                   proto.get("data_sha256"))
     X = data.X
-    a_ref = _load_reference(args.a_reference, rule="val_pcc")
-    rr_ref = _load_reference(args.rr_reference)
     model_meta = {
         "architecture": "original_ft_tokenizer + one_full_marker_attention"
                         " + factorized_linear_readout",
