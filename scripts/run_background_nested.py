@@ -159,6 +159,9 @@ def main():
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
     args = p.parse_args()
     cfg = yaml.safe_load(args.config.read_text())
+    if cfg.get('model') == 'target_icm':
+        from wheat599.joint_kernel_selection import run_target
+        return run_target(cfg, args, Path(__file__))
     if cfg.get('model') == 'reml_icm':
         from wheat599.reml_icm import run
         return run(cfg, args, Path(__file__))

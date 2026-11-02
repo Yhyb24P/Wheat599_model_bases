@@ -14,6 +14,116 @@ from wheat599.get_icm import prepare,spectral_predict,matrices,write
 from wheat599.metrics import pcc,rmse,mae
 
 
+def run_target(cfg, args, runner):
+    """Select existing ICM configurations separately for each target environment."""
+    source = Path(cfg['validation_source'])
+    source_provenance = json.loads((source / 'provenance.json').read_text())
+    split_hash = sha256_of(Path(cfg['splits']))
+    solver = Path(__file__).parent / 'get_icm.py'
+    for key in ('data', 'data_sha256', 'splits', 'bandwidths', 'additive_fractions', 'ridge', 'etas'):
+        if source_provenance['config'][key] != cfg[key]:
+            raise ValueError(f'Validation source mismatch: {key}')
+    if source_provenance['splits_sha256'] != split_hash or source_provenance['solver_sha256'] != sha256_of(solver):
+        raise ValueError('Validation source split or solver mismatch')
+    folds = json.loads(Path(cfg['splits']).read_text())['folds']
+    candidates = list(itertools.product(cfg['bandwidths'], cfg['additive_fractions'], cfg['ridge'], cfg['etas']))
+    source_hashes = {str(f['fold']): sha256_of(source / f"validation_fold_{f['fold']}.csv.gz") for f in folds}
+    frozen = json.loads(args.selection.read_text()) if args.selection else None
+    environments = ['1', '2', '4', '5']
+    expected_keys = {(f['fold'], e) for f in folds for e in environments}
+    if frozen and (frozen['config'] != cfg or frozen['splits_sha256'] != split_hash
+                   or frozen['validation_sha256'] != source_hashes
+                   or len(frozen['selected']) != len(expected_keys)
+                   or {(s['fold'], s['environment']) for s in frozen['selected']} != expected_keys):
+        raise ValueError('Frozen target selection mismatch')
+    args.out.mkdir(parents=True, exist_ok=False)
+    (args.out / 'provenance.json').write_text(json.dumps({
+        'config': cfg, 'git_commit': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+        'splits_sha256': split_hash, 'validation_sha256': source_hashes,
+        'source_provenance_sha256': sha256_of(source / 'provenance.json'),
+        'model_sha256': sha256_of(Path(__file__)), 'solver_sha256': sha256_of(solver),
+        'runner_sha256': sha256_of(runner),
+        'selection_sha256': sha256_of(args.selection) if args.selection else None,
+        'rule': 'per target mean inner PCC; ties prefer eta then configured base order'}, indent=2))
+    selected, rows, oof, failures, calibration = [], [], [], [], []
+    data = load(Path(cfg['data']), cfg['data_sha256']) if frozen else None
+    if data and list(data.environments) != environments:
+        raise ValueError('Unexpected phenotype environments')
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    if device.type == 'cuda':
+        torch.cuda.set_per_process_memory_fraction(.35)
+    start = time.perf_counter()
+    for fold in folds:
+        k = fold['fold']
+        try:
+            if frozen is None:
+                scores = np.full((len(candidates), 3, 4), np.nan)
+                ids = {c: i for i, c in enumerate(candidates)}
+                with gzip.open(source / f'validation_fold_{k}.csv.gz', 'rt') as file:
+                    for row in csv.DictReader(file):
+                        if float(row['beta']) != 0:
+                            continue
+                        c = tuple(float(row[key]) for key in ('bandwidth', 'fraction', 'ridge', 'eta'))
+                        i, j, e = ids[c], int(row['inner_fold']), environments.index(row['environment'])
+                        if not np.isnan(scores[i, j, e]):
+                            raise ValueError('Duplicate source validation score')
+                        scores[i, j, e] = float(row['pcc'])
+                if not np.isfinite(scores).all():
+                    raise ValueError('Incomplete or nonfinite source validation')
+                for e, env in enumerate(environments):
+                    means = scores[:, :, e].mean(1)
+                    eligible = np.flatnonzero(means.max() - means <= cfg['tie_tolerance'])
+                    i = min(eligible, key=lambda index: (candidates[index][3], index))
+                    selected.append({'fold': k, 'environment': env, 'candidate': candidates[i],
+                                     'inner_pcc': float(means[i])})
+                (args.out / 'selection.json').write_text(json.dumps({
+                    'config': cfg, 'splits_sha256': split_hash,
+                    'validation_sha256': source_hashes, 'selected': selected}, indent=2))
+            else:
+                train, test = np.array(fold['dev_idx']), np.array(fold['test_idx'])
+                for e, env in enumerate(environments):
+                    choice = next(s for s in frozen['selected'] if (s['fold'], s['environment']) == (k, env))
+                    h, fraction, lam, eta = choice['candidate']
+                    if (h, fraction, lam, eta) not in candidates:
+                        raise ValueError('Invalid frozen target candidate')
+                    a, ac, r, rc = kernels(data.X, train, test, h, device)
+                    gram, cross = fraction * a + (1 - fraction) * r, fraction * ac + (1 - fraction) * rc
+                    stats = prepare(gram, data.Y[train], lam, cfg)
+                    prediction, _ = spectral_predict(stats, cross, lam, eta, 0)
+                    prediction = prediction[:, e]
+                    metrics = {'pcc': pcc(data.Y[test, e], prediction), 'rmse': rmse(data.Y[test, e], prediction),
+                               'mae': mae(data.Y[test, e], prediction)}
+                    if not all(np.isfinite(value) for value in metrics.values()):
+                        raise ValueError('Nonfinite target metrics')
+                    rows.append({'environment': env, 'fold': k, **metrics, 'bandwidth': h,
+                                 'fraction': fraction, 'ridge': lam, 'eta': eta, 'inner_pcc': choice['inner_pcc']})
+                    calibration.append({'environment': env, 'fold': k, 'C_Y': stats['C_Y'].cpu().tolist()})
+                    oof.extend({'environment': env, 'fold': k, 'material_index': int(ix),
+                                'y_true': float(data.Y[ix, e]), 'y_pred': float(value)}
+                               for ix, value in zip(test, prediction))
+            print(f'fold {k} complete', flush=True)
+        except Exception as exc:
+            failures.append({'fold': k, 'reason': repr(exc)})
+            if isinstance(exc, torch.cuda.OutOfMemoryError):
+                raise
+        finally:
+            write(args.out / 'per_fold.csv', ['environment', 'fold', 'pcc', 'rmse', 'mae',
+                  'bandwidth', 'fraction', 'ridge', 'eta', 'inner_pcc'], rows)
+            write(args.out / 'oof.csv', ['environment', 'fold', 'material_index', 'y_true', 'y_pred'], oof)
+            write(args.out / 'failures.csv', ['fold', 'reason'], failures)
+            (args.out / 'calibration.json').write_text(json.dumps(calibration, indent=2))
+    if failures or (len(selected) != 40 if frozen is None else len(rows) != 40):
+        raise RuntimeError('Incomplete target run')
+    summary = {'n_runs': len(rows), 'n_failures': 0, 'elapsed_seconds': time.perf_counter() - start}
+    if frozen:
+        per = {env: {metric: float(np.mean([r[metric] for r in rows if r['environment'] == env]))
+                     for metric in ('pcc', 'rmse', 'mae')} for env in environments}
+        summary.update(per_environment=per, macro={metric: float(np.mean([per[env][metric] for env in environments]))
+                                                  for metric in ('pcc', 'rmse', 'mae')})
+    (args.out / 'summary.json').write_text(json.dumps(summary, indent=2))
+    print(json.dumps(summary), flush=True)
+
+
 def run(cfg,args,runner):
     data=load(Path(cfg['data']),cfg['data_sha256']);folds=json.loads(Path(cfg['splits']).read_text())['folds'];sh=sha256_of(Path(cfg['splits']))
     candidates=list(itertools.product(cfg['bandwidths'],cfg['additive_fractions'],cfg['ridge'],cfg['betas'],cfg['etas']))
