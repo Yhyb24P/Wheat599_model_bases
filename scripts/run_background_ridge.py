@@ -17,28 +17,11 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'src'))
 from wheat599.data import load, sha256_of
 from wheat599.metrics import pcc, rmse, mae
+from wheat599.kernel_ridge import gates, solve
 
 
 def kernel(g, h, gram, global_penalty, background_penalty):
     return gram * (1.0 / global_penalty + (g @ h.T) / background_penalty)
-
-
-def solve(k, y):
-    """Generalized ridge solve with an unpenalized intercept."""
-    n = y.shape[0]
-    chol = torch.linalg.cholesky(k + torch.eye(n, device=y.device, dtype=y.dtype))
-    inv = torch.cholesky_inverse(chol)
-    ones = torch.ones_like(y)
-    u = inv @ ones
-    denom = ones.T @ u
-    proj = inv - (u @ u.T) / denom
-    alpha = proj @ y
-    intercept = (u.T @ y) / denom
-    return alpha, intercept, torch.diagonal(proj).reshape(-1, 1)
-
-
-def gates(x, w):
-    return torch.softmax(x @ w, dim=1)
 
 
 def fit_candidate(x, gram, y, gl, bl, cfg):
