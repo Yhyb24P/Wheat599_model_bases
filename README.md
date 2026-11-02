@@ -2,6 +2,8 @@
 
 当前完成四环境 CV1 多输出核比较：普通 ICM 的宏 PCC 为 **0.5202**，选择性分核＋OOF 可靠性模型为 **0.5107**，单环境加性＋RBF 为 **0.5092**；前者是当前比较中表现最高的方法。具体协议与证据范围见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md) 和 [docs/RESULTS.md](docs/RESULTS.md)。
 
+谱选择性 ICM 的宏 PCC 为 0.52035，与普通 ICM 的 0.52019 差异很小；保留普通 ICM。见 [docs/RESULTS.md](docs/RESULTS.md)。
+
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
 运行新候选：`python scripts/run_background_nested.py --config configs/background_rbf_nested.yaml --out results/<开发选模目录>`；固定选择后追加 `--selection results/<开发选模目录>/selection.json` 并指定新的 `--out` 进行外层重拟合与评价。
