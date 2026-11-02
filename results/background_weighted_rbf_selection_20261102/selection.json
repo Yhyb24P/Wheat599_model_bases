@@ -1,0 +1,270 @@
+{
+  "config": {
+    "model": "background_rbf",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+    "seed": 42,
+    "inner_folds": 3,
+    "pca_components": 16,
+    "gates": 4,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "initial_weights": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "gate_init_std": 0.05,
+    "steps": 12,
+    "learning_rate": 0.03,
+    "kernel_scale_floor": 1e-08,
+    "redundancy_shrinkage": 0.5
+  },
+  "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+  "selected": [
+    {
+      "environment": "1",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5200871654880598
+    },
+    {
+      "environment": "2",
+      "fold": 0,
+      "bandwidth": 0.25,
+      "inner_pcc": 0.5080360798297365
+    },
+    {
+      "environment": "4",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.3850003905741794
+    },
+    {
+      "environment": "5",
+      "fold": 0,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.46790577618011325
+    },
+    {
+      "environment": "1",
+      "fold": 1,
+      "bandwidth": 0.25,
+      "inner_pcc": 0.5339785229883259
+    },
+    {
+      "environment": "2",
+      "fold": 1,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.46642136491038194
+    },
+    {
+      "environment": "4",
+      "fold": 1,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.372972118254883
+    },
+    {
+      "environment": "5",
+      "fold": 1,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.505447133798851
+    },
+    {
+      "environment": "1",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5495490837422415
+    },
+    {
+      "environment": "2",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.43128195764318766
+    },
+    {
+      "environment": "4",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.3548762010552109
+    },
+    {
+      "environment": "5",
+      "fold": 2,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4629847493673213
+    },
+    {
+      "environment": "1",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5233694385828261
+    },
+    {
+      "environment": "2",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.48762982791717374
+    },
+    {
+      "environment": "4",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.38021561215741045
+    },
+    {
+      "environment": "5",
+      "fold": 3,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.46881392721120013
+    },
+    {
+      "environment": "1",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5018056918373501
+    },
+    {
+      "environment": "2",
+      "fold": 4,
+      "bandwidth": 1.0,
+      "inner_pcc": 0.43753751838302696
+    },
+    {
+      "environment": "4",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.3630767200571863
+    },
+    {
+      "environment": "5",
+      "fold": 4,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.432274419941927
+    },
+    {
+      "environment": "1",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5124789545520634
+    },
+    {
+      "environment": "2",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4456536833526212
+    },
+    {
+      "environment": "4",
+      "fold": 5,
+      "bandwidth": 0.25,
+      "inner_pcc": 0.34089698920148725
+    },
+    {
+      "environment": "5",
+      "fold": 5,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.43635047902024365
+    },
+    {
+      "environment": "1",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5313542796324796
+    },
+    {
+      "environment": "2",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4496560275504546
+    },
+    {
+      "environment": "4",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4039638639638928
+    },
+    {
+      "environment": "5",
+      "fold": 6,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.49278952342319676
+    },
+    {
+      "environment": "1",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.49758633856816675
+    },
+    {
+      "environment": "2",
+      "fold": 7,
+      "bandwidth": 1.0,
+      "inner_pcc": 0.40480592861744186
+    },
+    {
+      "environment": "4",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.3198164568032515
+    },
+    {
+      "environment": "5",
+      "fold": 7,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.46203505979464854
+    },
+    {
+      "environment": "1",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.5098502381490165
+    },
+    {
+      "environment": "2",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.45858092733043576
+    },
+    {
+      "environment": "4",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.39402293506680447
+    },
+    {
+      "environment": "5",
+      "fold": 8,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.455748175906187
+    },
+    {
+      "environment": "1",
+      "fold": 9,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4920790869051117
+    },
+    {
+      "environment": "2",
+      "fold": 9,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4413033729199065
+    },
+    {
+      "environment": "4",
+      "fold": 9,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.3419879216399742
+    },
+    {
+      "environment": "5",
+      "fold": 9,
+      "bandwidth": 4.0,
+      "inner_pcc": 0.4788879859311832
+    }
+  ]
+}
