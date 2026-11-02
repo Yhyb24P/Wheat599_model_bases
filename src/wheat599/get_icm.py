@@ -20,19 +20,22 @@ def correlation(y):
     return c
 
 
-def prepare(k,Y,lam,cfg):
+def prepare(k,Y,lam,cfg,eigensystem=None):
     y=torch.as_tensor(Y,dtype=k.dtype,device=k.device); mean=y.mean(0); scale=y.std(0,unbiased=False)
     if torch.any(scale<=0): raise ValueError('Constant training phenotype')
     y=(y-mean)/scale
-    err=torch.as_tensor(conditional_loo(k,y.cpu().numpy(),lam),dtype=k.dtype,device=k.device)
-    invy=torch.linalg.solve(k+lam*torch.eye(len(y),dtype=k.dtype,device=k.device),torch.cat([y,torch.ones((len(y),1),dtype=k.dtype,device=k.device)],1))
-    mu=invy[:,:4].sum(0)/invy[:,4].sum()
+    eig,u=torch.linalg.eigh((k+k.T)/2) if eigensystem is None else eigensystem
+    if eig.min() < -1e-8: raise ValueError('Non-PSD material kernel')
+    eig=eig.clamp_min(0)
+    one=torch.ones((len(y),1),dtype=k.dtype,device=k.device); uy=u.T@y; uone=u.T@one; inverse=1/(eig+lam)
+    invy=u@(uy*inverse[:,None]); invone=u@(uone*inverse[:,None]); mu=invy.sum(0)/invone.sum()
+    diagonal=u.square()@inverse-invone.ravel().square()/invone.sum()
+    if torch.any(diagonal<=0): raise ValueError('Nonpositive LOO diagonal')
+    err=(invy-invone*mu)/diagonal[:,None]
     denom=(y-mu).square().sum(0)
     if torch.any(denom<=0): raise ValueError('Zero GLS target energy')
     q=(err.square().sum(0)/denom).clamp(cfg['error_floor'],cfg['error_ceiling'])
-    eig,u=torch.linalg.eigh((k+k.T)/2)
-    if eig.min() < -1e-8: raise ValueError('Non-PSD material kernel')
-    return {'Y':y,'mean':mean,'scale':scale,'C_Y':correlation(y),'C_G':correlation(y-err),'R_E':correlation(err),'q':q,'eig':eig.clamp_min(0),'U':u}
+    return {'Y':y,'mean':mean,'scale':scale,'C_Y':correlation(y),'C_G':correlation(y-err),'R_E':correlation(err),'q':q,'eig':eig,'U':u,'UTY':uy,'UT1':uone}
 
 
 def matrices(stats,eta,beta):
@@ -44,20 +47,20 @@ def matrices(stats,eta,beta):
     return bg,sigma,d
 
 
-def spectral_predict(stats,cross,lam,eta,beta):
+def spectral_predict(stats,cross,lam,eta,beta,cross_projection=None):
     bg,sigma,d=matrices(stats,eta,beta)
     ev,t=torch.linalg.eigh(sigma)
     if ev.min()<=0: raise ValueError('Nonpositive residual covariance')
     half=(t*torch.sqrt(ev))@t.T; invhalf=(t*torch.rsqrt(ev))@t.T
     s,Q=torch.linalg.eigh(invhalf@bg@invhalf)
     if s.min()<=0: raise ValueError('Nonpositive signal covariance')
-    W=invhalf@Q; V=half@Q; z=stats['Y']@W; u=stats['U']; eig=stats['eig']
+    W=invhalf@Q; V=half@Q; u=stats['U']; eig=stats['eig']
     inverse=1/(eig[:,None]*s[None,:]+lam)
-    inv_z=u@((u.T@z)*inverse)
-    inv_1=u@((u.T@torch.ones((len(u),1),dtype=u.dtype,device=u.device))*inverse)
-    nu=inv_z.sum(0)/inv_1.sum(0)
-    alpha=(inv_z-inv_1*nu)*s
-    normalized=nu@V.T+cross@alpha@V.T
+    uy=stats['UTY']@W; uone=stats['UT1']
+    nu=(uone.T@(uy*inverse)).ravel()/(uone.T@(uone*inverse)).ravel()
+    alpha=(uy-uone*nu)*inverse*s
+    projected=cross@u if cross_projection is None else cross_projection
+    normalized=nu@V.T+projected@alpha@V.T
     pred=normalized*stats['scale']+stats['mean']; intercept=(nu@V.T)*stats['scale']+stats['mean']
     return pred.cpu().numpy(),intercept.cpu().numpy()
 
