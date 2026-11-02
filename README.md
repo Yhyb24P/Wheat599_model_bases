@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-当前主候选是 `1bd2578` 的背景条件化 + RBF 完整模型。加权 RBF 分支已结束；研究重点转向明确与相关核方法的区别及独立确认。具体协议与进展见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
+当前完成四环境 CV1 多输出核比较：普通 ICM 的宏 PCC 为 **0.5202**，选择性分核＋OOF 可靠性模型为 **0.5107**，单环境加性＋RBF 为 **0.5092**；前者是当前比较中表现最高的方法。具体协议与证据范围见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md) 和 [docs/RESULTS.md](docs/RESULTS.md)。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 

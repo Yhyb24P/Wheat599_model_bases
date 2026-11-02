@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**当前主线（2026-11-02）**：`1bd2578` 的背景条件化 + RBF 完整模型为主候选；加权 RBF 分支已结束。重点核查与条件核回归、局部多核学习的关系和研究贡献，并准备独立确认。结果及证据范围见 `docs/RESULTS.md`，任务进度与协议见 `docs/RESEARCH_PLAN.md`。不继续加权 RBF 消融，不做测试集调参。
+**当前主线（2026-11-02）**：多环境 CV1 核回归与单环境核岭的同折比较已完成；普通 ICM 的宏 PCC 0.5202，选择性可靠性模型为 0.5107，单环境加性＋RBF 为 0.5092。结果及证据范围见 `docs/RESULTS.md`，任务进度与协议见 `docs/RESEARCH_PLAN.md`。加权 RBF 分支已结束，不做测试集调参。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
