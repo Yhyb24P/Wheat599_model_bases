@@ -1,0 +1,66 @@
+# Fair nested protocol for A (FT-Transformer) and RR-BLUP (2026-11-02, gb assignment).
+# Draft experiment, not part of the completed four-model comparison.
+# outer test folds from the fixed BiMSGP manifest; dev = remaining 90%; inner 3-fold
+# on dev (seed 42) selects ONE pre-registered candidate by mean inner-val PCC (A) or
+# inner val RMSE (RR); refit epochs = ceil(median best epochs of the winner), capped
+# at the candidate max_epochs; refit on full dev; test predicted ONCE.
+# A's refit trainer also selects a checkpoint and adapts LR using dev metrics;
+# it is not the frozen-trajectory refit used by the completed BiMSGP comparison.
+# NOTE: filename a_rr_nested (not bimsgp_nested) to avoid collision with the BiMSGP
+# nested runner, which owns run_bimsgp_nested.py / bimsgp_nested.yaml.
+
+source: reuses scripts/run_bimsgp.py (imported as rb)
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/bimsgp_ftt_fixed_20261029/splits_manifest.json
+seed: 42
+run_name: a_rr_nested_20261102
+
+environments: ["1", "2", "4", "5"]
+
+training:
+  inner_folds: 3
+  inner_seed: 42
+  x_scaling: inner_train_then_dev
+  y_scaling: inner_train_then_dev
+  checkpoint: inner_val_pcc        # PCC primary; tie -> earlier epoch
+  batch_size: 8
+  lr_scheduler:
+    type: ReduceLROnPlateau
+    mode: min
+    factor: 0.5
+    patience: 10
+
+# A: architecture frozen (rtdl FT-Transformer, d=64 / 2 blocks / 4 heads / FFN128).
+# Only lr x max_epochs searched. 3 candidates, symmetric to MoEGP's 3.
+model:
+  n_blocks: 2
+  d_block: 64
+  attention_n_heads: 4
+  attention_dropout: 0.1
+  ffn_d_hidden: 128
+  ffn_dropout: 0.1
+  residual_dropout: 0.0
+  weight_decay: 0.01
+
+candidates:
+  A:
+    - {name: A1_lr1e3_e100, lr: 0.001, max_epochs: 100}
+    - {name: A2_lr3e3_e100, lr: 0.003, max_epochs: 100}
+    - {name: A3_lr1e3_e200, lr: 0.001, max_epochs: 200}
+  RR:
+    alphas: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+    inner_metric: rmse           # RR has no epoch dimension; inner val RMSE selects alpha
+
+eval:
+  metrics: [pcc, rmse, mae]
+  primary: pcc
+  test_once: true
+  failure_policy: "explicit rows; candidate inner fit NaN -> excluded; all fail -> outer unit failed; no nanmean"
+  oof: true
+
+budget:
+  A_fits_per_outer_unit: "3 inner folds x 3 candidates + 1 refit = 10"
+  A_total: "10 x 4 env x 10 = 400"
+  RR_fits_per_outer_unit: "3 inner folds x 7 alphas = 21 (refit is 1 cheap Ridge)"
+  RR_total: "10 x 4 x 21 = 840 lightweight Ridge fits (seconds)"
