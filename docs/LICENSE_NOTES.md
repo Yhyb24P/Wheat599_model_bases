@@ -13,6 +13,8 @@
 
 MoEGP 官方仓库在提交 `d3a3c44f649fadf95af34d63f069fc8dfd85af38` 未发现许可证文件；本项目从本地官方副本加载代码，不复制或重新分发该源码。
 
+BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 许可证；本项目从本地官方副本加载源码。其 CUDA 依赖为 `mamba-ssm` 与 `causal-conv1d`，分别记录安装版本和各自许可。
+
 | 项 | 许可 / 状态 | 说明 |
 |----|-------------|------|
 | TabPFN 推理代码（`PriorLabs/TabPFN`） | Apache-2.0 | GitHub API 核实。 |
