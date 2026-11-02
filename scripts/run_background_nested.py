@@ -108,7 +108,7 @@ def run_hybrid(cfg, args):
                     for k, (train, valid) in enumerate(inner):
                         feat = features(data.X, train, valid, cfg['pca_components'], cfg['seed'], device)
                         for i, h in enumerate(cfg['bandwidths']):
-                            prepared = hybrid_inputs(data.X, train, valid, feat, h)
+                            prepared = hybrid_inputs(data.X, train, valid, feat, h, cfg.get('redundancy_shrinkage'))
                             pred, weights, loo = hybrid_predict(prepared, y[train], cfg, cfg['seed'])
                             scores[i, k] = pcc(y[valid], pred)
                             if not np.isfinite(scores[i, k]):
@@ -123,7 +123,7 @@ def run_hybrid(cfg, args):
                     if entry['bandwidth'] not in cfg['bandwidths']:
                         raise ValueError('Selected bandwidth is not configured')
                     feat = features(data.X, dev, test, cfg['pca_components'], cfg['seed'], device)
-                    prepared = hybrid_inputs(data.X, dev, test, feat, entry['bandwidth'])
+                    prepared = hybrid_inputs(data.X, dev, test, feat, entry['bandwidth'], cfg.get('redundancy_shrinkage'))
                     pred, weights, loo = hybrid_predict(prepared, y[dev], cfg, cfg['seed'])
                     metrics = {'pcc':pcc(y[test],pred), 'rmse':rmse(y[test],pred), 'mae':mae(y[test],pred)}
                     if not all(np.isfinite(v) for v in metrics.values()):

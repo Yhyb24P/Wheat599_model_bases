@@ -6,15 +6,25 @@ import torch
 from wheat599.kernel_ridge import gates, solve
 
 
-def inputs(X, train, target, features, bandwidth):
+def inputs(X, train, target, features, bandwidth, redundancy_shrinkage=None):
     """Construct kernels with distance and scale determined only by training rows."""
     x, xt, gram, cross = features
     # For binary markers, squared Euclidean distance equals Hamming distance.
     ztr = torch.as_tensor(X[train], dtype=x.dtype, device=x.device)
     zt = torch.as_tensor(X[target], dtype=x.dtype, device=x.device)
-    train_norm = (ztr * ztr).sum(1)
-    dtrain = (train_norm[:, None] + train_norm[None, :] - 2 * ztr @ ztr.T).clamp_min(0)
-    dcross = ((zt * zt).sum(1)[:, None] + train_norm[None, :] - 2 * zt @ ztr.T).clamp_min(0)
+    if redundancy_shrinkage is None:
+        marker_weights = torch.ones(ztr.shape[1], dtype=x.dtype, device=x.device)
+    else:
+        centered = ztr - ztr.mean(0)
+        norms = torch.linalg.vector_norm(centered, dim=0)
+        standardized = centered / torch.where(norms > 0, norms, torch.ones_like(norms))
+        corr = standardized.T @ standardized
+        corr.fill_diagonal_(0)
+        raw = torch.rsqrt(1 + corr.square().sum(1))
+        marker_weights = (1 - redundancy_shrinkage) + redundancy_shrinkage * raw / raw.mean()
+    train_norm = (ztr.square() * marker_weights).sum(1)
+    dtrain = (train_norm[:, None] + train_norm[None, :] - 2 * (ztr * marker_weights) @ ztr.T).clamp_min(0)
+    dcross = ((zt.square() * marker_weights).sum(1)[:, None] + train_norm[None, :] - 2 * (zt * marker_weights) @ ztr.T).clamp_min(0)
     distances = dtrain[torch.triu_indices(len(train), len(train), offset=1, device=x.device).unbind()]
     d0 = torch.quantile(distances, 0.5)
     if d0 <= 0:
