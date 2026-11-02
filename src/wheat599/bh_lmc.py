@@ -15,12 +15,18 @@ from wheat599.metrics import pcc, rmse, mae
 from wheat599.multienv_kernel import choose_base, fit_predict, task_correlation
 
 
-def conditional_loo(k, y, ridge):
+def conditional_loo(k, y, ridge, mode='gls'):
     """Fixed-kernel GLS leave-one-out errors, refitting intercept per removal."""
     n = k.shape[0]
     yy = torch.as_tensor(y, dtype=k.dtype, device=k.device)
     chol = torch.linalg.cholesky(k + ridge * torch.eye(n, dtype=k.dtype, device=k.device))
     inv = torch.cholesky_inverse(chol)
+    if mode == 'fixed_mean':
+        centered = yy - yy.mean(0)
+        err = (inv @ centered) / torch.diagonal(inv)[:, None]
+        if not torch.isfinite(err).all(): raise ValueError('Non-finite LOO residual')
+        return err.cpu().numpy()
+    if mode != 'gls': raise ValueError('Unknown LOO mode')
     ones = torch.ones((n, 1), dtype=k.dtype, device=k.device)
     u = inv @ ones
     projection = inv - (u @ u.T) / (ones.T @ u)
@@ -49,9 +55,10 @@ def predicted_corr(Y, P, floor):
 
 def calibration(a, r, Y, base, cfg):
     _, lam, frac = base
-    ea = conditional_loo(a, Y, lam)
-    er = conditional_loo(r, Y, lam)
-    e0 = conditional_loo(frac*a+(1-frac)*r, Y, lam)
+    mode=cfg.get('loo_mode','gls')
+    ea = conditional_loo(a, Y, lam, mode)
+    er = conditional_loo(r, Y, lam, mode)
+    e0 = conditional_loo(frac*a+(1-frac)*r, Y, lam, mode)
     ca, ra = predicted_corr(Y, Y-ea, cfg['correlation_floor'])
     cr, rr = predicted_corr(Y, Y-er, cfg['correlation_floor'])
     sst = ((Y-Y.mean(0))**2).sum(0)
@@ -78,6 +85,19 @@ def task_parameters(Y, base, eta_a, eta_r, gamma, cfg, stats=None):
     ba=root_a[:,None]*((1-eta_a)*identity+eta_a*ca)*root_a[None,:]
     br=root_r[:,None]*((1-eta_r)*identity+eta_r*cr)*root_r[None,:]
     return ba,br,penalties,weights,ca,cr
+
+
+def predict_candidate(a,r,ac,rc,Y,ba,br,pen,cfg):
+    if cfg.get('intercept_mode','gls') == 'gls':
+        return fit_predict([a,r],[ac,rc],Y,[ba,br],pen)
+    if cfg['intercept_mode'] != 'training_mean': raise ValueError('Unknown intercept mode')
+    yy=torch.as_tensor(Y,dtype=a.dtype,device=a.device)
+    n,q=yy.shape; mean=yy.mean(0); centered=yy-mean
+    ba=torch.as_tensor(ba,dtype=a.dtype,device=a.device); br=torch.as_tensor(br,dtype=a.dtype,device=a.device)
+    cov=torch.kron(a.contiguous(),ba.contiguous())+torch.kron(r.contiguous(),br.contiguous())
+    cov.diagonal().add_(torch.as_tensor(pen,dtype=a.dtype,device=a.device).repeat(n))
+    alpha=torch.cholesky_solve(centered.reshape(-1,1),torch.linalg.cholesky(cov)).reshape(n,q)
+    return (mean+ac@alpha@ba.T+rc@alpha@br.T).cpu().numpy()
 
 
 def select_best(choices, means, tol):
@@ -107,7 +127,7 @@ def run(cfg,args,runner_path):
         keys=[v['fold'] for v in frozen['selected']]
         if len(keys)!=len(folds) or set(keys)!={f['fold'] for f in folds}: raise ValueError('Incomplete frozen selection')
     args.out.mkdir(parents=True,exist_ok=False)
-    (args.out/'provenance.json').write_text(json.dumps({'config':cfg,'splits_sha256':split_hash,'runner_sha256':sha256_of(runner_path),'model_sha256':sha256_of(Path(__file__)),'multienv_sha256':sha256_of(Path(__file__).parent/'multienv_kernel.py'),'baseline_sha256':sha256_of(Path(__file__).parent/'kernel_baselines.py'),'selection_sha256':sha256_of(args.selection) if args.selection else None,'intercept':'GLS, training-standardized Y; conditional LOO uses GLS projection','protocol':'CV1; nested macro PCC; full development refit'},indent=2))
+    (args.out/'provenance.json').write_text(json.dumps({'config':cfg,'splits_sha256':split_hash,'runner_sha256':sha256_of(runner_path),'model_sha256':sha256_of(Path(__file__)),'multienv_sha256':sha256_of(Path(__file__).parent/'multienv_kernel.py'),'baseline_sha256':sha256_of(Path(__file__).parent/'kernel_baselines.py'),'selection_sha256':sha256_of(args.selection) if args.selection else None,'intercept_mode':cfg.get('intercept_mode','gls'),'loo_mode':cfg.get('loo_mode','gls'),'protocol':'CV1; nested macro PCC; full development refit'},indent=2))
     device=torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     if device.type=='cuda': torch.cuda.set_per_process_memory_fraction(0.35)
     choices=list(itertools.product(cfg['etas'],cfg['etas'],cfg['gammas']))
@@ -131,7 +151,7 @@ def run(cfg,args,runner_path):
                         calibrations.append(calibration_row('inner',k,j,base,gamma,stats,w,pen,ca,cr))
                     for i,(eta_a,eta_r,gamma) in enumerate(choices):
                         ba,br,pen,_,_,_=task_parameters(Y,base,eta_a,eta_r,gamma,cfg,stats if gamma else None)
-                        pred=fit_predict([a,r],[ac,rc],Y,[ba,br],pen)
+                        pred=predict_candidate(a,r,ac,rc,Y,ba,br,pen,cfg)
                         for e,env in enumerate(data.environments):
                             score=pcc(data.Y[va,e],pred[:,e])
                             if not np.isfinite(score): raise ValueError('Non-finite validation PCC')
@@ -152,7 +172,7 @@ def run(cfg,args,runner_path):
                     if (ea,er,gamma) not in choices or (model=='matched_icm' and (gamma!=0 or ea!=er)): raise ValueError('Invalid frozen choice')
                     ba,br,pen,w,ca,cr=task_parameters(Y,base,ea,er,gamma,cfg,stats if gamma else None)
                     calibrations.append(calibration_row(model,k,-1,base,gamma,stats,w,pen,ca,cr))
-                    pred=fit_predict([a,r],[ac,rc],Y,[ba,br],pen)
+                    pred=predict_candidate(a,r,ac,rc,Y,ba,br,pen,cfg)
                     for e,env in enumerate(data.environments):
                         metrics={'pcc':pcc(data.Y[test,e],pred[:,e]),'rmse':rmse(data.Y[test,e],pred[:,e]),'mae':mae(data.Y[test,e],pred[:,e])}
                         if not all(np.isfinite(v) for v in metrics.values()): raise ValueError('Non-finite test metric')
