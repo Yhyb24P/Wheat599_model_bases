@@ -1,0 +1,120 @@
+{
+  "config": {
+    "model": "get_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "inner_folds": 3,
+    "base_folds": 3,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "betas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "tie_tolerance": 1e-12,
+    "error_floor": 0.4,
+    "error_ceiling": 0.9
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selected": [
+    {
+      "fold": 0,
+      "eta": 0.8,
+      "beta": 1.0,
+      "inner_pcc": 0.4914470549091905,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 1,
+      "eta": 0.8,
+      "beta": 0.5,
+      "inner_pcc": 0.4918887679731634,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 2,
+      "eta": 0.8,
+      "beta": 0.0,
+      "inner_pcc": 0.4760156573163039,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 3,
+      "eta": 0.8,
+      "beta": 1.0,
+      "inner_pcc": 0.48774619449091566,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 4,
+      "eta": 0.8,
+      "beta": 1.0,
+      "inner_pcc": 0.45837270316898887,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 5,
+      "eta": 0.8,
+      "beta": 1.0,
+      "inner_pcc": 0.4648739078379121,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 6,
+      "eta": 0.8,
+      "beta": 1.0,
+      "inner_pcc": 0.4916917004311625,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 7,
+      "eta": 0.8,
+      "beta": 0.0,
+      "inner_pcc": 0.45376649943324837,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 8,
+      "eta": 0.8,
+      "beta": 1.0,
+      "inner_pcc": 0.46617867209254465,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    },
+    {
+      "fold": 9,
+      "eta": 0.8,
+      "beta": 0.0,
+      "inner_pcc": 0.46863336816706164,
+      "selection_reason": "max macro PCC; tolerance ties prefer beta then eta"
+    }
+  ]
+}
