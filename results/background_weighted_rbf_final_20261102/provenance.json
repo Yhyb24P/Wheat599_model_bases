@@ -1,0 +1,34 @@
+{
+  "config": {
+    "model": "background_rbf",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+    "seed": 42,
+    "inner_folds": 3,
+    "pca_components": 16,
+    "gates": 4,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "initial_weights": [
+      1.0,
+      0.5,
+      0.5
+    ],
+    "gate_init_std": 0.05,
+    "steps": 12,
+    "learning_rate": 0.03,
+    "kernel_scale_floor": 1e-08,
+    "redundancy_shrinkage": 0.5
+  },
+  "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+  "runner_sha256": "ddd7cd6bda4c94603502039b13991fcbfc96c8226ac7e2649cccfa0bf40dc2e7",
+  "model_sha256": "d4af169ba5aa41f36a42b396296bbb2778b71c8d97dca05c9f43aacceaa7045b",
+  "solver_sha256": "ef65ea6a20bc4c024af82538b40fd31d18c7aa665b907f7134fb97880a9ce7d3",
+  "selection_sha256": "d3994b496c7f573d925bfb47acc238dc73d69b25d0b255779ed2e8a32a77690c",
+  "selection": "mean inner-fold PCC; ties use first bandwidth",
+  "refit": "entire outer development set"
+}
