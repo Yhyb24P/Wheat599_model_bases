@@ -1,0 +1,17 @@
+model: bh_lmc
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/bimsgp_ftt_fixed_20261029/splits_manifest.json
+seed: 42
+inner_folds: 3
+base_folds: 3
+bandwidths: [0.25, 1.0, 4.0]
+ridge: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+additive_fractions: [0.0, 0.25, 0.5, 0.75, 1.0]
+etas: [0.0, 0.3, 0.6, 0.8]
+gammas: [0.0, 0.5, 1.0]
+tie_tolerance: 1.0e-12
+reliability_floor: 0.10
+reliability_ceiling: 0.50
+weight_epsilon: 1.0e-4
+correlation_floor: 1.0e-12
