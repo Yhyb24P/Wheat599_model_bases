@@ -1,20 +1,8 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-按目标环境分别选模的 ICM 宏 PCC 为 0.51609、RMSE 为 0.85649；未超过保留模型，详见 [docs/RESULTS.md](docs/RESULTS.md)。
+当前保留的匹配范围 GLS ICM 在四环境 CV1 的宏 PCC 为 **0.52059**、RMSE 为 **0.85422**、MAE 为 **0.65753**。GET、REML、联合选模及其他候选的完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议和进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
-REML 协方差拟合评价已完成：宏 PCC 0.51022、RMSE 0.86003，未超过保留的匹配范围 GLS ICM（PCC 0.52059）。见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-联合基础核与任务参数选模已完成：GET、ICM 的宏 PCC 分别为 0.51511、0.51609，未超过当前保留的匹配范围 GLS ICM（PCC 0.52059、RMSE 0.85422、MAE 0.65753）。结果见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-GET-ICM 四环境 CV1 评价已完成：宏 PCC 0.52002、RMSE 0.85457、MAE 0.65788，未达到预设门槛；保留匹配范围 GLS ICM（PCC 0.52059）。详见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-当前完成四环境 CV1 多输出核比较：历史普通 ICM 的宏 PCC 为 **0.5202**，选择性分核＋OOF 可靠性模型为 **0.5107**，单环境加性＋RBF 为 **0.5092**。具体协议与证据范围见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md) 和 [docs/RESULTS.md](docs/RESULTS.md)。
-
-BH-LMC 的宏 PCC 为 **0.51931**，匹配范围 ICM 为 **0.52059**；BH-LMC 未达到预设 GO 门槛，保留普通 ICM。详见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-原始报告采用算术均值截距与固定均值 LOO，另行复验得到 BH-LMC 宏 PCC **0.51916**、同截距 ICM **0.51971**；仍为 NO-GO，详见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-谱选择性 ICM 的宏 PCC 为 0.52035，与普通 ICM 的 0.52019 差异很小；保留普通 ICM。见 [docs/RESULTS.md](docs/RESULTS.md)。
+最新固定前五配置平均研究仅在开发集验证：PCC 增量 +0.000459，未达到固定的 +0.001 条件，已结束；没有新增外层测试成绩。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
