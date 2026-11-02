@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-当前主候选是 `1bd2578` 的背景条件化 + RBF 完整模型，暂不增加模型组件。以 PCC 为主，与 BiMSGP、MoEGP 和 RR-BLUP 按共同外层折比较；开发集内选模后用完整开发集重拟合。具体协议与进展见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
+当前主候选是 `1bd2578` 的背景条件化 + RBF 完整模型。加权 RBF 分支已结束；研究重点转向明确与相关核方法的区别及独立确认。具体协议与进展见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折原背景模型 / RR-BLUP / BiMSGP / MoEGP 的宏 PCC 分别为 **0.4774 / 0.4599 / 0.4708 / 0.4592**。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
