@@ -1,8 +1,8 @@
 # Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
 
-当前保留的匹配范围 GLS ICM 在四环境 CV1 的宏 PCC 为 **0.52059**、RMSE 为 **0.85422**、MAE 为 **0.65753**。GET、REML、联合选模及其他候选的完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议和进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
+当前最高折均 PCC 候选为 **Huber ICM**：四环境 CV1 折均宏 PCC **0.52175**、RMSE **0.85674**、MAE **0.65844**。匹配范围 GLS ICM 为 **0.52059 / 0.85422 / 0.65753**，保留为误差较低参照。Huber 仅获得小幅折均 PCC 增量，合并 OOF PCC 未改善。完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议与进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
-最新两项开发研究均未达到预定条件：固定前五配置平均的 PCC 增量为 +0.000459；环境分别收缩为 +0.001008，但仅 5/10 单元改善。均已结束，没有新增外层测试成绩。
+Huber 配置与参数已冻结，正式评价完成 40/40 环境折。本轮优化结束；此前固定前五配置平均、环境分别收缩等分支的开发记录见 RESULTS。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
@@ -50,6 +50,14 @@ python scripts/fetch_data.py
 数据事实、R 列主序读取要求与旧 C-order 故障见 [docs/DATA_FACTS.md](docs/DATA_FACTS.md)。`data/raw/` 不入 Git。
 
 ## 运行
+
+复现本轮 Huber ICM 的冻结选择与完整开发集重拟合（指定新的输出目录）：
+
+```bash
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/run_background_nested.py --config configs/robust_icm.yaml --selection results/robust_icm_development_20261103/selection.json --out results/robust_icm_reproduction
+```
+
+本轮实际使用 CPU、Python 3.12.15、NumPy 1.26.4、SciPy 1.13.1、PyTorch 2.7.1+cu128，详见结果目录的 `runtime.json`。以下为历史 FT-T 及其基线入口。
 
 正式 10 折 FT-Transformer（seed 42；test 9×60 + 1×59、val 54、train 485/486；test 只评一次）：
 

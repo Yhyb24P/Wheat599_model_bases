@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**当前主线（2026-11-02）**：多环境 CV1 核回归与单环境核岭的同折比较已完成；普通 ICM 的宏 PCC 0.5202，选择性可靠性模型为 0.5107，单环境加性＋RBF 为 0.5092。结果及证据范围见 `docs/RESULTS.md`，任务进度与协议见 `docs/RESEARCH_PLAN.md`。加权 RBF 分支已结束，不做测试集调参。
+**当前主线（2026-11-03）**：多环境 CV1 核回归。本轮优化已完成：Huber ICM 为最高折均 PCC 候选，匹配范围 GLS ICM 保留为误差较低参照；两者取舍及证据范围见 `docs/RESULTS.md`，冻结协议和进度见 `docs/RESEARCH_PLAN.md`。本轮不再追加变体或消融，不做测试集调参。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 

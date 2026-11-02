@@ -1,0 +1,11 @@
+{
+  "recorded_after_evaluation": true,
+  "executable": "/home/yhshy/miniconda3/envs/boltz2/bin/python",
+  "python": "3.12.15",
+  "numpy": "1.26.4",
+  "scipy": "1.13.1",
+  "torch": "2.7.1+cu128",
+  "device": "cpu",
+  "OPENBLAS_NUM_THREADS": "1",
+  "OMP_NUM_THREADS": "1"
+}

@@ -1,0 +1,222 @@
+[
+  {
+    "fold": 0,
+    "iterations": 24,
+    "optimizer_success": true,
+    "gradient_inf": 1.0338615737211802e-06,
+    "clipped_fraction": 0.03385899814471243,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.1073163613967143,
+    "initial_objective": 0.10871111895160371,
+    "residual_mad_scale": [
+      0.2585432229783751,
+      0.24362489530696116,
+      0.2587346701231452,
+      0.23551624793635484
+    ],
+    "thresholds": [
+      0.6463580574459378,
+      0.6090622382674029,
+      0.646836675307863,
+      0.5887906198408871
+    ]
+  },
+  {
+    "fold": 1,
+    "iterations": 22,
+    "optimizer_success": true,
+    "gradient_inf": 2.254897659818337e-06,
+    "clipped_fraction": 0.18692022263450836,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.10973562606094435,
+    "initial_objective": 0.11778601544783755,
+    "residual_mad_scale": [
+      0.2824935753864511,
+      0.25811276346239237,
+      0.2851810482041048,
+      0.2706779831772433
+    ],
+    "thresholds": [
+      0.37995385889477673,
+      0.34716166685691774,
+      0.3835685098345209,
+      0.36406188737339223
+    ]
+  },
+  {
+    "fold": 2,
+    "iterations": 63,
+    "optimizer_success": true,
+    "gradient_inf": 1.611324513554198e-06,
+    "clipped_fraction": 0.19526901669758812,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.015078378068416234,
+    "initial_objective": 0.01860305340743871,
+    "residual_mad_scale": [
+      0.037135716903465135,
+      0.03626539548911338,
+      0.04191799259628706,
+      0.03859024196256157
+    ],
+    "thresholds": [
+      0.049947539235160605,
+      0.048776956932857496,
+      0.0563797000420061,
+      0.05190387543964531
+    ]
+  },
+  {
+    "fold": 3,
+    "iterations": 22,
+    "optimizer_success": true,
+    "gradient_inf": 9.797921558485095e-07,
+    "clipped_fraction": 0.034786641929499075,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.10988492223141053,
+    "initial_objective": 0.11146449644024191,
+    "residual_mad_scale": [
+      0.2631135282300554,
+      0.2399910657411956,
+      0.2597002373334728,
+      0.2411167173408519
+    ],
+    "thresholds": [
+      0.6577838205751385,
+      0.599977664352989,
+      0.6492505933336821,
+      0.6027917933521297
+    ]
+  },
+  {
+    "fold": 4,
+    "iterations": 17,
+    "optimizer_success": true,
+    "gradient_inf": 6.29296756168707e-07,
+    "clipped_fraction": 0.20083487940630798,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.29166892823752477,
+    "initial_objective": 0.2991135026116194,
+    "residual_mad_scale": [
+      0.7143606178291737,
+      0.5784075867615512,
+      0.6309652898377617,
+      0.6124462018363407
+    ],
+    "thresholds": [
+      0.9608150309802386,
+      0.7779582041942864,
+      0.8486483148317895,
+      0.8237401414698782
+    ]
+  },
+  {
+    "fold": 5,
+    "iterations": 23,
+    "optimizer_success": true,
+    "gradient_inf": 8.444032151937755e-07,
+    "clipped_fraction": 0.03571428571428571,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.10762530727235776,
+    "initial_objective": 0.10927823166543857,
+    "residual_mad_scale": [
+      0.26210885739592216,
+      0.22888099571959172,
+      0.25801115756756626,
+      0.23610080397735658
+    ],
+    "thresholds": [
+      0.6552721434898054,
+      0.5722024892989793,
+      0.6450278939189157,
+      0.5902520099433914
+    ]
+  },
+  {
+    "fold": 6,
+    "iterations": 80,
+    "optimizer_success": true,
+    "gradient_inf": 2.2011077753783357e-06,
+    "clipped_fraction": 0.19202226345083487,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.014573642324958823,
+    "initial_objective": 0.018177086627405636,
+    "residual_mad_scale": [
+      0.03942110472006296,
+      0.0411208758496138,
+      0.046063413637567566,
+      0.03797091697359055
+    ],
+    "thresholds": [
+      0.053021385848484676,
+      0.055307578017730556,
+      0.061955291342528376,
+      0.05107088332947929
+    ]
+  },
+  {
+    "fold": 7,
+    "iterations": 77,
+    "optimizer_success": true,
+    "gradient_inf": 1.031593755919241e-06,
+    "clipped_fraction": 0.19619666048237477,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.014552664436418162,
+    "initial_objective": 0.018263044985037308,
+    "residual_mad_scale": [
+      0.039678153477081195,
+      0.038886011786965616,
+      0.04218606595400269,
+      0.03701420620498143
+    ],
+    "thresholds": [
+      0.05336711642667421,
+      0.052301685853468755,
+      0.056740258708133616,
+      0.04978410734570002
+    ]
+  },
+  {
+    "fold": 8,
+    "iterations": 23,
+    "optimizer_success": true,
+    "gradient_inf": 9.52802696617382e-07,
+    "clipped_fraction": 0.039888682745825604,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.1075382138385903,
+    "initial_objective": 0.10937673283730977,
+    "residual_mad_scale": [
+      0.24555836209934415,
+      0.2365966787935245,
+      0.2497190350319637,
+      0.2197651498875066
+    ],
+    "thresholds": [
+      0.6138959052483604,
+      0.5914916969838112,
+      0.6242975875799093,
+      0.5494128747187664
+    ]
+  },
+  {
+    "fold": 9,
+    "iterations": 56,
+    "optimizer_success": true,
+    "gradient_inf": 1.700815158927843e-06,
+    "clipped_fraction": 0.1962962962962963,
+    "message": "CONVERGENCE: NORM_OF_PROJECTED_GRADIENT_<=_PGTOL",
+    "objective": 0.01787932867840388,
+    "initial_objective": 0.02233648767675584,
+    "residual_mad_scale": [
+      0.047559601709613604,
+      0.04537655582597517,
+      0.04761495305304993,
+      0.04765942602710831
+    ],
+    "thresholds": [
+      0.0639676642994303,
+      0.061031467585936604,
+      0.06404211185635215,
+      0.06410192800646068
+    ]
+  }
+]
