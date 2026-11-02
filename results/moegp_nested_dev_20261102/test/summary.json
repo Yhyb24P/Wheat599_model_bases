@@ -1,0 +1,90 @@
+{
+ "n_units": 40,
+ "n_failures": 0,
+ "n_valid": 40,
+ "complete": true,
+ "per_environment": {
+  "1": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.5141673154608902,
+    "sd_ddof1": 0.08397945580064316
+   },
+   "rmse": {
+    "mean": 0.8820717621909429,
+    "sd_ddof1": 0.08039498747918347
+   },
+   "mae": {
+    "mean": 0.6870959883211842,
+    "sd_ddof1": 0.06470942655845262
+   }
+  },
+  "2": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.43522804811935745,
+    "sd_ddof1": 0.12241243255798503
+   },
+   "rmse": {
+    "mean": 0.9166750225030809,
+    "sd_ddof1": 0.08085787072723516
+   },
+   "mae": {
+    "mean": 0.712515832917187,
+    "sd_ddof1": 0.05768734135463314
+   }
+  },
+  "4": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.39638476236952197,
+    "sd_ddof1": 0.09044744759817393
+   },
+   "rmse": {
+    "mean": 0.9586272818505421,
+    "sd_ddof1": 0.14255955799680914
+   },
+   "mae": {
+    "mean": 0.7329017728784055,
+    "sd_ddof1": 0.10870858850686377
+   }
+  },
+  "5": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.4910229143008486,
+    "sd_ddof1": 0.0890447125987386
+   },
+   "rmse": {
+    "mean": 0.8875402975272648,
+    "sd_ddof1": 0.07444323977542146
+   },
+   "mae": {
+    "mean": 0.6761478402659805,
+    "sd_ddof1": 0.06320474149438665
+   }
+  }
+ },
+ "selection_counts": {
+  "B5_experts20": 8,
+  "B4_hidden1024_512": 16,
+  "B0_official": 6,
+  "B3_experts10": 8,
+  "B2_dropout0p5": 2
+ },
+ "macro": {
+  "pcc": 0.4592007600626546,
+  "rmse": 0.9112285910179576,
+  "mae": 0.7021653585956893
+ },
+ "limits": [
+  "10 outer folds share materials; descriptive only (no p-values/CIs)",
+  "single seed (42); no initialization variance",
+  "six pre-registered candidates; no grid expansion",
+  "fold0/env1 test was observed by earlier smokes (RR/MoEGP) and the same outer folds were used across rounds; results are not an independent confirmation"
+ ]
+}

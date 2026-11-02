@@ -1,0 +1,109 @@
+{
+ "config": {
+  "source": "/home/yhshy/git_files/MoEGP",
+  "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+  "data": "data/raw/wheat.RData",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+  "seed": 42,
+  "model": {
+   "top_k": 2,
+   "loss_coef": 0.1,
+   "weight_decay": 1e-06
+  },
+  "training": {
+   "batch_size": 32,
+   "epochs": 100,
+   "inner_folds": 3,
+   "x_scaling": "none",
+   "y_scaling": "fit_subset_only",
+   "checkpoint": "inner_val_pcc",
+   "gpu_memory_fraction": 0.2
+  },
+  "candidates": [
+   {
+    "name": "B0_official",
+    "experts": 6,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   },
+   {
+    "name": "B1_lr1e5",
+    "experts": 6,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 1e-05
+   },
+   {
+    "name": "B2_dropout0p5",
+    "experts": 6,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.5,
+    "lr": 0.0001
+   },
+   {
+    "name": "B3_experts10",
+    "experts": 10,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   },
+   {
+    "name": "B4_hidden1024_512",
+    "experts": 6,
+    "hidden": [
+     1024,
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   },
+   {
+    "name": "B5_experts20",
+    "experts": 20,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   }
+  ],
+  "budget": {
+   "dev_fits": "10 outer x 4 env x 3 inner x 6 candidates = 720",
+   "test_refits": "40",
+   "total_fits": 760,
+   "gpu_estimate": "~2.5-4 GPU-h (measured 10.2 s per 100-epoch fit at n=485 for B0; B3 x1.7, B4 x2, B5 x3.3)"
+  },
+  "notes": [
+   "fold0/env1 test was observed by earlier RR/MoEGP smokes; the same outer folds were used across rounds; results are not an independent confirmation",
+   "failures are recorded per fit; any failure => summary is marked INCOMPLETE and macro is omitted",
+   "no model weights are saved; the test phase refits from the recorded selection and replays the median inner-fold lr trajectory"
+  ]
+ },
+ "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+ "splits_sha256": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+ "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+ "device": "cuda",
+ "seed": 42,
+ "phase": "test",
+ "inner_cv": "KFold(shuffle=True, random_state=42+outer_fold)",
+ "selection_metric": "inner_val_pcc; tie (<=1e-12) -> earlier candidate in the pre-registered config order",
+ "refit": "test phase refits on the full dev; best_epoch is 0-based, recorded refit epochs = ceil(median(best_epoch + 1)), capped",
+ "weights_saved": false,
+ "independent_experts": true,
+ "official_loss": "mse + aux (loss_coef fixed)",
+ "x_scaling": "none",
+ "y_scaling": "fit_subset_only",
+ "checkpoint": "inner_val_pcc",
+ "test_contact": "one-shot evaluation after refit; no test-based decisions",
+ "timestamp": "2026-11-02T15:27:08+0800"
+}
