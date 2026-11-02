@@ -2,7 +2,7 @@
 
 当前保留的匹配范围 GLS ICM 在四环境 CV1 的宏 PCC 为 **0.52059**、RMSE 为 **0.85422**、MAE 为 **0.65753**。GET、REML、联合选模及其他候选的完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议和进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
-最新固定前五配置平均研究仅在开发集验证：PCC 增量 +0.000459，未达到固定的 +0.001 条件，已结束；没有新增外层测试成绩。
+最新两项开发研究均未达到预定条件：固定前五配置平均的 PCC 增量为 +0.000459；环境分别收缩为 +0.001008，但仅 5/10 单元改善。均已结束，没有新增外层测试成绩。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 

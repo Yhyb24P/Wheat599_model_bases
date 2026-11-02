@@ -1,0 +1,46 @@
+{
+  "config": {
+    "model": "heterogeneous_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "minimum_development_gain": 0.001,
+    "minimum_development_folds": 6,
+    "tie_tolerance": 1e-12
+  },
+  "git_commit": "d593e081566e11a70e35de9d5720ccd7e012e5ec",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "model_sha256": "3b1c90f5f7e45ac629479c17b12d7a509589af88b30a8050147f9d9d2b07f155",
+  "solver_sha256": "144a98aec1f2ddd5ea6200b6ed38d27916cfecc79bfff26d297979d75b203a05",
+  "runner_sha256": "dbdf5f839d030b96ae2469827743d64ae09c4eb62eb21abfbec053de626b72c6",
+  "selection_sha256": null,
+  "rule": "training-fold kernel and penalties; development-fold macro PCC for eta"
+}

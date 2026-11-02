@@ -1,0 +1,169 @@
+{
+  "config": {
+    "model": "heterogeneous_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "minimum_development_gain": 0.001,
+    "minimum_development_folds": 6,
+    "tie_tolerance": 1e-12
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "development_gate": {
+    "pcc_gain": 0.001007894698015288,
+    "folds_improved": 5,
+    "per_fold_delta": [
+      0.005483854052192205,
+      -0.003441415469095599,
+      0.0025679817487455625,
+      -0.0030220127451738854,
+      0.016159785308243524,
+      -0.00027351691750931995,
+      -0.004876988517748038,
+      -0.00570835735864772,
+      0.0021465719290334473,
+      0.0010430449501127037
+    ],
+    "pass": false
+  },
+  "selected": [
+    {
+      "fold": 0,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4961715826535731
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4906877286013809
+      }
+    },
+    {
+      "fold": 1,
+      "heterogeneous": {
+        "eta": 0.6,
+        "inner_pcc": 0.48837557058621545
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.49181698605531105
+      }
+    },
+    {
+      "fold": 2,
+      "heterogeneous": {
+        "eta": 0.6,
+        "inner_pcc": 0.4785836390650493
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.47601565731630374
+      }
+    },
+    {
+      "fold": 3,
+      "heterogeneous": {
+        "eta": 0.3,
+        "inner_pcc": 0.48423547594110805
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.48725748868628194
+      }
+    },
+    {
+      "fold": 4,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.47221808478532407
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.45605829947708054
+      }
+    },
+    {
+      "fold": 5,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4635985439239734
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.46387206084148275
+      }
+    },
+    {
+      "fold": 6,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4861787864690992
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4910557749868472
+      }
+    },
+    {
+      "fold": 7,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.44805814207460065
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.45376649943324837
+      }
+    },
+    {
+      "fold": 8,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4677616588308487
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.46561508690181524
+      }
+    },
+    {
+      "fold": 9,
+      "heterogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4696764131171731
+      },
+      "homogeneous": {
+        "eta": 0.8,
+        "inner_pcc": 0.4686333681670604
+      }
+    }
+  ]
+}

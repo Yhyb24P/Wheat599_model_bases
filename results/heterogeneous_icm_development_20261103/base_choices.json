@@ -1,0 +1,782 @@
+[
+  {
+    "fold": 0,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        1.0,
+        1.0,
+        0.01
+      ],
+      "base_pcc": 0.4629061817939789
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.45731915340158863
+    }
+  },
+  {
+    "fold": 0,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4481204715164188
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4450009124256445
+    }
+  },
+  {
+    "fold": 0,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.4753725667481562
+    },
+    "homogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.47331916457978074
+    }
+  },
+  {
+    "fold": 1,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        1.0,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.45770453549034
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4563788645112025
+    }
+  },
+  {
+    "fold": 1,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.01,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.45374762112716543
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.45361667613894613
+    }
+  },
+  {
+    "fold": 1,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        1.0
+      ],
+      "base_pcc": 0.43411060783260014
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.43410470722621913
+    }
+  },
+  {
+    "fold": 2,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.405347845011675
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4052908861680954
+    }
+  },
+  {
+    "fold": 2,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.42002218195966945
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.41718112228892645
+    }
+  },
+  {
+    "fold": 2,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.001,
+        1.0,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4371504555151794
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4357126063966641
+    }
+  },
+  {
+    "fold": 3,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4536176174194001
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4536176174194001
+    }
+  },
+  {
+    "fold": 3,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.01,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.4135195366250035
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.40901410232520474
+    }
+  },
+  {
+    "fold": 3,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.01,
+        1.0,
+        0.001,
+        0.1
+      ],
+      "base_pcc": 0.43933450602273294
+    },
+    "homogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.43436757424265887
+    }
+  },
+  {
+    "fold": 4,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.01,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4794245815727838
+    },
+    "homogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.47162076762253824
+    }
+  },
+  {
+    "fold": 4,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.001,
+        1.0,
+        0.1,
+        1.0
+      ],
+      "base_pcc": 0.42232780902020717
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4201267548480998
+    }
+  },
+  {
+    "fold": 4,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.001,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.4623319793409435
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4597494116015774
+    }
+  },
+  {
+    "fold": 5,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        1.0
+      ],
+      "base_pcc": 0.4526077604215571
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4517081516337297
+    }
+  },
+  {
+    "fold": 5,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.476851917082903
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.476851917082903
+    }
+  },
+  {
+    "fold": 5,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.01,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.4943833824817891
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.49240247682229515
+    }
+  },
+  {
+    "fold": 6,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.43229906179561467
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4274974688462038
+    }
+  },
+  {
+    "fold": 6,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.01,
+        1.0,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.46067203358507536
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4566164174478682
+    }
+  },
+  {
+    "fold": 6,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        0.1,
+        0.1,
+        1.0
+      ],
+      "base_pcc": 0.4298922891240648
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.42359291823268763
+    }
+  },
+  {
+    "fold": 7,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4483788446340775
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4483788446340775
+    }
+  },
+  {
+    "fold": 7,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4411545894027377
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.4386383361619052
+    }
+  },
+  {
+    "fold": 7,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        1.0,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.42009805230876185
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4158355779289143
+    }
+  },
+  {
+    "fold": 8,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4089302687161563
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4089302687161563
+    }
+  },
+  {
+    "fold": 8,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.01,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.5169271907796295
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.5165754388922589
+    }
+  },
+  {
+    "fold": 8,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        1.0,
+        0.1,
+        1.0
+      ],
+      "base_pcc": 0.41535771936890015
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.5,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.41061652984037345
+    }
+  },
+  {
+    "fold": 9,
+    "inner_fold": 0,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.450301500617624
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        1.0,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "base_pcc": 0.450301500617624
+    }
+  },
+  {
+    "fold": 9,
+    "inner_fold": 1,
+    "heterogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.01,
+        0.1,
+        1.0,
+        0.1
+      ],
+      "base_pcc": 0.4560086602760276
+    },
+    "homogeneous": {
+      "bandwidth": 4.0,
+      "fraction": 0.25,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.4546581978631212
+    }
+  },
+  {
+    "fold": 9,
+    "inner_fold": 2,
+    "heterogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.001,
+        0.1,
+        0.1,
+        1.0
+      ],
+      "base_pcc": 0.45652324249996196
+    },
+    "homogeneous": {
+      "bandwidth": 1.0,
+      "fraction": 0.0,
+      "ridge": [
+        0.1,
+        0.1,
+        0.1,
+        0.1
+      ],
+      "base_pcc": 0.45047494930600784
+    }
+  }
+]
