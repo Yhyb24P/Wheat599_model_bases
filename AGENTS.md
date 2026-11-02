@@ -1,6 +1,6 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**当前主线（2026-11-02）**：保留背景条件化联合收缩模型，基于开发数据优化，并与 BiMSGP、MoEGP 和 RR-BLUP 公平比较。PCC 为主、RMSE/MAE 为辅；已有同协议外层结果及其探索性证据范围见 `docs/RESULTS.md`，任务进度与协议见 `docs/RESEARCH_PLAN.md`。当前不安排模块消融，不做测试集调参。
+**当前主线（2026-11-02）**：`1bd2578` 的背景条件化 + RBF 完整模型为主候选，暂不增加模型组件；与 BiMSGP、MoEGP 和 RR-BLUP 公平比较，PCC 为主、RMSE/MAE 为辅。结果及证据范围见 `docs/RESULTS.md`，任务进度与协议见 `docs/RESEARCH_PLAN.md`。当前不安排模块消融，不做测试集调参。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
