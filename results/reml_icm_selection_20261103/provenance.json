@@ -1,0 +1,42 @@
+{
+  "config": {
+    "model": "reml_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "residual_structures": [
+      "diagonal",
+      "full"
+    ],
+    "initial_signal_fractions": [
+      0.25,
+      0.75
+    ],
+    "covariance_floor": 1e-06,
+    "max_iterations": 200,
+    "function_tolerance": 1e-10,
+    "gradient_tolerance": 1e-06,
+    "tie_tolerance": 1e-12
+  },
+  "git_commit": "f072cd09cfce638dbdee402fa8a74b2bbad4c5ea",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "model_sha256": "144a98aec1f2ddd5ea6200b6ed38d27916cfecc79bfff26d297979d75b203a05",
+  "runner_sha256": "b4bb5ac1f1b23881bdb7397309a8770f42e446d2efe6b77bcc0b6b6eb4154d6e",
+  "selection_sha256": null,
+  "candidate_count": 26,
+  "device": "cpu",
+  "rule": "mean three-fold four-environment PCC; first candidate on ties"
+}

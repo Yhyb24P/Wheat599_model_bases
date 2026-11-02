@@ -1,0 +1,127 @@
+{
+  "config": {
+    "model": "reml_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "residual_structures": [
+      "diagonal",
+      "full"
+    ],
+    "initial_signal_fractions": [
+      0.25,
+      0.75
+    ],
+    "covariance_floor": 1e-06,
+    "max_iterations": 200,
+    "function_tolerance": 1e-10,
+    "gradient_tolerance": 1e-06,
+    "tie_tolerance": 1e-12
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selected": [
+    {
+      "fold": 0,
+      "candidate": [
+        1.0,
+        0.0,
+        "full"
+      ],
+      "inner_pcc": 0.4982490799228354
+    },
+    {
+      "fold": 1,
+      "candidate": [
+        1.0,
+        0.0,
+        "full"
+      ],
+      "inner_pcc": 0.4935183805680727
+    },
+    {
+      "fold": 2,
+      "candidate": [
+        4.0,
+        0.25,
+        "diagonal"
+      ],
+      "inner_pcc": 0.4809691208472346
+    },
+    {
+      "fold": 3,
+      "candidate": [
+        4.0,
+        0.25,
+        "diagonal"
+      ],
+      "inner_pcc": 0.49204819718495235
+    },
+    {
+      "fold": 4,
+      "candidate": [
+        4.0,
+        0.25,
+        "full"
+      ],
+      "inner_pcc": 0.4813613586810304
+    },
+    {
+      "fold": 5,
+      "candidate": [
+        4.0,
+        0.25,
+        "full"
+      ],
+      "inner_pcc": 0.47108322770566735
+    },
+    {
+      "fold": 6,
+      "candidate": [
+        4.0,
+        0.25,
+        "diagonal"
+      ],
+      "inner_pcc": 0.4945784039638938
+    },
+    {
+      "fold": 7,
+      "candidate": [
+        4.0,
+        0.25,
+        "diagonal"
+      ],
+      "inner_pcc": 0.459773238736856
+    },
+    {
+      "fold": 8,
+      "candidate": [
+        1.0,
+        0.0,
+        "full"
+      ],
+      "inner_pcc": 0.47110237084527123
+    },
+    {
+      "fold": 9,
+      "candidate": [
+        4.0,
+        0.5,
+        "diagonal"
+      ],
+      "inner_pcc": 0.47183284679714205
+    }
+  ]
+}
