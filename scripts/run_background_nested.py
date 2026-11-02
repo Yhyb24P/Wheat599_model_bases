@@ -159,6 +159,9 @@ def main():
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
     args = p.parse_args()
     cfg = yaml.safe_load(args.config.read_text())
+    if cfg.get('model') == 'kernel_baselines':
+        from wheat599.kernel_baselines import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'background_rbf':
         return run_hybrid(cfg, args)
     data = load(Path(cfg['data']), cfg['data_sha256'])
