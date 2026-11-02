@@ -159,6 +159,9 @@ def main():
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
     args = p.parse_args()
     cfg = yaml.safe_load(args.config.read_text())
+    if cfg.get('model') == 'robust_icm':
+        from wheat599.robust_icm import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'heterogeneous_icm':
         from wheat599.heterogeneous_icm import run
         return run(cfg, args, Path(__file__))

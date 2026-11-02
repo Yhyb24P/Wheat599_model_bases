@@ -1,0 +1,19 @@
+model: robust_icm
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+base_source: results/heterogeneous_icm_development_20261103
+seed: 42
+bandwidths: [0.25, 1.0, 4.0]
+additive_fractions: [0.0, 0.25, 0.5, 0.75, 1.0]
+ridge: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+etas: [0.0, 0.3, 0.6, 0.8]
+huber_deltas: [1.345, 2.5]
+ridge_multipliers: [0.3, 1.0, 3.0]
+max_iterations: 300
+function_tolerance: 1.0e-11
+gradient_tolerance: 1.0e-7
+accepted_gradient: 1.0e-5
+minimum_development_gain: 0.001
+minimum_development_folds: 6
+tie_tolerance: 1.0e-12
