@@ -162,6 +162,9 @@ def main():
     if cfg.get('model') == 'robust_icm':
         from wheat599.robust_icm import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'non_gaussian_icm':
+        from wheat599.non_gaussian_icm import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'heterogeneous_icm':
         from wheat599.heterogeneous_icm import run
         return run(cfg, args, Path(__file__))

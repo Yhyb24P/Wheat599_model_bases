@@ -28,6 +28,8 @@ dependencies:
   - scikit-learn>=1.4
   - pandas>=2.0
   - pyyaml>=6.0
+  - arviz=0.22.0
+  - r-bglr=1.1.4
   - pip
   - pip:
       - -r requirements-base.txt
