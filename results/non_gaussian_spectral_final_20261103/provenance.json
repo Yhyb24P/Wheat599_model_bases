@@ -1,0 +1,198 @@
+{
+  "config": {
+    "model": "non_gaussian_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "base_source": "results/heterogeneous_icm_development_20261103",
+    "comparator_selection": "results/robust_icm_development_20261103/selection.json",
+    "comparator_etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "gpu_memory_fraction": 0.35,
+    "gammas": [
+      0.0,
+      0.25,
+      0.5,
+      1.0
+    ],
+    "bandwidths": [
+      0.25,
+      1.0,
+      4.0
+    ],
+    "additive_fractions": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ],
+    "ridge": [
+      0.001,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0,
+      1000.0
+    ],
+    "network": {
+      "width": 64,
+      "heads": 4,
+      "hidden": 128,
+      "steps": 4
+    },
+    "training": {
+      "environments": 4,
+      "seed": 42,
+      "validation_seed": 9042,
+      "training_steps": 2000,
+      "evaluation_every": 100,
+      "evaluation_tasks": 40,
+      "learning_rate": 0.0003,
+      "gradient_clip": 1.0,
+      "shared_scales": true,
+      "context_fraction_min": 0.6,
+      "context_fraction_max": 0.9,
+      "bandwidths": [
+        1.0,
+        4.0
+      ],
+      "additive_fractions": [
+        0.25,
+        0.5
+      ],
+      "ridge": [
+        0.1,
+        1.0
+      ],
+      "etas": [
+        0.0,
+        0.3,
+        0.6,
+        0.8
+      ],
+      "covariance_pool": [
+        [
+          [
+            1.0,
+            0.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            1.0,
+            0.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            1.0,
+            0.0
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.45,
+            0.3,
+            0.2
+          ],
+          [
+            0.45,
+            1.0,
+            0.4,
+            0.3
+          ],
+          [
+            0.3,
+            0.4,
+            1.0,
+            0.35
+          ],
+          [
+            0.2,
+            0.3,
+            0.35,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            -0.35,
+            0.25,
+            -0.2
+          ],
+          [
+            -0.35,
+            1.0,
+            -0.3,
+            0.3
+          ],
+          [
+            0.25,
+            -0.3,
+            1.0,
+            0.4
+          ],
+          [
+            -0.2,
+            0.3,
+            0.4,
+            1.0
+          ]
+        ],
+        [
+          [
+            1.0,
+            0.7,
+            0.2,
+            -0.15
+          ],
+          [
+            0.7,
+            1.0,
+            0.5,
+            0.2
+          ],
+          [
+            0.2,
+            0.5,
+            1.0,
+            0.6
+          ],
+          [
+            -0.15,
+            0.2,
+            0.6,
+            1.0
+          ]
+        ]
+      ]
+    }
+  },
+  "git_commit": "1899c215a9c1e612a65dea7a0fc7d4782d809e7f",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "base_source_sha256": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+  "comparator_selection_sha256": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304",
+  "model_sha256": "c4860e2db9289696973ecfc34405006715815c338b966649c6f865acbccbf106",
+  "operator_sha256": "337e2a7e44fb91846fc56e7667c097372d9352dce73c583e2632534df2b61acf",
+  "training_sha256": "64d735c0a1ef52d5a6a83b2fcb4d1fc3e625f8e1c5b1999024e595ac7c622827",
+  "runner_sha256": "42fa1ee732c3c26caa97f508c0e5e8525530666377d357eb85843de9b1fb2a9f",
+  "selection_sha256": "128e86f8c8a45f8799b5c102abcedef08baeedb6fcb87db01db10017027b6218",
+  "rule": "inner-fold macro PCC across environments selects gamma; earliest grid value on tie",
+  "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass"
+}

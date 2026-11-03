@@ -1,0 +1,106 @@
+model: non_gaussian_control
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+base_source: results/heterogeneous_icm_development_20261103
+comparator_selection: results/robust_icm_development_20261103/selection.json
+gpu_memory_fraction: 0.35
+note: 'Matched-budget direct predictor control: training section is identical to configs/non_gaussian_icm.yaml
+  so the task stream, configuration distribution, steps and per-unit seeds coincide
+  with the corrector. Development folds only.'
+network:
+  width: 64
+  heads: 4
+  hidden: 128
+  steps: 4
+training:
+  environments: 4
+  seed: 42
+  validation_seed: 9042
+  training_steps: 2000
+  evaluation_every: 100
+  evaluation_tasks: 40
+  learning_rate: 0.0003
+  gradient_clip: 1.0
+  shared_scales: true
+  context_fraction_min: 0.6
+  context_fraction_max: 0.9
+  bandwidths:
+  - 1.0
+  - 4.0
+  additive_fractions:
+  - 0.25
+  - 0.5
+  ridge:
+  - 0.1
+  - 1.0
+  etas:
+  - 0.0
+  - 0.3
+  - 0.6
+  - 0.8
+  covariance_pool:
+  - - - 1.0
+      - 0.0
+      - 0.0
+      - 0.0
+    - - 0.0
+      - 1.0
+      - 0.0
+      - 0.0
+    - - 0.0
+      - 0.0
+      - 1.0
+      - 0.0
+    - - 0.0
+      - 0.0
+      - 0.0
+      - 1.0
+  - - - 1.0
+      - 0.45
+      - 0.3
+      - 0.2
+    - - 0.45
+      - 1.0
+      - 0.4
+      - 0.3
+    - - 0.3
+      - 0.4
+      - 1.0
+      - 0.35
+    - - 0.2
+      - 0.3
+      - 0.35
+      - 1.0
+  - - - 1.0
+      - -0.35
+      - 0.25
+      - -0.2
+    - - -0.35
+      - 1.0
+      - -0.3
+      - 0.3
+    - - 0.25
+      - -0.3
+      - 1.0
+      - 0.4
+    - - -0.2
+      - 0.3
+      - 0.4
+      - 1.0
+  - - - 1.0
+      - 0.7
+      - 0.2
+      - -0.15
+    - - 0.7
+      - 1.0
+      - 0.5
+      - 0.2
+    - - 0.2
+      - 0.5
+      - 1.0
+      - 0.6
+    - - -0.15
+      - 0.2
+      - 0.6
+      - 1.0
