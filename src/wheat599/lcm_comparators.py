@@ -10,11 +10,45 @@ import torch
 from torch import nn
 
 
-class AdditiveMLP(nn.Module):
+class _Comparator(nn.Module):
+    """Expose the shared additive initialization and optimizer contract."""
+
+    @property
+    def coefficients(self):
+        return self.additive.weight.T
+
+    @property
+    def bias(self):
+        return self.additive.bias
+
+    def initialize(self):
+        return self
+
+    def parameter_groups(self, lambda_a, lambda_n):
+        other = [parameter for name, parameter in self.named_parameters()
+                 if not name.startswith('additive.')]
+        return [
+            {'params': [self.additive.weight], 'weight_decay': 2 * lambda_a},
+            {'params': [self.additive.bias], 'weight_decay': 0.0},
+            {'params': other, 'weight_decay': 2 * lambda_n},
+        ]
+
+    def proximal(self, threshold):
+        pass
+
+    def zero_rows(self):
+        return 0
+
+    def count(self):
+        return sum(parameter.numel() for parameter in self.parameters())
+
+
+class AdditiveMLP(_Comparator):
     """Add a shared two-layer nonlinear predictor to marker effects."""
 
-    def __init__(self, markers: int, environments: int = 4, width: int = 16):
+    def __init__(self, markers: int, environments: int = 4, rank: int = 8, variant=None):
         super().__init__()
+        width = 2 * rank
         self.additive = nn.Linear(markers, environments)
         self.network = nn.Sequential(
             nn.Linear(markers, width), nn.SiLU(),
@@ -28,10 +62,10 @@ class AdditiveMLP(nn.Module):
         return self.additive(z) + self.network(z)
 
 
-class ContextModulation(nn.Module):
+class ContextModulation(_Comparator):
     """Use a shared nonlinear full-input context to gate marker effects."""
 
-    def __init__(self, markers: int, environments: int = 4, rank: int = 8):
+    def __init__(self, markers: int, environments: int = 4, rank: int = 8, variant=None):
         super().__init__()
         self.additive = nn.Linear(markers, environments)
         self.encoder = nn.Linear(markers, rank, bias=False)
