@@ -174,6 +174,9 @@ def main():
     if cfg.get('model') == 'dnawhisper':
         from wheat599.dnawhisper.run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'locus_context':
+        from wheat599.locus_context_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'heterogeneous_icm':
         from wheat599.heterogeneous_icm import run
         return run(cfg, args, Path(__file__))

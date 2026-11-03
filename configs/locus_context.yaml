@@ -1,0 +1,23 @@
+model: locus_context
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+base_choices: results/heterogeneous_icm_development_20261103/base_choices.json
+refit_base_choices: results/robust_icm_development_20261103/selection.json
+seed: 42
+rank: 8
+eta: 0.8
+device: cuda
+cpu_threads: 2
+gpu_memory_fraction: 0.2
+learning_rate: 0.001
+training_steps: 100
+checkpoints: [0, 25, 100]
+support_fraction: 0.6666666666666666
+gammas: [0.1, 1.0]
+weight_decays: [0.0001, 0.01]
+variants: [full, full_background, linear, global]
+minimum_development_gain: 0.001
+minimum_mechanism_gain: 0.001
+minimum_improved_folds: 6
+tie_tolerance: 1.0e-12
