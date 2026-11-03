@@ -20,7 +20,7 @@
 
 成本单独报告：开发选模 30 个训练单元（2000 任务/单元）单元墙钟均值 170.4 s（训练 133 s、验证 41 s），68 ms/任务，峰值显存 453 MiB，累计 **85.2 GPU 分钟**；完整开发集重拟合与单次外层评价 10 单元均值 237.5 s、峰值 506 MiB、合计 **39.6 分钟**。解析算子初版使用稠密 `hessian_diagonal_blocks`（约 173 ms/任务），改为 Kronecker 谱分解后为 68 ms/任务（约 2.5 倍，同 float64、同数学；被中断的慢路径部分运行保留于 `results/non_gaussian_selection_20261103/`，仅作中断与耗时记录，不参与任何选择或结论）。合成就先验池首版曾误用全体 599 样本的表型相关矩阵，构成 CV1 泄漏，其修正与作废范围见 [RESEARCH_PLAN.md](RESEARCH_PLAN.md)。
 
-未完成对照（不得称已完成）：同先验同预算的直接多输出上下文预测对照运行中（`results/non_gaussian_spectral_control_20261103`，候选与对照共用同一谱算子、任务流、步数与逐单元种子）；同先验非神经参照目前只有小 `p` 枚举结果（`p≤16`，共享强度设定下理想后验优于 ICM），全尺寸 Gibbs 参照缺少 ArviZ 收敛诊断（仅声明未安装，未改动共用环境），因此尚不能把“理想后验有收益”与“摊销推断可实现该收益”分开。实现与配置：`src/wheat599/non_gaussian_icm.py`、`posterior_training.py`、`posterior_operators.py`、`configs/non_gaussian_icm.yaml`；冻结选择 `1899c21`／tag `ng-icm-selection-20261103`；逐折结果、验证分数、逐单元训练曲线与源码 SHA 见 `results/non_gaussian_spectral_selection_20261103/` 与 `results/non_gaussian_spectral_final_20261103/`，逐材料 OOF 仅保留本地。
+同预算直接多输出对照的开发计算已完成：30 个内层训练单元、120 个环境验证结果，0 失败，内部宏 PCC **0.04693**、RMSE **0.99914**、MAE **0.78476**，耗时 3778 秒。此为开发集内部结果，不能与外层测试指标混合；外层对照尚未完成。记录见 `results/non_gaussian_spectral_control_20261103/`。同先验非神经参照目前只有小 `p` 枚举结果（`p≤16`），全尺寸 Gibbs 参照尚无 ArviZ 收敛诊断，无法分离理想后验与摊销推断的贡献。实现与配置：`src/wheat599/non_gaussian_icm.py`、`posterior_training.py`、`posterior_operators.py`、`configs/non_gaussian_icm.yaml`；冻结选择 `1899c21`／tag `ng-icm-selection-20261103`；逐材料 OOF 仅保留本地。
 
 ## Huber ICM：小幅折均 PCC 增量（2026-11-03）
 
