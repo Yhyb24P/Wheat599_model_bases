@@ -20,7 +20,7 @@
 
 成本单独报告：开发选模 30 个训练单元（2000 任务/单元）单元墙钟均值 170.4 s（训练 133 s、验证 41 s），68 ms/任务，峰值显存 453 MiB，累计 **85.2 GPU 分钟**；完整开发集重拟合与单次外层评价 10 单元均值 237.5 s、峰值 506 MiB、合计 **39.6 分钟**。解析算子初版使用稠密 `hessian_diagonal_blocks`（约 173 ms/任务），改为 Kronecker 谱分解后为 68 ms/任务（约 2.5 倍，同 float64、同数学；被中断的慢路径部分运行保留于 `results/non_gaussian_selection_20261103/`，仅作中断与耗时记录，不参与任何选择或结论）。合成就先验池首版曾误用全体 599 样本的表型相关矩阵，构成 CV1 泄漏，其修正与作废范围见 [RESEARCH_PLAN.md](RESEARCH_PLAN.md)。
 
-同预算直接多输出对照的开发计算已完成：30 个内层训练单元、120 个环境验证结果，0 失败，内部宏 PCC **0.04693**、RMSE **0.99914**、MAE **0.78476**，耗时 3778 秒。此为开发集内部结果，不能与外层测试指标混合；外层对照尚未完成。记录见 `results/non_gaussian_spectral_control_20261103/`。同先验非神经参照目前只有小 `p` 枚举结果（`p≤16`），全尺寸 Gibbs 参照尚无 ArviZ 收敛诊断，无法分离理想后验与摊销推断的贡献。实现与配置：`src/wheat599/non_gaussian_icm.py`、`posterior_training.py`、`posterior_operators.py`、`configs/non_gaussian_icm.yaml`；冻结选择 `1899c21`／tag `ng-icm-selection-20261103`；逐材料 OOF 仅保留本地。
+同预算直接多输出对照的开发计算已完成：30 个内层训练单元、120 个环境验证结果，0 失败，内部宏 PCC **0.04693**、RMSE **0.99914**、MAE **0.78476**，耗时 3778 秒。相同内部单元的 ICM 基座宏 PCC 为 0.47448。两者使用相同任务流、步数和种子，但学习任务不同：修正网络从解析 ICM 开始学习增量，直接网络需要学习从上下文到查询的完整映射；本轮仅表明该直接网络在此预算下未获得有效预测，不能推断直接预测方法普遍不可行。此为开发集内部结果，不与外层测试指标混合，也未进行外层对照。记录见 `results/non_gaussian_spectral_control_20261103/`。同先验非神经参照目前只有小 `p` 枚举结果（`p≤16`），全尺寸 Gibbs 参照尚无 ArviZ 收敛诊断，无法分离理想后验与摊销推断的贡献。实现与配置：`src/wheat599/non_gaussian_icm.py`、`posterior_training.py`、`posterior_operators.py`、`configs/non_gaussian_icm.yaml`；冻结选择 `1899c21`／tag `ng-icm-selection-20261103`；逐材料 OOF 仅保留本地。
 
 ## Huber ICM：小幅折均 PCC 增量（2026-11-03）
 
