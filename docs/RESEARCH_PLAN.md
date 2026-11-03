@@ -4,6 +4,8 @@
 
 **LCM-GP（实现中）：** 使用全部 1,279 个中心化标记，保留四环境联合加性通路；背景编码逐位点扣除自身贡献后，经共享非线性网络调制该位点，并对位点调制系数施加组稀疏约束。固定潜在维度 8。按材料划分外层 CV1，所有中心化、表型标准化和选模只使用对应训练／开发材料。比较加性退化、线性响应、完整背景、无组稀疏，以及约相同参数量的加性＋MLP 和全背景调制模型；加性退化需核对同目标岭回归。配置、训练预算与停止规则将在正式外层评价前固定；DNAwhisper 官方实现的同协议适配正在核查。已有外层划分经过多轮开发，比较仍为探索性。
 
+实现与配置已在 `aabcc55` 固定，内层选择运行中。入口验证曾提前计算真实外层第 0 折的指标；该折继续保留，最终报告须标明提前接触，不能称其为首次接触。验证产物仅保留本地临时目录，不作为模型成绩。
+
 方法边界：[EFA](https://pmc.ncbi.nlm.nih.gov/articles/PMC10645564/) 已有低秩基因交互，[ContextNet](https://arxiv.org/abs/2107.12025) 已有输入相关特征调制；本轮考察的是位点自排除、共享非线性与稀疏调制的具体组合。论文 [DNAwhisper 表 1](https://pmc.ncbi.nlm.nih.gov/articles/PMC13205711/) 的 0.80 是验证集均值且其预训练使用全体材料基因型，不与本项目外层测试直接排名。当前[官方 CSV 入口](https://github.com/Marxin1992/Whisperer_of_DNA/blob/7a657cc00d44263c4b1085d3991ecc0e935c14e5/training/data/datamodule_bycsv.py) 在划分前按完整表型做归一化；同协议适配须改为拟合子集统计，不能据此推断论文实际使用了同一版本。
 
 同一版本的[预训练配置](https://github.com/Marxin1992/Whisperer_of_DNA/blob/7a657cc00d44263c4b1085d3991ecc0e935c14e5/training/config/training_config_csv_wheat_pretrain.yml)使用全部输入材料；对应[模型代码](https://github.com/Marxin1992/Whisperer_of_DNA/blob/7a657cc00d44263c4b1085d3991ecc0e935c14e5/training/models/DNAWhisper.py)将表型作为配对相似性目标，并未读取主损失的 `enabled` 标志而无条件计算主损失。若直接按该配置载入全部 599 个材料，测试表型将参与训练；本项目的适配必须将全部预训练和监督过程限制在对应训练材料内。此结论针对所核查的公开代码版本，不推断论文实际执行的版本。
