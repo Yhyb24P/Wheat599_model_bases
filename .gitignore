@@ -12,6 +12,7 @@ models/
 *.pt
 *.pth
 results/**/oof/*.npz
+results/**/oof.csv
 results/**/predictions/*.npy
 *.log
 *.pid
