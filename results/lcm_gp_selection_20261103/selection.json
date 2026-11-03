@@ -1,0 +1,1294 @@
+{
+  "config": {
+    "model": "lcm_gp",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "environments": 4,
+    "gpu_memory_fraction": 0.35,
+    "tie_tolerance": 1e-12,
+    "precision": "float32 training, float64 analytic references",
+    "learning_rate": 0.003,
+    "max_epochs": 300,
+    "evaluate_every": 10,
+    "min_improvement": 1e-06,
+    "ranks": [
+      8
+    ],
+    "lambda_additive": [
+      0.0001,
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "lambda_sparse": [
+      0.0,
+      0.3,
+      1.0
+    ],
+    "lambda_network": [
+      0.0,
+      0.001,
+      0.01
+    ],
+    "variants": [
+      "full",
+      "additive_only",
+      "linear_background",
+      "full_background",
+      "dense_modulation"
+    ],
+    "comparators": [
+      "additive_mlp",
+      "context_modulation"
+    ],
+    "note": "lambda_sparse 1.0 and above zero every row of U within the 300-epoch budget (measured on fold0 inner0), while 0.1 and below zero none; the grid therefore spans the observed transition instead of assuming intermediate sparsity. lambda_sparse 0.0 equals the dense_modulation penalty setting, kept so the same entry can be compared with the proximal variants.",
+    "comparator_note": "Comparators are owned by lcm_comparators.py and must expose the trainer interface (initialize, parameter_groups, proximal, zero_rows, count, set_additive); the entry raises if that is not yet implemented.",
+    "patience": 50
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selected": [
+    {
+      "fold": 0,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46640381071574094,
+          "grid_index": 27,
+          "epochs": 50,
+          "inner_best_epochs": [
+            50,
+            30,
+            50
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4476096922095787,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46267508645637084,
+          "grid_index": 77,
+          "epochs": 60,
+          "inner_best_epochs": [
+            60,
+            50,
+            60
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46664979505137094,
+          "grid_index": 122,
+          "epochs": 50,
+          "inner_best_epochs": [
+            50,
+            30,
+            50
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46640381071574094,
+          "grid_index": 149,
+          "epochs": 50,
+          "inner_best_epochs": [
+            50,
+            30,
+            50
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.001
+          },
+          "inner_pcc": 0.4684951131035465,
+          "grid_index": 168,
+          "epochs": 20,
+          "inner_best_epochs": [
+            20,
+            30,
+            20
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4788477382725626,
+          "grid_index": 182,
+          "epochs": 60,
+          "inner_best_epochs": [
+            40,
+            60,
+            150
+          ]
+        }
+      }
+    },
+    {
+      "fold": 1,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46733528977911987,
+          "grid_index": 33,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            50
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46320091811309705,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4771846461823361,
+          "grid_index": 83,
+          "epochs": 60,
+          "inner_best_epochs": [
+            60,
+            50,
+            60
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46831598507475297,
+          "grid_index": 128,
+          "epochs": 20,
+          "inner_best_epochs": [
+            0,
+            20,
+            50
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46720389557303804,
+          "grid_index": 149,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            40
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4711953998610143,
+          "grid_index": 164,
+          "epochs": 20,
+          "inner_best_epochs": [
+            20,
+            20,
+            0
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.48613597164641625,
+          "grid_index": 182,
+          "epochs": 100,
+          "inner_best_epochs": [
+            100,
+            140,
+            80
+          ]
+        }
+      }
+    },
+    {
+      "fold": 2,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44897997710320914,
+          "grid_index": 27,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            40
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4289285209524838,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44432351875762033,
+          "grid_index": 77,
+          "epochs": 50,
+          "inner_best_epochs": [
+            60,
+            50,
+            50
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44890473566619854,
+          "grid_index": 122,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            40
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44897997710320914,
+          "grid_index": 149,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            40
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.001
+          },
+          "inner_pcc": 0.45071023290299883,
+          "grid_index": 165,
+          "epochs": 30,
+          "inner_best_epochs": [
+            30,
+            0,
+            30
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44887752549145915,
+          "grid_index": 179,
+          "epochs": 20,
+          "inner_best_epochs": [
+            20,
+            0,
+            30
+          ]
+        }
+      }
+    },
+    {
+      "fold": 3,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4451502656146358,
+          "grid_index": 33,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            40
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.43876647218957915,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44732664746952117,
+          "grid_index": 77,
+          "epochs": 50,
+          "inner_best_epochs": [
+            40,
+            60,
+            50
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4458233461884309,
+          "grid_index": 128,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            40
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44430486563164806,
+          "grid_index": 149,
+          "epochs": 40,
+          "inner_best_epochs": [
+            30,
+            40,
+            40
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.001
+          },
+          "inner_pcc": 0.44349600873201334,
+          "grid_index": 165,
+          "epochs": 10,
+          "inner_best_epochs": [
+            30,
+            10,
+            0
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4479353088791536,
+          "grid_index": 182,
+          "epochs": 90,
+          "inner_best_epochs": [
+            90,
+            50,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "fold": 4,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.426201711768392,
+          "grid_index": 27,
+          "epochs": 40,
+          "inner_best_epochs": [
+            0,
+            40,
+            40
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4181130205679789,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4239667187974508,
+          "grid_index": 83,
+          "epochs": 60,
+          "inner_best_epochs": [
+            60,
+            60,
+            40
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.3,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.42621924747113604,
+          "grid_index": 125,
+          "epochs": 40,
+          "inner_best_epochs": [
+            0,
+            40,
+            40
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.426201711768392,
+          "grid_index": 149,
+          "epochs": 40,
+          "inner_best_epochs": [
+            0,
+            40,
+            40
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.001
+          },
+          "inner_pcc": 0.443579732656401,
+          "grid_index": 168,
+          "epochs": 30,
+          "inner_best_epochs": [
+            20,
+            30,
+            30
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4336159824745848,
+          "grid_index": 182,
+          "epochs": 50,
+          "inner_best_epochs": [
+            40,
+            80,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "fold": 5,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.41695846369147854,
+          "grid_index": 33,
+          "epochs": 30,
+          "inner_best_epochs": [
+            40,
+            30,
+            0
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.41091684127298145,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4186359873419637,
+          "grid_index": 77,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            50,
+            40
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4183337793582435,
+          "grid_index": 128,
+          "epochs": 10,
+          "inner_best_epochs": [
+            40,
+            10,
+            0
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4145595110493919,
+          "grid_index": 149,
+          "epochs": 0,
+          "inner_best_epochs": [
+            40,
+            0,
+            0
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.001
+          },
+          "inner_pcc": 0.4276374337144625,
+          "grid_index": 168,
+          "epochs": 20,
+          "inner_best_epochs": [
+            20,
+            30,
+            20
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.43055179869648025,
+          "grid_index": 182,
+          "epochs": 50,
+          "inner_best_epochs": [
+            60,
+            40,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "fold": 6,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46056158089982085,
+          "grid_index": 27,
+          "epochs": 30,
+          "inner_best_epochs": [
+            30,
+            20,
+            40
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.45317926636254374,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46705144355304984,
+          "grid_index": 83,
+          "epochs": 60,
+          "inner_best_epochs": [
+            50,
+            60,
+            60
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.461279955094796,
+          "grid_index": 122,
+          "epochs": 30,
+          "inner_best_epochs": [
+            30,
+            20,
+            40
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.46056158089982085,
+          "grid_index": 149,
+          "epochs": 30,
+          "inner_best_epochs": [
+            30,
+            20,
+            40
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4721765462900426,
+          "grid_index": 167,
+          "epochs": 20,
+          "inner_best_epochs": [
+            30,
+            20,
+            20
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.47903398497287264,
+          "grid_index": 182,
+          "epochs": 110,
+          "inner_best_epochs": [
+            110,
+            110,
+            60
+          ]
+        }
+      }
+    },
+    {
+      "fold": 7,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.41537331049598936,
+          "grid_index": 33,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            50
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.40063552744225855,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4193991700989661,
+          "grid_index": 77,
+          "epochs": 50,
+          "inner_best_epochs": [
+            60,
+            50,
+            30
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4135661821669949,
+          "grid_index": 122,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            30
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4126894647022337,
+          "grid_index": 149,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            40,
+            30
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.01
+          },
+          "inner_pcc": 0.41840741715383406,
+          "grid_index": 169,
+          "epochs": 40,
+          "inner_best_epochs": [
+            20,
+            50,
+            40
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4211059003724153,
+          "grid_index": 182,
+          "epochs": 100,
+          "inner_best_epochs": [
+            60,
+            100,
+            100
+          ]
+        }
+      }
+    },
+    {
+      "fold": 8,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.3,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4352270468395025,
+          "grid_index": 30,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            30,
+            40
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.42133999613172124,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 1.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.43796185734910864,
+          "grid_index": 83,
+          "epochs": 50,
+          "inner_best_epochs": [
+            70,
+            40,
+            50
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4365755063807007,
+          "grid_index": 122,
+          "epochs": 40,
+          "inner_best_epochs": [
+            40,
+            30,
+            40
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4348327454103928,
+          "grid_index": 149,
+          "epochs": 30,
+          "inner_best_epochs": [
+            40,
+            30,
+            30
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.01
+          },
+          "inner_pcc": 0.4359372788959902,
+          "grid_index": 169,
+          "epochs": 40,
+          "inner_best_epochs": [
+            50,
+            20,
+            40
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4427217493487956,
+          "grid_index": 182,
+          "epochs": 50,
+          "inner_best_epochs": [
+            60,
+            40,
+            50
+          ]
+        }
+      }
+    },
+    {
+      "fold": 9,
+      "chosen": {
+        "full": {
+          "configuration": {
+            "variant": "full",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.3,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44346426400239547,
+          "grid_index": 30,
+          "epochs": 40,
+          "inner_best_epochs": [
+            0,
+            40,
+            40
+          ]
+        },
+        "additive_only": {
+          "configuration": {
+            "variant": "additive_only",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.43461000128821003,
+          "grid_index": 48,
+          "epochs": 0,
+          "inner_best_epochs": [
+            0,
+            0,
+            0
+          ]
+        },
+        "linear_background": {
+          "configuration": {
+            "variant": "linear_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.3,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4480625288105863,
+          "grid_index": 80,
+          "epochs": 50,
+          "inner_best_epochs": [
+            30,
+            50,
+            60
+          ]
+        },
+        "full_background": {
+          "configuration": {
+            "variant": "full_background",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.3,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.44369598606569616,
+          "grid_index": 125,
+          "epochs": 40,
+          "inner_best_epochs": [
+            0,
+            40,
+            40
+          ]
+        },
+        "dense_modulation": {
+          "configuration": {
+            "variant": "dense_modulation",
+            "rank": 8,
+            "lambda_A": 0.1,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4433793530737902,
+          "grid_index": 149,
+          "epochs": 40,
+          "inner_best_epochs": [
+            0,
+            40,
+            40
+          ]
+        },
+        "additive_mlp": {
+          "configuration": {
+            "variant": "additive_mlp",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.01
+          },
+          "inner_pcc": 0.44439074857509314,
+          "grid_index": 169,
+          "epochs": 40,
+          "inner_best_epochs": [
+            20,
+            40,
+            40
+          ]
+        },
+        "context_modulation": {
+          "configuration": {
+            "variant": "context_modulation",
+            "rank": 8,
+            "lambda_A": 1.0,
+            "lambda_S": 0.0,
+            "lambda_N": 0.0
+          },
+          "inner_pcc": 0.4601179531553067,
+          "grid_index": 182,
+          "epochs": 60,
+          "inner_best_epochs": [
+            40,
+            80,
+            60
+          ]
+        }
+      }
+    }
+  ]
+}
