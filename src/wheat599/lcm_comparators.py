@@ -24,6 +24,14 @@ class _Comparator(nn.Module):
     def initialize(self):
         return self
 
+    def additive_weight(self):
+        return self.coefficients
+
+    def set_additive(self, reference):
+        with torch.no_grad():
+            self.additive.weight.copy_(reference.T.to(self.additive.weight))
+            self.additive.bias.zero_()
+
     def parameter_groups(self, lambda_a, lambda_n):
         other = [parameter for name, parameter in self.named_parameters()
                  if not name.startswith('additive.')]
