@@ -8,6 +8,8 @@
 
 方法边界：[EFA](https://pmc.ncbi.nlm.nih.gov/articles/PMC10645564/) 已有低秩基因交互，[ContextNet](https://arxiv.org/abs/2107.12025) 已有输入相关特征调制；本轮考察的是位点自排除、共享非线性与稀疏调制的具体组合。论文 [DNAwhisper 表 1](https://pmc.ncbi.nlm.nih.gov/articles/PMC13205711/) 的 0.80 是验证集均值且其预训练使用全体材料基因型，不与本项目外层测试直接排名。当前[官方 CSV 入口](https://github.com/Marxin1992/Whisperer_of_DNA/blob/7a657cc00d44263c4b1085d3991ecc0e935c14e5/training/data/datamodule_bycsv.py) 在划分前按完整表型做归一化；同协议适配须改为拟合子集统计，不能据此推断论文实际使用了同一版本。
 
+二值标记的一个精确性质：设训练均值为 \(m_j\)、\(z_j=x_j-m_j\)，则 \(z_j^2=(1-2m_j)z_j+m_j^2\)。当背景响应为线性映射时，将互补背景换成完整背景只会额外引入按位点加权的 \(z_j^2\) 项；它可并入自由截距和加性系数。因此这两个线性版本的无约束预测函数类别相同；正则化参数化和训练过程仍可能不同。完整非线性响应的互补／完整背景对照不受此等价结论约束。
+
 同一版本的[预训练配置](https://github.com/Marxin1992/Whisperer_of_DNA/blob/7a657cc00d44263c4b1085d3991ecc0e935c14e5/training/config/training_config_csv_wheat_pretrain.yml)使用全部输入材料；对应[模型代码](https://github.com/Marxin1992/Whisperer_of_DNA/blob/7a657cc00d44263c4b1085d3991ecc0e935c14e5/training/models/DNAWhisper.py)将表型作为配对相似性目标，并未读取主损失的 `enabled` 标志而无条件计算主损失。若直接按该配置载入全部 599 个材料，测试表型将参与训练；本项目的适配必须将全部预训练和监督过程限制在对应训练材料内。此结论针对所核查的公开代码版本，不推断论文实际执行的版本。
 
 **非高斯后验修正（已完成外层评价，2026-11-03）。** 保留加性＋RBF 核、环境协方差 `B=(1−η)I+η Corr(Y_fit)` 与共享 λ 不变，只把标记效应先验改为四环境共享的尺度混合 `w_j|s_j∼N(0,s_jB)`；该先验与 ICM 具有相同的二阶协方差，差别在效应分布形状与高阶依赖，故机制主张限于“跨环境共享效应强度”这一具体推断，不主张稀疏先验或 PFN 本身。解析基座：在平坦截距与高斯背景下消去得到 `t=AᵗPy`、`H=AᵗPA` 与 `m_G`，精确预测式 `ŷ=L_*y+R_*m_G+γR_*δ`，`γ=0` 恢复原 ICM。**独立核对**：`γ=0` 分支与保留 `multienv_kernel.fit_predict` 在随机设计上最大差 5.8e-15、真实 fold0 开发样本 5.33e-15，覆盖 `fraction∈{0,.25,.5,1}` 与 `B` 正定／奇异；`ρ=0` 枚举后验与解析后验一致；共享强度四阶矩按一般式 `Cov(w²_e,w²_f)=(E[s²]−1)B_eeB_ff+2E[s²]B_ef²` 抽样通过（`B_ef=0` 时退化为提案简化式）。测试为 `tests/test_posterior_equivalence.py`。
