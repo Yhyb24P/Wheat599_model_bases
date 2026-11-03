@@ -1,0 +1,60 @@
+{
+  "config": {
+    "model": "lcm_gp",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seed": 42,
+    "environments": 4,
+    "gpu_memory_fraction": 0.35,
+    "tie_tolerance": 1e-12,
+    "precision": "float32 training, float64 analytic references",
+    "learning_rate": 0.003,
+    "max_epochs": 300,
+    "evaluate_every": 10,
+    "min_improvement": 1e-06,
+    "ranks": [
+      8
+    ],
+    "lambda_additive": [
+      0.0001,
+      0.001,
+      0.01,
+      0.1,
+      1.0
+    ],
+    "lambda_sparse": [
+      0.0,
+      0.3,
+      1.0
+    ],
+    "lambda_network": [
+      0.0,
+      0.001,
+      0.01
+    ],
+    "variants": [
+      "full",
+      "additive_only",
+      "linear_background",
+      "full_background",
+      "dense_modulation"
+    ],
+    "comparators": [
+      "additive_mlp",
+      "context_modulation"
+    ],
+    "note": "lambda_sparse 1.0 and above zero every row of U within the 300-epoch budget (measured on fold0 inner0), while 0.1 and below zero none; the grid therefore spans the observed transition instead of assuming intermediate sparsity. lambda_sparse 0.0 equals the dense_modulation penalty setting, kept so the same entry can be compared with the proximal variants.",
+    "comparator_note": "Comparators are owned by lcm_comparators.py and must expose the trainer interface (initialize, parameter_groups, proximal, zero_rows, count, set_additive); the entry raises if that is not yet implemented.",
+    "patience": 50
+  },
+  "git_commit": "0b9371dafcddadc102d6403764a760b68fb5a7ee",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "model_sha256": "1159235ea447787b99b0bc4e3daff39cdcf3e33f6afb179950b4d576095f6e13",
+  "runner_sha256": "04a18319eff8b9bf652f73f9e6d7ed9686cf8d01165559e830814287a6ae42ea",
+  "grid_size": 185,
+  "selection_sha256": "8057d943ce7fe75ec0ee36c2fc69c0032a60b4905b6a047c6785a8c1c2f87f7b",
+  "rule": "per variant, mean inner-fold macro PCC across environments selects the grid entry; earliest entry on ties; refit runs the median of inner best epochs",
+  "protocol": "CV1 material-level; centering, standardization and ridge initialization from the fitting rows only; float32 training with float64 analytic references; test evaluated once after the frozen selection",
+  "objective": "mean squared error plus lambda_A on additive coefficients, lambda_N on background, response network and readout, and proximal group penalty lambda_S on rows of U"
+}
