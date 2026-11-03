@@ -171,6 +171,9 @@ def main():
     if cfg.get('model') == 'lcm_gp':
         from wheat599.lcm_gp import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'dnawhisper':
+        from wheat599.dnawhisper.run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'heterogeneous_icm':
         from wheat599.heterogeneous_icm import run
         return run(cfg, args, Path(__file__))

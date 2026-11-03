@@ -1,6 +1,8 @@
 # Wheat599 FT-Transformer 项目贡献与执行规范
 
-**当前主线（2026-11-03）**：多环境 CV1 核回归。本轮优化已完成：Huber ICM 为最高折均 PCC 候选，匹配范围 GLS ICM 保留为误差较低参照；两者取舍及证据范围见 `docs/RESULTS.md`，冻结协议和进度见 `docs/RESEARCH_PLAN.md`。本轮不再追加变体或消融，不做测试集调参。
+**研究目标（用户明确，2026-11-04）**：构建用于植物基因组表型预测的原创深度学习／神经网络模型，在公平评价中超越现有强方法；Wheat599 是起始验证数据集。核方法是强基线，局部核调参不等于完成研究目标；原创性与领先表现均须有证据。
+
+**当前执行**：LCM-GP 及六项对照已完成，未超过 ICM，也未建立所提机制的独立收益；承接 DNAwhisper 同协议适配与评价，不重复已完成实验、不按测试集调参。Huber ICM 仍为最高折均 PCC 候选，匹配范围 GLS ICM 保留为误差较低参照。结果见 `docs/RESULTS.md`，当前进度与协作分工见 `docs/RESEARCH_PLAN.md`。用户已授权 gpt6 在原 gpt 下线后通过 AIA 统筹 cn、gb。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 

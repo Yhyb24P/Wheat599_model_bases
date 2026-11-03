@@ -1,0 +1,64 @@
+# Runtime configuration for the DNAwhisper comparator.
+#
+# PRIMARY ROUTE (what the cost measurement and the formal runs use): reuse the existing
+# interpreter this project already records for its recent runs
+# (results/robust_icm_final_20261103/runtime.json), instead of building a new environment.
+#
+#   interpreter : /home/yhshy/miniconda3/envs/boltz2/bin/python   (python 3.12.15)
+#   torch       : 2.7.1+cu128, torch.cuda.get_arch_list() contains sm_120 and compute_120,
+#                 and a real CUDA matmul succeeds on the RTX 5090 D (checked 2026-11-04)
+#   present     : pytorch-lightning 2.5.0, torchmetrics 1.9.0, scikit-learn 1.6.1, einops,
+#                 numpy 1.26.4, pandas, scipy, pyyaml
+#   missing     : entmax (imported unconditionally by upstream training/models/layers.py)
+#
+# Two packages are installed into a read-only overlay, never into the shared environment
+# (the project already used this add-on-directory pattern for BiMSGP):
+#
+#   mkdir -p /home/yhshy/.local/lib/wheat599_dnawhisper_overlay
+#   /home/yhshy/miniconda3/envs/boltz2/bin/python -m pip install --no-deps \
+#     --target /home/yhshy/.local/lib/wheat599_dnawhisper_overlay entmax
+#   # flash-attn is required for numerical validity at 1279 markers, not for speed:
+#   # 1279 = 19*64 + 63 leaves a remainder chunk that is fully masked, and the
+#   # standard-attention fallback used when flash_attn is absent returns NaN for an
+#   # all-masked query row (verified: NaN at 1216/1279/1344/1280 -> only 1279 fails,
+#   # precision-independent, CPU and GPU alike).  With the wheel below the forward pass
+#   # is finite at 1279 and the model has 5,167,568 parameters.
+#   /home/yhshy/miniconda3/envs/boltz2/bin/python -m pip install --no-deps --target \
+#     /home/yhshy/.local/lib/wheat599_dnawhisper_overlay \
+#     flash_attn-2.8.3.post2+cu12torch2.7cxx11abiFALSE-cp312-cp312-linux_x86_64.whl
+#   # wheel source: github.com/Dao-AILab/flash-attention/releases/tag/v2.8.3.post2
+#
+# Run command (overlay first on PYTHONPATH; the upstream archive and the project sources are
+# added by the entry point itself):
+#
+#   PYTHONPATH=/home/yhshy/.local/lib/wheat599_dnawhisper_overlay \
+#   /home/yhshy/miniconda3/envs/boltz2/bin/python scripts/run_background_nested.py \
+#     --config configs/dnawhisper_nested.yaml --out results/<run>
+#
+# Deliberately absent, matching the unused upstream paths: xformers (the upstream attention
+# factory warns and falls back), Pgenlib, mamba-ssm, causal-conv1d (PLINK/HDF5 route only),
+# lion-pytorch (no such branch), pot (EMD branch unreachable on the CSV route).
+# flash-attn is NOT absent: it is supplied by the overlay above because it is required for
+# numerical validity at 1279 markers.  Data loading shells out to the system `Rscript`, so
+# R must stay on PATH.
+#
+# FALLBACK (only if the shared interpreter must not be used): create a standalone environment
+# with exactly these commands; it was built and then removed on 2026-11-04 because reuse was
+# preferred.
+#   conda create -y -n wheat599_dnawhisper --override-channels \
+#     -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main \
+#     -c https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r python=3.12 pip
+#   conda run -n wheat599_dnawhisper pip install torch==2.9.0 pytorch-lightning \
+#     torchmetrics einops entmax pyyaml numpy pandas scipy scikit-learn
+
+name: wheat599_dnawhisper
+runtime:
+  interpreter: /home/yhshy/miniconda3/envs/boltz2/bin/python
+  python: 3.12.15
+  torch: 2.7.1+cu128
+  torch_arch_list: [sm_75, sm_80, sm_86, sm_90, sm_100, sm_120, compute_120]
+  pytorch_lightning: 2.5.0
+  torchmetrics: 1.9.0
+  scikit_learn: 1.6.1
+  overlay_path: /home/yhshy/.local/lib/wheat599_dnawhisper_overlay
+  overlay_packages: [entmax==1.3, flash-attn==2.8.3.post2+cu12torch2.7cxx11abiFALSE]

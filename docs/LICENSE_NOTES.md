@@ -11,6 +11,8 @@
 
 ## 代码与权重
 
+DNAwhisper 从外部固定源码 `Marxin1992/Whisperer_of_DNA@7a657cc00d44263c4b1085d3991ecc0e935c14e5` 加载，2026-11-04 核对本地固定副本的 `LICENSE` 为 Apache-2.0；本仓库只提交协议适配器，不复制上游代码或权重。所导入源码及配置的 Git blob 摘要固定在 `configs/dnawhisper_nested.yaml`，运行时逐项核验。没有使用上游预训练权重，各折从头执行训练子集内预训练；如后续保存本项目权重，权重不入 Git，其 SHA 另行记录。
+
 MoEGP 官方仓库在提交 `d3a3c44f649fadf95af34d63f069fc8dfd85af38` 未发现许可证文件；本项目从本地官方副本加载代码，不复制或重新分发该源码。
 
 BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 许可证；本项目从本地官方副本加载源码。本次安装的 `mamba-ssm` 2.3.2.post1 为 Apache-2.0，`causal-conv1d` 1.6.2.post1 为 BSD 3-Clause，均以安装包附带 LICENSE 为准。

@@ -1,4 +1,6 @@
-# Wheat599 FT-Transformer 10 折评价、诊断、残差修正与诱导重构
+# Wheat599 植物基因组表型预测研究
+
+目标是构建具有原创性、并在公平比较中超过现有强方法的神经网络；Wheat599 是起始验证数据集。当前已完成 LCM-GP 及六项对照：完整模型折均宏 PCC 0.47389，未超过 ICM。DNAwhisper 同协议适配正在推进，尚无正式外层成绩。当前执行与 AIA 分工见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
 当前最高折均 PCC 候选为 **Huber ICM**：四环境 CV1 折均宏 PCC **0.52175**、RMSE **0.85674**、MAE **0.65844**。匹配范围 GLS ICM 为 **0.52059 / 0.85422 / 0.65753**，保留为误差较低参照。Huber 仅获得小幅折均 PCC 增量，合并 OOF PCC 未改善。完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议与进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
