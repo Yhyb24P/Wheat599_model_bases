@@ -41,3 +41,15 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 - 不在仓库、论文附件或公开镜像中分发 TabPFN 权重；只记录 checkpoint 名称、SHA 与获取方式。
 - 若研究结果对外发布，确认输出（预测、指标、图表）不构成许可证禁止的“客户交付物”或商业决策依据；必要时在论文中声明许可与使用边界。
 - `rtdl-revisiting-models` 为 Apache-2.0；保留 LICENSE 与版本记录，不再列为 G4 阻断项。
+
+## 联合交互推断模拟权重（2026-11-04）
+
+本项目模拟任务训练生成，无外部预训练权重；沿用项目代码许可，不据此赋予旧 at_pheno 数据额外许可。权重未入 Git，保留于 omen `/home/hsy/git_files/Wheat599_model_bases/results/joint_inference_20261104/`。代码冻结 `8ce68a6`。
+
+| 文件 | SHA-256 |
+|---|---|
+| joint_42.pt | 96771761a2ff31ad8cf9ae8013da9e114f6b474451635996875893a4f591fbfa |
+| joint_2026.pt | f6cd45f7cff58f062f0102d84227f76201df04b428408768cac3846a7bdb876c |
+| independent_42.pt | a4a0c7fe2f1798a01b15eea05dfafb48719a4d0effc167d50758881da4a64781 |
+| independent_2026.pt | 146626e6803774705747f6548d0832699daf7398f0bd3cec0db7461c2fd18105 |
+| gate.pt | 79666d256fb8bca7268fea7486818357c1c1133f7e37f339950fb8e59abfa986 |

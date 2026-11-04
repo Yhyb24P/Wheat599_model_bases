@@ -1,0 +1,3605 @@
+{
+  "note": "constructed only after every selection above was written to disk",
+  "task_metadata": [
+    {
+      "seed": 5000000000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4651242196559906,
+        0.21087153255939484
+      ],
+      "context_signal_variance": [
+        4.695553779602051,
+        4.948202133178711,
+        4.237370491027832,
+        5.594348430633545
+      ]
+    },
+    {
+      "seed": 5000000000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4651242196559906,
+        0.21087153255939484
+      ],
+      "context_signal_variance": [
+        4.736847400665283,
+        5.008500099182129,
+        4.22955846786499,
+        5.629876613616943
+      ]
+    },
+    {
+      "seed": 5000000000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4651242196559906,
+        0.21087153255939484
+      ],
+      "context_signal_variance": [
+        4.993846893310547,
+        5.464505195617676,
+        4.439791679382324,
+        5.809725761413574
+      ]
+    },
+    {
+      "seed": 5000000000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4651242196559906,
+        0.21087153255939484
+      ],
+      "context_signal_variance": [
+        5.751134872436523,
+        6.88169527053833,
+        5.294960975646973,
+        6.302103042602539
+      ]
+    },
+    {
+      "seed": 5000100000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.44096311926841736,
+        0.14501789212226868
+      ],
+      "context_signal_variance": [
+        0.3113643229007721,
+        0.2160828709602356,
+        0.2631477117538452,
+        0.2845999300479889
+      ]
+    },
+    {
+      "seed": 5000100000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.44096311926841736,
+        0.14501789212226868
+      ],
+      "context_signal_variance": [
+        0.3014155626296997,
+        0.21526853740215302,
+        0.2638566195964813,
+        0.3207390606403351
+      ]
+    },
+    {
+      "seed": 5000100000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.44096311926841736,
+        0.14501789212226868
+      ],
+      "context_signal_variance": [
+        0.349663645029068,
+        0.2248375415802002,
+        0.26568135619163513,
+        0.6481410264968872
+      ]
+    },
+    {
+      "seed": 5000100000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.44096311926841736,
+        0.14501789212226868
+      ],
+      "context_signal_variance": [
+        0.592139720916748,
+        0.2663610875606537,
+        0.2687026858329773,
+        1.706188678741455
+      ]
+    },
+    {
+      "seed": 5000200000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4416346549987793,
+        0.2121187299489975
+      ],
+      "context_signal_variance": [
+        0.2576832175254822,
+        0.18123334646224976,
+        0.2701801657676697,
+        0.25448542833328247
+      ]
+    },
+    {
+      "seed": 5000200000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4416346549987793,
+        0.2121187299489975
+      ],
+      "context_signal_variance": [
+        0.30853351950645447,
+        0.18260350823402405,
+        0.27267754077911377,
+        0.34692978858947754
+      ]
+    },
+    {
+      "seed": 5000200000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4416346549987793,
+        0.2121187299489975
+      ],
+      "context_signal_variance": [
+        0.8854411840438843,
+        0.23668856918811798,
+        0.28889569640159607,
+        1.1660126447677612
+      ]
+    },
+    {
+      "seed": 5000200000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4416346549987793,
+        0.2121187299489975
+      ],
+      "context_signal_variance": [
+        2.822504758834839,
+        0.4375380575656891,
+        0.3372995853424072,
+        3.801481008529663
+      ]
+    },
+    {
+      "seed": 5000300000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4677051305770874,
+        0.16600342094898224
+      ],
+      "context_signal_variance": [
+        4.738360404968262,
+        3.904453754425049,
+        3.1375460624694824,
+        3.965517282485962
+      ]
+    },
+    {
+      "seed": 5000300000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4677051305770874,
+        0.16600342094898224
+      ],
+      "context_signal_variance": [
+        4.7549519538879395,
+        3.898016929626465,
+        3.0557661056518555,
+        3.9649767875671387
+      ]
+    },
+    {
+      "seed": 5000300000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4677051305770874,
+        0.16600342094898224
+      ],
+      "context_signal_variance": [
+        4.821715354919434,
+        3.88434100151062,
+        2.9801552295684814,
+        3.9637372493743896
+      ]
+    },
+    {
+      "seed": 5000300000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4677051305770874,
+        0.16600342094898224
+      ],
+      "context_signal_variance": [
+        4.985213756561279,
+        3.8680665493011475,
+        3.1519320011138916,
+        3.962019205093384
+      ]
+    },
+    {
+      "seed": 5000400000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4401881992816925,
+        0.21310944855213165
+      ],
+      "context_signal_variance": [
+        0.9691224694252014,
+        0.8311939835548401,
+        0.9124829173088074,
+        0.7575622797012329
+      ]
+    },
+    {
+      "seed": 5000400000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4401881992816925,
+        0.21310944855213165
+      ],
+      "context_signal_variance": [
+        1.0462310314178467,
+        0.8559777140617371,
+        0.9087362885475159,
+        0.7858119010925293
+      ]
+    },
+    {
+      "seed": 5000400000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4401881992816925,
+        0.21310944855213165
+      ],
+      "context_signal_variance": [
+        1.438699722290039,
+        1.087066411972046,
+        0.9351528882980347,
+        0.9564275741577148
+      ]
+    },
+    {
+      "seed": 5000400000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4401881992816925,
+        0.21310944855213165
+      ],
+      "context_signal_variance": [
+        2.5155587196350098,
+        1.8379673957824707,
+        1.058276653289795,
+        1.4544352293014526
+      ]
+    },
+    {
+      "seed": 5000500000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.44376039505004883,
+        0.19482707977294922
+      ],
+      "context_signal_variance": [
+        1.0265051126480103,
+        1.2125600576400757,
+        1.1885194778442383,
+        1.419729471206665
+      ]
+    },
+    {
+      "seed": 5000500000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.44376039505004883,
+        0.19482707977294922
+      ],
+      "context_signal_variance": [
+        1.04291832447052,
+        1.2191267013549805,
+        1.1835969686508179,
+        1.4349610805511475
+      ]
+    },
+    {
+      "seed": 5000500000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.44376039505004883,
+        0.19482707977294922
+      ],
+      "context_signal_variance": [
+        1.1728051900863647,
+        1.3771071434020996,
+        1.346407175064087,
+        1.7207145690917969
+      ]
+    },
+    {
+      "seed": 5000500000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.44376039505004883,
+        0.19482707977294922
+      ],
+      "context_signal_variance": [
+        1.5807892084121704,
+        1.9492493867874146,
+        2.0022835731506348,
+        2.7365946769714355
+      ]
+    },
+    {
+      "seed": 5000600000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4656933546066284,
+        0.19799906015396118
+      ],
+      "context_signal_variance": [
+        0.2250855416059494,
+        0.2503577470779419,
+        0.1892421692609787,
+        0.38003191351890564
+      ]
+    },
+    {
+      "seed": 5000600000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4656933546066284,
+        0.19799906015396118
+      ],
+      "context_signal_variance": [
+        0.222467839717865,
+        0.2382057011127472,
+        0.2552633583545685,
+        0.38367125391960144
+      ]
+    },
+    {
+      "seed": 5000600000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4656933546066284,
+        0.19799906015396118
+      ],
+      "context_signal_variance": [
+        0.449207067489624,
+        0.38799166679382324,
+        0.6619553565979004,
+        0.4686805307865143
+      ]
+    },
+    {
+      "seed": 5000600000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4656933546066284,
+        0.19799906015396118
+      ],
+      "context_signal_variance": [
+        1.3386064767837524,
+        1.0345991849899292,
+        1.8565044403076172,
+        0.7759506702423096
+      ]
+    },
+    {
+      "seed": 5000700000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4668560028076172,
+        0.23336166143417358
+      ],
+      "context_signal_variance": [
+        0.23333892226219177,
+        0.23202456533908844,
+        0.23429936170578003,
+        0.28089284896850586
+      ]
+    },
+    {
+      "seed": 5000700000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4668560028076172,
+        0.23336166143417358
+      ],
+      "context_signal_variance": [
+        0.22761762142181396,
+        0.24741345643997192,
+        0.25011345744132996,
+        0.2950165271759033
+      ]
+    },
+    {
+      "seed": 5000700000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4668560028076172,
+        0.23336166143417358
+      ],
+      "context_signal_variance": [
+        0.43255966901779175,
+        0.4228237569332123,
+        0.3283044099807739,
+        0.413819819688797
+      ]
+    },
+    {
+      "seed": 5000700000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 512,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4668560028076172,
+        0.23336166143417358
+      ],
+      "context_signal_variance": [
+        1.255471110343933,
+        1.0122027397155762,
+        0.5402849316596985,
+        0.7920269966125488
+      ]
+    },
+    {
+      "seed": 5000800000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4642457067966461,
+        0.23978139460086823
+      ],
+      "context_signal_variance": [
+        4.3901543617248535,
+        3.4412224292755127,
+        4.377475738525391,
+        3.0681333541870117
+      ]
+    },
+    {
+      "seed": 5000800000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4642457067966461,
+        0.23978139460086823
+      ],
+      "context_signal_variance": [
+        4.390066146850586,
+        3.4102249145507812,
+        4.425859451293945,
+        3.0924737453460693
+      ]
+    },
+    {
+      "seed": 5000800000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4642457067966461,
+        0.23978139460086823
+      ],
+      "context_signal_variance": [
+        4.397502422332764,
+        3.355137825012207,
+        5.056578159332275,
+        3.209765672683716
+      ]
+    },
+    {
+      "seed": 5000800000000,
+      "background": "dense",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 1279,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4642457067966461,
+        0.23978139460086823
+      ],
+      "context_signal_variance": [
+        4.426682949066162,
+        3.318312406539917,
+        7.215174198150635,
+        3.524249792098999
+      ]
+    },
+    {
+      "seed": 5000900000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4459031820297241,
+        0.1635035127401352
+      ],
+      "context_signal_variance": [
+        4.395811080932617,
+        4.159069061279297,
+        4.617372989654541,
+        3.4825966358184814
+      ]
+    },
+    {
+      "seed": 5000900000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4459031820297241,
+        0.1635035127401352
+      ],
+      "context_signal_variance": [
+        4.564098358154297,
+        4.1796793937683105,
+        4.820206165313721,
+        3.453619956970215
+      ]
+    },
+    {
+      "seed": 5000900000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4459031820297241,
+        0.1635035127401352
+      ],
+      "context_signal_variance": [
+        5.150327205657959,
+        4.233188629150391,
+        5.524144172668457,
+        3.396273374557495
+      ]
+    },
+    {
+      "seed": 5000900000000,
+      "background": "dense",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 128,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4459031820297241,
+        0.1635035127401352
+      ],
+      "context_signal_variance": [
+        6.45786714553833,
+        4.32279109954834,
+        7.089946746826172,
+        3.3392796516418457
+      ]
+    },
+    {
+      "seed": 5001000000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.43615517020225525,
+        0.18374238908290863
+      ],
+      "context_signal_variance": [
+        0.5154477953910828,
+        1.1672277450561523,
+        0.8998989462852478,
+        1.0316001176834106
+      ]
+    },
+    {
+      "seed": 5001000000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.43615517020225525,
+        0.18374238908290863
+      ],
+      "context_signal_variance": [
+        0.4941402077674866,
+        1.1708942651748657,
+        0.9686822891235352,
+        0.9473769664764404
+      ]
+    },
+    {
+      "seed": 5001000000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.43615517020225525,
+        0.18374238908290863
+      ],
+      "context_signal_variance": [
+        0.5615588426589966,
+        1.1898865699768066,
+        1.6213606595993042,
+        1.0744421482086182
+      ]
+    },
+    {
+      "seed": 5001000000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.43615517020225525,
+        0.18374238908290863
+      ],
+      "context_signal_variance": [
+        0.942345380783081,
+        1.2423654794692993,
+        3.7490625381469727,
+        2.0418148040771484
+      ]
+    },
+    {
+      "seed": 5001100000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4728539288043976,
+        0.20640595257282257
+      ],
+      "context_signal_variance": [
+        0.03642914816737175,
+        0.21447043120861053,
+        0.3577287495136261,
+        0.24175506830215454
+      ]
+    },
+    {
+      "seed": 5001100000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4728539288043976,
+        0.20640595257282257
+      ],
+      "context_signal_variance": [
+        0.05319554731249809,
+        0.27329567074775696,
+        0.4013839364051819,
+        0.26370206475257874
+      ]
+    },
+    {
+      "seed": 5001100000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4728539288043976,
+        0.20640595257282257
+      ],
+      "context_signal_variance": [
+        0.23658286035060883,
+        0.6677538752555847,
+        0.6999425292015076,
+        0.43748387694358826
+      ]
+    },
+    {
+      "seed": 5001100000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4728539288043976,
+        0.20640595257282257
+      ],
+      "context_signal_variance": [
+        0.8489243388175964,
+        1.855892539024353,
+        1.6041460037231445,
+        0.983418881893158
+      ]
+    },
+    {
+      "seed": 5001200000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42810434103012085,
+        0.1778392195701599
+      ],
+      "context_signal_variance": [
+        1.917593002319336,
+        5.310286521911621,
+        1.4655823707580566,
+        0.5008860230445862
+      ]
+    },
+    {
+      "seed": 5001200000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42810434103012085,
+        0.1778392195701599
+      ],
+      "context_signal_variance": [
+        1.9898650646209717,
+        5.437662124633789,
+        1.5253664255142212,
+        0.5051756501197815
+      ]
+    },
+    {
+      "seed": 5001200000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42810434103012085,
+        0.1778392195701599
+      ],
+      "context_signal_variance": [
+        2.2643532752990723,
+        5.908281326293945,
+        1.936713695526123,
+        0.539159893989563
+      ]
+    },
+    {
+      "seed": 5001200000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42810434103012085,
+        0.1778392195701599
+      ],
+      "context_signal_variance": [
+        2.913552761077881,
+        7.001730918884277,
+        3.184562921524048,
+        0.6459342837333679
+      ]
+    },
+    {
+      "seed": 5001300000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4326249063014984,
+        0.22806446254253387
+      ],
+      "context_signal_variance": [
+        0.5057898759841919,
+        0.7436892986297607,
+        0.9498680233955383,
+        0.49476274847984314
+      ]
+    },
+    {
+      "seed": 5001300000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4326249063014984,
+        0.22806446254253387
+      ],
+      "context_signal_variance": [
+        0.5355814695358276,
+        0.7414778470993042,
+        0.9502757787704468,
+        0.509118914604187
+      ]
+    },
+    {
+      "seed": 5001300000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4326249063014984,
+        0.22806446254253387
+      ],
+      "context_signal_variance": [
+        0.6498797535896301,
+        0.7556174397468567,
+        1.0994423627853394,
+        0.8665364384651184
+      ]
+    },
+    {
+      "seed": 5001300000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4326249063014984,
+        0.22806446254253387
+      ],
+      "context_signal_variance": [
+        0.9219257235527039,
+        0.8226876854896545,
+        1.672489047050476,
+        2.163794994354248
+      ]
+    },
+    {
+      "seed": 5001400000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.45503202080726624,
+        0.2155463844537735
+      ],
+      "context_signal_variance": [
+        0.32016053795814514,
+        0.22837451100349426,
+        0.08764969557523727,
+        0.22957581281661987
+      ]
+    },
+    {
+      "seed": 5001400000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.45503202080726624,
+        0.2155463844537735
+      ],
+      "context_signal_variance": [
+        0.3720031678676605,
+        0.23564627766609192,
+        0.13690708577632904,
+        0.2566494643688202
+      ]
+    },
+    {
+      "seed": 5001400000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.45503202080726624,
+        0.2155463844537735
+      ],
+      "context_signal_variance": [
+        0.7870264649391174,
+        0.42334407567977905,
+        0.6131579875946045,
+        0.5688207745552063
+      ]
+    },
+    {
+      "seed": 5001400000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.45503202080726624,
+        0.2155463844537735
+      ],
+      "context_signal_variance": [
+        2.0940558910369873,
+        1.1061146259307861,
+        2.1710004806518555,
+        1.619492769241333
+      ]
+    },
+    {
+      "seed": 5001500000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42512673139572144,
+        0.1964947134256363
+      ],
+      "context_signal_variance": [
+        0.3592967092990875,
+        0.1225745752453804,
+        0.13950605690479279,
+        0.32888972759246826
+      ]
+    },
+    {
+      "seed": 5001500000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42512673139572144,
+        0.1964947134256363
+      ],
+      "context_signal_variance": [
+        0.3727151155471802,
+        0.13152416050434113,
+        0.16649848222732544,
+        0.3355157971382141
+      ]
+    },
+    {
+      "seed": 5001500000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42512673139572144,
+        0.1964947134256363
+      ],
+      "context_signal_variance": [
+        0.5493638515472412,
+        0.23164811730384827,
+        0.4458320736885071,
+        0.4322313070297241
+      ]
+    },
+    {
+      "seed": 5001500000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.42512673139572144,
+        0.1964947134256363
+      ],
+      "context_signal_variance": [
+        1.154685616493225,
+        0.5671262741088867,
+        1.3703045845031738,
+        0.7677289843559265
+      ]
+    },
+    {
+      "seed": 5001600000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4669235348701477,
+        0.17746588587760925
+      ],
+      "context_signal_variance": [
+        0.2736343741416931,
+        0.5457853078842163,
+        0.5192794799804688,
+        0.41004815697669983
+      ]
+    },
+    {
+      "seed": 5001600000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4669235348701477,
+        0.17746588587760925
+      ],
+      "context_signal_variance": [
+        0.2920674681663513,
+        0.6443170309066772,
+        0.5278136730194092,
+        0.404771625995636
+      ]
+    },
+    {
+      "seed": 5001600000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4669235348701477,
+        0.17746588587760925
+      ],
+      "context_signal_variance": [
+        0.40054765343666077,
+        1.2913137674331665,
+        0.635452151298523,
+        0.4207215905189514
+      ]
+    },
+    {
+      "seed": 5001600000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4669235348701477,
+        0.17746588587760925
+      ],
+      "context_signal_variance": [
+        0.7145169973373413,
+        3.2285263538360596,
+        1.0022685527801514,
+        0.5121433734893799
+      ]
+    },
+    {
+      "seed": 5001700000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.42972302436828613,
+        0.16223874688148499
+      ],
+      "context_signal_variance": [
+        1.1137617826461792,
+        0.536201536655426,
+        0.8463661670684814,
+        0.5834516286849976
+      ]
+    },
+    {
+      "seed": 5001700000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.42972302436828613,
+        0.16223874688148499
+      ],
+      "context_signal_variance": [
+        1.1038144826889038,
+        0.5362235307693481,
+        0.9283883571624756,
+        0.5838703513145447
+      ]
+    },
+    {
+      "seed": 5001700000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.42972302436828613,
+        0.16223874688148499
+      ],
+      "context_signal_variance": [
+        1.0926891565322876,
+        0.5362763404846191,
+        1.2657207250595093,
+        0.6001136302947998
+      ]
+    },
+    {
+      "seed": 5001700000000,
+      "background": "sparse",
+      "design": "independent",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.42972302436828613,
+        0.16223874688148499
+      ],
+      "context_signal_variance": [
+        1.1061457395553589,
+        0.536355197429657,
+        2.102067470550537,
+        0.6603937745094299
+      ]
+    },
+    {
+      "seed": 5001800000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4840795695781708,
+        0.23147539794445038
+      ],
+      "context_signal_variance": [
+        0.11240959912538528,
+        0.32752472162246704,
+        0.23432070016860962,
+        0.24776345491409302
+      ]
+    },
+    {
+      "seed": 5001800000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4840795695781708,
+        0.23147539794445038
+      ],
+      "context_signal_variance": [
+        0.12052357941865921,
+        0.38659873604774475,
+        0.2352510690689087,
+        0.2903900444507599
+      ]
+    },
+    {
+      "seed": 5001800000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4840795695781708,
+        0.23147539794445038
+      ],
+      "context_signal_variance": [
+        0.16793030500411987,
+        0.955494225025177,
+        0.25213727355003357,
+        0.561284065246582
+      ]
+    },
+    {
+      "seed": 5001800000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4840795695781708,
+        0.23147539794445038
+      ],
+      "context_signal_variance": [
+        0.3048055171966553,
+        2.8150527477264404,
+        0.31199774146080017,
+        1.364610195159912
+      ]
+    },
+    {
+      "seed": 5001900000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4735431969165802,
+        0.22472384572029114
+      ],
+      "context_signal_variance": [
+        0.2686672508716583,
+        0.28645581007003784,
+        0.22572721540927887,
+        0.09783166646957397
+      ]
+    },
+    {
+      "seed": 5001900000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4735431969165802,
+        0.22472384572029114
+      ],
+      "context_signal_variance": [
+        0.2926003634929657,
+        0.29051849246025085,
+        0.22506460547447205,
+        0.09644681215286255
+      ]
+    },
+    {
+      "seed": 5001900000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4735431969165802,
+        0.22472384572029114
+      ],
+      "context_signal_variance": [
+        0.6663298606872559,
+        0.43435704708099365,
+        0.3653275966644287,
+        0.26335662603378296
+      ]
+    },
+    {
+      "seed": 5001900000000,
+      "background": "sparse",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4735431969165802,
+        0.22472384572029114
+      ],
+      "context_signal_variance": [
+        1.97223699092865,
+        0.9661409854888916,
+        0.9100968837738037,
+        0.9149991869926453
+      ]
+    },
+    {
+      "seed": 5002000000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4490998387336731,
+        0.23758840560913086
+      ],
+      "context_signal_variance": [
+        0.9938386082649231,
+        0.2506418228149414,
+        1.502832293510437,
+        1.1201939582824707
+      ]
+    },
+    {
+      "seed": 5002000000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4490998387336731,
+        0.23758840560913086
+      ],
+      "context_signal_variance": [
+        0.9763490557670593,
+        0.3033876419067383,
+        1.4893897771835327,
+        1.0627977848052979
+      ]
+    },
+    {
+      "seed": 5002000000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4490998387336731,
+        0.23758840560913086
+      ],
+      "context_signal_variance": [
+        1.238585352897644,
+        0.6061052680015564,
+        1.7830958366394043,
+        1.198140025138855
+      ]
+    },
+    {
+      "seed": 5002000000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        0.5,
+        0.5,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": false,
+      "context_rms": [
+        0.4490998387336731,
+        0.23758840560913086
+      ],
+      "context_signal_variance": [
+        2.349175453186035,
+        1.4748374223709106,
+        2.992136240005493,
+        2.045419454574585
+      ]
+    },
+    {
+      "seed": 5002100000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.40759992599487305,
+        0.20904767513275146
+      ],
+      "context_signal_variance": [
+        0.7216818332672119,
+        0.46028032898902893,
+        0.4544866979122162,
+        0.45041507482528687
+      ]
+    },
+    {
+      "seed": 5002100000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.40759992599487305,
+        0.20904767513275146
+      ],
+      "context_signal_variance": [
+        0.6952154636383057,
+        0.47810205817222595,
+        0.44251859188079834,
+        0.47008997201919556
+      ]
+    },
+    {
+      "seed": 5002100000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.40759992599487305,
+        0.20904767513275146
+      ],
+      "context_signal_variance": [
+        0.7040754556655884,
+        0.5714274644851685,
+        0.7394542694091797,
+        0.5533409118652344
+      ]
+    },
+    {
+      "seed": 5002100000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.40759992599487305,
+        0.20904767513275146
+      ],
+      "context_signal_variance": [
+        0.8882260322570801,
+        0.8304071426391602,
+        1.95259690284729,
+        0.7629605531692505
+      ]
+    },
+    {
+      "seed": 5002200000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.41838380694389343,
+        0.2178775668144226
+      ],
+      "context_signal_variance": [
+        0.5166655778884888,
+        0.9876339435577393,
+        0.7764414548873901,
+        0.44455182552337646
+      ]
+    },
+    {
+      "seed": 5002200000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.41838380694389343,
+        0.2178775668144226
+      ],
+      "context_signal_variance": [
+        0.5421651601791382,
+        0.9846289157867432,
+        0.7989016175270081,
+        0.47200724482536316
+      ]
+    },
+    {
+      "seed": 5002200000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.41838380694389343,
+        0.2178775668144226
+      ],
+      "context_signal_variance": [
+        0.7424485087394714,
+        1.1344879865646362,
+        0.9634802937507629,
+        0.8534614443778992
+      ]
+    },
+    {
+      "seed": 5002200000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.41838380694389343,
+        0.2178775668144226
+      ],
+      "context_signal_variance": [
+        1.3704724311828613,
+        1.7295442819595337,
+        1.4710092544555664,
+        2.169203996658325
+      ]
+    },
+    {
+      "seed": 5002300000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.43715107440948486,
+        0.16777488589286804
+      ],
+      "context_signal_variance": [
+        0.4580722153186798,
+        0.6466479897499084,
+        0.31467577815055847,
+        0.4747849702835083
+      ]
+    },
+    {
+      "seed": 5002300000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.43715107440948486,
+        0.16777488589286804
+      ],
+      "context_signal_variance": [
+        0.47348469495773315,
+        0.686219334602356,
+        0.33818385004997253,
+        0.5123060345649719
+      ]
+    },
+    {
+      "seed": 5002300000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.43715107440948486,
+        0.16777488589286804
+      ],
+      "context_signal_variance": [
+        0.5320257544517517,
+        0.872509777545929,
+        0.4518786668777466,
+        0.7540563941001892
+      ]
+    },
+    {
+      "seed": 5002300000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        1.0,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.43715107440948486,
+        0.16777488589286804
+      ],
+      "context_signal_variance": [
+        0.6704896688461304,
+        1.3668205738067627,
+        0.7572034001350403,
+        1.4739025831222534
+      ]
+    },
+    {
+      "seed": 5002400000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4370812773704529,
+        0.22595448791980743
+      ],
+      "context_signal_variance": [
+        0.38384369015693665,
+        1.2832674980163574,
+        0.5560029149055481,
+        0.2064955085515976
+      ]
+    },
+    {
+      "seed": 5002400000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4370812773704529,
+        0.22595448791980743
+      ],
+      "context_signal_variance": [
+        0.4198834002017975,
+        1.3079123497009277,
+        0.5574168562889099,
+        0.2490362673997879
+      ]
+    },
+    {
+      "seed": 5002400000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4370812773704529,
+        0.22595448791980743
+      ],
+      "context_signal_variance": [
+        0.7881655097007751,
+        1.5522302389144897,
+        0.7685864567756653,
+        0.5666874647140503
+      ]
+    },
+    {
+      "seed": 5002400000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4370812773704529,
+        0.22595448791980743
+      ],
+      "context_signal_variance": [
+        2.0044569969177246,
+        2.354944944381714,
+        1.5750850439071655,
+        1.550849199295044
+      ]
+    },
+    {
+      "seed": 5002500000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4274042546749115,
+        0.2113795429468155
+      ],
+      "context_signal_variance": [
+        1.628226399421692,
+        7.573774337768555,
+        5.247818946838379,
+        1.7506598234176636
+      ]
+    },
+    {
+      "seed": 5002500000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4274042546749115,
+        0.2113795429468155
+      ],
+      "context_signal_variance": [
+        1.6422004699707031,
+        7.576129913330078,
+        5.247038841247559,
+        1.748618483543396
+      ]
+    },
+    {
+      "seed": 5002500000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4274042546749115,
+        0.2113795429468155
+      ],
+      "context_signal_variance": [
+        1.734903335571289,
+        7.586180210113525,
+        5.245384216308594,
+        1.7560300827026367
+      ]
+    },
+    {
+      "seed": 5002500000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 16,
+      "interaction_count": 1,
+      "auto_linked": false,
+      "context_rms": [
+        0.4274042546749115,
+        0.2113795429468155
+      ],
+      "context_signal_variance": [
+        2.01328444480896,
+        7.611595153808594,
+        5.243422508239746,
+        1.7961859703063965
+      ]
+    },
+    {
+      "seed": 5002600000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4558109939098358,
+        0.21969936788082123
+      ],
+      "context_signal_variance": [
+        2.2130632400512695,
+        3.4452383518218994,
+        1.201697826385498,
+        1.0190542936325073
+      ]
+    },
+    {
+      "seed": 5002600000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4558109939098358,
+        0.21969936788082123
+      ],
+      "context_signal_variance": [
+        2.208120584487915,
+        3.460254192352295,
+        1.2317092418670654,
+        1.0259169340133667
+      ]
+    },
+    {
+      "seed": 5002600000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4558109939098358,
+        0.21969936788082123
+      ],
+      "context_signal_variance": [
+        2.4036738872528076,
+        3.642209768295288,
+        1.4282732009887695,
+        1.1462762355804443
+      ]
+    },
+    {
+      "seed": 5002600000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 1.0,
+      "noise_scale": [
+        1.0,
+        1.0,
+        0.5,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 8,
+      "auto_linked": true,
+      "context_rms": [
+        0.4558109939098358,
+        0.21969936788082123
+      ],
+      "context_signal_variance": [
+        3.1859612464904785,
+        4.258946895599365,
+        2.016383647918701,
+        1.5716315507888794
+      ]
+    },
+    {
+      "seed": 5002700000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.4736076295375824,
+        0.22870999574661255
+      ],
+      "context_signal_variance": [
+        6.437596321105957,
+        8.067893028259277,
+        3.3162505626678467,
+        10.358613014221191
+      ]
+    },
+    {
+      "seed": 5002700000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.4736076295375824,
+        0.22870999574661255
+      ],
+      "context_signal_variance": [
+        6.487236499786377,
+        8.144728660583496,
+        3.340559482574463,
+        10.529829025268555
+      ]
+    },
+    {
+      "seed": 5002700000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.4736076295375824,
+        0.22870999574661255
+      ],
+      "context_signal_variance": [
+        6.708803653717041,
+        8.75223445892334,
+        3.431800603866577,
+        11.117812156677246
+      ]
+    },
+    {
+      "seed": 5002700000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 2.0,
+      "noise_scale": [
+        1.0,
+        0.5,
+        1.0,
+        1.0
+      ],
+      "context_size": 64,
+      "query_size": 128,
+      "markers": 512,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.4736076295375824,
+        0.22870999574661255
+      ],
+      "context_signal_variance": [
+        7.282123565673828,
+        10.660069465637207,
+        3.6459805965423584,
+        12.415519714355469
+      ]
+    },
+    {
+      "seed": 5002800000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4593955874443054,
+        0.2190936654806137
+      ],
+      "context_signal_variance": [
+        0.2757614850997925,
+        0.6637755632400513,
+        0.3520180583000183,
+        0.4791151285171509
+      ]
+    },
+    {
+      "seed": 5002800000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4593955874443054,
+        0.2190936654806137
+      ],
+      "context_signal_variance": [
+        0.3214644193649292,
+        0.7122048139572144,
+        0.36113953590393066,
+        0.5020190477371216
+      ]
+    },
+    {
+      "seed": 5002800000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4593955874443054,
+        0.2190936654806137
+      ],
+      "context_signal_variance": [
+        0.8520544171333313,
+        0.9709172248840332,
+        0.6256129145622253,
+        0.6520909070968628
+      ]
+    },
+    {
+      "seed": 5002800000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        0.5,
+        0.5,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 1279,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": false,
+      "context_rms": [
+        0.4593955874443054,
+        0.2190936654806137
+      ],
+      "context_signal_variance": [
+        2.639632225036621,
+        1.6943751573562622,
+        1.5940362215042114,
+        1.1011502742767334
+      ]
+    },
+    {
+      "seed": 5002900000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.40004271268844604,
+        0.20583733916282654
+      ],
+      "context_signal_variance": [
+        0.034329432994127274,
+        0.04454813897609711,
+        0.09310737252235413,
+        0.19876469671726227
+      ]
+    },
+    {
+      "seed": 5002900000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.15,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.40004271268844604,
+        0.20583733916282654
+      ],
+      "context_signal_variance": [
+        0.06023490056395531,
+        0.0838838517665863,
+        0.12729811668395996,
+        0.23066146671772003
+      ]
+    },
+    {
+      "seed": 5002900000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 0.5,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.40004271268844604,
+        0.20583733916282654
+      ],
+      "context_signal_variance": [
+        0.3277828097343445,
+        0.46309271454811096,
+        0.4079146683216095,
+        0.6099583506584167
+      ]
+    },
+    {
+      "seed": 5002900000000,
+      "background": "hidden",
+      "design": "linked",
+      "gamma": 1.0,
+      "additive_scale": 0.5,
+      "noise_scale": [
+        0.5,
+        1.0,
+        1.0,
+        0.5
+      ],
+      "context_size": 128,
+      "query_size": 128,
+      "markers": 128,
+      "environments": 4,
+      "effects": 4,
+      "interaction_count": 4,
+      "auto_linked": true,
+      "context_rms": [
+        0.40004271268844604,
+        0.20583733916282654
+      ],
+      "context_signal_variance": [
+        1.2129555940628052,
+        1.7028532028198242,
+        1.2965452671051025,
+        1.892212152481079
+      ]
+    }
+  ]
+}

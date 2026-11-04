@@ -1,0 +1,168 @@
+{
+  "config": {
+    "model": "joint_inference",
+    "device": "cuda",
+    "gpu_memory_fraction": 0.5,
+    "cpu_threads": 2,
+    "seeds": [
+      42,
+      2026
+    ],
+    "variants": [
+      "joint",
+      "independent"
+    ],
+    "lambda_a_grid": [
+      0.3,
+      3.0,
+      30.0
+    ],
+    "context_cv_folds": 3,
+    "lambda_draw_seed": 0,
+    "network": {
+      "environments": 4,
+      "width": 32,
+      "rounds": 3,
+      "add_per_round": 16,
+      "max_candidates": 32,
+      "max_variance": 100.0
+    },
+    "tasks": {
+      "context_sizes": [
+        64,
+        128
+      ],
+      "marker_counts": [
+        128,
+        512
+      ],
+      "query_size": 32,
+      "environments": 4,
+      "designs": [
+        "independent",
+        "linked"
+      ],
+      "backgrounds": [
+        "dense",
+        "sparse",
+        "hidden"
+      ],
+      "gammas": [
+        0.0,
+        0.15,
+        0.5,
+        1.0
+      ],
+      "additive_scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "noise_scales": [
+        0.5,
+        1.0
+      ],
+      "pair_counts": [
+        1,
+        4,
+        8
+      ],
+      "active_counts": [
+        4,
+        16
+      ],
+      "block_size": 8
+    },
+    "training": {
+      "steps": 2000,
+      "learning_rate": 0.001,
+      "weight_decay": 0.0001,
+      "gradient_clip": 1.0,
+      "checkpoints": [
+        0,
+        500,
+        1000,
+        1500,
+        2000
+      ],
+      "role_base": 1000000000000
+    },
+    "selection": {
+      "role_base": 2000000000000,
+      "bases_per_background": 5,
+      "query_size": 64
+    },
+    "gate": {
+      "seed": 4242,
+      "train_base": 3000000000000,
+      "train_tasks": 128,
+      "selection_base": 4000000000000,
+      "selection_bases_per_background": 5,
+      "query_size": 64,
+      "width": 32,
+      "epochs": 300,
+      "learning_rate": 0.003,
+      "checkpoints": [
+        0,
+        100,
+        300
+      ]
+    },
+    "confirmation": {
+      "role_base": 5000000000000,
+      "bases_per_background": 10,
+      "query_size": 128,
+      "context_sizes": [
+        64,
+        128
+      ],
+      "marker_counts": [
+        128,
+        512,
+        1279
+      ]
+    },
+    "statistical": {
+      "ratios": [
+        1.0,
+        0.5,
+        0.2
+      ],
+      "lambda_e": 0.001,
+      "relaxed_variance": 100.0,
+      "same_candidate_variance": 1.0,
+      "solver": {
+        "block_size": 4096,
+        "cache_phi": true,
+        "max_active": 4096,
+        "max_iter": 10000,
+        "max_outer": 64,
+        "kkt_tolerance": 1e-08,
+        "dual_gap_tolerance": 1e-07
+      }
+    }
+  },
+  "git_commit": "8ce68a696d89e6c63e68f09b0b2016717375dcde",
+  "source_sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/joint_training.py": "cb7af9f184ee3c25cb19723de255404087f8c624896d46ee4ff2e11bbe763ab0",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/joint_evidence.py": "570fdf15b40104d9f09eb67530597de17eb7f71bf8839100f4ad328a9534af3e",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/joint_network.py": "96c2d5b2bea89a12000ba98c800212552f8849045fc8d486c7511d648c5d2551",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/mixed_tasks.py": "d5d41ccd0924ae35f3b8f9759050f5e1c3f3469c8ec5daa8d6a8922ade8dbb58",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/matrix_tasks.py": "27802c381c6e8503e0bb55354ea88ac26af5470ba04d1a71eb15a6ead8324df3",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/sparse_interaction.py": "819cdb6de01c989af51256c96a848428f3183bdb8e3eafe88f70815bdf5a9415",
+    "configs/joint_inference.yaml": "79432872267c79f2c14706a5f44c5c111db99210889208c0b0a61f6b1deb9014",
+    "/home/hsy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "4e3d386cfaa315a2531a991a3a85f887e066de59c960903939539470cec265d1"
+  },
+  "torch_version": "2.14.1+cu130",
+  "device": "cuda",
+  "run_stride": 100000000,
+  "role_bases": {
+    "training": 1000000000000,
+    "selection": 2000000000000,
+    "gate_train": 3000000000000,
+    "gate_selection": 4000000000000,
+    "confirmation": 5000000000000
+  },
+  "scope": "Synthetic mixed tasks only; no measured genotype or phenotype read",
+  "note": "Limited pilot; no claim of sufficient optimization, convergence or SOTA"
+}

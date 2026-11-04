@@ -1,0 +1,44 @@
+{
+  "selected": {
+    "kind": "always_on",
+    "gated_mse": 0.42570028389301184,
+    "epoch": null,
+    "ties_prefer": "always_off",
+    "candidates": [
+      {
+        "kind": "always_off",
+        "gated_mse": 0.49827484749238604,
+        "epoch": null
+      },
+      {
+        "kind": "always_on",
+        "gated_mse": 0.42570028389301184,
+        "epoch": null
+      },
+      {
+        "kind": "learned_0",
+        "gated_mse": 0.4976635581918148,
+        "epoch": 0
+      },
+      {
+        "kind": "learned_100",
+        "gated_mse": 0.4283755035754081,
+        "epoch": 100
+      },
+      {
+        "kind": "learned_300",
+        "gated_mse": 0.4290885839096545,
+        "epoch": 300
+      }
+    ]
+  },
+  "feature_dim": 28,
+  "hidden": 32,
+  "seed": 4242,
+  "gate_sha256": "79666d256fb8bca7268fea7486818357c1c1133f7e37f339950fb8e59abfa986",
+  "gate_file": "gate.pt",
+  "scaler": "mean and population std fitted on gate_train rows only",
+  "target": "joint clean-query MSE minus additive clean-query MSE",
+  "features": "context-only gate_features from the frozen checkpoint",
+  "policy": "g=1 when predicted delta < 0; always_off and always_on are candidates; ties prefer always_off; the gate never reads the confirmation panel"
+}
