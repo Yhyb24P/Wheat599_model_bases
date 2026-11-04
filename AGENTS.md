@@ -10,6 +10,8 @@
 
 **联合交互推断先导已完成（2026-11-04）：** 冻结 `8ce68a6`，120 个新模拟确认任务、0 失败。两个联合网络均落后可选空模型／支持重估统计参照，无交互加性任务退化也超过预定容忍；本配置结束，不追加搜索、不进入 Wheat599。见 `docs/RESULTS.md` 和 `docs/JOINT_INFERENCE.md`。总研究目标未完成。
 
+**当前用户附件研究（2026-11-04）：** 准备固定候选的标量／对角／完整多环境读出有限诊断（`configs/vector_diagnostic.yaml`、`docs/JOINT_INFERENCE.md`）。只复用冻结网络，不追加训练；新模拟角色空间，逐内折重新提取候选，已知支持仅单独诊断，不传真实效应协方差。cn 维护向量算子，gb 维护诊断运行，gpt6 整合冻结交付。当前尚无本诊断结果。
+
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
 ## 核心原则（精简）
