@@ -1,0 +1,28 @@
+model: matrix_kernel_reference
+# Finite-kernel reference on the same synthetic panels as configs/matrix_inference.yaml.
+# The tasks, validation_seed/tasks_per_family and held_out blocks must stay byte-identical
+# to that file: they define which tasks the reference is scored on. No Wheat599 data.
+device: cpu
+cpu_threads: 2
+kernels:
+  mixtures: [0.0, 0.25, 0.5, 0.75, 1.0]
+  ridge: [0.01, 0.03, 0.1, 0.3, 1.0, 3.0, 10.0, 30.0, 100.0]
+tasks:
+  context_sizes: [64, 128, 359]
+  marker_counts: [128, 512, 1279]
+  query_size: 8
+  environments: 4
+  families: [dense_additive, sparse_additive, pairwise, hidden_additive]
+  designs: [independent, linked]
+  block_size: 8
+  active_counts: [1, 4, 16]
+  pair_counts: [1, 4, 16]
+  heritability_range: [0.1, 0.8]
+training:
+  validation_seed: 500000000
+  tasks_per_family: 8
+held_out:
+  # Entirely untrained population-structure panel; scored once after the choice is frozen.
+  families: [dense_additive, sparse_additive, pairwise]
+  seed: 900000000
+  tasks_per_family: 8

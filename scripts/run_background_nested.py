@@ -180,6 +180,9 @@ def main():
     if cfg.get('model') == 'matrix_inference':
         from wheat599.matrix_training import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'matrix_kernel_reference':
+        from wheat599.matrix_kernel_reference import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'heterogeneous_icm':
         from wheat599.heterogeneous_icm import run
         return run(cfg, args, Path(__file__))
