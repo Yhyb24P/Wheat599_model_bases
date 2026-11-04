@@ -56,4 +56,6 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 
 ## TabM 任务适配依赖（2026-11-04，正式训练准备）
 
+RAGP 同协议参照（2026-11-05）：固定上游 `l00907l/RAGP` 提交 `85675b1e8054fe3e91fdb3e974150f1dde81eee3` 无 LICENSE 文件。`src/wheat599/ragp.py` 为所发表机制的独立实现，不复制或分发上游源码、example-data 或权重。fit-only PCA／标准化、严格自身排除及 triplet 索引修正等差异记录于模块说明。未使用外部预训练权重；本轮最优 state 只暂存内存，流式 SHA 随轨迹记录，不持久化权重。
+
 使用官方 `tabm==0.0.3` 与 `rtdl_num_embeddings==0.0.12`，均为 Apache-2.0，来源 https://github.com/yandex-research/tabm 与 PyPI 固定发布包。当前不复制或改写上游骨干源码，不使用预训练权重。模块SHA-256：tabm.py `fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade`；rtdl_num_embeddings.py `48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1`。正式训练480个权重仅留omen `/home/hsy/git_files/Wheat599_model_bases/results/genomic_tabm_development_20261104/`，不入Git；每个权重SHA见 `results/genomic_tabm_development_20261104/weights_sha256.txt`，该清单自身SHA-256为 `e5a7e89d64e71561cf369ee44cbba38af7b03ad156ad15c1cb43ab3bb065bb09`。未使用外部预训练权重。

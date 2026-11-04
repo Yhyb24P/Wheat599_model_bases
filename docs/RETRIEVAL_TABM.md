@@ -27,3 +27,7 @@ Huber ICM 沿用同协议并输出配对材料预测；TabM–ICM 融合权重�
 gpt66：统筹、检索核心实现、配置、CLI、文档、Git，以及 Huber ICM 融合集成。gb：`src/wheat599/retrieval_run.py`、`tests/test_retrieval_run.py` 与正式执行。cn 已确认未写检索核心文件并交接，改分配 `src/wheat599/ragp.py`、`tests/test_ragp.py` 的独立参照实现。gpt6 已说明本轮未占用共享文件且暂不参与实现。共享文件保持一个写者。
 
 首版实现将检索插在第一官方 block 后，剩余 blocks 为预测网络；查询与参考的第一个 block 均关闭 dropout，后续 blocks 保留训练 dropout。没有参考 key 缓存，每次前向重新编码且保留梯度。fit 局部行 ID 与参考库一一对应用于自身屏蔽。随机数据 CUDA 全尺寸贯通由 gb 完成，context 8/32 峰值分别约 394/1358 MiB，正式三臂预计 1.5–2 小时，非性能证据。
+
+RAGP 的 omen 探针峰值 reserved 3810 MiB；仅为成本证据。其正式配置在 `configs/ragp.yaml`：8 配置 × 2 种子 × 30 内层，共 480 条，含官方 15 epoch 默认及 50/100 epoch、学习率、weight decay、dropout 选择，官方四环境宽度不变；Adam、gamma 0.95，patience 30。尚待 runner 完成与提交冻结，不因探针完成称正式训练已开始。每 epoch 更新库后才允许选 checkpoint，epoch 0 空库不参与选择。best state 暂存在内存，重载核对预测后流式记录 SHA，不保存每条约 720 MB 的权重文件。Triplet 索引错位作明确修正，并记录为相对上游的差异。
+
+RAGP runner 与合成测试已完成，真实开发材料的小型连通测试仅在 `/tmp`，不作为性能证据；正式预算预计 90–120 分钟。runner 的 `best_epoch` 从 0 编号，其中 0 指首个完整训练 epoch 和库更新之后，不是未训练空库状态。选模异常必须记录失败并中止，不能标记为完整完成。正式执行在 omen 串行接续三臂与融合，等待冻结标签后启动。
