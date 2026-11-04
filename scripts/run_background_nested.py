@@ -177,6 +177,9 @@ def main():
     if cfg.get('model') == 'locus_context':
         from wheat599.locus_context_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'joint_inference':
+        from wheat599.joint_training import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'matrix_inference':
         from wheat599.matrix_training import run
         return run(cfg, args, Path(__file__))

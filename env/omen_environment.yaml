@@ -1,0 +1,34 @@
+# Verified 2026-11-04; simulation runtime. No system or disk-mount changes.
+ssh_alias: omen
+project: /home/hsy/git_files/Wheat599_model_bases
+interpreter: /home/hsy/venvs/wheat599/bin/python
+base_interpreter: /home/hsy/miniconda3/envs/atpheno/bin/python
+# venv with system-site-packages; torch/numpy reused, additions confined to venv.
+gpu: NVIDIA GeForce RTX 3090
+gpu_memory_mib: 24576
+logical_cpus: 24
+ram_gib_approx: 64
+filesystem: ext4
+versions:
+  python: "3.12.14"
+  torch: "2.14.1+cu130"
+  cuda_runtime: "13.0"
+  numpy: "2.5.3"
+  scipy: "1.18.1"
+  scikit_learn: "1.9.1"
+  pandas: "3.1.0"
+  pyyaml: "6.0.3"
+
+# Read-only existing resources; no use in the current synthetic experiment.
+existing_project: /mnt/Project2/at_pheno
+available_data:
+  arabidopsis:
+    path: /mnt/Project2/at_pheno/preprocessing/processed/genotypes.npy
+    shape: [1135, 10707430]
+    dtype: int8
+    orientation: materials_by_markers
+  soybean:
+    path: /mnt/Project2/at_pheno/fprior/preprocessing/processed/soybase_official_v2/dosages.npy
+    shape: [41346, 20087]
+    dtype: float32
+    orientation: markers_by_materials

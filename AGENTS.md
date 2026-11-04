@@ -8,6 +8,8 @@
 
 **有限诊断已完成（2026-11-04）**：已知支持、未知支持的多环境稀疏交互及同特征稠密核参照完成 56 个模拟任务、0 失败。成对交互上建立了首版网络的推断缺口，但未知位置方法在加性任务族变差；不据此宣称 Wheat599 增益或新架构成功，不自动追加实验。结果见 `docs/RESULTS.md`，预算见 `docs/SPARSE_INTERACTION_DIAGNOSTIC.md`。
 
+**当前新增执行（2026-11-04 用户授权）：** 在 `omen` 进行加性背景条件下的联合交互推断模拟先导实验；代码与预算冻结后启动，定义见 `docs/JOINT_INFERENCE.md`。cn 负责算子与网络，gb 负责生成器、训练评价及运行，gpt6 负责整合与交付，gpt66 提供机制研究意见。本轮不复用旧模拟面板选模；后续真实数据评价据本轮证据另定预算。
+
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
 ## 核心原则（精简）

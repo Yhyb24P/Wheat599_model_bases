@@ -1,0 +1,70 @@
+model: joint_inference
+device: cuda
+gpu_memory_fraction: 0.5
+cpu_threads: 2
+seeds: [42, 2026]
+variants: [joint, independent]
+lambda_a_grid: [0.3, 3.0, 30.0]
+context_cv_folds: 3
+lambda_draw_seed: 0
+network:
+  environments: 4
+  width: 32
+  rounds: 3
+  add_per_round: 16
+  max_candidates: 32
+  max_variance: 100.0
+tasks:
+  context_sizes: [64, 128]
+  marker_counts: [128, 512]
+  query_size: 32
+  environments: 4
+  designs: [independent, linked]
+  backgrounds: [dense, sparse, hidden]
+  gammas: [0.0, 0.15, 0.5, 1.0]
+  additive_scales: [0.5, 1.0, 2.0]
+  noise_scales: [0.5, 1.0]
+  pair_counts: [1, 4, 8]
+  active_counts: [4, 16]
+  block_size: 8
+training:
+  steps: 2000
+  learning_rate: 0.001
+  weight_decay: 0.0001
+  gradient_clip: 1.0
+  checkpoints: [0, 500, 1000, 1500, 2000]
+  role_base: 1000000000000
+selection:
+  role_base: 2000000000000
+  bases_per_background: 5
+  query_size: 64
+gate:
+  seed: 4242
+  train_base: 3000000000000
+  train_tasks: 128
+  selection_base: 4000000000000
+  selection_bases_per_background: 5
+  query_size: 64
+  width: 32
+  epochs: 300
+  learning_rate: 0.003
+  checkpoints: [0, 100, 300]
+confirmation:
+  role_base: 5000000000000
+  bases_per_background: 10
+  query_size: 128
+  context_sizes: [64, 128]
+  marker_counts: [128, 512, 1279]
+statistical:
+  ratios: [1.0, 0.5, 0.2]
+  lambda_e: 0.001
+  relaxed_variance: 100.0
+  same_candidate_variance: 1.0
+  solver:
+    block_size: 4096
+    cache_phi: true
+    max_active: 4096
+    max_iter: 10000
+    max_outer: 64
+    kkt_tolerance: 0.00000001
+    dual_gap_tolerance: 0.0000001
