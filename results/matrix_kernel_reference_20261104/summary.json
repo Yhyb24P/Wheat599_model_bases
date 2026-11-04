@@ -1,0 +1,60 @@
+{
+  "scope": "Synthetic tasks only; original validation and previously examined admixture panels",
+  "failures": [],
+  "selection": {
+    "additive_endpoint": {
+      "fraction": 0.0,
+      "ridge": 3.0,
+      "validation_mse": 0.3324061211336533,
+      "candidate_index": 5,
+      "held_out_mean_mse": 0.3767250403926923,
+      "validation_per_family": {
+        "dense_additive": 0.4184736693177772,
+        "hidden_additive": 0.2023521595076412,
+        "pairwise": 0.4112291470691557,
+        "sparse_additive": 0.2975695086400392
+      },
+      "held_out_per_family": {
+        "dense_additive": 0.31486029257704334,
+        "pairwise": 0.5245373091419261,
+        "sparse_additive": 0.2907775194591074
+      }
+    },
+    "quadratic_endpoint": {
+      "fraction": 1.0,
+      "ridge": 3.0,
+      "validation_mse": 0.4142448228154716,
+      "candidate_index": 41,
+      "held_out_mean_mse": 0.4126630415348886,
+      "validation_per_family": {
+        "dense_additive": 0.5254770381771471,
+        "hidden_additive": 0.34681406536043724,
+        "pairwise": 0.39626112900365745,
+        "sparse_additive": 0.3884270587206447
+      },
+      "held_out_per_family": {
+        "dense_additive": 0.435274296571955,
+        "pairwise": 0.4909368441465261,
+        "sparse_additive": 0.31177798388618455
+      }
+    },
+    "mixed_all_candidates": {
+      "fraction": 0.25,
+      "ridge": 1.0,
+      "validation_mse": 0.33158183923125745,
+      "candidate_index": 13,
+      "held_out_mean_mse": 0.38780164907694364,
+      "validation_per_family": {
+        "dense_additive": 0.40518471529406835,
+        "hidden_additive": 0.19871640776576205,
+        "pairwise": 0.432143201240326,
+        "sparse_additive": 0.2902830326248733
+      },
+      "held_out_per_family": {
+        "dense_additive": 0.3044638560202372,
+        "pairwise": 0.5549011641794414,
+        "sparse_additive": 0.30403992703115257
+      }
+    }
+  }
+}

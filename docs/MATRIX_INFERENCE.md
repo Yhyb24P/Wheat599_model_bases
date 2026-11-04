@@ -1,6 +1,6 @@
 # 材料—位点双向推断原型
 
-状态：按 2026-11-04 用户提案实现的独立神经原型。12 项针对性测试通过，首轮固定模拟学习已完成：加性／代理任务有局部收益，成对乘积及未训练群体结构尚未显示优势；完整结果见 [RESULTS.md](RESULTS.md)。没有 Wheat599 预测成绩。DNAwhisper 外层评价继续，不改变其冻结配置。
+状态：按 2026-11-04 用户提案实现的独立神经原型。首轮固定模拟学习及加性／二次核参照已完成：原型整体未超过加性核，隐藏因果代理任务有局部收益；完整结果见 [RESULTS.md](RESULTS.md)。没有 Wheat599 预测成绩。DNAwhisper 外层评价继续，不改变其冻结配置。
 
 ## 研究对象与已有方法
 
@@ -47,7 +47,7 @@ W₀ 和 W 无偏置；Ψ、门控和读出参数跨位点、跨迭代共享。�
 python scripts/run_background_nested.py --config configs/matrix_inference.yaml --out results/<新运行目录>
 ```
 
-该入口只完成模拟学习检查，不生成 Wheat599 预测。它可以识别未学会推断的实现，但训练损失降低或超过普通 Transformer 均不够支持方法贡献。进入真实数据比较前，还需完成固定算子、加性＋二次核的匹配比较，以及预先固定的 Wheat599 内层开发评价；现代神经对照包含 [TabM](https://proceedings.iclr.cc/paper_files/paper/2025/hash/c1ba41c694834aeef91ae161711d4939-Abstract-Conference.html)。当前先实现下面的核参照，其余比较未启动。
+该入口只完成模拟学习检查，不生成 Wheat599 预测。它可以识别未学会推断的实现，但训练损失降低或超过普通 Transformer 均不够支持方法贡献。下面的加性＋二次核匹配比较已完成，原型尚未超过参照，未进入 Wheat599 内层开发评价。固定算子消融及现代神经对照 [TabM](https://proceedings.iclr.cc/paper_files/paper/2025/hash/c1ba41c694834aeef91ae161711d4939-Abstract-Conference.html) 尚未启动。
 
 ## 固定核参照
 

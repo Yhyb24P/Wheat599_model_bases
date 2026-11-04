@@ -1,0 +1,23 @@
+{
+  "rule": "One common (mixture, ridge) per reported family of candidates from mean clean-target MSE over the fixed validation panel; ties by grid order",
+  "selected": {
+    "additive_endpoint": {
+      "fraction": 0.0,
+      "ridge": 3.0,
+      "validation_mse": 0.3324061211336533,
+      "candidate_index": 5
+    },
+    "quadratic_endpoint": {
+      "fraction": 1.0,
+      "ridge": 3.0,
+      "validation_mse": 0.4142448228154716,
+      "candidate_index": 41
+    },
+    "mixed_all_candidates": {
+      "fraction": 0.25,
+      "ridge": 1.0,
+      "validation_mse": 0.33158183923125745,
+      "candidate_index": 13
+    }
+  }
+}

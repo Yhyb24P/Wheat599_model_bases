@@ -1,0 +1,275 @@
+{
+  "config": {
+    "model": "matrix_kernel_reference",
+    "device": "cpu",
+    "cpu_threads": 2,
+    "kernels": {
+      "mixtures": [
+        0.0,
+        0.25,
+        0.5,
+        0.75,
+        1.0
+      ],
+      "ridge": [
+        0.01,
+        0.03,
+        0.1,
+        0.3,
+        1.0,
+        3.0,
+        10.0,
+        30.0,
+        100.0
+      ]
+    },
+    "tasks": {
+      "context_sizes": [
+        64,
+        128,
+        359
+      ],
+      "marker_counts": [
+        128,
+        512,
+        1279
+      ],
+      "query_size": 8,
+      "environments": 4,
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise",
+        "hidden_additive"
+      ],
+      "designs": [
+        "independent",
+        "linked"
+      ],
+      "block_size": 8,
+      "active_counts": [
+        1,
+        4,
+        16
+      ],
+      "pair_counts": [
+        1,
+        4,
+        16
+      ],
+      "heritability_range": [
+        0.1,
+        0.8
+      ]
+    },
+    "training": {
+      "validation_seed": 500000000,
+      "tasks_per_family": 8
+    },
+    "held_out": {
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise"
+      ],
+      "seed": 900000000,
+      "tasks_per_family": 8
+    }
+  },
+  "git_commit": "e7f3612b21f40bccbfd6b1a472ffda92d34db4e4",
+  "source_sha256": {
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_kernel_reference.py": "5a73a82e44ab23908628816c81c119ec7821b8db9a9b3ae1b651ecb929e34b21",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_tasks.py": "0343f8c8ebf1d6ab6bf6e2745bea19561cf216958120b4def948602ff7e0a388",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_training.py": "2e177dbb323a5d03787c71ed20504d7ad839d7777d2976829c7e4951c0931017",
+    "configs/matrix_kernel_reference.yaml": "65ec3f261d44b66f6b0325c99943fd38e4b3a4194151f6e36105542d356787ff",
+    "/home/yhshy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "90395e26fed642c7afb3def1d599ec3a39b5ba0f6f122f492f7b22772b74d4cd"
+  },
+  "torch_version": "2.7.1+cu128",
+  "dtype": "float64",
+  "device": "cpu",
+  "scope": "Synthetic panels only; no Wheat599 genotype or phenotype read",
+  "selection_rule": "One common (mixture, ridge) per reported family of candidates from mean clean-target MSE over the fixed validation panel; ties by grid order",
+  "held_out_status": "Scored once after the frozen selection, and only for the selected candidates; already seen, so it is a historical diagnostic and not independent evidence",
+  "candidates": [
+    {
+      "fraction": 0.0,
+      "ridge": 0.01
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 0.03
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 0.1
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 0.3
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 1.0
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 3.0
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 10.0
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 30.0
+    },
+    {
+      "fraction": 0.0,
+      "ridge": 100.0
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 0.01
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 0.03
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 0.1
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 0.3
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 1.0
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 3.0
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 10.0
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 30.0
+    },
+    {
+      "fraction": 0.25,
+      "ridge": 100.0
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 0.01
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 0.03
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 0.1
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 0.3
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 1.0
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 3.0
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 10.0
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 30.0
+    },
+    {
+      "fraction": 0.5,
+      "ridge": 100.0
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 0.01
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 0.03
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 0.1
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 0.3
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 1.0
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 3.0
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 10.0
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 30.0
+    },
+    {
+      "fraction": 0.75,
+      "ridge": 100.0
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 0.01
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 0.03
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 0.1
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 0.3
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 1.0
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 3.0
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 10.0
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 30.0
+    },
+    {
+      "fraction": 1.0,
+      "ridge": 100.0
+    }
+  ]
+}
