@@ -117,7 +117,8 @@ def _effects(count, environments, rng):
     return effects / scale / math.sqrt(count), covariance
 
 
-def sample_task(config, seed, *, family=None, design=None, device='cpu'):
+def sample_task(config, seed, *, family=None, design=None, device='cpu',
+                return_pair_support=False):
     """Draw one task with its own CPU RNG, independent of model initialization.
 
     Hidden-additive tasks always use linked markers: latent binary causes are
@@ -125,6 +126,10 @@ def sample_task(config, seed, *, family=None, design=None, device='cpu'):
     Signal amplitude uses context feature geometry, not realized query outcomes
     or realized effect norms. Conditional Gaussian effects remain Gaussian. Noise and
     signal are available to evaluation, but only noisy context Y enters a model.
+
+    ``return_pair_support`` is a diagnostic-only option for pairwise tasks. It
+    returns (task, pairs) separately, never puts generating positions in model
+    inputs or task metadata, and does not change the random draw sequence.
     """
     rng = torch.Generator(device='cpu').manual_seed(seed)
     n = int(_choice(config['context_sizes'], rng))
@@ -134,6 +139,8 @@ def sample_task(config, seed, *, family=None, design=None, device='cpu'):
     design = design or _choice(config.get('designs', ('independent', 'linked')), rng)
     if family not in FAMILIES or design not in DESIGNS:
         raise ValueError('Unknown task family or genotype design')
+    if return_pair_support and family != 'pairwise':
+        raise ValueError('Pair-support oracle is defined only for pairwise tasks')
     if n < 3 or p < 2 or m < 1 or q < 1 or config.get('block_size', 8) < 1:
         raise ValueError('Invalid task dimensions')
     if any(int(v) < 1 for key in ('active_counts', 'pair_counts')
@@ -176,5 +183,9 @@ def sample_task(config, seed, *, family=None, design=None, device='cpu'):
                 'nominal_h2': h2.tolist(),
                 'effect_correlation': covariance.tolist(),
                 'constant_context_signal_design': bool(feature_scale <= 0)}
-    return SyntheticTask(x[:n].to(device), y[:n].to(device), x[n:].to(device),
+    task = SyntheticTask(x[:n].to(device), y[:n].to(device), x[n:].to(device),
                          signal[n:].to(device), y[n:].to(device), metadata)
+    if return_pair_support:
+        pairs = torch.stack([active[:count], active[count:]], dim=1).sort(dim=1).values
+        return task, pairs
+    return task

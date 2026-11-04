@@ -1,0 +1,70 @@
+# Frozen-panel diagnostic only; no Wheat599 or new neural training.
+model: sparse_interaction_diagnostic
+device: cuda
+gpu_memory_fraction: 0.2
+cpu_threads: 2
+lambda_a: 3.0
+lambda_e: 0.001
+ratios:
+- 1.0
+- 0.5
+- 0.2
+- 0.1
+- 0.05
+pair_ridges:
+- null
+- 0.01
+- 0.1
+- 1.0
+- 10.0
+- 100.0
+solver:
+  block_size: 4096
+  cache_phi: true
+  max_active: 4096
+  max_iter: 10000
+  max_outer: 64
+  kkt_tolerance: 1.0e-08
+  dual_gap_tolerance: 1.0e-07
+tasks:
+  context_sizes:
+  - 64
+  - 128
+  - 359
+  marker_counts:
+  - 128
+  - 512
+  - 1279
+  query_size: 8
+  environments: 4
+  families:
+  - dense_additive
+  - sparse_additive
+  - pairwise
+  - hidden_additive
+  designs:
+  - independent
+  - linked
+  block_size: 8
+  active_counts:
+  - 1
+  - 4
+  - 16
+  pair_counts:
+  - 1
+  - 4
+  - 16
+  heritability_range:
+  - 0.1
+  - 0.8
+training:
+  validation_seed: 500000000
+  tasks_per_family: 8
+held_out:
+  families:
+  - dense_additive
+  - sparse_additive
+  - pairwise
+  seed: 900000000
+  tasks_per_family: 8
+neural_reference: results/matrix_inference_learning_20261104/training.json

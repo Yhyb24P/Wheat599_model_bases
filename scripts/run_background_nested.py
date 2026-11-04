@@ -183,6 +183,9 @@ def main():
     if cfg.get('model') == 'matrix_kernel_reference':
         from wheat599.matrix_kernel_reference import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'sparse_interaction_diagnostic':
+        from wheat599.sparse_diagnostic import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'heterogeneous_icm':
         from wheat599.heterogeneous_icm import run
         return run(cfg, args, Path(__file__))
