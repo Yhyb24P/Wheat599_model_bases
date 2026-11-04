@@ -4,7 +4,7 @@
 
 **当前执行**：LCM-GP 及六项对照已完成，未超过 ICM，也未建立所提机制的独立收益；位点保留背景网络本轮开发条件未通过，已结束且未进入外层；继续完成 DNAwhisper 同协议评价，不重复已完成实验、不按测试集调参。Huber ICM 仍为最高折均 PCC 候选，匹配范围 GLS ICM 保留为误差较低参照。结果见 `docs/RESULTS.md`，当前进度与协作分工见 `docs/RESEARCH_PLAN.md`。用户已授权 gpt6 在原 gpt 下线后通过 AIA 统筹 cn、gb。
 
-**最新授权（2026-11-04）**：与 DNAwhisper 外层评价并行准备材料—位点双向推断网络，并可使用空闲 GPU 并行；定义与当前范围见 `docs/MATRIX_INFERENCE.md`。新增 AIA 同伴 gpt66，承担核心结构和训练先验研究，具体写入边界由 gpt6 统筹。先检验独立模拟任务上的学习与机制，再按现有无泄漏材料划分做 Wheat599 开发评价；准备与正确性测试不作为预测优势证据。
+**最新授权（2026-11-04）**：与 DNAwhisper 外层评价并行准备材料—位点双向推断网络，并可使用空闲 GPU 并行；定义与当前范围见 `docs/MATRIX_INFERENCE.md`。新增 AIA 同伴 gpt66，承担核心结构和训练先验研究，具体写入边界由 gpt6 统筹。本轮模拟学习和核参照已完成，当前参数化开发结束，不追加训练／门控消融，不进入 Wheat599 评价；完整证据见 `docs/RESULTS.md`。该决定不代表原创模型目标完成。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
