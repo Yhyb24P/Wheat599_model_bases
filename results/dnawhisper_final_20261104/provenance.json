@@ -1,0 +1,273 @@
+{
+  "config": {
+    "model": "dnawhisper",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "source_url": "https://github.com/Marxin1992/Whisperer_of_DNA",
+    "source_commit": "7a657cc00d44263c4b1085d3991ecc0e935c14e5",
+    "source_checkout": "/home/yhshy/git_files/Whisperer_of_DNA",
+    "upstream_blobs": {
+      "training/models/DNAWhisper.py": "539342269137c3e4323f0de132ca57d0269d378e",
+      "training/models/model.py": "4b2134cce084559d8d94c6b04287cc1f729dc631",
+      "training/models/layers.py": "3fa2c7ffe01538793a8eb2c54ccd675ab15b84b5",
+      "training/models/attention_types.py": "db0e10fbffc78726ce55fd82c947afc528aacf2b",
+      "training/models/cross_attentions_types.py": "06dd1faad2a88fffb52efd4902a2d36e90e1fc31",
+      "training/models/pooling.py": "45627b1c3901a7c43de5e62cdf2c1eb0ec5922b7",
+      "training/utils/config_utils.py": "3f49f1136cb560f7c49122cd602b1295b04bc160",
+      "training/config/model_config_csv_wheat.json": "453d997a07fbb2947b91752f657ccab16173ca00",
+      "training/config/model_config_csv_wheat_pretrain.json": "dcf34968b89cc5f06970cc873409e63672ca5973",
+      "training/config/training_config_csv_wheat.yml": "ef137f7c2424f52a12ee4e0ca8e32f83b7c0f808",
+      "training/config/training_config_csv_wheat_pretrain.yml": "a0006cbf0988bdf0e0417d167422248e923fa9b9",
+      "LICENSE": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "training/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "training/models/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "training/utils/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "device": "cuda",
+    "gpu_memory_fraction": 0.35,
+    "precision": "bf16-mixed",
+    "batch_size": 128,
+    "predict_batch_size": 256,
+    "training_seed": 42,
+    "inner_units": 3,
+    "pretrain": {
+      "epochs": 200
+    },
+    "finetune": {
+      "epochs": 100
+    },
+    "optimizer_config": {
+      "name": "adamw",
+      "params": {
+        "lr": 0.0001,
+        "weight_decay": 0.01
+      }
+    },
+    "scheduler_config": {
+      "name": "cosine",
+      "params": {}
+    },
+    "deviations": [
+      {
+        "item": "optimizer and learning rate",
+        "official_yaml": "optimizer.type: lion, learning_rate: 1.0e-5, weight_decay: 1.0e-5",
+        "effective": "AdamW lr 1.0e-4 weight_decay 1.0e-2 (upstream reads optimizer.name and optimizer.params.lr; the shipped keys are ignored and no lion branch exists)",
+        "decision": "reproduce the effective released behaviour and record the paper-stated settings here"
+      },
+      {
+        "item": "cosine schedule",
+        "official_yaml": "scheduler.cosine.t_max: 100",
+        "effective": "T_max falls back to trainer.estimated_stepping_batches, interval=step, eta_min=0",
+        "decision": "keep upstream fallback"
+      },
+      {
+        "item": "pretraining objective",
+        "official_yaml": "primary_loss.enabled: false plus PWCosSim",
+        "effective": "primary_loss.enabled is never read; supervised MSE is always added, and the PWCosSim target is built from phenotypes",
+        "decision": "restrict pretraining to the current fitting subset and report it as in-training supervised pretraining"
+      },
+      {
+        "item": "phenotype standardization",
+        "official_yaml": "statistics computed over all 599 lines before splitting; released wheatY.csv is already standardized over all lines",
+        "effective": "per-environment mean and standard deviation fitted on the current fitting subset only; predictions inverse-transformed before metrics",
+        "decision": "project CV1 requirement"
+      },
+      {
+        "item": "data partition",
+        "official_yaml": "internal np.random.shuffle split, use_cv_folds: false, train/val/test ratios",
+        "effective": "material splits come from results/get_icm_protocol_20261103/splits_manifest.json; inner three folds for epoch selection, full development refit, single test pass",
+        "decision": "project CV1 requirement"
+      },
+      {
+        "item": "batch dropping",
+        "official_yaml": "DataLoader(drop_last=True)",
+        "effective": "drop_last=false for train, validation and prediction so no material is dropped",
+        "decision": "fixed by the lead on 2026-11-03"
+      },
+      {
+        "item": "devices and precision",
+        "official_yaml": "accelerator: gpu, devices: [0, 1], precision: bf16-mixed",
+        "effective": "single device, per-process memory fraction 0.35; bf16-mixed retained, switching to 32-true would be logged as a further deviation",
+        "decision": "shared GPU rules"
+      },
+      {
+        "item": "validation metric owner",
+        "official_yaml": "ModelCheckpoint/EarlyStopping monitor val_pearson_corr_epoch, logged by the upstream module hook",
+        "effective": "the adapter callback collects validation batches and computes per-environment PCC itself, because Lightning calls callback hooks before the module hook (one-epoch lag) and because upstream silently omits any environment with constant predictions from the average",
+        "decision": "project rule against filtering failures; constant or non-finite environment raises instead of being dropped"
+      },
+      {
+        "item": "checkpoint and early stopping",
+        "official_yaml": "ModelCheckpoint save_top_k 3 and EarlyStopping patience 15 on val_pearson_corr_epoch",
+        "effective": "the full 100-epoch curve is recorded for every inner unit; refit stops at the selected epoch while retaining the full 100-epoch cosine schedule horizon",
+        "decision": "project selection rule"
+      },
+      {
+        "item": "upstream checkout form",
+        "official_yaml": "git repository at the pinned commit",
+        "effective": "archive extracted from codeload for 7a657cc; integrity by git blob hash of each required file against the pinned tree, because the partial-clone blob fetch did not complete on this link",
+        "decision": "verification is content-based and recorded in provenance.json"
+      },
+      {
+        "item": "attention backend at 1279 markers",
+        "official_yaml": "attention type flash_attention; mlenv.yml installs flash-attn",
+        "effective": "flash-attn 2.8.3.post2 (+cu12, torch 2.7, cp312) installed into the read-only overlay. With it importable the upstream factory selects the FlashAttention class; its own kernels reject the dtypes used here and fall back at run time (24 fallback warnings in the 2-epoch probe) to a manual masked attention that stays finite. Without it the factory builds StandardAttention, whose nn.MultiheadAttention returns NaN for the fully masked remainder chunk because 1279 = 19*64 + 63. NaN is precision- and device-independent (bf16-mixed and 32-true, CPU and CUDA), and 1216/1280/1344 markers are finite, so the published marker count is unusable on the no-flash_attn branch but the attention mathematics is standard in both cases",
+        "decision": "keep the upstream attention configuration and supply the package it assumes; NaN is precision- and device-independent, so it is not a bf16 or GPU defect"
+      },
+      {
+        "item": "pretrained weights",
+        "official_yaml": "none published (no release, no tag, no checkpoint in the repository or on Hugging Face)",
+        "effective": "every stage is trained from the pinned code in this project environment",
+        "decision": "required for reproduction"
+      },
+      {
+        "item": "python and torch build",
+        "official_yaml": "mlenv.yml python 3.10 with torch 2.8.0+cu128; environment.yml is an unrelated cpu export (cropformer, torch 2.5.1)",
+        "effective": "reuse of boltz2 (python 3.12.15, torch 2.7.1+cu128) with an overlay supplying entmax and flash-attn; torch is one minor version behind upstream mlenv",
+        "decision": "shared environments are not modified; xformers, Pgenlib, mamba, lion-pytorch and pot are absent on this execution path"
+      }
+    ],
+    "environments": 4
+  },
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "git_commit": "81a4a56a3222dbff32b353dea16377b3de781045",
+  "source_sha256": {
+    "run.py": "ca60e4ac73ac1ec76b8f5f5368e28f02235a67042b54b57c0958dc73b76df5ee",
+    "adapter.py": "cd2f19f910b327e54137ce0426c09c404ddb5d5950a6b9a4d5ecd3c8f3ace294",
+    "__init__.py": "ad2853e2c392e08231b5d880d9adf5bcd7430ee4d98c8b6598bf24f85e263912"
+  },
+  "selection_sha256": "cae83d6c33e26d94782d08820ae28b7e7d9dcc74dabd8721f51244460ab92cf3",
+  "upstream": {
+    "url": "https://github.com/Marxin1992/Whisperer_of_DNA",
+    "commit": "7a657cc00d44263c4b1085d3991ecc0e935c14e5",
+    "verified_blob_ids": {
+      "training/models/DNAWhisper.py": "539342269137c3e4323f0de132ca57d0269d378e",
+      "training/models/model.py": "4b2134cce084559d8d94c6b04287cc1f729dc631",
+      "training/models/layers.py": "3fa2c7ffe01538793a8eb2c54ccd675ab15b84b5",
+      "training/models/attention_types.py": "db0e10fbffc78726ce55fd82c947afc528aacf2b",
+      "training/models/cross_attentions_types.py": "06dd1faad2a88fffb52efd4902a2d36e90e1fc31",
+      "training/models/pooling.py": "45627b1c3901a7c43de5e62cdf2c1eb0ec5922b7",
+      "training/utils/config_utils.py": "3f49f1136cb560f7c49122cd602b1295b04bc160",
+      "training/config/model_config_csv_wheat.json": "453d997a07fbb2947b91752f657ccab16173ca00",
+      "training/config/model_config_csv_wheat_pretrain.json": "dcf34968b89cc5f06970cc873409e63672ca5973",
+      "training/config/training_config_csv_wheat.yml": "ef137f7c2424f52a12ee4e0ca8e32f83b7c0f808",
+      "training/config/training_config_csv_wheat_pretrain.yml": "a0006cbf0988bdf0e0417d167422248e923fa9b9",
+      "LICENSE": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "training/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "training/models/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "training/utils/__init__.py": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391"
+    },
+    "method": "git blob hash of each required file against the pinned commit tree",
+    "config_sha256": {
+      "model_config_csv_wheat.json": "b13c54f71678d1b8bb4ca3c7ac192fd210b1bb2e34c571258bcf8f8eb09abaec",
+      "model_config_csv_wheat_pretrain.json": "afe6c90343f2e8527960085dab72caa94489c86043a0efbc45e9679a42a7d77f",
+      "training_config_csv_wheat.yml": "ddf49a11d8899a1f45e675f02e1baa4bf2b68166201ef6971f081b8b6167e4f4",
+      "training_config_csv_wheat_pretrain.yml": "8abe8692b6b1003d076f5b99b83ba45f58457809f34384dd55c76923f40b7158"
+    }
+  },
+  "optimizer_passed_to_upstream": {
+    "optimizer_config": {
+      "name": "adamw",
+      "params": {
+        "lr": 0.0001,
+        "weight_decay": 0.01
+      }
+    },
+    "scheduler_config": {
+      "name": "cosine",
+      "params": {}
+    }
+  },
+  "package_versions": {
+    "python": "3.12.15",
+    "torch": "2.7.1+cu128",
+    "pytorch_lightning": "2.5.0",
+    "numpy": "1.26.4"
+  },
+  "device": "cuda",
+  "selection_rule": "mean macro validation PCC across the three inner units selects the fine-tune epoch; earliest epoch wins ties; full development set is refitted with that epoch count and test is evaluated once",
+  "protocol": "CV1; pretraining, fine-tuning and standardization fitted on the current fitting subset only; test labels never used for fitting or selection",
+  "deviations": [
+    {
+      "item": "optimizer and learning rate",
+      "official_yaml": "optimizer.type: lion, learning_rate: 1.0e-5, weight_decay: 1.0e-5",
+      "effective": "AdamW lr 1.0e-4 weight_decay 1.0e-2 (upstream reads optimizer.name and optimizer.params.lr; the shipped keys are ignored and no lion branch exists)",
+      "decision": "reproduce the effective released behaviour and record the paper-stated settings here"
+    },
+    {
+      "item": "cosine schedule",
+      "official_yaml": "scheduler.cosine.t_max: 100",
+      "effective": "T_max falls back to trainer.estimated_stepping_batches, interval=step, eta_min=0",
+      "decision": "keep upstream fallback"
+    },
+    {
+      "item": "pretraining objective",
+      "official_yaml": "primary_loss.enabled: false plus PWCosSim",
+      "effective": "primary_loss.enabled is never read; supervised MSE is always added, and the PWCosSim target is built from phenotypes",
+      "decision": "restrict pretraining to the current fitting subset and report it as in-training supervised pretraining"
+    },
+    {
+      "item": "phenotype standardization",
+      "official_yaml": "statistics computed over all 599 lines before splitting; released wheatY.csv is already standardized over all lines",
+      "effective": "per-environment mean and standard deviation fitted on the current fitting subset only; predictions inverse-transformed before metrics",
+      "decision": "project CV1 requirement"
+    },
+    {
+      "item": "data partition",
+      "official_yaml": "internal np.random.shuffle split, use_cv_folds: false, train/val/test ratios",
+      "effective": "material splits come from results/get_icm_protocol_20261103/splits_manifest.json; inner three folds for epoch selection, full development refit, single test pass",
+      "decision": "project CV1 requirement"
+    },
+    {
+      "item": "batch dropping",
+      "official_yaml": "DataLoader(drop_last=True)",
+      "effective": "drop_last=false for train, validation and prediction so no material is dropped",
+      "decision": "fixed by the lead on 2026-11-03"
+    },
+    {
+      "item": "devices and precision",
+      "official_yaml": "accelerator: gpu, devices: [0, 1], precision: bf16-mixed",
+      "effective": "single device, per-process memory fraction 0.35; bf16-mixed retained, switching to 32-true would be logged as a further deviation",
+      "decision": "shared GPU rules"
+    },
+    {
+      "item": "validation metric owner",
+      "official_yaml": "ModelCheckpoint/EarlyStopping monitor val_pearson_corr_epoch, logged by the upstream module hook",
+      "effective": "the adapter callback collects validation batches and computes per-environment PCC itself, because Lightning calls callback hooks before the module hook (one-epoch lag) and because upstream silently omits any environment with constant predictions from the average",
+      "decision": "project rule against filtering failures; constant or non-finite environment raises instead of being dropped"
+    },
+    {
+      "item": "checkpoint and early stopping",
+      "official_yaml": "ModelCheckpoint save_top_k 3 and EarlyStopping patience 15 on val_pearson_corr_epoch",
+      "effective": "the full 100-epoch curve is recorded for every inner unit; refit stops at the selected epoch while retaining the full 100-epoch cosine schedule horizon",
+      "decision": "project selection rule"
+    },
+    {
+      "item": "upstream checkout form",
+      "official_yaml": "git repository at the pinned commit",
+      "effective": "archive extracted from codeload for 7a657cc; integrity by git blob hash of each required file against the pinned tree, because the partial-clone blob fetch did not complete on this link",
+      "decision": "verification is content-based and recorded in provenance.json"
+    },
+    {
+      "item": "attention backend at 1279 markers",
+      "official_yaml": "attention type flash_attention; mlenv.yml installs flash-attn",
+      "effective": "flash-attn 2.8.3.post2 (+cu12, torch 2.7, cp312) installed into the read-only overlay. With it importable the upstream factory selects the FlashAttention class; its own kernels reject the dtypes used here and fall back at run time (24 fallback warnings in the 2-epoch probe) to a manual masked attention that stays finite. Without it the factory builds StandardAttention, whose nn.MultiheadAttention returns NaN for the fully masked remainder chunk because 1279 = 19*64 + 63. NaN is precision- and device-independent (bf16-mixed and 32-true, CPU and CUDA), and 1216/1280/1344 markers are finite, so the published marker count is unusable on the no-flash_attn branch but the attention mathematics is standard in both cases",
+      "decision": "keep the upstream attention configuration and supply the package it assumes; NaN is precision- and device-independent, so it is not a bf16 or GPU defect"
+    },
+    {
+      "item": "pretrained weights",
+      "official_yaml": "none published (no release, no tag, no checkpoint in the repository or on Hugging Face)",
+      "effective": "every stage is trained from the pinned code in this project environment",
+      "decision": "required for reproduction"
+    },
+    {
+      "item": "python and torch build",
+      "official_yaml": "mlenv.yml python 3.10 with torch 2.8.0+cu128; environment.yml is an unrelated cpu export (cropformer, torch 2.5.1)",
+      "effective": "reuse of boltz2 (python 3.12.15, torch 2.7.1+cu128) with an overlay supplying entmax and flash-attn; torch is one minor version behind upstream mlenv",
+      "decision": "shared environments are not modified; xformers, Pgenlib, mamba, lion-pytorch and pot are absent on this execution path"
+    }
+  ],
+  "runner_sha256": "0ae047074f4e5bf3f6b546fbeacc948f30d7a65b6e6626bbf589f3fbef98edce"
+}

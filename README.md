@@ -1,6 +1,6 @@
 # Wheat599 植物基因组表型预测研究
 
-目标是构建具有原创性、并在公平比较中超过现有强方法的神经网络；Wheat599 用于快速开发，后续数据集待用户提供 SSH 算力后扩展。LCM-GP 及六项对照已完成，未超过 ICM；位点保留背景网络本轮开发条件未通过，已结束且未进入外层。DNAwhisper 同协议开发选模已完成，继续冻结后的外层评价，尚无正式外层成绩。结果见 [docs/RESULTS.md](docs/RESULTS.md)，当前执行与 AIA 分工见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
+目标是构建具有原创性、并在公平比较中超过现有强方法的神经网络；Wheat599 用于快速开发，后续数据集待用户提供 SSH 算力后扩展。LCM-GP 及六项对照已完成，未超过 ICM；位点保留背景网络本轮开发条件未通过，已结束且未进入外层。DNAwhisper 同协议外层评价已完成，折均宏 PCC 0.35484，未超过 ICM。结果见 [docs/RESULTS.md](docs/RESULTS.md)，当前执行与 AIA 分工见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
 按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。
 
