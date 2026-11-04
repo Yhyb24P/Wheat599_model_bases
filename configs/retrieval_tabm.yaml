@@ -1,0 +1,39 @@
+model: retrieval_tabm
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+reference: results/robust_icm_development_20261103/development_comparison.csv
+device: cuda
+dtype: float32
+cpu_threads: 2
+gpu_memory_fraction: 0.5
+seeds: [42, 2026]
+outer_folds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+variants: [raw, retrieval, single_retrieval]
+# Fixed before formal execution; one list shared by all three arms.
+# single_retrieval overrides k to 1; raw ignores context_size.
+configurations:
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, context_size: 8, learning_rate: 0.0005, weight_decay: 0.0003}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, context_size: 32, learning_rate: 0.002, weight_decay: 0.01}
+  - {n_blocks: 2, d_block: 128, dropout: 0.0, k: 16, context_size: 8, learning_rate: 0.0005, weight_decay: 0.0003}
+  - {n_blocks: 2, d_block: 128, dropout: 0.1, k: 32, context_size: 32, learning_rate: 0.002, weight_decay: 0.01}
+  - {n_blocks: 2, d_block: 256, dropout: 0.2, k: 32, context_size: 8, learning_rate: 0.0005, weight_decay: 0.01}
+  - {n_blocks: 3, d_block: 128, dropout: 0.2, k: 16, context_size: 32, learning_rate: 0.002, weight_decay: 0.0003}
+  - {n_blocks: 4, d_block: 256, dropout: 0.1, k: 16, context_size: 8, learning_rate: 0.0005, weight_decay: 0.0003}
+  - {n_blocks: 4, d_block: 128, dropout: 0.0, k: 32, context_size: 32, learning_rate: 0.002, weight_decay: 0.01}
+training:
+  max_epochs: 500
+  patience: 50
+  batch_size: 128
+  eval_batch_size: 256
+  gradient_clip: 5.0
+  tie_tolerance: 1.0e-12
+selection_metric: seed_prediction_ensemble_macro_pcc
+efficiency:
+  batch_size: 128
+  warmup: 10
+  repeats: 50
+  include_preprocessing: true
+versions:
+  tabm: 0.0.3
+  rtdl_num_embeddings: 0.0.12

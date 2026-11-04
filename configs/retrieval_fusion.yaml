@@ -1,0 +1,9 @@
+model: retrieval_fusion
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+retrieval_source: results/retrieval_tabm_development_20261105
+huber_selection: results/robust_icm_development_20261103/selection.json
+outer_folds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+cpu_threads: 2
+weights: [0.0, 0.25, 0.5, 0.75, 1.0]
