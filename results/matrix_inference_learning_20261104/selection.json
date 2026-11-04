@@ -1,0 +1,112 @@
+{
+  "config": {
+    "model": "matrix_inference",
+    "device": "cpu",
+    "gpu_memory_fraction": 0.2,
+    "cpu_threads": 2,
+    "variants": [
+      "matrix",
+      "direct"
+    ],
+    "seeds": [
+      42,
+      2026
+    ],
+    "network": {
+      "width": 32,
+      "layers": 4,
+      "psi_hidden": 64,
+      "gate_hidden": 64,
+      "moment_scale": "n",
+      "query_scale": "one"
+    },
+    "tasks": {
+      "context_sizes": [
+        64,
+        128,
+        359
+      ],
+      "marker_counts": [
+        128,
+        512,
+        1279
+      ],
+      "query_size": 8,
+      "environments": 4,
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise",
+        "hidden_additive"
+      ],
+      "designs": [
+        "independent",
+        "linked"
+      ],
+      "block_size": 8,
+      "active_counts": [
+        1,
+        4,
+        16
+      ],
+      "pair_counts": [
+        1,
+        4,
+        16
+      ],
+      "heritability_range": [
+        0.1,
+        0.8
+      ]
+    },
+    "training": {
+      "steps": 4000,
+      "evaluate_every": 500,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.01,
+      "gradient_clip": 1.0,
+      "task_seed": 1000000,
+      "validation_seed": 500000000,
+      "tasks_per_family": 8
+    },
+    "held_out": {
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise"
+      ],
+      "seed": 900000000,
+      "tasks_per_family": 8
+    }
+  },
+  "selected": [
+    {
+      "variant": "matrix",
+      "seed": 42,
+      "step": 4000,
+      "validation_mse": 0.3448895688634366,
+      "checkpoint_sha256": "09be932e3c86f954c3214696385bc32f34da99dd5cf7f714ac26e0356b7175ed"
+    },
+    {
+      "variant": "matrix",
+      "seed": 2026,
+      "step": 4000,
+      "validation_mse": 0.3497047908604145,
+      "checkpoint_sha256": "8c4ac599026d93a3e9db8a4f1b9c803238b68ba4ed28e2edec7f6b0ff64d0345"
+    },
+    {
+      "variant": "direct",
+      "seed": 42,
+      "step": 4000,
+      "validation_mse": 0.4201516837347299,
+      "checkpoint_sha256": "30c18195a70605b5aa986751b3ee9fbc608ec327f3ef55894703862233064015"
+    },
+    {
+      "variant": "direct",
+      "seed": 2026,
+      "step": 3500,
+      "validation_mse": 0.41961417300626636,
+      "checkpoint_sha256": "4816e2d527e38e23cd59c6521d7d510867ee353ba1f64d474056e1fa0dbceafc"
+    }
+  ]
+}

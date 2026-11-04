@@ -1,0 +1,119 @@
+{
+  "scope": "Independent synthetic tasks; no Wheat599 scores",
+  "runs": 4,
+  "failures": [],
+  "device": "cpu",
+  "total_training_seconds": 289.11232093099534,
+  "variants": {
+    "matrix": {
+      "parameters": 22308,
+      "selected_steps": {
+        "42": 4000,
+        "2026": 4000
+      },
+      "validation_tasks": {
+        "mean_mse": 0.34729717986192554,
+        "context_mean_mse": 0.4160600584000349,
+        "per_seed_mse": {
+          "42": 0.3448895688634366,
+          "2026": 0.3497047908604145
+        },
+        "per_family": {
+          "dense_additive": {
+            "mse": 0.45378459338098764,
+            "context_mean_mse": 0.5288513097912073
+          },
+          "hidden_additive": {
+            "mse": 0.19387534772977233,
+            "context_mean_mse": 0.3546133618801832
+          },
+          "pairwise": {
+            "mse": 0.43461624812334776,
+            "context_mean_mse": 0.39606788381934166
+          },
+          "sparse_additive": {
+            "mse": 0.30691253021359444,
+            "context_mean_mse": 0.3847076781094074
+          }
+        }
+      },
+      "held_out_tasks": {
+        "mean_mse": 0.9064540526208779,
+        "context_mean_mse": 0.41268988357235986,
+        "per_seed_mse": {
+          "42": 1.2706911076481144,
+          "2026": 0.5422169975936413
+        },
+        "per_family": {
+          "dense_additive": {
+            "mse": 1.7319614430889487,
+            "context_mean_mse": 0.4336892031133175
+          },
+          "pairwise": {
+            "mse": 0.6075835125520825,
+            "context_mean_mse": 0.49080432020127773
+          },
+          "sparse_additive": {
+            "mse": 0.3798172022216022,
+            "context_mean_mse": 0.3135761274024844
+          }
+        }
+      }
+    },
+    "direct": {
+      "parameters": 76036,
+      "selected_steps": {
+        "42": 4000,
+        "2026": 3500
+      },
+      "validation_tasks": {
+        "mean_mse": 0.4198829283704981,
+        "context_mean_mse": 0.4160600584000349,
+        "per_seed_mse": {
+          "42": 0.4201516837347299,
+          "2026": 0.41961417300626636
+        },
+        "per_family": {
+          "dense_additive": {
+            "mse": 0.5337099432945251,
+            "context_mean_mse": 0.5288513097912073
+          },
+          "hidden_additive": {
+            "mse": 0.3586311722174287,
+            "context_mean_mse": 0.3546133618801832
+          },
+          "pairwise": {
+            "mse": 0.39689670177176595,
+            "context_mean_mse": 0.39606788381934166
+          },
+          "sparse_additive": {
+            "mse": 0.3902938961982727,
+            "context_mean_mse": 0.3847076781094074
+          }
+        }
+      },
+      "held_out_tasks": {
+        "mean_mse": 0.4137963065877557,
+        "context_mean_mse": 0.41268988357235986,
+        "per_seed_mse": {
+          "42": 0.41534235142171383,
+          "2026": 0.41225026175379753
+        },
+        "per_family": {
+          "dense_additive": {
+            "mse": 0.42710120789706707,
+            "context_mean_mse": 0.4336892031133175
+          },
+          "pairwise": {
+            "mse": 0.4910445036366582,
+            "context_mean_mse": 0.49080432020127773
+          },
+          "sparse_additive": {
+            "mse": 0.3232432082295418,
+            "context_mean_mse": 0.3135761274024844
+          }
+        }
+      }
+    }
+  }
+}

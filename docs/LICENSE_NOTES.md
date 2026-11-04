@@ -11,6 +11,15 @@
 
 ## 代码与权重
 
+材料—位点推断及普通上下文对照的四个 checkpoint 由本项目独立模拟任务训练，未使用第三方预训练权重，未指定独立权重分发许可；仅保留本地，不入 Git。训练来源 `e3c7369`，目录 `results/matrix_inference_learning_20261104/`：
+
+| 本地文件 | SHA-256 |
+|---|---|
+| `matrix_42.pt` | `09be932e3c86f954c3214696385bc32f34da99dd5cf7f714ac26e0356b7175ed` |
+| `matrix_2026.pt` | `8c4ac599026d93a3e9db8a4f1b9c803238b68ba4ed28e2edec7f6b0ff64d0345` |
+| `direct_42.pt` | `30c18195a70605b5aa986751b3ee9fbc608ec327f3ef55894703862233064015` |
+| `direct_2026.pt` | `4816e2d527e38e23cd59c6521d7d510867ee353ba1f64d474056e1fa0dbceafc` |
+
 DNAwhisper 从外部固定源码 `Marxin1992/Whisperer_of_DNA@7a657cc00d44263c4b1085d3991ecc0e935c14e5` 加载，2026-11-04 核对本地固定副本的 `LICENSE` 为 Apache-2.0；本仓库只提交协议适配器，不复制上游代码或权重。所导入源码及配置的 Git blob 摘要固定在 `configs/dnawhisper_nested.yaml`，运行时逐项核验。没有使用上游预训练权重，各折从头执行训练子集内预训练；如后续保存本项目权重，权重不入 Git，其 SHA 另行记录。
 
 MoEGP 官方仓库在提交 `d3a3c44f649fadf95af34d63f069fc8dfd85af38` 未发现许可证文件；本项目从本地官方副本加载代码，不复制或重新分发该源码。

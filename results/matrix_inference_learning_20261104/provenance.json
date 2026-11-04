@@ -1,0 +1,94 @@
+{
+  "config": {
+    "model": "matrix_inference",
+    "device": "cpu",
+    "gpu_memory_fraction": 0.2,
+    "cpu_threads": 2,
+    "variants": [
+      "matrix",
+      "direct"
+    ],
+    "seeds": [
+      42,
+      2026
+    ],
+    "network": {
+      "width": 32,
+      "layers": 4,
+      "psi_hidden": 64,
+      "gate_hidden": 64,
+      "moment_scale": "n",
+      "query_scale": "one"
+    },
+    "tasks": {
+      "context_sizes": [
+        64,
+        128,
+        359
+      ],
+      "marker_counts": [
+        128,
+        512,
+        1279
+      ],
+      "query_size": 8,
+      "environments": 4,
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise",
+        "hidden_additive"
+      ],
+      "designs": [
+        "independent",
+        "linked"
+      ],
+      "block_size": 8,
+      "active_counts": [
+        1,
+        4,
+        16
+      ],
+      "pair_counts": [
+        1,
+        4,
+        16
+      ],
+      "heritability_range": [
+        0.1,
+        0.8
+      ]
+    },
+    "training": {
+      "steps": 4000,
+      "evaluate_every": 500,
+      "learning_rate": 0.0003,
+      "weight_decay": 0.01,
+      "gradient_clip": 1.0,
+      "task_seed": 1000000,
+      "validation_seed": 500000000,
+      "tasks_per_family": 8
+    },
+    "held_out": {
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise"
+      ],
+      "seed": 900000000,
+      "tasks_per_family": 8
+    }
+  },
+  "git_commit": "e3c7369ee7b2b7087809bc57f030ff623faa1cea",
+  "source_sha256": {
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_training.py": "2e177dbb323a5d03787c71ed20504d7ad839d7777d2976829c7e4951c0931017",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_tasks.py": "0343f8c8ebf1d6ab6bf6e2745bea19561cf216958120b4def948602ff7e0a388",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_inference.py": "332fdaaa59c87b888ad8f80c107680964fc88e6c2f71e3b83214b1dac6eac282",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/posterior_direct.py": "9f9de8d46fd9bc73b5ce491c9a62da8c92889d879771fb0e597a1f7d672c194d",
+    "/home/yhshy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "f7c5e7e0d07468597515a6e7fb4e28c14be3d9a7072560cac7cb5953e47543e3"
+  },
+  "torch_version": "2.7.1+cu128",
+  "device": "cpu",
+  "scope": "Synthetic tasks only; no Wheat599 genotype or phenotype read",
+  "selection": "Lowest synthetic validation MSE; earliest checkpoint wins ties; held-out admixture panel scored once after selection"
+}
