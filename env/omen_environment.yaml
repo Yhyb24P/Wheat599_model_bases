@@ -18,6 +18,8 @@ versions:
   scikit_learn: "1.9.1"
   pandas: "3.1.0"
   pyyaml: "6.0.3"
+  tabm: "0.0.3"
+  rtdl_num_embeddings: "0.0.12"
 
 # Read-only existing resources; no use in the current synthetic experiment.
 existing_project: /mnt/Project2/at_pheno

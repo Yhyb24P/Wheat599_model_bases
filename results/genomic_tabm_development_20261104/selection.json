@@ -1,0 +1,202 @@
+{
+  "0": {
+    "raw": {
+      "config_index": 0,
+      "validation_pcc": 0.4922537298976975,
+      "validation_metrics": {
+        "pcc": 0.4922537298976975,
+        "rmse": 0.8775917078000673,
+        "mae": 0.680403468934735
+      }
+    },
+    "grouped_additive": {
+      "config_index": 2,
+      "validation_pcc": 0.4577506098116142,
+      "validation_metrics": {
+        "pcc": 0.4577506098116142,
+        "rmse": 0.9051882044745029,
+        "mae": 0.7011127888321703
+      }
+    }
+  },
+  "1": {
+    "raw": {
+      "config_index": 0,
+      "validation_pcc": 0.4966869793238285,
+      "validation_metrics": {
+        "pcc": 0.4966869793238285,
+        "rmse": 0.8737082032999183,
+        "mae": 0.6745705542826256
+      }
+    },
+    "grouped_additive": {
+      "config_index": 1,
+      "validation_pcc": 0.47189887997946806,
+      "validation_metrics": {
+        "pcc": 0.47189887997946806,
+        "rmse": 0.8893155474928572,
+        "mae": 0.6868981040970975
+      }
+    }
+  },
+  "2": {
+    "raw": {
+      "config_index": 1,
+      "validation_pcc": 0.47741485751650004,
+      "validation_metrics": {
+        "pcc": 0.47741485751650004,
+        "rmse": 0.8872014552338375,
+        "mae": 0.685540667446597
+      }
+    },
+    "grouped_additive": {
+      "config_index": 3,
+      "validation_pcc": 0.45886753185517887,
+      "validation_metrics": {
+        "pcc": 0.45886753185517887,
+        "rmse": 0.899310655967534,
+        "mae": 0.6979599251173427
+      }
+    }
+  },
+  "3": {
+    "raw": {
+      "config_index": 2,
+      "validation_pcc": 0.4961721334754863,
+      "validation_metrics": {
+        "pcc": 0.4961721334754863,
+        "rmse": 0.8779881767743701,
+        "mae": 0.6792472654481904
+      }
+    },
+    "grouped_additive": {
+      "config_index": 2,
+      "validation_pcc": 0.4667426113695488,
+      "validation_metrics": {
+        "pcc": 0.4667426113695488,
+        "rmse": 0.8943067427479873,
+        "mae": 0.692436857184125
+      }
+    }
+  },
+  "4": {
+    "raw": {
+      "config_index": 1,
+      "validation_pcc": 0.4684877829733501,
+      "validation_metrics": {
+        "pcc": 0.4684877829733501,
+        "rmse": 0.8832871223312945,
+        "mae": 0.6851077714763285
+      }
+    },
+    "grouped_additive": {
+      "config_index": 2,
+      "validation_pcc": 0.440425622325965,
+      "validation_metrics": {
+        "pcc": 0.440425622325965,
+        "rmse": 0.9052222079688373,
+        "mae": 0.7042439683460983
+      }
+    }
+  },
+  "5": {
+    "raw": {
+      "config_index": 3,
+      "validation_pcc": 0.4493331374219863,
+      "validation_metrics": {
+        "pcc": 0.4493331374219863,
+        "rmse": 0.8950208207560234,
+        "mae": 0.6945692589266148
+      }
+    },
+    "grouped_additive": {
+      "config_index": 3,
+      "validation_pcc": 0.42654441789860426,
+      "validation_metrics": {
+        "pcc": 0.42654441789860426,
+        "rmse": 0.9076720570693646,
+        "mae": 0.706885785322169
+      }
+    }
+  },
+  "6": {
+    "raw": {
+      "config_index": 1,
+      "validation_pcc": 0.5014628639648616,
+      "validation_metrics": {
+        "pcc": 0.5014628639648616,
+        "rmse": 0.8579166233244404,
+        "mae": 0.6618660824095501
+      }
+    },
+    "grouped_additive": {
+      "config_index": 2,
+      "validation_pcc": 0.47414254863232896,
+      "validation_metrics": {
+        "pcc": 0.47414254863232896,
+        "rmse": 0.8754858360258284,
+        "mae": 0.6749834115430344
+      }
+    }
+  },
+  "7": {
+    "raw": {
+      "config_index": 3,
+      "validation_pcc": 0.4581448213868307,
+      "validation_metrics": {
+        "pcc": 0.4581448213868307,
+        "rmse": 0.8882239972278666,
+        "mae": 0.6824167151899379
+      }
+    },
+    "grouped_additive": {
+      "config_index": 3,
+      "validation_pcc": 0.4179423614037674,
+      "validation_metrics": {
+        "pcc": 0.4179423614037674,
+        "rmse": 0.9066829063770294,
+        "mae": 0.6969798113748231
+      }
+    }
+  },
+  "8": {
+    "raw": {
+      "config_index": 3,
+      "validation_pcc": 0.47243117038353527,
+      "validation_metrics": {
+        "pcc": 0.47243117038353527,
+        "rmse": 0.8871547385002323,
+        "mae": 0.6838545274618251
+      }
+    },
+    "grouped_additive": {
+      "config_index": 2,
+      "validation_pcc": 0.4409150469166668,
+      "validation_metrics": {
+        "pcc": 0.4409150469166668,
+        "rmse": 0.9079908361526613,
+        "mae": 0.7009108045848311
+      }
+    }
+  },
+  "9": {
+    "raw": {
+      "config_index": 1,
+      "validation_pcc": 0.476792753261178,
+      "validation_metrics": {
+        "pcc": 0.476792753261178,
+        "rmse": 0.8809241960580027,
+        "mae": 0.678308577828604
+      }
+    },
+    "grouped_additive": {
+      "config_index": 2,
+      "validation_pcc": 0.4645970546055515,
+      "validation_metrics": {
+        "pcc": 0.4645970546055515,
+        "rmse": 0.8920862206254312,
+        "mae": 0.6894722495535226
+      }
+    }
+  }
+}

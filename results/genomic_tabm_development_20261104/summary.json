@@ -1,0 +1,131 @@
+{
+  "code_commit": "8c30ca91c64b6a9773d88f2fb9068d4cadf65be1",
+  "scope": "Selected inner-development metrics; not outer-test scores",
+  "trajectories": 480,
+  "failures": 0,
+  "trajectory_json_sha256": "c2e6e24a02d0b136662c50573ddf3c398fab7467394f663761003f480e8ec701",
+  "variants": {
+    "raw": {
+      "selected_metrics": {
+        "pcc": 0.47891802296052544,
+        "rmse": 0.8809017041306053,
+        "mae": 0.6805884889405008
+      },
+      "per_seed_pcc": {
+        "42": 0.48077032355617105,
+        "2026": 0.4770657223648798
+      },
+      "per_environment": {
+        "1": {
+          "pcc": 0.5485751969556355,
+          "rmse": 0.8382669482605689,
+          "mae": 0.6621528970787723
+        },
+        "2": {
+          "pcc": 0.47665508626517217,
+          "rmse": 0.8825973850340005,
+          "mae": 0.6725955914691679
+        },
+        "4": {
+          "pcc": 0.40481978573196425,
+          "rmse": 0.923772141192667,
+          "mae": 0.7111010658886324
+        },
+        "5": {
+          "pcc": 0.48562202288932965,
+          "rmse": 0.8789703420351848,
+          "mae": 0.6765044013254304
+        }
+      },
+      "selected_best_epoch_median": 22.5,
+      "selected_epoch0_count": 0,
+      "selected_epochs_run_median": 72.5,
+      "parameters": [
+        597856
+      ],
+      "inference_ms_median": 0.42763556997670094,
+      "train_and_validation_seconds_median": 0.4434410909998405,
+      "preprocessing_seconds_median": 0.015087168001628015,
+      "train_seconds_per_epoch_median": 0.0061130757527789285,
+      "total_allocated_peak_mib_median": 98.69580078125,
+      "initialization_pcc_mean": -0.005072777610438161,
+      "per_fold_pcc": [
+        0.4922537298976975,
+        0.4966869793238285,
+        0.47741485751650004,
+        0.4961721334754863,
+        0.4684877829733501,
+        0.4493331374219863,
+        0.5014628639648616,
+        0.4581448213868307,
+        0.47243117038353527,
+        0.476792753261178
+      ]
+    },
+    "grouped_additive": {
+      "selected_metrics": {
+        "pcc": 0.4519826684798694,
+        "rmse": 0.8983261214902034,
+        "mae": 0.6951883705955214
+      },
+      "per_seed_pcc": {
+        "42": 0.45419085232062256,
+        "2026": 0.44977448463911623
+      },
+      "per_environment": {
+        "1": {
+          "pcc": 0.519056126625794,
+          "rmse": 0.8574910038894507,
+          "mae": 0.6787513582361662
+        },
+        "2": {
+          "pcc": 0.46901301736792933,
+          "rmse": 0.8883137867468371,
+          "mae": 0.6779126077387946
+        },
+        "4": {
+          "pcc": 0.37386127553728665,
+          "rmse": 0.942706843053918,
+          "mae": 0.7284874042568491
+        },
+        "5": {
+          "pcc": 0.4460002543884676,
+          "rmse": 0.9047928522706078,
+          "mae": 0.6956021121502757
+        }
+      },
+      "selected_best_epoch_median": 15.5,
+      "selected_epoch0_count": 1,
+      "selected_epochs_run_median": 65.5,
+      "parameters": [
+        313468
+      ],
+      "inference_ms_median": 0.33189204998052446,
+      "train_and_validation_seconds_median": 0.4044189270007337,
+      "preprocessing_seconds_median": 0.010522643498916295,
+      "train_seconds_per_epoch_median": 0.006216627655316819,
+      "total_allocated_peak_mib_median": 81.0947265625,
+      "initialization_pcc_mean": 0.43572270851039363,
+      "per_fold_pcc": [
+        0.4577506098116142,
+        0.47189887997946806,
+        0.45886753185517887,
+        0.4667426113695488,
+        0.440425622325965,
+        0.42654441789860426,
+        0.47414254863232896,
+        0.4179423614037674,
+        0.4409150469166668,
+        0.4645970546055515
+      ]
+    }
+  },
+  "reference": {
+    "squared_pcc": 0.47447789504668136,
+    "huber_pcc": 0.4810826216656816,
+    "squared_rmse": 0.8819403354094292,
+    "huber_rmse": 0.8775941358988735
+  },
+  "raw_beats_huber_folds": 4,
+  "adapted_beats_raw_folds": 0
+}

@@ -21,3 +21,6 @@ results/**/predictions/*.npy
 .qoder/
 .idea/
 .vscode/
+
+# Raw runtime copy; exact compressed archive is committed.
+results/genomic_tabm_development_20261104/trajectories.json
