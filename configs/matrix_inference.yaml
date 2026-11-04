@@ -1,0 +1,39 @@
+model: matrix_inference
+# Preparation budget: synthetic learnability only. No real-data scoring here.
+device: cpu
+gpu_memory_fraction: 0.20
+cpu_threads: 2
+variants: [matrix, direct]
+seeds: [42, 2026]
+network:
+  width: 32
+  layers: 4
+  psi_hidden: 64
+  gate_hidden: 64
+  moment_scale: n
+  query_scale: one
+tasks:
+  context_sizes: [64, 128, 359]
+  marker_counts: [128, 512, 1279]
+  query_size: 8
+  environments: 4
+  families: [dense_additive, sparse_additive, pairwise, hidden_additive]
+  designs: [independent, linked]
+  block_size: 8
+  active_counts: [1, 4, 16]
+  pair_counts: [1, 4, 16]
+  heritability_range: [0.1, 0.8]
+training:
+  steps: 4000
+  evaluate_every: 500
+  learning_rate: 0.0003
+  weight_decay: 0.01
+  gradient_clip: 1.0
+  task_seed: 1000000
+  validation_seed: 500000000
+  tasks_per_family: 8
+held_out:
+  # Entirely untrained population-structure family; not used to pick checkpoints.
+  families: [dense_additive, sparse_additive, pairwise]
+  seed: 900000000
+  tasks_per_family: 8
