@@ -1,0 +1,199 @@
+{
+  "source": {
+    "predictions_sha256": "9974052ee4fcaf91264b33c0443b27b569f80b00668ce385e6f02651e471882c",
+    "trajectories_sha256": "588fe17af1764171f0adf4a3af32c55949e4f8e82b2455258c951397231983f2",
+    "predictions_path": "/home/hsy/git_files/Wheat599_model_bases/results/retrieval_tabm_development_20261105/predictions.csv",
+    "trajectories_path": "/home/hsy/git_files/Wheat599_model_bases/results/retrieval_tabm_development_20261105/trajectories.json",
+    "fusion_selection_sha256": "66dd1c780ddb7733ea81fc3cb1d9d623d0907fcff13d413b0c016c1f9c1361c8",
+    "note": "Large artifacts stay on the remote checkout and are not tracked by Git"
+  },
+  "definitions": {
+    "seed_ensemble": "per inner: average the member-mean predictions over seeds, then macro-over-environments metrics, averaged over the 30 inner units",
+    "seed_mean_from_runner": "mean of per-seed scores recorded by the runner; not an ensemble metric and not comparable to fusion RMSE",
+    "fusion": "weight * raw_seed_ensemble + (1 - weight) * icm, weight chosen per fold"
+  },
+  "metrics": {
+    "raw": {
+      "seed_ensemble": {
+        "pcc": 0.48538915937109106,
+        "rmse": 0.8763461077046701,
+        "mae": 0.6762372820183976
+      },
+      "seed_mean_from_runner": {
+        "pcc": 0.48192614733747724,
+        "rmse": 0.8789661738309403,
+        "mae": 0.6785587150123779
+      }
+    },
+    "retrieval": {
+      "seed_ensemble": {
+        "pcc": 0.48401407914868055,
+        "rmse": 0.8779282051516503,
+        "mae": 0.6750834229654245
+      },
+      "seed_mean_from_runner": {
+        "pcc": 0.4799800028737183,
+        "rmse": 0.8816718249629736,
+        "mae": 0.678171740179032
+      }
+    },
+    "single_retrieval": {
+      "seed_ensemble": {
+        "pcc": 0.4869634417638043,
+        "rmse": 0.8830026723024371,
+        "mae": 0.6794855689825924
+      },
+      "seed_mean_from_runner": {
+        "pcc": 0.4603410260015052,
+        "rmse": 0.9096806035807294,
+        "mae": 0.7019246167627564
+      }
+    },
+    "fusion": {
+      "seed_ensemble": {
+        "pcc": 0.49044300213514275,
+        "rmse": 0.8718562485122173,
+        "mae": 0.6724397733238693
+      },
+      "seed_mean_from_runner": {
+        "pcc": null,
+        "rmse": null,
+        "mae": null
+      }
+    }
+  },
+  "paired_wins_of_30_units": {
+    "retrieval_vs_raw": 12,
+    "retrieval_vs_fusion": 8,
+    "single_retrieval_vs_raw": 16,
+    "single_retrieval_vs_fusion": 13
+  },
+  "per_fold_pcc": [
+    {
+      "fold": 0,
+      "raw_pcc": 0.5003270470772109,
+      "retrieval_pcc": 0.49750965824566024,
+      "single_retrieval_pcc": 0.496830058118812,
+      "fusion_pcc": 0.5048854229663777
+    },
+    {
+      "fold": 1,
+      "raw_pcc": 0.5020277843937865,
+      "retrieval_pcc": 0.4961492009847654,
+      "single_retrieval_pcc": 0.49265518795604235,
+      "fusion_pcc": 0.5065337416686875
+    },
+    {
+      "fold": 2,
+      "raw_pcc": 0.4822625070961473,
+      "retrieval_pcc": 0.4877851225589839,
+      "single_retrieval_pcc": 0.5007673121639782,
+      "fusion_pcc": 0.4903683275105166
+    },
+    {
+      "fold": 3,
+      "raw_pcc": 0.5010251353686472,
+      "retrieval_pcc": 0.49422327902575414,
+      "single_retrieval_pcc": 0.5020997043576635,
+      "fusion_pcc": 0.5024879527482347
+    },
+    {
+      "fold": 4,
+      "raw_pcc": 0.47387459067940624,
+      "retrieval_pcc": 0.4805656447567279,
+      "single_retrieval_pcc": 0.4866613754199979,
+      "fusion_pcc": 0.4800146893914146
+    },
+    {
+      "fold": 5,
+      "raw_pcc": 0.45610188063066714,
+      "retrieval_pcc": 0.4590723000018583,
+      "single_retrieval_pcc": 0.4678061271920824,
+      "fusion_pcc": 0.47062214653427337
+    },
+    {
+      "fold": 6,
+      "raw_pcc": 0.5084851150051677,
+      "retrieval_pcc": 0.4981067708390849,
+      "single_retrieval_pcc": 0.4991457348923908,
+      "fusion_pcc": 0.5107012856331764
+    },
+    {
+      "fold": 7,
+      "raw_pcc": 0.46601663119415726,
+      "retrieval_pcc": 0.4750341659942583,
+      "single_retrieval_pcc": 0.47020705805853413,
+      "fusion_pcc": 0.4696465719494078
+    },
+    {
+      "fold": 8,
+      "raw_pcc": 0.48036307781777243,
+      "retrieval_pcc": 0.4826875937574511,
+      "single_retrieval_pcc": 0.47800721218205006,
+      "fusion_pcc": 0.481836039911992
+    },
+    {
+      "fold": 9,
+      "raw_pcc": 0.4834078244479488,
+      "retrieval_pcc": 0.46900705532226145,
+      "single_retrieval_pcc": 0.4754546472964917,
+      "fusion_pcc": 0.4873338430373474
+    }
+  ],
+  "cost": {
+    "raw": {
+      "trajectories": 480,
+      "epochs_min_median_max": [
+        56,
+        71.0,
+        210
+      ],
+      "train_seconds_median": 0.35502675650059246,
+      "inference_ms_median": 0.3364167299878318,
+      "peak_increment_mib_median": 49.9501953125,
+      "chosen_config_counts": {
+        "1": 1,
+        "3": 1,
+        "5": 1,
+        "6": 1,
+        "7": 6
+      }
+    },
+    "retrieval": {
+      "trajectories": 480,
+      "epochs_min_median_max": [
+        54,
+        67.0,
+        378
+      ],
+      "train_seconds_median": 1.7200344194970967,
+      "inference_ms_median": 3.681682949973037,
+      "peak_increment_mib_median": 333.989990234375,
+      "chosen_config_counts": {
+        "1": 2,
+        "2": 1,
+        "3": 5,
+        "5": 2
+      }
+    },
+    "single_retrieval": {
+      "trajectories": 480,
+      "epochs_min_median_max": [
+        52,
+        58.0,
+        232
+      ],
+      "train_seconds_median": 0.5186560244983411,
+      "inference_ms_median": 0.6772212600480998,
+      "peak_increment_mib_median": 19.934814453125,
+      "chosen_config_counts": {
+        "1": 5,
+        "3": 2,
+        "5": 2,
+        "7": 1
+      }
+    }
+  },
+  "failures": 0,
+  "budget_completed": 1440
+}

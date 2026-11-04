@@ -1,0 +1,163 @@
+{
+  "config": {
+    "model": "retrieval_tabm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "reference": "results/robust_icm_development_20261103/development_comparison.csv",
+    "device": "cuda",
+    "dtype": "float32",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.5,
+    "seeds": [
+      42,
+      2026
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "variants": [
+      "raw",
+      "retrieval",
+      "single_retrieval"
+    ],
+    "configurations": [
+      {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 8,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "context_size": 8,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 256,
+        "dropout": 0.2,
+        "k": 32,
+        "context_size": 8,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 4,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 16,
+        "context_size": 8,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      }
+    ],
+    "training": {
+      "max_epochs": 500,
+      "patience": 50,
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "gradient_clip": 5.0,
+      "tie_tolerance": 1e-12
+    },
+    "selection_metric": "seed_prediction_ensemble_macro_pcc",
+    "efficiency": {
+      "batch_size": 128,
+      "warmup": 10,
+      "repeats": 50,
+      "include_preprocessing": true
+    },
+    "versions": {
+      "tabm": "0.0.3",
+      "rtdl_num_embeddings": "0.0.12"
+    }
+  },
+  "git_commit": "22faf5b9205b6d53e2aa85fa19a3063eda5f3235",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "source_sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/retrieval_run.py": "695cd286af1406b4dc7c948e0e3e4eb575332df40dfd4c672d819993bffb4aaa",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/retrieval_tabm.py": "7134bb1fb5b0606d3ad8bda5e7eb17bf8656cf565dad9c2c8d012a3447fa34e7",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/genomic_tabm.py": "0d4d40bb138d21a4ebb1374f123b34f0c7df3a1c9f0226b2c7843fe308461031",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/data.py": "6c17f9df2994733738bc0b6d16f43ec65908aacb432c6e8192307bb5ec3acade",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/metrics.py": "efcb4f8b1fd9cfc1735c2b43906027bc43ec03c59f4f2f296ef303a53e6176a2",
+    "configs/retrieval_tabm.yaml": "e5beed1d777809316bdcecaf35a072a2dc66816bc97246da01828c9ba2f83fe8",
+    "/home/hsy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "d6e12d2f26b0d97f0277d08ff587f86d5c83b1a9930cb8bb2108472670a02e49"
+  },
+  "torch_version": "2.14.1+cu130",
+  "numpy_version": "2.5.3",
+  "package_versions": {
+    "tabm": "0.0.3",
+    "rtdl_num_embeddings": "0.0.12"
+  },
+  "model_source": {
+    "tabm": {
+      "path": "/home/hsy/venvs/wheat599/lib/python3.12/site-packages/tabm.py",
+      "sha256": "fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade"
+    },
+    "rtdl_num_embeddings": {
+      "path": "/home/hsy/venvs/wheat599/lib/python3.12/site-packages/rtdl_num_embeddings.py",
+      "sha256": "48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1"
+    }
+  },
+  "device": "cuda",
+  "budget": 1440,
+  "selection_metric": "seed_prediction_ensemble_macro_pcc",
+  "reference": {
+    "path": "results/robust_icm_development_20261103/development_comparison.csv",
+    "sha256": "22ebf0349bc1f79fcb4d6c8e712db0e90828086f95676a4c0642eb98643e306a"
+  },
+  "scope": "Development only: inner fit/val; outer test rows are never read; the retrieval library holds fit rows and their environment labels only"
+}

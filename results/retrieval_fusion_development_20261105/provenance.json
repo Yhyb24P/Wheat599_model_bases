@@ -1,0 +1,36 @@
+{
+  "config": {
+    "model": "retrieval_fusion",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "retrieval_source": "results/retrieval_tabm_development_20261105",
+    "huber_selection": "results/robust_icm_development_20261103/selection.json",
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "cpu_threads": 2,
+    "weights": [
+      0.0,
+      0.25,
+      0.5,
+      0.75,
+      1.0
+    ]
+  },
+  "scope": "conditional inner-validation selection only",
+  "source_sha256": "ab98871c290d714d1481ad8b9558e67110ff533f583d3a576eeb954321c337bd",
+  "retrieval_predictions_sha256": "9974052ee4fcaf91264b33c0443b27b569f80b00668ce385e6f02651e471882c",
+  "retrieval_selection_sha256": "15ad1164c183a82de56946565e0296c637d7937b3fee30fd97dd2ff1428e7022",
+  "huber_selection_sha256": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2"
+}

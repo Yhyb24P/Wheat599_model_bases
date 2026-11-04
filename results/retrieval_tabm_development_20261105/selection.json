@@ -1,0 +1,592 @@
+{
+  "0": {
+    "raw": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.5003270470760465,
+      "seed_mean_pcc": 0.49827363715341916,
+      "seed_mean_metrics": {
+        "pcc": 0.49827363715341916,
+        "rmse": 0.8731974795877903,
+        "mae": 0.6768759136449963
+      }
+    },
+    "retrieval": {
+      "config_index": 5,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.49750965824496785,
+      "seed_mean_pcc": 0.49077606710958505,
+      "seed_mean_metrics": {
+        "pcc": 0.49077606710958505,
+        "rmse": 0.8813899951157916,
+        "mae": 0.6789401535555567
+      }
+    },
+    "single_retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.49683005811879477,
+      "seed_mean_pcc": 0.4698710682807272,
+      "seed_mean_metrics": {
+        "pcc": 0.4698710682807272,
+        "rmse": 0.905739328487766,
+        "mae": 0.6983931962510558
+      }
+    }
+  },
+  "1": {
+    "raw": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.5020277843937976,
+      "seed_mean_pcc": 0.4982907809635229,
+      "seed_mean_metrics": {
+        "pcc": 0.4982907809635229,
+        "rmse": 0.8721501574818008,
+        "mae": 0.6724815920794563
+      }
+    },
+    "retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4961492009862425,
+      "seed_mean_pcc": 0.4934260730952595,
+      "seed_mean_metrics": {
+        "pcc": 0.4934260730952595,
+        "rmse": 0.8757606507537071,
+        "mae": 0.6726897176394907
+      }
+    },
+    "single_retrieval": {
+      "config_index": 5,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.4926551879573074,
+      "seed_mean_pcc": 0.4619433496635847,
+      "seed_mean_metrics": {
+        "pcc": 0.4619433496635846,
+        "rmse": 0.9139600013401665,
+        "mae": 0.7101100954770999
+      }
+    }
+  },
+  "2": {
+    "raw": {
+      "config_index": 5,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.4822625070984922,
+      "seed_mean_pcc": 0.4781483587315822,
+      "seed_mean_metrics": {
+        "pcc": 0.4781483587315822,
+        "rmse": 0.8853328219727089,
+        "mae": 0.6853352822416676
+      }
+    },
+    "retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4877851225602474,
+      "seed_mean_pcc": 0.48283517792311653,
+      "seed_mean_metrics": {
+        "pcc": 0.48283517792311653,
+        "rmse": 0.8885993991157938,
+        "mae": 0.6902479316868696
+      }
+    },
+    "single_retrieval": {
+      "config_index": 5,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.5007673121658479,
+      "seed_mean_pcc": 0.47595537774088365,
+      "seed_mean_metrics": {
+        "pcc": 0.47595537774088365,
+        "rmse": 0.9013659055102728,
+        "mae": 0.6982272101555903
+      }
+    }
+  },
+  "3": {
+    "raw": {
+      "config_index": 6,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 16,
+        "context_size": 8,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.5010251353663535,
+      "seed_mean_pcc": 0.49743047784172867,
+      "seed_mean_metrics": {
+        "pcc": 0.49743047784172867,
+        "rmse": 0.8789176667885217,
+        "mae": 0.6813294605015009
+      }
+    },
+    "retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.49422327902435864,
+      "seed_mean_pcc": 0.49222811115251514,
+      "seed_mean_metrics": {
+        "pcc": 0.49222811115251514,
+        "rmse": 0.8789454777434801,
+        "mae": 0.6797332896005948
+      }
+    },
+    "single_retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.5020997043596934,
+      "seed_mean_pcc": 0.4710505820053252,
+      "seed_mean_metrics": {
+        "pcc": 0.4710505820053252,
+        "rmse": 0.9045963628550702,
+        "mae": 0.6953686693856703
+      }
+    }
+  },
+  "4": {
+    "raw": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4738745906769628,
+      "seed_mean_pcc": 0.4713814792535674,
+      "seed_mean_metrics": {
+        "pcc": 0.4713814792535674,
+        "rmse": 0.8832559931440539,
+        "mae": 0.6832267454334423
+      }
+    },
+    "retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4805656447543963,
+      "seed_mean_pcc": 0.4790687778291476,
+      "seed_mean_metrics": {
+        "pcc": 0.47906877782914764,
+        "rmse": 0.8781337254389235,
+        "mae": 0.6724596020110515
+      }
+    },
+    "single_retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4866613754223179,
+      "seed_mean_pcc": 0.46960676249856154,
+      "seed_mean_metrics": {
+        "pcc": 0.4696067624985614,
+        "rmse": 0.897204836726221,
+        "mae": 0.690329075203944
+      }
+    }
+  },
+  "5": {
+    "raw": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4561018806296672,
+      "seed_mean_pcc": 0.45288435914363373,
+      "seed_mean_metrics": {
+        "pcc": 0.45288435914363373,
+        "rmse": 0.8923801122196503,
+        "mae": 0.6902050834003863
+      }
+    },
+    "retrieval": {
+      "config_index": 5,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.4590723000024132,
+      "seed_mean_pcc": 0.4527135064550187,
+      "seed_mean_metrics": {
+        "pcc": 0.45271350645501873,
+        "rmse": 0.8905101468462142,
+        "mae": 0.6849792344829159
+      }
+    },
+    "single_retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4678061271918576,
+      "seed_mean_pcc": 0.44382500457319635,
+      "seed_mean_metrics": {
+        "pcc": 0.44382500457319624,
+        "rmse": 0.9106148163186171,
+        "mae": 0.7039416385483531
+      }
+    }
+  },
+  "6": {
+    "raw": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.5084851150055226,
+      "seed_mean_pcc": 0.50506356541792,
+      "seed_mean_metrics": {
+        "pcc": 0.50506356541792,
+        "rmse": 0.8552368012468565,
+        "mae": 0.6584650867966176
+      }
+    },
+    "retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4981067708400691,
+      "seed_mean_pcc": 0.4937561273083677,
+      "seed_mean_metrics": {
+        "pcc": 0.4937561273083677,
+        "rmse": 0.8663660000753355,
+        "mae": 0.6632240337172091
+      }
+    },
+    "single_retrieval": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4991457348951667,
+      "seed_mean_pcc": 0.4639768195987535,
+      "seed_mean_metrics": {
+        "pcc": 0.4639768195987535,
+        "rmse": 0.9138854425282464,
+        "mae": 0.7065751010646895
+      }
+    }
+  },
+  "7": {
+    "raw": {
+      "config_index": 7,
+      "configuration": {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4660166311948841,
+      "seed_mean_pcc": 0.4613524414670643,
+      "seed_mean_metrics": {
+        "pcc": 0.4613524414670643,
+        "rmse": 0.8866542633453393,
+        "mae": 0.6814413090675132
+      }
+    },
+    "retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.47503416599767617,
+      "seed_mean_pcc": 0.4706509822775791,
+      "seed_mean_metrics": {
+        "pcc": 0.4706509822775791,
+        "rmse": 0.8779753416059607,
+        "mae": 0.6743738141695538
+      }
+    },
+    "single_retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.47020705806190205,
+      "seed_mean_pcc": 0.44193805050260543,
+      "seed_mean_metrics": {
+        "pcc": 0.44193805050260543,
+        "rmse": 0.9113103849986234,
+        "mae": 0.7031459599405084
+      }
+    }
+  },
+  "8": {
+    "raw": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4803630778198033,
+      "seed_mean_pcc": 0.4749474230245785,
+      "seed_mean_metrics": {
+        "pcc": 0.4749474230245785,
+        "rmse": 0.8850475626176934,
+        "mae": 0.681205963551556
+      }
+    },
+    "retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.4826875937581612,
+      "seed_mean_pcc": 0.4804929222639241,
+      "seed_mean_metrics": {
+        "pcc": 0.4804929222639241,
+        "rmse": 0.8833219771123902,
+        "mae": 0.6794641932777902
+      }
+    },
+    "single_retrieval": {
+      "config_index": 1,
+      "configuration": {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.47800721218350883,
+      "seed_mean_pcc": 0.4518528660894738,
+      "seed_mean_metrics": {
+        "pcc": 0.4518528660894738,
+        "rmse": 0.9197883379628097,
+        "mae": 0.707234411583046
+      }
+    }
+  },
+  "9": {
+    "raw": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.48340782444589453,
+      "seed_mean_pcc": 0.481488950377756,
+      "seed_mean_metrics": {
+        "pcc": 0.48148895037775613,
+        "rmse": 0.8774888799049886,
+        "mae": 0.6750207134066418
+      }
+    },
+    "retrieval": {
+      "config_index": 2,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "context_size": 8,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      "seed_ensemble_pcc": 0.4690070553220245,
+      "seed_mean_pcc": 0.4638522833226697,
+      "seed_mean_metrics": {
+        "pcc": 0.46385228332266965,
+        "rmse": 0.8957155358221379,
+        "mae": 0.6856054316492889
+      }
+    },
+    "single_retrieval": {
+      "config_index": 3,
+      "configuration": {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "context_size": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      "seed_ensemble_pcc": 0.47545464729652,
+      "seed_mean_pcc": 0.4533903790619414,
+      "seed_mean_metrics": {
+        "pcc": 0.4533903790619414,
+        "rmse": 0.918340619079502,
+        "mae": 0.7059208100176062
+      }
+    }
+  }
+}
