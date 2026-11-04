@@ -1,0 +1,38 @@
+{
+  "joint_2026.pt": {
+    "tasks_gamma_ge_half": 30,
+    "group_mean_mse": {
+      "full": 0.42578213772681617,
+      "scalar": 0.4322458215004717,
+      "diagonal": 0.4315454597163731
+    },
+    "relative_gain_vs_scalar": 0.014953721822498767,
+    "relative_gain_vs_diagonal": 0.013355075021168727,
+    "paired_win_fraction_vs_diagonal": 0.3333333333333333,
+    "floor_relative_degradation": 0.020451247557180308,
+    "thresholds": {
+      "strong_relative_gain": 0.02,
+      "direction_relative_gain": 0.005,
+      "paired_win_fraction": 0.6,
+      "zero_relative_degradation_max": 0.01
+    }
+  },
+  "joint_42.pt": {
+    "tasks_gamma_ge_half": 30,
+    "group_mean_mse": {
+      "full": 0.419953729905775,
+      "scalar": 0.42220313998916636,
+      "diagonal": 0.42208749187017053
+    },
+    "relative_gain_vs_scalar": 0.005327790985754088,
+    "relative_gain_vs_diagonal": 0.005055259882119079,
+    "paired_win_fraction_vs_diagonal": 0.3,
+    "floor_relative_degradation": 0.012285920941226491,
+    "thresholds": {
+      "strong_relative_gain": 0.02,
+      "direction_relative_gain": 0.005,
+      "paired_win_fraction": 0.6,
+      "zero_relative_degradation_max": 0.01
+    }
+  }
+}

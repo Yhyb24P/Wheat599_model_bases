@@ -1,0 +1,142 @@
+{
+  "config": {
+    "model": "vector_diagnostic",
+    "device": "cuda",
+    "gpu_memory_fraction": 0.5,
+    "cpu_threads": 2,
+    "lambda_a_grid": [
+      0.3,
+      3.0,
+      30.0
+    ],
+    "context_cv_folds": 3,
+    "network": {
+      "environments": 4,
+      "width": 32,
+      "rounds": 3,
+      "add_per_round": 16,
+      "max_candidates": 32,
+      "max_variance": 100.0
+    },
+    "tasks": {
+      "context_sizes": [
+        64,
+        128
+      ],
+      "marker_counts": [
+        128,
+        512
+      ],
+      "query_size": 32,
+      "environments": 4,
+      "designs": [
+        "independent",
+        "linked"
+      ],
+      "backgrounds": [
+        "dense",
+        "sparse",
+        "hidden"
+      ],
+      "gammas": [
+        0.0,
+        0.15,
+        0.5,
+        1.0
+      ],
+      "additive_scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "noise_scales": [
+        0.5,
+        1.0
+      ],
+      "pair_counts": [
+        1,
+        4,
+        8
+      ],
+      "active_counts": [
+        4,
+        16
+      ],
+      "block_size": 8
+    },
+    "statistical": {
+      "ratios": [
+        1.0,
+        0.5,
+        0.2
+      ],
+      "lambda_e": 0.001,
+      "relaxed_variance": 100.0,
+      "same_candidate_variance": 1.0,
+      "solver": {
+        "block_size": 4096,
+        "cache_phi": true,
+        "max_active": 4096,
+        "max_iter": 10000,
+        "max_outer": 64,
+        "kkt_tolerance": 1e-08,
+        "dual_gap_tolerance": 1e-07
+      }
+    },
+    "seeds": [
+      42,
+      2026
+    ],
+    "checkpoint_root": "results/joint_inference_20261104",
+    "checkpoints": {
+      "joint_42.pt": "96771761a2ff31ad8cf9ae8013da9e114f6b474451635996875893a4f591fbfa",
+      "joint_2026.pt": "f6cd45f7cff58f062f0102d84227f76201df04b428408768cac3846a7bdb876c"
+    },
+    "confirmation": {
+      "role_base": 6000000000000,
+      "bases_per_background": 5,
+      "query_size": 128,
+      "context_sizes": [
+        64,
+        128
+      ],
+      "marker_counts": [
+        128,
+        512,
+        1279
+      ]
+    },
+    "readout": {
+      "scales": [
+        0.1,
+        1.0,
+        10.0
+      ],
+      "shape_order": [
+        "identity",
+        "diagonal",
+        "half",
+        "full",
+        "residual_diagonal",
+        "residual_half",
+        "residual_full"
+      ],
+      "include_zero": true
+    },
+    "decision": {
+      "strong_relative_gain": 0.02,
+      "direction_relative_gain": 0.005,
+      "paired_win_fraction": 0.6,
+      "zero_relative_degradation_max": 0.01
+    }
+  },
+  "git_commit": "4470ebe7c438c5f9835fec22efcee4fa03c5b903",
+  "checkpoint_sha256": {
+    "joint_42.pt": "96771761a2ff31ad8cf9ae8013da9e114f6b474451635996875893a4f591fbfa",
+    "joint_2026.pt": "f6cd45f7cff58f062f0102d84227f76201df04b428408768cac3846a7bdb876c"
+  },
+  "torch_version": "2.14.1+cu130",
+  "device": "cuda",
+  "scope": "Synthetic confirmation panel; frozen weights; no training, no measured data",
+  "note": "Fold lambdas are nested inside each hold; family picks and support hits are diagnostic; no neural originality claim"
+}
