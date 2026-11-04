@@ -177,6 +177,9 @@ def main():
     if cfg.get('model') == 'locus_context':
         from wheat599.locus_context_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'genomic_tabm':
+        from wheat599.genomic_tabm_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'vector_diagnostic':
         from wheat599.vector_diagnostic import run
         return run(cfg, args, Path(__file__))

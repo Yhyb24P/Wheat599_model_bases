@@ -53,3 +53,7 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 | independent_42.pt | a4a0c7fe2f1798a01b15eea05dfafb48719a4d0effc167d50758881da4a64781 |
 | independent_2026.pt | 146626e6803774705747f6548d0832699daf7398f0bd3cec0db7461c2fd18105 |
 | gate.pt | 79666d256fb8bca7268fea7486818357c1c1133f7e37f339950fb8e59abfa986 |
+
+## TabM 任务适配依赖（2026-11-04，正式训练准备）
+
+使用官方 `tabm==0.0.3` 与 `rtdl_num_embeddings==0.0.12`，均为 Apache-2.0，来源 https://github.com/yandex-research/tabm 与 PyPI 固定发布包。当前不复制或改写上游骨干源码，不使用预训练权重。模块SHA-256：tabm.py `fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade`；rtdl_num_embeddings.py `48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1`。新训练权重摘要待正式结果记录后补入，权重不入Git。

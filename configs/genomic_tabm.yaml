@@ -1,0 +1,39 @@
+model: genomic_tabm
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+reference: results/robust_icm_development_20261103/development_comparison.csv
+device: cuda
+dtype: float32
+cpu_threads: 2
+gpu_memory_fraction: 0.5
+seeds: [42, 2026]
+outer_folds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+variants: [raw, grouped_additive]
+architecture:
+  n_blocks: 3
+  d_block: 256
+  dropout: 0.1
+  k: 32
+  groups: 64
+  rank: 4
+training:
+  max_epochs: 500
+  patience: 50
+  batch_size: 128
+  eval_batch_size: 256
+  learning_rates: [0.0005, 0.002]
+  weight_decays: [0.0003, 0.01]
+  gradient_clip: 5.0
+  ridge_grid: [1.0, 10.0, 100.0, 1000.0]
+  ridge_folds: 3
+  ridge_seed: 719
+  tie_tolerance: 1.0e-12
+efficiency:
+  batch_size: 128
+  warmup: 10
+  repeats: 50
+  include_preprocessing: true
+versions:
+  tabm: 0.0.3
+  rtdl_num_embeddings: 0.0.12
