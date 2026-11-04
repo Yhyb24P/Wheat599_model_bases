@@ -1,0 +1,108 @@
+{
+  "config": {
+    "model": "sparse_interaction_diagnostic",
+    "device": "cuda",
+    "gpu_memory_fraction": 0.2,
+    "cpu_threads": 2,
+    "lambda_a": 3.0,
+    "lambda_e": 0.001,
+    "ratios": [
+      1.0,
+      0.5,
+      0.2,
+      0.1,
+      0.05
+    ],
+    "pair_ridges": [
+      null,
+      0.01,
+      0.1,
+      1.0,
+      10.0,
+      100.0
+    ],
+    "solver": {
+      "block_size": 4096,
+      "cache_phi": true,
+      "max_active": 4096,
+      "max_iter": 10000,
+      "max_outer": 64,
+      "kkt_tolerance": 1e-08,
+      "dual_gap_tolerance": 1e-07
+    },
+    "tasks": {
+      "context_sizes": [
+        64,
+        128,
+        359
+      ],
+      "marker_counts": [
+        128,
+        512,
+        1279
+      ],
+      "query_size": 8,
+      "environments": 4,
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise",
+        "hidden_additive"
+      ],
+      "designs": [
+        "independent",
+        "linked"
+      ],
+      "block_size": 8,
+      "active_counts": [
+        1,
+        4,
+        16
+      ],
+      "pair_counts": [
+        1,
+        4,
+        16
+      ],
+      "heritability_range": [
+        0.1,
+        0.8
+      ]
+    },
+    "training": {
+      "validation_seed": 500000000,
+      "tasks_per_family": 8
+    },
+    "held_out": {
+      "families": [
+        "dense_additive",
+        "sparse_additive",
+        "pairwise"
+      ],
+      "seed": 900000000,
+      "tasks_per_family": 8
+    },
+    "neural_reference": "results/matrix_inference_learning_20261104/training.json"
+  },
+  "git_commit": "30ee9ea6f2705ef7d508171aa4ce20a682aad186",
+  "source_sha256": {
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/sparse_diagnostic.py": "7b121d7ab691d60378e837c8d9637fdecc8ce89ea3f69262eb27bdbb86b24b64",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/sparse_interaction.py": "819cdb6de01c989af51256c96a848428f3183bdb8e3eafe88f70815bdf5a9415",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_tasks.py": "27802c381c6e8503e0bb55354ea88ac26af5470ba04d1a71eb15a6ead8324df3",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/matrix_training.py": "2e177dbb323a5d03787c71ed20504d7ad839d7777d2976829c7e4951c0931017",
+    "/home/yhshy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "23693f565c38593cec8fd63ee832585dca06cfce70e6ea04fc2b4348fee294bf",
+    "configs/sparse_interaction_diagnostic.yaml": "97230042672b33ce47527549cb61949a9cbf7525487eb812351ded12f11304a5",
+    "results/matrix_inference_learning_20261104/training.json": "4a86eaad820d56c6435f8efd0b42ba37f8f00b11a362199456655e8ddb138046"
+  },
+  "torch_version": "2.7.1+cu128",
+  "sklearn_version": "1.6.1",
+  "thread_environment": {
+    "OPENBLAS_NUM_THREADS": "2",
+    "OMP_NUM_THREADS": "2",
+    "MKL_NUM_THREADS": "2"
+  },
+  "scope": "Frozen synthetic panels only; no Wheat599, no new neural training",
+  "selection_rule": "Mean clean-query MSE over all 32 validation tasks; earliest tie",
+  "oracle_information": "Generating pair support only (empty outside pairwise family); same objective, context lambda_max, grids and scoring",
+  "historical_panel": "Previously inspected admixture tasks; not fresh confirmation"
+}

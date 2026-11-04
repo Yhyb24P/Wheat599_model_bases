@@ -1,0 +1,138 @@
+{
+  "validation_tasks": 32,
+  "historical_tasks": 24,
+  "failures": [],
+  "selected": {
+    "unknown": {
+      "index": 1,
+      "validation_mse": 0.3216397556946795,
+      "candidate_means": [
+        0.33240612087566457,
+        0.3216397556946795,
+        0.40045283538991133,
+        0.45788197136589576,
+        0.4903183701445277
+      ]
+    },
+    "oracle": {
+      "index": 4,
+      "validation_mse": 0.23941459025831735,
+      "candidate_means": [
+        0.33240612087566457,
+        0.277644286571097,
+        0.24633752978079607,
+        0.24081232859015017,
+        0.23941459025831735
+      ]
+    },
+    "dense_pair": {
+      "index": 0,
+      "validation_mse": 0.3324061208756646,
+      "candidate_means": [
+        0.3324061208756646,
+        0.42411130157480803,
+        0.4008831443028624,
+        0.3505658959528631,
+        0.33392225891599603,
+        0.33253697444351754
+      ]
+    }
+  },
+  "metrics": {
+    "validation": {
+      "unknown": {
+        "mean_mse": 0.3216397556946795,
+        "per_family": {
+          "dense_additive": 0.4749246095774259,
+          "hidden_additive": 0.24276222965719008,
+          "pairwise": 0.22434692332300366,
+          "sparse_additive": 0.34452526022109836
+        }
+      },
+      "oracle": {
+        "mean_mse": 0.23941459025831735,
+        "per_family": {
+          "dense_additive": 0.41847366857134216,
+          "hidden_additive": 0.2023521600420739,
+          "pairwise": 0.03926302453620983,
+          "sparse_additive": 0.29756950788364345
+        }
+      },
+      "dense_pair": {
+        "mean_mse": 0.3324061208756646,
+        "per_family": {
+          "dense_additive": 0.41847366857134216,
+          "hidden_additive": 0.20235216004207393,
+          "pairwise": 0.41122914700559887,
+          "sparse_additive": 0.29756950788364345
+        }
+      },
+      "matrix": {
+        "mean_mse": 0.34729717986192554,
+        "per_family": {
+          "dense_additive": 0.45378459338098764,
+          "hidden_additive": 0.19387534772977233,
+          "pairwise": 0.43461624812334776,
+          "sparse_additive": 0.30691253021359444
+        },
+        "meaning": "Mean of frozen seed errors; not a prediction ensemble"
+      },
+      "direct": {
+        "mean_mse": 0.4198829283704981,
+        "per_family": {
+          "dense_additive": 0.5337099432945251,
+          "hidden_additive": 0.3586311722174287,
+          "pairwise": 0.39689670177176595,
+          "sparse_additive": 0.3902938961982727
+        },
+        "meaning": "Mean of frozen seed errors; not a prediction ensemble"
+      },
+      "context_mean_mse": 0.4160600554036751
+    },
+    "historical": {
+      "unknown": {
+        "mean_mse": 0.31074000080992287,
+        "per_family": {
+          "dense_additive": 0.3553826436820816,
+          "pairwise": 0.24968080086891836,
+          "sparse_additive": 0.32715655787876863
+        }
+      },
+      "oracle": {
+        "mean_mse": 0.21256390376518838,
+        "per_family": {
+          "dense_additive": 0.31486029032777035,
+          "pairwise": 0.03205390196088613,
+          "sparse_additive": 0.2907775190069086
+        }
+      },
+      "dense_pair": {
+        "mean_mse": 0.3767250397785607,
+        "per_family": {
+          "dense_additive": 0.31486029032777035,
+          "pairwise": 0.5245373100010032,
+          "sparse_additive": 0.2907775190069086
+        }
+      },
+      "matrix": {
+        "mean_mse": 0.9064540526208779,
+        "per_family": {
+          "dense_additive": 1.7319614430889487,
+          "pairwise": 0.6075835125520825,
+          "sparse_additive": 0.3798172022216022
+        },
+        "meaning": "Mean of frozen seed errors; not a prediction ensemble"
+      },
+      "direct": {
+        "mean_mse": 0.4137963065877557,
+        "per_family": {
+          "dense_additive": 0.42710120789706707,
+          "pairwise": 0.4910445036366582,
+          "sparse_additive": 0.3232432082295418
+        },
+        "meaning": "Mean of frozen seed errors; not a prediction ensemble"
+      },
+      "context_mean_mse": 0.4126898834464601
+    }
+  }
+}

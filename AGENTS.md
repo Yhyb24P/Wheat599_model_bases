@@ -6,7 +6,7 @@
 
 **最新授权（2026-11-04）**：与 DNAwhisper 外层评价并行准备材料—位点双向推断网络，并可使用空闲 GPU 并行；定义与当前范围见 `docs/MATRIX_INFERENCE.md`。新增 AIA 同伴 gpt66，承担核心结构和训练先验研究，具体写入边界由 gpt6 统筹。本轮模拟学习和核参照已完成，当前参数化开发结束，不追加训练／门控消融，不进入 Wheat599 评价；完整证据见 `docs/RESULTS.md`。该决定不代表原创模型目标完成。
 
-**当前有限诊断（2026-11-04）**：在既有模拟面板上补充已知支持、未知支持的多环境稀疏交互及同特征稠密核参照。具体预算见 `docs/SPARSE_INTERACTION_DIAGNOSTIC.md`；不重训已结束的网络，不读取 Wheat599 测试数据。gpt6 整合与执行，gpt66 研究判断，cn 求解器，gb 独立数值测试。
+**有限诊断已完成（2026-11-04）**：已知支持、未知支持的多环境稀疏交互及同特征稠密核参照完成 56 个模拟任务、0 失败。成对交互上建立了首版网络的推断缺口，但未知位置方法在加性任务族变差；不据此宣称 Wheat599 增益或新架构成功，不自动追加实验。结果见 `docs/RESULTS.md`，预算见 `docs/SPARSE_INTERACTION_DIAGNOSTIC.md`。
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 

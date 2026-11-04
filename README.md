@@ -2,7 +2,7 @@
 
 目标是构建具有原创性、并在公平比较中超过现有强方法的神经网络；Wheat599 用于快速开发，后续数据集待用户提供 SSH 算力后扩展。LCM-GP 及六项对照已完成，未超过 ICM；位点保留背景网络本轮开发条件未通过，已结束且未进入外层。DNAwhisper 同协议外层评价已完成，折均宏 PCC 0.35484，未超过 ICM。结果见 [docs/RESULTS.md](docs/RESULTS.md)，当前执行与 AIA 分工见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
-按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。
+按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。 随后完成的稀疏交互模拟诊断已建立其具体推断缺口：未知位置统计方法在全部 16 个成对任务上超过首版网络，但加性任务族表现变差；尚无新的神经模型或真实数据增益，见 [结果](docs/RESULTS.md)。
 
 当前最高折均 PCC 候选为 **Huber ICM**：四环境 CV1 折均宏 PCC **0.52175**、RMSE **0.85674**、MAE **0.65844**。匹配范围 GLS ICM 为 **0.52059 / 0.85422 / 0.65753**，保留为误差较低参照。Huber 仅获得小幅折均 PCC 增量，合并 OOF PCC 未改善。完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议与进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
 
