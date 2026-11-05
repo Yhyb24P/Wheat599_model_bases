@@ -1,0 +1,4 @@
+environment,fold,reason
+1,0,ValueError('Non-finite validation PCC')
+2,0,ValueError('Non-finite training loss')
+4,0,ValueError('Non-finite validation PCC')

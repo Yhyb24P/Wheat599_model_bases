@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "phase": "development",
+  "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+  "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+  "splits_sha256": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c",
+  "config_sha256": "eb23303b0225b5d0eff85f43a70bf99b6d08132dce181912d4288d136d4daf05",
+  "config": {
+    "model": "wheat2000_deepgs",
+    "data": "data/raw/wheat2000/wheat_GS.RData",
+    "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+    "cache": "data/raw/wheat2000/wheat2000.npz",
+    "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+    "splits": "results/wheat2000_protocol_20261105/splits_manifest.json",
+    "splits_sha256": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c",
+    "traits": [
+      "TKW",
+      "TW",
+      "GL",
+      "GW",
+      "GH",
+      "GP",
+      "SDS",
+      "PHT"
+    ],
+    "expected_shape": [
+      2000,
+      33709,
+      8
+    ],
+    "device": "cuda",
+    "dtype": "float32",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.15,
+    "seeds": [
+      42,
+      2026
+    ],
+    "expected_development_fits": 480,
+    "expected_final_fits": 160,
+    "save_weights": true,
+    "require_committed_selection": true,
+    "configurations": [
+      {
+        "architecture": {
+          "conv_channels": 8,
+          "kernel_size": 18,
+          "pool_size": 4,
+          "hidden": 32,
+          "dropouts": [
+            0.2,
+            0.1,
+            0.05
+          ]
+        },
+        "optimizer": {
+          "name": "sgd",
+          "lr": 0.01,
+          "momentum": 0.5,
+          "weight_decay": 1e-05
+        }
+      }
+    ],
+    "training": {
+      "max_epochs": 6000,
+      "early_stopping_patience": 600,
+      "batch_size": 30,
+      "eval_batch_size": 30,
+      "gradient_clip": 0.0,
+      "amp": false,
+      "genotype_preprocessing": "raw",
+      "scheduler": "none",
+      "lr_patience": 0,
+      "loss_scale": 1.0,
+      "initialization": "uniform",
+      "initialization_scale": 0.01
+    }
+  },
+  "source_sha256": {
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/wheat2000_neural_run.py": "4ffc351c727589303004e65b9a2ace41f8082bd98dee5478ffae9cb44d7f9d81",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/wheat2000_baselines.py": "9b617cdbc87e4ccbd9af1bb9562d63c1c51fdc35e11c6d246ba9ed25efce47a5",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/wheat2000_run.py": "f37edfccea32ee96edc42b6925e51cb47902fd62963ff92496b6159f75e1c960",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/wheat2000_data.py": "21db4a3179475ce1118862d19856ae008e151eb6ee7c5d3187dc31e182ba0f40",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/independent_final.py": "3afd118be2775db13d47430d1f3f4fdfa16760d5c16ec11cda29475d8a503b17",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/metrics.py": "efcb4f8b1fd9cfc1735c2b43906027bc43ec03c59f4f2f296ef303a53e6176a2",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/data.py": "6c17f9df2994733738bc0b6d16f43ec65908aacb432c6e8192307bb5ec3acade",
+    "configs/wheat2000_deepgs.yaml": "eb23303b0225b5d0eff85f43a70bf99b6d08132dce181912d4288d136d4daf05",
+    "/home/yhshy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "bdfe298610d36b6e77271e32cb001f0ebf8cca8111cb66b4552d74fb279b08a0"
+  },
+  "model_source": {
+    "model": "DeepGS",
+    "module_sha256": "9b617cdbc87e4ccbd9af1bb9562d63c1c51fdc35e11c6d246ba9ed25efce47a5"
+  },
+  "traits": [
+    "TKW",
+    "TW",
+    "GL",
+    "GW",
+    "GH",
+    "GP",
+    "SDS",
+    "PHT"
+  ],
+  "seeds": [
+    42,
+    2026
+  ],
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "selected": [],
+  "epoch_indexing": "1-based; best_epoch is the first epoch after one update",
+  "git_commit": "f6f96e73b37c61098527be27ae122457261596d7",
+  "device": "cuda",
+  "scope": "Development only: inner fit/validation; outer test rows never read"
+}

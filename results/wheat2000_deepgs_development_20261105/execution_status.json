@@ -1,0 +1,8 @@
+{
+  "status": "stopped_by_user_scope_change",
+  "phase": "development",
+  "completed_fits": 1,
+  "expected_fits": 480,
+  "folds_complete": [],
+  "interruption": "interruption.json"
+}

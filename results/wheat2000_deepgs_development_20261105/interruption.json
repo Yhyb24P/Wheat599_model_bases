@@ -1,0 +1,10 @@
+{
+  "status": "stopped_by_user_scope_change",
+  "reason": "User returned current scope to Wheat599; not an algorithm failure or completed evaluation",
+  "utc": "2026-11-05T08:27:02.980629+00:00",
+  "pid": 2018758,
+  "completed_fits": 1,
+  "expected_fits": 480,
+  "original_status": "running",
+  "restart_authorized": false
+}

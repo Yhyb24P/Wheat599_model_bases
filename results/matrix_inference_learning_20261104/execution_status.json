@@ -1,0 +1,247 @@
+{
+  "status": "completed_before_migration",
+  "valid": true,
+  "recorded_by": "gb",
+  "recorded_at": "2026-11-04T09:12:00+08:00",
+  "supersedes": "an earlier version of this file that wrongly described the run as interrupted and as unusable evidence",
+  "instruction_trail": [
+    "gpt6-gb-matrix-learnability-run-1104: execute the single fixed CPU synthetic learning budget",
+    "gpt6-gb-matrix-gpu-migration-1104: terminate CPU PID 95236 (issued while the run was believed to be in flight)",
+    "gpt6-gb-matrix-completion-valid-1104: the four completed CPU runs are valid fixed-budget results, must be kept and formally reported; no GPU replacement run"
+  ],
+  "process": {
+    "pid": 95236,
+    "command": "/home/yhshy/miniconda3/envs/boltz2/bin/python scripts/run_background_nested.py --config configs/matrix_inference.yaml --out results/matrix_inference_learning_20261104",
+    "log": "results/matrix_inference_learning_20261104.log",
+    "termination": "kill -TERM 95236 returned 'No such process': the run had already exited naturally before the instruction was carried out, so no process was stopped by this action",
+    "observer": "monitor bag7gqjo1 stopped",
+    "other_processes": "only PID 95236 was targeted; no broad pkill; DNA PID 51359 untouched",
+    "device_used": "cpu",
+    "gpu_replacement_run": "not executed"
+  },
+  "completeness": {
+    "runs_requested": 4,
+    "runs_recorded": 4,
+    "failures": 0,
+    "selection_json_present": true,
+    "checkpoints": [
+      "matrix_42.pt",
+      "matrix_2026.pt",
+      "direct_42.pt",
+      "direct_2026.pt"
+    ],
+    "metrics_or_weights_removed": false
+  },
+  "provenance": {
+    "git_commit": "e3c7369",
+    "tag": "matrix-inference-prototype-20261104",
+    "config": "configs/matrix_inference.yaml",
+    "config_device": "cpu",
+    "config_restored_by_coordinator": true,
+    "device": "cpu",
+    "cpu_threads": 2,
+    "torch_version": "2.7.1+cu128",
+    "budget": "matrix/direct x seeds 42/2026, 4000 updates each, validation every 500 steps over 32 fixed synthetic tasks, then one scoring pass on 24 untrained admixture tasks"
+  },
+  "scope": "Synthetic learnability only. No Wheat599 genotype or phenotype was read. Fixed-kernel control and real-data evaluation are not part of this run.",
+  "runs": [
+    {
+      "variant": "matrix",
+      "seed": 42,
+      "parameters": 22308,
+      "selected_step": 4000,
+      "seconds": 113.9,
+      "evaluation_checkpoints": 9,
+      "initial_validation_mse": 0.439061,
+      "selected_validation_mse": 0.34489,
+      "checkpoint_sha256": "09be932e3c86f954c3214696385bc32f34da99dd5cf7f714ac26e0356b7175ed",
+      "validation_family_mse": {
+        "dense_additive": 0.449909,
+        "hidden_additive": 0.18861,
+        "pairwise": 0.433759,
+        "sparse_additive": 0.307281
+      },
+      "validation_family_context_mean_mse": {
+        "dense_additive": 0.528851,
+        "hidden_additive": 0.354613,
+        "pairwise": 0.396068,
+        "sparse_additive": 0.384708
+      },
+      "held_out_admixture_family_mse": {
+        "dense_additive": 2.76938,
+        "pairwise": 0.603153,
+        "sparse_additive": 0.43954
+      },
+      "held_out_admixture_family_context_mean_mse": {
+        "dense_additive": 0.433689,
+        "pairwise": 0.490804,
+        "sparse_additive": 0.313576
+      }
+    },
+    {
+      "variant": "matrix",
+      "seed": 2026,
+      "parameters": 22308,
+      "selected_step": 4000,
+      "seconds": 114.9,
+      "evaluation_checkpoints": 9,
+      "initial_validation_mse": 0.497197,
+      "selected_validation_mse": 0.349705,
+      "checkpoint_sha256": "8c4ac599026d93a3e9db8a4f1b9c803238b68ba4ed28e2edec7f6b0ff64d0345",
+      "validation_family_mse": {
+        "dense_additive": 0.45766,
+        "hidden_additive": 0.199141,
+        "pairwise": 0.435474,
+        "sparse_additive": 0.306544
+      },
+      "validation_family_context_mean_mse": {
+        "dense_additive": 0.528851,
+        "hidden_additive": 0.354613,
+        "pairwise": 0.396068,
+        "sparse_additive": 0.384708
+      },
+      "held_out_admixture_family_mse": {
+        "dense_additive": 0.694542,
+        "pairwise": 0.612014,
+        "sparse_additive": 0.320095
+      },
+      "held_out_admixture_family_context_mean_mse": {
+        "dense_additive": 0.433689,
+        "pairwise": 0.490804,
+        "sparse_additive": 0.313576
+      }
+    },
+    {
+      "variant": "direct",
+      "seed": 42,
+      "parameters": 76036,
+      "selected_step": 4000,
+      "seconds": 30.4,
+      "evaluation_checkpoints": 9,
+      "initial_validation_mse": 1.331585,
+      "selected_validation_mse": 0.420152,
+      "checkpoint_sha256": "30c18195a70605b5aa986751b3ee9fbc608ec327f3ef55894703862233064015",
+      "validation_family_mse": {
+        "dense_additive": 0.532913,
+        "hidden_additive": 0.355336,
+        "pairwise": 0.402498,
+        "sparse_additive": 0.38986
+      },
+      "validation_family_context_mean_mse": {
+        "dense_additive": 0.528851,
+        "hidden_additive": 0.354613,
+        "pairwise": 0.396068,
+        "sparse_additive": 0.384708
+      },
+      "held_out_admixture_family_mse": {
+        "dense_additive": 0.427648,
+        "pairwise": 0.495629,
+        "sparse_additive": 0.32275
+      },
+      "held_out_admixture_family_context_mean_mse": {
+        "dense_additive": 0.433689,
+        "pairwise": 0.490804,
+        "sparse_additive": 0.313576
+      }
+    },
+    {
+      "variant": "direct",
+      "seed": 2026,
+      "parameters": 76036,
+      "selected_step": 3500,
+      "seconds": 29.9,
+      "evaluation_checkpoints": 9,
+      "initial_validation_mse": 1.032794,
+      "selected_validation_mse": 0.419614,
+      "checkpoint_sha256": "4816e2d527e38e23cd59c6521d7d510867ee353ba1f64d474056e1fa0dbceafc",
+      "validation_family_mse": {
+        "dense_additive": 0.534507,
+        "hidden_additive": 0.361926,
+        "pairwise": 0.391296,
+        "sparse_additive": 0.390728
+      },
+      "validation_family_context_mean_mse": {
+        "dense_additive": 0.528851,
+        "hidden_additive": 0.354613,
+        "pairwise": 0.396068,
+        "sparse_additive": 0.384708
+      },
+      "held_out_admixture_family_mse": {
+        "dense_additive": 0.426554,
+        "pairwise": 0.48646,
+        "sparse_additive": 0.323737
+      },
+      "held_out_admixture_family_context_mean_mse": {
+        "dense_additive": 0.433689,
+        "pairwise": 0.490804,
+        "sparse_additive": 0.313576
+      }
+    }
+  ],
+  "context_mean_comparison": {
+    "definition": "Negative delta means the selected checkpoint predicts the clean synthetic query target better than the context-mean reference; positive means worse.",
+    "runs": [
+      {
+        "variant": "matrix",
+        "seed": 42,
+        "validation_delta_vs_context_mean": {
+          "dense_additive": -0.078942,
+          "hidden_additive": -0.166003,
+          "pairwise": 0.037691,
+          "sparse_additive": -0.077427
+        },
+        "held_out_admixture_delta_vs_context_mean": {
+          "dense_additive": 2.335691,
+          "pairwise": 0.112349,
+          "sparse_additive": 0.125963
+        }
+      },
+      {
+        "variant": "matrix",
+        "seed": 2026,
+        "validation_delta_vs_context_mean": {
+          "dense_additive": -0.071191,
+          "hidden_additive": -0.155473,
+          "pairwise": 0.039406,
+          "sparse_additive": -0.078163
+        },
+        "held_out_admixture_delta_vs_context_mean": {
+          "dense_additive": 0.260853,
+          "pairwise": 0.121209,
+          "sparse_additive": 0.006519
+        }
+      },
+      {
+        "variant": "direct",
+        "seed": 42,
+        "validation_delta_vs_context_mean": {
+          "dense_additive": 0.004062,
+          "hidden_additive": 0.000723,
+          "pairwise": 0.00643,
+          "sparse_additive": 0.005152
+        },
+        "held_out_admixture_delta_vs_context_mean": {
+          "dense_additive": -0.006041,
+          "pairwise": 0.004825,
+          "sparse_additive": 0.009173
+        }
+      },
+      {
+        "variant": "direct",
+        "seed": 2026,
+        "validation_delta_vs_context_mean": {
+          "dense_additive": 0.005656,
+          "hidden_additive": 0.007313,
+          "pairwise": -0.004772,
+          "sparse_additive": 0.00602
+        },
+        "held_out_admixture_delta_vs_context_mean": {
+          "dense_additive": -0.007135,
+          "pairwise": -0.004344,
+          "sparse_additive": 0.010161
+        }
+      }
+    ],
+    "reading": "Recorded without interpretation: on the trained validation panel matrix is below the reference on dense_additive, hidden_additive and sparse_additive in both seeds but above it on pairwise; direct is above the reference on dense_additive, hidden_additive and sparse_additive in both seeds, and on pairwise only for seed 42. On the untrained admixture panel matrix is above the reference in every cell (dense_additive most strongly, 2.335691 and 0.260853), while direct stays within 0.010161 of it. No fixed-kernel control and no real-data evaluation exist in this run."
+  }
+}
