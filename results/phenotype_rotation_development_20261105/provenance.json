@@ -1,0 +1,147 @@
+{
+  "config": {
+    "model": "phenotype_rotation",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "original_source": "results/environment_tabm_development_20261105",
+    "original_artifact_sha256": {
+      "predictions.csv": "9d45b905cd2eaaee0f8ed0f4e754efd0f3f323534cc2d8ffeba1f16c798b6ce7",
+      "trajectories.json": "3cfff8451c44f18b54b30f4581c9002178c3234927123cb05698e1c61a2a5028",
+      "provenance.json": "2b12a7a0ed1a7eea88ad3d93626a4d5a4789a3fcf7c1bea4ac719e7e1935575c"
+    },
+    "expected_control_pcc": {
+      "original_common": 0.49081032739929487,
+      "original_strong": 0.49187397138978695
+    },
+    "device": "cuda",
+    "dtype": "float32",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.5,
+    "seeds": [
+      42,
+      2026
+    ],
+    "expected_fits": 1920,
+    "configurations": [
+      {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 256,
+        "dropout": 0.2,
+        "k": 32,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 4,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      }
+    ],
+    "training": {
+      "max_epochs": 500,
+      "patience": 50,
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "gradient_clip": 5.0,
+      "tie_tolerance": 1e-12
+    },
+    "efficiency": {
+      "batch_size": 128,
+      "warmup": 10,
+      "repeats": 50
+    },
+    "continuation_rule": {
+      "minimum_macro_pcc_gain": 0.001,
+      "minimum_fold_wins": 7,
+      "applies_to": [
+        "original_common",
+        "original_strong"
+      ]
+    },
+    "versions": {
+      "tabm": "0.0.3",
+      "rtdl_num_embeddings": "0.0.12"
+    }
+  },
+  "git_commit": "e4b92a8386b84bb2eab76a5f6f9ff0d33f174e9b",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "source_sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/rotation_run.py": "eac808a5fad5b89823c2a95b3a2664814d3ac8d9702de9e0046412e67ec272f3",
+    "/home/hsy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "245d3de30f21e61daa951c645b4e1de3b64e3cc5cc7ef3d1078cdd7e74c18dbd",
+    "configs/phenotype_rotation.yaml": "49c872f17feabfd18093e684f7e9d1abd0c093c5b1cdc4a3be7e61cf90faa223",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/phenotype_rotation.py": "3decc7b2f96a7f23d3be96938fcbc09898d6fed62d738e2c9646daafdcffa0f4",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/environment_run.py": "c042937d067f8492c02ba91370a724b06787f59c6c024917eec81dbbc41b099c",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/environment_tabm.py": "27091d46d08480ceac3671ff9f634d2d339ea48704375d704c8dbb450a47d31b",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/genomic_tabm.py": "0d4d40bb138d21a4ebb1374f123b34f0c7df3a1c9f0226b2c7843fe308461031",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/environment_selection.py": "adacbb3742380d9b797f67497aa14926401588ae65ea0fcd6fdcd410d37897b0",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/data.py": "6c17f9df2994733738bc0b6d16f43ec65908aacb432c6e8192307bb5ec3acade",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/metrics.py": "efcb4f8b1fd9cfc1735c2b43906027bc43ec03c59f4f2f296ef303a53e6176a2"
+  },
+  "model_source": {
+    "tabm": {
+      "path": "/home/hsy/venvs/wheat599/lib/python3.12/site-packages/tabm.py",
+      "sha256": "fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade"
+    },
+    "rtdl_num_embeddings": {
+      "path": "/home/hsy/venvs/wheat599/lib/python3.12/site-packages/rtdl_num_embeddings.py",
+      "sha256": "48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1"
+    }
+  },
+  "torch_version": "2.14.1+cu130",
+  "scope": "Inner development only; four directions retained; no outer evaluation",
+  "checkpoint": "Per-direction validation PCC; unchanged independent training code",
+  "selection": "Original-environment seed-ensemble macro PCC averaged over three inner folds"
+}

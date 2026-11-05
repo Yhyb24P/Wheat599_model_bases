@@ -1,10 +1,10 @@
 # Wheat599 植物基因组表型预测研究
 
-当前执行：按新附件进行一次[四方向表型目标开发比较](docs/PHENOTYPE_ROTATION.md)，固定1920fit，与原目标配对并比较强独立参照；[Wheat2000八性状协议](docs/WHEAT2000.md)已完成数据/ID/划分核验，准备原TabM与GBLUP的正式开发，BiMSGP和DeepGS依赖及适配并行准备。原候选继续保留，旋转版本能否继续以预定开发条件决定。
+当前执行：[四方向表型旋转](docs/PHENOTYPE_ROTATION.md)完成1920fit，开发PCC0.488799低于强原系统0.491874，按预定条件结束。原独立TabM继续进行[Wheat2000全部八性状开发](docs/WHEAT2000.md)，GBLUP三内折选择已完成；BiMSGP和DeepGS依赖及适配并行准备，尚不把其论文数值列为同协议实测。
 
 四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
 
-目标是形成有可靠预测与效率证据的植物基因组表型预测方法论文；成熟神经架构的有效任务适配可以成为贡献。Wheat599用于快速开发，已有SSH omen用于正式执行；Wheat2000全部八性状是后续确认范围，本轮未启动。早期候选与历史结果见 [RESULTS](docs/RESULTS.md)，当前分工见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
+目标是形成有可靠预测与效率证据的植物基因组表型预测方法论文；成熟神经架构的有效任务适配可以成为贡献。Wheat599用于快速开发，SSH omen承担正式执行，Wheat2000已进入全部八性状的跨数据集开发。早期候选与历史结果见 [RESULTS](docs/RESULTS.md)，当前分工见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
 
 按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。 随后完成的稀疏交互模拟诊断已建立其具体推断缺口：未知位置统计方法在全部 16 个成对任务上超过首版网络，但加性任务族表现变差；尚无新的神经模型或真实数据增益，见 [结果](docs/RESULTS.md)。
 

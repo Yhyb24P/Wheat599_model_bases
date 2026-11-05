@@ -1,0 +1,39 @@
+{
+  "rows": 86256,
+  "prediction_sha256": "d5432d0f5e62ad3cc57d2cd973982401081c90d022d36a69fb1d364717df6d1b",
+  "complete_key_set": true,
+  "recomputed_rotated_common": {
+    "pcc": 0.4887990698703087,
+    "rmse": 0.8759979468252898,
+    "mae": 0.6762564974027786
+  },
+  "per_environment": [
+    [
+      0.5636342044403915,
+      0.8300878274982202,
+      0.6540318802463236
+    ],
+    [
+      0.4847017585118258,
+      0.8781812433439372,
+      0.6700499904847327
+    ],
+    [
+      0.4089222775790686,
+      0.9212302011608656,
+      0.7072248200246098
+    ],
+    [
+      0.49793803894994876,
+      0.874492515298136,
+      0.6737192988554482
+    ]
+  ],
+  "transforms_verified_fit_only": 30,
+  "all_four_directions_orthogonal": true,
+  "max_summary_difference": 0.0,
+  "continue_rotation": false,
+  "scope": "Read-only saved-prediction verification; no new training or outer scoring",
+  "fit_correlation_eigenbasis_residual_max": 2.6645352591003757e-15,
+  "all_eigenvalues_descending_and_signs_canonical": true
+}

@@ -1,0 +1,49 @@
+{
+  "files": {
+    "trajectories.json": {
+      "sha256": "3e28c438dd5f36790f7ba43e58d78a0f343e8a6fce3d887bef686ca360efed1b",
+      "bytes": 24856886
+    },
+    "summary.json": {
+      "sha256": "38f3d59ad97e053aa910afdb6adb56fd65938e128d8bcd8e9e9f5ed6cff3b790",
+      "bytes": 76339
+    },
+    "transforms.json": {
+      "sha256": "5f0cd49c0e7b744e6d75d8b349fb4bb99c9b68d5cc942aa8b13b1769f56e960b",
+      "bytes": 146536
+    },
+    "failures.json": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "selection.json": {
+      "sha256": "57d2aa256c744062f392df44e2c270e4e7b5376490c8c3f324040f56e7c1f723",
+      "bytes": 11596
+    },
+    "paired_differences.json": {
+      "sha256": "7748596e0787f8c3a4ae6ef61e4045267456aabdb82227486b8764138012dd30",
+      "bytes": 3434
+    },
+    "execution_status.json": {
+      "sha256": "0641881600256b409e83342dccc197b0241bba653ef7aca3b263210dc3139a1d",
+      "bytes": 177
+    },
+    "timings.json": {
+      "sha256": "55957db2fc5c86c33ed7e18fc6c8fac0b2a04bb85f3663e891ed7b57d49904ba",
+      "bytes": 57
+    },
+    "predictions.csv": {
+      "sha256": "d5432d0f5e62ad3cc57d2cd973982401081c90d022d36a69fb1d364717df6d1b",
+      "bytes": 8051002
+    },
+    "provenance.json": {
+      "sha256": "e9d6bf78a8a715f3c40a214da1aa6f4de0de5ac3c6b4a2f79eb100e747be4149",
+      "bytes": 5261
+    }
+  },
+  "large_files_remote_only": [
+    "predictions.csv",
+    "trajectories.json"
+  ],
+  "checkpoint_storage": "State SHA only; no persistent weights"
+}
