@@ -1,0 +1,101 @@
+{
+  "arms": [
+    "direct",
+    "target_pretrain",
+    "frozen_sources",
+    "linear_prediction",
+    "scalar_prediction",
+    "embedding"
+  ],
+  "description": "Existing project 10-fold train/val/test, dev_idx reconstructed as sorted union; no new split",
+  "expected_fits": 40,
+  "folds": [
+    {
+      "dev": 539,
+      "fold": 0,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 1,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 2,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 3,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 4,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 5,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 6,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 7,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 539,
+      "fold": 8,
+      "test": 60,
+      "train": 485,
+      "val": 54
+    },
+    {
+      "dev": 540,
+      "fold": 9,
+      "test": 59,
+      "train": 486,
+      "val": 54
+    }
+  ],
+  "numpy": null,
+  "references": {
+    "huber": {
+      "oof_sha256": "1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5",
+      "path": "results/robust_icm_final_20261103/oof.csv"
+    },
+    "independent_tabm": {
+      "oof_sha256": "315f16d0024039802fdd485e7d9a25894b892e1307c530d4af70c258a8c572da",
+      "path": "results/independent_tabm_final_20261105/oof.csv"
+    }
+  },
+  "rule": null,
+  "seeds": [
+    42
+  ],
+  "sklearn": null,
+  "splits_sha256": "7b093ee8dd1dcf14e50cf5d41a16207ed2d20dbe4913e5e9b92ccc2f29f45245"
+}

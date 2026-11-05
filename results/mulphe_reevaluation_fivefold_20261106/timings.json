@@ -1,0 +1,12 @@
+{
+  "amp": false,
+  "cuda": {
+    "name": "NVIDIA GeForce RTX 3090",
+    "peak_allocated_megabytes": 112.46337890625,
+    "peak_reserved_megabytes": 200.0
+  },
+  "device": "cuda",
+  "dtype": "float32",
+  "fit_seconds": 366.305,
+  "total_seconds": 366.386
+}

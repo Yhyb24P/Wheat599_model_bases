@@ -1,0 +1,81 @@
+{
+  "code_sha256": {
+    "config.json": "70d3b86a9a0e93ef1617b2676b4a82754ae6ce23815bf348c2c39d38252127d5",
+    "mulphe.py": "3026bc29840ba5c2076ee4d7f3c6ed22d6517b4eb20f5275371e68d5c84df4f4",
+    "mulphe_run.py": "a7b609efd3d932ede4058dab0acf8bf25a0f591675044efc61d0fc1b5acd9e1f",
+    "runner": "0658f2cfe735b3b1009aa38ea7ab1f48b49c3613625a713205078ce985e64365"
+  },
+  "config": {
+    "arms": [
+      "direct",
+      "target_pretrain",
+      "frozen_sources",
+      "linear_prediction",
+      "scalar_prediction",
+      "embedding"
+    ],
+    "cpu_threads": 2,
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "device": "cuda",
+    "full_dev_refit": {
+      "enabled": true
+    },
+    "gpu_memory_fraction": 0.5,
+    "model": "mulphe",
+    "model_config": {
+      "direct_epochs": 200
+    },
+    "references": {
+      "huber": {
+        "oof": "results/robust_icm_final_20261103/oof.csv",
+        "oof_sha256": "1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5"
+      },
+      "independent_tabm": {
+        "oof": "results/independent_tabm_final_20261105/oof.csv",
+        "oof_sha256": "315f16d0024039802fdd485e7d9a25894b892e1307c530d4af70c258a8c572da"
+      }
+    },
+    "seeds": [
+      42
+    ],
+    "share_source_encoders": true,
+    "splits": "results/mulphe_splits_20261105/tenfold_manifest.json",
+    "splits_sha256": "7b093ee8dd1dcf14e50cf5d41a16207ed2d20dbe4913e5e9b92ccc2f29f45245"
+  },
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "deviations": [
+    "train-only scaling and imputation",
+    "no test phenotype enters any fit",
+    "source environments always exclude the target",
+    "no validation recalibration of the outputs"
+  ],
+  "environment_order": [
+    "1",
+    "2",
+    "4",
+    "5"
+  ],
+  "full_dev_refit": {
+    "enabled": true
+  },
+  "git_commit": "4e2b84060dd50aaf3b46b7df7e66c5745193c691",
+  "git_dirty": true,
+  "linear_source_reference": "model arm linear_prediction (OLS on frozen source predictions)",
+  "model_selection": {
+    "authority": "mulphe.py implements these rules; the runner supplies no selection",
+    "direct": "validation Pearson",
+    "embedding": "validation Pearson with patience",
+    "frozen_sources": "validation MSE + 0.2 * Pearson",
+    "scalar_prediction": "validation MSE (official fine_tune_predict)",
+    "source_pretraining": "validation MSE + 0.2 * Pearson",
+    "target_pretrain": "validation MSE + 0.2 * Pearson"
+  },
+  "official": {
+    "commit": "e20ca6847c7dec6ce80386e94df4378ad2d1fbec",
+    "repo": "wjhhh2928/Mul-PheG2P"
+  },
+  "scope": "frozen manifest read only; validation early stopping inside the model; test labels accessed after every fit; no test-side selection or cross-arm choice",
+  "source_encoder_sharing": true,
+  "splits_sha256": "7b093ee8dd1dcf14e50cf5d41a16207ed2d20dbe4913e5e9b92ccc2f29f45245"
+}

@@ -1,0 +1,57 @@
+{
+  "arms": [
+    "direct",
+    "target_pretrain",
+    "frozen_sources",
+    "linear_prediction",
+    "scalar_prediction",
+    "embedding"
+  ],
+  "description": "Reconstructed public default; not verified as paper split",
+  "expected_fits": 20,
+  "folds": [
+    {
+      "dev": 479,
+      "fold": 0,
+      "test": 120,
+      "train": 383,
+      "val": 96
+    },
+    {
+      "dev": 479,
+      "fold": 1,
+      "test": 120,
+      "train": 383,
+      "val": 96
+    },
+    {
+      "dev": 479,
+      "fold": 2,
+      "test": 120,
+      "train": 383,
+      "val": 96
+    },
+    {
+      "dev": 479,
+      "fold": 3,
+      "test": 120,
+      "train": 383,
+      "val": 96
+    },
+    {
+      "dev": 480,
+      "fold": 4,
+      "test": 119,
+      "train": 384,
+      "val": 96
+    }
+  ],
+  "numpy": "1.26.4",
+  "references": {},
+  "rule": "KFold(5,shuffle=True,random_state=42); train_test_split(dev,test_size=0.2,random_state=42+zero_based_fold)",
+  "seeds": [
+    42
+  ],
+  "sklearn": "1.6.1",
+  "splits_sha256": "0b959a3a5b8879c0537c9da669e037b5f991081beee5e522c7d7c7281d3df1ba"
+}

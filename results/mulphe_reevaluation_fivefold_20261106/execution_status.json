@@ -1,0 +1,14 @@
+{
+  "completed_fits": 20,
+  "expected_fits": 20,
+  "folds_complete": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "phase": "summary_written",
+  "seconds": 366.387,
+  "status": "complete"
+}

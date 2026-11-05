@@ -1,0 +1,1823 @@
+{
+  "arms": [
+    "direct",
+    "target_pretrain",
+    "frozen_sources",
+    "linear_prediction",
+    "scalar_prediction",
+    "embedding"
+  ],
+  "comparison_vs_reference": {},
+  "completed_fits": 20,
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "full_dev_refit": false,
+  "metric_order": [
+    "pcc",
+    "rmse",
+    "mae"
+  ],
+  "note": "per_fold.grid is one row per fold/environment/seed; pooled_oof evaluates one OOF vector per environment where every material appears once \u2014 the two are different readings and are reported separately",
+  "per_fold": {
+    "direct": {
+      "grid": [
+        {
+          "arm": "direct",
+          "environment": "1",
+          "fold": 0,
+          "mae": 0.6868127600595346,
+          "materials": 120,
+          "pcc": 0.5143995716699129,
+          "rmse": 0.8773191149549828,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "2",
+          "fold": 0,
+          "mae": 0.7439667238204353,
+          "materials": 120,
+          "pcc": 0.20139025758495205,
+          "rmse": 0.9692211350950747,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "4",
+          "fold": 0,
+          "mae": 0.8005477621647761,
+          "materials": 120,
+          "pcc": 0.10858962485980855,
+          "rmse": 1.0330958850430623,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "5",
+          "fold": 0,
+          "mae": 0.8256523417613745,
+          "materials": 120,
+          "pcc": 0.3787514509534368,
+          "rmse": 1.052984498480495,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "1",
+          "fold": 1,
+          "mae": 0.7175602964845241,
+          "materials": 120,
+          "pcc": 0.33421404789251796,
+          "rmse": 0.9096368029462921,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "2",
+          "fold": 1,
+          "mae": 0.7672547002860448,
+          "materials": 120,
+          "pcc": 0.41813992180470827,
+          "rmse": 1.0078540408795371,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "4",
+          "fold": 1,
+          "mae": 0.8660421102270461,
+          "materials": 120,
+          "pcc": 0.28314048341666653,
+          "rmse": 1.131570267839341,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "5",
+          "fold": 1,
+          "mae": 0.754842657439594,
+          "materials": 120,
+          "pcc": 0.2191202742334695,
+          "rmse": 0.9317812005188063,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "1",
+          "fold": 2,
+          "mae": 0.8303993138818543,
+          "materials": 120,
+          "pcc": 0.3859969263175424,
+          "rmse": 1.0488257486372796,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "2",
+          "fold": 2,
+          "mae": 0.7988890208465516,
+          "materials": 120,
+          "pcc": 0.3894584208491652,
+          "rmse": 0.9928587034927344,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "4",
+          "fold": 2,
+          "mae": 0.684025818575385,
+          "materials": 120,
+          "pcc": 0.3542001779768143,
+          "rmse": 0.8704584220054544,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "5",
+          "fold": 2,
+          "mae": 0.7401139632225153,
+          "materials": 120,
+          "pcc": 0.3778098185637136,
+          "rmse": 0.9337164264805585,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "1",
+          "fold": 3,
+          "mae": 0.8085224758297135,
+          "materials": 120,
+          "pcc": 0.3905606746189196,
+          "rmse": 0.9784436528408818,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "2",
+          "fold": 3,
+          "mae": 0.8266339520807676,
+          "materials": 120,
+          "pcc": 0.33991229829734804,
+          "rmse": 1.1158877621882688,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "4",
+          "fold": 3,
+          "mae": 0.8394232068832184,
+          "materials": 120,
+          "pcc": 0.34417293445578345,
+          "rmse": 1.0735606354190244,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "5",
+          "fold": 3,
+          "mae": 0.8421196605776818,
+          "materials": 120,
+          "pcc": 0.3681914195917752,
+          "rmse": 1.0767129971521727,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "1",
+          "fold": 4,
+          "mae": 0.6559581405395585,
+          "materials": 119,
+          "pcc": 0.5385271353903738,
+          "rmse": 0.8418010032606908,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "2",
+          "fold": 4,
+          "mae": 0.7730319898063507,
+          "materials": 119,
+          "pcc": 0.403724138975863,
+          "rmse": 0.980736842197472,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "4",
+          "fold": 4,
+          "mae": 0.780196355264195,
+          "materials": 119,
+          "pcc": 0.3747884035442531,
+          "rmse": 1.01371328309124,
+          "seed": 42
+        },
+        {
+          "arm": "direct",
+          "environment": "5",
+          "fold": 4,
+          "mae": 0.605327899421795,
+          "materials": 119,
+          "pcc": 0.5777813176279886,
+          "rmse": 0.8001458742831921,
+          "seed": 42
+        }
+      ],
+      "macro": {
+        "mae": 0.7673660574586457,
+        "pcc": 0.3651434649312506,
+        "rmse": 0.9820162148403281
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7398505973590369,
+          "pcc": 0.43273967117785334,
+          "rmse": 0.9312052645280253
+        },
+        "2": {
+          "mae": 0.78195527736803,
+          "pcc": 0.3505250075024073,
+          "rmse": 1.0133116967706175
+        },
+        "4": {
+          "mae": 0.7940470506229241,
+          "pcc": 0.29297832485066516,
+          "rmse": 1.0244796986796243
+        },
+        "5": {
+          "mae": 0.7536113044845921,
+          "pcc": 0.3843308561940767,
+          "rmse": 0.9590681993830449
+        }
+      },
+      "per_seed": {
+        "42": {
+          "1": {
+            "mae": 0.7398505973590369,
+            "pcc": 0.43273967117785334,
+            "rmse": 0.9312052645280253
+          },
+          "2": {
+            "mae": 0.78195527736803,
+            "pcc": 0.3505250075024073,
+            "rmse": 1.0133116967706175
+          },
+          "4": {
+            "mae": 0.7940470506229241,
+            "pcc": 0.29297832485066516,
+            "rmse": 1.0244796986796243
+          },
+          "5": {
+            "mae": 0.7536113044845921,
+            "pcc": 0.3843308561940767,
+            "rmse": 0.9590681993830449
+          }
+        }
+      },
+      "scope": "grid is one row per fold/environment/seed; per_environment and macro average those per-fold readings"
+    },
+    "embedding": {
+      "grid": [
+        {
+          "arm": "embedding",
+          "environment": "1",
+          "fold": 0,
+          "mae": 0.767569434687542,
+          "materials": 120,
+          "pcc": 0.3493029780212353,
+          "rmse": 0.9220918490394343,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "2",
+          "fold": 0,
+          "mae": 0.9203267879189941,
+          "materials": 120,
+          "pcc": 0.2508047396068096,
+          "rmse": 1.154050243809235,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "4",
+          "fold": 0,
+          "mae": 0.9444365999054104,
+          "materials": 120,
+          "pcc": 0.2919782160119264,
+          "rmse": 1.1818691831683932,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "5",
+          "fold": 0,
+          "mae": 0.775686421353789,
+          "materials": 120,
+          "pcc": 0.3001075782935702,
+          "rmse": 1.0019468026735,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "1",
+          "fold": 1,
+          "mae": 0.6855768305501341,
+          "materials": 120,
+          "pcc": 0.3235023844118369,
+          "rmse": 0.8681235489362831,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "2",
+          "fold": 1,
+          "mae": 0.7647882469010187,
+          "materials": 120,
+          "pcc": 0.3549077089366241,
+          "rmse": 0.9698727648426666,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "4",
+          "fold": 1,
+          "mae": 0.7779606582360027,
+          "materials": 120,
+          "pcc": 0.2661165752870937,
+          "rmse": 1.037205672718074,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "5",
+          "fold": 1,
+          "mae": 0.6743533836981844,
+          "materials": 120,
+          "pcc": 0.35920619494195755,
+          "rmse": 0.8545964828775923,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "1",
+          "fold": 2,
+          "mae": 0.7959624081540674,
+          "materials": 120,
+          "pcc": 0.31346054043578636,
+          "rmse": 1.010918611017545,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "2",
+          "fold": 2,
+          "mae": 0.7193585743588147,
+          "materials": 120,
+          "pcc": 0.3654441732220668,
+          "rmse": 0.9011085009432072,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "4",
+          "fold": 2,
+          "mae": 0.6626340078964097,
+          "materials": 120,
+          "pcc": 0.3583439878228047,
+          "rmse": 0.8493506485379442,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "5",
+          "fold": 2,
+          "mae": 2.8829557453460892,
+          "materials": 120,
+          "pcc": 0.36028725971436215,
+          "rmse": 3.013553216459598,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "1",
+          "fold": 3,
+          "mae": 0.8174674293880112,
+          "materials": 120,
+          "pcc": 0.29145146136774963,
+          "rmse": 0.9945027582353801,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "2",
+          "fold": 3,
+          "mae": 1.325938997048169,
+          "materials": 120,
+          "pcc": 0.2175388629582763,
+          "rmse": 1.5258452687864488,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "4",
+          "fold": 3,
+          "mae": 0.7987219298313486,
+          "materials": 120,
+          "pcc": 0.365603391366979,
+          "rmse": 1.0122445446668777,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "5",
+          "fold": 3,
+          "mae": 0.9029177860226995,
+          "materials": 120,
+          "pcc": 0.040196712979263895,
+          "rmse": 1.153770435866484,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "1",
+          "fold": 4,
+          "mae": 0.706258257625445,
+          "materials": 119,
+          "pcc": 0.3558727996622594,
+          "rmse": 0.9248830125209342,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "2",
+          "fold": 4,
+          "mae": 0.6632933586017173,
+          "materials": 119,
+          "pcc": 0.4153934822536651,
+          "rmse": 0.8761259967786077,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "4",
+          "fold": 4,
+          "mae": 0.7418522108105309,
+          "materials": 119,
+          "pcc": 0.322890527850311,
+          "rmse": 0.9308657339317077,
+          "seed": 42
+        },
+        {
+          "arm": "embedding",
+          "environment": "5",
+          "fold": 4,
+          "mae": 0.6962840111480385,
+          "materials": 119,
+          "pcc": 0.38720602247915736,
+          "rmse": 0.8994670573683863,
+          "seed": 42
+        }
+      ],
+      "macro": {
+        "mae": 0.9012171539741209,
+        "pcc": 0.3144807798811868,
+        "rmse": 1.104119616658915
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7545668720810399,
+          "pcc": 0.3267180327797735,
+          "rmse": 0.9441039559499153
+        },
+        "2": {
+          "mae": 0.8787411929657429,
+          "pcc": 0.3208177933954884,
+          "rmse": 1.0854005550320331
+        },
+        "4": {
+          "mae": 0.7851210813359404,
+          "pcc": 0.320986539667823,
+          "rmse": 1.0023071566045991
+        },
+        "5": {
+          "mae": 1.1864394695137601,
+          "pcc": 0.28940075368166224,
+          "rmse": 1.384666799049112
+        }
+      },
+      "per_seed": {
+        "42": {
+          "1": {
+            "mae": 0.7545668720810399,
+            "pcc": 0.3267180327797735,
+            "rmse": 0.9441039559499153
+          },
+          "2": {
+            "mae": 0.8787411929657429,
+            "pcc": 0.3208177933954884,
+            "rmse": 1.0854005550320331
+          },
+          "4": {
+            "mae": 0.7851210813359404,
+            "pcc": 0.320986539667823,
+            "rmse": 1.0023071566045991
+          },
+          "5": {
+            "mae": 1.1864394695137601,
+            "pcc": 0.28940075368166224,
+            "rmse": 1.384666799049112
+          }
+        }
+      },
+      "scope": "grid is one row per fold/environment/seed; per_environment and macro average those per-fold readings"
+    },
+    "frozen_sources": {
+      "grid": [
+        {
+          "arm": "frozen_sources",
+          "environment": "1",
+          "fold": 0,
+          "mae": 0.794052730908155,
+          "materials": 120,
+          "pcc": 0.29092720834662666,
+          "rmse": 0.9556181572514961,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "2",
+          "fold": 0,
+          "mae": 0.685640546829737,
+          "materials": 120,
+          "pcc": 0.26115701243359896,
+          "rmse": 0.91478492392713,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "4",
+          "fold": 0,
+          "mae": 0.7804487933980843,
+          "materials": 120,
+          "pcc": 0.2883030924373913,
+          "rmse": 1.0026097675015733,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "5",
+          "fold": 0,
+          "mae": 0.795993370044005,
+          "materials": 120,
+          "pcc": 0.24709722171027873,
+          "rmse": 1.0146663238322489,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "1",
+          "fold": 1,
+          "mae": 0.7415427819430126,
+          "materials": 120,
+          "pcc": 0.16476594375087164,
+          "rmse": 0.9013445672539047,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "2",
+          "fold": 1,
+          "mae": 0.7679113409987247,
+          "materials": 120,
+          "pcc": 0.3456791220917339,
+          "rmse": 0.9652811057771313,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "4",
+          "fold": 1,
+          "mae": 0.739719529984176,
+          "materials": 120,
+          "pcc": 0.28253931754806566,
+          "rmse": 0.9925285405379113,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "5",
+          "fold": 1,
+          "mae": 0.6637567712486977,
+          "materials": 120,
+          "pcc": 0.35113871445585215,
+          "rmse": 0.8514855449369872,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "1",
+          "fold": 2,
+          "mae": 0.8114810313737615,
+          "materials": 120,
+          "pcc": 0.3355796994258105,
+          "rmse": 1.0281691626772562,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "2",
+          "fold": 2,
+          "mae": 0.7068210523345232,
+          "materials": 120,
+          "pcc": 0.3676380849679172,
+          "rmse": 0.8959165831823134,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "4",
+          "fold": 2,
+          "mae": 0.6595983548941403,
+          "materials": 120,
+          "pcc": 0.3683219945870183,
+          "rmse": 0.8439685327396151,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "5",
+          "fold": 2,
+          "mae": 0.6785195798106142,
+          "materials": 120,
+          "pcc": 0.3645015768830252,
+          "rmse": 0.8818108779864295,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "1",
+          "fold": 3,
+          "mae": 0.8385120337715326,
+          "materials": 120,
+          "pcc": 0.19688465339982497,
+          "rmse": 1.0212487845301668,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "2",
+          "fold": 3,
+          "mae": 0.801026647082678,
+          "materials": 120,
+          "pcc": 0.3086386434521983,
+          "rmse": 1.063581702832037,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "4",
+          "fold": 3,
+          "mae": 0.8109747598436712,
+          "materials": 120,
+          "pcc": 0.34455247133880873,
+          "rmse": 1.0196269402620373,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "5",
+          "fold": 3,
+          "mae": 0.8549089085893444,
+          "materials": 120,
+          "pcc": 0.35043458162708135,
+          "rmse": 1.0658353764555797,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "1",
+          "fold": 4,
+          "mae": 0.822773662871071,
+          "materials": 119,
+          "pcc": 0.12722700898563655,
+          "rmse": 1.0196712609979084,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "2",
+          "fold": 4,
+          "mae": 0.6474385959694278,
+          "materials": 119,
+          "pcc": 0.42424453129714373,
+          "rmse": 0.8658024862074439,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "4",
+          "fold": 4,
+          "mae": 0.6944002929240952,
+          "materials": 119,
+          "pcc": 0.3722240253369488,
+          "rmse": 0.8837971647568844,
+          "seed": 42
+        },
+        {
+          "arm": "frozen_sources",
+          "environment": "5",
+          "fold": 4,
+          "mae": 0.7051366964290319,
+          "materials": 119,
+          "pcc": 0.33068870443323445,
+          "rmse": 0.9194125210770278,
+          "seed": 42
+        }
+      ],
+      "macro": {
+        "mae": 0.7500328740624241,
+        "pcc": 0.3061271804254534,
+        "rmse": 0.955358016236154
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.8016724481735065,
+          "pcc": 0.22307690278175407,
+          "rmse": 0.9852103865421464
+        },
+        "2": {
+          "mae": 0.7217676366430181,
+          "pcc": 0.3414714788485184,
+          "rmse": 0.941073360385211
+        },
+        "4": {
+          "mae": 0.7370283462088334,
+          "pcc": 0.3311881802496466,
+          "rmse": 0.9485061891596043
+        },
+        "5": {
+          "mae": 0.7396630652243386,
+          "pcc": 0.3287721598218944,
+          "rmse": 0.9466421288576546
+        }
+      },
+      "per_seed": {
+        "42": {
+          "1": {
+            "mae": 0.8016724481735065,
+            "pcc": 0.22307690278175407,
+            "rmse": 0.9852103865421464
+          },
+          "2": {
+            "mae": 0.7217676366430181,
+            "pcc": 0.3414714788485184,
+            "rmse": 0.941073360385211
+          },
+          "4": {
+            "mae": 0.7370283462088334,
+            "pcc": 0.3311881802496466,
+            "rmse": 0.9485061891596043
+          },
+          "5": {
+            "mae": 0.7396630652243386,
+            "pcc": 0.3287721598218944,
+            "rmse": 0.9466421288576546
+          }
+        }
+      },
+      "scope": "grid is one row per fold/environment/seed; per_environment and macro average those per-fold readings"
+    },
+    "linear_prediction": {
+      "grid": [
+        {
+          "arm": "linear_prediction",
+          "environment": "1",
+          "fold": 0,
+          "mae": 0.7955389385555802,
+          "materials": 120,
+          "pcc": 0.26017682904523415,
+          "rmse": 0.9560178233242159,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "2",
+          "fold": 0,
+          "mae": 0.7125892886319306,
+          "materials": 120,
+          "pcc": 0.26549203041603164,
+          "rmse": 0.9457880629329535,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "4",
+          "fold": 0,
+          "mae": 0.8001487140955259,
+          "materials": 120,
+          "pcc": 0.29019050935455454,
+          "rmse": 1.015900359570869,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "5",
+          "fold": 0,
+          "mae": 0.8010281849217528,
+          "materials": 120,
+          "pcc": 0.2388673953211858,
+          "rmse": 1.019633903158344,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "1",
+          "fold": 1,
+          "mae": 0.7471560573681688,
+          "materials": 120,
+          "pcc": 0.15475312786143117,
+          "rmse": 0.9049411360133552,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "2",
+          "fold": 1,
+          "mae": 0.7687727099281848,
+          "materials": 120,
+          "pcc": 0.3497232827539211,
+          "rmse": 0.9678934470168522,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "4",
+          "fold": 1,
+          "mae": 0.7639199644934939,
+          "materials": 120,
+          "pcc": 0.2790101876906064,
+          "rmse": 1.0199789302157418,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "5",
+          "fold": 1,
+          "mae": 0.6625164657760128,
+          "materials": 120,
+          "pcc": 0.3476753242064926,
+          "rmse": 0.8500984998187529,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "1",
+          "fold": 2,
+          "mae": 0.8316207260014831,
+          "materials": 120,
+          "pcc": 0.201131176275897,
+          "rmse": 1.043490850834766,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "2",
+          "fold": 2,
+          "mae": 0.7141564157760911,
+          "materials": 120,
+          "pcc": 0.35825761752277185,
+          "rmse": 0.9055423769229192,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "4",
+          "fold": 2,
+          "mae": 0.6796674806047136,
+          "materials": 120,
+          "pcc": 0.3360986973829215,
+          "rmse": 0.883525098890246,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "5",
+          "fold": 2,
+          "mae": 0.6757911345322776,
+          "materials": 120,
+          "pcc": 0.36457594013942596,
+          "rmse": 0.8810385778284361,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "1",
+          "fold": 3,
+          "mae": 0.8331501267424343,
+          "materials": 120,
+          "pcc": 0.1777761064038725,
+          "rmse": 1.0122073275955843,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "2",
+          "fold": 3,
+          "mae": 0.7929177496490767,
+          "materials": 120,
+          "pcc": 0.3180238840699463,
+          "rmse": 1.0602976984968517,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "4",
+          "fold": 3,
+          "mae": 0.8099033066000408,
+          "materials": 120,
+          "pcc": 0.34919395045676016,
+          "rmse": 1.0203682367242297,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "5",
+          "fold": 3,
+          "mae": 0.8235377806964472,
+          "materials": 120,
+          "pcc": 0.3660220248482052,
+          "rmse": 1.0380871502578641,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "1",
+          "fold": 4,
+          "mae": 0.8219606109733187,
+          "materials": 119,
+          "pcc": 0.08457040688047461,
+          "rmse": 1.021672013334556,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "2",
+          "fold": 4,
+          "mae": 0.6475598623628895,
+          "materials": 119,
+          "pcc": 0.4297240330109419,
+          "rmse": 0.8640588266617995,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "4",
+          "fold": 4,
+          "mae": 0.7004954957442828,
+          "materials": 119,
+          "pcc": 0.3615585626606753,
+          "rmse": 0.8916216529683216,
+          "seed": 42
+        },
+        {
+          "arm": "linear_prediction",
+          "environment": "5",
+          "fold": 4,
+          "mae": 0.7089824387476534,
+          "materials": 119,
+          "pcc": 0.3197677795869065,
+          "rmse": 0.9237139858435116,
+          "seed": 42
+        }
+      ],
+      "macro": {
+        "mae": 0.754570672610068,
+        "pcc": 0.2926294432944128,
+        "rmse": 0.9612937979205085
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.8058852919281969,
+          "pcc": 0.17568152929338188,
+          "rmse": 0.9876658302204955
+        },
+        "2": {
+          "mae": 0.7271992052696346,
+          "pcc": 0.3442441695547226,
+          "rmse": 0.9487160824062751
+        },
+        "4": {
+          "mae": 0.7508269923076114,
+          "pcc": 0.3232103815091036,
+          "rmse": 0.9662788556738817
+        },
+        "5": {
+          "mae": 0.7343712009348289,
+          "pcc": 0.3273816928204432,
+          "rmse": 0.9425144233813818
+        }
+      },
+      "per_seed": {
+        "42": {
+          "1": {
+            "mae": 0.8058852919281969,
+            "pcc": 0.17568152929338188,
+            "rmse": 0.9876658302204955
+          },
+          "2": {
+            "mae": 0.7271992052696346,
+            "pcc": 0.3442441695547226,
+            "rmse": 0.9487160824062751
+          },
+          "4": {
+            "mae": 0.7508269923076114,
+            "pcc": 0.3232103815091036,
+            "rmse": 0.9662788556738817
+          },
+          "5": {
+            "mae": 0.7343712009348289,
+            "pcc": 0.3273816928204432,
+            "rmse": 0.9425144233813818
+          }
+        }
+      },
+      "scope": "grid is one row per fold/environment/seed; per_environment and macro average those per-fold readings"
+    },
+    "scalar_prediction": {
+      "grid": [
+        {
+          "arm": "scalar_prediction",
+          "environment": "1",
+          "fold": 0,
+          "mae": 0.7707654011351671,
+          "materials": 120,
+          "pcc": 0.3909893744814907,
+          "rmse": 0.9297984559184942,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "2",
+          "fold": 0,
+          "mae": 0.6986920919471676,
+          "materials": 120,
+          "pcc": 0.26058944731201705,
+          "rmse": 0.9156957789587323,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "4",
+          "fold": 0,
+          "mae": 0.8007025890084679,
+          "materials": 120,
+          "pcc": 0.2715917487225617,
+          "rmse": 1.0095791177046785,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "5",
+          "fold": 0,
+          "mae": 0.8044423050794223,
+          "materials": 120,
+          "pcc": 0.19860623540359565,
+          "rmse": 1.0278277174118402,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "1",
+          "fold": 1,
+          "mae": 0.7461013099307344,
+          "materials": 120,
+          "pcc": 0.2969456334497441,
+          "rmse": 0.8984316590043948,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "2",
+          "fold": 1,
+          "mae": 0.777028354814315,
+          "materials": 120,
+          "pcc": 0.32872224185515236,
+          "rmse": 0.9795819675365925,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "4",
+          "fold": 1,
+          "mae": 0.7808874035255953,
+          "materials": 120,
+          "pcc": 0.2675398882396208,
+          "rmse": 1.0280513729871097,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "5",
+          "fold": 1,
+          "mae": 0.6884021761599873,
+          "materials": 120,
+          "pcc": 0.27203824425834894,
+          "rmse": 0.8704257284739213,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "1",
+          "fold": 2,
+          "mae": 0.8185015462604669,
+          "materials": 120,
+          "pcc": 0.21805112343449148,
+          "rmse": 1.04377463015981,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "2",
+          "fold": 2,
+          "mae": 0.7242832709691235,
+          "materials": 120,
+          "pcc": 0.3292062607577201,
+          "rmse": 0.9096224309645145,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "4",
+          "fold": 2,
+          "mae": 0.6791325780677868,
+          "materials": 120,
+          "pcc": 0.3268412434920021,
+          "rmse": 0.8680269553315093,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "5",
+          "fold": 2,
+          "mae": 0.7183770144695809,
+          "materials": 120,
+          "pcc": 0.20133273988126876,
+          "rmse": 0.9282458289193901,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "1",
+          "fold": 3,
+          "mae": 0.8240511822199127,
+          "materials": 120,
+          "pcc": 0.3118063105318662,
+          "rmse": 1.0054292290103208,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "2",
+          "fold": 3,
+          "mae": 0.8040407528255853,
+          "materials": 120,
+          "pcc": 0.3155927902260826,
+          "rmse": 1.0619835262935742,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "4",
+          "fold": 3,
+          "mae": 0.8076428672851181,
+          "materials": 120,
+          "pcc": 0.3403487313421423,
+          "rmse": 1.0190432097237103,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "5",
+          "fold": 3,
+          "mae": 0.8585941522927982,
+          "materials": 120,
+          "pcc": 0.290549552938357,
+          "rmse": 1.0778069518618634,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "1",
+          "fold": 4,
+          "mae": 0.7402028234662696,
+          "materials": 119,
+          "pcc": 0.32087160434365986,
+          "rmse": 0.9506601472663301,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "2",
+          "fold": 4,
+          "mae": 0.6338341929416382,
+          "materials": 119,
+          "pcc": 0.42836950188866646,
+          "rmse": 0.8574285531557387,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "4",
+          "fold": 4,
+          "mae": 0.6773674081065404,
+          "materials": 119,
+          "pcc": 0.41060954078391926,
+          "rmse": 0.8500975763902208,
+          "seed": 42
+        },
+        {
+          "arm": "scalar_prediction",
+          "environment": "5",
+          "fold": 4,
+          "mae": 0.7135637904703837,
+          "materials": 119,
+          "pcc": 0.30949622686437844,
+          "rmse": 0.9283568618697265,
+          "seed": 42
+        }
+      ],
+      "macro": {
+        "mae": 0.753330660548803,
+        "pcc": 0.3045049220103543,
+        "rmse": 0.9579933849471237
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7799244526025102,
+          "pcc": 0.30773280924825047,
+          "rmse": 0.9656188242718701
+        },
+        "2": {
+          "mae": 0.727575732699566,
+          "pcc": 0.3324960484079277,
+          "rmse": 0.9448624513818304
+        },
+        "4": {
+          "mae": 0.7491465691987016,
+          "pcc": 0.3233862305160492,
+          "rmse": 0.9549596464274458
+        },
+        "5": {
+          "mae": 0.7566758876944344,
+          "pcc": 0.25440459986918973,
+          "rmse": 0.9665326177073483
+        }
+      },
+      "per_seed": {
+        "42": {
+          "1": {
+            "mae": 0.7799244526025102,
+            "pcc": 0.30773280924825047,
+            "rmse": 0.9656188242718701
+          },
+          "2": {
+            "mae": 0.727575732699566,
+            "pcc": 0.3324960484079277,
+            "rmse": 0.9448624513818304
+          },
+          "4": {
+            "mae": 0.7491465691987016,
+            "pcc": 0.3233862305160492,
+            "rmse": 0.9549596464274458
+          },
+          "5": {
+            "mae": 0.7566758876944344,
+            "pcc": 0.25440459986918973,
+            "rmse": 0.9665326177073483
+          }
+        }
+      },
+      "scope": "grid is one row per fold/environment/seed; per_environment and macro average those per-fold readings"
+    },
+    "target_pretrain": {
+      "grid": [
+        {
+          "arm": "target_pretrain",
+          "environment": "1",
+          "fold": 0,
+          "mae": 0.6451600959132459,
+          "materials": 120,
+          "pcc": 0.5556842744717118,
+          "rmse": 0.8290333221749907,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "2",
+          "fold": 0,
+          "mae": 0.7453297590780602,
+          "materials": 120,
+          "pcc": 0.22420892417520746,
+          "rmse": 0.9773930670416637,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "4",
+          "fold": 0,
+          "mae": 0.7736548400998403,
+          "materials": 120,
+          "pcc": 0.30066247106026933,
+          "rmse": 1.0085500724135308,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "5",
+          "fold": 0,
+          "mae": 0.7563703839864329,
+          "materials": 120,
+          "pcc": 0.4017880476804362,
+          "rmse": 0.962379905636165,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "1",
+          "fold": 1,
+          "mae": 0.6995990372650105,
+          "materials": 120,
+          "pcc": 0.3738471146635371,
+          "rmse": 0.8684008672761466,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "2",
+          "fold": 1,
+          "mae": 0.7361035557754513,
+          "materials": 120,
+          "pcc": 0.4230151217091107,
+          "rmse": 0.9376038265348121,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "4",
+          "fold": 1,
+          "mae": 0.749935316411135,
+          "materials": 120,
+          "pcc": 0.21084961542010544,
+          "rmse": 1.0043375129729535,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "5",
+          "fold": 1,
+          "mae": 0.7227080058985893,
+          "materials": 120,
+          "pcc": 0.3249024559468709,
+          "rmse": 0.8865007585861966,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "1",
+          "fold": 2,
+          "mae": 0.6969089799449625,
+          "materials": 120,
+          "pcc": 0.5012618959327079,
+          "rmse": 0.9306192681419592,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "2",
+          "fold": 2,
+          "mae": 0.722831155055241,
+          "materials": 120,
+          "pcc": 0.38370805742878883,
+          "rmse": 0.8912112382755226,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "4",
+          "fold": 2,
+          "mae": 0.6589423121782604,
+          "materials": 120,
+          "pcc": 0.37307593319616256,
+          "rmse": 0.8497975972501958,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "5",
+          "fold": 2,
+          "mae": 0.6979191951030398,
+          "materials": 120,
+          "pcc": 0.3710595405955162,
+          "rmse": 0.9034025081462421,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "1",
+          "fold": 3,
+          "mae": 0.7772997066836341,
+          "materials": 120,
+          "pcc": 0.469984456977152,
+          "rmse": 0.9385761138174501,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "2",
+          "fold": 3,
+          "mae": 0.8248220376708225,
+          "materials": 120,
+          "pcc": 0.405368815143787,
+          "rmse": 1.0816934222960775,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "4",
+          "fold": 3,
+          "mae": 0.8105706830160003,
+          "materials": 120,
+          "pcc": 0.40177387321425645,
+          "rmse": 1.0136073989823944,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "5",
+          "fold": 3,
+          "mae": 0.7951206989592754,
+          "materials": 120,
+          "pcc": 0.3690543905514415,
+          "rmse": 1.037469650645375,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "1",
+          "fold": 4,
+          "mae": 0.7372771834688454,
+          "materials": 119,
+          "pcc": 0.5340102226480183,
+          "rmse": 0.9328518248810397,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "2",
+          "fold": 4,
+          "mae": 0.6769304755919682,
+          "materials": 119,
+          "pcc": 0.3874542555306924,
+          "rmse": 0.8880392787623365,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "4",
+          "fold": 4,
+          "mae": 0.6894688475458364,
+          "materials": 119,
+          "pcc": 0.45478786800235904,
+          "rmse": 0.8400712364696603,
+          "seed": 42
+        },
+        {
+          "arm": "target_pretrain",
+          "environment": "5",
+          "fold": 4,
+          "mae": 0.6573108360268082,
+          "materials": 119,
+          "pcc": 0.5105474872125079,
+          "rmse": 0.857801064477964,
+          "seed": 42
+        }
+      ],
+      "macro": {
+        "mae": 0.728713155283623,
+        "pcc": 0.398852241078032,
+        "rmse": 0.9319669967391337
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7112490006551397,
+          "pcc": 0.48695759293862545,
+          "rmse": 0.8998962792583172
+        },
+        "2": {
+          "mae": 0.7412033966343087,
+          "pcc": 0.36475103479751725,
+          "rmse": 0.9551881665820826
+        },
+        "4": {
+          "mae": 0.7365143998502145,
+          "pcc": 0.3482299521786306,
+          "rmse": 0.9432727636177468
+        },
+        "5": {
+          "mae": 0.7258858239948291,
+          "pcc": 0.39547038439735455,
+          "rmse": 0.9295107774983885
+        }
+      },
+      "per_seed": {
+        "42": {
+          "1": {
+            "mae": 0.7112490006551397,
+            "pcc": 0.48695759293862545,
+            "rmse": 0.8998962792583172
+          },
+          "2": {
+            "mae": 0.7412033966343087,
+            "pcc": 0.36475103479751725,
+            "rmse": 0.9551881665820826
+          },
+          "4": {
+            "mae": 0.7365143998502145,
+            "pcc": 0.3482299521786306,
+            "rmse": 0.9432727636177468
+          },
+          "5": {
+            "mae": 0.7258858239948291,
+            "pcc": 0.39547038439735455,
+            "rmse": 0.9295107774983885
+          }
+        }
+      },
+      "scope": "grid is one row per fold/environment/seed; per_environment and macro average those per-fold readings"
+    }
+  },
+  "pooled_oof": {
+    "direct": {
+      "macro": {
+        "mae": 0.7674724639047237,
+        "pcc": 0.3465669027087334,
+        "rmse": 0.9854174620100633
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7399906515440445,
+          "pcc": 0.4208029597174172,
+          "rmse": 0.9342925936019918
+        },
+        "2": {
+          "mae": 0.7819701743422566,
+          "pcc": 0.3096854243861107,
+          "rmse": 1.014745639653085
+        },
+        "4": {
+          "mae": 0.794070173653573,
+          "pcc": 0.2937438254680188,
+          "rmse": 1.0281857382978765
+        },
+        "5": {
+          "mae": 0.7538588560790209,
+          "pcc": 0.36203540126338685,
+          "rmse": 0.9644458764873
+        }
+      },
+      "per_seed_macro": {
+        "42": {
+          "mae": 0.7674724639047237,
+          "pcc": 0.3465669027087334,
+          "rmse": 0.9854174620100633
+        }
+      },
+      "scope": "one pooled OOF vector per environment (every material predicted once); not comparable with a fold mean",
+      "seed_ensemble_macro": {
+        "mae": 0.7674724639047237,
+        "pcc": 0.3465669027087334,
+        "rmse": 0.9854174620100633
+      }
+    },
+    "embedding": {
+      "macro": {
+        "mae": 0.9015498671534659,
+        "pcc": 0.23042460873970821,
+        "rmse": 1.169239892644305
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.754647520853086,
+          "pcc": 0.32436919296605754,
+          "rmse": 0.9455808009798008
+        },
+        "2": {
+          "mae": 0.8791008721549983,
+          "pcc": 0.220018780284632,
+          "rmse": 1.1121324174874818
+        },
+        "4": {
+          "mae": 0.7851933165121097,
+          "pcc": 0.26975843091485674,
+          "rmse": 1.0086043189585985
+        },
+        "5": {
+          "mae": 1.1872577590936695,
+          "pcc": 0.10755203079328655,
+          "rmse": 1.6106420331513391
+        }
+      },
+      "per_seed_macro": {
+        "42": {
+          "mae": 0.9015498671534659,
+          "pcc": 0.23042460873970821,
+          "rmse": 1.169239892644305
+        }
+      },
+      "scope": "one pooled OOF vector per environment (every material predicted once); not comparable with a fold mean",
+      "seed_ensemble_macro": {
+        "mae": 0.9015498671534659,
+        "pcc": 0.23042460873970821,
+        "rmse": 1.169239892644305
+      }
+    },
+    "frozen_sources": {
+      "macro": {
+        "mae": 0.7500872906934993,
+        "pcc": 0.2813805895302974,
+        "rmse": 0.9578861995423755
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.8016372207700048,
+          "pcc": 0.15940667691157653,
+          "rmse": 0.9863956816151516
+        },
+        "2": {
+          "mae": 0.721891725191722,
+          "pcc": 0.33417159118153317,
+          "rmse": 0.9437437042519661
+        },
+        "4": {
+          "mae": 0.7370995115732486,
+          "pcc": 0.3214483871698894,
+          "rmse": 0.9512507728989804
+        },
+        "5": {
+          "mae": 0.7397207052390219,
+          "pcc": 0.31049570285819045,
+          "rmse": 0.950154639403404
+        }
+      },
+      "per_seed_macro": {
+        "42": {
+          "mae": 0.7500872906934993,
+          "pcc": 0.2813805895302974,
+          "rmse": 0.9578861995423755
+        }
+      },
+      "scope": "one pooled OOF vector per environment (every material predicted once); not comparable with a fold mean",
+      "seed_ensemble_macro": {
+        "mae": 0.7500872906934993,
+        "pcc": 0.2813805895302974,
+        "rmse": 0.9578861995423755
+      }
+    },
+    "linear_prediction": {
+      "macro": {
+        "mae": 0.754628804614497,
+        "pcc": 0.28535687420090033,
+        "rmse": 0.9635211908161635
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.8058584550015774,
+          "pcc": 0.1542241537259683,
+          "rmse": 0.9888973596739637
+        },
+        "2": {
+          "mae": 0.7273321590975257,
+          "pcc": 0.34109194247532054,
+          "rmse": 0.9511557330928084
+        },
+        "4": {
+          "mae": 0.7509110181783348,
+          "pcc": 0.31912651814450804,
+          "rmse": 0.9685411737794976
+        },
+        "5": {
+          "mae": 0.7344135861805502,
+          "pcc": 0.32698488245780455,
+          "rmse": 0.945490496718384
+        }
+      },
+      "per_seed_macro": {
+        "42": {
+          "mae": 0.754628804614497,
+          "pcc": 0.28535687420090033,
+          "rmse": 0.9635211908161635
+        }
+      },
+      "scope": "one pooled OOF vector per environment (every material predicted once); not comparable with a fold mean",
+      "seed_ensemble_macro": {
+        "mae": 0.754628804614497,
+        "pcc": 0.28535687420090033,
+        "rmse": 0.9635211908161635
+      }
+    },
+    "scalar_prediction": {
+      "macro": {
+        "mae": 0.7534343143164202,
+        "pcc": 0.2827508914374077,
+        "rmse": 0.9606423596186047
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7799907658397993,
+          "pcc": 0.2617519359272854,
+          "rmse": 0.9670651386679184
+        },
+        "2": {
+          "mae": 0.7277322294270416,
+          "pcc": 0.3213192585284292,
+          "rmse": 0.9476119279758778
+        },
+        "4": {
+          "mae": 0.7492664008532796,
+          "pcc": 0.30086523967928824,
+          "rmse": 0.9583691440128994
+        },
+        "5": {
+          "mae": 0.7567478611455598,
+          "pcc": 0.24706713161462818,
+          "rmse": 0.9695232278177229
+        }
+      },
+      "per_seed_macro": {
+        "42": {
+          "mae": 0.7534343143164202,
+          "pcc": 0.2827508914374077,
+          "rmse": 0.9606423596186047
+        }
+      },
+      "scope": "one pooled OOF vector per environment (every material predicted once); not comparable with a fold mean",
+      "seed_ensemble_macro": {
+        "mae": 0.7534343143164202,
+        "pcc": 0.2827508914374077,
+        "rmse": 0.9606423596186047
+      }
+    },
+    "target_pretrain": {
+      "macro": {
+        "mae": 0.7287773728456017,
+        "pcc": 0.36751986612530885,
+        "rmse": 0.9343855225447537
+      },
+      "per_environment": {
+        "1": {
+          "mae": 0.7112055479292404,
+          "pcc": 0.4467375827772823,
+          "rmse": 0.9009015423741927
+        },
+        "2": {
+          "mae": 0.7413106970033275,
+          "pcc": 0.31655558100605746,
+          "rmse": 0.9579567418257771
+        },
+        "4": {
+          "mae": 0.736592940004312,
+          "pcc": 0.33529337157080263,
+          "rmse": 0.9468614376562778
+        },
+        "5": {
+          "mae": 0.7260003064455269,
+          "pcc": 0.37149292914709303,
+          "rmse": 0.9318223683227672
+        }
+      },
+      "per_seed_macro": {
+        "42": {
+          "mae": 0.7287773728456017,
+          "pcc": 0.36751986612530885,
+          "rmse": 0.9343855225447537
+        }
+      },
+      "scope": "one pooled OOF vector per environment (every material predicted once); not comparable with a fold mean",
+      "seed_ensemble_macro": {
+        "mae": 0.7287773728456017,
+        "pcc": 0.36751986612530885,
+        "rmse": 0.9343855225447537
+      }
+    }
+  },
+  "scored_mode": "validation",
+  "seeds": [
+    42
+  ],
+  "training_seconds": 366.305
+}
