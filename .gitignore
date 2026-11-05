@@ -31,3 +31,8 @@ results/grouped_weights_*/diagnostics.json
 
 # 本地临时文件
 临时文档/
+# 冒烟结果与本地遗留
+results/a_rr_nested_smoke/
+results/bimsgp_nested_smoke/
+unused/
+src/wheat599/posterior_gibbs.py
