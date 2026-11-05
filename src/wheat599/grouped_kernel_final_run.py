@@ -33,12 +33,13 @@ def summarize(rows, expected_original_macro):
                            for f in range(10)])
         scores[arm] = values.reshape(10, 4, 3).mean(axis=1)
     result = {'completed_fits': len(rows), 'metrics': {}}
-    for arm, values in scores.items():
+    for arm in arms:
+        values = scores[arm]
         result['metrics'][arm] = {
-            'macro': dict(zip(('pcc', 'rmse', 'mae'), values.mean(axis=0).tolist())),
+            'macro': dict(zip(('pcc', 'rmse', 'mae'), values.mean(axis=(0, 1)).tolist())),
             'per_environment': values.mean(axis=0).tolist(),
             'fold_macro_pcc': values[:, :, 0].mean(axis=1).tolist()}
-    delta = scores['grouped'][:, :, 0] - scores['original'][:, :, 0]
+    delta = (scores['grouped'][:, :, 0] - scores['original'][:, :, 0]).mean(axis=1)
     result['comparison'] = {'pcc_gain': float(delta.mean()),
                             'fold_wins': int((delta > 0).sum()),
                             'fold_deltas': delta.tolist()}
