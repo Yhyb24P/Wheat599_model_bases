@@ -1,0 +1,18 @@
+{
+  "prediction_files_checked": 90,
+  "environment_metrics_checked": 1080,
+  "max_metric_difference": 6.661338147750939e-16,
+  "source_hashes_verified": true,
+  "identity_prediction_max_abs_difference": 6.831852791266968e-07,
+  "full_huber_fits": 90,
+  "weight_training_runs": 60,
+  "steps_per_training": 100,
+  "max_solver_gradient": 1.8762555613647097e-06,
+  "synthetic_cuda_check_seconds": 2.7103723879990866,
+  "synthetic_cuda_peak_allocated_bytes": 17264640,
+  "artifact_sha256": {
+    "diagnostics.json": "476fd7a52be9fc2fae83f42659a1f155a241ce1714d15789bcd852be96e09c9a",
+    "units.json": "7d3304b58783485645eead858adc56c4008145e54dc1dddcbdcc13affbc1bc85",
+    "summary.json": "6f75c451c40fd8c4ba99e258ab77570eb3f931464ca38f10607408fae9535116"
+  }
+}

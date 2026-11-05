@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "completed_fits": 90,
+  "expected_fits": 90,
+  "active_unit": [
+    9,
+    2
+  ]
+}

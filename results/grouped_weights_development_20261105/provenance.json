@@ -1,0 +1,30 @@
+{
+  "config": {
+    "model": "grouped_weights",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "huber_source": "results/robust_icm_development_20261103",
+    "identity_source": "results/grouped_kernel_development_20261105",
+    "cpu_threads": 2,
+    "device": "cuda"
+  },
+  "code_commit": "c0da2fd52ff9233cff36e22c7e77071f1463e91d",
+  "sha256": {
+    "/home/hsy/git_files/wheat599-weights-c0da2fd/src/wheat599/grouped_weights_run.py": "aa5b7579f4b25c2aca9cce38169c16d4c87069d54636a38183e4f6442af8df6f",
+    "/home/hsy/git_files/wheat599-weights-c0da2fd/src/wheat599/grouped_weights.py": "2e3980da1e2d07bd6e034b35dcd8eb9e233d3dec4d0a3465766d75b241957612",
+    "/home/hsy/git_files/wheat599-weights-c0da2fd/scripts/run_background_nested.py": "7c23b21d67be33ed6665f75f05fd0c6b0fdb71ef56b20c4cf74218d4ec39858c",
+    "configs/grouped_weights.yaml": "3f6b63f958f369259548eb94abd2e0ef01932bc4e70941cba07f567b026191a6",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/heterogeneous_icm_development_20261103/base_choices.json": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+    "results/robust_icm_development_20261103/selection.json": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304",
+    "results/robust_icm_development_20261103/optimization.json": "7a9f6997da537146cb3fc0f798fe7b84e66cbd2111ac4f34e2d879357d6a3b31",
+    "results/grouped_kernel_development_20261105/summary.json": "823257a32ebc341424564f03c55c30306aea9b5d93b23a6f9b8639c837a886d8"
+  },
+  "environment_order": [
+    "1",
+    "2",
+    "4",
+    "5"
+  ]
+}
