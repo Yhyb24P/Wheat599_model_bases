@@ -56,6 +56,10 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 
 ## TabM 任务适配依赖（2026-11-04，正式训练准备）
 
+四独立TabM外层评价（2026-11-05）：本项目从头训练80个权重，无外部预训练权重，依赖沿用Apache-2.0官方TabM；未另行指定权重分发许可。权重总计132809168字节，仅保留omen `results/independent_tabm_final_20261105/weights/`，不入Git；80个逐文件SHA见同名结果目录`weights_sha256.txt`，该清单SHA为`fd50608fb67fd09740b2bb919d3c53e1357b081162a6e91773122116fd319f56`。此为文件SHA，不是内存state摘要。
+
+云端后期迁移交接（2026-11-05）：30个本项目固定配置专家checkpoint已逐文件核验，仅留用户交接包，不入Git；原清单见`results/late_transfer_development_20261105/cloud_artifact_sha256.txt`、核验说明见`handoff_verification.json`。未使用外部预训练权重，不将交接数据重新分发。
+
 环境共享研究（2026-11-05）：沿用上述官方Apache-2.0 TabM依赖，无外部预训练权重。新增2400次fit仅内存best state、无持久化权重；state摘要清单为 `results/environment_tabm_development_20261105/checkpoint_sha256.txt`，清单自身SHA-256 `d2cfd53a77265183c72906b54de8900d0227ba4418069f0a73e1d73af95af5ed`。摘要规则为排序key／dtype／shape／tensor bytes，不是checkpoint文件哈希。
 
 2026-11-05 检索开发生成的1440个本项目训练权重留 omen `/home/hsy/git_files/Wheat599_model_bases/results/retrieval_tabm_development_20261105/`，不入Git。逐文件SHA见同名结果目录的 `weights_sha256.txt`，清单SHA-256为 `9389be175483b37280480c84f37ab5f0a92e142e9e49f1f83e7f4dc0f955fe7e`；未使用外部预训练权重。

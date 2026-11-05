@@ -1,0 +1,7 @@
+{
+  "total_seconds": 0.04568621599173639,
+  "fits": 80,
+  "epochs": 1317,
+  "train_seconds": 10.457944468027563,
+  "predict_seconds": 0.05447344700223766
+}

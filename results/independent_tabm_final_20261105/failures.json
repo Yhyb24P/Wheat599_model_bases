@@ -1,0 +1,6 @@
+[
+  {
+    "stage": "run",
+    "reason": "FileNotFoundError('Missing baseline OOF: results/robust_icm_final_20261103/oof.csv')"
+  }
+]

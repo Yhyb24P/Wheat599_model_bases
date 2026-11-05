@@ -1,0 +1,22 @@
+{
+  "checks": {
+    "fits_manifest_configuration_epochs": 80,
+    "unique_oof_material_environment_keys": 2396,
+    "seed_rows": 4792,
+    "seed_average_matches_oof_exactly": true,
+    "independently_recomputed_primary": {
+      "pcc": 0.5081900430958877,
+      "rmse": 0.8642525594972443,
+      "mae": 0.6655891770642204
+    },
+    "baseline_huber_bimsgp_material_keys_truth_match": true,
+    "summary_recovery_did_not_change_fits_seed_oof_failures_sha": true
+  },
+  "training_commit": "4111e588706068cf689c60ab71f38a1eb0437125",
+  "summary_recovery_commit": "8b8dd4258b7520a0be2828002557deb33c301e81",
+  "weights_replay": "weights_replay_verification.json",
+  "fit_failures": 0,
+  "original_summary_failures": 1,
+  "recovery": "complete; no additional fits",
+  "scope": "Wheat599 fixed independent TabM only; no fusion, no Wheat2000 training; existing developed splits are exploratory"
+}

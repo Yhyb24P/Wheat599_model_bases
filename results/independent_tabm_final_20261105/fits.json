@@ -1,0 +1,2082 @@
+[
+  {
+    "fold": 0,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 33,
+    "inner_best_epochs": [
+      72,
+      14,
+      33
+    ],
+    "parameters": 573184,
+    "weight_sha256": "2ef278d28ef5fbcb3f7535882740ef8eacf2041ba82f3fc6ba7ce4e8e6531f55",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e0_s42_c0.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.7037380739930086,
+    "train_seconds": 0.8105728829978034,
+    "predict_seconds": 0.0009453509992454201,
+    "memory": {
+      "baseline_megabytes": 4.833984375,
+      "total_allocated_peak_megabytes": 97.41162109375,
+      "increment_megabytes": 92.57763671875,
+      "total_reserved_peak_megabytes": 116.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 41,
+    "inner_best_epochs": [
+      75,
+      14,
+      41
+    ],
+    "parameters": 573184,
+    "weight_sha256": "8d9b36a0d9675120514f452c34871796c6f2c561453d48c92fe685c69eebdc43",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e0_s2026_c0.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.016609382000751793,
+    "train_seconds": 0.3525459630036494,
+    "predict_seconds": 0.0006818649999331683,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 116.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 8,
+    "inner_best_epochs": [
+      11,
+      7,
+      8
+    ],
+    "parameters": 245632,
+    "weight_sha256": "3940542dc0b795aaf0ed8893a5de97668bd60577224c59a15e3f0df5a8bb65a0",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e1_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.014905411007930525,
+    "train_seconds": 0.04880033199151512,
+    "predict_seconds": 0.0006641729996772483,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 116.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 8,
+    "inner_best_epochs": [
+      11,
+      7,
+      8
+    ],
+    "parameters": 245632,
+    "weight_sha256": "2899063aab38bda1a79d952d3b453c74d9e6f7d7b97e90a8a06f2290723a5759",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e1_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.015712983993580565,
+    "train_seconds": 0.04739589600649197,
+    "predict_seconds": 0.0006846439937362447,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 116.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 6,
+    "inner_best_epochs": [
+      10,
+      5,
+      6
+    ],
+    "parameters": 235392,
+    "weight_sha256": "b25793a3ef47f4065dc2d6a85514d74ca1003d357ca9676a1eb5d0d1c648db5c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e2_s42_c5.pt",
+    "weight_bytes": 959783,
+    "preprocess_seconds": 0.015358263000962324,
+    "train_seconds": 0.0418891250010347,
+    "predict_seconds": 0.0007377750007435679,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 9,
+    "inner_best_epochs": [
+      9,
+      5,
+      9
+    ],
+    "parameters": 235392,
+    "weight_sha256": "3bfdfb95097065a1c42315a28428cf65ec5ee54030e12cbedf631d69a38aebfa",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e2_s2026_c5.pt",
+    "weight_bytes": 959833,
+    "preprocess_seconds": 0.015431799998623319,
+    "train_seconds": 0.06019228699733503,
+    "predict_seconds": 0.0006083309999667108,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 17,
+    "inner_best_epochs": [
+      10,
+      17,
+      60
+    ],
+    "parameters": 593664,
+    "weight_sha256": "76f9c5afb6f3cd63e364166f38c07130801f47fc074598b2d483f4449e30d54c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.016063821996795014,
+    "train_seconds": 0.1316238040017197,
+    "predict_seconds": 0.0007022060017334297,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 0,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 24,
+    "inner_best_epochs": [
+      11,
+      24,
+      57
+    ],
+    "parameters": 593664,
+    "weight_sha256": "0c92076c947b0ee4840b2ff8dc549084fd9b23b0a3d1fb8d1f54520d1cf9f803",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f0_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.01835966699582059,
+    "train_seconds": 0.17688297398854047,
+    "predict_seconds": 0.0005802079977001995,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 4,
+    "epochs": 22,
+    "inner_best_epochs": [
+      25,
+      22,
+      22
+    ],
+    "parameters": 483072,
+    "weight_sha256": "a9d912ad3f90749e78e3ab5b12ce4349b71e43058b64572eda04d44aa2cd8aaa",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e0_s42_c4.pt",
+    "weight_bytes": 1949343,
+    "preprocess_seconds": 0.016014018998248503,
+    "train_seconds": 0.16506167499755975,
+    "predict_seconds": 0.0006085540080675855,
+    "memory": {
+      "baseline_megabytes": 20.857421875,
+      "total_allocated_peak_megabytes": 79.38037109375,
+      "increment_megabytes": 58.52294921875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 4,
+    "epochs": 26,
+    "inner_best_epochs": [
+      26,
+      27,
+      20
+    ],
+    "parameters": 483072,
+    "weight_sha256": "387a048e21964e113821f12168c6f07cae469dda2859d597ed68203ab1764ae0",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e0_s2026_c4.pt",
+    "weight_bytes": 1949385,
+    "preprocess_seconds": 0.016737589001422748,
+    "train_seconds": 0.19461788299668115,
+    "predict_seconds": 0.0006521730101667345,
+    "memory": {
+      "baseline_megabytes": 20.857421875,
+      "total_allocated_peak_megabytes": 79.38037109375,
+      "increment_megabytes": 58.52294921875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 17,
+    "inner_best_epochs": [
+      17,
+      8,
+      17
+    ],
+    "parameters": 235392,
+    "weight_sha256": "1330c2e639898c5db6ae916f398dbfb4f941fab72d294465c95717f4e42e6be0",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e1_s42_c5.pt",
+    "weight_bytes": 959783,
+    "preprocess_seconds": 0.015282990003470331,
+    "train_seconds": 0.11005414700775873,
+    "predict_seconds": 0.0006121819897089154,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 9,
+    "inner_best_epochs": [
+      9,
+      8,
+      26
+    ],
+    "parameters": 235392,
+    "weight_sha256": "253cd8f5fd1d88cd11a49f07b2c97fca4b7f69545bb9fbfad7c9bea8017674a1",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e1_s2026_c5.pt",
+    "weight_bytes": 959833,
+    "preprocess_seconds": 0.015296370009309612,
+    "train_seconds": 0.059375345997978,
+    "predict_seconds": 0.0005594050016952679,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 10,
+    "inner_best_epochs": [
+      25,
+      10,
+      8
+    ],
+    "parameters": 235392,
+    "weight_sha256": "82c2a423c606ade3374a63d094305267426923a022824e223c990e424f94cce6",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e2_s42_c5.pt",
+    "weight_bytes": 959783,
+    "preprocess_seconds": 0.015252644996508025,
+    "train_seconds": 0.06660991199896671,
+    "predict_seconds": 0.0005864390113856643,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 30,
+    "inner_best_epochs": [
+      30,
+      7,
+      44
+    ],
+    "parameters": 235392,
+    "weight_sha256": "68e45eebd8b28ae7ce59a2faf3bb80a36e84377c51ac7312ed4d0fbb4b934107",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e2_s2026_c5.pt",
+    "weight_bytes": 959833,
+    "preprocess_seconds": 0.01501032299711369,
+    "train_seconds": 0.20499692999874242,
+    "predict_seconds": 0.0005544719897443429,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 24,
+    "inner_best_epochs": [
+      24,
+      298,
+      13
+    ],
+    "parameters": 593664,
+    "weight_sha256": "f71b078e7658c790c0ae603f1d4910a6e3d013aaa2146fcb8b433473fa52728c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.01618926400260534,
+    "train_seconds": 0.1869262950058328,
+    "predict_seconds": 0.0005889609892619774,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 1,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 16,
+    "inner_best_epochs": [
+      16,
+      116,
+      14
+    ],
+    "parameters": 593664,
+    "weight_sha256": "2215343e3dd9ba608e40ae08c68d5b648f50f60bf958cededaf49a65fef8f45e",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f1_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.01634745798946824,
+    "train_seconds": 0.13055888601229526,
+    "predict_seconds": 0.0005614630063064396,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 40,
+    "inner_best_epochs": [
+      30,
+      40,
+      88
+    ],
+    "parameters": 573184,
+    "weight_sha256": "24dab145efff2bea89d504b51acaf46e505014442bfbbb33904bf64e9326d525",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e0_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.016406944996560924,
+    "train_seconds": 0.34204643599514384,
+    "predict_seconds": 0.000643783001578413,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 143,
+    "inner_best_epochs": [
+      19,
+      170,
+      143
+    ],
+    "parameters": 573184,
+    "weight_sha256": "b39723ca36a561ee5a18a6d2db8a54e3eb640a7381128c30c1ba44c967d1a888",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e0_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.01622701299493201,
+    "train_seconds": 1.2440984260028927,
+    "predict_seconds": 0.0005447750008897856,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 6,
+    "inner_best_epochs": [
+      6,
+      24,
+      5
+    ],
+    "parameters": 573184,
+    "weight_sha256": "80a28b102d9d5283d23e2db1d352a215512cf590321b3390b493724d086b19bf",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e1_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.0160451599949738,
+    "train_seconds": 0.05220182800258044,
+    "predict_seconds": 0.0005753890000050887,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 5,
+    "inner_best_epochs": [
+      6,
+      4,
+      5
+    ],
+    "parameters": 573184,
+    "weight_sha256": "ea1db5ad795f38d121c577ba22e5dee005a3d2b41b306ea90783afe43b55d150",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e1_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.016264553007204086,
+    "train_seconds": 0.043023074002121575,
+    "predict_seconds": 0.000717268994776532,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 7,
+    "inner_best_epochs": [
+      12,
+      6,
+      7
+    ],
+    "parameters": 235392,
+    "weight_sha256": "54e137ef0009882a023911cfc689ee13555d0e174831434ef38310b1bcaa98c7",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e2_s42_c5.pt",
+    "weight_bytes": 959783,
+    "preprocess_seconds": 0.014518264011712745,
+    "train_seconds": 0.04789698500826489,
+    "predict_seconds": 0.0005865109997102991,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 21,
+    "inner_best_epochs": [
+      21,
+      73,
+      7
+    ],
+    "parameters": 235392,
+    "weight_sha256": "16df40211c5044dea2cbc606b4cf80d3265110d0c6777ae51459681323cc339e",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e2_s2026_c5.pt",
+    "weight_bytes": 959833,
+    "preprocess_seconds": 0.015124665995244868,
+    "train_seconds": 0.1462477800087072,
+    "predict_seconds": 0.0005358829948818311,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 15,
+    "inner_best_epochs": [
+      37,
+      15,
+      10
+    ],
+    "parameters": 573184,
+    "weight_sha256": "c04eee64575208e6e98d9858ed9ab43b6cefb5485d1551c6dc4bc4fa81d5b23f",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e3_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.016147580987308174,
+    "train_seconds": 0.12952074900385924,
+    "predict_seconds": 0.0005691069964086637,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 2,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 19,
+    "inner_best_epochs": [
+      19,
+      23,
+      7
+    ],
+    "parameters": 573184,
+    "weight_sha256": "8a0c527acf130e59b6f371bd0f7cd71b902dd60a5cb709977509379be73c3d32",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f2_e3_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.015586515990435146,
+    "train_seconds": 0.16158937399450224,
+    "predict_seconds": 0.000599902996327728,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 10,
+    "inner_best_epochs": [
+      8,
+      24,
+      10
+    ],
+    "parameters": 573184,
+    "weight_sha256": "3becdec5b94f9cc114724a6e18d8bad7116812879549681bfc515dd017710faa",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e0_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.015602069994201884,
+    "train_seconds": 0.086288065998815,
+    "predict_seconds": 0.0007242080027936026,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 9,
+    "inner_best_epochs": [
+      6,
+      12,
+      9
+    ],
+    "parameters": 573184,
+    "weight_sha256": "ad5ce90da658d948f4395be7d819933e606c820cc6463fdba0bb7982bff30296",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e0_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.017187653997098096,
+    "train_seconds": 0.0793081779993372,
+    "predict_seconds": 0.000596631012740545,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 8,
+    "inner_best_epochs": [
+      8,
+      18,
+      6
+    ],
+    "parameters": 573184,
+    "weight_sha256": "d923e09a9b7d45152cc1d55a4aabb99196c3faebe6b924bf591afe642922c0ba",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e1_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.015669738000724465,
+    "train_seconds": 0.06983039100305177,
+    "predict_seconds": 0.0006381479906849563,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 8,
+    "inner_best_epochs": [
+      8,
+      10,
+      6
+    ],
+    "parameters": 573184,
+    "weight_sha256": "7e864312497291975f556be0dba4428207c67124fc3da84cc3e0c958ad4c025c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e1_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.016301577998092398,
+    "train_seconds": 0.07255864999024197,
+    "predict_seconds": 0.0006568160024471581,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 11,
+    "inner_best_epochs": [
+      11,
+      21,
+      9
+    ],
+    "parameters": 573184,
+    "weight_sha256": "d734b99052e330523fca489fdfe5070be779f6f10063c468ff16b58dca4d7bc6",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e2_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.015637884993338957,
+    "train_seconds": 0.09490336499584373,
+    "predict_seconds": 0.0006523829943034798,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 7,
+    "inner_best_epochs": [
+      10,
+      3,
+      7
+    ],
+    "parameters": 573184,
+    "weight_sha256": "51efb1e2a3f5e66fa09779bb3dc6c35964a9b11924d72842aa507e5cfdecff8b",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e2_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.01624807900225278,
+    "train_seconds": 0.05980368499876931,
+    "predict_seconds": 0.0006389240006683394,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 13,
+    "inner_best_epochs": [
+      13,
+      12,
+      14
+    ],
+    "parameters": 573184,
+    "weight_sha256": "10d2a2fbe7004672e30c14e0f043a362fa5848ee396792e0722ddd7dc0771d98",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e3_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.015422612996189855,
+    "train_seconds": 0.11198318199603818,
+    "predict_seconds": 0.0005763110093539581,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 3,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 17,
+    "inner_best_epochs": [
+      17,
+      20,
+      3
+    ],
+    "parameters": 573184,
+    "weight_sha256": "7f606a93768bbb82b4507405164d0b9f366fd7b4a0540e3d411496f919503081",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f3_e3_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.016310816994518973,
+    "train_seconds": 0.14567850599996746,
+    "predict_seconds": 0.0006323779962258413,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 6,
+    "inner_best_epochs": [
+      4,
+      24,
+      6
+    ],
+    "parameters": 573184,
+    "weight_sha256": "e2907ede80134a79fc676bf89945e7bdf6e435fe0c6093bba83d1b94d221ace5",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e0_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.01557877600134816,
+    "train_seconds": 0.05180362799728755,
+    "predict_seconds": 0.0006293700134847313,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 6,
+    "inner_best_epochs": [
+      4,
+      21,
+      6
+    ],
+    "parameters": 573184,
+    "weight_sha256": "525484a266d9a68c7849a390d31b86efbcccff629ac75e01684cd2333d0cddbb",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e0_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.01604821400542278,
+    "train_seconds": 0.05108183700940572,
+    "predict_seconds": 0.0006278360087890178,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 8,
+    "inner_best_epochs": [
+      8,
+      8,
+      7
+    ],
+    "parameters": 245632,
+    "weight_sha256": "b0a3733b57d9ae8740a9387af2006d6ebb01ab125ee4be18e880d1dd29b6d619",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e1_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.015308494999771938,
+    "train_seconds": 0.04706126199744176,
+    "predict_seconds": 0.0005457980005303398,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 7,
+    "inner_best_epochs": [
+      6,
+      7,
+      7
+    ],
+    "parameters": 245632,
+    "weight_sha256": "89bf04547860c27feac9433efb606099e3d113ad8bcacdf88a3ef18340ea0a39",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e1_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.015651802998036146,
+    "train_seconds": 0.043997308996040374,
+    "predict_seconds": 0.0006102690094849095,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 5,
+    "inner_best_epochs": [
+      4,
+      5,
+      7
+    ],
+    "parameters": 573184,
+    "weight_sha256": "7b5f6940328a8ffa423966de11cc65da931013b65deae780c02d76ba83338b16",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e2_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.01644120599667076,
+    "train_seconds": 0.043226614012382925,
+    "predict_seconds": 0.000865420006448403,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 5,
+    "inner_best_epochs": [
+      4,
+      5,
+      7
+    ],
+    "parameters": 573184,
+    "weight_sha256": "dc97405fc5703c87d02e3b9c692bd49ec3924b293a368f622a770777fc8f1245",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e2_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.015839618994505145,
+    "train_seconds": 0.0434155139955692,
+    "predict_seconds": 0.000694005997502245,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 20,
+    "inner_best_epochs": [
+      8,
+      20,
+      27
+    ],
+    "parameters": 593664,
+    "weight_sha256": "67e7208f26b8ad3cf7a080c3cf16f0b9d694d229fd031da05ee04c18a2ac5009",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.015976661001332104,
+    "train_seconds": 0.15094163999310695,
+    "predict_seconds": 0.0007593619957333431,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 4,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 16,
+    "inner_best_epochs": [
+      8,
+      16,
+      26
+    ],
+    "parameters": 593664,
+    "weight_sha256": "e22cb75b72973662f9646dcac9f59b996099b58e7c10e5df1eefe194a3016035",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f4_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.015914547999273054,
+    "train_seconds": 0.12146023300010711,
+    "predict_seconds": 0.0007355309935519472,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 2,
+    "epochs": 15,
+    "inner_best_epochs": [
+      15,
+      14,
+      60
+    ],
+    "parameters": 212864,
+    "weight_sha256": "1e1189b86c0b77dfbf9dfbb742f0240199b48091dab547c87e5b6e839346382a",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e0_s42_c2.pt",
+    "weight_bytes": 868511,
+    "preprocess_seconds": 0.014872407002258115,
+    "train_seconds": 0.08498635599971749,
+    "predict_seconds": 0.0006278500077314675,
+    "memory": {
+      "baseline_megabytes": 19.70947265625,
+      "total_allocated_peak_megabytes": 43.69482421875,
+      "increment_megabytes": 23.9853515625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 2,
+    "epochs": 14,
+    "inner_best_epochs": [
+      14,
+      12,
+      53
+    ],
+    "parameters": 212864,
+    "weight_sha256": "a8a15b8222805b34fe1f4e5e92ccfbd5e9075699d278f548be4795976c3ec432",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e0_s2026_c2.pt",
+    "weight_bytes": 868553,
+    "preprocess_seconds": 0.01571269099076744,
+    "train_seconds": 0.07837781800481025,
+    "predict_seconds": 0.0006661210063612089,
+    "memory": {
+      "baseline_megabytes": 19.70947265625,
+      "total_allocated_peak_megabytes": 43.69482421875,
+      "increment_megabytes": 23.9853515625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 13,
+    "inner_best_epochs": [
+      121,
+      13,
+      4
+    ],
+    "parameters": 245632,
+    "weight_sha256": "e8b26c4282eaff9bab8a77331efbd07a2b0f1a738b625911af4cebffa163e668",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e1_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.015451525003300048,
+    "train_seconds": 0.07800821799901314,
+    "predict_seconds": 0.0006529629899887368,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 17,
+    "inner_best_epochs": [
+      177,
+      11,
+      17
+    ],
+    "parameters": 245632,
+    "weight_sha256": "cc6e4d8ed54245a70f9ae903a955ddee427c84eef90f4939cf14d7bbec0e0c64",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e1_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.01585343301121611,
+    "train_seconds": 0.10047053500602487,
+    "predict_seconds": 0.0006867890042485669,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 2,
+    "epochs": 11,
+    "inner_best_epochs": [
+      11,
+      14,
+      11
+    ],
+    "parameters": 212864,
+    "weight_sha256": "12aba922ba279daeb3ec73c2391958ec0d3c6306664588a620d8d8ae7dd0f492",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e2_s42_c2.pt",
+    "weight_bytes": 868511,
+    "preprocess_seconds": 0.015312023009755649,
+    "train_seconds": 0.05995583000185434,
+    "predict_seconds": 0.0007572059985250235,
+    "memory": {
+      "baseline_megabytes": 19.70947265625,
+      "total_allocated_peak_megabytes": 43.69482421875,
+      "increment_megabytes": 23.9853515625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 2,
+    "epochs": 14,
+    "inner_best_epochs": [
+      10,
+      14,
+      71
+    ],
+    "parameters": 212864,
+    "weight_sha256": "ce10dce758d07e09f8fe6ec7a0ae0038e366c8531430c27248db3269f7fbad4c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e2_s2026_c2.pt",
+    "weight_bytes": 868553,
+    "preprocess_seconds": 0.01570932001050096,
+    "train_seconds": 0.07946167699992657,
+    "predict_seconds": 0.0009603920043446124,
+    "memory": {
+      "baseline_megabytes": 19.70947265625,
+      "total_allocated_peak_megabytes": 43.69482421875,
+      "increment_megabytes": 23.9853515625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 13,
+    "inner_best_epochs": [
+      54,
+      13,
+      9
+    ],
+    "parameters": 593664,
+    "weight_sha256": "781115564a34379f14ace854752103bad6428a5c735385ea4aa9a7e150998bf9",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.016690503995050676,
+    "train_seconds": 0.09619831200689077,
+    "predict_seconds": 0.0007724199967924505,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 5,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 67,
+    "inner_best_epochs": [
+      114,
+      13,
+      67
+    ],
+    "parameters": 593664,
+    "weight_sha256": "d3fd67247de793f5a3f604c3854555734c156752776a443299b13455d094c733",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f5_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.016085309005575255,
+    "train_seconds": 0.49403853800322395,
+    "predict_seconds": 0.0007118810026440769,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 7,
+    "inner_best_epochs": [
+      7,
+      7,
+      11
+    ],
+    "parameters": 245632,
+    "weight_sha256": "50c6257996908da698343667d38482ecad0733463ab751e4617ef94fd28c36a6",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e0_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.015208886994514614,
+    "train_seconds": 0.04341277800267562,
+    "predict_seconds": 0.0006598100007977337,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 7,
+    "inner_best_epochs": [
+      7,
+      7,
+      13
+    ],
+    "parameters": 245632,
+    "weight_sha256": "25b235a8f54c6ada362ebf4ec8950c76495c5da58c74bad46b290eb9e449ef68",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e0_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.015773434992297553,
+    "train_seconds": 0.04154304199619219,
+    "predict_seconds": 0.0006656759942416102,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 8,
+    "inner_best_epochs": [
+      8,
+      116,
+      5
+    ],
+    "parameters": 245632,
+    "weight_sha256": "ea981168f624a594fd23a01ff067843764feaf33fbb2cdf40efd4b1433aab812",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e1_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.01581390200590249,
+    "train_seconds": 0.048123775006388314,
+    "predict_seconds": 0.000695408001774922,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 7,
+    "inner_best_epochs": [
+      7,
+      31,
+      4
+    ],
+    "parameters": 245632,
+    "weight_sha256": "88da3d6524ef5e2bb517f727675ffd43d195240724cf92e9fa373567a94a53ed",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e1_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.01568905499880202,
+    "train_seconds": 0.04203869399498217,
+    "predict_seconds": 0.0006069079972803593,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 9,
+    "inner_best_epochs": [
+      6,
+      9,
+      9
+    ],
+    "parameters": 573184,
+    "weight_sha256": "d96d4e4056d23c9819419dfd9966257888fc10b5134c65002defe69c175c6d99",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e2_s42_c1.pt",
+    "weight_bytes": 2310951,
+    "preprocess_seconds": 0.0164563599973917,
+    "train_seconds": 0.0798105400026543,
+    "predict_seconds": 0.0007467359973816201,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 8,
+    "inner_best_epochs": [
+      6,
+      8,
+      9
+    ],
+    "parameters": 573184,
+    "weight_sha256": "af1fc4e9ab0a0af66cb0bfc263efd035146336d55aa875982842353f832f9fc2",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e2_s2026_c1.pt",
+    "weight_bytes": 2311001,
+    "preprocess_seconds": 0.01653985799930524,
+    "train_seconds": 0.06848729799094144,
+    "predict_seconds": 0.0007730369979981333,
+    "memory": {
+      "baseline_megabytes": 21.201171875,
+      "total_allocated_peak_megabytes": 97.40771484375,
+      "increment_megabytes": 76.20654296875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 40,
+    "inner_best_epochs": [
+      47,
+      14,
+      40
+    ],
+    "parameters": 593664,
+    "weight_sha256": "eba85405c79119c5b022a8a1051937af2c2346e9d77638fe86bafd5a17dea0b1",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.01643702400906477,
+    "train_seconds": 0.29535994899924845,
+    "predict_seconds": 0.0007893659931141883,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 6,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 21,
+    "inner_best_epochs": [
+      45,
+      18,
+      21
+    ],
+    "parameters": 593664,
+    "weight_sha256": "4da82393b680a31c9226f82946ecc001acc0a54135169684bd26b24a9a86965d",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f6_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.01595762999204453,
+    "train_seconds": 0.1610002829984296,
+    "predict_seconds": 0.0007629299943801016,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 8,
+    "inner_best_epochs": [
+      7,
+      11,
+      8
+    ],
+    "parameters": 302976,
+    "weight_sha256": "684419a6c0ca43f7aaa0d5bb9f9cdb6cfec30e0296a33f0cfb4bfb4988268299",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e0_s42_c7.pt",
+    "weight_bytes": 1231279,
+    "preprocess_seconds": 0.015706720005255193,
+    "train_seconds": 0.06486600400239695,
+    "predict_seconds": 0.0006996309966780245,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 14,
+    "inner_best_epochs": [
+      11,
+      14,
+      27
+    ],
+    "parameters": 302976,
+    "weight_sha256": "119b5476e2c23eafe8d9ff83a2acb7ed0689a3dfb393195b7f4e0cf7db04a896",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e0_s2026_c7.pt",
+    "weight_bytes": 1231337,
+    "preprocess_seconds": 0.015894418000243604,
+    "train_seconds": 0.10834295900713187,
+    "predict_seconds": 0.0007300319994101301,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 23,
+    "inner_best_epochs": [
+      51,
+      18,
+      23
+    ],
+    "parameters": 235392,
+    "weight_sha256": "fc15a492076f456f9f49e2ed8ec8c7fb18d5ab67f55b2691e164a7c151b04fe5",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e1_s42_c5.pt",
+    "weight_bytes": 959783,
+    "preprocess_seconds": 0.015472603001398966,
+    "train_seconds": 0.1519460679992335,
+    "predict_seconds": 0.0007101049995981157,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 19,
+    "inner_best_epochs": [
+      10,
+      19,
+      22
+    ],
+    "parameters": 235392,
+    "weight_sha256": "ee7694efb4335fd80a22682c1daef6cfa73735d4740fd991121a6a09603ed25c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e1_s2026_c5.pt",
+    "weight_bytes": 959833,
+    "preprocess_seconds": 0.015520087006734684,
+    "train_seconds": 0.1277745590050472,
+    "predict_seconds": 0.0007023299986030906,
+    "memory": {
+      "baseline_megabytes": 19.79541015625,
+      "total_allocated_peak_megabytes": 45.240234375,
+      "increment_megabytes": 25.44482421875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 7,
+    "inner_best_epochs": [
+      8,
+      7,
+      3
+    ],
+    "parameters": 302976,
+    "weight_sha256": "2fb39fd56442861ba77c32551f1891c3470401d2c03e21067441da607172808a",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e2_s42_c7.pt",
+    "weight_bytes": 1231279,
+    "preprocess_seconds": 0.016890385013539344,
+    "train_seconds": 0.0563676769961603,
+    "predict_seconds": 0.0007757309940643609,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 5,
+    "inner_best_epochs": [
+      4,
+      12,
+      5
+    ],
+    "parameters": 302976,
+    "weight_sha256": "3083afb306d657b9955bd597f8134acfc4b931e4c803d0d5ee3f8163a99c1a1f",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e2_s2026_c7.pt",
+    "weight_bytes": 1231337,
+    "preprocess_seconds": 0.016331377992173657,
+    "train_seconds": 0.036582754997652955,
+    "predict_seconds": 0.0007813580014044419,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 22,
+    "inner_best_epochs": [
+      229,
+      22,
+      13
+    ],
+    "parameters": 593664,
+    "weight_sha256": "e2f3a6d9d5634cb948f4660b86d647fbe6d18377337a9e34a92d7d0640f919d1",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.016678365995176136,
+    "train_seconds": 0.1891427090013167,
+    "predict_seconds": 0.0007141889946069568,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 7,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 19,
+    "inner_best_epochs": [
+      79,
+      19,
+      13
+    ],
+    "parameters": 593664,
+    "weight_sha256": "e9a9037c29a5a3c738a4bab45566331647a3841611e4ab5d0bba2c35f08b9585",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f7_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.015960040997015312,
+    "train_seconds": 0.14867619599681348,
+    "predict_seconds": 0.0007028500112937763,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 9,
+    "inner_best_epochs": [
+      9,
+      7,
+      13
+    ],
+    "parameters": 302976,
+    "weight_sha256": "ad8d00e61e1156726dc3d74652c69a0ea9bdbaa688720e45f5a8378f8301c3ed",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e0_s42_c7.pt",
+    "weight_bytes": 1231279,
+    "preprocess_seconds": 0.015332455004681833,
+    "train_seconds": 0.06572243900154717,
+    "predict_seconds": 0.0007202770066214725,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 16,
+    "inner_best_epochs": [
+      49,
+      7,
+      16
+    ],
+    "parameters": 302976,
+    "weight_sha256": "df82c2ee76a45dc070f72f3cf308d5c378757ca455bb7c08229845e05d438929",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e0_s2026_c7.pt",
+    "weight_bytes": 1231337,
+    "preprocess_seconds": 0.016129982002894394,
+    "train_seconds": 0.11252673000853974,
+    "predict_seconds": 0.000736735004466027,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 9,
+    "inner_best_epochs": [
+      9,
+      5,
+      10
+    ],
+    "parameters": 245632,
+    "weight_sha256": "3c281dd2c77ff5df9a8d25b572eea6f3dbd89dbfc24d89b743e64fe667843f42",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e1_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.015608157002134249,
+    "train_seconds": 0.05320018199563492,
+    "predict_seconds": 0.0006651159928878769,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 6,
+    "inner_best_epochs": [
+      8,
+      6,
+      6
+    ],
+    "parameters": 245632,
+    "weight_sha256": "7415a1157f6665b6156562da497f62b762e6f6d3f446277e9a37097774b08e0b",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e1_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.016805089006084017,
+    "train_seconds": 0.036549945987644605,
+    "predict_seconds": 0.0006067659996915609,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 13,
+    "inner_best_epochs": [
+      13,
+      8,
+      16
+    ],
+    "parameters": 245632,
+    "weight_sha256": "ed644eb1fab2042fc8401e19a2a310d3a329944fdb88ccfc9545364c3e64f9b7",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e2_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.015709946004790254,
+    "train_seconds": 0.07841933300369419,
+    "predict_seconds": 0.000677897987770848,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 6,
+    "inner_best_epochs": [
+      13,
+      6,
+      6
+    ],
+    "parameters": 245632,
+    "weight_sha256": "55cdd2ff5c1c0932916bb883add9fa0e0a84440bfe223ab0e74afb709806d04b",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e2_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.0154809180094162,
+    "train_seconds": 0.03673450800124556,
+    "predict_seconds": 0.0006638920021941885,
+    "memory": {
+      "baseline_megabytes": 19.83447265625,
+      "total_allocated_peak_megabytes": 65.14794921875,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 13,
+    "inner_best_epochs": [
+      13,
+      8,
+      14
+    ],
+    "parameters": 302976,
+    "weight_sha256": "eae968510bff61c916119a2ada99b7250bc5e23b5db2e02dc27e7ed293d70205",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e3_s42_c7.pt",
+    "weight_bytes": 1231279,
+    "preprocess_seconds": 0.015987607999704778,
+    "train_seconds": 0.09395419599604793,
+    "predict_seconds": 0.0007181590044638142,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 8,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 13,
+    "inner_best_epochs": [
+      13,
+      10,
+      16
+    ],
+    "parameters": 302976,
+    "weight_sha256": "f04e1b58d9fdf64408db3412a5c847db78c52df02582b439076fcf78a42fa3e4",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f8_e3_s2026_c7.pt",
+    "weight_bytes": 1231337,
+    "preprocess_seconds": 0.01623728100094013,
+    "train_seconds": 0.09425714499957394,
+    "predict_seconds": 0.0007722050067968667,
+    "memory": {
+      "baseline_megabytes": 20.05322265625,
+      "total_allocated_peak_megabytes": 69.0703125,
+      "increment_megabytes": 49.01708984375,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 7,
+    "inner_best_epochs": [
+      6,
+      29,
+      7
+    ],
+    "parameters": 245632,
+    "weight_sha256": "45b14714ac5dde94c631552082336e71e272b51022441a0e62bb63b76e8c913b",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e0_s42_c3.pt",
+    "weight_bytes": 999583,
+    "preprocess_seconds": 0.015512029000092298,
+    "train_seconds": 0.04579225899942685,
+    "predict_seconds": 0.0006477849965449423,
+    "memory": {
+      "baseline_megabytes": 19.83935546875,
+      "total_allocated_peak_megabytes": 65.15283203125,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 0,
+    "environment": "1",
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 12,
+    "inner_best_epochs": [
+      12,
+      28,
+      7
+    ],
+    "parameters": 245632,
+    "weight_sha256": "b0f58409aa9472989609529949ef337b2a701bbb283b5a5df66de84a3f5e9e81",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e0_s2026_c3.pt",
+    "weight_bytes": 999625,
+    "preprocess_seconds": 0.015673308007535525,
+    "train_seconds": 0.07628329200088046,
+    "predict_seconds": 0.0009336760122096166,
+    "memory": {
+      "baseline_megabytes": 19.83935546875,
+      "total_allocated_peak_megabytes": 65.15283203125,
+      "increment_megabytes": 45.3134765625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 42,
+    "config_index": 2,
+    "epochs": 18,
+    "inner_best_epochs": [
+      16,
+      18,
+      98
+    ],
+    "parameters": 212864,
+    "weight_sha256": "80270313ecba85d268f1a332c8ad92f57af29d84ec2dff6a31bc00519226ee9c",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e1_s42_c2.pt",
+    "weight_bytes": 868511,
+    "preprocess_seconds": 0.016079522989457473,
+    "train_seconds": 0.10485062500811182,
+    "predict_seconds": 0.0007205979927675799,
+    "memory": {
+      "baseline_megabytes": 19.71435546875,
+      "total_allocated_peak_megabytes": 43.69970703125,
+      "increment_megabytes": 23.9853515625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 1,
+    "environment": "2",
+    "seed": 2026,
+    "config_index": 2,
+    "epochs": 25,
+    "inner_best_epochs": [
+      16,
+      25,
+      107
+    ],
+    "parameters": 212864,
+    "weight_sha256": "7cb51a85e5436bcce3fff446a19d50d89e19d40168adf5a89e1a434e4716d782",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e1_s2026_c2.pt",
+    "weight_bytes": 868553,
+    "preprocess_seconds": 0.01544689599541016,
+    "train_seconds": 0.16616637700644787,
+    "predict_seconds": 0.0007090599974617362,
+    "memory": {
+      "baseline_megabytes": 19.71435546875,
+      "total_allocated_peak_megabytes": 43.69970703125,
+      "increment_megabytes": 23.9853515625,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 42,
+    "config_index": 4,
+    "epochs": 21,
+    "inner_best_epochs": [
+      11,
+      35,
+      21
+    ],
+    "parameters": 483072,
+    "weight_sha256": "8b08dc9a8cfe8007e36eb3c699b11f47cb6f8e2e56deec46ffe8dc1c479f27af",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e2_s42_c4.pt",
+    "weight_bytes": 1949343,
+    "preprocess_seconds": 0.01626823299739044,
+    "train_seconds": 0.1571268970001256,
+    "predict_seconds": 0.0006500879972008988,
+    "memory": {
+      "baseline_megabytes": 20.857421875,
+      "total_allocated_peak_megabytes": 79.38037109375,
+      "increment_megabytes": 58.52294921875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 2,
+    "environment": "4",
+    "seed": 2026,
+    "config_index": 4,
+    "epochs": 16,
+    "inner_best_epochs": [
+      14,
+      16,
+      23
+    ],
+    "parameters": 483072,
+    "weight_sha256": "eb2dc41f626f6f59a715446a0060c36a4504558237043ea89f7b74b69309ed81",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e2_s2026_c4.pt",
+    "weight_bytes": 1949385,
+    "preprocess_seconds": 0.015703826997196302,
+    "train_seconds": 0.1179215669981204,
+    "predict_seconds": 0.0006767949962522835,
+    "memory": {
+      "baseline_megabytes": 20.857421875,
+      "total_allocated_peak_megabytes": 79.38037109375,
+      "increment_megabytes": 58.52294921875,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 17,
+    "inner_best_epochs": [
+      24,
+      11,
+      17
+    ],
+    "parameters": 593664,
+    "weight_sha256": "f54518602748023a67142472a38cb3a68b52283a882b748642112bfb010aabcc",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e3_s42_c6.pt",
+    "weight_bytes": 2394031,
+    "preprocess_seconds": 0.01602549199014902,
+    "train_seconds": 0.12929310799518134,
+    "predict_seconds": 0.0007863940118113533,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  },
+  {
+    "fold": 9,
+    "environment_index": 3,
+    "environment": "5",
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 16,
+    "inner_best_epochs": [
+      23,
+      11,
+      16
+    ],
+    "parameters": 593664,
+    "weight_sha256": "dabc40f315409c67e449a91d4736f68568c4e2143c0c8f61f0164a52cb1cc0a6",
+    "weight_path": "results/independent_tabm_final_20261105/weights/f9_e3_s2026_c6.pt",
+    "weight_bytes": 2394089,
+    "preprocess_seconds": 0.015931507005007006,
+    "train_seconds": 0.12610224400123116,
+    "predict_seconds": 0.0007520709914388135,
+    "memory": {
+      "baseline_megabytes": 21.279296875,
+      "total_allocated_peak_megabytes": 70.46728515625,
+      "increment_megabytes": 49.18798828125,
+      "total_reserved_peak_megabytes": 120.0
+    }
+  }
+]

@@ -1,0 +1,83 @@
+{
+  "artifacts": {
+    "comparison.csv": {
+      "sha256": "bd88a7e8746ed0ab53a61101e4c9b4c8aca6d8dde22e8100d9daafe0079a6a6c",
+      "bytes": 17149
+    },
+    "comparison_summary.json": {
+      "sha256": "8f9f126be60aa6ece35664fb2f78691274ba19882da4ec2bba3cce2dd0a7fc85",
+      "bytes": 41970
+    },
+    "execution_status.json": {
+      "sha256": "f2dce0d0e382770f4ecb080b8212985832e30dcd7c2caf6073241b3fae522819",
+      "bytes": 276
+    },
+    "failures.json": {
+      "sha256": "aafee140b359b3f8655ebed002ba772756e7d6e3f0898d62e7d0617303f647fa",
+      "bytes": 132
+    },
+    "fits.json": {
+      "sha256": "3d88478a6ec9704690b9eaa40c99e6347c237b4ef09442026d60b5ea472d1f7c",
+      "bytes": 61731
+    },
+    "fold_comparison.csv": {
+      "sha256": "4aa90bbcb9af99a9501341f62be27ddcfe261ec43b55c916f49a1c056ca7f505",
+      "bytes": 4483
+    },
+    "fold_metrics.csv": {
+      "sha256": "d0f1b7f87d72df74708706217dd7dcae1f237e16673809c0be8aea86a3fc0d28",
+      "bytes": 608
+    },
+    "manifest_validation.json": {
+      "sha256": "96f23cbaca2fb0ae2eaf67044230929e95187a0e4b366db7b87e0dd3ba242065",
+      "bytes": 659801
+    },
+    "oof.csv": {
+      "sha256": "315f16d0024039802fdd485e7d9a25894b892e1307c530d4af70c258a8c572da",
+      "bytes": 113394
+    },
+    "oof_metrics.csv": {
+      "sha256": "391ed891155655356e31ef7341594d42ac74ad21c6a6dcd6696c04e84d96aac5",
+      "bytes": 322
+    },
+    "per_fold.csv": {
+      "sha256": "dccb27d678d5c474ff919a81ed6163f3b617d269e92730dd8389b82c02c33e86",
+      "bytes": 2466
+    },
+    "provenance.json": {
+      "sha256": "f7d83a9b8648e5a0bf8c974669f334d43a1b624033e09bb4e2211b53368ff6b2",
+      "bytes": 765416
+    },
+    "resume_timings.json": {
+      "sha256": "d83bcb52f74b97c580aaac46983cbc654ae95cc8460de05fac9044aee0609122",
+      "bytes": 155
+    },
+    "seed_predictions.csv": {
+      "sha256": "7ccb35f881ede5db2dd3a3bd23c665f28be2bdd3f9d8f3e496b04b17137d143a",
+      "bytes": 245957
+    },
+    "summary.json": {
+      "sha256": "0924bfb0c6851d0e0258dba6dd4aeebb63fa663cf382c0dcadb918cd79138ed5",
+      "bytes": 58800
+    },
+    "verification.json": {
+      "sha256": "f846ed3630e3234775d04b5edd248892579b7dc403170e9cdaae55e28296ab09",
+      "bytes": 890
+    },
+    "weights_manifest.json": {
+      "sha256": "3d88478a6ec9704690b9eaa40c99e6347c237b4ef09442026d60b5ea472d1f7c",
+      "bytes": 61731
+    },
+    "weights_replay_verification.json": {
+      "sha256": "f35c3943d797898d80d2baa028bf2f4dd47760681cb658662a3b1817d60f7a39",
+      "bytes": 26883
+    },
+    "weights_sha256.txt": {
+      "sha256": "fd50608fb67fd09740b2bb919d3c53e1357b081162a6e91773122116fd319f56",
+      "bytes": 12039
+    }
+  },
+  "weights_remote": "omen:/home/hsy/git_files/Wheat599_model_bases/results/independent_tabm_final_20261105/weights/",
+  "weights_sha_manifest": "weights_sha256.txt",
+  "data_excluded": true
+}

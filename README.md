@@ -1,8 +1,8 @@
 # Wheat599 植物基因组表型预测研究
 
-当前执行：四独立全标记TabM已提升为论文候选，按已选配置与三内层最佳轮数中位数冻结80次完整开发集重拟合，准备同协议外层评价。云端固定配置后期迁移源码/结果已交接核验，与强独立模型分开报告。最新数字统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)；旧核模型的外层成绩与TabM开发分数不可直接排名。
+四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
 
-目标是构建具有原创性、并在公平比较中超过现有强方法的神经网络；Wheat599 用于快速开发，后续数据集待用户提供 SSH 算力后扩展。LCM-GP 及六项对照已完成，未超过 ICM；位点保留背景网络本轮开发条件未通过，已结束且未进入外层。DNAwhisper 同协议外层评价已完成，折均宏 PCC 0.35484，未超过 ICM。结果见 [docs/RESULTS.md](docs/RESULTS.md)，当前执行与 AIA 分工见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
+目标是形成有可靠预测与效率证据的植物基因组表型预测方法论文；成熟神经架构的有效任务适配可以成为贡献。Wheat599用于快速开发，已有SSH omen用于正式执行；Wheat2000全部八性状是后续确认范围，本轮未启动。早期候选与历史结果见 [RESULTS](docs/RESULTS.md)，当前分工见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
 
 按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。 随后完成的稀疏交互模拟诊断已建立其具体推断缺口：未知位置统计方法在全部 16 个成对任务上超过首版网络，但加性任务族表现变差；尚无新的神经模型或真实数据增益，见 [结果](docs/RESULTS.md)。
 

@@ -2,6 +2,8 @@
 
 用户附件明确授权实施。主候选为四独立单环境全标记TabM，成熟架构适配可作为论文候选，不以新增模块为准入条件。固定已有40个外层折×环境配置与两个种子；不追加超参数搜索。
 
+**执行结果（2026-11-05，已完成）：** 清单`238fe14`、模型训练源码`4111e58`已提前提交、打标签并推送。omen完成80/80模型拟合、拟合失败0次；折均宏PCC0.508190，高于同材料BiMSGP0.470781，低于Huber ICM0.521745。80个权重和4792条逐seed预测已保存。首次基线汇总因omen未同步历史OOF而失败；补传本地原件后，`8b8dd42`的`--resume-summary`已成功接续汇总，没有重拟合或修改预测，原失败记录保留。准确状态、指标与成本统一见 [RESULTS.md](RESULTS.md)。
+
 ## 清单先冻结
 
 从`results/environment_selection_development_20261105/selection.json`读取independent/per_environment的40组配置，逐项核对`results/environment_tabm_development_20261105/selection.json`一致。原`trajectories.json`先校验已发布SHA，再对每fold/env/seed取该配置三个inner的`best_epoch`，取整数中位数为完整开发集训练epoch数。使用best_epoch而非含等待期的epochs_run；0表示不更新、合法。**保留轮数**，不将内层3batch/epoch换算成完整开发集5batch/epoch的更新次数，不根据外层结果更改约定。
