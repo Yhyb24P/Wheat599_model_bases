@@ -68,7 +68,7 @@ def test_api_never_accepts_test_phenotypes(suite):
             assert np.isfinite(value)
         assert len(entry['state_sha256']) == 64
         assert entry['parameters'] > 0 and entry['total_parameters'] >= entry['parameters']
-        assert entry['epochs_run'] >= 1
+        assert entry['epochs_run'] >= 0
         assert entry['train_seconds'] >= 0
         assert entry['amp'] is False
         json.dumps({key: value for key, value in entry.items()
@@ -81,6 +81,7 @@ def test_arms_differ_in_fusion_input_and_scaling(suite):
     assert result['arms']['target_pretrain']['scaling']['mode'] == 'none'
     assert result['arms']['frozen_sources']['fusion_input'] == 'mean_embedding'
     assert result['arms']['scalar_prediction']['fusion_input'] == 'source_prediction'
+    assert result['arms']['linear_prediction']['fusion_input'] == 'source_prediction_linear'
     assert result['arms']['embedding']['fusion_input'] == 'embedding'
     assert result['source_names'] == ['e1', 'e2', 'e3']
     assert result['source_pretraining_seconds'] >= 0
@@ -111,6 +112,75 @@ def test_pretrained_source_models_can_be_reused_across_targets():
     assert result['source_pretraining_seconds'] == 0.0
     assert result['arms']['frozen_sources']['source_names'] == ['e1', 'e2', 'e3']
     assert np.isfinite(result['arms']['frozen_sources']['prediction']).all()
+
+
+def _fixed_epochs():
+    return {arm: 2 for arm in mulphe.ARMS if arm != 'linear_prediction'}
+
+
+def test_full_dev_fixed_refit_has_no_validation_and_obeys_epochs():
+    x, y, train, val, test = synthetic()
+    dev = np.concatenate([train, val])
+    result = mulphe.run_arms(
+        x[dev], y[dev, 0], None, None, x[test],
+        target_name='e0', source_names=['e1', 'e2', 'e3'],
+        source_train=y[dev, 1:], source_val=None,
+        config=CONFIG, seed=42, fixed_epochs=_fixed_epochs(),
+        source_fixed_epochs={'e1': 2, 'e2': 2, 'e3': 2})
+    assert result['mode'] == 'fixed_full_dev'
+    for arm in mulphe.ARMS:
+        entry = result['arms'][arm]
+        assert entry['mode'] == 'fixed_full_dev'
+        assert entry['val_prediction'] is None and entry['val_metrics'] is None
+        assert entry['prediction'].shape == (12,) and np.isfinite(entry['prediction']).all()
+        expected = 0 if arm == 'linear_prediction' else 2
+        assert entry['epochs_run'] == expected
+        assert entry['best_epoch'] == expected
+    assert [entry['best_epoch'] for entry in result['source_pretraining']] == [2, 2, 2]
+
+
+def test_fixed_refit_does_not_depend_on_test_rows_and_source_models_reuse():
+    x, y, train, val, test = synthetic()
+    dev = np.concatenate([train, val])
+    changed = x.copy()
+    changed[test] += 0.25
+    fixed = _fixed_epochs()
+    first = mulphe.run_arms(
+        x[dev], y[dev, 0], None, None, x[test],
+        target_name='e0', source_names=['e1', 'e2', 'e3'],
+        source_train=y[dev, 1:], source_val=None, config=CONFIG, seed=42,
+        fixed_epochs=fixed, source_fixed_epochs={'e1': 2, 'e2': 2, 'e3': 2})
+    models = mulphe.train_source_encoders(
+        x[dev], y[dev, 1:], None, None, ['e1', 'e2', 'e3'],
+        {**CONFIG, 'pretrain_epochs': 2}, 1042, 'cpu', fixed_epochs={'e1': 2, 'e2': 2, 'e3': 2})
+    second = mulphe.run_arms(
+        x[dev], y[dev, 0], None, None, changed[test],
+        target_name='e0', source_names=['e1', 'e2', 'e3'],
+        source_train=y[dev, 1:], source_val=None, config=CONFIG, seed=42,
+        fixed_epochs=fixed, source_fixed_epochs={'e1': 2, 'e2': 2, 'e3': 2},
+        source_models=models)
+    assert second['source_pretraining_seconds'] == 0.0
+    for arm in mulphe.ARMS:
+        assert first['arms'][arm]['history'] == second['arms'][arm]['history']
+        assert first['arms'][arm]['state_sha256'] == second['arms'][arm]['state_sha256']
+        assert not np.array_equal(first['arms'][arm]['prediction'],
+                                  second['arms'][arm]['prediction'])
+
+
+def test_fixed_mode_requires_fixed_epochs_and_forbids_validation_data():
+    x, y, train, val, test = synthetic()
+    dev = np.concatenate([train, val])
+    with pytest.raises(ValueError, match='fixed_epochs'):
+        mulphe.run_arms(
+            x[dev], y[dev, 0], None, None, x[test],
+            target_name='e0', source_names=['e1', 'e2', 'e3'],
+            source_train=y[dev, 1:], source_val=None, config=CONFIG, seed=42)
+    with pytest.raises(ValueError, match='fixed epochs'):
+        mulphe.run_arms(
+            x[dev], y[dev, 0], x[val], y[val, 0], x[test],
+            target_name='e0', source_names=['e1', 'e2', 'e3'],
+            source_train=y[dev, 1:], source_val=y[val, 1:], config=CONFIG, seed=42,
+            fixed_epochs=_fixed_epochs())
 
 
 def test_target_in_sources_is_rejected():
@@ -164,3 +234,7 @@ def test_scalar_prediction_uses_source_head_predictions(suite):
     assert entry['source_scalars']['train'].shape == (36, 3)
     assert entry['source_scalars']['val'].shape == (12, 3)
     assert entry['source_scalars']['test'].shape == (12, 3)
+    linear = result['arms']['linear_prediction']
+    assert linear['fusion_input'] == 'source_prediction_linear'
+    assert len(linear['coefficients']) == 4 and linear['epochs_run'] == 0
+    assert linear['prediction'].shape == (12,)

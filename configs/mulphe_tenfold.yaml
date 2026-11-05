@@ -4,11 +4,13 @@ data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 splits: results/mulphe_splits_20261105/tenfold_manifest.json
 splits_sha256: 7b093ee8dd1dcf14e50cf5d41a16207ed2d20dbe4913e5e9b92ccc2f29f45245
 seeds: [42]
-arms: [direct, target_pretrain, frozen_sources, scalar_prediction, embedding]
+arms: [direct, target_pretrain, frozen_sources, linear_prediction, scalar_prediction, embedding]
 device: cuda
 cpu_threads: 2
 gpu_memory_fraction: 0.5
 share_source_encoders: true
+full_dev_refit:
+  enabled: true
 model_config:
   direct_epochs: 200
 references:

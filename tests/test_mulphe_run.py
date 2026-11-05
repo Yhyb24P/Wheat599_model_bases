@@ -1,4 +1,5 @@
 """Synthetic coverage for the Mul-PheG2P runner: manifest rules, leak boundaries, scoring scopes."""
+import csv
 import json
 from pathlib import Path
 from types import SimpleNamespace
@@ -9,7 +10,8 @@ import yaml
 
 from wheat599 import mulphe, mulphe_run
 
-ARMS = ['direct', 'target_pretrain', 'frozen_sources', 'scalar_prediction', 'embedding']
+ARMS = ['direct', 'target_pretrain', 'frozen_sources', 'scalar_prediction',
+        'linear_prediction', 'embedding']
 ENVIRONMENTS = ('1', '2', '4', '5')
 
 
@@ -52,17 +54,22 @@ def write_manifest(directory, folds):
     return path, mulphe_run.sha256_of(path)
 
 
-def fake_arm_result(arm, n_test, n_val, seed=42):
+def fake_arm_result(arm, n_test, n_val, n_train, seed=42):
     rng = np.random.default_rng(abs(hash((arm, n_test, seed))) % 2 ** 32)
+    scalars = None
+    if arm == 'scalar_prediction':
+        source = rng.normal(size=(n_train + n_val + n_test, 3))
+        truth = source[:, 0] * 0.7
+        scalars = {'train': source[:n_train], 'val': source[n_train:n_train + n_val],
+                   'test': source[n_train + n_val:], 'target_train': truth[:n_train],
+                   'target_val': truth[n_train:n_train + n_val]}
     return {'arm': arm, 'prediction': rng.normal(size=n_test), 'val_prediction': rng.normal(size=n_val),
             'val_metrics': {'pcc': 0.5, 'rmse': 0.4, 'mae': 0.3}, 'best_epoch': 2, 'epochs_run': 3,
             'history': [{'epoch': 1}, {'epoch': 2}, {'epoch': 3}],
             'scaling': {'mode': 'minmax', 'scope': 'train', 'low': 0.0, 'high': 1.0},
             'state_sha256': 'a' * 64, 'parameters': 100, 'total_parameters': 400,
             'train_seconds': 0.1, 'source_names': ['x'], 'source_pretraining': [{'name': 'x', 'best_epoch': 1}],
-            'fusion_input': 'embedding',
-            'source_scalars': {'train': np.zeros((5, 3)), 'val': np.zeros((2, 3))}
-            if arm == 'scalar_prediction' else None}
+            'fusion_input': 'embedding', 'source_scalars': scalars}
 
 
 @pytest.fixture
@@ -73,16 +80,30 @@ def recorder(monkeypatch):
     def run_arms(x_train, y_train, x_val, y_val, x_test, **kwargs):
         calls.append({'x_train': x_train, 'y_train': y_train, 'x_val': x_val, 'y_val': y_val,
                       'x_test': x_test, 'kwargs': kwargs})
-        return {'arms': {arm: fake_arm_result(arm, len(x_test), len(x_val)) for arm in kwargs['arms']},
-                'source_names': kwargs['source_names'], 'source_pretraining': [],
+        fixed = kwargs.get('fixed_epochs') is not None
+        if fixed and x_val is not None:
+            raise ValueError('fake: fixed mode cannot receive a validation split')
+        if not fixed and x_val is None:
+            raise ValueError('fake: validation mode needs a validation split')
+        return {'arms': {arm: fake_arm_result(arm, len(x_test), 0 if fixed else len(x_val),
+                                              len(x_train)) for arm in kwargs['arms']},
+                'mode': 'fixed_full_dev' if fixed else 'validation',
+                'fixed_epochs': kwargs.get('fixed_epochs'),
+                'source_fixed_epochs': kwargs.get('source_fixed_epochs'),
+                'source_names': kwargs['source_names'],
+                'source_pretraining': [{'name': str(name), 'best_epoch': 2}
+                                       for name in kwargs['source_names']],
                 'source_pretraining_seconds': 0.0, 'impute_scope': 'train',
                 'official': {'repo': mulphe.OFFICIAL_REPO, 'commit': mulphe.OFFICIAL_COMMIT,
                              'license': 'MIT'}}
 
     monkeypatch.setattr(mulphe, 'run_arms', run_arms)
     monkeypatch.setattr(mulphe, 'train_source_encoders',
-                        lambda x_train, y_train, x_val, y_val, source_names, config, seed, device:
-                        [{'name': str(name), 'best_epoch': 1, 'model': None} for name in source_names])
+                        lambda x_train, y_train, x_val, y_val, source_names, config, seed, device,
+                                fixed_epochs=None:
+                        [{'name': str(name), 'best_epoch': 1, 'model': None,
+                          'fixed_epoch': None if fixed_epochs is None else fixed_epochs[str(name)]}
+                         for name in source_names])
     return calls
 
 
@@ -144,11 +165,11 @@ def test_job_sequence_counts_folds_environments_and_seeds():
 def test_fit_never_passes_test_phenotypes(tmp_path, recorder):
     data = synthetic_data()
     folds = make_folds()
-    config = {'arms': ARMS, 'seeds': [42], 'model_config': {}, 'status_every': 1}
-    rows, records, validation, seconds = mulphe_run.fit(
-        config, data, folds, 'cpu', len(folds) * 4,
-        tmp_path / 'execution_status.json', tmp_path / 'failures.json')
+    config = {'arms': ARMS, 'seeds': [42], 'model_config': {}}
+    rows, records, validation, development, frozen, seconds = mulphe_run.fit(
+        config, data, folds, 'cpu', len(folds) * 4, tmp_path / 'execution_status.json')
     assert seconds >= 0 and len(recorder) == len(folds) * 4
+    assert development is rows and frozen == []          # no full-dev refit configured
     train_sizes = {len(fold['train_idx']) for fold in folds}
     val_sizes = {len(fold['val_idx']) for fold in folds}
     for call in recorder:
@@ -161,18 +182,18 @@ def test_fit_never_passes_test_phenotypes(tmp_path, recorder):
                    for name in [call['kwargs']['target_name']])
     assert len(rows) == sum(len(fold['test_idx']) for fold in folds) * len(ARMS) * len(ENVIRONMENTS)
     assert len(records) == len(folds) * 4 * len(ARMS)
-    assert json.loads((tmp_path / 'failures.json').read_text()) == []
     status = json.loads((tmp_path / 'execution_status.json').read_text())
-    assert status['status'] == 'complete' and status['completed_fits'] == len(folds) * 4
+    assert status['status'] == 'running' and status['phase'] == 'fitting'
+    assert status['completed_fits'] == len(folds) * 4 and status['full_dev_refit'] is False
     assert all(entry['source_encoder_reuse'] for entry in validation)
+    assert all(entry['mode'] == 'validation' for entry in records)
 
 
 def test_fit_can_train_source_encoders_per_target(tmp_path, recorder):
     data = synthetic_data()
     folds = make_folds()
     config = {'arms': ARMS, 'seeds': [42], 'model_config': {}, 'share_source_encoders': False}
-    mulphe_run.fit(config, data, folds, 'cpu', len(folds) * 4,
-                   tmp_path / 'execution_status.json', tmp_path / 'failures.json')
+    mulphe_run.fit(config, data, folds, 'cpu', len(folds) * 4, tmp_path / 'execution_status.json')
     assert all(call['kwargs']['source_models'] is None for call in recorder)
 
 
@@ -180,9 +201,8 @@ def test_fit_records_are_json_safe_and_seeded(tmp_path, recorder):
     data = synthetic_data()
     folds = make_folds()
     config = {'arms': ['direct'], 'seeds': [7], 'model_config': {}}
-    rows, records, validation, _ = mulphe_run.fit(
-        config, data, folds, 'cpu', len(folds) * 1,
-        tmp_path / 'execution_status.json', tmp_path / 'failures.json')
+    rows, records, validation, development, frozen, _ = mulphe_run.fit(
+        config, data, folds, 'cpu', len(folds) * 1, tmp_path / 'execution_status.json')
     json.dumps(records)
     assert records[0]['state_sha256'] == 'a' * 64
     assert records[0]['epochs_recorded'] == 3
@@ -190,20 +210,94 @@ def test_fit_records_are_json_safe_and_seeded(tmp_path, recorder):
     assert all('source_scalars' not in record and 'prediction' not in record for record in records)
 
 
-def test_fit_writes_a_failure_after_the_first_crash(tmp_path, monkeypatch):
-    data = synthetic_data()
-    folds = make_folds()
+def driver_config(tmp_path, folds_path, digest, **overrides):
+    config = {'data': 'unused', 'data_sha256': None, 'splits': str(folds_path),
+              'splits_sha256': digest, 'device': 'cpu', 'cpu_threads': 1,
+              'arms': ['direct'], 'seeds': [42], 'model_config': {}}
+    config.update(overrides)
+    path = tmp_path / 'config.json'
+    path.write_text(json.dumps(config))
+    return config, path
+
+
+def run_with(tmp_path, monkeypatch, data, config, path, out, selection=None):
+    monkeypatch.setattr(mulphe_run, 'load', lambda *args, **kwargs: data)
+    return mulphe_run.run(config, SimpleNamespace(out=tmp_path / out, config=path,
+                                                 selection=selection), str(path))
+
+
+def test_a_crash_during_fitting_is_recorded_and_never_marked_complete(tmp_path, monkeypatch):
+    data, folds = synthetic_data(), make_folds()
+    path, digest = write_manifest(tmp_path, folds)
+    config, config_path = driver_config(tmp_path, path, digest)
+    monkeypatch.setattr(mulphe, 'run_arms',
+                        lambda *args, **kwargs: (_ for _ in ()).throw(RuntimeError('synthetic crash')))
+    with pytest.raises(RuntimeError):
+        run_with(tmp_path, monkeypatch, data, config, config_path, 'run')
+    out = tmp_path / 'run'
+    failures = json.loads((out / 'failures.json').read_text())
+    status = json.loads((out / 'execution_status.json').read_text())
+    assert failures[0]['type'] == 'RuntimeError' and failures[0]['phase'] == 'fitting'
+    assert status['status'] == 'failed' and status['completed_fits'] == 0
+    assert 'summary.json' not in {entry.name for entry in out.iterdir()}
+    manifest = json.loads((out / 'artifact_manifest.json').read_text())
+    for name, entry in manifest['files'].items():
+        assert mulphe_run.sha256_of(out / name) == entry['sha256']
+
+
+def test_a_crash_during_summary_is_recorded_as_the_summary_phase(tmp_path, monkeypatch):
+    data, folds = synthetic_data(), make_folds()
+    path, digest = write_manifest(tmp_path, folds)
+    config, config_path = driver_config(tmp_path, path, digest)
 
     def explode(*args, **kwargs):
-        raise RuntimeError('synthetic crash')
+        raise ValueError('synthetic summary failure')
 
-    monkeypatch.setattr(mulphe, 'run_arms', explode)
-    with pytest.raises(RuntimeError):
-        mulphe_run.fit({'arms': ['direct'], 'seeds': [42], 'model_config': {}}, data, folds, 'cpu', 8,
-                       tmp_path / 'execution_status.json', tmp_path / 'failures.json')
-    failures = json.loads((tmp_path / 'failures.json').read_text())
-    assert failures[0]['type'] == 'RuntimeError' and failures[0]['completed_fits'] == 0
-    assert json.loads((tmp_path / 'execution_status.json').read_text())['status'] == 'failed'
+    monkeypatch.setattr(mulphe_run, 'score', explode)
+    with pytest.raises(ValueError):
+        run_with(tmp_path, monkeypatch, data, config, config_path, 'run')
+    out = tmp_path / 'run'
+    failures = json.loads((out / 'failures.json').read_text())
+    assert failures[0]['phase'] == 'summary' and failures[0]['predictions_written'] > 0
+    status = json.loads((out / 'execution_status.json').read_text())
+    assert status['status'] == 'failed' and status['phase'] == 'summary'
+    assert (out / 'predictions.csv').is_file()          # the fits are kept for diagnosis
+    manifest = json.loads((out / 'artifact_manifest.json').read_text())
+    for name, entry in manifest['files'].items():
+        assert mulphe_run.sha256_of(out / name) == entry['sha256']
+
+
+def test_full_dev_refit_freezes_epochs_then_refits_without_validation(tmp_path, recorder):
+    data, folds = synthetic_data(), make_folds()
+    config = {'arms': ARMS, 'seeds': [42], 'model_config': {},
+              'full_dev_refit': {'enabled': True}}
+    rows, records, validation, development, frozen, _ = mulphe_run.fit(
+        config, data, folds, 'cpu', len(folds) * 4, tmp_path / 'execution_status.json')
+    assert len(recorder) == len(folds) * 4 * 2          # validation pass plus frozen refit
+    assert {entry['mode'] for entry in validation} == {'validation', 'full_dev_fixed'}
+    per_arm = sum(len(fold['test_idx']) for fold in folds)
+    assert len(rows) == per_arm * len(ARMS) * len(ENVIRONMENTS)
+    assert len(development) == per_arm * len(ARMS) * len(ENVIRONMENTS)
+    assert development is not rows
+    assert len(frozen) == len(folds)                   # one freeze record per fold and seed
+    for entry in frozen:
+        assert set(entry['arm_epochs']) == set(ENVIRONMENTS)
+        assert set(entry['source_epochs']) == set(ENVIRONMENTS)
+        for target_epochs in entry['arm_epochs'].values():
+            assert set(target_epochs) == set(ARMS) - {'linear_prediction'}
+            assert all(int(value) >= 1 for value in target_epochs.values())
+    refits = [call for call in recorder if call['kwargs']['fixed_epochs'] is not None]
+    assert len(refits) == len(folds) * len(ENVIRONMENTS)
+    for call in refits:
+        assert call['x_val'] is None and call['y_val'] is None
+        assert call['kwargs']['source_val'] is None
+        assert call['kwargs']['source_models'] is not None   # full-dev sources shared per fold
+        assert call['kwargs']['source_fixed_epochs'] is None
+        assert len(call['x_train']) == len(call['kwargs']['source_train'])
+    scored = [record for record in records if record['mode'] == 'full_dev_fixed']
+    assert all(record['state_sha256'] == 'a' * 64 for record in scored)
+    jsonable_targets = [entry for entry in validation if entry['mode'] == 'full_dev_fixed']
+    assert all(entry['model_mode'] == 'fixed_full_dev' for entry in jsonable_targets)
 
 
 # -- scoring ---------------------------------------------------------------
@@ -227,13 +321,22 @@ def test_score_separates_fold_mean_from_pooled_oof():
     per_fold, pooled, comparison = mulphe_run.score(config, data, folds, rows, {})
     truth = np.asarray(data.Y)
     materials = np.array(sorted({row['material_index'] for row in rows}))
-    assert comparison == {} and per_fold['direct']['scope'].startswith('mean of per-fold')
+    assert comparison == {}
+    assert per_fold['direct']['scope'].startswith('grid is one row per fold')
+    assert len(per_fold['direct']['grid']) == len(folds) * len(ENVIRONMENTS)
     prediction = 0.5 + 0.01 * materials
     expected_pcc = mulphe_run.pcc(truth[:, 0], prediction)
     assert pooled['direct']['per_environment']['1']['pcc'] == pytest.approx(expected_pcc)
     assert set(pooled['direct']['per_seed_macro']) == {'42'}
     assert pooled['direct']['seed_ensemble_macro'] == pooled['direct']['per_seed_macro']['42']
-    assert len(per_fold['direct']['fold_pcc']) == len(folds)
+    assert {row['fold'] for row in per_fold['direct']['grid']} == {int(fold['fold']) for fold in folds}
+    assert all(set(row) >= {'arm', 'fold', 'environment', 'seed', 'materials', 'pcc', 'rmse', 'mae'}
+               for row in per_fold['direct']['grid'])
+    first = [row for row in per_fold['direct']['grid']
+             if row['fold'] == int(folds[0]['fold']) and row['environment'] == '1'][0]
+    test = np.asarray(folds[0]['test_idx'])
+    assert first['materials'] == len(test)
+    assert first['pcc'] == pytest.approx(mulphe_run.pcc(truth[test, 0], 0.5 + 0.01 * test))
 
 
 def test_score_refuses_missing_or_extra_materials():
@@ -340,6 +443,32 @@ def test_reference_comparison_asserts_y_true_against_the_data(tmp_path):
     path.write_text('\n'.join([lines[0], ','.join(fields)] + lines[2:]) + '\n')
     with pytest.raises(ValueError, match='y_true disagrees'):
         mulphe_run.score(config, data, folds, rows, {'huber': load(tmp_path, data)})
+
+
+def test_run_in_full_dev_mode_writes_both_prediction_layers(tmp_path, monkeypatch, recorder):
+    data, folds = synthetic_data(), make_folds()
+    path, digest = write_manifest(tmp_path, folds)
+    config, config_path = driver_config(tmp_path, path, digest, arms=ARMS,
+                                        full_dev_refit={'enabled': True})
+    out = run_with(tmp_path, monkeypatch, data, config, config_path, 'run')
+    directory = tmp_path / 'run'
+    assert (directory / 'development_predictions.csv').is_file()
+    assert json.loads((directory / 'execution_status.json').read_text())['status'] == 'complete'
+    assert json.loads((directory / 'failures.json').read_text()) == []
+    frozen = json.loads((directory / 'frozen_epochs.json').read_text())
+    assert len(frozen) == len(folds)
+    summary = json.loads((directory / 'summary.json').read_text())
+    assert summary['scored_mode'] == 'full_dev_fixed' and summary['full_dev_refit'] is True
+    assert set(summary['pooled_oof']) == set(ARMS)
+    scored = list(csv.DictReader((directory / 'predictions.csv').open()))
+    development = list(csv.DictReader((directory / 'development_predictions.csv').open()))
+    assert len(scored) == len(development) == sum(len(fold['test_idx']) for fold in folds) \
+        * len(ARMS) * len(ENVIRONMENTS)
+    assert {row['arm'] for row in scored} == set(ARMS)
+    grid = list(csv.DictReader((directory / 'per_fold.csv').open()))
+    assert len(grid) == len(ARMS) * len(folds) * len(ENVIRONMENTS)
+    assert all(row['pcc'] and row['rmse'] and row['mae'] for row in grid)
+    assert out is not None
 
 
 def test_load_reference_rejects_unknown_environment_and_duplicates(tmp_path):

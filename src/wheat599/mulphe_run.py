@@ -5,11 +5,18 @@ Protocol discipline:
 * test labels are loaded for scoring only after all fits of the run have finished;
 * model selection stays inside the model (validation early stopping); no test-side
   selection, no cross-arm choice made from test, and the two scalar-fusion arms are
-  reported separately because they fuse different input spaces.
+  reported separately because they fuse different input spaces;
+* ``full_dev_refit`` adds a second phase: the validation pass only freezes each arm's
+  best epoch and each environment's source epoch, the scored run then refits those
+  budgets on the whole development set without any validation split;
+* ``execution_status.json`` reaches ``complete`` only after the summary and every table
+  have been written, and ``artifact_manifest.json`` is written last so its recorded
+  hashes match the files as they finally stand.
 """
 from __future__ import annotations
 
 import csv
+import inspect
 import json
 import subprocess
 import time
@@ -148,91 +155,157 @@ def job_sequence(folds, n_environments, seeds):
             for fold in folds for target in range(n_environments) for seed in seeds]
 
 
-def fit(config, data, folds, device, expected_fits, status_path, failures_path):
-    """Run every fit of the frozen grid; returns per-material rows and per-fit diagnostics."""
+def _arm_epochs(result, arms):
+    """The epoch budget the validation pass froze for each trainable arm."""
+    frozen = {}
+    for arm in arms:
+        if arm == 'linear_prediction':
+            continue
+        epoch = result['arms'][arm].get('best_epoch')
+        if epoch is None:
+            raise ValueError(f'The validation pass gave no best_epoch for {arm}')
+        frozen[arm] = int(epoch)
+    return frozen
+
+
+def _source_epochs(result):
+    return {str(entry['name']): int(entry['best_epoch'])
+            for entry in (result.get('source_pretraining') or [])}
+
+
+def _train_sources(config, x_rows, y_rows, environments, merged, seed, device, fixed_epochs=None):
+    """Official pretraining recipe for every environment, shared by the cross-environment arms."""
+    medians = mulphe._fit_impute(x_rows)
+    return mulphe.train_source_encoders(
+        mulphe._apply_impute(x_rows, medians), y_rows, None, None, environments, merged,
+        int(seed) + 1000, device, fixed_epochs=fixed_epochs)
+
+
+def _suite(config, data, arms, seed, fold_number, target, mode, train, val, test, device,
+           rows, records, validation, source_models, shared_seconds,
+           fixed_epochs=None, source_fixed_epochs=None):
+    """One suite of arms for a single fold and target, in validation or frozen full-dev mode."""
+    environments = [str(name) for name in data.environments]
+    x_all = np.asarray(data.X, dtype=np.float64)
+    truth = np.asarray(data.Y, dtype=np.float64)
+    sources = [position for position in range(len(environments)) if position != target]
+    fixed = mode == 'full_dev_fixed'
+    result = mulphe.run_arms(
+        x_all[train], truth[train, target],
+        None if fixed else x_all[val], None if fixed else truth[val, target], x_all[test],
+        target_name=environments[target],
+        source_names=[environments[position] for position in sources],
+        source_train=truth[np.ix_(train, sources)],
+        source_val=None if fixed else truth[np.ix_(val, sources)],
+        config=config.get('model_config'), seed=seed, device=device, arms=arms,
+        source_models=source_models, fixed_epochs=fixed_epochs,
+        source_fixed_epochs=source_fixed_epochs)
+    expected = 'fixed_full_dev' if fixed else 'validation'
+    if result['mode'] != expected:
+        raise ValueError(f'Model reported mode {result["mode"]} for {mode}')
+    if fixed and result['source_fixed_epochs'] is not None and source_models is not None:
+        raise ValueError('Shared source models and source_fixed_epochs cannot both be given')
+    for arm, entry in result['arms'].items():
+        prediction = np.asarray(entry['prediction'], dtype=np.float64)
+        if prediction.shape != (len(test),) or not np.isfinite(prediction).all():
+            raise FloatingPointError(
+                f'Non-finite or mis-shaped prediction: fold {fold_number} arm {arm} mode {mode}')
+        rows.extend([{'arm': arm, 'fold': fold_number, 'target_environment': environments[target],
+                      'seed': seed, 'material_index': int(material), 'y_pred': f'{value:.10g}'}
+                     for material, value in zip(test, prediction)])
+        records.append({'mode': mode, 'fold': fold_number, 'target_environment': environments[target],
+                        'target_position': target, 'seed': seed, 'arm': arm, **diagnostics(entry)})
+    validation.append({'mode': mode, 'fold': fold_number, 'target_environment': environments[target],
+                       'seed': seed, 'model_mode': result['mode'],
+                       'source_encoder_reuse': source_models is not None,
+                       'source_pretraining_seconds': result['source_pretraining_seconds'],
+                       'shared_source_pretraining_seconds': shared_seconds,
+                       'fixed_epochs': result.get('fixed_epochs'),
+                       'source_fixed_epochs': result.get('source_fixed_epochs'),
+                       'best_epochs': {arm: result['arms'][arm].get('best_epoch') for arm in arms},
+                       'source_pretraining': jsonable(result['source_pretraining'])})
+    return result
+
+
+def fit(config, data, folds, device, expected_fits, status_path):
+    """Run the frozen grid. Full-dev mode first freezes epochs on validation, then refits on dev."""
     seeds = [int(seed) for seed in config['seeds']]
     arms = list(config['arms'])
     environments = [str(name) for name in data.environments]
     x_all = np.asarray(data.X, dtype=np.float64)
     truth = np.asarray(data.Y, dtype=np.float64)
-    fold_cache = {int(fold['fold']): fold for fold in folds}
-    started = time.perf_counter()
-    rows, records, validation = [], [], []
-    completed = 0
-    every = max(1, int(config.get('status_every', 1)))
     merged = {**mulphe.DEFAULT_CONFIG, **(config.get('model_config') or {})}
     reuse = bool(config.get('share_source_encoders', True))
-    source_arms = set(arms) & (set(mulphe.ARMS) - {'direct', 'target_pretrain'})
-    trained = {}
-    try:
-        for fold_number, target, seed in job_sequence(folds, data.n_env, seeds):
-            fold = fold_cache[fold_number]
-            train = np.asarray(fold['train_idx'], dtype=np.int64)
-            val = np.asarray(fold['val_idx'], dtype=np.int64)
-            test = np.asarray(fold['test_idx'], dtype=np.int64)
-            sources = [position for position in range(len(environments)) if position != target]
-            source_models = None
-            shared_seconds = None
-            if reuse and source_arms:
-                key = (fold_number, seed)
-                if key not in trained:
-                    medians = mulphe._fit_impute(x_all[train])
-                    began = time.perf_counter()
-                    trained[key] = (mulphe.train_source_encoders(
-                        mulphe._apply_impute(x_all[train], medians), truth[train],
-                        mulphe._apply_impute(x_all[val], medians), truth[val],
-                        environments, merged, int(seed) + 1000, device),
-                        time.perf_counter() - began)
-                source_models, shared_seconds = trained[key]
-            result = mulphe.run_arms(
-                x_all[train], truth[train, target], x_all[val], truth[val, target], x_all[test],
-                target_name=environments[target],
-                source_names=[environments[position] for position in sources],
-                source_train=truth[np.ix_(train, sources)],
-                source_val=truth[np.ix_(val, sources)],
-                config=config.get('model_config'), seed=seed, device=device, arms=arms,
-                source_models=source_models)
-            for arm in arms:
-                entry = result['arms'][arm]
-                prediction = np.asarray(entry['prediction'], dtype=np.float64)
-                if prediction.shape != (len(test),) or not np.isfinite(prediction).all():
-                    raise FloatingPointError(
-                        f'Non-finite or mis-shaped prediction: fold {fold_number} arm {arm}')
-                rows.extend([{'arm': arm, 'fold': fold_number,
-                              'target_environment': environments[target], 'seed': seed,
-                              'material_index': int(material),
-                              'y_pred': f'{value:.10g}'}
-                             for material, value in zip(test, prediction)])
-                records.append({'fold': fold_number, 'target_environment': environments[target],
-                                'target_position': target, 'seed': seed, 'arm': arm,
-                                **diagnostics(entry)})
-            validation.append({'fold': fold_number, 'target_environment': environments[target],
-                                'seed': seed,
-                                'source_encoder_reuse': source_models is not None,
-                                'source_pretraining_seconds': result['source_pretraining_seconds'],
-                                'shared_source_pretraining_seconds': shared_seconds,
-                                'source_pretraining': jsonable(result['source_pretraining'])})
-            completed += 1
-            if completed % every == 0:
-                write_json(status_path, {'status': 'running', 'completed_fits': completed,
-                                        'expected_fits': expected_fits,
-                                        'seconds': round(time.perf_counter() - started, 3),
-                                        'git_commit': git_value('rev-parse', 'HEAD')})
-    except Exception as error:
-        failures_path.write_text(json.dumps(
-            [{'type': type(error).__name__, 'message': str(error),
-              'completed_fits': completed, 'expected_fits': expected_fits,
-              'at': time.strftime('%Y-%m-%dT%H:%M:%S%z')}], indent=2))
-        write_json(status_path, {'status': 'failed', 'completed_fits': completed,
-                                'expected_fits': expected_fits,
-                                'seconds': round(time.perf_counter() - started, 3)})
-        raise
-    write_json(failures_path, [])
-    write_json(status_path, {'status': 'complete', 'completed_fits': completed,
-                            'expected_fits': expected_fits,
-                            'folds_complete': sorted({row['fold'] for row in records}),
-                            'seconds': round(time.perf_counter() - started, 3)})
-    return rows, records, validation, round(time.perf_counter() - started, 3)
+    needs_sources = bool(set(arms) & (set(mulphe.ARMS)
+                                      - {'direct', 'target_pretrain', 'linear_prediction'}))
+    refit = bool((config.get('full_dev_refit') or {}).get('enabled'))
+    rows, records, validation, frozen_epochs = [], [], [], []
+    development = [] if refit else rows   # the freezing pass is kept out of the scored grid
+    started = time.perf_counter()
+    completed = 0
+    for fold in folds:
+        number = int(fold['fold'])
+        train = np.asarray(fold['train_idx'], dtype=np.int64)
+        val = np.asarray(fold['val_idx'], dtype=np.int64)
+        test = np.asarray(fold['test_idx'], dtype=np.int64)
+        dev = np.sort(np.concatenate([train, val]))
+        if refit and len(train) + len(val) != len(dev):
+            raise ValueError('Full-dev refit needs disjoint train and validation rows')
+        for seed in seeds:
+            shared = {}
+            validation_results = {}
+            for target in range(len(environments)):
+                source_models, shared_seconds = None, None
+                if reuse and needs_sources:
+                    key = (number, seed)
+                    if key not in shared:
+                        began = time.perf_counter()
+                        shared[key] = (_train_sources(config, x_all[train], truth[train],
+                                                      environments, merged, seed, device),
+                                       time.perf_counter() - began)
+                    source_models, shared_seconds = shared[key]
+                validation_results[target] = _suite(
+                    config, data, arms, seed, number, target, 'validation',
+                    train, val, test, device, development, records, validation,
+                    source_models, shared_seconds)
+            if not refit:
+                completed += len(environments)
+                continue
+            source_epochs = {}
+            for result in validation_results.values():
+                for name, epoch in _source_epochs(result).items():
+                    if source_epochs.setdefault(name, epoch) != epoch:
+                        raise ValueError(f'Shared source encoders froze different epochs for {name}')
+            if needs_sources and set(source_epochs) != set(environments):
+                raise ValueError('The validation pass did not freeze an epoch for every environment: '
+                                 f'{sorted(set(environments) - set(source_epochs))}')
+            dev_models = None
+            if needs_sources:
+                began = time.perf_counter()
+                dev_models = _train_sources(config, x_all[dev], truth[dev], environments, merged,
+                                            seed, device, fixed_epochs=source_epochs)
+                dev_seconds = time.perf_counter() - began
+            else:
+                dev_seconds = None
+            frozen_epochs.append({'fold': number, 'seed': seed, 'source_epochs': source_epochs,
+                                  'source_encoder_rows': 'dev' if dev_models is not None else 'train',
+                                  'arm_epochs': {}})
+            current = frozen_epochs[-1]
+            for target in range(len(environments)):
+                result = validation_results[target]
+                current['arm_epochs'][environments[target]] = _arm_epochs(result, arms)
+                _suite(config, data, arms, seed, number, target, 'full_dev_fixed',
+                       dev, None, test, device, rows, records, validation, dev_models, dev_seconds,
+                       fixed_epochs=current['arm_epochs'][environments[target]],
+                       source_fixed_epochs=None if dev_models else source_epochs)
+                completed += 1
+        write_json(status_path, {'status': 'running', 'phase': 'fitting',
+                                 'completed_fits': completed, 'expected_fits': expected_fits,
+                                 'full_dev_refit': refit,
+                                 'seconds': round(time.perf_counter() - started, 3),
+                                 'git_commit': git_value('rev-parse', 'HEAD')})
+    return rows, records, validation, development, frozen_epochs, \
+        round(time.perf_counter() - started, 3)
 
 
 # -- scoring ---------------------------------------------------------------
@@ -271,9 +344,9 @@ def score(config, data, folds, rows, references):
     environments = [str(name) for name in data.environments]
     arms = list(config['arms'])
     seeds = [int(seed) for seed in config['seeds']]
+    fold_numbers = [int(fold['fold']) for fold in folds]
     truth = np.asarray(data.Y, dtype=np.float64)
-    grouped = group_predictions(rows, arms, [int(fold['fold']) for fold in folds],
-                                environments, seeds)
+    grouped = group_predictions(rows, arms, fold_numbers, environments, seeds)
 
     def test_of(fold):
         return np.asarray(fold['test_idx'], dtype=np.int64)
@@ -287,34 +360,35 @@ def score(config, data, folds, rows, references):
     per_fold, pooled, oof_vectors = {}, {}, {}
     for arm in arms:
         oof = np.full((len(environments), len(seeds), data.n), np.nan)
-        fold_entries = {(seed, environment): [] for seed in seeds for environment in environments}
+        cells = {}
         for e_index, environment in enumerate(environments):
             for fold in folds:
                 number, test = int(fold['fold']), test_of(fold)
                 for s_index, seed in enumerate(seeds):
                     prediction = vector(arm, number, environment, seed, test)
-                    fold_entries[(seed, environment)].append(
-                        (number, _macro(truth[test, e_index], prediction)))
+                    cells[(number, environment, seed)] = (
+                        _macro(truth[test, e_index], prediction), len(test))
                     oof[e_index, s_index, test] = prediction
         if not np.isfinite(oof).all():
             raise ValueError('Pooled OOF leaves materials uncovered')
 
-        by_fold = {}
-        for (seed, environment), entries in fold_entries.items():
-            for number, metrics in entries:
-                by_fold.setdefault(number, {}).setdefault('pcc', []).append(metrics['pcc'])
+        grid = [{'arm': arm, 'fold': number, 'environment': environment, 'seed': seed,
+                 'materials': cells[(number, environment, seed)][1],
+                 **cells[(number, environment, seed)][0]}
+                for number in fold_numbers for environment in environments for seed in seeds]
         per_environment = {
-            environment: _mean([metrics for seed in seeds
-                                for _, metrics in fold_entries[(seed, environment)]])
+            environment: _mean([cells[(number, environment, seed)][0]
+                                for number in fold_numbers for seed in seeds])
             for environment in environments}
         per_fold[arm] = {
+            'grid': grid,
             'per_environment': per_environment,
-            'per_seed': {str(seed): {environment: _mean([metrics for _, metrics in fold_entries[(seed, environment)]])
+            'per_seed': {str(seed): {environment: _mean([cells[(number, environment, seed)][0]
+                                                         for number in fold_numbers])
                                      for environment in environments} for seed in seeds},
             'macro': _mean([per_environment[environment] for environment in environments]),
-            'fold_pcc': {str(number): float(np.mean(values['pcc']))
-                         for number, values in sorted(by_fold.items())},
-            'scope': 'mean of per-fold, per-seed metrics over the frozen folds, then macro over environments'}
+            'scope': 'grid is one row per fold/environment/seed; per_environment and macro average '
+                     'those per-fold readings'}
 
         pooled_environment = {
             environment: _mean([_macro(truth[:, e_index], oof[e_index, s_index])
@@ -495,6 +569,8 @@ def run(config, args, runner):
         'source_encoder_sharing': bool(config.get('share_source_encoders', True))
                                    and bool(set(config['arms'])
                                             & (set(mulphe.ARMS) - {'direct', 'target_pretrain'})),
+        'linear_source_reference': 'model arm linear_prediction (OLS on frozen source predictions)',
+        'full_dev_refit': config.get('full_dev_refit') or {'enabled': False},
         'deviations': ['train-only scaling and imputation',
                        'no test phenotype enters any fit',
                        'source environments always exclude the target',
@@ -502,41 +578,78 @@ def run(config, args, runner):
         'scope': 'frozen manifest read only; validation early stopping inside the model; '
                  'test labels accessed after every fit; no test-side selection or cross-arm choice'})
 
-    rows, records, validation, fit_seconds = fit(
-        config, data, folds, device, expected_fits,
-        args.out / 'execution_status.json', args.out / 'failures.json')
+    rows, records, validation, development, frozen_epochs, fit_seconds = [], [], [], [], [], 0.0
+    phase = 'fitting'
+    status_path = args.out / 'execution_status.json'
+    failures_path = args.out / 'failures.json'
+    prediction_fields = ['arm', 'fold', 'target_environment', 'seed', 'material_index', 'y_pred']
+    try:
+        rows, records, validation, development, frozen_epochs, fit_seconds = fit(
+            config, data, folds, device, expected_fits, status_path)
+        phase = 'summary'
+        write_csv(args.out / 'predictions.csv', prediction_fields,
+                  sorted(rows, key=lambda row: (row['arm'], row['fold'], row['target_environment'],
+                                                row['seed'], row['material_index'])))
+        if development is not rows:
+            write_csv(args.out / 'development_predictions.csv', prediction_fields,
+                      sorted(development, key=lambda row: (row['arm'], row['fold'],
+                                                           row['target_environment'],
+                                                           row['seed'], row['material_index'])))
+        write_json(args.out / 'frozen_epochs.json', frozen_epochs)
+        write_json(args.out / 'fits.json', records)
+        write_json(args.out / 'validation.json', validation)
 
-    write_csv(args.out / 'predictions.csv',
-              ['arm', 'fold', 'target_environment', 'seed', 'material_index', 'y_pred'],
-              sorted(rows, key=lambda row: (row['arm'], row['fold'], row['target_environment'],
-                                            row['seed'], row['material_index'])))
-    write_json(args.out / 'fits.json', records)
-    write_json(args.out / 'validation.json', validation)
+        loaded = {name: load_reference(entry['path'], [str(e) for e in data.environments])
+                  for name, entry in references.items()}
+        per_fold, pooled, comparison = score(config, data, folds, rows, loaded)
+        grid = [row for arm in arms for row in per_fold[arm]['grid']]
+        write_csv(args.out / 'per_fold.csv',
+                  ['arm', 'fold', 'environment', 'seed', 'materials', 'pcc', 'rmse', 'mae'],
+                  [{key: (f'{row[key]:.12g}' if key in METRICS else row[key])
+                    for key in ('arm', 'fold', 'environment', 'seed', 'materials',
+                                'pcc', 'rmse', 'mae')} for row in grid])
+        write_json(args.out / 'summary.json', {
+            'per_fold': per_fold, 'pooled_oof': pooled, 'comparison_vs_reference': comparison,
+            'metric_order': list(METRICS), 'arms': arms,
+            'full_dev_refit': bool((config.get('full_dev_refit') or {}).get('enabled')),
+            'scored_mode': 'full_dev_fixed' if (config.get('full_dev_refit') or {}).get('enabled')
+                           else 'validation',
+            'folds': [int(fold['fold']) for fold in folds],
+            'seeds': [int(seed) for seed in config['seeds']],
+            'completed_fits': expected_fits, 'training_seconds': fit_seconds,
+            'note': 'per_fold.grid is one row per fold/environment/seed; pooled_oof evaluates one OOF '
+                    'vector per environment where every material appears once — the two are different '
+                    'readings and are reported separately'})
 
-    loaded = {name: load_reference(entry['path'], [str(e) for e in data.environments])
-              for name, entry in references.items()}
-    per_fold, pooled, comparison = score(config, data, folds, rows, loaded)
-    write_json(args.out / 'summary.json', {
-        'per_fold': per_fold, 'pooled_oof': pooled, 'comparison_vs_reference': comparison,
-        'metric_order': list(METRICS), 'arms': list(config['arms']),
-        'folds': [int(fold['fold']) for fold in folds],
-        'seeds': [int(seed) for seed in config['seeds']],
-        'completed_fits': expected_fits, 'training_seconds': fit_seconds,
-        'note': 'per_fold averages metrics within each fold; pooled_oof evaluates one OOF vector per '
-                'environment where every material appears once — the two are different readings'})
+        write_json(args.out / 'timings.json', {
+            'total_seconds': round(time.perf_counter() - started, 3), 'fit_seconds': fit_seconds,
+            'device': str(device), 'amp': False, 'dtype': 'float32',
+            'cuda': None if device.type != 'cuda' else {
+                'name': torch.cuda.get_device_name(device),
+                'peak_allocated_megabytes': float(torch.cuda.max_memory_allocated(device)) / 2 ** 20,
+                'peak_reserved_megabytes': float(torch.cuda.max_memory_reserved(device)) / 2 ** 20}})
 
-    write_json(args.out / 'timings.json', {
-        'total_seconds': round(time.perf_counter() - started, 3), 'fit_seconds': fit_seconds,
-        'device': str(device), 'amp': False, 'dtype': 'float32',
-        'cuda': None if device.type != 'cuda' else {
-            'name': torch.cuda.get_device_name(device),
-            'peak_allocated_megabytes': float(torch.cuda.max_memory_allocated(device)) / 2 ** 20,
-            'peak_reserved_megabytes': float(torch.cuda.max_memory_reserved(device)) / 2 ** 20}})
-
-    artifacts = {path.name: {'bytes': path.stat().st_size, 'sha256': sha256_of(path)}
-                 for path in sorted(args.out.iterdir())
-                 if not path.is_dir() and path.name != 'artifact_manifest.json'}
-    write_json(args.out / 'artifact_manifest.json', {
-        'files': artifacts, 'weights_stored': False,
-        'note': 'the model returns state hashes only, so no checkpoint files exist for this run'})
+        write_json(failures_path, [])
+        write_json(status_path, {'status': 'complete', 'phase': 'summary_written',
+                                'completed_fits': expected_fits, 'expected_fits': expected_fits,
+                                'folds_complete': sorted({row['fold'] for row in records}),
+                                'seconds': round(time.perf_counter() - started, 3)})
+    except Exception as error:
+        failures_path.write_text(json.dumps(
+            [{'type': type(error).__name__, 'message': str(error), 'phase': phase,
+              'predictions_written': len(rows), 'at': time.strftime('%Y-%m-%dT%H:%M:%S%z')}], indent=2))
+        write_json(status_path, {'status': 'failed', 'phase': phase,
+                                'completed_fits': len({(row['fold'], row['target_environment'],
+                                                        row['seed']) for row in records}),
+                                'expected_fits': expected_fits,
+                                'seconds': round(time.perf_counter() - started, 3)})
+        raise
+    finally:
+        # the manifest is written last, after the terminal status and failures are settled
+        artifacts = {path.name: {'bytes': path.stat().st_size, 'sha256': sha256_of(path)}
+                     for path in sorted(args.out.iterdir())
+                     if not path.is_dir() and path.name != 'artifact_manifest.json'}
+        write_json(args.out / 'artifact_manifest.json', {
+            'files': artifacts, 'weights_stored': False,
+            'note': 'the model returns state hashes only, so no checkpoint files exist for this run'})
     return per_fold, pooled, comparison
