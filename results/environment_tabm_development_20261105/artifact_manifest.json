@@ -1,0 +1,48 @@
+{
+  "run": "results/environment_tabm_development_20261105",
+  "git_commit": "d10c9cb63ff4bfffefdcc59ec9862bc876bbc872",
+  "files": {
+    "predictions.csv": {
+      "sha256": "9d45b905cd2eaaee0f8ed0f4e754efd0f3f323534cc2d8ffeba1f16c798b6ce7",
+      "bytes": 28488100
+    },
+    "trajectories.json": {
+      "sha256": "3cfff8451c44f18b54b30f4581c9002178c3234927123cb05698e1c61a2a5028",
+      "bytes": 29589878
+    },
+    "summary.json": {
+      "sha256": "4229ec79f1ddd0c8c3152220b6a1899e6ad301a06af5edb9446afa9133f58194",
+      "bytes": 10094
+    },
+    "selection.json": {
+      "sha256": "dc9631d0a1ec8f9eaef61242e7733f4431ff73699ea9c9f010be31afc96fc553",
+      "bytes": 17816
+    },
+    "provenance.json": {
+      "sha256": "2b12a7a0ed1a7eea88ad3d93626a4d5a4789a3fcf7c1bea4ac719e7e1935575c",
+      "bytes": 5211
+    },
+    "execution_status.json": {
+      "sha256": "231360d3d0fa02d9491b9b72a325d245eda8df1fff210c6970e32099c7da7631",
+      "bytes": 176
+    },
+    "failures.json": {
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "bytes": 2
+    },
+    "timings.json": {
+      "sha256": "16ef55fd282e318bfa61816439c1a9aa1bcd75d633ba7811aaff4a4a6bed7336",
+      "bytes": 40
+    },
+    "checkpoint_sha256.txt": {
+      "sha256": "d2cfd53a77265183c72906b54de8900d0227ba4418069f0a73e1d73af95af5ed",
+      "bytes": 215040
+    },
+    "cost_summary.json": {
+      "sha256": "0577a8e42bad82143901041d21f9b6fe4387a2747522fd65724b3dbf3b0a1bb3",
+      "bytes": 11138
+    }
+  },
+  "predictions_rows": 690048,
+  "note": "predictions.csv and trajectories.json stay on omen; small files synced locally"
+}

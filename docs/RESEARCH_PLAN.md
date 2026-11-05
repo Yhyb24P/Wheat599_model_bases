@@ -1,6 +1,8 @@
 # Research Plan — Wheat599 FT-Transformer 评价
 
-**当前授权（2026-11-05，环境共享研究）：** 用户依据固定等权TabM–ICM融合PCC0.490092与检索负结果，降低检索路线优先级，转为比较全共享TabM、四独立单环境TabM和环境条件化TabM。原始TabM及固定等权融合保留为参照，低秩／检索追加／RAGP校准不在本轮范围。条件化通过每隐藏层的环境乘性缩放适配BatchEnsemble，不预先认定负迁移。共享480条记录校验后复用，新增conditioned480次fit、independent四环境共1920次single-env fit，继续SSH omen。协议见 [ENVIRONMENT_TABM.md](ENVIRONMENT_TABM.md)，实现/runner由cn/gb分别单写者承担，gpt66统筹集成。尚无新候选结果。
+**最新结果（2026-11-05，环境共享预算完成）：** 冻结d10c9cb，omen新增2400fit、0失败，复用shared480条。开发集成PCC：独立单环境系统0.491874、固定等权融合0.490092、shared0.485389、conditioned0.485361。独立系统在9/10开发集超过shared、7/10超过固定融合，但RMSE/MAE不及融合、第三环境变差；它额外允许逐环境checkpoint与配置选择，不能将收益全归于去共享。条件化未建立收益，本配置结束；无新增外层测试或追加预算。证据见 [RESULTS.md](RESULTS.md)。
+
+**本轮授权与分工（2026-11-05，环境共享研究，已完成）：** 用户依据固定等权TabM–ICM融合与检索负结果，降低检索优先级，比较全共享、独立单环境与环境条件化TabM。原始TabM及固定等权融合保留为参照，低秩／检索追加／RAGP校准不在本轮范围。协议见 [ENVIRONMENT_TABM.md](ENVIRONMENT_TABM.md)，cn实现模型、gb负责runner与omen执行、gpt66统筹集成与结果判断。
 
 **最新开发结果（2026-11-05，完整预算结束）：** 检索三臂1440条、RAGP480条及ICM融合均完成，1920条训练、0失败。种子预测集成开发PCC：raw 0.485389、多成员检索0.484014、单成员检索0.486963、RAGP0.472953、简单TabM–ICM融合0.490443。检索架构未优于简单融合；RAGP误差幅度很大，保存预测的RMSE如实报告，未做后验校准。见 [RESULTS.md](RESULTS.md)。本轮不追加训练、消融、校准或外层评价；总体论文目标未完成，GPU任务已释放。
 

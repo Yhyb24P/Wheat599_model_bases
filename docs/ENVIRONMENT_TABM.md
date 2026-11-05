@@ -1,6 +1,6 @@
 # 环境共享方式的 TabM 开发比较
 
-2026-11-05 用户授权。前一轮检索比较已结束，当前仅检验全标记网络的环境共享方式；尚无本候选成绩。基线代码 `9d897e0`，配置 `configs/environment_tabm.yaml`。
+2026-11-05 用户授权。冻结代码 `d10c9cb`、标签 `environment-tabm-protocol-20261105`，配置 `configs/environment_tabm.yaml`。omen正式新增2400fit与shared480条复用已完成、0失败，墙钟2232.25秒；结果见 [RESULTS.md](RESULTS.md)。独立系统开发PCC提高，条件化未建立收益；本轮配置预算结束，不追加训练／消融／外层评价。以下为实际执行协议。
 
 ## 比较与边界
 

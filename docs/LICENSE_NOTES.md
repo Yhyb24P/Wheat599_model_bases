@@ -56,6 +56,8 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 
 ## TabM 任务适配依赖（2026-11-04，正式训练准备）
 
+环境共享研究（2026-11-05）：沿用上述官方Apache-2.0 TabM依赖，无外部预训练权重。新增2400次fit仅内存best state、无持久化权重；state摘要清单为 `results/environment_tabm_development_20261105/checkpoint_sha256.txt`，清单自身SHA-256 `d2cfd53a77265183c72906b54de8900d0227ba4418069f0a73e1d73af95af5ed`。摘要规则为排序key／dtype／shape／tensor bytes，不是checkpoint文件哈希。
+
 2026-11-05 检索开发生成的1440个本项目训练权重留 omen `/home/hsy/git_files/Wheat599_model_bases/results/retrieval_tabm_development_20261105/`，不入Git。逐文件SHA见同名结果目录的 `weights_sha256.txt`，清单SHA-256为 `9389be175483b37280480c84f37ab5f0a92e142e9e49f1f83e7f4dc0f955fe7e`；未使用外部预训练权重。
 
 RAGP 同协议参照（2026-11-05）：固定上游 `l00907l/RAGP` 提交 `85675b1e8054fe3e91fdb3e974150f1dde81eee3` 无 LICENSE 文件。`src/wheat599/ragp.py` 为所发表机制的独立实现，不复制或分发上游源码、example-data 或权重。fit-only PCA／标准化、严格自身排除及 triplet 索引修正等差异记录于模块说明。未使用外部预训练权重；本轮最优 state 只暂存内存，流式 SHA 随轨迹记录，不持久化权重。

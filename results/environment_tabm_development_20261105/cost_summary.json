@@ -1,0 +1,443 @@
+{
+  "definitions": {
+    "inference_seconds": "per-fit forward-only latency on one efficiency batch of 128 validation rows, mean of 50 repeats after 10 warmup calls, CUDA synchronised; excludes inverse_y and seed averaging, not a full 180-row val-set latency",
+    "memory": "peak is torch.cuda.max_memory_allocated for one training run; independent trains the four environment models serially, so its peak is a single-model peak, not four at once",
+    "params": "parameter counts of the models actually selected by the frozen common selection (independent per environment); four-model totals are the sum of the four selected models"
+  },
+  "conditioned": {
+    "fits": 480,
+    "epochs_total": 34813,
+    "train_seconds_sum": 711.124,
+    "preprocess_seconds_sum": 6.506,
+    "inference_seconds_sum_all_fits": 0.7372,
+    "inference_seconds_per_fit_mean_ms": 1.5359,
+    "peak_total_mib_mean": 311.35,
+    "peak_total_mib_max": 460.1,
+    "peak_increment_mib_mean": 290.12,
+    "peak_increment_mib_max": 437.75,
+    "baseline_mib_max": 22.39,
+    "selected": [
+      {
+        "fold": 0,
+        "config_index": 7,
+        "params": 324060,
+        "inference_ms_mean_over_seeds_inner": 1.5288
+      },
+      {
+        "fold": 1,
+        "config_index": 7,
+        "params": 324060,
+        "inference_ms_mean_over_seeds_inner": 1.5294
+      },
+      {
+        "fold": 2,
+        "config_index": 5,
+        "params": 249260,
+        "inference_ms_mean_over_seeds_inner": 0.9075
+      },
+      {
+        "fold": 3,
+        "config_index": 5,
+        "params": 249260,
+        "inference_ms_mean_over_seeds_inner": 0.9084
+      },
+      {
+        "fold": 4,
+        "config_index": 7,
+        "params": 324060,
+        "inference_ms_mean_over_seeds_inner": 1.5204
+      },
+      {
+        "fold": 5,
+        "config_index": 7,
+        "params": 324060,
+        "inference_ms_mean_over_seeds_inner": 1.5241
+      },
+      {
+        "fold": 6,
+        "config_index": 7,
+        "params": 324060,
+        "inference_ms_mean_over_seeds_inner": 1.5239
+      },
+      {
+        "fold": 7,
+        "config_index": 7,
+        "params": 324060,
+        "inference_ms_mean_over_seeds_inner": 1.5229
+      },
+      {
+        "fold": 8,
+        "config_index": 1,
+        "params": 608092,
+        "inference_ms_mean_over_seeds_inner": 2.2748
+      },
+      {
+        "fold": 9,
+        "config_index": 3,
+        "params": 264668,
+        "inference_ms_mean_over_seeds_inner": 1.1309
+      }
+    ],
+    "selected_params_per_fold": [
+      324060,
+      324060,
+      249260,
+      249260,
+      324060,
+      324060,
+      324060,
+      324060,
+      608092,
+      264668
+    ],
+    "selected_params_mean": 331564,
+    "selected_inference_ms_per_fold_task_sum": [
+      1.5288,
+      1.5294,
+      0.9075,
+      0.9084,
+      1.5204,
+      1.5241,
+      1.5239,
+      1.5229,
+      2.2748,
+      1.1309
+    ],
+    "selected_inference_ms_per_fold_mean": 1.4371,
+    "training_total_seconds": 711.1
+  },
+  "independent": {
+    "fits": 1920,
+    "epochs_total": 141225,
+    "train_seconds_sum": 730.656,
+    "preprocess_seconds_sum": 25.552,
+    "inference_seconds_sum_all_fits": 0.5485,
+    "inference_seconds_per_fit_mean_ms": 0.2857,
+    "peak_total_mib_mean": 71.57,
+    "peak_total_mib_max": 98.28,
+    "peak_increment_mib_mean": 50.45,
+    "peak_increment_mib_max": 84.94,
+    "baseline_mib_max": 22.29,
+    "per_environment_selected": {
+      "0": [
+        {
+          "fold": 0,
+          "config_index": 0,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4284
+        },
+        {
+          "fold": 1,
+          "config_index": 4,
+          "params": 483072,
+          "inference_ms_mean_over_seeds_inner": 0.3469
+        },
+        {
+          "fold": 2,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4219
+        },
+        {
+          "fold": 3,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4297
+        },
+        {
+          "fold": 4,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4218
+        },
+        {
+          "fold": 5,
+          "config_index": 2,
+          "params": 212864,
+          "inference_ms_mean_over_seeds_inner": 0.1466
+        },
+        {
+          "fold": 6,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2045
+        },
+        {
+          "fold": 7,
+          "config_index": 7,
+          "params": 302976,
+          "inference_ms_mean_over_seeds_inner": 0.2736
+        },
+        {
+          "fold": 8,
+          "config_index": 7,
+          "params": 302976,
+          "inference_ms_mean_over_seeds_inner": 0.273
+        },
+        {
+          "fold": 9,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2047
+        }
+      ],
+      "1": [
+        {
+          "fold": 0,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2044
+        },
+        {
+          "fold": 1,
+          "config_index": 5,
+          "params": 235392,
+          "inference_ms_mean_over_seeds_inner": 0.1747
+        },
+        {
+          "fold": 2,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4224
+        },
+        {
+          "fold": 3,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4252
+        },
+        {
+          "fold": 4,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2043
+        },
+        {
+          "fold": 5,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2047
+        },
+        {
+          "fold": 6,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2053
+        },
+        {
+          "fold": 7,
+          "config_index": 5,
+          "params": 235392,
+          "inference_ms_mean_over_seeds_inner": 0.1747
+        },
+        {
+          "fold": 8,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2052
+        },
+        {
+          "fold": 9,
+          "config_index": 2,
+          "params": 212864,
+          "inference_ms_mean_over_seeds_inner": 0.144
+        }
+      ],
+      "2": [
+        {
+          "fold": 0,
+          "config_index": 5,
+          "params": 235392,
+          "inference_ms_mean_over_seeds_inner": 0.1793
+        },
+        {
+          "fold": 1,
+          "config_index": 5,
+          "params": 235392,
+          "inference_ms_mean_over_seeds_inner": 0.174
+        },
+        {
+          "fold": 2,
+          "config_index": 5,
+          "params": 235392,
+          "inference_ms_mean_over_seeds_inner": 0.1729
+        },
+        {
+          "fold": 3,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4292
+        },
+        {
+          "fold": 4,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4258
+        },
+        {
+          "fold": 5,
+          "config_index": 2,
+          "params": 212864,
+          "inference_ms_mean_over_seeds_inner": 0.1481
+        },
+        {
+          "fold": 6,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4233
+        },
+        {
+          "fold": 7,
+          "config_index": 7,
+          "params": 302976,
+          "inference_ms_mean_over_seeds_inner": 0.2717
+        },
+        {
+          "fold": 8,
+          "config_index": 3,
+          "params": 245632,
+          "inference_ms_mean_over_seeds_inner": 0.2039
+        },
+        {
+          "fold": 9,
+          "config_index": 4,
+          "params": 483072,
+          "inference_ms_mean_over_seeds_inner": 0.3393
+        }
+      ],
+      "3": [
+        {
+          "fold": 0,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2868
+        },
+        {
+          "fold": 1,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2877
+        },
+        {
+          "fold": 2,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4228
+        },
+        {
+          "fold": 3,
+          "config_index": 1,
+          "params": 573184,
+          "inference_ms_mean_over_seeds_inner": 0.4243
+        },
+        {
+          "fold": 4,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2994
+        },
+        {
+          "fold": 5,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2878
+        },
+        {
+          "fold": 6,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2891
+        },
+        {
+          "fold": 7,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2865
+        },
+        {
+          "fold": 8,
+          "config_index": 7,
+          "params": 302976,
+          "inference_ms_mean_over_seeds_inner": 0.2739
+        },
+        {
+          "fold": 9,
+          "config_index": 6,
+          "params": 593664,
+          "inference_ms_mean_over_seeds_inner": 0.2936
+        }
+      ]
+    },
+    "four_model_params_per_fold": [
+      1647872,
+      1547520,
+      1954944,
+      2292736,
+      1985664,
+      1265024,
+      1658112,
+      1435008,
+      1097216,
+      1535232
+    ],
+    "four_model_params_mean": 1641932.8,
+    "four_model_params_min": 1097216,
+    "four_model_params_max": 2292736,
+    "four_model_inference_ms_per_fold_sum": [
+      1.0989,
+      0.9833,
+      1.44,
+      1.7084,
+      1.3513,
+      0.7872,
+      1.1222,
+      1.0065,
+      0.956,
+      0.9816
+    ],
+    "four_model_inference_ms_mean": 1.1435,
+    "training_total_seconds": 730.7
+  },
+  "shared_reused": {
+    "source": "results/retrieval_tabm_development_20261105",
+    "fits": 0,
+    "source_fits": 480,
+    "source_epochs_total": 35448,
+    "source_train_seconds_sum": 182.568,
+    "source_inference_seconds_per_fit_mean_ms": 0.3409,
+    "source_peak_total_mib_mean": 73.29,
+    "source_peak_total_mib_max": 99.84,
+    "selected_config_per_fold": [
+      7,
+      7,
+      5,
+      6,
+      7,
+      7,
+      7,
+      7,
+      1,
+      3
+    ],
+    "selected_params_per_fold": [
+      315360,
+      315360,
+      241584,
+      606000,
+      315360,
+      315360,
+      315360,
+      315360,
+      597856,
+      258016
+    ],
+    "selected_params_mean": 359561.6,
+    "selected_inference_ms_per_fold_mean": 0.3157
+  },
+  "run": {
+    "wall_seconds_total": 2232.248661346006,
+    "new_fit_training_seconds": 1441.8,
+    "new_fits": 2400,
+    "failures": 0
+  }
+}
