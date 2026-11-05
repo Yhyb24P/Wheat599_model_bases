@@ -1,0 +1,13 @@
+model: mulphe
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/mulphe_splits_20261105/manifest.json
+splits_sha256: 0b959a3a5b8879c0537c9da669e037b5f991081beee5e522c7d7c7281d3df1ba
+seeds: [42]
+arms: [direct, target_pretrain, frozen_sources, scalar_prediction, embedding]
+device: cuda
+cpu_threads: 2
+gpu_memory_fraction: 0.5
+share_source_encoders: true
+model_config:
+  direct_epochs: 200

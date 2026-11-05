@@ -196,6 +196,9 @@ def main():
     if cfg.get('model') == 'environment_tabm':
         from wheat599.environment_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'mulphe':
+        from wheat599.mulphe_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'grouped_weights':
         from wheat599.grouped_weights_run import run
         return run(cfg, args, Path(__file__))
