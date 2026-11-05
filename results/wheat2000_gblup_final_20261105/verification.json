@@ -1,0 +1,16 @@
+{
+  "unique_oof_keys": 16000,
+  "material_truth_and_dual_ids_match_cache": true,
+  "test_ids_match_frozen_split": true,
+  "recomputed_primary": {
+    "pcc": 0.6028374077795228,
+    "rmse": 0.7824938744018246,
+    "mae": 0.6068790481967856
+  },
+  "original_summary_max_difference": 1.1102230246251565e-16,
+  "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+  "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+  "pooled_metrics": "pooled_oof_metrics.json",
+  "source_oof_sha256": "3daa32b66c380728580d5e1e7acfe02a2568fe4d33ee8501d22b9c6847a3c7a5",
+  "scope": "Existing OOF verification only; no new training or selection"
+}

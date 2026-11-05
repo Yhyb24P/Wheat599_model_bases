@@ -57,6 +57,8 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 
 ## TabM 任务适配依赖（2026-11-04，正式训练准备）
 
+Wheat2000神经参照准备（2026-11-05）：DeepGS为公开R/mxnet网络的独立PyTorch结构适配，上游`cma2015/DeepGS`提交`33ae2dc1ed7bda4e38b76460b18756649d4478a5`，包许可GPL-2或GPL-3；未复制其数据或R源码入Git。BiMSGP在原地动态加载MIT许可的官方干净checkout，提交`71084c8fa5444fbc747b0291ace627b1f2d6ef33`，omen路径`/home/hsy/overlays/BiMSGP_71084c8`；model.py SHA-256为`0cec01030ac64621602fbbca029749e91202e795abee47074588474f9e1aace0`，LICENSE SHA-256为`c654fa432aadbbbeda0a5d4ed10557661a67f811f879ccdc80c31c3cf6cb0d8d`。未使用外部预训练权重，尚无这两个参照的正式训练权重。
+
 四独立TabM外层评价（2026-11-05）：本项目从头训练80个权重，无外部预训练权重，依赖沿用Apache-2.0官方TabM；未另行指定权重分发许可。权重总计132809168字节，仅保留omen `results/independent_tabm_final_20261105/weights/`，不入Git；80个逐文件SHA见同名结果目录`weights_sha256.txt`，该清单SHA为`fd50608fb67fd09740b2bb919d3c53e1357b081162a6e91773122116fd319f56`。此为文件SHA，不是内存state摘要。
 
 云端后期迁移交接（2026-11-05）：30个本项目固定配置专家checkpoint已逐文件核验，仅留用户交接包，不入Git；原清单见`results/late_transfer_development_20261105/cloud_artifact_sha256.txt`、核验说明见`handoff_verification.json`。未使用外部预训练权重，不将交接数据重新分发。

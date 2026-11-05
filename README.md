@@ -1,6 +1,6 @@
 # Wheat599 植物基因组表型预测研究
 
-当前执行：[四方向表型旋转](docs/PHENOTYPE_ROTATION.md)完成1920fit，开发PCC0.488799低于强原系统0.491874，按预定条件结束。原独立TabM继续进行[Wheat2000全部八性状开发](docs/WHEAT2000.md)，GBLUP三内折选择已完成；BiMSGP和DeepGS依赖及适配并行准备，尚不把其论文数值列为同协议实测。
+当前执行：[四方向表型旋转](docs/PHENOTYPE_ROTATION.md)完成1920fit，开发PCC0.488799低于强原系统0.491874，按预定条件结束。原独立TabM继续进行[Wheat2000全部八性状开发](docs/WHEAT2000.md)，GBLUP同协议外层已完成（宏PCC0.602837）；BiMSGP和DeepGS已准备网络/统一runner/隔离依赖，未执行其正式数据训练，尚无候选跨数据集领先结论。
 
 四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
 
@@ -8,7 +8,7 @@
 
 按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。 随后完成的稀疏交互模拟诊断已建立其具体推断缺口：未知位置统计方法在全部 16 个成对任务上超过首版网络，但加性任务族表现变差；尚无新的神经模型或真实数据增益，见 [结果](docs/RESULTS.md)。
 
-当前最高折均 PCC 候选为 **Huber ICM**：四环境 CV1 折均宏 PCC **0.52175**、RMSE **0.85674**、MAE **0.65844**。匹配范围 GLS ICM 为 **0.52059 / 0.85422 / 0.65753**，保留为误差较低参照。Huber 仅获得小幅折均 PCC 增量，合并 OOF PCC 未改善。完整比较见 [docs/RESULTS.md](docs/RESULTS.md)，协议与进度见 [docs/RESEARCH_PLAN.md](docs/RESEARCH_PLAN.md)。
+Wheat599最高折均PCC候选为 **Huber ICM**：四环境CV1折均宏PCC **0.52175**、RMSE **0.85674**、MAE **0.65844**。匹配范围GLS ICM为 **0.52059 / 0.85422 / 0.65753**，保留为误差较低参照。Huber仅获得小幅折均PCC增量，合并OOF PCC未改善。不同数据集的分数不直接排名，完整比较见 [RESULTS](docs/RESULTS.md)，当前进度见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
 
 Huber 配置与参数已冻结，正式评价完成 40/40 环境折。本轮优化结束；此前固定前五配置平均、环境分别收缩等分支的开发记录见 RESULTS。
 
