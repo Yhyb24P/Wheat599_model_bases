@@ -17,10 +17,19 @@ from wheat599.metrics import pcc, rmse, mae
 from wheat599.reml_icm import profile
 
 
-def features(X, Y, train, target, base):
-    a, ac, r, rc = kernels(X, train, target, base['bandwidth'], 'cpu')
-    gram = base['fraction'] * a + (1 - base['fraction']) * r
-    cross = base['fraction'] * ac + (1 - base['fraction']) * rc
+def features(X, Y, train, target, base, *, material_kernels=None):
+    if material_kernels is None:
+        a, ac, r, rc = kernels(X, train, target, base['bandwidth'], 'cpu')
+        gram = base['fraction'] * a + (1 - base['fraction']) * r
+        cross = base['fraction'] * ac + (1 - base['fraction']) * rc
+    else:
+        gram, cross = [torch.as_tensor(k, dtype=torch.float64) for k in material_kernels]
+        if gram.shape != (len(train), len(train)) or cross.shape != (len(target), len(train)):
+            raise ValueError('Material kernel shapes disagree with fit/query IDs')
+        if not torch.isfinite(gram).all() or not torch.isfinite(cross).all():
+            raise ValueError('Nonfinite material kernel')
+        if not torch.allclose(gram, gram.T, atol=1e-10, rtol=1e-10):
+            raise ValueError('Material training kernel is not symmetric')
     eig, vectors = torch.linalg.eigh(gram)
     if eig.min() < -1e-8:
         raise ValueError('Non-PSD material kernel')
@@ -57,7 +66,9 @@ def huber_objective(values, design, factor, targets, ridge, delta, precondition=
     return loss / targets.size, gradient / targets.size
 
 
-def fit_predict(prepared, ridge, eta, delta, cfg):
+def fit_predict(prepared, ridge, eta, delta, cfg, *, fixed_thresholds=None):
+    if fixed_thresholds is not None and delta is None:
+        raise ValueError('Fixed thresholds require Huber loss')
     y, vectors, eig = prepared['Y'], prepared['vectors'], prepared['eigenvalues']
     n, tasks = y.shape
     signal = (1 - eta) * np.eye(tasks) + eta * prepared['C_Y']
@@ -77,7 +88,9 @@ def fit_predict(prepared, ridge, eta, delta, cfg):
     diagnostics = {'iterations': 0, 'optimizer_success': True, 'gradient_inf': 0., 'clipped_fraction': 0.}
     values = initial
     if delta is not None:
-        thresholds = delta * mad_scale
+        thresholds = delta * mad_scale if fixed_thresholds is None else np.asarray(fixed_thresholds, dtype=float)
+        if thresholds.shape != (tasks,) or not np.isfinite(thresholds).all() or np.any(thresholds <= 0):
+            raise ValueError('Huber thresholds must be finite positive values for every task')
         arguments = (a, factor, normalized, ridge, thresholds, precondition, intercept_scale)
         initial_loss = huber_objective(initial, *arguments)[0]
         result = minimize(huber_objective, initial, args=arguments, jac=True, method='L-BFGS-B',
@@ -91,7 +104,8 @@ def fit_predict(prepared, ridge, eta, delta, cfg):
         diagnostics.update(iterations=int(result.nit), optimizer_success=bool(result.success),
                            message=str(result.message), objective=float(result.fun),
                            initial_objective=float(initial_loss), gradient_inf=gradient,
-                           residual_mad_scale=mad_scale.tolist(), thresholds=thresholds.tolist())
+                           residual_mad_scale=mad_scale.tolist(), thresholds=thresholds.tolist(),
+                           thresholds_fixed=fixed_thresholds is not None)
     weights, intercept = values[:-tasks].reshape(weights.shape) / precondition, values[-tasks:] / intercept_scale
     residual = a @ weights @ factor.T + intercept - normalized
     if delta is not None:

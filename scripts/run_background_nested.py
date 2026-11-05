@@ -196,6 +196,9 @@ def main():
     if cfg.get('model') == 'environment_tabm':
         from wheat599.environment_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'grouped_kernel':
+        from wheat599.grouped_kernel_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'phenotype_rotation':
         from wheat599.rotation_run import run
         return run(cfg, args, Path(__file__))
