@@ -1,5 +1,7 @@
 # Research Plan — Wheat599 FT-Transformer 评价
 
+**当前执行（用户附件授权，2026-11-05）：** 四独立TabM作为论文候选，固定现有40个fold×environment配置与seed42/2026；原3inner best_epoch取中位数、保留轮数，先冻结80行清单，再在omen重拟合80模型、一次外层评价及ICM/BiMSGP同折比较。主候选优先，本轮不做标量融合；Wheat2000全部八性状列为后续数据集范围，不自动启动。详见 [INDEPENDENT_FINAL.md](INDEPENDENT_FINAL.md)。云端7d979b8交接包已取得并核验30开发单元/960fit、源码与小结果正纳入Git；固定配置24epoch的迁移结果不能替代强独立模型评价。
+
 **最新证据（配置选择重汇总完成，2026-11-05）：** 固定全部原checkpoint、无新增训练，shared共同／分别选配置PCC0.485389／0.487909，independent共同／分别为0.490810／0.491874。配置选择自由度解释部分增益，对齐后独立仍有开发优势，但剩余差异含容量、训练目标与原checkpoint选择，不能命名为纯负迁移。四独立单环境TabM提升为PCC神经参照，shared逐环境选配置保留为更强共享参照，固定等权融合保留为误差较低参照；环境乘性调制方案结束。本轮纯CPU重汇总已完成，未自动启动后期共享新架构。结果见 [RESULTS.md](RESULTS.md)，边界见 [ENVIRONMENT_TABM.md](ENVIRONMENT_TABM.md)。
 
 **最新结果（2026-11-05，环境共享预算完成）：** 冻结d10c9cb，omen新增2400fit、0失败，复用shared480条。开发集成PCC：独立单环境系统0.491874、固定等权融合0.490092、shared0.485389、conditioned0.485361。独立系统在9/10开发集超过shared、7/10超过固定融合，但RMSE/MAE不及融合、第三环境变差；它额外允许逐环境checkpoint与配置选择，不能将收益全归于去共享。条件化未建立收益，本配置结束；无新增外层测试或追加预算。证据见 [RESULTS.md](RESULTS.md)。

@@ -1,0 +1,26 @@
+model: independent_tabm_final
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+historical_splits: results/bimsgp_ftt_fixed_20261029/splits_manifest.json
+manifest: results/independent_tabm_refit_manifest_20261105/manifest.json
+manifest_sha256: 6de2321de2e0c5ff97f26b82810c2e82ad1dca75e8596842560ada8a4669c500
+rows_sha256: 0b8f4bab383ec79bd3460259c0ec63ce0a2e5a97e37ea6a31f6ee608375c004f
+source_run: results/environment_tabm_development_20261105
+selection_source: results/environment_selection_development_20261105
+freeze_config: configs/independent_tabm_freeze.yaml
+huber_source: results/robust_icm_final_20261103
+gls_source: results/robust_icm_final_20261103
+bimsgp_source: results/bimsgp_nested_final_20261102
+seeds: [42, 2026]
+device: cuda
+dtype: float32
+cpu_threads: 2
+gpu_memory_fraction: 0.5
+batch_size: 128
+gradient_clip: 5.0
+expected_fits: 80
+save_weights: true
+versions:
+  tabm: 0.0.3
+  rtdl_num_embeddings: 0.0.12

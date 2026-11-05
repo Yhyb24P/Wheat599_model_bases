@@ -198,6 +198,12 @@ def main():
     if cfg.get('model') == 'late_transfer':
         from wheat599.late_transfer_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'independent_tabm_freeze':
+        from wheat599.independent_freeze import run
+        return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'independent_tabm_final':
+        from wheat599.independent_final import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'vector_diagnostic':
         from wheat599.vector_diagnostic import run
         return run(cfg, args, Path(__file__))

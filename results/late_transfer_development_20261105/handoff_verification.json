@@ -1,0 +1,37 @@
+{
+  "source": "user-provided wheat599_cloud_handoff_7d979b8.zip",
+  "archive_path": "/home/yhshy/git_files/RC_CKRR_semisynth/临时文档/wheat599_cloud_handoff_7d979b8.zip",
+  "archive_sha256": "d17d9dd9b309841a87a0344e4661219a3d55b5dd360f24c20eed58077fe000a4",
+  "original_git_commit": "7d979b899740d05c4a54fa5a0f1ebfe35d803a7a",
+  "original_git_parent": "82f668989dc269c7502b42d3983094407eb153d6",
+  "verification": {
+    "bundle_integrity_and_parent": "passed",
+    "all_archive_SHA256SUMS": "passed via inspected verify.py",
+    "canonical_raw_data_sha256": "passed",
+    "canonical_Y_all_2396_elements": "exact match using canonical loader and column-major binary",
+    "canonical_splits_sha256": "exact match",
+    "development_units": 30,
+    "checkpoint_hashes_verified": 30,
+    "prediction_files_verified": 30,
+    "saved_predictions_metrics_vs_original_summary": "absolute tolerance 1e-8 passed",
+    "genotype_only_replay_checkpoints": 30,
+    "genotype_only_replay_max_absolute_prediction_difference": 9.5367431640625e-7,
+    "genotype_only_replay_tolerance": "rtol=1e-5, atol=1e-5",
+    "source_synthetic_tests": "3 passed"
+  },
+  "replay_environment": {"torch": "2.7.1+cu128", "device": "cpu", "threads": 2},
+  "env3_score_transfer_fixed_coefficient_drop_analysis": {
+    "output_index": 2,
+    "original_environment": "4",
+    "full_pcc": 0.4044254253282583,
+    "drop_env1_pcc": 0.4076921193562119,
+    "drop_env2_pcc": 0.38610606481795595,
+    "drop_env4_pcc": 0.39759815273634064,
+    "drop_env2_worse_units": 28,
+    "units": 30,
+    "interpretation": "Readout dependence under fixed coefficients; not refitting or additive causal contributions"
+  },
+  "training_added_during_handoff": 0,
+  "scope": "Fixed profile index 2, 24 epochs, development only; not strong per-environment selected experts or outer test",
+  "large_artifacts": "Checkpoints, prediction NPZs and input data remain in user archive; not added to Git"
+}

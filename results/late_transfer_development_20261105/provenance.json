@@ -1,0 +1,123 @@
+{
+  "git_commit": "7d979b899740d05c4a54fa5a0f1ebfe35d803a7a",
+  "files_sha256": {
+    "/workspace/scratch/b30d1b323f5f/late_transfer/src/wheat599/late_transfer_run.py": "12f4504de03613f822d0ae3b4b521379f6a0b65aa5d5316933f7f069b5ec4903",
+    "/workspace/scratch/b30d1b323f5f/late_transfer/src/wheat599/late_transfer.py": "38ea57ce22480e2a1e6f858af4886792c958d5c19932ef973149c8a723b8573a",
+    "/workspace/scratch/b30d1b323f5f/late_transfer/src/wheat599/genomic_tabm.py": "0d4d40bb138d21a4ebb1374f123b34f0c7df3a1c9f0226b2c7843fe308461031",
+    "configs/environment_tabm.yaml": "7aedf533bd8d9da70f1fc7c8ef452aaa2f91e71996712228b6441ee510df5424",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "/workspace/scratch/b30d1b323f5f/late_transfer/scripts/run_background_nested.py": "a6af92b693a6e4d38b97fbdc99e4cd758cb19d46885eb865235c40beca960957",
+    "configs/late_transfer.yaml": "87bfe8c1af0837eca4158afbadf657211dcf8c44d12f98df30ad417d1108933a",
+    "results/environment_selection_development_20261105/per_fold.json": "e21317a35936f8740782702c9991d2075946bf61f400570356667064627e722f",
+    "results/environment_tabm_development_20261105/summary.json": "4229ec79f1ddd0c8c3152220b6a1899e6ad301a06af5edb9446afa9133f58194"
+  },
+  "versions": {
+    "tabm": "0.0.3",
+    "rtdl_num_embeddings": "0.0.12"
+  },
+  "torch": "2.15.0+cpu",
+  "python": "3.12.14",
+  "device": "cpu",
+  "threads_per_worker": 4,
+  "workers": 2,
+  "config": {
+    "model": "late_transfer",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "profile_source": "configs/environment_tabm.yaml",
+    "profile_indices": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "epochs": 24,
+    "seeds": [
+      42,
+      2026
+    ],
+    "batch_size": 128,
+    "gradient_clip": 5.0,
+    "crossfit_folds": 3,
+    "crossfit_seed": 93017,
+    "transfer_ridge": 1.0,
+    "stack_ridge": 0.1,
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "device": "auto",
+    "cpu_workers": 2,
+    "threads_per_worker": 4,
+    "gpu_memory_fraction": 0.35,
+    "historical_scores": "results/environment_selection_development_20261105/per_fold.json",
+    "fusion_scores": "results/environment_tabm_development_20261105/summary.json",
+    "versions": {
+      "tabm": "0.0.3",
+      "rtdl_num_embeddings": "0.0.12"
+    }
+  },
+  "recipe": {
+    "profile_indices": [
+      2,
+      2,
+      2,
+      2
+    ],
+    "epochs": 24,
+    "seeds": [
+      42,
+      2026
+    ],
+    "batch_size": 128,
+    "gradient_clip": 5.0,
+    "crossfit_folds": 3,
+    "crossfit_seed": 93017,
+    "transfer_ridge": 1.0,
+    "stack_ridge": 0.1,
+    "profiles": [
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      }
+    ]
+  },
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21"
+}
