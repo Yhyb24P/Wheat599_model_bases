@@ -192,6 +192,9 @@ def main():
     if cfg.get('model') == 'environment_tabm':
         from wheat599.environment_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'environment_selection':
+        from wheat599.environment_selection import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'vector_diagnostic':
         from wheat599.vector_diagnostic import run
         return run(cfg, args, Path(__file__))
