@@ -1,0 +1,39 @@
+# Prepared protocol; hardware calibration must finish before formal training.
+model: wheat2000_bimsgp
+source_path: /home/hsy/overlays/BiMSGP_71084c8
+source_commit: 71084c8fa5444fbc747b0291ace627b1f2d6ef33
+data: data/raw/wheat2000/wheat_GS.RData
+data_sha256: e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696
+cache: data/raw/wheat2000/wheat2000.npz
+cache_sha256: 6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733
+splits: results/wheat2000_protocol_20261105/splits_manifest.json
+splits_sha256: 4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c
+traits: [TKW, TW, GL, GW, GH, GP, SDS, PHT]
+expected_shape: [2000, 33709, 8]
+device: cuda
+dtype: float32
+cpu_threads: 2
+gpu_memory_fraction: 0.95
+seeds: [42, 2026]
+expected_development_fits: 480
+expected_final_fits: 160
+save_weights: false
+require_committed_selection: true
+configurations:
+  - architecture: {d_model: 64, d_state: 64, n_layers: 1, residual: true, direction: bidirectional, decoder: wide, dropout: 0.1, n_outputs: 1}
+    optimizer: {name: adamw, lr: 0.0005, weight_decay: 0.01}
+training:
+  max_epochs: 100
+  early_stopping_patience: 100
+  batch_size: 8
+  eval_batch_size: 8
+  gradient_clip: 1.0
+  amp: true
+  genotype_preprocessing: standardize
+  scheduler: plateau
+  lr_patience: 10
+  lr_factor: 0.5
+  min_lr: 0.000001
+  loss_scale: 1.0
+  initialization: default
+  initialization_scale: 0.01

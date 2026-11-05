@@ -36,6 +36,10 @@ BiMSGP保持官方Wheat2000的64维/64state/L1/wide头和AMP机制，DeepGS需�
 
 Mamba隔离环境准备：torch2.14.1+cu130保持原安装，overlay为`/home/hsy/overlays/wheat2000_mamba`，使用mamba-ssm2.3.2.post1、causal-conv1d1.7.0；仅将Mamba构建标准由C++17改为C++20以匹配Torch头文件，arch8.6、MAX_JOBS2，无Torch/nvidia包副本。构建wheel SHA为`9ccd91229426bb2b2680b993af91674c71d658b5e064d70b91da9458a88d0cf6`。已通过真实依赖导入和CPU构造，尚未在占用GPU的TabM运行期间做大模型GPU探针，不能据此保证训练峰值显存或耗时。
 
+已准备`configs/wheat2000_deepgs.yaml`和`configs/wheat2000_bimsgp.yaml`，尚非正式训练冻结：各使用公开单一结构/优化配置、与TabM相同两种子和全部八性状，三内折合计480次开发拟合、选择冻结后160次外层重拟合。DeepGS保留原6000轮上限、600轮耐心、batch30和SGD；BiMSGP保留100轮、batch8、AdamW及AMP，验证batch也为8以限制激活内存。DeepGS采用fit-only表型标准化及MSE、按验证PCC选checkpoint，属于明确的同协议适配，不声称与mxnet逐步更新完全一致。BiMSGP学习率调度只看内层RMSE，完整dev按已冻结的内层逐轮学习率中位数重放，不读测试指标。两个基线并未获得TabM的八配置搜索自由度，结果须披露这一预算差异，不能称等预算搜索。
+
+先完成不含真实表型的硬件校准，再固定启动版本；大BiMSGP校准等TabM释放GPU后执行，不同时挤占显存。校准只决定可运行的batch/显存与时间记录，不依据预测精度选择结构。BiMSGP单权重约4.42GB，预备配置不持久化160份权重，manifest明确记未保存；DeepGS保存外层权重并记录文件SHA。两者真实数据训练均未开始。
+
 ## 报告口径
 
 主指标为80个trait×outer-fold的等权PCC，另报逐性状十折均PCC/RMSE/MAE及合并OOF，合并和折均明确区分；原表型单位随性状不同，误差同时逐性状报告。保留全部失败，不nanmean，不以十折作独立重复构造p/CI。开发搜索、完整dev重拟合和推理成本分开计，完整八性状、双seed系统总成本与单trait单seed参数/峰值分开。成熟架构适配可以成为论文贡献，是否领先由实际同协议结果决定。
