@@ -31,7 +31,7 @@ def summarize(rows, expected_original_macro):
         values = np.array([[[indexed[f, arm]['per_environment'][e][k]
                              for k in ('pcc', 'rmse', 'mae')] for e in range(4)]
                            for f in range(10)])
-        scores[arm] = values.reshape(10, 4, 3).mean(axis=1)
+        scores[arm] = values.reshape(10, 4, 3)
     result = {'completed_fits': len(rows), 'metrics': {}}
     for arm in arms:
         values = scores[arm]
