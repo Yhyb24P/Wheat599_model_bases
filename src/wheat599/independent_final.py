@@ -644,6 +644,94 @@ def write_state(path, value):
     write_json(path, value)
 
 
+def load_resume_state(args, data, validation, config):
+    out = Path(args.out)
+    fits_path = out / 'fits.json'
+    seed_path = out / 'seed_predictions.csv'
+    provenance_path = out / 'provenance.json'
+    failures_path = out / 'failures.json'
+    for path in (fits_path, seed_path, provenance_path):
+        if not path.is_file():
+            raise FileNotFoundError(f'Resume artifact missing: {path}')
+    fit_records = read_json(fits_path)
+    provenance = read_json(provenance_path)
+    failures = read_json(failures_path) if failures_path.is_file() else []
+    if len(fit_records) != len(validation['rows']):
+        raise ValueError('Resume fits.json does not contain all manifest fits')
+    row_map = {(row['fold'], row['environment_index'], row['seed']): row
+               for row in validation['rows']}
+    seen = set()
+    for record in fit_records:
+        key = (int(record['fold']), int(record['environment_index']), int(record['seed']))
+        if key not in row_map:
+            raise ValueError(f'Resume fit is absent from manifest: {key}')
+        row = row_map[key]
+        if int(record['config_index']) != row['config_index'] \
+                or int(record['epochs']) != row['epochs']:
+            raise ValueError(f'Resume fit config/epochs mismatch: {key}')
+        weight_path = Path(record['weight_path'])
+        if not weight_path.is_file():
+            raise FileNotFoundError(f'Resume weight missing: {weight_path}')
+        if record['weight_sha256'] != sha256_of(weight_path):
+            raise ValueError(f'Resume weight sha256 mismatch: {key}')
+        if int(record['weight_bytes']) != weight_path.stat().st_size:
+            raise ValueError(f'Resume weight size mismatch: {key}')
+        if key in seen:
+            raise ValueError(f'Duplicate resume fit: {key}')
+        seen.add(key)
+    if seen != set(row_map):
+        raise ValueError('Resume fits do not cover every manifest row')
+
+    environment_index = {label: index
+                        for index, label in enumerate(validation['environments'])}
+    expected = len(data.X) * len(validation['environments']) * len(validation['seeds'])
+    with seed_path.open(newline='') as handle:
+        seed_rows = list(csv.DictReader(handle))
+    if len(seed_rows) != expected:
+        raise ValueError(f'Resume seed prediction count {len(seed_rows)} != {expected}')
+    grouped = {}
+    seen_seed = set()
+    for item in seed_rows:
+        environment = str(item['environment'])
+        fold = int(item['fold'])
+        seed = int(item['seed'])
+        material = int(item['material_index'])
+        if environment not in environment_index or seed not in validation['seeds']:
+            raise ValueError('Resume seed row has an unknown environment/seed')
+        key = (fold, environment_index[environment], seed)
+        if key not in row_map:
+            raise ValueError('Resume seed row has an unknown fold')
+        if material not in row_map[key]['test_ids']:
+            raise ValueError('Resume seed row material is not a test ID')
+        unique = (fold, environment, seed, material)
+        if unique in seen_seed:
+            raise ValueError('Resume seed row is duplicated')
+        seen_seed.add(unique)
+        y_true = float(item['y_true'])
+        y_pred = float(item['y_pred'])
+        if not np.isfinite(y_true) or not np.isfinite(y_pred):
+            raise ValueError('Resume seed row is non-finite')
+        truth = float(np.asarray(data.Y)[material, environment_index[environment]])
+        if not np.allclose(y_true, truth, atol=1e-12, rtol=0):
+            raise ValueError('Resume seed row truth does not match data')
+        grouped.setdefault(key, {})[material] = y_pred
+    if set(grouped) != set(row_map):
+        raise ValueError('Resume seed predictions do not cover every fit')
+    predictions = {}
+    for key, values in grouped.items():
+        test_ids = [int(value) for value in row_map[key]['test_ids']]
+        if sorted(values) != sorted(test_ids):
+            raise ValueError('Resume seed prediction IDs do not match test IDs')
+        prediction = np.asarray([values[material] for material in test_ids],
+                                dtype=np.float64)
+        predictions[key] = {'prediction': prediction, 'test_ids': test_ids}
+    fit_failures = sum(1 for failure in failures if 'row' in failure)
+    if fit_failures:
+        raise ValueError('Resume is not allowed when fit failures exist')
+    original_summary_failures = len(failures) - fit_failures
+    return fit_records, predictions, failures, provenance, fit_failures, original_summary_failures
+
+
 # -- driver ----------------------------------------------------------------
 def run(config, args, runner):
     manifest_path = Path(args.selection) if args.selection is not None \
@@ -671,48 +759,80 @@ def run(config, args, runner):
         if found != str(expected):
             raise RuntimeError(f'Pinned package {name} is {found}, expected {expected}')
     validation = validate_manifest(config, data, splits, document, rows, manifest_path)
-    args.out.mkdir(parents=True, exist_ok=False)
-    weights_dir = args.out / 'weights'
-    weights_dir.mkdir()
-    state = {'status': 'running', 'completed_fits': 0, 'expected_fits': len(validation['rows']),
-             'manifest': str(manifest_path), 'folds_complete': []}
-    write_state(args.out / 'execution_status.json', state)
-    write_state(args.out / 'manifest_validation.json', validation)
-    provenance = {
-        'config': config, 'manifest': {'path': str(manifest_path),
-                                       'sha256': validation['manifest_sha256'],
-                                       'rows_sha256': validation['rows_sha256'],
-                                       'row_count': validation['row_count']},
-        'validation': validation, 'data_sha256': config['data_sha256'],
-        'splits_sha256': sha256_of(Path(config['splits'])),
-        'git_commit': git_value('rev-parse', 'HEAD'),
-        'source_sha256': {}, 'baselines': {},
-        'environment': environment_provenance(device),
-        'budget': len(validation['rows']),
-        'protocol': 'CV1 outer test; full-dev refit; fixed manifest epochs; '
-                    'member-mean then seed-mean; no test selection',
-    }
-    for path in (Path(__file__).parent / 'independent_final.py',
-                 Path(__file__).parent / 'environment_tabm.py',
-                 Path(__file__).parent / 'genomic_tabm.py',
-                 Path(__file__).parent / 'data.py',
-                 Path(__file__).parent / 'metrics.py',
-                 Path(args.config), Path(runner)):
-        if Path(path).exists():
-            provenance['source_sha256'][str(path)] = sha256_of(Path(path))
-    try:
-        from wheat599.genomic_tabm_run import model_source_sha
-        provenance['model_source'] = model_source_sha()
-    except Exception as error:
-        provenance['model_source'] = {'error': repr(error)}
-    write_state(args.out / 'provenance.json', provenance)
+    resume = bool(getattr(args, 'resume_summary', False))
+    if resume:
+        if not args.out.is_dir():
+            raise FileNotFoundError('Resume requires an existing output directory')
+        fit_records, predictions, failures, provenance, fit_failures, \
+            original_summary_failures = load_resume_state(args, data, validation, config)
+        weights_dir = args.out / 'weights'
+        total_started = time.perf_counter()
+        resume_info = {
+            'initial_git_commit': provenance.get('git_commit'),
+            'resume_git_commit': git_value('rev-parse', 'HEAD'),
+            'resume_at': time.strftime('%Y-%m-%dT%H:%M:%S%z'),
+            'resume_command': sys.argv,
+            'fits_verified': len(fit_records),
+            'fit_failures': fit_failures,
+            'original_summary_failures': original_summary_failures,
+            'summary_recovery': 'success',
+            'resume_source_sha256': {},
+        }
+        for path in (Path(__file__).parent / 'independent_final.py',
+                     Path(__file__).parent / 'environment_tabm.py',
+                     Path(__file__).parent / 'genomic_tabm.py',
+                     Path(__file__).parent / 'data.py',
+                     Path(__file__).parent / 'metrics.py',
+                     Path(args.config), Path(runner)):
+            if Path(path).exists():
+                resume_info['resume_source_sha256'][str(path)] = sha256_of(Path(path))
+    else:
+        args.out.mkdir(parents=True, exist_ok=False)
+        weights_dir = args.out / 'weights'
+        weights_dir.mkdir()
+        state = {'status': 'running', 'completed_fits': 0,
+                 'expected_fits': len(validation['rows']),
+                 'manifest': str(manifest_path), 'folds_complete': []}
+        write_state(args.out / 'execution_status.json', state)
+        write_state(args.out / 'manifest_validation.json', validation)
+        provenance = {
+            'config': config, 'manifest': {'path': str(manifest_path),
+                                           'sha256': validation['manifest_sha256'],
+                                           'rows_sha256': validation['rows_sha256'],
+                                           'row_count': validation['row_count']},
+            'validation': validation, 'data_sha256': config['data_sha256'],
+            'splits_sha256': sha256_of(Path(config['splits'])),
+            'git_commit': git_value('rev-parse', 'HEAD'),
+            'source_sha256': {}, 'baselines': {},
+            'environment': environment_provenance(device),
+            'budget': len(validation['rows']),
+            'protocol': 'CV1 outer test; full-dev refit; fixed manifest epochs; '
+                        'member-mean then seed-mean; no test selection',
+        }
+        for path in (Path(__file__).parent / 'independent_final.py',
+                     Path(__file__).parent / 'environment_tabm.py',
+                     Path(__file__).parent / 'genomic_tabm.py',
+                     Path(__file__).parent / 'data.py',
+                     Path(__file__).parent / 'metrics.py',
+                     Path(args.config), Path(runner)):
+            if Path(path).exists():
+                provenance['source_sha256'][str(path)] = sha256_of(Path(path))
+        try:
+            from wheat599.genomic_tabm_run import model_source_sha
+            provenance['model_source'] = model_source_sha()
+        except Exception as error:
+            provenance['model_source'] = {'error': repr(error)}
+        write_state(args.out / 'provenance.json', provenance)
 
-    fit_records = []
-    predictions = {}
-    failures = []
-    total_started = time.perf_counter()
+        fit_records = []
+        predictions = {}
+        failures = []
+        fit_failures = 0
+        original_summary_failures = 0
+        resume_info = None
+        total_started = time.perf_counter()
     try:
-        for row in validation['rows']:
+        for row in ([] if resume else validation['rows']):
             try:
                 result = fit_one(row, data, config, device, weights_dir,
                                  save_weights=bool(config.get('save_weights', True)))
@@ -755,8 +875,9 @@ def run(config, args, runner):
                                              record['config_index'],
                                              record['weight_sha256'],
                                              record['weight_bytes'], record['weight_path']])
-        write_state(args.out / 'failures.json', failures)
-        write_state(args.out / 'weights_manifest.json', fit_records)
+        if not resume:
+            write_state(args.out / 'failures.json', failures)
+            write_state(args.out / 'weights_manifest.json', fit_records)
 
         truth = {}
         seed_rows = []
@@ -794,8 +915,9 @@ def run(config, args, runner):
             raise ValueError('Seed prediction row count mismatch')
         if len(oof_rows) != len(data.X) * len(validation['environments']):
             raise ValueError('OOF row count mismatch')
-        write_csv(args.out / 'seed_predictions.csv', seed_rows,
-                  ['environment', 'fold', 'material_index', 'seed', 'y_true', 'y_pred'])
+        if not resume:
+            write_csv(args.out / 'seed_predictions.csv', seed_rows,
+                      ['environment', 'fold', 'material_index', 'seed', 'y_true', 'y_pred'])
         write_csv(args.out / 'oof.csv', oof_rows,
                   ['environment', 'fold', 'material_index', 'y_true', 'y_pred'])
 
@@ -956,15 +1078,33 @@ def run(config, args, runner):
                      if record['memory'] is not None), default=None),
             },
         }
+        summary['failure_accounting'] = {
+            'fit_failures': fit_failures,
+            'original_summary_failures': original_summary_failures,
+            'summary_recovery': 'success' if resume else None,
+        }
+        if resume:
+            summary['resume'] = resume_info
+            provenance['resume'] = dict(resume_info)
+            write_state(args.out / 'provenance.json', provenance)
         write_state(args.out / 'summary.json', summary)
-        write_state(args.out / 'execution_status.json',
-                    {'status': 'complete', 'completed_fits': len(fit_records),
-                     'expected_fits': len(validation['rows']), 'folds_complete': validation['folds']})
-        write_state(args.out / 'timings.json',
-                    {'total_seconds': time.perf_counter() - total_started,
-                     'fits': len(fit_records), 'epochs': summary['cost']['epochs'],
-                     'train_seconds': summary['cost']['train_seconds'],
-                     'predict_seconds': summary['cost']['predict_seconds']})
+        status_payload = {
+            'status': 'complete', 'completed_fits': len(fit_records),
+            'expected_fits': len(validation['rows']), 'folds_complete': validation['folds'],
+            'fit_failures': fit_failures,
+            'original_summary_failures': original_summary_failures,
+            'summary_recovery': 'success' if resume else None,
+        }
+        if resume:
+            status_payload['resumed'] = True
+        write_state(args.out / 'execution_status.json', status_payload)
+        timing_payload = {'total_seconds': time.perf_counter() - total_started,
+                          'fits': len(fit_records),
+                          'epochs': summary['cost']['epochs'],
+                          'train_seconds': summary['cost']['train_seconds'],
+                          'predict_seconds': summary['cost']['predict_seconds']}
+        write_state(args.out / ('resume_timings.json' if resume else 'timings.json'),
+                    timing_payload)
     except Exception as error:
         write_state(args.out / 'execution_status.json',
                     {'status': 'failed', 'completed_fits': len(fit_records),

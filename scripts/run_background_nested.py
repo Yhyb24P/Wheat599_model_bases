@@ -157,8 +157,12 @@ def main():
     p.add_argument('--config', type=Path, default=ROOT/'configs/background_ridge_nested.yaml')
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
+    p.add_argument('--resume-summary', action='store_true',
+                   help='Independent TabM only: finalize saved fits and predictions without training')
     args = p.parse_args()
     cfg = yaml.safe_load(args.config.read_text())
+    if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
+        p.error('--resume-summary requires model independent_tabm_final')
     if cfg.get('model') == 'robust_icm':
         from wheat599.robust_icm import run
         return run(cfg, args, Path(__file__))

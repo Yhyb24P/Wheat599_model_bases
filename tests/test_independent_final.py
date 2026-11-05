@@ -264,3 +264,63 @@ def test_pinned_versions_are_checked_before_fits(tmp_path, monkeypatch):
     with pytest.raises(RuntimeError, match='Pinned package'):
         runner.run(bad, args, Path(__file__))
     assert not args.out.exists()
+
+
+def test_resume_summary_reuses_completed_fits_without_retraining(tmp_path, monkeypatch):
+    data, config, config_path, _ = make_fixture(tmp_path, monkeypatch)
+    normal_out = tmp_path / 'normal_out'
+    runner.run(config, SimpleNamespace(out=normal_out, selection=None,
+                                       config=config_path), Path(__file__))
+    normal = json.loads((normal_out / 'summary.json').read_text())
+
+    huber_oof = Path(config['huber_source']) / 'oof.csv'
+    huber_bytes = huber_oof.read_bytes()
+    failed_out = tmp_path / 'failed_out'
+    huber_oof.unlink()
+    with pytest.raises(FileNotFoundError):
+        runner.run(config, SimpleNamespace(out=failed_out, selection=None,
+                                           config=config_path), Path(__file__))
+    huber_oof.write_bytes(huber_bytes)
+    status_failed = json.loads((failed_out / 'execution_status.json').read_text())
+    assert status_failed['status'] == 'failed'
+    failures_before = (failed_out / 'failures.json').read_bytes()
+    seed_path = failed_out / 'seed_predictions.csv'
+    seed_hash = runner.sha256_of(seed_path)
+    fits_hash = runner.sha256_of(failed_out / 'fits.json')
+    provenance_before = json.loads((failed_out / 'provenance.json').read_text())
+
+    def forbidden(*arguments, **keywords):
+        raise AssertionError('fit_one must not run during summary recovery')
+
+    monkeypatch.setattr(runner, 'fit_one', forbidden)
+    runner.run(config, SimpleNamespace(out=failed_out, selection=None,
+                                       config=config_path, resume_summary=True),
+               Path(__file__))
+    resumed = json.loads((failed_out / 'summary.json').read_text())
+    assert resumed['primary'] == pytest.approx(normal['primary'])
+    assert resumed['fold_mean'] == pytest.approx(normal['fold_mean'])
+    assert resumed['pooled_oof'] == pytest.approx(normal['pooled_oof'])
+    for environment in normal['per_environment']:
+        for metric in normal['per_environment'][environment]:
+            assert resumed['per_environment'][environment][metric] == pytest.approx(
+                normal['per_environment'][environment][metric])
+    status = json.loads((failed_out / 'execution_status.json').read_text())
+    assert status['status'] == 'complete' and status['resumed'] is True
+    assert status['fit_failures'] == 0
+    assert status['original_summary_failures'] == 1
+    assert status['summary_recovery'] == 'success'
+    assert (failed_out / 'failures.json').read_bytes() == failures_before
+    assert runner.sha256_of(seed_path) == seed_hash
+    assert runner.sha256_of(failed_out / 'fits.json') == fits_hash
+    provenance = json.loads((failed_out / 'provenance.json').read_text())
+    assert provenance['source_sha256'] == provenance_before['source_sha256']
+    assert provenance['resume']['initial_git_commit'] == provenance_before['git_commit']
+    assert provenance['resume']['fit_failures'] == 0
+    assert provenance['resume']['original_summary_failures'] == 1
+
+    lines = seed_path.read_text().splitlines()
+    seed_path.write_text('\n'.join(lines[:-1]) + '\n')
+    with pytest.raises(ValueError, match='seed prediction count'):
+        runner.run(config, SimpleNamespace(out=failed_out, selection=None,
+                                           config=config_path, resume_summary=True),
+                   Path(__file__))
