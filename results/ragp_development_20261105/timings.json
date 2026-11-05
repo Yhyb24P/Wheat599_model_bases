@@ -1,0 +1,11 @@
+{
+  "total_seconds": 3536.5663260039946,
+  "trajectories": 480,
+  "epochs": 19623,
+  "train_seconds": 2951.1165909280317,
+  "preprocess_seconds": 289.592152122088,
+  "update_library_seconds": 13.224687371206528,
+  "hash_seconds": 153.10301676503877,
+  "max_increment_megabytes": 2894.060546875,
+  "max_reserved_peak_megabytes": 3826.0
+}
