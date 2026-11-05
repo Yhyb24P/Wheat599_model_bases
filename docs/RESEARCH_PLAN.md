@@ -1,5 +1,7 @@
 # Research Plan — Wheat599 FT-Transformer 评价
 
+**最新证据（配置选择重汇总完成，2026-11-05）：** 固定全部原checkpoint、无新增训练，shared共同／分别选配置PCC0.485389／0.487909，independent共同／分别为0.490810／0.491874。配置选择自由度解释部分增益，对齐后独立仍有开发优势，但剩余差异含容量、训练目标与原checkpoint选择，不能命名为纯负迁移。四独立单环境TabM提升为PCC神经参照，shared逐环境选配置保留为更强共享参照，固定等权融合保留为误差较低参照；环境乘性调制方案结束。本轮纯CPU重汇总已完成，未自动启动后期共享新架构。结果见 [RESULTS.md](RESULTS.md)，边界见 [ENVIRONMENT_TABM.md](ENVIRONMENT_TABM.md)。
+
 **最新结果（2026-11-05，环境共享预算完成）：** 冻结d10c9cb，omen新增2400fit、0失败，复用shared480条。开发集成PCC：独立单环境系统0.491874、固定等权融合0.490092、shared0.485389、conditioned0.485361。独立系统在9/10开发集超过shared、7/10超过固定融合，但RMSE/MAE不及融合、第三环境变差；它额外允许逐环境checkpoint与配置选择，不能将收益全归于去共享。条件化未建立收益，本配置结束；无新增外层测试或追加预算。证据见 [RESULTS.md](RESULTS.md)。
 
 **本轮授权与分工（2026-11-05，环境共享研究，已完成）：** 用户依据固定等权TabM–ICM融合与检索负结果，降低检索优先级，比较全共享、独立单环境与环境条件化TabM。原始TabM及固定等权融合保留为参照，低秩／检索追加／RAGP校准不在本轮范围。协议见 [ENVIRONMENT_TABM.md](ENVIRONMENT_TABM.md)，cn实现模型、gb负责runner与omen执行、gpt66统筹集成与结果判断。

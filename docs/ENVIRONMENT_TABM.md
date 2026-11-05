@@ -22,6 +22,14 @@ shared和conditioned按三内层种子预测平均后的macro PCC选择每开发
 
 本预算结束后按结果判断当前共享假设；不自动扩搜索、做检索追加、RAGP校准或进入外层测试。总体论文目标是否完成须由完整证据判断。
 
+## 配置选择自由度重汇总（后续用户授权，无新训练）
+
+四独立单环境TabM提升为新的神经参照，当前环境乘性调制方案结束。为区分配置选择与训练方式，使用原有全配置验证预测交叉比较shared／independent训练及common／per_environment配置选择，原有每条轨迹checkpoint完全固定，不重新早停。每开发集先平均两个seed预测，求各环境PCC并平均三内层；共同选择最大宏平均配置，分别选择各环境最大配置，接近并列（1e-12）取配置列表靠前者。不逐inner独立取优。
+
+代码 `src/wheat599/environment_selection.py`、配置 `configs/environment_selection.yaml`，原始预测SHA锁定，严格核对全部配置/seed/material/environment键、数据与划分。两已知corner必须复现shared共同0.485389和independent分别0.491874（1e-8内）才落盘。输出 `results/environment_selection_development_20261105/`，继续只在omen CPU执行，不启动GPU或训练。保留两种训练方式下原早停差异；即使选模自由度对齐，剩余差异仍包括容量、梯度目标和checkpoint选择，不能自动解释为负迁移。后续架构训练待此证据判断，本次未授权新后期共享模块训练。
+
+重汇总已在e3708ca完成：shared共同／分别0.485389／0.487909，independent共同／分别0.490810／0.491874。共同配置下独立高0.005421、逐环境配置下高0.003965。配置选择的代数优势在两臂都成立，但没有消除独立系统优势；仍不将残余全部归因为去共享。无新训练，无重新早停，无外层评价。模型与参照地位以最新RESULTS/RESEARCH_PLAN为准。
+
 ## 写入分工
 
 cn唯一写 `src/wheat599/environment_tabm.py`、`tests/test_environment_tabm.py`；gb唯一写 `src/wheat599/environment_run.py`、`tests/test_environment_run.py`并负责omen执行；gpt66统筹、配置、已有CLI分派、文档、Git与结果判断。常规进度只写文件，仅实质问题或完整结果通知用户。

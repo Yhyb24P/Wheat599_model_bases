@@ -1,0 +1,114 @@
+{
+  "config": {
+    "model": "environment_selection",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "shared_source": "results/retrieval_tabm_development_20261105",
+    "independent_source": "results/environment_tabm_development_20261105",
+    "shared_predictions_sha256": "9974052ee4fcaf91264b33c0443b27b569f80b00668ce385e6f02651e471882c",
+    "independent_predictions_sha256": "9d45b905cd2eaaee0f8ed0f4e754efd0f3f323534cc2d8ffeba1f16c798b6ce7",
+    "seeds": [
+      42,
+      2026
+    ],
+    "tie_tolerance": 1e-12,
+    "configurations": [
+      {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 3,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 128,
+        "dropout": 0.1,
+        "k": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 2,
+        "d_block": 256,
+        "dropout": 0.2,
+        "k": 32,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.01
+      },
+      {
+        "n_blocks": 3,
+        "d_block": 128,
+        "dropout": 0.2,
+        "k": 16,
+        "learning_rate": 0.002,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 4,
+        "d_block": 256,
+        "dropout": 0.1,
+        "k": 16,
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0003
+      },
+      {
+        "n_blocks": 4,
+        "d_block": 128,
+        "dropout": 0.0,
+        "k": 32,
+        "learning_rate": 0.002,
+        "weight_decay": 0.01
+      }
+    ]
+  },
+  "git_commit": "e3708ca3bfde8643632a04f1225c4a41db39ca2f",
+  "sources": {
+    "shared": {
+      "path": "results/retrieval_tabm_development_20261105",
+      "predictions_sha256": "9974052ee4fcaf91264b33c0443b27b569f80b00668ce385e6f02651e471882c",
+      "provenance_sha256": "c97a5a733fc43a49c0cf67a77acfd944b7dca2ff7d9940fcb33b08055a09b323",
+      "selection_sha256": "15ad1164c183a82de56946565e0296c637d7937b3fee30fd97dd2ff1428e7022"
+    },
+    "independent": {
+      "path": "results/environment_tabm_development_20261105",
+      "predictions_sha256": "9d45b905cd2eaaee0f8ed0f4e754efd0f3f323534cc2d8ffeba1f16c798b6ce7",
+      "provenance_sha256": "2b12a7a0ed1a7eea88ad3d93626a4d5a4789a3fcf7c1bea4ac719e7e1935575c",
+      "selection_sha256": "dc9631d0a1ec8f9eaef61242e7733f4431ff73699ea9c9f010be31afc96fc553"
+    }
+  },
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "code_sha256": "adacbb3742380d9b797f67497aa14926401588ae65ea0fcd6fdcd410d37897b0",
+  "runner_sha256": "3d90a333dda0f3c31da6b6da1a0cb12fefb36ef5d55d7a5b671c705ed81a3b68",
+  "environment_order": [
+    "1",
+    "2",
+    "4",
+    "5"
+  ],
+  "scope": "Existing validation predictions only; checkpoints unchanged; no training/early stopping/test evaluation",
+  "per_environment_metric_order": [
+    "pcc",
+    "rmse",
+    "mae"
+  ]
+}
