@@ -25,3 +25,6 @@ results/**/predictions/*.npy
 # Raw runtime copy; exact compressed archive is committed.
 results/genomic_tabm_development_20261104/trajectories.json
 results/late_transfer*/predictions/
+results/grouped_*/*.npz
+results/grouped_kernel_*/metadata.json
+results/grouped_weights_*/diagnostics.json

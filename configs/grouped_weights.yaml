@@ -1,0 +1,8 @@
+model: grouped_weights
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+huber_source: results/robust_icm_development_20261103
+identity_source: results/grouped_kernel_development_20261105
+cpu_threads: 2
+device: cuda
