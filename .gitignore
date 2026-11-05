@@ -28,3 +28,6 @@ results/late_transfer*/predictions/
 results/grouped_*/*.npz
 results/grouped_kernel_*/metadata.json
 results/grouped_weights_*/diagnostics.json
+
+# 本地临时文件
+临时文档/
