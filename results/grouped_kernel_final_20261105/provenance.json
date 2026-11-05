@@ -1,0 +1,36 @@
+{
+  "config": {
+    "model": "grouped_kernel_final",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "huber_source": "results/robust_icm_development_20261103",
+    "final_source": "results/robust_icm_final_20261103",
+    "tau": 0.25,
+    "groups": 64,
+    "cpu_threads": 2
+  },
+  "sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/grouped_kernel_final_run.py": "9cfb502bd003c246f3ad91aa846b26983244bbf541715e51ca47c5b5d2031e17",
+    "/home/hsy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "42d6d1f4a76fd5dffb7932f2dac744bd06ae7b2e58e6d9b787a01d4735fd89b5",
+    "configs/grouped_kernel_final.yaml": "77ef1f9e7439f3f86b4aedc3f19dfd71f9864f2e1130dfd48bf56c78464efe8b",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/robust_icm_development_20261103/selection.json": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304",
+    "results/robust_icm_development_20261103/provenance.json": "032c325c9fc759e8da0a06c5e00acd8535394c459361f020c7252f2cc1be8fd3",
+    "results/heterogeneous_icm_development_20261103/base_choices.json": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+    "results/robust_icm_final_20261103/provenance.json": "82aa92df99181b76cc1d57b35a814341d02175c6179a13e00be8365d5bc57c35",
+    "results/robust_icm_final_20261103/optimization.json": "5ce9d54a8b8ee7d7a640b77d6966ae2349ba41391481a13eaa18d77f271f0ad9",
+    "results/robust_icm_final_20261103/oof.csv": "1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5",
+    "results/robust_icm_final_20261103/summary.json": "07cbffe40e8bcd3056b344fa4bd84f9c3d06b505ebfb5d7c7eddd637628166f8",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/grouped_kernel.py": "ea26cdeda37c9881e9f9f75d2027ee60fe9d25382e254855ba9fcef39f210575",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/robust_icm.py": "2df8a56aa9dbfce23581e2b8e20a63d93c04f92da8ba23203883b215e022064d"
+  },
+  "code_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "environment_order": [
+    "1",
+    "2",
+    "4",
+    "5"
+  ],
+  "scope": "outer test once; frozen development selections; original Huber thresholds reused for both arms"
+}
