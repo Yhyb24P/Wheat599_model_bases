@@ -1,4 +1,4 @@
-# Prepared protocol; hardware calibration must finish before formal training.
+# Full-marker synthetic calibration completed on the local RTX 5090 D.
 model: wheat2000_deepgs
 data: data/raw/wheat2000/wheat_GS.RData
 data_sha256: e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696
@@ -11,7 +11,7 @@ expected_shape: [2000, 33709, 8]
 device: cuda
 dtype: float32
 cpu_threads: 2
-gpu_memory_fraction: 0.5
+gpu_memory_fraction: 0.15
 seeds: [42, 2026]
 expected_development_fits: 480
 expected_final_fits: 160

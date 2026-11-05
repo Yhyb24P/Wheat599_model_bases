@@ -1,6 +1,6 @@
 # Wheat599 植物基因组表型预测研究
 
-当前执行：[四方向表型旋转](docs/PHENOTYPE_ROTATION.md)完成1920fit，开发PCC0.488799低于强原系统0.491874，按预定条件结束。原独立TabM继续进行[Wheat2000全部八性状开发](docs/WHEAT2000.md)，GBLUP同协议外层已完成（宏PCC0.602837）；BiMSGP和DeepGS已准备网络/统一runner/隔离依赖，未执行其正式数据训练，尚无候选跨数据集领先结论。
+当前执行：[四方向表型旋转](docs/PHENOTYPE_ROTATION.md)完成1920fit，开发PCC0.488799低于强原系统0.491874，按预定条件结束。原独立TabM继续在omen进行[Wheat2000全部八性状开发](docs/WHEAT2000.md)，GBLUP同协议外层已完成（宏PCC0.602837）；用户追加授权本机算力，DeepGS已通过本机GPU校准并冻结480次开发/160次外层预算，BiMSGP本机依赖仍在准备。尚无候选跨数据集领先结论。
 
 四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
 
