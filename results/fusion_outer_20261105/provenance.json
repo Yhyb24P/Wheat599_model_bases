@@ -1,0 +1,21 @@
+{
+ "analysis": "fixed w=0.5 TabM-ICM fusion evaluated on saved outer OOF predictions; zero training",
+ "rule_source": "w=0.5 pre-fixed from development (uniform across all development sets; per-set reselection never authorized for outer), before outer evaluation",
+ "inputs": {
+  "tabm_oof": {
+   "path": "results/independent_tabm_final_20261105/oof.csv",
+   "sha256": "315f16d0024039802fdd485e7d9a25894b892e1307c530d4af70c258a8c572da",
+   "source": "80-fit refit, code frozen 4111e58, weights CPU-replay verified"
+  },
+  "icm_oof": {
+   "path": "results/robust_icm_final_20261103/oof.csv",
+   "sha256": "1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5",
+   "source": "Huber ICM final, parameters frozen 2026-11-03"
+  }
+ },
+ "code_head": "778ce94a3c9f373450d8a5443e996822477eef08",
+ "metric_convention": "fold-mean macro PCC over 40 environment-folds (equal weight); per-environment = mean of 10 fold PCCs; pooled OOF reported separately and not mixed",
+ "self_check": "parent recomputation reproduces recorded values: TabM 0.508190/0.864253/0.665589, Huber 0.521745/0.856743/0.658442",
+ "no_new_training": true,
+ "no_test_in_selection": true
+}
