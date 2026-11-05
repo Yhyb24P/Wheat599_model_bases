@@ -173,12 +173,17 @@ def _source_epochs(result):
             for entry in (result.get('source_pretraining') or [])}
 
 
-def _train_sources(config, x_rows, y_rows, environments, merged, seed, device, fixed_epochs=None):
-    """Official pretraining recipe for every environment, shared by the cross-environment arms."""
+def _train_sources(config, x_rows, y_rows, environments, merged, seed, device, fixed_epochs=None,
+                   x_val_rows=None, y_val_rows=None):
+    """Shared source pretraining: validation-driven while freezing epochs, fixed-budget on dev."""
+    if (fixed_epochs is None) != (x_val_rows is not None):
+        raise ValueError('source pretraining needs a validation split exactly when epochs are not fixed')
     medians = mulphe._fit_impute(x_rows)
     return mulphe.train_source_encoders(
-        mulphe._apply_impute(x_rows, medians), y_rows, None, None, environments, merged,
-        int(seed) + 1000, device, fixed_epochs=fixed_epochs)
+        mulphe._apply_impute(x_rows, medians), y_rows,
+        None if x_val_rows is None else mulphe._apply_impute(x_val_rows, medians),
+        None if y_val_rows is None else y_val_rows,
+        environments, merged, int(seed) + 1000, device, fixed_epochs=fixed_epochs)
 
 
 def _suite(config, data, arms, seed, fold_number, target, mode, train, val, test, device,
@@ -261,7 +266,8 @@ def fit(config, data, folds, device, expected_fits, status_path):
                     if key not in shared:
                         began = time.perf_counter()
                         shared[key] = (_train_sources(config, x_all[train], truth[train],
-                                                      environments, merged, seed, device),
+                                                      environments, merged, seed, device,
+                                                      x_val_rows=x_all[val], y_val_rows=truth[val]),
                                        time.perf_counter() - began)
                     source_models, shared_seconds = shared[key]
                 validation_results[target] = _suite(

@@ -72,6 +72,23 @@ def fake_arm_result(arm, n_test, n_val, n_train, seed=42):
             'fusion_input': 'embedding', 'source_scalars': scalars}
 
 
+class Record:
+    """The suites the runner requested (live list), plus the source-encoder calls it made."""
+
+    def __init__(self, suites, sources):
+        self.suites = suites
+        self.sources = sources
+
+    def __len__(self):
+        return len(self.suites)
+
+    def __iter__(self):
+        return iter(self.suites)
+
+    def __getitem__(self, index):
+        return self.suites[index]
+
+
 @pytest.fixture
 def recorder(monkeypatch):
     """Capture every array the runner hands to the model and keep training synthetic."""
@@ -98,13 +115,25 @@ def recorder(monkeypatch):
                              'license': 'MIT'}}
 
     monkeypatch.setattr(mulphe, 'run_arms', run_arms)
-    monkeypatch.setattr(mulphe, 'train_source_encoders',
-                        lambda x_train, y_train, x_val, y_val, source_names, config, seed, device,
-                                fixed_epochs=None:
-                        [{'name': str(name), 'best_epoch': 1, 'model': None,
-                          'fixed_epoch': None if fixed_epochs is None else fixed_epochs[str(name)]}
-                         for name in source_names])
-    return calls
+
+    source_calls = []
+
+    def train_source_encoders(x_train, y_train, x_val, y_val, source_names, config, seed, device,
+                              fixed_epochs=None):
+        # mirrors the model's contract: a validation split exactly when epochs are not fixed
+        if (fixed_epochs is None) != (x_val is not None) or (fixed_epochs is None) != (y_val is not None):
+            raise TypeError('source pretraining needs validation rows exactly when epochs are not fixed')
+        if fixed_epochs is not None and set(fixed_epochs) != {str(name) for name in source_names}:
+            raise TypeError('fixed source epochs must cover exactly the requested environments')
+        source_calls.append({'rows': len(x_train), 'val_rows': None if x_val is None else len(x_val),
+                             'names': [str(name) for name in source_names],
+                             'fixed_epochs': fixed_epochs})
+        return [{'name': str(name), 'best_epoch': 2 if fixed_epochs is None
+                 else int(fixed_epochs[str(name)]), 'model': None} for name in source_names]
+
+    monkeypatch.setattr(mulphe, 'train_source_encoders', train_source_encoders)
+    recorder = Record(calls, source_calls)
+    return recorder
 
 
 # -- frozen manifest -------------------------------------------------------
@@ -298,6 +327,18 @@ def test_full_dev_refit_freezes_epochs_then_refits_without_validation(tmp_path, 
     assert all(record['state_sha256'] == 'a' * 64 for record in scored)
     jsonable_targets = [entry for entry in validation if entry['mode'] == 'full_dev_fixed']
     assert all(entry['model_mode'] == 'fixed_full_dev' for entry in jsonable_targets)
+    # source encoders: once per fold with validation, then once per fold on the whole development set
+    assert len(recorder.sources) == 2 * len(folds)
+    freezing = [call for call in recorder.sources if call['fixed_epochs'] is None]
+    refitting = [call for call in recorder.sources if call['fixed_epochs'] is not None]
+    assert len(freezing) == len(refitting) == len(folds)
+    for call in freezing:
+        assert call['names'] == list(ENVIRONMENTS) and call['val_rows'] is not None
+    for freeze, refit in zip(freezing, refitting):
+        assert refit['val_rows'] is None and set(refit['fixed_epochs']) == set(ENVIRONMENTS)
+        assert refit['rows'] == freeze['rows'] + freeze['val_rows']   # trained on train plus val rows
+    assert all(entry['source_pretraining_seconds'] == 0.0
+               for entry in validation if entry['mode'] == 'full_dev_fixed')
 
 
 # -- scoring ---------------------------------------------------------------
