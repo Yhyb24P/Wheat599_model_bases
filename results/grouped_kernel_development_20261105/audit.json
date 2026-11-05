@@ -1,0 +1,13 @@
+{
+  "prediction_files_checked": 240,
+  "environment_metrics_checked": 2880,
+  "max_metric_difference": 7.771561172376096e-16,
+  "source_hashes_verified": true,
+  "original_macro_pcc_difference": 4.640177131420842e-13,
+  "max_solver_gradient": 1.893189209947643e-06,
+  "artifact_sha256": {
+    "metadata.json": "77c14d64e563d80b3f3541d985c2619ae95ba8c2eb9beb2081a8f8e179265947",
+    "units.json": "19a22350ede85766a3ea04acd32bdea50989cdf03feda4b02a4d6320f87277d0",
+    "summary.json": "823257a32ebc341424564f03c55c30306aea9b5d93b23a6f9b8639c837a886d8"
+  }
+}

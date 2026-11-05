@@ -1,0 +1,41 @@
+{
+  "config": {
+    "model": "grouped_kernel",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "huber_source": "results/robust_icm_development_20261103",
+    "tau": 0.25,
+    "groups": 64,
+    "frequency_bins": 10,
+    "random_seeds": [
+      101,
+      202,
+      303,
+      404,
+      505,
+      606
+    ],
+    "cpu_threads": 2
+  },
+  "sha256": {
+    "/home/hsy/git_files/wheat599-grouped-0ecd4d3/src/wheat599/grouped_kernel_run.py": "9cf2d4818dd599de176b22e9afc120524e6db7eca50504af4c05ead2b75f9d0a",
+    "/home/hsy/git_files/wheat599-grouped-0ecd4d3/scripts/run_background_nested.py": "e398ef0b0da267d1ab9372a4cd86143dca1be6dd9f68d06fb2327daa9bb6396c",
+    "configs/grouped_kernel.yaml": "29e6f2f54f734347c842842e0439ce28d3ebdc6e665b830f65884037e9c2c330",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/robust_icm_development_20261103/selection.json": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304",
+    "results/robust_icm_development_20261103/optimization.json": "7a9f6997da537146cb3fc0f798fe7b84e66cbd2111ac4f34e2d879357d6a3b31",
+    "results/robust_icm_development_20261103/validation.csv": "d1387d5f3623316fd951d1f1bcff7a889193318ecc28b0fb91243d9c7c7d8d4c",
+    "results/heterogeneous_icm_development_20261103/base_choices.json": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+    "/home/hsy/git_files/wheat599-grouped-0ecd4d3/src/wheat599/grouped_kernel.py": "ea26cdeda37c9881e9f9f75d2027ee60fe9d25382e254855ba9fcef39f210575",
+    "/home/hsy/git_files/wheat599-grouped-0ecd4d3/src/wheat599/robust_icm.py": "2df8a56aa9dbfce23581e2b8e20a63d93c04f92da8ba23203883b215e022064d"
+  },
+  "code_commit": "0ecd4d33872f0fac587672a3959d30e574d89a3c",
+  "environment_order": [
+    "1",
+    "2",
+    "4",
+    "5"
+  ],
+  "scope": "inner fit/validation only; original Huber thresholds fixed"
+}
