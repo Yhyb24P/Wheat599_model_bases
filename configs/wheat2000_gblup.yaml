@@ -1,0 +1,11 @@
+model: wheat2000_gblup
+data: data/raw/wheat2000/wheat_GS.RData
+data_sha256: e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696
+cache: data/raw/wheat2000/wheat2000.npz
+cache_sha256: 6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733
+splits: results/wheat2000_protocol_20261105/splits_manifest.json
+splits_sha256: 4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c
+traits: [TKW, TW, GL, GW, GH, GP, SDS, PHT]
+cpu_threads: 2
+ridge_logspace: {start: -6, stop: 3, num: 19}
+tie_tolerance: 1.0e-12

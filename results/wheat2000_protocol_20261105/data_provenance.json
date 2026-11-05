@@ -1,0 +1,96 @@
+{
+  "schema_version": 1,
+  "source": {
+    "path": "data/raw/wheat2000/wheat_GS.RData",
+    "sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+    "bytes": 15781925
+  },
+  "cache": {
+    "path": "data/raw/wheat2000/wheat2000.npz",
+    "sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+    "bytes": 12713023
+  },
+  "schema": {
+    "rows": 2000,
+    "markers": 33709,
+    "traits": [
+      "TKW",
+      "TW",
+      "GL",
+      "GW",
+      "GH",
+      "GP",
+      "SDS",
+      "PHT"
+    ],
+    "trait_count": 8,
+    "sample_ids": "0..rows-1"
+  },
+  "arrays": {
+    "X": {
+      "shape": [
+        2000,
+        33709
+      ],
+      "dtype": "float32",
+      "sha256": "f712ba936b9f87a79d25a40889c76198f351fee3ef374aa4382171005b966eb9",
+      "bytes": 269672000
+    },
+    "Y": {
+      "shape": [
+        2000,
+        8
+      ],
+      "dtype": "float64",
+      "sha256": "d4ec8f67b03256bf8b9f1756e95c9bdaa25a436e1f7cc395ce6d60991263505b",
+      "bytes": 128000
+    }
+  },
+  "ids": {
+    "genotype": {
+      "count": 2000,
+      "sha256": "f8b86b19490f9a9de8478a9a2e0b110e68d4d2d0385d133a51868bf4ce7c515e"
+    },
+    "phenotype": {
+      "count": 2000,
+      "sha256": "623f2b7dfc23b8f84fd862b43b408d6d71f6e3c829e78d785c14aefda1af881b"
+    },
+    "relation": "positional; no join or intersection"
+  },
+  "r_python": {
+    "x_column_major_md5": "7e3e41f61469c7ac8c3196fdf55be745",
+    "x_row_major_md5": "8fe7a6cff179148a3e6cab449209cf0a",
+    "x_column_major_sha256": "53c3fb70df2ccc1755eb79aa88ca045cf6555c211fa4daef693897ceca7316e6",
+    "x_row_major_sha256": "ac9c8d17a98c76e3a0bcb286cc2274c5463f11cb336e778a9d9d50da4279c08b",
+    "y_column_major_md5": "8b72ff3d3e7fa235ca4a08ec18c3acb2",
+    "y_row_major_md5": "02fdbf2877c8740725fc95905b9dd2a2",
+    "y_column_major_sha256": "0c70295ff39b369bcddabc30a7bad57a7cd331d443b8fbf686145c6fe047a93a",
+    "y_row_major_sha256": "d4ec8f67b03256bf8b9f1756e95c9bdaa25a436e1f7cc395ce6d60991263505b",
+    "x_values_equal": true,
+    "y_values_equal": true,
+    "column_major": true
+  },
+  "rscript": {
+    "executable": "/usr/bin/Rscript",
+    "version": "Rscript (R) version 4.3.3 (2024-02-29)",
+    "script_sha256": "943ccee00d1c1b27d4d3c226f978ceeccf377517789373e8fe44f5ca1f8e7ee2"
+  },
+  "created_at": "2026-11-05T14:25:43+0800",
+  "source_url": "https://raw.githubusercontent.com/cma2015/DeepGS/33ae2dc1ed7bda4e38b76460b18756649d4478a5/wheat_GS.RData",
+  "dataset_version": "Official DeepGS wheat_GS.RData; identity with unpublished BiMSGP v2 not assumed",
+  "phenotype_row_ids_numeric_range": [
+    1,
+    2184
+  ],
+  "trait_valid_counts": {
+    "TKW": 2000,
+    "TW": 2000,
+    "GL": 2000,
+    "GW": 2000,
+    "GH": 2000,
+    "GP": 2000,
+    "SDS": 2000,
+    "PHT": 2000
+  },
+  "no_complete_case_intersection_filter": true
+}

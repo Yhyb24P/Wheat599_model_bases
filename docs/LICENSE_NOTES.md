@@ -8,6 +8,7 @@
 |----|-------------|------|
 | BGLR 包（含 `wheat.RData`） | GPL-3 | `DESCRIPTION` 字段 `License: GPL-3`。数据通过 `scripts/fetch_data.py` 从官方仓库获取，不在本仓库重新分发。 |
 | wheat 数据本身 | 未发现独立许可声明 | 数据来自 CIMMYT，经 BGLR 包发布；使用与再分发遵循 BGLR 的 GPL-3 与来源方要求。发表时引用 BGLR 与 CIMMYT 来源。 |
+| Wheat2000公开`wheat_GS.RData`（2026-11-05） | DeepGS包DESCRIPTION为GPL-2或GPL-3；数据无独立许可声明 | 固定`cma2015/DeepGS@33ae2dc1ed7bda4e38b76460b18756649d4478a5`原件SHA `e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696`；原件/NPZ只读留`data/raw/wheat2000`，不在Git重新分发。R/Python与源头记录见`results/wheat2000_protocol_20261105/data_provenance.json`。 |
 
 ## 代码与权重
 

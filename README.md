@@ -1,6 +1,6 @@
 # Wheat599 植物基因组表型预测研究
 
-当前执行：按新附件进行一次[四方向表型目标开发比较](docs/PHENOTYPE_ROTATION.md)，固定1920fit，与原目标配对并比较强独立参照；同时核查Wheat2000八性状数据和强基线运行条件。原候选继续保留，旋转版本能否继续以预定开发条件决定。
+当前执行：按新附件进行一次[四方向表型目标开发比较](docs/PHENOTYPE_ROTATION.md)，固定1920fit，与原目标配对并比较强独立参照；[Wheat2000八性状协议](docs/WHEAT2000.md)已完成数据/ID/划分核验，准备原TabM与GBLUP的正式开发，BiMSGP和DeepGS依赖及适配并行准备。原候选继续保留，旋转版本能否继续以预定开发条件决定。
 
 四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
 

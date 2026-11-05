@@ -199,6 +199,15 @@ def main():
     if cfg.get('model') == 'phenotype_rotation':
         from wheat599.rotation_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'wheat2000_gblup':
+        from wheat599.wheat2000_gblup import run
+        return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'wheat2000_tabm':
+        from wheat599.wheat2000_run import run
+        return run(cfg, args, Path(__file__))
+    if cfg.get('model') in ('wheat2000_deepgs', 'wheat2000_bimsgp'):
+        from wheat599.wheat2000_neural_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'environment_selection':
         from wheat599.environment_selection import run
         return run(cfg, args, Path(__file__))

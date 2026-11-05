@@ -1,6 +1,6 @@
 # Research Plan — Wheat599 FT-Transformer 评价
 
-**当前执行（2026-11-05，新附件）：** 原四独立TabM保留。按 [PHENOTYPE_ROTATION.md](PHENOTYPE_ROTATION.md)执行一次1920fit、四方向全保留的表型目标开发比较：Q/尺度仅由fit拟合、复用原目标1920fit作配对、还原原环境后选共同配置，同时面对原逐环境选模强参照。继续条件提前固定，不追加旋转搜索或外层；gb并行核查Wheat2000八性状数据/ID和GBLUP、BiMSGP、DeepGS条件，原候选跨数据集证据优先，正式训练预算待数据事实明确后固定。gpt66写runner/config/CLI/docs，cn写目标变换模块/tests，gb执行omen，常规折进度不逐条汇报。
+**当前执行（2026-11-05，新附件）：** 原四独立TabM保留。按 [PHENOTYPE_ROTATION.md](PHENOTYPE_ROTATION.md)执行一次1920fit、四方向全保留的表型目标开发比较：Q/尺度仅由fit拟合、复用原目标1920fit作配对、还原原环境后选共同配置，同时面对原逐环境选模强参照。继续条件提前固定，不追加旋转搜索或外层。Wheat2000已核对公开原始版本、全部八性状/材料ID及三内折十外折清单，原TabM固定3840次开发拟合、选择冻结后160次完整dev重拟合，GBLUP先进行19个lambda三内折选择，详见 [WHEAT2000.md](WHEAT2000.md)；BiMSGP/DeepGS运行依赖和明确适配仍在准备，不能将论文原分数冒充同协议成绩。gpt66写配置/CLI/GBLUP/docs，cn写数据/TabM runner，gb负责外部基线适配及omen执行；常规折进度不逐条汇报。
 
 **当前结果（用户附件授权，2026-11-05）：** 四独立TabM在omen完成冻结的80次完整开发集重拟合、拟合失败0次，主40环境折PCC0.508190／RMSE0.864253／MAE0.665589；同材料BiMSGP为0.470781、Huber ICM为0.521745。保留神经论文候选，没有建立超过ICM或SOTA的证据。首次汇总因omen缺历史基线OOF失败，采用本地原件和已保存预测接续汇总，不重训。完整证据与恢复状态见 [RESULTS.md](RESULTS.md)，固定规则见 [INDEPENDENT_FINAL.md](INDEPENDENT_FINAL.md)。本轮不做标量融合、不按外层成绩修改配置；Wheat2000全部八性状为后续范围，未自动启动。云端7d979b8交接核验与小结果已推送，固定配置迁移不替代本次强独立评价。
 
