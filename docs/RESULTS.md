@@ -2,7 +2,7 @@
 
 ## Wheat599固定分组核第一阶段（2026-11-05）
 
-冻结`0ecd4d3`（tag `grouped-kernel-stage1-20261105`），omen CPU两线程完成30内层单元×8系统＝240次多环境Huber拟合、0失败，24.91秒。固定tau=0.25、64相关性组、原已选基础参数及Huber四环境阈值；六个频率匹配随机组分别拟合后平均指标。分组仅使用fit材料，未使用外层评分。协议见 [GROUPED_KERNEL](GROUPED_KERNEL.md)，结果见 [summary](../results/grouped_kernel_development_20261105/summary.json)。
+冻结`0ecd4d3`（tag `grouped-kernel-stage1-20261105`），omen CPU两线程完成30内层单元×8系统＝240个不同的多环境Huber拟合、0失败，单次24.91秒。协调者在收到gb完成回执前误判未启动，重复执行同一240fit，实际共480fit；两次summary/units/metadata完全一致，不作为两组证据。执行记录见 [accounting](../results/grouped_kernel_development_20261105/execution_accounting.json)。固定tau=0.25、64相关性组、原已选基础参数及Huber四环境阈值；六个频率匹配随机组分别拟合后平均指标。分组仅使用fit材料，未使用外层评分。协议见 [GROUPED_KERNEL](GROUPED_KERNEL.md)，结果见 [summary](../results/grouped_kernel_development_20261105/summary.json)。
 
 | 系统 | 开发宏PCC | RMSE | MAE |
 |---|---:|---:|---:|
