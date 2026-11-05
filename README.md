@@ -1,5 +1,7 @@
 # Wheat599 植物基因组表型预测研究
 
+当前执行：按新附件进行一次[四方向表型目标开发比较](docs/PHENOTYPE_ROTATION.md)，固定1920fit，与原目标配对并比较强独立参照；同时核查Wheat2000八性状数据和强基线运行条件。原候选继续保留，旋转版本能否继续以预定开发条件决定。
+
 四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
 
 目标是形成有可靠预测与效率证据的植物基因组表型预测方法论文；成熟神经架构的有效任务适配可以成为贡献。Wheat599用于快速开发，已有SSH omen用于正式执行；Wheat2000全部八性状是后续确认范围，本轮未启动。早期候选与历史结果见 [RESULTS](docs/RESULTS.md)，当前分工见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
