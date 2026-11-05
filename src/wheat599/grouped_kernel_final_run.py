@@ -72,7 +72,7 @@ def run(cfg, args, runner):
     final_provenance = read(final / 'provenance.json')
     if (final_provenance['config'] != solver or
             final_provenance['splits_sha256'] != sha256_of(Path(cfg['splits'])) or
-            final_provenance['base_source_sha256'] != sha256_of(dev / 'base_choices.json') or
+            final_provenance['base_source_sha256'] != sha256_of(Path(solver['base_source']) / 'base_choices.json') or
             final_provenance['selection_sha256'] != sha256_of(dev / 'selection.json')):
         raise ValueError('Final source was not produced from this frozen development selection')
     records = read(final / 'optimization.json')
