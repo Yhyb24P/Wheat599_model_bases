@@ -40,6 +40,8 @@ results/quantile_tabm_final_*/oof.csv
 results/multihead_mse_*/predictions_*.npz
 results/mean_quantile_*/predictions_*.npz
 results/midpoint_quantile_*/predictions_*.npz
+results/tabicl_genomic_*/predictions_*.npz
+results/tabicl_genomic_*/weights/
 results/fusion_refit_*/weights/
 results/fusion_refit_*/predictions.npz
 results/fusion_refit_*/oof.csv

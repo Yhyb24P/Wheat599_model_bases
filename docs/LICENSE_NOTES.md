@@ -55,6 +55,10 @@ BiMSGP 官方仓库提交 `71084c8fa5444fbc747b0291ace627b1f2d6ef33` 使用 MIT 
 | independent_2026.pt | 146626e6803774705747f6548d0832699daf7398f0bd3cec0db7461c2fd18105 |
 | gate.pt | 79666d256fb8bca7268fea7486818357c1c1133f7e37f339950fb8e59abfa986 |
 
+## TabICLv2 预训练权重（2026-11-06）
+
+使用官方 [jingang/TabICL](https://huggingface.co/jingang/TabICL) 的回归权重 `tabicl-regressor-v2-20260212.ckpt`，模型卡标注 BSD-3-Clause；SHA-256 `0db9cb538f114e79026bf08f45f41ad8dd7ad2de2aaca9a5ca8cd3bd9748ae7a`，与官方 LFS 元数据一致。权重位于本机与 omen 的 `models/tabicl/`，不入 Git。代码使用官方 `tabicl==2.2.0`；wheel SHA-256 `c80b8ec2719be26bc0bf1dd758a2361f58019d8f7877038b785529a425789ce4`。
+
 ## TabM 任务适配依赖（2026-11-04，正式训练准备）
 
 Wheat2000神经参照准备（2026-11-05）：DeepGS为公开R/mxnet网络的独立PyTorch结构适配，上游`cma2015/DeepGS`提交`33ae2dc1ed7bda4e38b76460b18756649d4478a5`，包许可GPL-2或GPL-3；未复制其数据或R源码入Git。BiMSGP在原地动态加载MIT许可的官方干净checkout，提交`71084c8fa5444fbc747b0291ace627b1f2d6ef33`，omen路径`/home/hsy/overlays/BiMSGP_71084c8`；model.py SHA-256为`0cec01030ac64621602fbbca029749e91202e795abee47074588474f9e1aace0`，LICENSE SHA-256为`c654fa432aadbbbeda0a5d4ed10557661a67f811f879ccdc80c31c3cf6cb0d8d`。未使用外部预训练权重，尚无这两个参照的正式训练权重。

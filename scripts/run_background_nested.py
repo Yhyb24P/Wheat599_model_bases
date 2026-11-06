@@ -163,6 +163,9 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
+    if cfg.get('model') == 'tabicl_genomic':
+        from wheat599.tabicl_genomic import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'midpoint_quantile':
         from wheat599.midpoint_quantile import run
         return run(cfg, args, Path(__file__))
