@@ -1,0 +1,9 @@
+model: fusion_refit
+manifest: results/fusion_refit_manifest_20261106/manifest.json
+manifest_sha256: 61f66bb7c29b51f2de14fa404e1ecbc1a6d4048bdfe1c5de1f72ae73adc90ab9
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+device: cuda
+cpu_threads: 2
+gpu_memory_fraction: 0.5

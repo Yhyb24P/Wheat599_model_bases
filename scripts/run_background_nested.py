@@ -163,6 +163,9 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
+    if cfg.get('model') == 'fusion_refit':
+        from wheat599.fusion_refit import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'mean_quantile':
         from wheat599.mean_quantile import run
         return run(cfg, args, Path(__file__))
