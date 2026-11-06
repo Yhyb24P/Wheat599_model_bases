@@ -1,0 +1,8642 @@
+[
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.6232879789895378
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.1275496260204818
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.29636970700812526
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.13902592900558375
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.2631511780200526
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.21013341602520086
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.11082147300476208
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.1302851109940093
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.1300902649818454
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.0788462909986265
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.1313861230155453
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.12857759397593327
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.11843784799566492
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.1159638190001715
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.16857652500038967
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.10771364500396885
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.16750607200083323
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.17262197498348542
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.13246212399099022
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.24287941900547594
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.18038455097121187
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.1961647760181222
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.23290970499510877
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.1283584869815968
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.13579658800153993
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.1308201840147376
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.10753170499810949
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.10744262099615298
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.12978645699331537
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.500335693359375,
+    "seconds": 0.1322397659823764
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.08381301700137556
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.19860768198850565
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.00067138671875,
+    "seconds": 0.18629556300584227
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.10530500899767503
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.17328457502298988
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.0013427734375,
+    "seconds": 0.19778827097616158
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.15336786999250762
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.13933330902364105
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.19611918600276113
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.11634641498676501
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.17753230800735764
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.1934977280034218
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.0914486929832492
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.263136180001311
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.30366193200461566
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.12665452700457536
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.3171865650219843
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.18598144099814817
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.27848192999954335
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.197489497018978
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.2530416430090554
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.21694074900005944
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.12230004201410338
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.13534001898369752
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.13337965100072324
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.0758928349823691
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.12896572300815023
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.12950873500085436
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.11655418100417592
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.11172543399152346
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.17344686400610954
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.0995242920180317
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.17850489198463038
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.17209723900305107
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.11050706999958493
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.460723876953125,
+    "seconds": 0.25939662498421967
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.18608352198498324
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.2185888419917319
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.92144775390625,
+    "seconds": 0.2561406339809764
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.10359094900195487
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.13091516701388173
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.8428955078125,
+    "seconds": 0.1272370939841494
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.10492893302580342
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.10988454800099134
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.134199683991028
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.13109256900497712
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.07931922900024801
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.194336412998382
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.20101862598676234
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.1000382259953767
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.2058141389861703
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.19928000000072643
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.11360159199102782
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.18034914002055302
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.19603542098775506
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.09619859899976291
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.20440030001918785
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.198115470004268
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.09546340300585143
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.3180600790074095
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.279840120987501
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.1752649979898706
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.2932552919955924
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.21727279198239557
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.2266072969941888
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.2619761700043455
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.17235158398398198
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.31338638500892557
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.09993491001660004
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.1298917639942374
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.12929819099372253
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.473392486572266,
+    "seconds": 0.13089265101007186
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.07729434498469345
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.1309476970054675
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.94678497314453,
+    "seconds": 0.12921346601797268
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.12870927699259482
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.083430127997417
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.89356994628906,
+    "seconds": 0.16327386000193655
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.1733402060053777
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.09851864399388433
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.1740140909969341
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.1666831780166831
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.14286774597712792
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.27518490998772904
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.20875544799491763
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.20206432801205665
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.26935662899632007
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.1489299729873892
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.13187037999159656
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.1335818579827901
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.12959380997926928
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.09118924199719913
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.1296302080154419
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.13273841098998673
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.08756327797891572
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.17143853197922
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.1998413389956113
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.20073005300946534
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.13456955199944787
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.17493997601559386
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.1737821810238529
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.18573391099926084
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.11167273201863281
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.1990785769885406
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.17855254901223816
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.12297052500071004
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.19473193501471542
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.419858932495117,
+    "seconds": 0.14856152998981997
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.17804195199278183
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.2894256039871834
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.839717864990234,
+    "seconds": 0.19191776699153706
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.258383762993617
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.2985212759813294
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.67943572998047,
+    "seconds": 0.12138632099959068
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.2896318550046999
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.205795214016689
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.20570660100202076
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.26971401399350725
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.09049890699679963
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.1229265830188524
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.13009919700562023
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.1279138330137357
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.07790967699838802
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.12232143900473602
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.11528131301747635
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.11828768200939521
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.11810949401115067
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.0788540419889614
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.16836682899156585
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.17039679799927399
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.09125861700158566
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.15845952299423516
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.15761418498004787
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.09328718899632804
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.24135744501836598
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.25417793399537914
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.13432725498569198
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.2626417209976353
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.22255323399440385
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.0960336439893581
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.13153953800792806
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.12203816801775247
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.09408182499464601
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.477691650390625,
+    "seconds": 0.11449461299343966
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.13044065999565646
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.13098474897560664
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.95538330078125,
+    "seconds": 0.07754627001122572
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.18521861798944883
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.18319149399758317
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.9107666015625,
+    "seconds": 0.17780891101574525
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.09706560199265368
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.18130495998775586
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.20166612998582423
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.10079819001839496
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.16743164998479187
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.18376654299208894
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.12749377801083028
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.16702567198080942
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.19995720800943673
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.1108567530172877
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.2899731970101129
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.28231802699156106
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.12733739300165325
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.26908802302205004
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.2788775750086643
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.15546517897746526
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.2700431160046719
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.13714203602285124
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.2985942040104419
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.26383064599940553
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.09060064199729823
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.13072971600922756
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.12568875899887644
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.12515137900481932
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.0811663269996643
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.1256596719904337
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.12779100600164384
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.12915835101739503
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.09954088000813499
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.596332550048828,
+    "seconds": 0.17409532799501903
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.16868721402715892
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.08904481699573807
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.192665100097656,
+    "seconds": 0.16367336802068166
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.15501489100279287
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.1446033499960322
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.38533020019531,
+    "seconds": 0.23950215501827188
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.18438422499457374
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.17666081900824793
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.23767538499669172
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.15426863802713342
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.12701486400328577
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.13123147300211713
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.12985011099954136
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.08706912398338318
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.1314420419803355
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.12847907899413258
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.13248548601404764
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.11970296100480482
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.122316512017278
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.20124696698621847
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.19361160602420568
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.10832139698322862
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.19951444101752713
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.1984057720110286
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.09092992398655042
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.1841656329925172
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.1825080029957462
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.08970255899475887
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.17859591799788177
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.1927759299869649
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.10037193101015873
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.27981626201653853
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.29879974099458195
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.13402177099487744
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.3086861590272747
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.458335876464844,
+    "seconds": 0.3060493209923152
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.1343939579965081
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.31273567900643684
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.91667175292969,
+    "seconds": 0.1723160500114318
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.2609391220030375
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.252031704003457
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.83334350585938,
+    "seconds": 0.08928658702643588
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.13121477598906495
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.12914661099785008
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.12874797399854288
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.0769961059850175
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.12978617701446638
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.1261107379978057
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.1300415890000295
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.07852747300057672
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.17503131899866275
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.1740794490033295
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.09443276500678621
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.17084814098780043
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.16914930098573677
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.09233554999809712
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.26883496600203216
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.27514274397981353
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.19266680601867847
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.20412683102767915
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.26833065500250086
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.26686218098620884
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.09471347799990326
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.12444579199654981
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.11957223201170564
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.11720139000681229
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.12171123101143166
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.0777739759942051
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.1194286140089389
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.13304734099074267
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.12248344998806715
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.497589111328125,
+    "seconds": 0.09141408200957812
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.144002137996722
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.2012383490218781
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.99517822265625,
+    "seconds": 0.19505099699017592
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.19623936800053343
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.1859673360013403
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.9903564453125,
+    "seconds": 0.13340407601208426
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.18525771799613722
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.19870766301755793
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.19872523500816897
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.09485029100324027
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.1910842589859385
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.179360855021514
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.0928014550008811
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.19336914099403657
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.1931995359773282
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.09187610799563117
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.26857327300240286
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.2692209509841632
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.2123849009803962
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.19201354999677278
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.2714246039977297
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.2690603800001554
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.13111115799983963
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.2655475920182653
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.2747638449945953
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.11553002501023002
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.27565933400182985
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.2691003129875753
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.08585659798700362
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.1324632739997469
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.1301740500202868
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.12809276700136252
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.11730613399413414
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.092650347010931
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.13046439699246548
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.52669334411621,
+    "seconds": 0.1286675949813798
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.12887263699667528
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.13023418202647008
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.05338668823242,
+    "seconds": 0.07778714099549688
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.17391900400980376
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.170062852994306
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.10677337646484,
+    "seconds": 0.0885193080175668
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.17111551098059863
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.16710656601935625
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.15229761801310815
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.17455194299691357
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.26139225499355234
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.27393578202463686
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.13187366002239287
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.24792693002382293
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.25937528899521567
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.25886711198836565
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.0897760360094253
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.12794260800001211
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.13076252999599092
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.12492342301993631
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.08461887901648879
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.12011325100320391
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.12930347298970446
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.13030862898449413
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.08733933899202384
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.16332353500183672
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.18817123700864613
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.17655725998338312
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.18553658601013012
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.08572304202243686
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.17215416399994865
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.17975350699271075
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.17920130499987863
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.12989280201145448
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.1328015330072958
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.456871032714844,
+    "seconds": 0.16833312099333853
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.19193177501438186
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.09670859700418077
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.91374206542969,
+    "seconds": 0.18712058800156228
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.1820844220055733
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.12810294699738733
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.82748413085938,
+    "seconds": 0.19793572701746598
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.2710179639980197
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.2797419249836821
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.16211755701806396
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.2969543210056145
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.28920372799620964
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.1611132080142852
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.28684473800240085
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.1471788100025151
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.28157793599530123
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.2764104460075032
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.08541994701954536
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.13355606101686135
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.13142980201519094
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.1319538880197797
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.1286042540159542
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.0893309699895326
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.12292136799078435
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.12471991000347771
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.12998302601044998
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.1281573070154991
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.1311888009950053
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.08890917999087833
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.1717589079926256
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.15558501801569946
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.11236364700016566
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.16736303200013936
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.17569398699561134
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.10963262000586838
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.24736845900770277
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.452816009521484,
+    "seconds": 0.264204343984602
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.27006821599206887
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.14332683198153973
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.90563201904297,
+    "seconds": 0.24003361898940057
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.26083453398314305
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.23701025798800401
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.81126403808594,
+    "seconds": 0.0801073579932563
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.13545835900004022
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.1346938280039467
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.113764743990032
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.09954363401629962
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.13301460799993947
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.12658665201161057
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.09704543100087903
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.14336292698862962
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.18539518999750726
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.20153620600467548
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.18413760198745877
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.18803532898891717
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.10763049198430963
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.19128637699759565
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.17802948300959542
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.11566834102268331
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.1591802879993338
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.17343213502317667
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.15674094599671662
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.057997124997200444
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.1743437040131539
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.1885110939911101
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.18017365099512972
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.08470111800124869
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.2648553499893751
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.27136306700413115
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.11452564501087181
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.2638538609899115
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.2753818540077191
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.549846649169922,
+    "seconds": 0.2762398890045006
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.28238268598215654
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.1617088619968854
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.099693298339844,
+    "seconds": 0.24168349799583666
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.2694058319902979
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.22028852000948973
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.19938659667969,
+    "seconds": 0.17983681499026716
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.2701363800151739
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.13836820499273017
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.13135670599876903
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.12563644599867985
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.12733975201263092
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.07507243601139635
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.12821240999619476
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.12871196298510768
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.1253661900118459
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.0768293910077773
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.16997113599791192
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.1725522940105293
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.09864488401217386
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.17101612300029956
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.16625985098653473
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.14674984000157565
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.15392551699187607
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.23648361797677353
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.2379324820067268
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.10268205997999758
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.23227926099207252
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.2356181799841579
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.12116086299647577
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.1349417599849403
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.13146818600944243
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.13148232200182974
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.07737744299811311
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.13179560098797083
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.13002666999818757
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.486906051635742,
+    "seconds": 0.12242800698732026
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.11552044001291506
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.18291958601912484
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.973812103271484,
+    "seconds": 0.1855965639988426
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.12475936199189164
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.16977992199826986
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.94762420654297,
+    "seconds": 0.1987591260112822
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.20185571699403226
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.10013903601793572
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.19057384500047192
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.17993231900618412
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.1918382179865148
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.08853794101742096
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.19065658099134453
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.1924084440106526
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.09822570800315589
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.2686551649821922
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.2477289859962184
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.16761906098690815
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.2889548010134604
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.13087113702204078
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.2823667010234203
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.17275645199697465
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.2426700490177609
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.219401434995234
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.1088829850195907
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.13149384502321482
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.12757436200627126
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.0875671899993904
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.1284481360053178
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.12870095801190473
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.08258227299666032
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.17619338602526113
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.13343406197964214
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.12955101797706448
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.17009175301063806
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.550201416015625,
+    "seconds": 0.08455323599628173
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.26080568999168463
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.19106542199733667
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.10040283203125,
+    "seconds": 0.2101577459834516
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.24220988701563329
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.10008661699248478
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.2008056640625,
+    "seconds": 0.1276626960025169
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.12986783098313026
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.07711588198435493
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.12803924499894492
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.12931745499372482
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.0941495209990535
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.14279133902164176
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.19522962099290453
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.19458301598206162
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.09127279100357555
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.17017881400533952
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.18372386999544688
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.19302266201702878
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.08911533100763336
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.18879095299053006
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.18808772097690962
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.0953086760127917
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.1910976950020995
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.19169329598662443
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.10117164699477144
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.30826848500873893
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.3036097509902902
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.11023412100621499
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.25996982501237653
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.2880893299879972
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.1695396040158812
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.25579645900870673
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.2524233979929704
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.14306609399500303
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.29425209600594826
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.433490753173828,
+    "seconds": 0.19785451199277304
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.12045689701335505
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.13222216701251455
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.866981506347656,
+    "seconds": 0.13272639599745162
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.12883639000938274
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.0835921939869877
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.73396301269531,
+    "seconds": 0.13056033401517197
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.13459160801721737
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.133293558988953
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.07996753600309603
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.17215843801386654
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.17613717101630755
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.09295799900428392
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.170242156018503
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.176287370006321
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.12038043499342166
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.2279198760224972
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.2756177560077049
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.1792789220053237
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.23219196900026873
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.2685652220097836
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.1794989460031502
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.12229141598800197
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.13214725299621932
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.13304712600074708
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.13381937699159607
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.10058285898412578
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.10814292897703126
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.13087225198978558
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.1312811639800202
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.08100169998942874
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.1922285709879361
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.19742653501452878
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.19922742000198923
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.1934447310050018
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.1249418549996335
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.51955795288086,
+    "seconds": 0.18018122200737707
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.20253982301801443
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.20023470401065424
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.03911590576172,
+    "seconds": 0.19149868399836123
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.1581051609828137
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.13061935000587255
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.07823181152344,
+    "seconds": 0.18135147300199606
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.19325706898234785
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.09267966100014746
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.19018125999718904
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.19359801601967774
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.0999598809867166
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.25925038699642755
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.3226905000046827
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.13365548697765917
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.30812169902492315
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.28512460499769077
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.1350761809735559
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.30391350798890926
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.11144493200117722
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.26691160901100375
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.23904235599911772
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.10200427798554301
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.12261374399531633
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.12682492900057696
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.13301084502018057
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.07749510501162149
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.12985598098021
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.12624651999794878
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.1316474140039645
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.08102393499575555
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.17738098598783836
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.17504409898538142
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.09763852698961273
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.16404277400579304
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.16397976901498623
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.496618270874023,
+    "seconds": 0.14160018699476495
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.27567201398778707
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.18518157399375923
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.99323654174805,
+    "seconds": 0.19622395100304857
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.26023870598874055
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.1591029340052046
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.9864730834961,
+    "seconds": 0.132709409983363
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.13262838500668295
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.13036249100696295
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.07867943099699914
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.13423273101216182
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.13265606999630108
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.11362405601539649
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.13702852299320512
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.20140174898551777
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.2015801259840373
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.08100637499592267
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.20117253198986873
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.20344510400900617
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.0993516160233412
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.1875110769760795
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.18770720000611618
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.10037200700026006
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.18653719499707222
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.1916536999924574
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.09565709898015484
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.29497451399220154
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.29053607099922374
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.16504834199440666
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.3195443020085804
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.15578485498554073
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.2937802009982988
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.2080671909789089
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.23492842097766697
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.24955228000180796
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.10227805300382897
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.478824615478516,
+    "seconds": 0.1291168989846483
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.12905610399320722
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.09384618300828151
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.95764923095703,
+    "seconds": 0.12330847600242123
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.13146400498226285
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.1256063799955882
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.91529846191406,
+    "seconds": 0.08151554898358881
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.16057501899194904
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.172445643984247
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.08915589001844637
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.16473895197850652
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.16231657800381072
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.14701969199813902
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.26712790099554695
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.1576133249909617
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.23696382599882782
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.2779949649993796
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.08871454297332093
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.13436681200983003
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.13150545398821123
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.11381450097542256
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.08928746799938381
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.1253953950072173
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.13370323000708595
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.10415588101022877
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.13028929301071912
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.1751789340050891
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.19309289701050147
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.08823294800822623
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.1996498249936849
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.1788992029905785
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.1551713759836275
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.12908492199494503
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.18761197398998775
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.1332577150024008
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.16458934399997815
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.483783721923828,
+    "seconds": 0.19239104699227028
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.11038721798104234
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.2737279180146288
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.967567443847656,
+    "seconds": 0.2864600009925198
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.13357956300023943
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.32565566000994295
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.93513488769531,
+    "seconds": 0.2641656830091961
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.17615969001781195
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.2763882669969462
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.11911436601076275
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.28365426999516785
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.18749381200177595
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.1172783350048121
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.1340072689927183
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.13119573399308138
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.10108841198962182
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.10493600598420016
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.13178756498382427
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.12445785399177112
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.11785965200397186
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.11562514698016457
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.18039743200642988
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.09666324499994516
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.16184941798564978
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.17350826098117977
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.09237273398321122
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.25750293899909593
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.24018742199405096
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.1061509900027886
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.226943415007554
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.2604903430037666
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.09387265099212527
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.11986570700537413
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.1182815530046355
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.122637180989841
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.09693633302231319
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.504032135009766,
+    "seconds": 0.10753625599318184
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.12250245301402174
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.13208091101842
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.00806427001953,
+    "seconds": 0.09226559998933226
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.16573702899040654
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.17483730599633418
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.01612854003906,
+    "seconds": 0.1781625779985916
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.11144527199212462
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.17905276198871434
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.20004991299356334
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.1851762870210223
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.11663444500300102
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.18464766899705864
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.18035124099696986
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.11612816498382017
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.19079760898603126
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.15880800600280054
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.17864078501588665
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.26909345301100984
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.26952226599678397
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.14427745100692846
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.26279124300344847
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.27985676800017245
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.12228142999811098
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.27768537000520155
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.18100606399821118
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.21820356498938054
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.277754657989135
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.09270216201548465
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.13211821200093254
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.13409689100808464
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.0771940880222246
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.1311251919833012
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.1232226720021572
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.11469712600228377
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.11212637697462924
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.392053604125977,
+    "seconds": 0.1700488979986403
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.14882293198024854
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.10275229398394004
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.78410720825195,
+    "seconds": 0.1641950449848082
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.16081096199923195
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.13730226099141873
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.5682144165039,
+    "seconds": 0.2514914380153641
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.25977373600471765
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.144280861975858
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.25493960597668774
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.24726895199273713
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.09654200097429566
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.13239869399694726
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.12863743799971417
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.09661887199035846
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.1146073889976833
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.13114375798613764
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.12900544799049385
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.07857805798994377
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.19505291600944474
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.19831929000793025
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.17220922399428673
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.12382002398953773
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.19529788801446557
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.2007467029907275
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.09303024099790491
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.1913198209949769
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.18624706601258367
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.09069817600538954
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.18832860499969684
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.19110910399467684
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.08115460199769586
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.29892465099692345
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.23008231300627813
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.23342219297774136
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.3079219849896617
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.432518005371094,
+    "seconds": 0.1210668129788246
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.27417426198371686
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.19294452198664658
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.86503601074219,
+    "seconds": 0.22871820599539205
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.29693165098433383
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.30735055200057104
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.73007202148438,
+    "seconds": 0.30544999201083556
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.2660962769878097
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.09341064601903781
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.1280381710093934
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.13016417899052612
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.08061353900120594
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.13064991001738235
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.12820061400998384
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.12597798398928717
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.10332619800465181
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.17499093999504112
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.10866112101939507
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.1683705339964945
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.16400311901816167
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.09819538699230179
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.27357436998863705
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.1638780570065137
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.23805264101247303
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.2631149170047138
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.09357753797667101
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.1288869259878993
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.13196698599494994
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.07789185602450743
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.1295438589877449
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.13276679901173338
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.12990666198311374
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.1329050499771256
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.13161777998902835
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.0989928070048336
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.1528921240242198
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.495161056518555,
+    "seconds": 0.19951948800007813
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.19031214399728924
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.19650845500291325
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.99032211303711,
+    "seconds": 0.20076739700743929
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.0920785460039042
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.20119481900474057
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.98064422607422,
+    "seconds": 0.19978987000649795
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.20430285498150624
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.19785370799945667
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.14728298198315315
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.1354043800092768
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.18214709701715037
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.18817488898639567
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.19409753600484692
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.1897923929791432
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.09273629199014977
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.19210360801662318
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.18347881000954658
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.14150088001042604
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.2706523289962206
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.2258390019997023
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.15370931901270524
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.2694632630154956
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.21014653399470262
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.16627412600792013
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.26969634401029907
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.11538633299642242
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.2680133839894552
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.1891178259975277
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.11989156599156559
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.12443265999900177
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.125066851003794
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.07697411999106407
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.12610002799192443
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.12513494701124728
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.12827316799666733
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.5299072265625,
+    "seconds": 0.08289130000048317
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.17008767399238423
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.15884244500193745
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.059814453125,
+    "seconds": 0.10786233699764125
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.1736320010095369
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.11257341300370172
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.11962890625,
+    "seconds": 0.2024725739902351
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.24300501702236943
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.11834990399074741
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.23329523199936375
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.23612233699532226
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.10149274399736896
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.13686616902123205
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.13190978800412267
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.13241687399568036
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.07785622499068268
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.13328198899398558
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.13137886198819615
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.08844302198849618
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.17416868900181726
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.1958082340133842
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.15871437199530192
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.14284882001811638
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.19874768098816276
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.19022877101087943
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.10693583398824558
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.18897624098462984
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.15287041300325654
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.1442131520016119
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.19127954301075079
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.1286723079974763
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.2168402259994764
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.2709152350143995
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.16275737297837622
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.22463890598737635
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.2647160649939906
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.475257873535156,
+    "seconds": 0.14274285399005748
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.25020511902403086
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.23838915998931043
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.95051574707031,
+    "seconds": 0.16155480899033137
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.26789184799417853
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.11167244397802278
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.90103149414062,
+    "seconds": 0.13130959300906397
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.13019255199469626
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.11377650601207279
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.09599589300341904
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.12822766101453453
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.12696730400784872
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.09134072798769921
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.15609715800383128
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.17637270397972316
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.08902144900639541
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.17231821900350042
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.1406150870025158
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.17351974701159634
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.25009913998655975
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.1355974840116687
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.24807727901497856
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.237428896012716
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.09720817601191811
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.1349258539848961
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.13197154601220973
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.11896533099934459
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.0909654890128877
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.13316046498948708
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.12784607798676006
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.08435390400700271
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.16309830802492797
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.18063331401208416
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.17150368398870341
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.09007854599622078
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.17239377700025216
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.497968673706055,
+    "seconds": 0.17814516002545133
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.16821787098888308
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.08388339600060135
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.99593734741211,
+    "seconds": 0.17203032001270913
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.18054376999498345
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.0973824699758552
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.99187469482422,
+    "seconds": 0.18546868200064637
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.1943434320273809
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.10771990800276399
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.24910184301552363
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.27170874099829234
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.11444325000047684
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.280983025993919
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.20497301500290632
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.20979541802080348
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.2527601399924606
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.14141789299901575
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.2689190919918474
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.10666712099919096
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.13051623600767925
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.12963634700281546
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.09441593199153431
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.10990351199870929
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.12692651100223884
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.12758870000834577
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.09251286598737352
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.17365920500014909
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.09889666899107397
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.16798482701415196
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.15125230699777603
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.14300392000586726
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.24171318599837832
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.11822016298538074
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.2564145920041483
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.19667084200773388
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.10788675799267367
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.474702835083008,
+    "seconds": 0.1292264299991075
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.1225684320088476
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.07270279797376134
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.949405670166016,
+    "seconds": 0.11902705999091268
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.1286848559975624
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.12478131099487655
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.89881134033203,
+    "seconds": 0.09925557099631988
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.16142091099754907
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.17018790598376654
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.11923972598742694
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.14952653399086557
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.1790460100164637
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.1715093349921517
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.1210602640057914
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.1898249170044437
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.12078922300133854
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.15443026201683097
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.1630768250033725
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.1269644960120786
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.1836177879886236
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.3275192249857355
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.3259687740064692
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.3260370090138167
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.3091372990165837
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.1601188339991495
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.24029297899687663
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.3085606489912607
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.29751901200506836
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.21009830399998464
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.23120783900958486
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.29406485200161114
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.1871658499876503
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.2040563829941675
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.2700535749900155
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.27584093998302706
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.15418194499216042
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.474451065063477,
+    "seconds": 0.13194041198585182
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.13213853602064773
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.12998586500179954
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.94890213012695,
+    "seconds": 0.1252236079890281
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.12397440199856646
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.13047465099953115
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.8978042602539,
+    "seconds": 0.13278460502624512
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.08117744501214474
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.12373597899568267
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.1304392490128521
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.12201374900178052
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.131874554004753
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.12866995701915585
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.10652317901258357
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.14141138398554176
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.17259879800258204
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.15769483998883516
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.1093727650004439
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.17552386401803233
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.17353969399118796
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.09166810300666839
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.2623466630175244
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.25419837498338893
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.2745036050037015
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.11445577300037257
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.24647058398113586
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.23133408100693487
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.25404182699276134
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.14186741699813865
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.1255491490010172
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.12606484297430143
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.1356303759966977
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.12641448600334115
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.12982987199211493
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.07709647898445837
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.11806319298921153
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.47902488708496,
+    "seconds": 0.12329804501496255
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.12686406099237502
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.128860283002723
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 50.95804977416992,
+    "seconds": 0.10187040799064562
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.17254434200003743
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.19046288801473565
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 101.91609954833984,
+    "seconds": 0.19848606901359744
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 0,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.19863458100007847
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 1,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.09555659198667854
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 2,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.20173714301199652
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 3,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.18545769498450682
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 4,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.19855823897523805
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 5,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.1381436359952204
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 6,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.16315037800814025
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 7,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.1863127929973416
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "config_index": 8,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.196328319987515
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 0,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.19117589999223128
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 1,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.18774976299027912
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 2,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.08611120298155583
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 3,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.19425722799496725
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 4,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.19801575498422608
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 5,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.20099180898978375
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 6,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.11324673701892607
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 7,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.26585226799943484
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "config_index": 8,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.2989710840047337
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 0,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.11732487301924266
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 1,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.29759551701135933
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 2,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.2311552879982628
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 3,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.16682486099307425
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 4,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.27560901301330887
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 5,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.11441886800457723
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 6,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.2693721489922609
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 7,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.1757258479774464
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "config_index": 8,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.11773494200315326
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 0,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.12562598701333627
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 1,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.12246121998759918
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 2,
+    "bandwidth": 25.516143798828125,
+    "seconds": 0.0814711109851487
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 3,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.12364081901614554
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 4,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.12523925001733005
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 5,
+    "bandwidth": 51.03228759765625,
+    "seconds": 0.12925762200029567
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 6,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.07499351300066337
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 7,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.1696612819796428
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "config_index": 8,
+    "bandwidth": 102.0645751953125,
+    "seconds": 0.15713707299437374
+  }
+]
