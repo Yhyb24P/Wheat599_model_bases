@@ -1,0 +1,6 @@
+[
+  {
+    "error": "ValueError('Nonfinite outer metric')",
+    "folds_completed": 10
+  }
+]

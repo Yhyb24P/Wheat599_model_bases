@@ -1,0 +1,28 @@
+{
+  "config": {
+    "model": "wheatgp_rebuilt",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "wheatgp_config": "configs/wheatgp_nested.yaml",
+    "quantile_config": "configs/quantile_tabm.yaml",
+    "architecture_config": "configs/environment_tabm.yaml",
+    "huber_config": "configs/robust_icm.yaml",
+    "outer_seed": 555,
+    "validation_seed": 42,
+    "inner_base_seed": 42,
+    "device": "cuda",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.5
+  },
+  "hashes": {
+    "configs/wheatgp_rebuilt.yaml": "cbf807bc1a63c08874cbc42ca6726f28ad065cf4aff58a8a9c0736746cf9ba07",
+    "configs/wheatgp_nested.yaml": "6536a06c85ffad39a425636920f85e55926ca3f2a04d29c59cea99a650948b66",
+    "configs/quantile_tabm.yaml": "9deabe8095695f30c7aea2c6b0e0fb8b7fdeafc0f7f4ad57739817f9393cac69",
+    "configs/environment_tabm.yaml": "7aedf533bd8d9da70f1fc7c8ef452aaa2f91e71996712228b6441ee510df5424",
+    "configs/robust_icm.yaml": "331675cdcc16e1edafa0fe6cd9f75f5bd2f9d695e461b2f203d4d079b6398028",
+    "vendor/WheatGP/model/WheatGP_base.py": "840ac4cdbeadfef430b88b9cbdff6192e3fecb56ab41fe1bb5a653672af9bbc0",
+    "/tmp/wheat599-rebuilt-92c2005/src/wheat599/wheatgp_rebuilt.py": "df6286dfa59454847c905899e53db39b04a05e17be17ebee0c0d41a85df6f14d",
+    "/tmp/wheat599-rebuilt-92c2005/scripts/run_background_nested.py": "983204368919493f52662f7fce489d715f42f135c38656b793a2f92e5a24a9a4"
+  },
+  "git_commit": "92c200592736b153e5549cdda5b89c0216c0f362"
+}
