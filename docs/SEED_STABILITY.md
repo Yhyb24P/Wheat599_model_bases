@@ -10,4 +10,4 @@
 
 CWAGS 论文报告 Wheat599 四环境平均 PCC 0.5368，声明十折均值、固定随机种子、AdamW 与 400 epoch，但未在正文列出源码链接、实际折 ID 或完整选模信息；GitHub 仓库搜索 `CWAGS genomic` 未发现匹配仓库（2026-11-06）。因此暂不能忠实适配或作同协议排名；不以自行搭建的网络冒充作者实现。来源：[BMC Genomics](https://link.springer.com/article/10.1186/s12864-026-12980-9)。
 
-混合核研究使用标记和谱系关系矩阵，其单环境 S5 属于额外信息输入类别；论文同时报告不同交叉验证方案，不与现有仅标记模型的十折结果直接排名。项目 `wheat.A` 的材料及谱系含义须与论文具体输入核验后才能直接比较；本轮不训练该模型。来源：[Frontiers in Plant Science](https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1605202/full)。
+混合核研究使用标记和谱系关系矩阵，其单环境 S5 属于额外信息输入类别；论文同时报告不同交叉验证方案，不与现有仅标记模型的十折结果直接排名。本项目 `wheat.A` 已确认是谱系关系矩阵；它与该论文具体使用的矩阵及材料行序是否一致仍须核验。本轮不训练该模型。来源：[Frontiers in Plant Science](https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1605202/full)。
