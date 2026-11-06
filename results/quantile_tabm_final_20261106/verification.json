@@ -1,0 +1,19 @@
+{
+  "weights_verified": 80,
+  "weight_replay_max_absolute_difference": 0.0,
+  "seed_predictions": 4792,
+  "oof_rows": 2396,
+  "macro_max_absolute_difference": 2.220446049250313e-16,
+  "fold_pcc_wins": {
+    "quantile_vs_mse": 7,
+    "quantile_vs_huber": 4,
+    "fusion_vs_huber": 7,
+    "fusion_vs_quantile": 9
+  },
+  "environment_fold_pcc_wins": {
+    "quantile_vs_mse": 27,
+    "quantile_vs_huber": 18,
+    "fusion_vs_huber": 23,
+    "fusion_vs_quantile": 24
+  }
+}

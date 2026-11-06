@@ -1,0 +1,34 @@
+{
+  "artifacts": {
+    "oof.csv": {
+      "sha256": "3f9c675e428c9caa32a9886b7c164b73e69be0e3d17792bb6e32817fdfcf73d2",
+      "bytes": 259313
+    },
+    "seed_predictions.npz": {
+      "sha256": "8b0bd2174191e426898b22d636c3147660b04c7647fff34c427cbcd19ef37daa",
+      "bytes": 35699
+    },
+    "summary.json": {
+      "sha256": "b7f45f8b7eb3eba7908e9506e587509d0891540e6d7b977e8063c2967d6662fd",
+      "bytes": 31274
+    },
+    "fits.json": {
+      "sha256": "6bd1f88400328e0d666ae8e40c4acc42de84d2acaaa799bf14587ec77e3254b2",
+      "bytes": 25173
+    },
+    "verification.json": {
+      "sha256": "5e045d95390d5477a54d1d9e74f206630a69c2c80cc7b7859c748edfcbc8b787",
+      "bytes": 467
+    },
+    "provenance.json": {
+      "sha256": "81a29fefe855b2e7ddab1bb7dd6755601d33d9ce3769bdb718ec435112161828",
+      "bytes": 1124
+    }
+  },
+  "weights": {
+    "count": 80,
+    "stored_at": "omen:/home/hsy/git_files/Wheat599_model_bases/results/quantile_tabm_final_20261106/weights",
+    "sha256_source": "fits.json"
+  },
+  "data_and_weights_not_committed": true
+}

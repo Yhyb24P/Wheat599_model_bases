@@ -1,0 +1,23 @@
+{
+  "config": {
+    "model": "quantile_tabm_final",
+    "manifest": "results/quantile_tabm_final_manifest_20261106/manifest.json",
+    "manifest_sha256": "74f3f0a5212986fb244f1ff874fc6b90efc48f2aaf43653046e507e240b9a723",
+    "development_config": "configs/quantile_tabm.yaml",
+    "architecture_config": "configs/environment_tabm.yaml",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "huber_oof": "results/robust_icm_final_20261103/oof.csv",
+    "mse_oof": "results/independent_tabm_final_20261105/oof.csv",
+    "device": "cuda",
+    "gpu_memory_fraction": 0.5,
+    "cpu_threads": 2,
+    "expected_fits": 80,
+    "fusion_weight": 0.5
+  },
+  "manifest_sha256": "74f3f0a5212986fb244f1ff874fc6b90efc48f2aaf43653046e507e240b9a723",
+  "git_commit": "8b728b923cf4e85f8863233d87c8ceca5f8f34cf",
+  "runner_sha256": "1e002aa540583f5a2362fefaf00d0044f490c8e37fe3a5a5ef2068d3bbb504b9",
+  "implementation_sha256": "4fbf6b7c67236aeae06f4175ff6caeed8019c71fd76a558537a0186a34ba6102"
+}
