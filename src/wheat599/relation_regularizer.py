@@ -1,4 +1,4 @@
-"""Exact material-relation regularizer for standardized multi-environment predictions.
+"""Exact material-relation regularizer for multi-environment predictions.
 
 For fit materials the kernel is the standardized additive/RBF mixture used by
 ``kernel_baselines.kernels``.  With
@@ -12,7 +12,7 @@ the penalty is
     R = tr(B^{-1} (HM)^T (H K H + kappa I)^{-1} HM) / (n * environments).
 
 All solves use full Cholesky factorizations in float64 internally; no random-batch
-approximation is made, and the scalar is returned in the input dtype.  ``M`` is already on the standardized phenotype scale.  The function keeps
+approximation is made, and the scalar is returned in the input dtype.  ``M`` is on the same scale as the final point predictions.  The function keeps
 the autograd graph through ``M`` and does not change module modes or dropout;
 callers own deterministic evaluation and gradient retention.
 """

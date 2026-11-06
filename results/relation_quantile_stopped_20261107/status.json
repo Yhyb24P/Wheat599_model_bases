@@ -1,0 +1,10 @@
+{
+  "source_commit": "de936ea",
+  "status": "interrupted_for_prediction_scale_correction",
+  "reason": "Penalty used fold-standardized centers instead of the requested final prediction scale; no results are used.",
+  "completed_joint_trajectories": 28,
+  "planned_joint_trajectories": 180,
+  "complete_prediction_units": 4,
+  "original_recorded_runner_status": "failed: KeyboardInterrupt",
+  "artifact_location": "omen:/home/hsy/git_files/Wheat599_model_bases/results/relation_quantile_development_20261107"
+}

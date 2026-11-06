@@ -49,3 +49,25 @@ def test_relation_forward_uses_eval_mode_with_gradient(monkeypatch):
                 lambda m:(m-m.mean(0)).square().mean(),torch.device('cpu'))
     full=[v for v in events if v[0]==24]
     assert len(full)==12 and all(training is False and grad is True for _,training,grad in full)
+
+
+def test_relation_uses_final_prediction_scale(monkeypatch):
+    import wheat599.relation_quantile as module
+    original=module.build_model; full_outputs=[];checked=[]
+    def wrapped(*args,**kwargs):
+        model=original(*args,**kwargs)
+        def capture(m,inputs,output):
+            if len(inputs[0])==24:
+                full_outputs.append(m.inverse_y(output.mean(dim=(1,2))[:,None])[:,0])
+        model.register_forward_hook(capture)
+        return model
+    monkeypatch.setattr(module,'build_model',wrapped)
+    torch.set_num_threads(1);rng=np.random.default_rng(13)
+    x=rng.normal(size=(32,12)).astype('float32');y=(rng.normal(size=(32,4))*[2,3,4,5]+[10,20,30,40]).astype('float32')
+    c=dict(n_blocks=2,d_block=16,dropout=.1,k=2,learning_rate=.001,weight_decay=.001)
+    spec=dict(n_quantiles=5,quantile_min=.001,quantile_max=.999,training=dict(max_epochs=1,patience=2,batch_size=8,gradient_clip=5.,tie_tolerance=1e-12))
+    def relation(m):
+        torch.testing.assert_close(m,torch.stack(full_outputs[-4:],dim=1))
+        checked.append(True);return (m-m.mean(0)).square().mean()
+    train_joint(x[:24],y[:24],x[24:],y[24:],[c]*4,42,[0]*4,.1,spec,relation,torch.device('cpu'))
+    assert len(checked)==3

@@ -44,7 +44,7 @@ def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, se
                     losses.append(quantile_loss(models[e](x[batch]),targets[e][batch],levels))
                     rng[e]=(torch.get_rng_state(),torch.cuda.get_rng_state(device) if device.type=='cuda' else None)
                 for model in models:model.eval()
-                centers=torch.stack([model(x).mean(dim=(1,2)) for model in models],dim=1)
+                centers=torch.stack([model.inverse_y(model(x).mean(dim=(1,2))[:,None])[:,0] for model in models],dim=1)
                 penalty=relation(centers)
                 objective=torch.stack(losses).sum()+strength*penalty
                 if not torch.isfinite(objective):raise FloatingPointError('Nonfinite relation objective')
