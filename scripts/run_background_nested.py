@@ -163,6 +163,9 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
+    if cfg.get('model') == 'rfm_development':
+        from wheat599.rfm_development import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'quantile_tabm':
         from wheat599.quantile_tabm import run
         return run(cfg, args, Path(__file__))

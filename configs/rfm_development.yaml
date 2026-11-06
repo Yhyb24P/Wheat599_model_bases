@@ -1,0 +1,13 @@
+model: rfm_development
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+reference_source: results/joint_tabm_icm_development_20261106
+upstream_commit: 58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2
+bandwidth_multipliers: [0.5, 1.0, 2.0]
+ridge: [0.01, 0.1, 1.0]
+iterations: 5
+agop_batch_size: 32
+device: cuda
+gpu_memory_fraction: 0.25
+cpu_threads: 2
