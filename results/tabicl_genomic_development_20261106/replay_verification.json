@@ -1,0 +1,10 @@
+{
+  "fold": 0,
+  "inner": 0,
+  "environments": 4,
+  "max_absolute_difference": {
+    "official": 0.0,
+    "generic": 0.0,
+    "genetic": 0.0
+  }
+}
