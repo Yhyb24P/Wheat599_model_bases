@@ -1,0 +1,37 @@
+{
+  "config": {
+    "model": "joint_tabm_icm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "environment_config": "configs/environment_tabm.yaml",
+    "environment_selection": "results/environment_selection_development_20261105/selection.json",
+    "environment_predictions": "results/environment_tabm_development_20261105/predictions.csv",
+    "huber_source": "results/robust_icm_development_20261103",
+    "base_choices": "results/heterogeneous_icm_development_20261103/base_choices.json",
+    "seeds": [
+      42,
+      2026
+    ],
+    "device": "cuda",
+    "gpu_memory_fraction": 0.5,
+    "cpu_threads": 2,
+    "epochs": 500,
+    "patience": 50
+  },
+  "git_commit": "1c55f262abba2dc4402d062737be4c202df530ca",
+  "sha256": {
+    "/tmp/wheat599-joint-tabm-icm-1c55f26/src/wheat599/joint_tabm_icm_run.py": "4af51c243cbbb2891e140fc811febd35ac7ed8f7f691a958445b5db66a50f1db",
+    "/tmp/wheat599-joint-tabm-icm-1c55f26/src/wheat599/joint_tabm_icm.py": "07bbe0d7feae46f156052312cb994d0deaa0ab401a05aea70a7802c5585b22b0",
+    "/tmp/wheat599-joint-tabm-icm-1c55f26/src/wheat599/profiled_huber.py": "c9837f27d60d8c19c28e2624fb1a2a152992b503939004e8789d1ec10acf4c5f",
+    "/tmp/wheat599-joint-tabm-icm-1c55f26/scripts/run_background_nested.py": "deb11310cc32f1d66874b5dc3e7e6fd743f1c45d7ca5f544a5f6bd372ba47eeb",
+    "configs/joint_tabm_icm.yaml": "2803ce915653d0304241642a240a37894db9185c474dea00d8bdf0a67e29c602",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "configs/environment_tabm.yaml": "7aedf533bd8d9da70f1fc7c8ef452aaa2f91e71996712228b6441ee510df5424",
+    "results/environment_selection_development_20261105/selection.json": "259c84584ac01b5afd5172091a0780bff758351faca40764289a0c8396882066",
+    "results/heterogeneous_icm_development_20261103/base_choices.json": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+    "results/environment_tabm_development_20261105/predictions.csv": "9d45b905cd2eaaee0f8ed0f4e754efd0f3f323534cc2d8ffeba1f16c798b6ce7",
+    "results/robust_icm_development_20261103/selection.json": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304",
+    "results/robust_icm_development_20261103/optimization.json": "7a9f6997da537146cb3fc0f798fe7b84e66cbd2111ac4f34e2d879357d6a3b31"
+  }
+}
