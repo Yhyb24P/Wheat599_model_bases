@@ -9,7 +9,7 @@ import torch
 import yaml
 
 from wheat599.data import load, sha256_of
-from wheat599.wheatgp_nested import segments, validation_pcc
+from wheat599.wheatgp_nested import fit, segments, validation_pcc
 
 
 def replay(model_type, xf, yf, xq, epochs, cfg, device):
@@ -57,13 +57,16 @@ def run(cfg,args,runner):
         tr=np.array(fold['train_idx']);val=np.array(fold['val_idx']);dev=np.array(fold['dev_idx']);test=np.array(fold['test_idx'])
         a,training=replay(module.wheatGP_base,data.X[tr],data.Y[tr,e],data.X[val],epochs,chosen,device)
         score=validation_pcc(data.Y[val,e],a)
-        if abs(score-choice['pcc'])>1e-5:raise ValueError('Selection replay mismatch')
         b,refit=replay(module.wheatGP_base,data.X[dev],data.Y[dev,e],data.X[test],epochs,chosen,device)
         path=Path(cfg['outer_predictions'])/f'predictions_{f}.npz';paths.append(path)
         saved=np.load(path)['wheatgp'][:,e];difference=float(np.max(np.abs(b-saved)))
-        if difference>1e-6:raise ValueError('Refit replay mismatch')
+        plain,_,_=fit(module.wheatGP_base,data.X[dev].astype('float32'),data.Y[dev,e],
+                      data.X[test].astype('float32'),None,choice['learning_rate'],epochs,settings,device,select=False)
+        plain_difference=float(np.max(np.abs(plain-saved)))
         out.append({'fold':f,'environment':data.environments[e],'learning_rate':choice['learning_rate'],
-                    'epochs':epochs,'selection_validation_pcc':float(score),'refit_saved_prediction_max_abs':difference,
+                    'epochs':epochs,'selection_original_pcc':choice['pcc'],'selection_validation_pcc':float(score),
+                    'refit_saved_prediction_max_abs':difference,'plain_refit_saved_max_abs':plain_difference,
+                    'saved_unique':int(len(np.unique(saved))),'plain_refit_unique':int(len(np.unique(plain))),
                     'selected_training':training,'full_development_refit':refit})
     (args.out/'diagnostic.json').write_text(json.dumps({'cases':out,'test_labels_used':False,
         'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
