@@ -12,7 +12,9 @@ the penalty is
     R = tr(B^{-1} (HM)^T (H K H + kappa I)^{-1} HM) / (n * environments).
 
 All solves use full Cholesky factorizations in float64 internally; no random-batch
-approximation is made, and the scalar is returned in the input dtype.  ``M`` is on the same scale as the final point predictions.  The function keeps
+approximation is made, and the scalar is returned in the input dtype.  M and the
+curve predictions are on the raw target scale: only material centering is applied,
+because the center penalty in the active protocol is raw-scale.  ``M`` is on the same scale as the final point predictions.  The function keeps
 the autograd graph through ``M`` and does not change module modes or dropout;
 callers own deterministic evaluation and gradient retention.
 """
@@ -139,8 +141,8 @@ def relation_penalty(predictions, kernel, y_fit, *, eta=0.5, kappa=DEFAULT_KAPPA
 def make_relation(gram, y_fit, *, eta=0.5, kappa=DEFAULT_KAPPA, device='cpu'):
     """Cache fit-only K/B Cholesky factors and return a differentiable relation(M).
 
-    ``M`` must be a ``[n, environments]`` tensor on the same device; it is centered
-    on materials and may carry autograd history.  The returned closure performs
+    ``M`` must be a raw-scale ``[n, environments]`` tensor on the same device; it is
+    centered on materials (no standardization) and may carry autograd history.  The returned closure performs
     only solves, never a new factorization.
     """
     kernel = torch.as_tensor(gram, dtype=torch.float64, device=device)
@@ -191,6 +193,76 @@ def make_relation(gram, y_fit, *, eta=0.5, kappa=DEFAULT_KAPPA, device='cpu'):
     relation.kappa = kappa
     relation.eta = float(eta)
     return relation
+
+
+def make_relation_curve(gram, y_fit, *, eta=0.5, kappa=DEFAULT_KAPPA, device='cpu'):
+    """Cache fit factors and return C(predictions [n, environments, Q]).
+
+    Each quantile's raw-scale four-environment vector is centered on materials
+    without standardization and penalized exactly like ``make_relation``; the Q
+    penalties are averaged.  All quantiles share one
+    material/environment Cholesky factorization and one batched solve.
+    """
+    kernel = torch.as_tensor(gram, dtype=torch.float64, device=device)
+    if kernel.ndim != 2 or kernel.shape[0] != kernel.shape[1] \
+            or not torch.isfinite(kernel).all():
+        raise ValueError('gram must be a finite square material kernel')
+    if not torch.allclose(kernel, kernel.T, atol=1e-10, rtol=1e-10):
+        raise ValueError('gram must be symmetric')
+    materials = kernel.shape[0]
+    if materials < 2:
+        raise ValueError('At least two fit materials are required')
+    kappa = float(kappa)
+    if not np.isfinite(kappa) or kappa <= 0:
+        raise ValueError('kappa must be finite and positive')
+    y = torch.as_tensor(y_fit, dtype=torch.float64, device=device)
+    if y.ndim != 2 or y.shape[0] != materials or not torch.isfinite(y).all():
+        raise ValueError('y_fit must be a finite fit-by-environment matrix')
+    b_matrix = _task_covariance(y, torch.float64, torch.device(device), eta=eta)
+    environments = b_matrix.shape[0]
+    kernel_centered = kernel - kernel.mean(dim=0, keepdim=True) \
+        - kernel.mean(dim=1, keepdim=True) + kernel.mean()
+    system = kernel_centered + kappa * torch.eye(
+        materials, dtype=torch.float64, device=device)
+    try:
+        system_factor = torch.linalg.cholesky(system)
+        b_factor = torch.linalg.cholesky(b_matrix)
+    except RuntimeError as error:
+        raise ValueError('Cholesky factorization failed') from error
+
+    def curve(predictions):
+        if not torch.is_tensor(predictions):
+            predictions = torch.as_tensor(predictions, dtype=torch.float64,
+                                          device=device)
+        if not predictions.is_floating_point() or predictions.ndim != 3:
+            raise ValueError('C must be a floating [n, environments, Q] tensor')
+        if tuple(predictions.shape[:2]) != (materials, environments) \
+                or predictions.shape[2] < 1:
+            raise ValueError('C shape disagrees with the cached fit kernel')
+        if not torch.isfinite(predictions).all():
+            raise ValueError('C must be finite')
+        input_dtype = predictions.dtype
+        work = predictions.to(device=device, dtype=torch.float64)
+        centered = work - work.mean(dim=0, keepdim=True)
+        quantiles = centered.shape[2]
+        right = centered.permute(0, 2, 1).reshape(materials, quantiles * environments)
+        solved = torch.cholesky_solve(right, system_factor)
+        solved = solved.reshape(materials, quantiles, environments) \
+            .permute(1, 0, 2)
+        grams = torch.einsum('neq,qnf->qef', centered, solved)
+        b_batch = b_factor.unsqueeze(0).expand(quantiles, -1, -1)
+        solved_grams = torch.cholesky_solve(grams, b_batch)
+        traces = torch.diagonal(solved_grams, dim1=-2, dim2=-1).sum(dim=-1)
+        value = traces.mean() / (materials * environments)
+        if not torch.isfinite(value):
+            raise FloatingPointError('Nonfinite curve relation penalty')
+        return value.to(input_dtype)
+
+    curve.materials = materials
+    curve.environments = environments
+    curve.kappa = kappa
+    curve.eta = float(eta)
+    return curve
 
 
 def relation_regularizer(x_fit, y_fit, predictions, *, bandwidth, fraction,

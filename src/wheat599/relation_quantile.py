@@ -14,7 +14,7 @@ from wheat599.metrics import pcc, rmse, mae
 from wheat599.quantile_tabm import build_model, quantile_loss
 
 
-def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, settings, relation, device):
+def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, settings, relation, device, *, curve=False):
     """Fit four independent models with one shared full-fit relation penalty."""
     models=[];optimizers=[];rng=[];generators=[]
     x=torch.as_tensor(x_fit,dtype=torch.float32,device=device)
@@ -44,8 +44,11 @@ def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, se
                     losses.append(quantile_loss(models[e](x[batch]),targets[e][batch],levels))
                     rng[e]=(torch.get_rng_state(),torch.cuda.get_rng_state(device) if device.type=='cuda' else None)
                 for model in models:model.eval()
-                centers=torch.stack([model.inverse_y(model(x).mean(dim=(1,2))[:,None])[:,0] for model in models],dim=1)
-                penalty=relation(centers)
+                if curve:
+                    predictions=torch.stack([model.inverse_y(model(x).mean(dim=1)) for model in models],dim=1)
+                else:
+                    predictions=torch.stack([model.inverse_y(model(x).mean(dim=(1,2))[:,None])[:,0] for model in models],dim=1)
+                penalty=relation(predictions)
                 objective=torch.stack(losses).sum()+strength*penalty
                 if not torch.isfinite(objective):raise FloatingPointError('Nonfinite relation objective')
                 objective.backward()

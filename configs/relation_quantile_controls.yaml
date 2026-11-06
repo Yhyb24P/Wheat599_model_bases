@@ -1,0 +1,5 @@
+model: relation_quantile_controls
+original_config: configs/relation_quantile.yaml
+original_result: results/relation_quantile_development_20261107_v2
+strength: 10.0
+shuffle_seed: 20261107

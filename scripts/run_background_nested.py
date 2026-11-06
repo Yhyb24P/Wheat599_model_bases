@@ -163,6 +163,9 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
+    if cfg.get('model') == 'relation_quantile_controls':
+        from wheat599.relation_quantile_controls import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'relation_quantile':
         from wheat599.relation_quantile import run
         return run(cfg, args, Path(__file__))

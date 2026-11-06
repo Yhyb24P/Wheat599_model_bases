@@ -187,6 +187,99 @@ def test_make_relation_supports_eta_and_rejects_bad_m():
         relation(torch.full((8, 4), float('nan'), dtype=torch.float64))
 
 
+def test_curve_equals_average_of_per_quantile_relations():
+    _, y = data()
+    kernel = psd_kernel()
+    curve = regularizer.make_relation_curve(kernel, y, eta=0.5, kappa=0.1)
+    relation = regularizer.make_relation(kernel, y, eta=0.5, kappa=0.1)
+    predictions = torch.randn(8, 4, 5, dtype=torch.float64)
+    expected = torch.stack([
+        relation(predictions[:, :, q]) for q in range(5)]).mean()
+    torch.testing.assert_close(curve(predictions), expected, atol=1e-12, rtol=1e-12)
+
+
+def test_curve_all_quantiles_equal_reduces_to_center_penalty():
+    _, y = data()
+    kernel = psd_kernel()
+    curve = regularizer.make_relation_curve(kernel, y)
+    relation = regularizer.make_relation(kernel, y)
+    center = torch.randn(8, 4, dtype=torch.float64)
+    predictions = center[:, :, None].expand(8, 4, 9)
+    torch.testing.assert_close(
+        curve(predictions), relation(center), atol=1e-12, rtol=1e-12)
+
+
+def test_curve_penalizes_nonzero_quantile_spacing_and_caches():
+    _, y = data()
+    kernel = psd_kernel()
+    curve = regularizer.make_relation_curve(kernel, y)
+    center = torch.randn(8, 4, dtype=torch.float64)
+    relation = regularizer.make_relation(kernel, y)
+    center_penalty = relation(center)
+    spacing = torch.linspace(-0.5, 0.5, 7, dtype=torch.float64)
+    material = torch.linspace(-1.0, 1.0, 8, dtype=torch.float64)
+    predictions = center[:, :, None] + spacing[None, None, :] * material[:, None, None]
+    assert float(curve(predictions)) > float(center_penalty)
+
+
+def test_curve_gradient_scales_like_a_quantile_average():
+    _, y = data()
+    kernel = psd_kernel()
+    curve = regularizer.make_relation_curve(kernel, y)
+    center = torch.randn(8, 4, dtype=torch.float64)
+    predictions = center[:, :, None].expand(8, 4, 6).clone().requires_grad_(True)
+    value = curve(predictions)
+    value.backward()
+    gradient = predictions.grad
+    reference = gradient[:, :, 0]
+    for quantile in range(1, 6):
+        torch.testing.assert_close(gradient[:, :, quantile], reference,
+                                   atol=1e-12, rtol=1e-12)
+
+
+def test_curve_gradient_equals_center_gradient_over_quantiles_and_scale():
+    _, y = data()
+    kernel = psd_kernel()
+    curve = regularizer.make_relation_curve(kernel, y)
+    relation = regularizer.make_relation(kernel, y)
+    raw_center = torch.randn(8, 4, dtype=torch.float64, requires_grad=True)
+    center_penalty = relation(raw_center)
+    center_penalty.backward()
+    center_gradient = raw_center.grad.clone()
+
+    raw_curve = raw_center.detach()[:, :, None].expand(8, 4, 6).clone().requires_grad_(True)
+    curve(raw_curve).backward()
+    expected = center_gradient / 6
+    expected = expected[:, :, None].expand(8, 4, 6)
+    torch.testing.assert_close(raw_curve.grad, expected, atol=1e-12, rtol=1e-12)
+
+
+def test_curve_float32_and_cached_factorization(monkeypatch):
+    _, y = data()
+    kernel = psd_kernel()
+    curve = regularizer.make_relation_curve(kernel, y)
+    predictions = torch.randn(8, 4, 5, dtype=torch.float32, requires_grad=True)
+    value = curve(predictions)
+    assert value.dtype == torch.float32 and torch.isfinite(value)
+    value.backward()
+    assert predictions.grad is not None and torch.isfinite(predictions.grad).all()
+
+    def forbidden(*args, **kwargs):
+        raise AssertionError('curve refactorized a matrix')
+
+    monkeypatch.setattr(torch.linalg, 'cholesky', forbidden)
+    assert torch.isfinite(curve(predictions.detach()))
+
+
+def test_curve_rejects_bad_shape_and_nan():
+    _, y = data()
+    curve = regularizer.make_relation_curve(psd_kernel(), y)
+    with pytest.raises(ValueError, match='shape'):
+        curve(torch.randn(8, 3, 5, dtype=torch.float64))
+    with pytest.raises(ValueError, match='finite'):
+        curve(torch.full((8, 4, 5), float('nan'), dtype=torch.float64))
+
+
 def test_invalid_inputs_are_rejected():
     _, y = data()
     kernel = psd_kernel()
