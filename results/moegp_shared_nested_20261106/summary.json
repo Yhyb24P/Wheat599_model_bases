@@ -1,0 +1,24 @@
+{
+ "phase": "dev",
+ "n_units": 40,
+ "n_valid": 40,
+ "n_failures": 0,
+ "complete": true,
+ "selection_counts": {
+  "B2_dropout0p5": 2,
+  "B4_hidden1024_512": 30,
+  "B5_experts20": 5,
+  "B3_experts10": 3
+ },
+ "inner_pcc": {
+  "mean": 0.4800217441263839,
+  "sd_ddof1": 0.06053189931659137
+ },
+ "refit_epochs": {
+  "median": 21.5,
+  "min": 3,
+  "max": 80
+ },
+ "weights_saved": false,
+ "test_contact": "none"
+}
