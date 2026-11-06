@@ -163,6 +163,12 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
+    if cfg.get('model') == 'mean_quantile':
+        from wheat599.mean_quantile import run
+        return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'fusion_reselect':
+        from wheat599.fusion_reselect import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'multihead_mse':
         from wheat599.multihead_mse import run
         return run(cfg, args, Path(__file__))
