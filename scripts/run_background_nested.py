@@ -163,6 +163,9 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
+    if cfg.get('model') == 'joint_tabm_icm':
+        from wheat599.joint_tabm_icm_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'robust_icm':
         from wheat599.robust_icm import run
         return run(cfg, args, Path(__file__))

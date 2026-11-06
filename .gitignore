@@ -30,6 +30,9 @@ results/grouped_kernel_*/metadata.json
 results/grouped_weights_*/diagnostics.json
 results/mulphe_reevaluation_*/predictions.csv
 results/mulphe_reevaluation_*/development_predictions.csv
+results/environment_tabm_development_20261105/predictions.csv
+results/joint_tabm_icm_*/predictions_*.npz
+results/joint_tabm_icm_*/references_*.npz
 
 # 本地临时文件
 临时文档/

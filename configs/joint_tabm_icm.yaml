@@ -1,0 +1,15 @@
+model: joint_tabm_icm
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+environment_config: configs/environment_tabm.yaml
+environment_selection: results/environment_selection_development_20261105/selection.json
+environment_predictions: results/environment_tabm_development_20261105/predictions.csv
+huber_source: results/robust_icm_development_20261103
+base_choices: results/heterogeneous_icm_development_20261103/base_choices.json
+seeds: [42, 2026]
+device: cuda
+gpu_memory_fraction: 0.5
+cpu_threads: 2
+epochs: 500
+patience: 50
