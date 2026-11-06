@@ -1,0 +1,42 @@
+{
+  "records": 2160,
+  "quantile_replays": 240,
+  "max_replay_error": 0.0,
+  "verified_selection_count": 40,
+  "macro_pcc": {
+    "mse99": 0.49183087049864793,
+    "mse99_quantile_configs": 0.4877800433185616,
+    "quantile": 0.49456543211105625,
+    "mse1": 0.49187397138978695,
+    "huber": 0.48108262166614557,
+    "mse1_huber": 0.4945970356271815
+  },
+  "fold_wins": {
+    "quantile_vs_mse99": 8,
+    "quantile_vs_matched_mse99": 10,
+    "mse99_vs_mse1": 4
+  },
+  "telemetry": {
+    "quantile_selected": {
+      "trajectories": 240,
+      "steps": 24219,
+      "clipped_steps": 12745,
+      "clipped_fraction": 0.5262397291382799,
+      "mean_gradient_norm": 6.325405044773026
+    },
+    "mse99_quantile_configs": {
+      "trajectories": 240,
+      "steps": 19023,
+      "clipped_steps": 16370,
+      "clipped_fraction": 0.860537244388372,
+      "mean_gradient_norm": 17.45983465724404
+    },
+    "mse99_selected": {
+      "trajectories": 240,
+      "steps": 17262,
+      "clipped_steps": 14851,
+      "clipped_fraction": 0.8603290464604333,
+      "mean_gradient_norm": 18.395692562562484
+    }
+  }
+}

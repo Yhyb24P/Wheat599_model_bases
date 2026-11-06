@@ -1,6 +1,6 @@
 # Research Plan — Wheat599 FT-Transformer 评价
 
-**现役主候选（2026-11-06）：** 四独立分位数 TabM 与 Huber ICM 的预固定等权融合，在 Wheat599 同协议外层宏 PCC 0.526506；单独分位数 TabM 为 0.518829、Huber 为 0.521745。开发层的 99 输出 MSE 对照按 [协议](MULTIHEAD_MSE.md)执行，冻结的主候选不变。外层证据及其已多轮使用划分的限制见 [RESULTS](RESULTS.md)。
+**现役主候选（2026-11-06）：** 四独立分位数 TabM 与 Huber ICM 的预固定等权融合，在 Wheat599 同协议外层宏 PCC 0.526506；单独分位数 TabM 为 0.518829、Huber 为 0.521745。开发层 99 输出 MSE 对照已完成，冻结的主候选不变；对照见 [协议](MULTIHEAD_MSE.md)。外层证据及其已多轮使用划分的限制见 [RESULTS](RESULTS.md)。
 
 以下为历史阶段记录，现役状态以上方和 RESULTS 为准。
 
