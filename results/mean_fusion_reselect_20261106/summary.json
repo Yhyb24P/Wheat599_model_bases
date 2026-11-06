@@ -1,0 +1,694 @@
+{
+  "macro": {
+    "original": {
+      "pcc": 0.4956387549270816,
+      "rmse": 0.8683590006203922,
+      "mae": 0.6694660594274845
+    },
+    "fusion_selected": {
+      "pcc": 0.4957779912320688,
+      "rmse": 0.8683096744341265,
+      "mae": 0.6695153233117355
+    }
+  },
+  "folds": [
+    {
+      "fold": 0,
+      "original": [
+        7,
+        7,
+        1,
+        5
+      ],
+      "selected": [
+        7,
+        7,
+        1,
+        5
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5674487487143325,
+            0.8334665188511976,
+            0.6566937612029488
+          ],
+          [
+            0.5286422686066131,
+            0.8452340681232139,
+            0.6416396157417615
+          ],
+          [
+            0.422466469526435,
+            0.9250357470817138,
+            0.7098547904120731
+          ],
+          [
+            0.5061198710672493,
+            0.871550527873523,
+            0.6743329381486841
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5674487487143325,
+            0.8334665188511976,
+            0.6566937612029488
+          ],
+          [
+            0.5286422686066131,
+            0.8452340681232139,
+            0.6416396157417615
+          ],
+          [
+            0.422466469526435,
+            0.9250357470817138,
+            0.7098547904120731
+          ],
+          [
+            0.5061198710672493,
+            0.871550527873523,
+            0.6743329381486841
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 1,
+      "original": [
+        7,
+        1,
+        3,
+        7
+      ],
+      "selected": [
+        7,
+        1,
+        3,
+        7
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.590732417321887,
+            0.8158261587247696,
+            0.6414177665445528
+          ],
+          [
+            0.49339397234974064,
+            0.8762156508649439,
+            0.6625140812756296
+          ],
+          [
+            0.4273596611423804,
+            0.9089895277108045,
+            0.6972105584892897
+          ],
+          [
+            0.5285571411387724,
+            0.8581180458046775,
+            0.6586587484370173
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.590732417321887,
+            0.8158261587247696,
+            0.6414177665445528
+          ],
+          [
+            0.49339397234974064,
+            0.8762156508649439,
+            0.6625140812756296
+          ],
+          [
+            0.4273596611423804,
+            0.9089895277108045,
+            0.6972105584892897
+          ],
+          [
+            0.5285571411387724,
+            0.8581180458046775,
+            0.6586587484370173
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 2,
+      "original": [
+        1,
+        1,
+        1,
+        5
+      ],
+      "selected": [
+        2,
+        5,
+        1,
+        5
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5903324082347781,
+            0.8175646437085348,
+            0.6540108599010505
+          ],
+          [
+            0.48192079810849514,
+            0.8736353961356323,
+            0.6669537628281406
+          ],
+          [
+            0.41705776696413377,
+            0.9226217195888383,
+            0.7086225867720479
+          ],
+          [
+            0.5043062851281069,
+            0.8693853043178894,
+            0.6628442042204212
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.590529166577133,
+            0.8167177292764434,
+            0.6505036236494851
+          ],
+          [
+            0.4826063084049618,
+            0.8772319502050845,
+            0.6720149554895188
+          ],
+          [
+            0.41705776696413377,
+            0.9226217195888383,
+            0.7086225867720479
+          ],
+          [
+            0.5043062851281069,
+            0.8693853043178894,
+            0.6628442042204212
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 3,
+      "original": [
+        2,
+        5,
+        1,
+        7
+      ],
+      "selected": [
+        2,
+        5,
+        1,
+        7
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5725251090986238,
+            0.8275664017867704,
+            0.6517471439971031
+          ],
+          [
+            0.5245011557777066,
+            0.8658185014368588,
+            0.6621219643397103
+          ],
+          [
+            0.43994807498067745,
+            0.9081754318157209,
+            0.7024901933423471
+          ],
+          [
+            0.49828542996713043,
+            0.8675286378278017,
+            0.6818341856084381
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5725251090986238,
+            0.8275664017867704,
+            0.6517471439971031
+          ],
+          [
+            0.5245011557777066,
+            0.8658185014368588,
+            0.6621219643397103
+          ],
+          [
+            0.43994807498067745,
+            0.9081754318157209,
+            0.7024901933423471
+          ],
+          [
+            0.49828542996713043,
+            0.8675286378278017,
+            0.6818341856084381
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 4,
+      "original": [
+        7,
+        6,
+        1,
+        5
+      ],
+      "selected": [
+        7,
+        6,
+        1,
+        5
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5459333060931818,
+            0.8165758187270429,
+            0.6476961519802326
+          ],
+          [
+            0.48699010621253475,
+            0.8820187914445355,
+            0.6712968470436387
+          ],
+          [
+            0.4019977662045988,
+            0.9282074972672536,
+            0.7129538827281842
+          ],
+          [
+            0.5021022964703268,
+            0.8710476399560859,
+            0.6686841998167021
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5459333060931818,
+            0.8165758187270429,
+            0.6476961519802326
+          ],
+          [
+            0.48699010621253475,
+            0.8820187914445355,
+            0.6712968470436387
+          ],
+          [
+            0.4019977662045988,
+            0.9282074972672536,
+            0.7129538827281842
+          ],
+          [
+            0.5021022964703268,
+            0.8710476399560859,
+            0.6686841998167021
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 5,
+      "original": [
+        7,
+        0,
+        1,
+        6
+      ],
+      "selected": [
+        7,
+        6,
+        2,
+        6
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5671816476350613,
+            0.8290719699179842,
+            0.654991174421311
+          ],
+          [
+            0.4683190879641142,
+            0.8739956297925985,
+            0.6717657853108587
+          ],
+          [
+            0.38848426496119975,
+            0.9059280577660215,
+            0.7023628368264626
+          ],
+          [
+            0.48211094755002765,
+            0.882793765386987,
+            0.6757020392352416
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5671816476350613,
+            0.8290719699179842,
+            0.654991174421311
+          ],
+          [
+            0.47138495907414546,
+            0.874125144476189,
+            0.6715032189009693
+          ],
+          [
+            0.3896607724520329,
+            0.9017014598635625,
+            0.7008815083275053
+          ],
+          [
+            0.48211094755002765,
+            0.882793765386987,
+            0.6757020392352416
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 6,
+      "original": [
+        0,
+        6,
+        1,
+        0
+      ],
+      "selected": [
+        0,
+        6,
+        1,
+        0
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5716584111215671,
+            0.8165516674692004,
+            0.6448021962971807
+          ],
+          [
+            0.5103432087872948,
+            0.848949570693518,
+            0.6436396426205496
+          ],
+          [
+            0.43232760754942196,
+            0.8967792600788318,
+            0.6810820289068821
+          ],
+          [
+            0.5350792909979284,
+            0.8341746611409705,
+            0.6354426359395273
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5716584111215671,
+            0.8165516674692004,
+            0.6448021962971807
+          ],
+          [
+            0.5103432087872948,
+            0.848949570693518,
+            0.6436396426205496
+          ],
+          [
+            0.43232760754942196,
+            0.8967792600788318,
+            0.6810820289068821
+          ],
+          [
+            0.5350792909979284,
+            0.8341746611409705,
+            0.6354426359395273
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 7,
+      "original": [
+        7,
+        7,
+        1,
+        5
+      ],
+      "selected": [
+        7,
+        7,
+        1,
+        5
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.545820204743888,
+            0.8514007731755591,
+            0.660411930041603
+          ],
+          [
+            0.4629263602155496,
+            0.8780542602341099,
+            0.6559846673498168
+          ],
+          [
+            0.3957404394450405,
+            0.8934269131734051,
+            0.6925251369021844
+          ],
+          [
+            0.514356253385956,
+            0.8574757906839684,
+            0.6584464485027048
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.545820204743888,
+            0.8514007731755591,
+            0.660411930041603
+          ],
+          [
+            0.4629263602155496,
+            0.8780542602341099,
+            0.6559846673498168
+          ],
+          [
+            0.3957404394450405,
+            0.8934269131734051,
+            0.6925251369021844
+          ],
+          [
+            0.514356253385956,
+            0.8574757906839684,
+            0.6584464485027048
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 8,
+      "original": [
+        7,
+        7,
+        1,
+        7
+      ],
+      "selected": [
+        7,
+        1,
+        1,
+        7
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5622601561255932,
+            0.8294558867153836,
+            0.6494752100371362
+          ],
+          [
+            0.48840208559818743,
+            0.870931110847566,
+            0.6588141039541059
+          ],
+          [
+            0.4130200296057415,
+            0.9157476991460536,
+            0.6961095179726465
+          ],
+          [
+            0.48161704938316463,
+            0.8828226394054491,
+            0.6808487289618257
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5622601561255932,
+            0.8294558867153836,
+            0.6494752100371362
+          ],
+          [
+            0.4888103442897231,
+            0.8718425599959022,
+            0.660114039744995
+          ],
+          [
+            0.4130200296057415,
+            0.9157476991460536,
+            0.6961095179726465
+          ],
+          [
+            0.48161704938316463,
+            0.8828226394054491,
+            0.6808487289618257
+          ]
+        ]
+      }
+    },
+    {
+      "fold": 9,
+      "original": [
+        5,
+        5,
+        0,
+        7
+      ],
+      "selected": [
+        7,
+        5,
+        0,
+        7
+      ],
+      "metrics": {
+        "original": [
+          [
+            0.5442209579214258,
+            0.8280189124125291,
+            0.6462550979929387
+          ],
+          [
+            0.49958221247844925,
+            0.8822676808047899,
+            0.6717727107705515
+          ],
+          [
+            0.4017319982564069,
+            0.923052668684266,
+            0.7065357818641518
+          ],
+          [
+            0.5297469302495444,
+            0.8488790782387022,
+            0.6580964603617305
+          ]
+        ],
+        "fusion_selected": [
+          [
+            0.5442575041896918,
+            0.8264818593950731,
+            0.6471156560711192
+          ],
+          [
+            0.49958221247844925,
+            0.8822676808047899,
+            0.6717727107705515
+          ],
+          [
+            0.4017319982564069,
+            0.923052668684266,
+            0.7065357818641518
+          ],
+          [
+            0.5297469302495444,
+            0.8488790782387022,
+            0.6580964603617305
+          ]
+        ]
+      }
+    }
+  ],
+  "sha256": {
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/mean_quantile_development_20261106/summary.json": "bfba9c76f2e8b99c80ee51d2a257c0b79084e4f589625c8933eaecee80433449",
+    "results/mean_quantile_development_20261106/trajectories.json": "2540c17ffeb345e8e7eabdd06b1621b1809fb2775567266a8d3a474202b420d7",
+    "/tmp/wheat599-meanq-93aec94/src/wheat599/fusion_reselect.py": "852690159a1e6915c18030b712798c1f560225d26280cbd7caa7fa297f5e2338",
+    "/tmp/wheat599-meanq-93aec94/scripts/run_background_nested.py": "a11cebc950bb8f6ee84cf3043765dd7e103123dd5b456a85f201a27d950a855d",
+    "configs/mean_fusion_reselect.yaml": "9430c1bdb819f62eccb3ced2c0f79ff056635cf672d60a52d6ac0d9f88d55bdd",
+    "results/mean_quantile_development_20261106/predictions_0_0.npz": "97fa0d391bfbb3ce3cba10dc8a36af67e3676737286c4a6dbca54df3c41660ab",
+    "results/mean_quantile_development_20261106/predictions_0_1.npz": "777e51cd7072f3a4374c3c6b9e9a5ece685896115eb233ca508f6fad4a5507ed",
+    "results/mean_quantile_development_20261106/predictions_0_2.npz": "7cbd26f625c054e328082593ea3420f1ee19db1b47143e51a82cf1f913e0313c",
+    "results/mean_quantile_development_20261106/predictions_1_0.npz": "934787a8f1c035aefca447b121f464b7e1bccdf9958bdf667a51799a693b74e5",
+    "results/mean_quantile_development_20261106/predictions_1_1.npz": "247d51743ec600ef4d10a0e2844b1a32d9cc6091bf850e36207450adad77cc52",
+    "results/mean_quantile_development_20261106/predictions_1_2.npz": "6e1fecb187b73288c217b856321eb7a83d73aafff8073db675312844dce9cf9d",
+    "results/mean_quantile_development_20261106/predictions_2_0.npz": "fd69bf8c2cb6dd745e3a92231d3c66ea3e2669bea3de7a07c1f51af708d8e9f3",
+    "results/mean_quantile_development_20261106/predictions_2_1.npz": "dbda9a98ec34fc513f4178a748fc7d27c171d098462d911d8dd59b88aa736f9e",
+    "results/mean_quantile_development_20261106/predictions_2_2.npz": "05cc32240c7eda0c0b2c350781d472a27e8fb00c72be02ea4aa36214d6e7a928",
+    "results/mean_quantile_development_20261106/predictions_3_0.npz": "b51e1d63a8e8ab5f9de896ad173a5a5dc809148bd7aa8fe80ea46668561e5864",
+    "results/mean_quantile_development_20261106/predictions_3_1.npz": "0ad1fc3746e328af686a089c60c270e37f8a5b912704d12b9400ab3e1cf02791",
+    "results/mean_quantile_development_20261106/predictions_3_2.npz": "32aa704faeec257e92801ea8f9c13b62f1e66889a93d78219cf725ed7cd5975e",
+    "results/mean_quantile_development_20261106/predictions_4_0.npz": "78f31281a5f2681eeab203af22d38370339c15b0ada02cad2db2062130b49b21",
+    "results/mean_quantile_development_20261106/predictions_4_1.npz": "102871533a16d2e5ec76de86c204ef1d534865c33a43d1221d5c0d1f85d1b969",
+    "results/mean_quantile_development_20261106/predictions_4_2.npz": "7880077ebadd07822b959023d51582000617056866fdc8b103778e1daeb953ff",
+    "results/mean_quantile_development_20261106/predictions_5_0.npz": "e27b3e2bca504ad643b8ff2d7a0aff8016b231e3c8a8d4e6eee578d11f13ec61",
+    "results/mean_quantile_development_20261106/predictions_5_1.npz": "d7473c9ca09b0dd476ba7c8b456d0038f700595029bd543d400fb26dd5a3a3eb",
+    "results/mean_quantile_development_20261106/predictions_5_2.npz": "b3a5c2002b7ebefdb18d1552a840498a15fc0a96ccbe8b1038a353e585b779d3",
+    "results/mean_quantile_development_20261106/predictions_6_0.npz": "fbba7fe64fde777c806afdaaecf0b6a0e87f024360ca46ebbeba41ead574ce84",
+    "results/mean_quantile_development_20261106/predictions_6_1.npz": "7ea146deb004d545ebdc97c7255e37c873f38c83a2c14ad818d69569fdea9202",
+    "results/mean_quantile_development_20261106/predictions_6_2.npz": "af4cbb84c515176c97710d22f5244226351a29227545af75c0fd6ac0191d45d8",
+    "results/mean_quantile_development_20261106/predictions_7_0.npz": "466f9376894d20efdc6d8593b2d9ce64d7b71065a4d4f70ea2f4cc8b13413f4e",
+    "results/mean_quantile_development_20261106/predictions_7_1.npz": "e94107b1fe7114ae5da68576d23731b2558985d356e45bc7c8c2e250d5cf144d",
+    "results/mean_quantile_development_20261106/predictions_7_2.npz": "b6f116db886d3102fccbc2e7972c3fd7957075ec593fede21a64841ed4402ea9",
+    "results/mean_quantile_development_20261106/predictions_8_0.npz": "25943f8bf78c2f99459b7dd3505b4338300bd14a9c46c44be37149a7b50634e0",
+    "results/mean_quantile_development_20261106/predictions_8_1.npz": "54bfa4c0f4526302115b00b3b5eec1f10f1d3baae224a9569f57c4e4cada765b",
+    "results/mean_quantile_development_20261106/predictions_8_2.npz": "5a4cd97dffaf27f37d4adf1d37b76474cd7a16de24d5801faf82fd09d86ccb8f",
+    "results/mean_quantile_development_20261106/predictions_9_0.npz": "a9b87adb0f7481bb509d5f366ae977b0d0a9fec480edb92921e54fb664df53a8",
+    "results/mean_quantile_development_20261106/predictions_9_1.npz": "84b47f080c11e606b476d7ca9a6592fe31cf39dc90a1397ae099333d64903e4a",
+    "results/mean_quantile_development_20261106/predictions_9_2.npz": "3579ee68e035e546cde01fcc8f7172fad41d9d54a4d2cb4982d7faee4a789c2e",
+    "results/joint_tabm_icm_development_20261106/references_0_0.npz": "15d80b3cc24cef96208ce8c29eaa8daec7453d2eb96fe3f4893dd1338a4068ff",
+    "results/joint_tabm_icm_development_20261106/references_0_1.npz": "d2f96bf75e33b1210425e0c3606ee895dd19113592f2ad317ac8f5fc3b8d4d9f",
+    "results/joint_tabm_icm_development_20261106/references_0_2.npz": "a9ce2f73449e5d6114927039d6b1ebbaddd575c0c1fb4bc044a1bc0ba46283d5",
+    "results/joint_tabm_icm_development_20261106/references_1_0.npz": "96da464ee6853f14000772ea042555cdd1a5376a22aaf56bcc15c5daf43b8474",
+    "results/joint_tabm_icm_development_20261106/references_1_1.npz": "ec1f8507cf26f4c4d5d5037464a4578fe3ca9723ffadebfac2f4766143f0a187",
+    "results/joint_tabm_icm_development_20261106/references_1_2.npz": "b9bcc641cd0d4df94f9b19365a15035a56d37ae9de70a3d69ec14f8428d9d0b5",
+    "results/joint_tabm_icm_development_20261106/references_2_0.npz": "363a1e27f17c6471c4761447e8d0194a7acc443715dd6b0a832af2f9ec939d78",
+    "results/joint_tabm_icm_development_20261106/references_2_1.npz": "c513da2dfd76d7299cd46e6d949297a474fb13644355c98ad30e66090fe18881",
+    "results/joint_tabm_icm_development_20261106/references_2_2.npz": "51a7ddde2ef1ff60749388722c9467cf32df1f844bedf7fb8ea7ec53d35cf63b",
+    "results/joint_tabm_icm_development_20261106/references_3_0.npz": "aa6db27d00f624a8a32f470b7a04111adaeb38871c7e211b1bdeea3ac031d8c4",
+    "results/joint_tabm_icm_development_20261106/references_3_1.npz": "8926064c95c6607e77e755f13a22a5e9edc0aa186135a77e09dc6f9e961cf545",
+    "results/joint_tabm_icm_development_20261106/references_3_2.npz": "9b5b24205e5edd148b9f7465b72622b75119508de0757d6e4e4750c0d7566e43",
+    "results/joint_tabm_icm_development_20261106/references_4_0.npz": "b868985e4b3dd8acc7c0dd8a815f6c09127d4698ba91b755573d11f9c3e14076",
+    "results/joint_tabm_icm_development_20261106/references_4_1.npz": "bae345b69da98ac58357db8ba8b0b64d02946a666b7b4b0c26e46f5857b8c5cc",
+    "results/joint_tabm_icm_development_20261106/references_4_2.npz": "815fd68668b05d7ba9daf5a27e9a1775fcec1e7ec91e2cef0033b3dad5a76762",
+    "results/joint_tabm_icm_development_20261106/references_5_0.npz": "31fe1579bab07aac0708f6b39f97cfd8da84e704362b1031ea54561db8e7908d",
+    "results/joint_tabm_icm_development_20261106/references_5_1.npz": "898f28a42e6fe48a6c1b83e757d540b053d6e5a4fb48b12272b5d7b8606df6a9",
+    "results/joint_tabm_icm_development_20261106/references_5_2.npz": "1c61f66074f4b6bc0c45382d53f55d24205e3ddaf20a3d3958ab7d47eacb410d",
+    "results/joint_tabm_icm_development_20261106/references_6_0.npz": "b0d3f88792702a954b411d8c65d82ec639df68e98bfea2551f8f67971d6e3976",
+    "results/joint_tabm_icm_development_20261106/references_6_1.npz": "c84a3d5c5644e3552c346559758cd3ec9f295f6ecf39753c0dab8c97c9ea622f",
+    "results/joint_tabm_icm_development_20261106/references_6_2.npz": "c487cbb8b45203d0d8b62e55082bac142fc13f3f8680b8785989deb951053046",
+    "results/joint_tabm_icm_development_20261106/references_7_0.npz": "2e0a987b1d10007ea681c70efbc70b9362445f32e6e297a58c17393286dd03b8",
+    "results/joint_tabm_icm_development_20261106/references_7_1.npz": "2f57dba8b44d59eff663a089200a18ecc05b1b442b4df2640ec6d82ccc48f6ef",
+    "results/joint_tabm_icm_development_20261106/references_7_2.npz": "c167170bbf8fd7126a2420e026ec73a2e91519de5914fba74f8b6cef1b90d84d",
+    "results/joint_tabm_icm_development_20261106/references_8_0.npz": "5f34151be91f24418510cb56e878620b243ee424b9821cc777b391c9fc4a6ef7",
+    "results/joint_tabm_icm_development_20261106/references_8_1.npz": "a7697c5e0d97af0d55a653a536af0f4f978b18b36a8e9817e6422cd2c228c2e5",
+    "results/joint_tabm_icm_development_20261106/references_8_2.npz": "24a4a7430c2e148ddc8cd074697f29ae3cb18425d065c8cda5d8fd046975488a",
+    "results/joint_tabm_icm_development_20261106/references_9_0.npz": "0955de0adb808fd4230aebebfcdfb0b6dd4a8c8e5fe81b585b114f4a029ab22c",
+    "results/joint_tabm_icm_development_20261106/references_9_1.npz": "574fd48f1d51e7c16da8fa577bd0e09bfe15aa110f0b169518913b2e75ed8ac7",
+    "results/joint_tabm_icm_development_20261106/references_9_2.npz": "09c1bd751637fae0fdf31317ad5472aa1057a3d3e58efc241cf891f4e4427b1b"
+  }
+}

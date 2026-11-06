@@ -1,0 +1,11 @@
+{
+  "model_source_commit": "93aec94",
+  "sha256": {
+    "src/wheat599/mean_quantile.py": "5fe82fe7362ab7de457bf76687fbedd594f733158c70362b30b69bafbd9ac4df",
+    "configs/mean_quantile.yaml": "11696543a8172272f851cd30452b342f91dbbe4f871f1a66313be9164ef160a2",
+    "results/mean_quantile_development_20261106/summary.json": "bfba9c76f2e8b99c80ee51d2a257c0b79084e4f589625c8933eaecee80433449",
+    "results/mean_quantile_development_20261106/trajectories.json": "2540c17ffeb345e8e7eabdd06b1621b1809fb2775567266a8d3a474202b420d7",
+    "results/mean_quantile_development_20261106/execution_status.json": "3a05c54b53d2e67100eb95a4c8128dc0c97fe7e999d9e3b43324839735a80208"
+  },
+  "comment": "Mean-supervision source was frozen in the recorded Git commit; base runner provenance is saved separately."
+}
