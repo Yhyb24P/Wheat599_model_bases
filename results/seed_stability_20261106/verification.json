@@ -1,0 +1,17 @@
+{
+  "verified_fold_environment_seed_sets": 200,
+  "metrics_match": true,
+  "prediction_sha256": {
+    "results/seed_stability_20261106/predictions_0.npz": "37c3df6fdb0752f35ad043db4279c9359249dafed2958f10bb7aefc6939b81e7",
+    "results/seed_stability_20261106/predictions_1.npz": "c533486fa4e8dbdf28e4e4d26088e81d38b305bf49b87504721d3f31ae2db032",
+    "results/seed_stability_20261106/predictions_2.npz": "2d7332567c12ccce8d56906b0ddf7cd8ef9827ead5e5bc66bca4d41e13a2e5f0",
+    "results/seed_stability_20261106/predictions_3.npz": "356f2bcbfe038c83bd76275b6086e3f529ec6135fd1b257c8afff7e07cf78bda",
+    "results/seed_stability_20261106/predictions_4.npz": "ff7aa1798e4fa9585cfa2c3e513dbad893d245673fa949a59a0b2e403cd74d44",
+    "results/seed_stability_20261106/predictions_5.npz": "ffe9efdc399b940fcbf97e58d38ad344d9f7877dd0061a25eb8a6a2dc7c0f532",
+    "results/seed_stability_20261106/predictions_6.npz": "b9513535ca92e5f40488f60a27415872942e09682ca8650e7c615735e15e0bf0",
+    "results/seed_stability_20261106/predictions_7.npz": "6a734fc47a158174ea2c8cc9d7ca273a7bb15ad78331d9499d58685a0554243b",
+    "results/seed_stability_20261106/predictions_8.npz": "bcc260e58029c7c8bb06d5ca5ceab8db50414b6e1f29ebd793c3a8e559b3f82e",
+    "results/seed_stability_20261106/predictions_9.npz": "b0e58cb89f5ac6a76e2411adfcfe99e276572851820e11f815fb332066e2fd58"
+  },
+  "moegp_seed42_existing_oof_max_abs_difference": 0.0
+}

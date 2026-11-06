@@ -1,0 +1,41 @@
+{
+  "config": {
+    "model": "seed_stability",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "quantile_manifest": "results/quantile_tabm_final_manifest_20261106/manifest.json",
+    "quantile_config": "configs/quantile_tabm.yaml",
+    "architecture_config": "configs/environment_tabm.yaml",
+    "moegp_config": "configs/moegp_shared_nested.yaml",
+    "moegp_selection": "results/moegp_shared_nested_20261106/dev_selection.csv",
+    "huber_oof": "results/robust_icm_final_20261103/oof.csv",
+    "seeds": [
+      42,
+      2026,
+      7,
+      19,
+      123
+    ],
+    "device": "cuda",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.5
+  },
+  "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+  "git_commit": "5256ddaa6752ece51fed222ff72a34713be7bc90",
+  "sha256": {
+    "configs/seed_stability.yaml": "de8178fdf6f486c0cdfd1c10d57e4a9814cb0d08e1dfdee3351496fcd2db0529",
+    "/tmp/wheat599-seed-5256dda/scripts/run_background_nested.py": "6d2c1a9a6301aa05daac36f4f7c4c6c63f9e9be145f5dc45e48cbb0aec69b7fd",
+    "/tmp/wheat599-seed-5256dda/src/wheat599/seed_stability.py": "bb0a1e73b2e7598c70c09f86ddf33e93f3297bfe2ab367e67f1f39bf61a4fb4d",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/quantile_tabm_final_manifest_20261106/manifest.json": "74f3f0a5212986fb244f1ff874fc6b90efc48f2aaf43653046e507e240b9a723",
+    "configs/quantile_tabm.yaml": "9deabe8095695f30c7aea2c6b0e0fb8b7fdeafc0f7f4ad57739817f9393cac69",
+    "configs/environment_tabm.yaml": "7aedf533bd8d9da70f1fc7c8ef452aaa2f91e71996712228b6441ee510df5424",
+    "configs/moegp_shared_nested.yaml": "7a9f59b07041d8f25bce45cd37fc05912f1af38d6c222d13e2984168226aaeeb",
+    "results/moegp_shared_nested_20261106/dev_selection.csv": "a30132e63b2b47263868f619c351ad65e60701e3837214faeca34f20c10c6c34",
+    "results/robust_icm_final_20261103/oof.csv": "1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5",
+    "scripts/run_moegp_nested.py": "15cdb6ccaa42b463b12b1955ad60bde668b8ab400cf1ae5a9dd191d7f2063281",
+    "src/wheat599/quantile_tabm_final.py": "4fbf6b7c67236aeae06f4175ff6caeed8019c71fd76a558537a0186a34ba6102",
+    "src/wheat599/quantile_tabm.py": "c59e8637287042e64e28269ba211948a64ffb8797095505b1904b1d9a472b2a3"
+  }
+}
