@@ -1,0 +1,10 @@
+{
+  "status": "stopped_by_user_scope_change",
+  "process_exit": "KeyboardInterrupt",
+  "reported_completed": 1863,
+  "planned": 1920,
+  "complete_saved_inner_units": 29,
+  "note": "29 completed unit prediction archives preserved on omen; partial current unit is not an evaluation result. The runner records the interruption as failed; this record identifies the cause.",
+  "remote_path": "omen:/home/hsy/git_files/Wheat599_model_bases/results/midpoint_quantile_development_20261106",
+  "code_commit": "ade8c95"
+}
