@@ -1,0 +1,5 @@
+model: wheatgp_refit_diagnostic
+selection: results/wheatgp_rebuilt_development_20261106/selection.json
+outer_predictions: results/wheatgp_rebuilt_outer_20261106
+wheatgp_config: configs/wheatgp_nested.yaml
+cases: [[1, 3], [2, 0], [2, 3], [4, 0], [4, 3]]

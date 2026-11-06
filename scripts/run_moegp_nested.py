@@ -64,8 +64,9 @@ def build_model(p, cand, mcfg, creat_mlp_layer):
 
     model = Gating(p, int(cand["experts"]), factory(),
                    top_k=int(mcfg["top_k"]), loss_coef=float(mcfg["loss_coef"]))
-    model.experts = torch.nn.ModuleList(
-        [factory() for _ in range(int(cand["experts"]))])
+    if mcfg.get("independent_experts", True):
+        model.experts = torch.nn.ModuleList(
+            [factory() for _ in range(int(cand["experts"]))])
     return model
 
 
@@ -240,7 +241,7 @@ def main(argv=None) -> int:
         "refit": "test phase refits on the full dev; best_epoch is 0-based, "
                  "recorded refit epochs = ceil(median(best_epoch + 1)), capped",
         "weights_saved": False,
-        "independent_experts": True,
+        "independent_experts": mcfg.get("independent_experts", True),
         "official_loss": "mse + aux (loss_coef fixed)",
         "x_scaling": tcfg["x_scaling"], "y_scaling": tcfg["y_scaling"],
         "checkpoint": tcfg["checkpoint"],
