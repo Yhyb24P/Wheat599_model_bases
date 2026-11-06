@@ -19,7 +19,7 @@ def quantile_loss(output, target, quantiles):
     return torch.maximum(quantiles * error, (quantiles - 1) * error).sum(-1).mean()
 
 
-def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
+def build_model(x_fit, y_fit, config, seed, settings, device):
     import tabm
     torch.manual_seed(int(seed))
     model = GenomicTabM(x_fit, y_fit[:, None], variant='raw',
@@ -27,7 +27,24 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     # Rebuild only the official backbone so its output has one coordinate per quantile.
     model.backbone = tabm.TabM.make(n_num_features=x_fit.shape[1], d_out=settings['n_quantiles'],
         **{k: config[k] for k in ('n_blocks', 'd_block', 'dropout', 'k')})
-    model = model.to(device)
+    return model.to(device)
+
+
+def update_epoch(model, x, y, q, opt, generator, spec, device):
+    model.train()
+    order = torch.randperm(len(x), generator=generator).to(device)
+    for batch in order.split(spec['batch_size']):
+        opt.zero_grad(set_to_none=True)
+        loss = quantile_loss(model(x[batch]), y[batch], q)
+        if not torch.isfinite(loss):
+            raise FloatingPointError('Nonfinite quantile loss')
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), spec['gradient_clip'])
+        opt.step()
+
+
+def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
+    model = build_model(x_fit, y_fit, config, seed, settings, device)
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
@@ -40,16 +57,7 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     best_score, best_epoch, best_prediction = -np.inf, -1, None
     for epoch in range(spec['max_epochs'] + 1):
         if epoch:
-            model.train()
-            order = torch.randperm(len(x), generator=generator).to(device)
-            for batch in order.split(spec['batch_size']):
-                opt.zero_grad(set_to_none=True)
-                loss = quantile_loss(model(x[batch]), y[batch], q)
-                if not torch.isfinite(loss):
-                    raise FloatingPointError('Nonfinite quantile loss')
-                loss.backward()
-                torch.nn.utils.clip_grad_norm_(model.parameters(), spec['gradient_clip'])
-                opt.step()
+            update_epoch(model, x, y, q, opt, generator, spec, device)
         model.eval()
         with torch.no_grad():
             prediction = model.inverse_y(model(xv).mean(dim=(1, 2))[:, None])[:, 0].cpu().numpy()

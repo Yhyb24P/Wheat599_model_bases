@@ -34,6 +34,9 @@ results/environment_tabm_development_20261105/predictions.csv
 results/joint_tabm_icm_*/predictions_*.npz
 results/joint_tabm_icm_*/references_*.npz
 results/quantile_tabm_*/predictions_*.npz
+results/quantile_tabm_final_*/weights/
+results/quantile_tabm_final_*/seed_predictions.npz
+results/quantile_tabm_final_*/oof.csv
 results/rfm_development_*/predictions_*.npz
 
 # 本地临时文件
