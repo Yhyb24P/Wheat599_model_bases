@@ -1,0 +1,26 @@
+{
+  "source_commit": "c873a06",
+  "artifacts": {
+    "predictions.npz": {
+      "sha256": "83a2ab9f91ce9d7ff75dab088353f3f8d710768e7f0977df145be5e46ecc6ab1",
+      "bytes": 73630
+    },
+    "summary.json": {
+      "sha256": "8f6010ad51fb183fa9ec5ae3e4ee6f9377a5204c3308527063a4d3e63936f112",
+      "bytes": 86387
+    },
+    "fits.json": {
+      "sha256": "fce00197d51d16854724d4101fbbea8ccc0c59f753c1fe59c8baa4108b174cb9",
+      "bytes": 48480
+    },
+    "verification.json": {
+      "sha256": "5733ed00c97148e72461b806cb7ac28dcb1100e0bd53a58518f3fe0644e8a800",
+      "bytes": 1370
+    }
+  },
+  "weights": {
+    "count": 160,
+    "location": "omen:/home/hsy/git_files/Wheat599_model_bases/results/fusion_refit_final_20261106/weights",
+    "sha256_source": "fits.json"
+  }
+}

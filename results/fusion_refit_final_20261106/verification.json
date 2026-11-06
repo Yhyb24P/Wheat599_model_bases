@@ -1,0 +1,55 @@
+{
+  "fits": 160,
+  "weights_replay_max_abs": 0,
+  "oof_per_arm": 2396,
+  "mean_vs_original_environment_wins": 17,
+  "mean_vs_original_fold_wins": 3,
+  "macro": {
+    "original": {
+      "quantile": {
+        "pcc": 0.5166191267999363,
+        "rmse": 0.8548665033260516,
+        "mae": 0.654733186208921
+      },
+      "mse_tabm": {
+        "pcc": 0.5081900430958877,
+        "rmse": 0.8642525594972443,
+        "mae": 0.6655891770642204
+      },
+      "huber": {
+        "pcc": 0.5217453973029079,
+        "rmse": 0.8567433974003,
+        "mae": 0.6584419604880517
+      },
+      "quantile_huber": {
+        "pcc": 0.5253778818238398,
+        "rmse": 0.8502641976616866,
+        "mae": 0.652128023717445
+      }
+    },
+    "mean": {
+      "quantile": {
+        "pcc": 0.5112606691251411,
+        "rmse": 0.8614111793953514,
+        "mae": 0.660914011012552
+      },
+      "mse_tabm": {
+        "pcc": 0.5081900430958877,
+        "rmse": 0.8642525594972443,
+        "mae": 0.6655891770642204
+      },
+      "huber": {
+        "pcc": 0.5217453973029079,
+        "rmse": 0.8567433974003,
+        "mae": 0.6584419604880517
+      },
+      "quantile_huber": {
+        "pcc": 0.5224089727867691,
+        "rmse": 0.8520602108909309,
+        "mae": 0.6536961129299746
+      }
+    }
+  },
+  "identical_previous_original_fits": 60,
+  "identical_previous_prediction_max_abs": 0.0
+}
