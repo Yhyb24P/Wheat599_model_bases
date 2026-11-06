@@ -33,6 +33,7 @@ results/mulphe_reevaluation_*/development_predictions.csv
 results/environment_tabm_development_20261105/predictions.csv
 results/joint_tabm_icm_*/predictions_*.npz
 results/joint_tabm_icm_*/references_*.npz
+results/quantile_tabm_*/predictions_*.npz
 
 # 本地临时文件
 临时文档/
