@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 import torch
 
-from wheat599.wheatgp_nested import fit, prepare, segments
+from wheat599.wheatgp_nested import fit, prepare, segments, validation_pcc
 
 
 def test_train_only_pca_and_official_shapes():
@@ -33,3 +33,9 @@ def test_training_produces_finite_prediction():
     cfg = {'seed': 555, 'weight_decay': .0001, 'batch_size': 4, 'patience': 2}
     pred, best, _ = fit(module.wheatGP_base, x[:10], y[:10], x[10:], y[10:], .001, 2, cfg, torch.device('cpu'))
     assert pred.shape == (5,) and np.isfinite(pred).all() and 1 <= best <= 2
+
+
+def test_constant_validation_prediction_matches_author():
+    assert validation_pcc(np.array([1, 2, 3]), np.ones(3)) == 0.0
+    with pytest.raises(ValueError):
+        validation_pcc(np.array([1, 2, 3]), np.array([1, np.nan, 3]))

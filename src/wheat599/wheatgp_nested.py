@@ -30,6 +30,14 @@ def segments(x):
     return torch.split(x, [width] * 4 + [x.shape[1] - 4 * width], dim=1)
 
 
+def validation_pcc(y, prediction):
+    if not np.isfinite(prediction).all():
+        raise ValueError('Nonfinite prediction')
+    if np.std(y) == 0 or np.std(prediction) == 0:
+        return 0.0  # The public WheatGP training script defines this case as zero.
+    return pcc(y, prediction)
+
+
 def fit(model_type, xf, yf, xq, yq, lr, epochs, cfg, device, select=True):
     torch.manual_seed(cfg['seed']); np.random.seed(cfg['seed'])
     model = model_type(8 * (xf.shape[1] - 20)).to(device)
@@ -52,7 +60,7 @@ def fit(model_type, xf, yf, xq, yq, lr, epochs, cfg, device, select=True):
         if select:
             model.eval()
             with torch.no_grad(): pred = model(*segments(q)).flatten().cpu().numpy() * scale + center
-            score = pcc(yq, pred)
+            score = validation_pcc(yq, pred)
             if np.isfinite(score) and score > best:
                 best, best_epoch, best_pred = float(score), epoch, pred.copy()
             elif epoch - best_epoch >= cfg['patience']: break
@@ -93,13 +101,13 @@ def run(cfg, args, runner):
                         for c,(kind,lr) in enumerate(candidates):
                             pred, best, epochs = fit(module.wheatGP_base, *prepared[kind][:1], data.Y[tr,e], prepared[kind][1], data.Y[val,e], lr, cfg['max_epochs'], cfg, device)
                             arr[f'e{e}_c{c}'] = pred
-                            records.append({'fold':f,'inner':j,'environment':e,'candidate':c,'best_epoch':best,'epochs_run':epochs,'pcc':pcc(data.Y[val,e],pred)})
+                            records.append({'fold':f,'inner':j,'environment':e,'candidate':c,'best_epoch':best,'epochs_run':epochs,'pcc':validation_pcc(data.Y[val,e],pred)})
                             status['completed'] += 1
                     np.savez_compressed(args.out/f'predictions_{f}_{j}.npz', **arr)
                     predictions.append(arr); write('status.json',status); write('trajectories.json',records)
                 selected=[]
                 for e in range(4):
-                    scores=[float(np.mean([pcc(data.Y[sp['val_idx'],e], predictions[j][f'e{e}_c{c}']) for j,sp in enumerate(fold['inner'])])) for c in range(len(candidates))]
+                    scores=[float(np.mean([validation_pcc(data.Y[sp['val_idx'],e], predictions[j][f'e{e}_c{c}']) for j,sp in enumerate(fold['inner'])])) for c in range(len(candidates))]
                     c=int(np.argmax(scores)); ep=sorted(r['best_epoch'] for r in records if r['fold']==f and r['environment']==e and r['candidate']==c)[1]
                     selected.append({'environment':e,'candidate':c,'kind':candidates[c][0],'learning_rate':candidates[c][1],'epochs':ep,'scores':scores})
                 write(f'selection_{f}.json',selected)
