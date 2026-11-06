@@ -1,0 +1,14 @@
+model: seed_stability
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+quantile_manifest: results/quantile_tabm_final_manifest_20261106/manifest.json
+quantile_config: configs/quantile_tabm.yaml
+architecture_config: configs/environment_tabm.yaml
+moegp_config: configs/moegp_shared_nested.yaml
+moegp_selection: results/moegp_shared_nested_20261106/dev_selection.csv
+huber_oof: results/robust_icm_final_20261103/oof.csv
+seeds: [42, 2026, 7, 19, 123]
+device: cuda
+cpu_threads: 2
+gpu_memory_fraction: 0.5
