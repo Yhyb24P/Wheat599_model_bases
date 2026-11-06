@@ -1,16 +1,16 @@
 # Wheat599 植物基因组表型预测研究
 
-当前仅推进 **Wheat599**。本轮[分组核比较](docs/GROUPED_KERNEL.md)已结束：固定相关性分组开发PCC **0.483004**，超过原Huber与匹配随机组；进一步的单参数收缩为0.483072、共享小网络为0.482756，神经权重未通过预定条件，不追加搜索、不进入外层。四独立TabM开发参照0.491874仍更高。Wheat2000维持停止，BiMSGP不跑。完整结果及一次重复执行的如实记录见 [RESULTS](docs/RESULTS.md)。
+当前仅推进 **Wheat599**。现役主候选为四独立分位数 TabM 与多环境 Huber ICM 的固定等权融合：同协议外层宏 PCC **0.526506**，高于 Huber 的 **0.521745**。分位数 TabM 单独为 **0.518829**，高于原独立 MSE TabM 的 **0.508190**；融合权重在外层评价前固定。结果与验证见 [RESULTS](docs/RESULTS.md)，规则见 [QUANTILE_TABM_FINAL](docs/QUANTILE_TABM_FINAL.md)。
 
-四独立全标记TabM已完成冻结规则下80次外层重拟合：折均宏PCC **0.508190**，高于同协议BiMSGP **0.470781**，低于Huber ICM **0.521745**。保留为论文候选，尚无超过ICM或SOTA的证据。云端固定配置后期迁移已交接核验，与本次正式外层比较分开报告。数字与失败恢复记录统一见 [RESULTS](docs/RESULTS.md)，执行边界见 [INDEPENDENT_FINAL](docs/INDEPENDENT_FINAL.md)。
+当前只在开发层比较 99 输出 MSE TabM 与分位数目标，以研究配方差异；已冻结外层主候选不变。Wheat2000 维持停止，BiMSGP 不跑。已有划分曾多轮用于研究，当前领先为项目内同协议结果，跨数据集表现尚未确认。
 
 目标是形成有可靠预测与效率证据的植物基因组表型预测方法论文；成熟神经架构的有效任务适配可以成为贡献。Wheat599是现阶段主要任务；SSH omen和已授权的本机算力按当前范围使用。跨数据集执行暂缓，已有记录见 [WHEAT2000](docs/WHEAT2000.md)，Wheat599证据见 [RESULTS](docs/RESULTS.md)。
 
 按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。 随后完成的稀疏交互模拟诊断已建立其具体推断缺口：未知位置统计方法在全部 16 个成对任务上超过首版网络，但加性任务族表现变差；尚无新的神经模型或真实数据增益，见 [结果](docs/RESULTS.md)。
 
-Wheat599最高折均PCC候选为 **Huber ICM**：四环境CV1折均宏PCC **0.52175**、RMSE **0.85674**、MAE **0.65844**。匹配范围GLS ICM为 **0.52059 / 0.85422 / 0.65753**，保留为误差较低参照。Huber仅获得小幅折均PCC增量，合并OOF PCC未改善。不同数据集的分数不直接排名，完整比较见 [RESULTS](docs/RESULTS.md)，当前进度见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
+Huber ICM 保留为强统计参照；完整比较见 [RESULTS](docs/RESULTS.md)，当前任务见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
 
-Huber 配置与参数已冻结，正式评价完成 40/40 环境折。本轮优化结束；此前固定前五配置平均、环境分别收缩等分支的开发记录见 RESULTS。
+以下为先前阶段记录；现役状态以上方和 RESULTS 为准。
 
 背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
 
