@@ -1,0 +1,13 @@
+model: relation_quantile
+quantile_config: configs/quantile_tabm.yaml
+architecture_config: configs/environment_tabm.yaml
+base_choices: results/heterogeneous_icm_development_20261103/base_choices.json
+base_splits: results/heterogeneous_icm_development_20261103/training_splits.json
+baseline_source: results/quantile_tabm_development_20261106_v2
+reference_source: results/joint_tabm_icm_development_20261106
+baseline_audit: results/tabicl_compare_20261106/summary.json
+lambdas: [0.1, 1.0, 10.0]
+eta: 0.5
+kappa: 0.1
+gpu_memory_fraction: 0.5
+cpu_threads: 2
