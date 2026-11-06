@@ -11,3 +11,5 @@
 数学近邻见 [联合分位数 RKHS](https://papers.neurips.cc/paper_files/paper/2016/hash/dfce06801e1a85d6d06f1fdd4475dacd-Abstract.html) 与 [函数空间正则化](https://proceedings.mlr.press/v202/rudner23a.html)。本实现不宣称 GP 或严格 RKHS 等价。原冻结分位数–Huber 外层 0.526506 不用开发结果替换或用于调参。
 
 首次正式运行 `de936ea` 将 `M` 留在折内标准化尺度，与附件定义的最终预测中心不一致；已主动中断并保留轨迹，不作为模型结果。修正后按同一强度重新执行。
+
+完整开发批次 180/180、0 失败；固定 λ=10 的 PCC 比原分位数高 0.000060，但仅 4/10 开发集更高、RMSE 更差。详见 [RESULTS](RESULTS.md)。按附件的收益条件，对 λ=10 补做材料置换与全曲线约束两项开发对照；λ根据已观察的同一开发集挑选，对照不能当成独立确认。
