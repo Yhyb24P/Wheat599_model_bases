@@ -58,6 +58,15 @@ def test_solver_rejects_unconverged():
         solve(np.diag([1.,2.,3.]),np.eye(1),np.eye(2),np.array([[1.],[2.],[4.]]),np.array([.25,.75]),.1,tolerance=1e-15,max_iterations=1)
 
 
+def test_intercept_uses_midpoint_for_nonunique_empirical_quantile():
+    y=np.array([[0.],[1.],[2.],[5.],[7.],[9.]])
+    k=np.eye(6);b=np.eye(1);c=np.eye(1)
+    fit=solve(k,b,c,y,np.array([.5]),.1,tolerance=1e-8,max_iterations=30000)
+    function=predict(k,b,c,fit)[:,:,0]-fit['intercept'][:,0]
+    residual=np.sort((y-function)[:,0])
+    np.testing.assert_allclose(fit['intercept'][0,0],(residual[2]+residual[3])/2,atol=1e-12)
+
+
 def test_candidate_grid_preserves_common_eta_and_endpoint_kernels():
     from wheat599.joint_kernel_quantile_run import candidates
     levels=np.linspace(.001,.999,5);cfg={'gamma':16.,'etas':[0.,.3,.6,.8],'ridge_shared':[1e-5,1e-4,1e-3]}
