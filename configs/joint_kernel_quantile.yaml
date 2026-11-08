@@ -1,0 +1,20 @@
+model: joint_kernel_quantile
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+base_source: results/heterogeneous_icm_development_20261103
+baseline_source: results/quantile_tabm_development_20261106_v2
+reference_source: results/joint_tabm_icm_development_20261106
+baseline_audit: results/tabicl_compare_20261106/summary.json
+etas: [0.0, 0.3, 0.6, 0.8]
+ridge_shared: [0.00001, 0.0001, 0.001]
+gamma: 16.0
+quantile_min: 0.001
+quantile_max: 0.999
+n_quantiles: 99
+tolerance: 0.000001
+max_iterations: 80000
+check_every: 200
+device: cuda
+gpu_memory_fraction: 0.3
+cpu_threads: 2

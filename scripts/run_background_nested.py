@@ -166,6 +166,9 @@ def main():
     if cfg.get('model') == 'relation_quantile_controls':
         from wheat599.relation_quantile_controls import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'joint_kernel_quantile':
+        from wheat599.joint_kernel_quantile_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'relation_quantile':
         from wheat599.relation_quantile import run
         return run(cfg, args, Path(__file__))
