@@ -1,5 +1,6 @@
 """Development-only paired comparison of separable quantile kernel states."""
 import json
+import shutil
 import subprocess
 import time
 from pathlib import Path
@@ -38,6 +39,27 @@ def run(cfg,args,runner):
     torch.set_num_threads(cfg['cpu_threads']);device=torch.device(cfg['device'])
     if device.type=='cuda':torch.cuda.set_per_process_memory_fraction(cfg['gpu_memory_fraction'])
     paths=[args.config,Path(runner),Path(__file__),Path(__file__).with_name('joint_kernel_quantile.py'),Path(cfg['splits']),Path(cfg['base_source'],'base_choices.json'),Path(cfg['base_source'],'training_splits.json'),Path(cfg['baseline_audit']),baseline/'summary.json']
+    resume=Path(cfg['resume_from']) if cfg.get('resume_from') else None
+    reused={}
+    if resume:
+        prior=json.loads((resume/'provenance.json').read_text());prior_cfg=prior['config']
+        current={k:v for k,v in cfg.items() if k not in ('resume_from','max_iterations')}
+        if current!={k:v for k,v in prior_cfg.items() if k!='max_iterations'} or cfg['max_iterations']<prior_cfg['max_iterations']:raise ValueError('Resume configuration mismatch')
+        if prior['sha256'][str(Path(__file__).with_name('joint_kernel_quantile.py'))]!=sha256_of(Path(__file__).with_name('joint_kernel_quantile.py')):raise ValueError('Resume solver mismatch')
+        old_records=json.loads((resume/'trajectories.json').read_text())
+        for fold in folds:
+            f=fold['fold']
+            for j in range(3):
+                rows=[r for r in old_records if r['fold']==f and r['inner']==j]
+                curve_path=resume/f'curves_{f}_{j}.npz'
+                if not rows and not curve_path.exists():continue
+                if len(rows)!=len(choices) or not curve_path.is_file() or {r['candidate'] for r in rows}!=set(range(len(choices))):raise ValueError('Incomplete saved unit')
+                for r in rows:
+                    state,eta,ridge,_=choices[r['candidate']]
+                    if (r['state'],r['eta'],r['ridge'])!=(state,eta,ridge) or not -1e-10<=r['relative_gap']<=cfg['tolerance'] or r['zero_sum_residual']>1e-10 or r['box_violation']>1e-10:raise ValueError('Uncertified saved candidate')
+                reused[(f,j)]=(rows,curve_path)
+                paths.append(curve_path)
+        paths += [resume/'provenance.json',resume/'trajectories.json',resume/'status.json',resume/'STOP_NOTE.json']
     args.out.mkdir(parents=True,exist_ok=False)
     def write(name,value):(args.out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n')
     write('provenance.json',{'config':cfg,'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'sha256':{str(p):sha256_of(p) for p in paths},'rule':'development only; shared, smooth and independent each select eta/ridge by macro PCC'})
@@ -56,19 +78,30 @@ def run(cfg,args,runner):
                 truth=data.Y[val];old=np.load(baseline/f'predictions_{f}_{j}.npz');ref=np.load(reference/f'references_{f}_{j}.npz')['huber']
                 orig=np.column_stack([np.mean([old[f'e{e}_c{selected[e]}_s{seed}'] for seed in (42,2026)],axis=0) for e in range(4)])
                 predictions={'baseline':orig,'fusion':.5*(orig+ref),'huber':ref};curves={}
-                for i,(state,eta,ridge,c) in enumerate(choices):
-                    b=(1-eta)*np.eye(4)+eta*prepared['C_Y'];begin=time.perf_counter()
-                    result=solve(k,b,c,prepared['Y'].numpy(),levels,ridge,tolerance=cfg['tolerance'],max_iterations=cfg['max_iterations'],check_every=cfg['check_every'],device=device)
-                    curve=predict(cross,b,c,result)*prepared['scale'][None,:,None]+prepared['mean'][None,:,None]
-                    if not np.isfinite(curve).all():raise ValueError('Nonfinite predictions')
-                    curves[str(i)]=curve;predictions[str(i)]=curve.mean(axis=2)
-                    records.append({'fold':f,'inner':j,'candidate':i,'state':state,'eta':eta,'ridge':ridge,'seconds':time.perf_counter()-begin,**result['diagnostics']})
-                    status['completed']+=1
+                if (f,j) in reused:
+                    rows,path=reused[(f,j)]
+                    with np.load(path) as old_curves:
+                        if set(old_curves.files)!={str(i) for i in range(len(choices))}:raise ValueError('Saved curve keys mismatch')
+                        for i in range(len(choices)):
+                            curve=old_curves[str(i)]
+                            if curve.shape!=(len(val),4,len(levels)) or not np.isfinite(curve).all():raise ValueError('Invalid saved curve')
+                            curves[str(i)]=curve;predictions[str(i)]=curve.mean(axis=2)
+                    records.extend(rows);status['completed']+=len(rows)
+                else:
+                    for i,(state,eta,ridge,c) in enumerate(choices):
+                        b=(1-eta)*np.eye(4)+eta*prepared['C_Y'];begin=time.perf_counter()
+                        result=solve(k,b,c,prepared['Y'].numpy(),levels,ridge,tolerance=cfg['tolerance'],max_iterations=cfg['max_iterations'],check_every=cfg['check_every'],device=device)
+                        curve=predict(cross,b,c,result)*prepared['scale'][None,:,None]+prepared['mean'][None,:,None]
+                        if not np.isfinite(curve).all():raise ValueError('Nonfinite predictions')
+                        curves[str(i)]=curve;predictions[str(i)]=curve.mean(axis=2)
+                        records.append({'fold':f,'inner':j,'candidate':i,'state':state,'eta':eta,'ridge':ridge,'seconds':time.perf_counter()-begin,**result['diagnostics']})
+                        status['completed']+=1
                 for name,pred in predictions.items():
                     vals=[[fn(truth[:,e],pred[:,e]) for fn in (pcc,rmse,mae)] for e in range(4)]
                     if not np.isfinite(vals).all():raise ValueError('Nonfinite metric')
                     scores[name].append(vals)
-                np.savez_compressed(args.out/f'curves_{f}_{j}.npz',**curves)
+                if (f,j) in reused:shutil.copyfile(reused[(f,j)][1],args.out/f'curves_{f}_{j}.npz')
+                else:np.savez_compressed(args.out/f'curves_{f}_{j}.npz',**curves)
                 write('status.json',status);write('trajectories.json',records)
             per.append({'fold':f,'metrics':{k:np.mean(v,axis=0).tolist() for k,v in scores.items()}})
         if status['completed']!=status['expected']:raise ValueError('Incomplete development run')
