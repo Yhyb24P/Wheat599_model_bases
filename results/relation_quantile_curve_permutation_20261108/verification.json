@@ -1,0 +1,8 @@
+{
+  "complete": true,
+  "units": 30,
+  "trajectories": 120,
+  "permutations_match": true,
+  "max_replay_difference": 0.0,
+  "max_summary_difference": 0.0
+}
