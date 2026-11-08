@@ -1,0 +1,7 @@
+model: relation_quantile_controls
+original_config: configs/relation_quantile.yaml
+original_result: results/relation_quantile_development_20261107_v2
+previous_controls: results/relation_quantile_controls_20261107
+paired_curve_control: true
+strength: 10.0
+shuffle_seed: 20261107

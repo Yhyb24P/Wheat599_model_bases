@@ -106,6 +106,20 @@ def test_permutation_retains_spectrum_and_is_reproducible():
     assert not torch.equal(first,gram)
 
 
+def test_saved_quantiles_match_selected_checkpoint_prediction():
+    torch.set_num_threads(1);rng=np.random.default_rng(21)
+    x=rng.normal(size=(32,12)).astype('float32');y=rng.normal(size=(32,4)).astype('float32')
+    c=dict(n_blocks=2,d_block=16,dropout=.1,k=2,learning_rate=.001,weight_decay=.001)
+    spec=dict(n_quantiles=5,quantile_min=.001,quantile_max=.999,training=dict(max_epochs=3,patience=2,batch_size=8,gradient_clip=5.,tie_tolerance=1e-12))
+    relation=lambda q:(q-q.mean(0)).square().mean()
+    args=(x[:24],y[:24],x[24:],y[24:],[c]*4,42,[0]*4,.1,spec,relation,torch.device('cpu'))
+    expected,old_detail=train_joint(*args,curve=True)
+    pred,detail,q=train_joint(*args,curve=True,return_quantiles=True)
+    assert q.shape==(8,4,5) and detail==old_detail
+    np.testing.assert_array_equal(pred,expected)
+    np.testing.assert_allclose(q.mean(axis=2),pred,atol=1e-6,rtol=1e-6)
+
+
 def test_curve_penalty_decomposes_into_center_and_shape():
     from wheat599.relation_regularizer import make_relation, make_relation_curve
     generator=torch.Generator().manual_seed(97)

@@ -14,7 +14,7 @@ from wheat599.metrics import pcc, rmse, mae
 from wheat599.quantile_tabm import build_model, quantile_loss
 
 
-def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, settings, relation, device, *, curve=False):
+def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, settings, relation, device, *, curve=False, return_quantiles=False):
     """Fit four independent models with one shared full-fit relation penalty."""
     models=[];optimizers=[];rng=[];generators=[]
     x=torch.as_tensor(x_fit,dtype=torch.float32,device=device)
@@ -29,7 +29,7 @@ def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, se
         targets.append(model.standardize_y(torch.as_tensor(y_fit[:,e,None],dtype=torch.float32,device=device)))
     levels=torch.linspace(settings['quantile_min'],settings['quantile_max'],settings['n_quantiles'],device=device)
     spec=settings['training'];best=np.full(4,-np.inf);best_epoch=np.full(4,-1);best_prediction=[None]*4
-    best_states=[None]*4;active=[True]*4;hist=[]
+    best_states=[None]*4;best_quantiles=[None]*4;active=[True]*4;hist=[]
     for epoch in range(spec['max_epochs']+1):
         if epoch:
             orders=[torch.randperm(len(x),generator=generators[e]).to(device).split(spec['batch_size']) if active[e] else None for e in range(4)]
@@ -60,18 +60,23 @@ def train_joint(x_fit, y_fit, x_val, y_val, configs, seed, indices, strength, se
             if not active[e]:continue
             model.eval()
             with torch.no_grad():
-                pred=model.inverse_y(model(xv).mean(dim=(1,2))[:,None])[:,0].cpu().numpy()
+                output=model(xv)
+                pred=model.inverse_y(output.mean(dim=(1,2))[:,None])[:,0].cpu().numpy()
             score=pcc(y_val[:,e],pred)
             if not np.isfinite(score):raise ValueError('Nonfinite validation PCC')
             if score>best[e]+spec['tie_tolerance']:
                 best[e]=score;best_epoch[e]=epoch;best_prediction[e]=pred.copy()
                 best_states[e]=copy.deepcopy(model.state_dict())
+                if return_quantiles:
+                    best_quantiles[e]=model.inverse_y(output.mean(dim=1)).cpu().numpy()
             elif epoch-best_epoch[e]>=spec['patience']:
                 model.load_state_dict(best_states[e]);model.requires_grad_(False);active[e]=False
         if not any(active):break
     if any(p is None for p in best_prediction):raise ValueError('Missing checkpoint')
-    return np.column_stack(best_prediction),{'best_pcc':best.tolist(),'best_epoch':best_epoch.tolist(),
-                                               'epochs_run':epoch}
+    result=(np.column_stack(best_prediction),{'best_pcc':best.tolist(),'best_epoch':best_epoch.tolist(),
+                                               'epochs_run':epoch})
+    if return_quantiles:return (*result,np.stack(best_quantiles,axis=1))
+    return result
 
 
 def run(cfg,args,runner):

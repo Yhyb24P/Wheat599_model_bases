@@ -39,10 +39,17 @@ def run(cfg,args,runner):
     if device.type=='cuda':torch.cuda.set_per_process_memory_fraction(base['gpu_memory_fraction'])
     paths=[Path(args.config),Path(cfg['original_config']),Path(__file__),Path(runner),Path(__file__).with_name('relation_quantile.py'),Path(__file__).with_name('relation_regularizer.py'),original/'provenance.json',original/'summary.json',original/'status.json',original/'trajectories.json']
     paths += [original/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
+    if cfg.get('paired_curve_control',False):
+        prior=Path(cfg['previous_controls']);paths += [prior/'status.json',prior/'failures.json',prior/'permutations.json',prior/'summary.json']
+        paths += [prior/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
     args.out.mkdir(parents=True,exist_ok=False)
     def write(name,value):(args.out/name).write_text(json.dumps(value,indent=2,allow_nan=False)+'\n')
     write('provenance.json',{'config':cfg,'git_commit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(), 'sha256':{str(p):sha256_of(p) for p in paths}})
-    state={'status':'running','completed':0,'expected':len(folds)*3*len(settings['seeds'])*2};records=[];failures=[];permutations=[];start=time.perf_counter()
+    paired=cfg.get('paired_curve_control',False)
+    modes=('curve','curve_shuffled') if paired else ('shuffled','curve')
+    previous=Path(cfg['previous_controls']) if paired else None
+    if paired and (json.loads((previous/'status.json').read_text())!={'status':'complete','completed':120,'expected':120} or json.loads((previous/'failures.json').read_text())):raise ValueError('Previous controls incomplete')
+    state={'status':'running','completed':0,'expected':len(folds)*3*len(settings['seeds'])*len(modes)};records=[];failures=[];permutations=[];start=time.perf_counter()
     try:
         for fold in folds:
             f=fold['fold'];indices=next(v['selected'] for v in chosen if v['fold']==f);configs=[architectures[i] for i in indices]
@@ -55,33 +62,59 @@ def run(cfg,args,runner):
                 gram=build_kernel(data.X[tr],bandwidth=b['bandwidth'],fraction=b['fraction'],device=device)
                 shuffled,perm=permute_kernel(gram,cfg['shuffle_seed']+3*f+j)
                 permutations.append({'fold':f,'inner':j,'sha256':hashlib.sha256(perm.cpu().numpy().astype('<i8').tobytes()).hexdigest()})
+                if paired:
+                    old_permutations=json.loads((previous/'permutations.json').read_text())
+                    if permutations[-1]!=next(p for p in old_permutations if p['fold']==f and p['inner']==j):raise ValueError('Permutation mismatch')
                 relations={'shuffled':make_relation(shuffled,data.Y[tr],eta=base['eta'],kappa=base['kappa'],device=device),
-                           'curve':make_relation_curve(gram,data.Y[tr],eta=base['eta'],kappa=base['kappa'],device=device)}
-                predictions={}
-                for mode in ('shuffled','curve'):
+                           'curve':make_relation_curve(gram,data.Y[tr],eta=base['eta'],kappa=base['kappa'],device=device),
+                           'curve_shuffled':make_relation_curve(shuffled,data.Y[tr],eta=base['eta'],kappa=base['kappa'],device=device)}
+                predictions={};quantiles={}
+                for mode in modes:
                     for seed in settings['seeds']:
-                        pred,detail=train_joint(data.X[tr],data.Y[tr],data.X[val],data.Y[val],configs,seed,indices,cfg['strength'],settings,relations[mode],device,curve=mode=='curve')
+                        result=train_joint(data.X[tr],data.Y[tr],data.X[val],data.Y[val],configs,seed,indices,cfg['strength'],settings,relations[mode],device,curve=mode!='shuffled',return_quantiles=paired)
+                        pred,detail=result[:2]
+                        if paired:
+                            q=result[2]
+                            if not np.isfinite(q).all() or not np.allclose(q.mean(axis=2),pred,atol=1e-6,rtol=1e-6):raise ValueError('Quantile prediction mismatch')
+                            quantiles[f'{mode}_s{seed}']=q
+                            if mode=='curve':
+                                with np.load(previous/f'predictions_{f}_{j}.npz') as old:
+                                    if not np.allclose(pred,old[f'curve_s{seed}'],atol=1e-6,rtol=1e-6):raise ValueError('Curve replay mismatch')
                         predictions[f'{mode}_s{seed}']=pred;records.append({'fold':f,'inner':j,'mode':mode,'seed':seed,**detail});state['completed']+=1
                 np.savez_compressed(args.out/f'predictions_{f}_{j}.npz',**predictions)
+                if paired:np.savez_compressed(args.out/f'quantiles_{f}_{j}.npz',**quantiles)
                 write('status.json',state);write('trajectories.json',records);write('permutations.json',permutations)
         if state['completed']!=state['expected']:raise ValueError('Incomplete controls')
         per=[]
         for fold in folds:
-            f=fold['fold'];indices=next(v['selected'] for v in chosen if v['fold']==f);scores={k:[] for k in ('center','shuffled','curve','baseline','fusion')}
+            f=fold['fold'];indices=next(v['selected'] for v in chosen if v['fold']==f);scores={k:[] for k in ('center','shuffled','curve','baseline','fusion')+ (('curve_shuffled',) if paired else ())};diagnostics={k:[] for k in modes} if paired else None
             for j,inner in enumerate(fold['inner']):
                 new=np.load(args.out/f'predictions_{f}_{j}.npz');original_pred=np.load(original/f'predictions_{f}_{j}.npz');old=np.load(baseline/f'predictions_{f}_{j}.npz');h=np.load(ref/f'references_{f}_{j}.npz')['huber']
                 orig=np.column_stack([np.mean([old[f'e{e}_c{indices[e]}_s{seed}'] for seed in settings['seeds']],axis=0) for e in range(4)])
                 preds={'baseline':orig,'fusion':.5*(orig+h),'center':np.mean([original_pred[f'l{cfg["strength"]}_s{seed}'] for seed in settings['seeds']],axis=0)}
-                for mode in ('shuffled','curve'):preds[mode]=np.mean([new[f'{mode}_s{seed}'] for seed in settings['seeds']],axis=0)
+                if paired:
+                    prior_controls=np.load(previous/f'predictions_{f}_{j}.npz')
+                    preds['shuffled']=np.mean([prior_controls[f'shuffled_s{seed}'] for seed in settings['seeds']],axis=0)
+                for mode in modes:preds[mode]=np.mean([new[f'{mode}_s{seed}'] for seed in settings['seeds']],axis=0)
                 for key,pred in preds.items():
                     vals=[[fun(data.Y[inner['val_idx'],e],pred[:,e]) for fun in (pcc,rmse,mae)] for e in range(4)]
                     if not np.isfinite(vals).all():raise ValueError('Nonfinite metric')
                     scores[key].append(vals)
-            per.append({'fold':f,'metrics':{k:np.mean(v,axis=0).tolist() for k,v in scores.items()}})
+                if paired:
+                    levels=np.linspace(settings['quantile_min'],settings['quantile_max'],settings['n_quantiles']);lo=int(np.argmin(abs(levels-.05)));hi=int(np.argmin(abs(levels-.95)))
+                    truth=data.Y[inner['val_idx']];qs=np.load(args.out/f'quantiles_{f}_{j}.npz')
+                    for mode in modes:
+                        q=np.mean([qs[f'{mode}_s{seed}'] for seed in settings['seeds']],axis=0);err=truth[:,:,None]-q;shape=q-q.mean(axis=2,keepdims=True);shape-=shape.mean(axis=0,keepdims=True)
+                        diagnostics[mode].append(np.stack([np.maximum(levels*err,(levels-1)*err).mean(axis=(0,2)),np.sqrt((shape**2).mean(axis=(0,2))), (np.diff(q,axis=2)<0).mean(axis=(0,2)),((truth>=q[:,:,lo])&(truth<=q[:,:,hi])).mean(axis=0)],axis=1).tolist())
+            entry={'fold':f,'metrics':{k:np.mean(v,axis=0).tolist() for k,v in scores.items()}}
+            if paired:entry['quantile_diagnostics']={k:np.mean(v,axis=0).tolist() for k,v in diagnostics.items()}
+            per.append(entry)
         macro={k:dict(zip(('pcc','rmse','mae'),np.mean([r['metrics'][k] for r in per],axis=(0,1)).tolist())) for k in per[0]['metrics']}
         prior=json.loads((original/'summary.json').read_text())['macro'][str(cfg['strength'])]
         if any(abs(macro['center'][key]-prior[key])>1e-12 for key in ('pcc','rmse','mae')):raise ValueError('Original center metric mismatch')
-        write('summary.json',{'macro':macro,'folds':per});state['status']='complete'
+        summary={'macro':macro,'folds':per}
+        if paired:summary['quantile_diagnostics']={'columns':['pinball','centered_shape_sd','crossing_fraction','coverage'],'interval_levels':[float(levels[lo]),float(levels[hi])],'macro':{k:np.mean([r['quantile_diagnostics'][k] for r in per],axis=(0,1)).tolist() for k in modes}}
+        write('summary.json',summary);state['status']='complete'
     except BaseException as exc:
         state['status']='failed';failures.append({'completed':state['completed'],'error':repr(exc)});raise
     finally:
