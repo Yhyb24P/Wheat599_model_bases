@@ -80,3 +80,5 @@ RAGP 480条已完成；state哈希清单 `results/ragp_development_20261105/chec
 ## MeNet 双表示分位数适配（2026-11-09）
 
 运行时原样加载 GANLAB/MENET Version2.0 `06456e4542ab26716c4db8dd8f17517aa5155ff4` 中的性状编码器、关系MLP及双向残差融合类，源文件仅存 `models/menet_source/`，不进入Git。Copyright, GANLAB。上游 `LICENCE.txt` 为 Academic Use Licence，仅用于本项目内部非商业学术研究；不能把这些依赖描述为可自由再分发。文件SHA：network/menet.py `1ac6461f7d19e87b23947eced7749588e391b68349991fd7a4c3ab6e25f7123c`；network/contrastive_learning.py `ed2d4512b00b740940218850d60477b833b59c6ecd1431cbc2bab315248e0f98`；LICENCE.txt `a004722858ac90342c3804a95503f8b0a318051e0d569e8473ddd1121dd05cf4`。无外部预训练权重；训练得到的编码器权重不推送，逐文件SHA随正式pretraining记录保存。
+
+MeNet适配开发已完成240份性状关系编码器权重（无外部预训练权重），仅存omen冻结工作树结果目录的`relations/`；240个文件SHA记录于 `results/menet_quantile_development_20261109/pretraining.json`，该清单SHA-256为`b836b419e33c044aa44767aa0e8bc03d4825ab08886cff91175af86af54ac447`。阶段二最优state只保存内存摘要，不把摘要称为持久化权重文件。

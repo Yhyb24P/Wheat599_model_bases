@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "trajectories": 1920,
+  "relation_pretrains": 240,
+  "curves_verified": 1920,
+  "relation_weight_hashes": 240,
+  "source_hashes_verified": 74,
+  "maximum_fold_metric_difference": 0.0,
+  "macro": {
+    "pcc": 0.4907423146392763,
+    "rmse": 0.8832389208383349,
+    "mae": 0.6830561326043653
+  },
+  "comparisons": {
+    "original_quantile": {
+      "delta_macro": {
+        "pcc": -0.0038231174717800118,
+        "rmse": 0.0119972912509483,
+        "mae": 0.01034608843406945
+      },
+      "pcc_better_folds": 2,
+      "pcc_better_environment_folds": 14,
+      "rmse_better_folds": 0,
+      "mae_better_folds": 0,
+      "per_environment_delta": [
+        [
+          0.0023434207198698596,
+          0.002293601867481898,
+          0.0020954986852614876
+        ],
+        [
+          -0.00909278044865855,
+          0.01590439736299617,
+          0.01688809762442358
+        ],
+        [
+          -0.0013902726620294403,
+          0.02433112379229534,
+          0.02048060529419802
+        ],
+        [
+          -0.007152837496301917,
+          0.005460041981019792,
+          0.0019201521323947146
+        ]
+      ]
+    },
+    "original_fusion": {
+      "delta_macro": {
+        "pcc": -0.003769957074076853,
+        "rmse": 0.013004222284026165,
+        "mae": 0.011477939195783174
+      },
+      "pcc_better_folds": 3,
+      "pcc_better_environment_folds": 17,
+      "rmse_better_folds": 0,
+      "mae_better_folds": 0,
+      "per_environment_delta": [
+        [
+          0.008414856929902226,
+          -0.001377875536513029,
+          -0.0026017950936157662
+        ],
+        [
+          -0.01324867945765188,
+          0.018468085054065796,
+          0.019176934484892938
+        ],
+        [
+          -0.0031610929123210172,
+          0.027269012222310585,
+          0.025176876453277774
+        ],
+        [
+          -0.007084912856236742,
+          0.007657667396241308,
+          0.00415974093857775
+        ]
+      ]
+    }
+  },
+  "outer_gate_passed": false,
+  "decision": "end current configuration; keep existing fusion"
+}
