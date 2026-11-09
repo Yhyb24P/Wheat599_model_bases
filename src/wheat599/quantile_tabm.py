@@ -48,9 +48,10 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     start=time.perf_counter()
     model = build_model(x_fit, y_fit, config, seed, settings, device)
     variant=settings.get('optimizer_variant','adam')
-    if variant=='gated':
-        from wheat599.interaction_tabm import InteractionBackbone
-        model.backbone=InteractionBackbone(x_fit.shape[1],width=config['d_block'],members=config['k'],
+    if variant in ('gated','layered'):
+        from wheat599.interaction_tabm import InteractionBackbone, LayerInteractionBackbone
+        backbone=InteractionBackbone if variant=='gated' else LayerInteractionBackbone
+        model.backbone=backbone(x_fit.shape[1],width=config['d_block'],members=config['k'],
                                            dropout=config['dropout'],quantiles=settings['n_quantiles']).to(device)
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
@@ -119,6 +120,12 @@ def run(cfg, args, runner):
     if baseline:
         sources += [Path(__file__).with_name('interaction_tabm.py'),baseline/'summary.json',Path(cfg['baseline_audit'])]
         sources += [baseline/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
+    comparison={}
+    for name,path in cfg.get('comparison_sources',{}).items():
+        path=Path(path);p=read(path/'provenance.json')
+        if p['sha256'][cfg['splits']]!=sha256_of(Path(cfg['splits'])):raise ValueError('Comparison split mismatch')
+        if read(path/'execution_status.json')!={'status':'complete','completed':1920,'expected':1920} or read(path/'failures.json'):raise ValueError('Incomplete comparison')
+        comparison[name]=read(path/'summary.json');sources += [path/'summary.json',path/'provenance.json',path/'execution_status.json',path/'failures.json']
     write('provenance.json', {'config': cfg, 'torch_version':str(torch.__version__), 'cuda_version':torch.version.cuda, 'git_commit': subprocess.check_output(
         ['git', 'rev-parse', 'HEAD'], text=True).strip(),
         'sha256': {str(p): sha256_of(p) for p in sources}})
@@ -182,6 +189,10 @@ def run(cfg, args, runner):
         summary = {method: dict(zip(('pcc','rmse','mae'),
             np.mean([r['metrics'][method] for r in results], axis=(0, 1)).tolist()))
             for method in methods}
+        for name,previous in comparison.items():
+            for result in results:
+                result['metrics'][name]=next(v['metrics']['quantile'] for v in previous['folds'] if v['fold']==result['fold'])
+            summary[name]=dict(zip(('pcc','rmse','mae'),np.mean([r['metrics'][name] for r in results],axis=(0,1)).tolist()))
         write('summary.json', {'macro': summary, 'folds': results})
         state['status'] = 'complete'
     except BaseException as exc:

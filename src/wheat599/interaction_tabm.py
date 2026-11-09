@@ -35,11 +35,38 @@ class InteractionBackbone(nn.Module):
         return self.blocks.output(h.mean(dim=2))
 
 
+class LayerInteractionBackbone(nn.Module):
+    """Read the same marker-interaction basis in each residual block."""
+    def __init__(self, markers, *, width, members, dropout, quantiles, rank=32, blocks=3):
+        super().__init__()
+        import tabm
+        self.factors=nn.Parameter(torch.randn(markers,rank)/math.sqrt(markers))
+        self.additive=nn.Linear(markers,width)
+        self.member_input=nn.Parameter(torch.empty(members,markers).bernoulli_(.5).mul_(2).sub_(1))
+        self.member_output=nn.Parameter(torch.ones(members,width))
+        self.blocks=tabm.TabM.make(n_num_features=width,d_out=quantiles,n_blocks=blocks,
+                                  d_block=width,dropout=dropout,k=members)
+        self.pair_norm=nn.RMSNorm(rank)
+        self.norms=nn.ModuleList([nn.RMSNorm(width) for _ in range(blocks)])
+        self.project=nn.ModuleList([nn.Linear(rank,width) for _ in range(blocks)])
+        self.gates=nn.ModuleList([nn.Linear(width+rank,width) for _ in range(blocks)])
+
+    def forward(self,z):
+        projected=z@self.factors
+        pair=self.pair_norm(.5*(projected.square()-z.square()@self.factors.square()))
+        h=self.additive(z[:,None,:]*self.member_input[None,:,:])*self.member_output[None,:,:]
+        m=pair[:,None,:].expand(-1,h.shape[1],-1)
+        for block,norm,project,gate in zip(self.blocks.backbone.blocks,self.norms,self.project,self.gates):
+            h=h+torch.sigmoid(gate(torch.cat((norm(h),m),dim=-1)))*project(m)
+            h=h+block(norm(h))
+        return self.blocks.output(h)
+
+
 def make_optimizers(model, config, variant):
     if variant=='adam':
         return [torch.optim.AdamW(model.parameters(),lr=config['learning_rate'],weight_decay=config['weight_decay'])]
     # Only hidden BatchEnsemble matrices: member scaling, gates and outputs use AdamW.
-    blocks=model.backbone.blocks.backbone.blocks if variant=='gated' else model.backbone.backbone.blocks
+    blocks=model.backbone.blocks.backbone.blocks if variant in ('gated','layered') else model.backbone.backbone.blocks
     muon=[block[0].weight for block in blocks]
     ids={id(p) for p in muon}
     other=[p for p in model.parameters() if id(p) not in ids]
