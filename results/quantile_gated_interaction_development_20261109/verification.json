@@ -1,0 +1,12 @@
+{
+  "method": "independent numpy recomputation from saved predictions, targets and references on omen",
+  "records": 1920,
+  "unique_records": 1920,
+  "prediction_files": 30,
+  "keys_per_file": 64,
+  "provenance_files_checked": 70,
+  "provenance_mismatches": 0,
+  "max_trajectory_pcc_difference": 0.0,
+  "max_summary_difference": 0.0,
+  "selection_mismatches": 0
+}
