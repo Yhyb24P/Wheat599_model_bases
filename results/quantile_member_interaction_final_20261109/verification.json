@@ -1,0 +1,9 @@
+{
+  "fits": 80,
+  "weights_sha_verified": true,
+  "manifest_sources": 46,
+  "unique_material_environment_fold_keys": 2396,
+  "max_metric_difference": 0.0,
+  "max_oof_difference": 0.0,
+  "baseline_truth_and_fixed_fusion_verified": true
+}

@@ -1,0 +1,802 @@
+[
+  {
+    "fold": 0,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 18,
+    "seconds": 1.2351997029909398,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e0_s42.pt",
+    "weight_sha256": "d9813a5fb8f53bf9c3a7f4cd35f8c00e5e6db6c52d72a38f8515416d2b5548af"
+  },
+  {
+    "fold": 0,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 22,
+    "seconds": 0.3627356439974392,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e0_s2026.pt",
+    "weight_sha256": "5e26635fc8c25dc0294642f338d96214005e38bede4508d6234a11506f10c50f"
+  },
+  {
+    "fold": 0,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 28,
+    "seconds": 0.5129388950008433,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e1_s42.pt",
+    "weight_sha256": "3aebc84e976f4d677de9926046887d0f973613bdff8545c23a7633654a893e57"
+  },
+  {
+    "fold": 0,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 28,
+    "seconds": 0.5120383940084139,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e1_s2026.pt",
+    "weight_sha256": "688bd0cd52fbdcb4d057a11129816cc09ad96cb4adf386e54b54793ec773229b"
+  },
+  {
+    "fold": 0,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 14,
+    "seconds": 0.263447471006657,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e2_s42.pt",
+    "weight_sha256": "a905ca25ef445f29361d4bbd750da84a19d7ae31f1ac238bfc17849c67b10692"
+  },
+  {
+    "fold": 0,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 21,
+    "seconds": 0.37278805499954615,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e2_s2026.pt",
+    "weight_sha256": "aa363c04208053c3a39c16d062df4a263f2a617eca29e3f7b02eaa26e3d06d9f"
+  },
+  {
+    "fold": 0,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 16,
+    "seconds": 0.22395599300216418,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e3_s42.pt",
+    "weight_sha256": "7cdd1b5b2baa9700360a43810a664512269e40cf49a295c3d54e21e771158841"
+  },
+  {
+    "fold": 0,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 35,
+    "seconds": 0.4460619680030504,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f0_e3_s2026.pt",
+    "weight_sha256": "6002dbea372840f7b00a0a1e032a8c205949ffc4fb3d19588daf8745d906f990"
+  },
+  {
+    "fold": 1,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 33,
+    "seconds": 0.5894240870111389,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e0_s42.pt",
+    "weight_sha256": "200e3cf917c4491bedd5f58fcb888616a73b7a037724e41455903efb17bef96c"
+  },
+  {
+    "fold": 1,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 33,
+    "seconds": 0.5826934520009672,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e0_s2026.pt",
+    "weight_sha256": "eba25af4ebace0ce59c7198819a6f2322aacf0cca07ab1756337fc7ba8d852ce"
+  },
+  {
+    "fold": 1,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 4,
+    "epochs": 37,
+    "seconds": 0.5523330500000156,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e1_s42.pt",
+    "weight_sha256": "7b97f17ea3dd45f0b656ae6bf2e1f539d47c9827e14868a3c572adbf1380055c"
+  },
+  {
+    "fold": 1,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 4,
+    "epochs": 36,
+    "seconds": 0.5351477099902695,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e1_s2026.pt",
+    "weight_sha256": "d4d3869bc1ebf6a89769cbfac84baf1efa9deb05a27fca58962fe39b54c5fa6f"
+  },
+  {
+    "fold": 1,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 14,
+    "seconds": 0.19453265600895975,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e2_s42.pt",
+    "weight_sha256": "ed31ab90ecb8336028e490606322d68e514bc9ea1e23ab0f4551ed3f11bf5d24"
+  },
+  {
+    "fold": 1,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 14,
+    "seconds": 0.19364536000648513,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e2_s2026.pt",
+    "weight_sha256": "fbb4683a917f193d6c0053bf690b7694753882cdb18bea8459cb4064ccc34a14"
+  },
+  {
+    "fold": 1,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 19,
+    "seconds": 0.3162598899943987,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e3_s42.pt",
+    "weight_sha256": "7be2625faf5f63859e658010912a3136c33d25408a467d8af2b7e1590e33c3e4"
+  },
+  {
+    "fold": 1,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 21,
+    "seconds": 0.3531489209999563,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f1_e3_s2026.pt",
+    "weight_sha256": "9185f1477dc465e5617a12b1b702b29715b35ea83d9719ad00ea065b5a5fa827"
+  },
+  {
+    "fold": 2,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 2,
+    "epochs": 84,
+    "seconds": 0.870315556996502,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e0_s42.pt",
+    "weight_sha256": "d96bfb8e669eac01239824da02ce25e1069e5cdc850c86be6cc349f18d76d799"
+  },
+  {
+    "fold": 2,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 2,
+    "epochs": 41,
+    "seconds": 0.4561779799987562,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e0_s2026.pt",
+    "weight_sha256": "f292fb5d8e5763a9ba484e12cb5b69ed1c6f67df7b379d6d9a534e285f4364d1"
+  },
+  {
+    "fold": 2,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 4,
+    "epochs": 29,
+    "seconds": 0.43123722399468534,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e1_s42.pt",
+    "weight_sha256": "394c9200f5a69ececbfab8a0e51dd6cb39e032a64be5aa2a95f52ac3a22800d0"
+  },
+  {
+    "fold": 2,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 4,
+    "epochs": 28,
+    "seconds": 0.41600576099881437,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e1_s2026.pt",
+    "weight_sha256": "4fa2aedd19a6d95c17d49dc3632aff916e58dd493b7d04fe8a818628497baac9"
+  },
+  {
+    "fold": 2,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 12,
+    "seconds": 0.23111029800202232,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e2_s42.pt",
+    "weight_sha256": "d93bf988a7a161adb92a158e51583cdbba4b989198f14f99d89efb1caf629592"
+  },
+  {
+    "fold": 2,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 15,
+    "seconds": 0.2916820690006716,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e2_s2026.pt",
+    "weight_sha256": "e824de8a651962a10db7686608651623739b2b6c03c37936d9df3f1c6356192f"
+  },
+  {
+    "fold": 2,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 34,
+    "seconds": 0.5423474510025699,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e3_s42.pt",
+    "weight_sha256": "afc31cbc7371af7c47b966c1c17e071a2d5c3ddad957b4f31c3dab249bd00270"
+  },
+  {
+    "fold": 2,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 37,
+    "seconds": 0.5919442489976063,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f2_e3_s2026.pt",
+    "weight_sha256": "ff31aa444f1cbbe19636a79e9530c31e24438700d097085fd8b1805d994ac25f"
+  },
+  {
+    "fold": 3,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 2,
+    "epochs": 37,
+    "seconds": 0.45149913399654906,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e0_s42.pt",
+    "weight_sha256": "e06df1d8b02ddc9b9511b49029c06b46b8322309b930b3751895136b5c83a89b"
+  },
+  {
+    "fold": 3,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 2,
+    "epochs": 38,
+    "seconds": 0.43699615000514314,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e0_s2026.pt",
+    "weight_sha256": "08f549017bc975960ebea8c09a3942cbf752b96f294080cebcfb780f40e5d798"
+  },
+  {
+    "fold": 3,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 28,
+    "seconds": 0.4667792539985385,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e1_s42.pt",
+    "weight_sha256": "4e4c45bd3e693e678f8e5ab27b2ff38303dd21f87105da7cf4c239b625168933"
+  },
+  {
+    "fold": 3,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 32,
+    "seconds": 0.5220833929924993,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e1_s2026.pt",
+    "weight_sha256": "b49b977636bb514e1e24489e8a6bac524d79d1f73400ba1e05e5de8133968fff"
+  },
+  {
+    "fold": 3,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 16,
+    "seconds": 0.3034272530057933,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e2_s42.pt",
+    "weight_sha256": "4ab5c363b70c9bc4fc15eb2fcb1b81fe2bef65fa5bf079a29d616aa76b1be432"
+  },
+  {
+    "fold": 3,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 17,
+    "seconds": 0.3201290850120131,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e2_s2026.pt",
+    "weight_sha256": "e7e110dc94f94fbf866f29cc80be006fce02536631c02b50d24758e2e337d68e"
+  },
+  {
+    "fold": 3,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 27,
+    "seconds": 0.3424064080027165,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e3_s42.pt",
+    "weight_sha256": "22c3303cde44e64da6a8b87384036701b3d550a0484343daafd21ea533ccaec4"
+  },
+  {
+    "fold": 3,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 25,
+    "seconds": 0.3119514919962967,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f3_e3_s2026.pt",
+    "weight_sha256": "797aeab0440a2f87f5aa7c3689984793f09f56a2d06c96ac3a8901787bd059f9"
+  },
+  {
+    "fold": 4,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 2,
+    "epochs": 35,
+    "seconds": 0.39633868499367964,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e0_s42.pt",
+    "weight_sha256": "ec5019a81755884715df48314c5d82394062cacfcefbb458f664afec922cfcbf"
+  },
+  {
+    "fold": 4,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 2,
+    "epochs": 36,
+    "seconds": 0.4305034550052369,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e0_s2026.pt",
+    "weight_sha256": "7f0376807c167faeaab6b6957876ec86524f25169cf995873d69d9b442722d5c"
+  },
+  {
+    "fold": 4,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 4,
+    "epochs": 28,
+    "seconds": 0.43239345999609213,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e1_s42.pt",
+    "weight_sha256": "9c46319b45bc9b7fb1ea1187124b27637d40353df95f410ec0963107a9bdcb52"
+  },
+  {
+    "fold": 4,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 4,
+    "epochs": 30,
+    "seconds": 0.4431973289902089,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e1_s2026.pt",
+    "weight_sha256": "5a1d098f88d5e36ab20103d73d6159232646c41e5d903a3f3000c20f9dded4a3"
+  },
+  {
+    "fold": 4,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 15,
+    "seconds": 0.28614778199698776,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e2_s42.pt",
+    "weight_sha256": "ae286984f42c2c56411fafb55a063fc01e34b61e1f517b24b28eb2675838e2f5"
+  },
+  {
+    "fold": 4,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 13,
+    "seconds": 0.24777435600117315,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e2_s2026.pt",
+    "weight_sha256": "24fc8bcc187d4402a657c73ae2139b274fbf15f6a3fba832ddcb61b2648332b9"
+  },
+  {
+    "fold": 4,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 19,
+    "seconds": 0.27702727299765684,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e3_s42.pt",
+    "weight_sha256": "58ef2d6262bc07ece7a2a78c94dd431e5c6b8721154eb8673796947620507e50"
+  },
+  {
+    "fold": 4,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 16,
+    "seconds": 0.2377118519943906,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f4_e3_s2026.pt",
+    "weight_sha256": "125071a80042c48b94bd29b5b7b9ca23df91d7e8152fa56b58137de94170689d"
+  },
+  {
+    "fold": 5,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 51,
+    "seconds": 0.9256412899994757,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e0_s42.pt",
+    "weight_sha256": "011f524d0b71f9f1a8921ac1c1c39315aaa74ea257ff2c3be4a09050e3de12c1"
+  },
+  {
+    "fold": 5,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 58,
+    "seconds": 1.0136759080050979,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e0_s2026.pt",
+    "weight_sha256": "73de8cea60ac290a71603339a7e4ac6133e7ca39cb10c7f34dffd4ed5e51bc26"
+  },
+  {
+    "fold": 5,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 36,
+    "seconds": 0.6482352129969513,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e1_s42.pt",
+    "weight_sha256": "22bfbf73892de5793d4597762711fd6af2f405c008393581a351eb0c8076eb91"
+  },
+  {
+    "fold": 5,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 36,
+    "seconds": 0.6402024340059143,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e1_s2026.pt",
+    "weight_sha256": "bd4e7f20bcb53fd4a7998dcb60fc55029e32b8b033d00dd8a7e487a8f5f4c224"
+  },
+  {
+    "fold": 5,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 11,
+    "seconds": 0.21584906299540307,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e2_s42.pt",
+    "weight_sha256": "2f51a9c4ae7ec6ad05352e2156aa72bb4302dd0d3121b4fb2fc1e224ded17da3"
+  },
+  {
+    "fold": 5,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 11,
+    "seconds": 0.23420557999634184,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e2_s2026.pt",
+    "weight_sha256": "8b7cc3092c5568dea7601888e771b61096ee95e1f5ed6926f9accfb74f24ea1a"
+  },
+  {
+    "fold": 5,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 18,
+    "seconds": 0.2567947740026284,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e3_s42.pt",
+    "weight_sha256": "4ca8f3b56198c1dddcbfa94d3daed842dd4c9228bbf6d3d52bffecc7d2861ce6"
+  },
+  {
+    "fold": 5,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 12,
+    "seconds": 0.18493596698681358,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f5_e3_s2026.pt",
+    "weight_sha256": "49c54281fe3e9f0cba5b646eb62ec0ea27b814d151a36b2a060167e2e9a4b55b"
+  },
+  {
+    "fold": 6,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 34,
+    "seconds": 0.6271609149989672,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e0_s42.pt",
+    "weight_sha256": "fde64825b84fbf1e307f838d96690fe2b972762dd04d6d5aa7d7548633021ced"
+  },
+  {
+    "fold": 6,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 34,
+    "seconds": 0.5920813220000127,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e0_s2026.pt",
+    "weight_sha256": "aae512256ea8ff97b61b77f2d267415bc45ba4c65c9b8523cb3efbee4cf0a5b9"
+  },
+  {
+    "fold": 6,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 31,
+    "seconds": 0.5450493620010093,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e1_s42.pt",
+    "weight_sha256": "c5cf3e11d4f955703ff74c90d242d1860d51f095c749a1594a36eb85f320a09a"
+  },
+  {
+    "fold": 6,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 37,
+    "seconds": 0.6061116259952541,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e1_s2026.pt",
+    "weight_sha256": "d8c7154b7dd50ff2cee85bb0b3b09dcd889ea8e2937bd7410af7b297525b6fd7"
+  },
+  {
+    "fold": 6,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 14,
+    "seconds": 0.2649363559903577,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e2_s42.pt",
+    "weight_sha256": "613af665530b6ea6791d0741b8096eda0d2a19220b49ee10267582d723e40a1a"
+  },
+  {
+    "fold": 6,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 14,
+    "seconds": 0.2767534679878736,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e2_s2026.pt",
+    "weight_sha256": "4da512d11805df363ff823f5e9bb6c11a4786d55ce44ab8ae45b8f039b82dff1"
+  },
+  {
+    "fold": 6,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 14,
+    "seconds": 0.2638798389962176,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e3_s42.pt",
+    "weight_sha256": "ce468c3bac124a2a0185edc5505c780a18ca9c384147084f671e630c18c15922"
+  },
+  {
+    "fold": 6,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 22,
+    "seconds": 0.399407100994722,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f6_e3_s2026.pt",
+    "weight_sha256": "ef5e6f5cba6f2e3a2347f6ec701a1b2516d21191ce12cd36c380a339437f6bb4"
+  },
+  {
+    "fold": 7,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 20,
+    "seconds": 0.32613881400902756,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e0_s42.pt",
+    "weight_sha256": "60c811b65b2cb3c277dbc97738164cbe804ae8b6f07492dcd8d813da8b4b5722"
+  },
+  {
+    "fold": 7,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 38,
+    "seconds": 0.6295432720071403,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e0_s2026.pt",
+    "weight_sha256": "7b35ec88d155cba4a7eeaa3a0a230a748cb387bbe19648a2ea842cc21053d59a"
+  },
+  {
+    "fold": 7,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 36,
+    "seconds": 0.5903642489865888,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e1_s42.pt",
+    "weight_sha256": "97322b6a9414e5716b08046b874de7bd88bb6d55fe60513a020a67aed02ba53c"
+  },
+  {
+    "fold": 7,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 37,
+    "seconds": 0.6594621100084623,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e1_s2026.pt",
+    "weight_sha256": "b1b16d5ecb8e2d903ef0072eca48788cb8c34cc9e5b13598bff8c983e71547f2"
+  },
+  {
+    "fold": 7,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 15,
+    "seconds": 0.28526704700198025,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e2_s42.pt",
+    "weight_sha256": "3642ffadca0cc14a3273cd5e1f20f4c8708d8d728176fb920b25e373b5dd8d2b"
+  },
+  {
+    "fold": 7,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 12,
+    "seconds": 0.23558002700156067,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e2_s2026.pt",
+    "weight_sha256": "130a3bdf60f45a3db1edee9a49c4a64975fa8cadde2e6a8959d9127e9dca31ae"
+  },
+  {
+    "fold": 7,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 18,
+    "seconds": 0.26260067500697915,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e3_s42.pt",
+    "weight_sha256": "553877d6cade28db7dff8a86e225bfcc1df439b6bfeb4883a4f549a483f2c437"
+  },
+  {
+    "fold": 7,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 18,
+    "seconds": 0.2635795690002851,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f7_e3_s2026.pt",
+    "weight_sha256": "5fad27cb93f6eabedc6c2f9a240c0f49bd36bbf744ddae64c5252c7ae2121fbf"
+  },
+  {
+    "fold": 8,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 7,
+    "epochs": 16,
+    "seconds": 0.2754799200047273,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e0_s42.pt",
+    "weight_sha256": "5629d140c015375542f0d0a8db0ade4f1b4f63c741bd193f3f984cf0f4f85629"
+  },
+  {
+    "fold": 8,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 7,
+    "epochs": 20,
+    "seconds": 0.3317082299909089,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e0_s2026.pt",
+    "weight_sha256": "d27da32bb38f9f5ef72a3cb7af62887a4d46addbc255e63d58404d0e11d346d0"
+  },
+  {
+    "fold": 8,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 13,
+    "seconds": 0.2565925620001508,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e1_s42.pt",
+    "weight_sha256": "89ea95af34dfe8e793f36067ed45f3e8275e0c091b92ec5dc68310b75d55524e"
+  },
+  {
+    "fold": 8,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 13,
+    "seconds": 0.2464404740021564,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e1_s2026.pt",
+    "weight_sha256": "a49731002d4a38890c01f152ae835be7a3383438c07d0762d52ac0c4bc9f1596"
+  },
+  {
+    "fold": 8,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 16,
+    "seconds": 0.2952449459990021,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e2_s42.pt",
+    "weight_sha256": "9407bb5350f3507a020851e1daa8998476c392b9153d4b6b97285d9ca6725ba3"
+  },
+  {
+    "fold": 8,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 17,
+    "seconds": 0.3200630689971149,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e2_s2026.pt",
+    "weight_sha256": "055e15ad5dc668b5e0925a49856589a5eb9f541616b5d416c2eb6467ee9d8109"
+  },
+  {
+    "fold": 8,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 6,
+    "epochs": 34,
+    "seconds": 0.5522652520012343,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e3_s42.pt",
+    "weight_sha256": "e6ae8e187c828d0f2b40ff2278411cf4b7f931918ca381c008b15ee2db026871"
+  },
+  {
+    "fold": 8,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 6,
+    "epochs": 33,
+    "seconds": 0.5473738420114387,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f8_e3_s2026.pt",
+    "weight_sha256": "e5c04bdc729fa57b9a5c2a1aabaf7664b023d38ee01bacd88ac26f584f100629"
+  },
+  {
+    "fold": 9,
+    "environment_index": 0,
+    "seed": 42,
+    "config_index": 3,
+    "epochs": 17,
+    "seconds": 0.22618939098902047,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e0_s42.pt",
+    "weight_sha256": "273c165da5129a988cf4786c3c9231cffb8723b02741df471d117aa09d21e031"
+  },
+  {
+    "fold": 9,
+    "environment_index": 0,
+    "seed": 2026,
+    "config_index": 3,
+    "epochs": 13,
+    "seconds": 0.1777588169934461,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e0_s2026.pt",
+    "weight_sha256": "5fd255f561b66d4536814598be266579de6847588e25cb9c76ce81605922d192"
+  },
+  {
+    "fold": 9,
+    "environment_index": 1,
+    "seed": 42,
+    "config_index": 4,
+    "epochs": 28,
+    "seconds": 0.41719014100090135,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e1_s42.pt",
+    "weight_sha256": "33b2100ae549c46007fa0754929490148d2b99184846ca4329b9625e6c735c6d"
+  },
+  {
+    "fold": 9,
+    "environment_index": 1,
+    "seed": 2026,
+    "config_index": 4,
+    "epochs": 32,
+    "seconds": 0.479783563001547,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e1_s2026.pt",
+    "weight_sha256": "bf9c28afac951166e47911a64c99e0dfbda6837a328f7cd87ec1545f19d2d216"
+  },
+  {
+    "fold": 9,
+    "environment_index": 2,
+    "seed": 42,
+    "config_index": 1,
+    "epochs": 11,
+    "seconds": 0.21456101900548674,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e2_s42.pt",
+    "weight_sha256": "4e42290ddfd724495884e9b96413cdf96e833350c3c576f338cacb106ca7b08c"
+  },
+  {
+    "fold": 9,
+    "environment_index": 2,
+    "seed": 2026,
+    "config_index": 1,
+    "epochs": 21,
+    "seconds": 0.3755979400011711,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e2_s2026.pt",
+    "weight_sha256": "590a406b43c523d6a9a50de1a64539c098ed2d0851d33626468340bdd317c2b6"
+  },
+  {
+    "fold": 9,
+    "environment_index": 3,
+    "seed": 42,
+    "config_index": 5,
+    "epochs": 17,
+    "seconds": 0.23609721699904185,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e3_s42.pt",
+    "weight_sha256": "b67494b0972b7e4fd057bba728af4d9df0fbb1c083598f645fa0e945cb2c150e"
+  },
+  {
+    "fold": 9,
+    "environment_index": 3,
+    "seed": 2026,
+    "config_index": 5,
+    "epochs": 14,
+    "seconds": 0.20057682100741658,
+    "weight_path": "/home/hsy/git_files/Wheat599_model_bases/results/quantile_member_interaction_final_20261109/weights/f9_e3_s2026.pt",
+    "weight_sha256": "df0f3f95df99cde0f7b496f1d8bfd9fb92e7fb1591b57d88e1ad71f7c62165ef"
+  }
+]
