@@ -88,3 +88,39 @@ def test_real_teacher_records_keep_student_and_teacher_inner_separate(tmp_path):
     assert len(records)==20
     assert all(r['fold']==7 and r['inner']==2 and r['teacher_fold']==1 for r in records)
     assert {r['teacher_inner'] for r in records if 'teacher_inner' in r}=={0,1,2}
+
+
+def test_unit_executor_records_and_warm_start(tmp_path, monkeypatch):
+    from types import SimpleNamespace
+    torch.set_num_threads(1)
+    rng=np.random.default_rng(82)
+    data=SimpleNamespace(X=rng.normal(size=(18,8)),Y=rng.normal(size=(18,4)))
+    cfg=yaml.safe_load(Path('configs/distill_quantile.yaml').read_text())
+    cfg.update(device='cpu',seeds=[42],strengths=[0.,.1],baseline_source=str(tmp_path/'baseline'))
+    cfg['finetuning'].update(max_epochs=1,patience=1);cfg['execution']={'workers':1,'cpu_threads_per_worker':1}
+    (tmp_path/'baseline').mkdir();(tmp_path/'out').mkdir()
+    config=dict(n_blocks=1,d_block=8,dropout=.1,k=2,learning_rate=.001,weight_decay=.001)
+    f={'fold':0,'inner':[{'train_idx':list(range(12)),'val_idx':list(range(12,18))}]}
+    old={};saved={}
+    for e in range(4):
+        m=dq.fixed_fit(data.X[:12],data.Y[:12,e],config,42,0,0,cfg,'cpu')
+        saved[f'e{e}_c0_s42']=dq.predict(m,data.X[12:],'cpu')
+        old[0,0,e,0,42]={'best_epoch':0}
+    np.savez(tmp_path/'baseline/predictions_0_0.npz',**saved)
+    monkeypatch.setattr(dq,'crossfit_teacher',lambda x,y,*a: y*.9)
+    records=dq.execute_unit((data,f,0,cfg,[config],{},[0]*4,old,str(tmp_path/'out')))
+    assert len(records)==12
+    assert dq.read(tmp_path/'out/unit_0_0/execution_status.json')['status']=='complete'
+    assert dq.read(tmp_path/'out/unit_0_0/trajectories.json')==records
+    assert len(np.load(tmp_path/'out/predictions_0_0.npz').files)==12
+
+
+def test_resume_rejects_changed_recipe_and_skips_partial_units(tmp_path):
+    import pytest
+    src=Path(dq.__file__)
+    dq.write(tmp_path/'provenance.json',{'config':{},'sha256':{str(src):dq.sha256_of(src)}})
+    dq.write(tmp_path/'trajectories.json',[{'fold':0,'inner':0,'kind':'teacher_selection'}])
+    folds=[{'fold':0,'inner':[{'val_idx':[1,2]}]*3}]
+    assert dq.reusable_units(tmp_path,{'execution':{'workers':2}},folds)=={}
+    with pytest.raises(ValueError,match='scientific configuration'):
+        dq.reusable_units(tmp_path,{'strengths':[1.]},folds)

@@ -1,5 +1,8 @@
 """Cross-fitted heterogeneous-teacher distillation into unchanged quantile TabM."""
+import ast
 import copy
+import concurrent.futures
+import multiprocessing
 import itertools
 import json
 import subprocess
@@ -199,6 +202,103 @@ def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed,
         epochs_run=epoch, seconds=time.perf_counter() - start, history=history)
 
 
+def execute_unit(request):
+    data, f, j, cfg, configs, kernel_cfg, choices, old_index, output = request
+    out = Path(output); source = Path(cfg['baseline_source'])
+    fold = f['fold']; split = f['inner'][j]
+    tr, va = np.array(split['train_idx']), np.array(split['val_idx'])
+    execution = cfg.get('execution', {})
+    torch.set_num_threads(execution.get('cpu_threads_per_worker', cfg['cpu_threads']))
+    device = torch.device(cfg['device'])
+    if device.type == 'cuda':
+        torch.cuda.set_per_process_memory_fraction(cfg['gpu_memory_fraction'] / execution.get('workers', 1))
+    unit = out / f'unit_{fold}_{j}'; unit.mkdir()
+    records = []; counts = {}
+    def record(kind, detail):
+        records.append(dict(kind=kind, fold=fold, inner=j, **detail))
+        counts[kind] = counts.get(kind, 0) + 1
+        write(unit / 'execution_status.json', dict(status='running', completed=counts))
+    teacher = crossfit_teacher(data.X[tr], data.Y[tr], tr, configs, cfg, kernel_cfg,
+                                cfg['split_seed'] + fold * 10 + j, device, record, unit)
+    predictions, student_details = {}, []
+    original = np.load(source / f'predictions_{fold}_{j}.npz')
+    for e in range(4):
+        c = choices[e]; config = configs[c]
+        for seed in cfg['seeds']:
+            epochs = old_index[(fold,j,e,c,seed)]['best_epoch']
+            warm = fixed_fit(data.X[tr],data.Y[tr,e],config,seed,c,epochs,cfg,device)
+            warm_pred = predict(warm,data.X[va],device)
+            reference = original[f'e{e}_c{c}_s{seed}']
+            difference = float(np.max(abs(warm_pred-reference)))
+            if difference > cfg['warm_prediction_tolerance']:
+                raise ValueError(f'Warm start does not reproduce original prediction: {difference}')
+            record('student_initialization', dict(environment=e,config_index=c,seed=seed,epochs=epochs,max_difference=difference))
+            predictions[f'e{e}_s{seed}_original']=warm_pred
+            for strength in cfg['strengths']:
+                model = copy.deepcopy(warm)
+                pred, _, detail = finetune(model,data.X[tr],data.Y[tr,e],teacher[:,e],data.X[va],data.Y[va,e],
+                                           strength,config,seed,c,cfg,device)
+                predictions[f'e{e}_s{seed}_l{strength}']=pred
+                weight_path = unit / f'student_e{e}_s{seed}_l{strength}.pt'
+                torch.save({k:v.detach().cpu() for k,v in model.state_dict().items()},weight_path)
+                detail.update(environment=e,config_index=c,seed=seed,weight_sha256=sha256_of(weight_path))
+                student_details.append(detail)
+                record('student_finetune',{k:v for k,v in detail.items() if k!='history'})
+    np.savez_compressed(out / f'predictions_{fold}_{j}.npz',**predictions)
+    write(unit / 'student_training.json',student_details)
+    write(unit / 'trajectories.json',records)
+    print(f'completed student unit {fold}/{j}',flush=True)
+    write(unit / 'execution_status.json', dict(status='complete', completed=counts))
+    return records
+
+
+def reusable_units(previous, cfg, folds):
+    previous = Path(previous)
+    provenance = read(previous / 'provenance.json')
+    original_cfg = {k:v for k,v in cfg.items() if k != 'execution'}
+    prior_cfg = {k:v for k,v in provenance['config'].items() if k != 'execution'}
+    if original_cfg != prior_cfg:
+        raise ValueError('Resume changes scientific configuration')
+    old_path = next(Path(k) for k in provenance['sha256'] if k.endswith('/distill_quantile.py'))
+    if sha256_of(old_path) != provenance['sha256'][str(old_path)]:
+        raise ValueError('Original training source changed')
+    old_tree, new_tree = ast.parse(old_path.read_text()), ast.parse(Path(__file__).read_text())
+    for name in ('splits', 'distillation_loss', 'predict', 'fixed_fit', 'prepare_query', 'fit_teacher', 'crossfit_teacher', 'finetune'):
+        nodes = [next(n for n in t.body if isinstance(n, ast.FunctionDef) and n.name == name) for t in (old_tree, new_tree)]
+        if ast.dump(nodes[0], include_attributes=False) != ast.dump(nodes[1], include_attributes=False):
+            raise ValueError(f'Resume changes training function {name}')
+    expected = dict(teacher_selection=576, teacher_refit=24, huber_selection=216, huber_refit=3,
+                    student_initialization=8, student_finetune=32)
+    all_rows = read(previous / 'trajectories.json')
+    recovered = {}
+    for f in folds:
+        for j in range(3):
+            key = (f['fold'], j)
+            rows = [r for r in all_rows if (r['fold'], r['inner']) == key]
+            counts = {k:sum(r['kind'] == k for r in rows) for k in expected}
+            predictions = previous / f'predictions_{key[0]}_{j}.npz'
+            unit = previous / f'unit_{key[0]}_{j}'
+            if counts != expected or not predictions.exists():
+                continue
+            with np.load(predictions) as arr:
+                if len(arr.files) != 40 or any(arr[k].shape != (len(f['inner'][j]['val_idx']),) or not np.isfinite(arr[k]).all() for k in arr.files):
+                    raise ValueError('Invalid completed prediction unit')
+            details = read(unit / 'student_training.json')
+            if len(details) != 32:
+                raise ValueError('Incomplete student records')
+            for r in details:
+                weight = unit / f"student_e{r['environment']}_s{r['seed']}_l{r['strength']}.pt"
+                if sha256_of(weight) != r['weight_sha256']:
+                    raise ValueError('Completed student weight changed')
+            for teacher in read(unit / 'teacher_partitions.json'):
+                for r in teacher['refits']:
+                    weight = unit / f"teacher_{teacher['teacher_fold']}" / f"e{r['environment']}_s{r['seed']}.pt"
+                    if sha256_of(weight) != r['weight_sha256']:
+                        raise ValueError('Completed teacher weight changed')
+            recovered[key] = (rows, predictions, unit)
+    return recovered
+
+
 def run(cfg, args, runner):
     if args.selection is not None:
         raise ValueError('Development only')
@@ -231,6 +331,9 @@ def run(cfg, args, runner):
     source_paths = [Path(__file__), Path(qt.__file__), Path(runner), Path(args.config), Path(cfg['splits']),
         Path(cfg['architecture_config']), Path(cfg['huber_config']), Path(cfg['baseline_audit']), source / 'summary.json',
         source / 'trajectories.json', source / 'provenance.json', Path(cfg['fusion_reference']) / 'summary.json']
+    if cfg.get('execution', {}).get('resume_source'):
+        previous = Path(cfg['execution']['resume_source'])
+        source_paths += [previous / 'provenance.json', previous / 'trajectories.json']
     source_paths += [source / f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
     source_paths += [Path(__file__).with_name(n+'.py') for n in ('robust_icm','heterogeneous_icm','reml_icm','kernel_baselines','genomic_tabm','data')]
     write(args.out / 'provenance.json', dict(config=cfg, git_commit=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),
@@ -240,48 +343,41 @@ def run(cfg, args, runner):
     state = dict(status='running', completed={k:0 for k in expected}, expected=expected)
     records, failures, start = [], [], time.perf_counter()
     context = {}
-    def record(kind, detail):
-        records.append(dict(kind=kind, **context, **detail)); state['completed'][kind] += 1
-        write(args.out / 'execution_status.json', state)
     try:
+        recovered = reusable_units(cfg['execution']['resume_source'], cfg, folds) if cfg.get('execution', {}).get('resume_source') else {}
+        requests = []
         for f in folds:
-            fold = f['fold']; choices = next(r['selected'] for r in old['folds'] if r['fold']==fold)
+            choices = next(r['selected'] for r in old['folds'] if r['fold']==f['fold'])
             for j, split in enumerate(f['inner']):
-                tr, va = np.array(split['train_idx']), np.array(split['val_idx'])
-                if set(tr)&set(va) or set(tr)|set(va)!=set(f['dev_idx']) or (set(tr)|set(va))&set(f['test_idx']):
+                tr, va = set(split['train_idx']), set(split['val_idx'])
+                if tr & va or tr | va != set(f['dev_idx']) or (tr | va) & set(f['test_idx']):
                     raise ValueError('Invalid student split')
-                context = dict(fold=fold, inner=j)
-                unit = args.out / f'unit_{fold}_{j}'; unit.mkdir()
-                teacher = crossfit_teacher(data.X[tr], data.Y[tr], tr, configs, cfg, kernel_cfg,
-                                            cfg['split_seed'] + fold * 10 + j, device, record, unit)
-                predictions, student_details = {}, []
-                original = np.load(source / f'predictions_{fold}_{j}.npz')
-                for e in range(4):
-                    c = choices[e]; config = configs[c]
-                    for seed in cfg['seeds']:
-                        epochs = old_index[(fold,j,e,c,seed)]['best_epoch']
-                        warm = fixed_fit(data.X[tr],data.Y[tr,e],config,seed,c,epochs,cfg,device)
-                        warm_pred = predict(warm,data.X[va],device)
-                        reference = original[f'e{e}_c{c}_s{seed}']
-                        difference = float(np.max(abs(warm_pred-reference)))
-                        if difference > cfg['warm_prediction_tolerance']:
-                            raise ValueError(f'Warm start does not reproduce original prediction: {difference}')
-                        record('student_initialization', dict(environment=e,config_index=c,seed=seed,epochs=epochs,max_difference=difference))
-                        predictions[f'e{e}_s{seed}_original']=warm_pred
-                        for strength in cfg['strengths']:
-                            model = copy.deepcopy(warm)
-                            pred, _, detail = finetune(model,data.X[tr],data.Y[tr,e],teacher[:,e],data.X[va],data.Y[va,e],
-                                                       strength,config,seed,c,cfg,device)
-                            predictions[f'e{e}_s{seed}_l{strength}']=pred
-                            weight_path = unit / f'student_e{e}_s{seed}_l{strength}.pt'
-                            torch.save({k:v.detach().cpu() for k,v in model.state_dict().items()},weight_path)
-                            detail.update(environment=e,config_index=c,seed=seed,weight_sha256=sha256_of(weight_path))
-                            student_details.append(detail)
-                            record('student_finetune',{k:v for k,v in detail.items() if k!='history'})
-                np.savez_compressed(args.out / f'predictions_{fold}_{j}.npz',**predictions)
-                write(unit / 'student_training.json',student_details)
-                write(args.out / 'trajectories.json',records)
-                print(f'completed student unit {fold}/{j}',flush=True)
+                key = (f['fold'], j)
+                if key in recovered:
+                    saved, prediction, unit = recovered[key]
+                    (args.out / prediction.name).symlink_to(prediction.resolve())
+                    (args.out / unit.name).symlink_to(unit.resolve(), target_is_directory=True)
+                    records.extend(saved)
+                    for r in saved: state['completed'][r['kind']] += 1
+                else:
+                    requests.append((data, f, j, cfg, configs, kernel_cfg, choices, old_index, str(args.out)))
+        write(args.out / 'execution_status.json', state)
+        write(args.out / 'resume.json', dict(source=cfg.get('execution', {}).get('resume_source'), reused_units=[list(k) for k in recovered], remaining_units=len(requests)))
+        workers = cfg.get('execution', {}).get('workers', 1)
+        if workers not in (1, 2): raise ValueError('Only one or two bounded workers are supported')
+        with concurrent.futures.ProcessPoolExecutor(max_workers=workers, mp_context=multiprocessing.get_context('spawn')) as pool:
+            pending = {pool.submit(execute_unit, request):(request[1]['fold'], request[2]) for request in requests}
+            for future in concurrent.futures.as_completed(pending):
+                context = dict(fold=pending[future][0], inner=pending[future][1])
+                try:
+                    completed = future.result()
+                except BaseException:
+                    for other in pending: other.cancel()
+                    raise
+                records.extend(completed)
+                for r in completed: state['completed'][r['kind']] += 1
+                write(args.out / 'trajectories.json', records)
+                write(args.out / 'execution_status.json', state)
         if state['completed'] != expected:
             raise ValueError('Incomplete distillation budget')
         summaries=[]
