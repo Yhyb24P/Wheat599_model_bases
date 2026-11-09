@@ -1,0 +1,64 @@
+{
+  "trajectories": 180,
+  "synchronized_states": 3780,
+  "selected_states_replayed": 60,
+  "updated_states_replayed": 180,
+  "weight_replay_max_difference": 4.7301534777943743e-07,
+  "initialization_max_difference": 2.016293767503896e-07,
+  "max_kernel_relative_gap": 9.997740567435322e-11,
+  "max_kernel_iterations": 200,
+  "paired": {
+    "initial_fusion": {
+      "macro_delta": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "pcc_higher_folds": 0,
+      "rmse_lower_folds": 0,
+      "mae_lower_folds": 0
+    },
+    "original_quantile": {
+      "macro_delta": [
+        -5.3160370866338344e-05,
+        -0.0010069310887149852,
+        -0.0011318508414142948
+      ],
+      "pcc_higher_folds": 4,
+      "rmse_lower_folds": 5,
+      "mae_lower_folds": 6
+    }
+  },
+  "source_sha256": {
+    "results/anchored_quantile_development_20261110/unit_0_0/predictions.npz": "0631d9f9809cdd81efb4bed52adbe06f791f45d0b7e0771587fd6b11f6a8c488",
+    "results/anchored_quantile_development_20261110/unit_0_1/predictions.npz": "4c13f4eb88655eed701c558ae2a018fd12c47802d31146beb861e4b7b6abec95",
+    "results/anchored_quantile_development_20261110/unit_0_2/predictions.npz": "4482d5f64719dd58f670d0d73ec7b72abfdb7ef43cda0d643625c8461167b3ef",
+    "results/anchored_quantile_development_20261110/unit_1_0/predictions.npz": "59c2a7a71f3653b63ae4b7a166a4482562946b97a84b5df2adef93a4f0af9f2e",
+    "results/anchored_quantile_development_20261110/unit_1_1/predictions.npz": "d631ea536a561a9c78c7afee39973b773e4ed5f1143087da5408de7cb918d68f",
+    "results/anchored_quantile_development_20261110/unit_1_2/predictions.npz": "e70987a6c0d9c2ced1be52b1b7087ef97aec20bcf4a40e59025e259dc4e6bbc7",
+    "results/anchored_quantile_development_20261110/unit_2_0/predictions.npz": "50d694e3afd7fdcdbb870d824d480350417158770a966c8f4a669fb5789a9845",
+    "results/anchored_quantile_development_20261110/unit_2_1/predictions.npz": "8f915dcc8cee380f8d4ad0ccd2bd901bbd5c382881ce55fda8b3c660f50630f2",
+    "results/anchored_quantile_development_20261110/unit_2_2/predictions.npz": "5e80fe60062861055a39754dd8aa2ef1e512b25551e16de1b603ad7a1e1f7403",
+    "results/anchored_quantile_development_20261110/unit_3_0/predictions.npz": "35ba7cb7f11805aaf46186379abd3926df7eb6e27ff3c6fbe08d00429c4cd115",
+    "results/anchored_quantile_development_20261110/unit_3_1/predictions.npz": "6440fe8ee5f6386f7577019a027d9641ff11fc04ad2e4ca510255fa7936148d9",
+    "results/anchored_quantile_development_20261110/unit_3_2/predictions.npz": "a10768dd5ba1e27495efa0262096d01b0547070e2e1178d7dd62997da8ca1fe2",
+    "results/anchored_quantile_development_20261110/unit_4_0/predictions.npz": "f332ab55be68d16b4afc7ea03047e6c720927306a193021ad7a34b7290417534",
+    "results/anchored_quantile_development_20261110/unit_4_1/predictions.npz": "a1d657942450a75ba62f34541bd4ba12160ce7852f9a8af4d7d8eaca68b1c56e",
+    "results/anchored_quantile_development_20261110/unit_4_2/predictions.npz": "f7de6ced480ee6e5002e6fddca6cab425248903959a68a74aab33eb244a34ad5",
+    "results/anchored_quantile_development_20261110/unit_5_0/predictions.npz": "6d8614256bc8d787fd0727f426957950adfd9d382b6a5c2e551e8994a5cd4422",
+    "results/anchored_quantile_development_20261110/unit_5_1/predictions.npz": "7aaff08f839802f041677f0aed511e28b1b18de4df53dcaff6eef7ecae7a43a5",
+    "results/anchored_quantile_development_20261110/unit_5_2/predictions.npz": "9a9a26a4be044477aa99da1849fa490362859818d61789ddd7cf4f36a8a38e06",
+    "results/anchored_quantile_development_20261110/unit_6_0/predictions.npz": "1a3dc93a5cc0be3eb88cbf75eb26b9e6afe2816b5a48d77718b294637d5b5a21",
+    "results/anchored_quantile_development_20261110/unit_6_1/predictions.npz": "6c6fb27b93f4044265d1576fd573c012344063ffb8d66beffe720308cf783b2f",
+    "results/anchored_quantile_development_20261110/unit_6_2/predictions.npz": "e0595b2bccad6a06a1c52445d0a89d41f9d39ea4a8e5c2a9f534d61d0b2cad83",
+    "results/anchored_quantile_development_20261110/unit_7_0/predictions.npz": "6140ed97c9ec12f0b2d871af17c59a5aefa396ed8a545b4f2eb08937d37f5f57",
+    "results/anchored_quantile_development_20261110/unit_7_1/predictions.npz": "215877d5ff7f0feb2f31969d85318ff23d418c44a0cf2c88ff28f6ddbadc8614",
+    "results/anchored_quantile_development_20261110/unit_7_2/predictions.npz": "b1dd5b8aeddef022f3f8df0ffbbe1f4a8c304db85c8a7bbcb57090cc5b7acf3c",
+    "results/anchored_quantile_development_20261110/unit_8_0/predictions.npz": "71df41c37caf15153e2e6ce47a5af7d2c0cc1dc9cb74a01c01a29ae3d35c8338",
+    "results/anchored_quantile_development_20261110/unit_8_1/predictions.npz": "b772efd0e74bee009431a9a21ac808c0299722038ca871125715354f5fd38719",
+    "results/anchored_quantile_development_20261110/unit_8_2/predictions.npz": "f426c9391a97821d43d90ceb48672912f8d4c62f24f9f0ae302a7bb0247a9f52",
+    "results/anchored_quantile_development_20261110/unit_9_0/predictions.npz": "186a9c43ead48f10ca6b759f531e310ba93c9bec476a50391718c3bffd883a95",
+    "results/anchored_quantile_development_20261110/unit_9_1/predictions.npz": "c5e10186dca2cd787760a06f37e6e6d6e5bfabfcab4f32c332ea823789534346",
+    "results/anchored_quantile_development_20261110/unit_9_2/predictions.npz": "7a43ca5443f0b17e931c6996314f13a86a065026aa57f71b4cdf3eeaca3c2727"
+  }
+}

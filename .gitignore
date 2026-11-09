@@ -61,3 +61,5 @@ results/menet_quantile_*/relations/
 
 results/distill_quantile_*/predictions_*.npz
 results/distill_quantile_*/unit_*/
+
+results/anchored_quantile_*/unit_*/
