@@ -53,12 +53,17 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
         backbone=InteractionBackbone if variant=='gated' else LayerInteractionBackbone
         model.backbone=backbone(x_fit.shape[1],width=config['d_block'],members=config['k'],
                                            dropout=config['dropout'],quantiles=settings['n_quantiles']).to(device)
+    if variant=='member_conditional':
+        from wheat599.member_interaction_tabm import MemberInteractionBackbone
+        # Preserve the original CPU RNG stream after initializing the new modules.
+        with torch.random.fork_rng(devices=[]):
+            model.backbone=MemberInteractionBackbone(model.backbone,x_fit.shape[1]).to(device)
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
     q = torch.linspace(settings['quantile_min'], settings['quantile_max'],
                        settings['n_quantiles'], device=device)
-    if variant=='adam':
+    if variant in ('adam','member_conditional'):
         opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
     else:
         from wheat599.interaction_tabm import make_optimizers
@@ -120,6 +125,7 @@ def run(cfg, args, runner):
     if baseline:
         sources += [Path(__file__).with_name('interaction_tabm.py'),baseline/'summary.json',Path(cfg['baseline_audit'])]
         sources += [baseline/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
+    if cfg.get('optimizer_variant')=='member_conditional':sources.append(Path(__file__).with_name('member_interaction_tabm.py'))
     comparison={}
     for name,path in cfg.get('comparison_sources',{}).items():
         path=Path(path);p=read(path/'provenance.json')
