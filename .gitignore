@@ -54,3 +54,7 @@ results/a_rr_nested_smoke/
 results/bimsgp_nested_smoke/
 unused/
 src/wheat599/posterior_gibbs.py
+
+results/menet_quantile_*/predictions_*.npz
+results/menet_quantile_*/curves/
+results/menet_quantile_*/relations/

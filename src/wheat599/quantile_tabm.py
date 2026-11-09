@@ -92,7 +92,8 @@ def read(path):
     return json.loads(Path(path).read_text())
 
 
-def run(cfg, args, runner):
+def run(cfg, args, runner, *, trainer=None, extra_sources=()):
+    trainer = train if trainer is None else trainer
     if args.selection is not None:
         raise ValueError('Development only')
     torch.set_num_threads(cfg['cpu_threads'])
@@ -126,6 +127,7 @@ def run(cfg, args, runner):
         sources += [Path(__file__).with_name('interaction_tabm.py'),baseline/'summary.json',Path(cfg['baseline_audit'])]
         sources += [baseline/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
     if cfg.get('optimizer_variant')=='member_conditional':sources.append(Path(__file__).with_name('member_interaction_tabm.py'))
+    sources.extend(Path(p) for p in extra_sources)
     comparison={}
     for name,path in cfg.get('comparison_sources',{}).items():
         path=Path(path);p=read(path/'provenance.json')
@@ -150,7 +152,7 @@ def run(cfg, args, runner):
                 for environment in range(4):
                     for c, config in enumerate(configs):
                         for seed in cfg['seeds']:
-                            pred, details = train(data.X[tr], data.Y[tr, environment],
+                            pred, details = trainer(data.X[tr], data.Y[tr, environment],
                                 data.X[val], data.Y[val, environment], config, seed, c, cfg, device)
                             predictions[f'e{environment}_c{c}_s{seed}'] = pred
                             records.append(dict(fold=f, inner=inner, environment=environment,

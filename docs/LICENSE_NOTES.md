@@ -76,3 +76,7 @@ RAGP 同协议参照（2026-11-05）：固定上游 `l00907l/RAGP` 提交 `85675
 RAGP 480条已完成；state哈希清单 `results/ragp_development_20261105/checkpoint_sha256.txt` 自身SHA-256为 `a77fe1523e33414bf564f3fd08241469a322a47d8cc1d5ee05e8f78b97a66307`。该SHA为排序key／dtype／shape／tensor bytes的流式state摘要，不是不存在的checkpoint文件哈希。预测和轨迹原件留omen同名目录，路径与预测SHA见summary.json。
 
 使用官方 `tabm==0.0.3` 与 `rtdl_num_embeddings==0.0.12`，均为 Apache-2.0，来源 https://github.com/yandex-research/tabm 与 PyPI 固定发布包。当前不复制或改写上游骨干源码，不使用预训练权重。模块SHA-256：tabm.py `fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade`；rtdl_num_embeddings.py `48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1`。正式训练480个权重仅留omen `/home/hsy/git_files/Wheat599_model_bases/results/genomic_tabm_development_20261104/`，不入Git；每个权重SHA见 `results/genomic_tabm_development_20261104/weights_sha256.txt`，该清单自身SHA-256为 `e5a7e89d64e71561cf369ee44cbba38af7b03ad156ad15c1cb43ab3bb065bb09`。未使用外部预训练权重。
+
+## MeNet 双表示分位数适配（2026-11-10）
+
+运行时原样加载 GANLAB/MENET Version2.0 `06456e4542ab26716c4db8dd8f17517aa5155ff4` 中的性状编码器、关系MLP及双向残差融合类，源文件仅存 `models/menet_source/`，不进入Git。Copyright, GANLAB。上游 `LICENCE.txt` 为 Academic Use Licence，仅用于本项目内部非商业学术研究；不能把这些依赖描述为可自由再分发。文件SHA：network/menet.py `1ac6461f7d19e87b23947eced7749588e391b68349991fd7a4c3ab6e25f7123c`；network/contrastive_learning.py `ed2d4512b00b740940218850d60477b833b59c6ecd1431cbc2bab315248e0f98`；LICENCE.txt `a004722858ac90342c3804a95503f8b0a318051e0d569e8473ddd1121dd05cf4`。无外部预训练权重；训练得到的编码器权重不推送，逐文件SHA随正式pretraining记录保存。

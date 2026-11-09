@@ -1,0 +1,30 @@
+model: menet_quantile
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+architecture_config: configs/environment_tabm.yaml
+reference_source: results/joint_tabm_icm_development_20261106
+baseline_source: results/quantile_tabm_development_20261106_v2
+baseline_audit: results/tabicl_compare_20261106/summary.json
+seeds: [42, 2026]
+n_quantiles: 99
+quantile_min: 0.001
+quantile_max: 0.999
+device: cuda
+gpu_memory_fraction: 0.5
+cpu_threads: 2
+training: {max_epochs: 500, patience: 50, batch_size: 128, gradient_clip: 5.0, tie_tolerance: 1.0e-12}
+upstream_path: models/menet_source
+upstream_commit: 06456e4542ab26716c4db8dd8f17517aa5155ff4
+upstream_sha256:
+  network/menet.py: 1ac6461f7d19e87b23947eced7749588e391b68349991fd7a4c3ab6e25f7123c
+  network/contrastive_learning.py: ed2d4512b00b740940218850d60477b833b59c6ecd1431cbc2bab315248e0f98
+  LICENCE.txt: a004722858ac90342c3804a95503f8b0a318051e0d569e8473ddd1121dd05cf4
+relation_training:
+  stride: 2
+  out_dim: 128
+  margin: 0.1
+  epochs: 5
+  batch_size: 32
+  learning_rate: 0.01
+  weight_decay: 0.01
