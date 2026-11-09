@@ -66,7 +66,7 @@ def huber_objective(values, design, factor, targets, ridge, delta, precondition=
     return loss / targets.size, gradient / targets.size
 
 
-def fit_predict(prepared, ridge, eta, delta, cfg, *, fixed_thresholds=None):
+def fit_predict(prepared, ridge, eta, delta, cfg, *, fixed_thresholds=None, return_state=False):
     if fixed_thresholds is not None and delta is None:
         raise ValueError('Fixed thresholds require Huber loss')
     y, vectors, eig = prepared['Y'], prepared['vectors'], prepared['eigenvalues']
@@ -111,6 +111,8 @@ def fit_predict(prepared, ridge, eta, delta, cfg, *, fixed_thresholds=None):
     if delta is not None:
         diagnostics['clipped_fraction'] = float(np.mean(abs(residual) > thresholds))
     prediction = (intercept + target @ weights @ factor.T) * prepared['scale'] + prepared['mean']
+    if return_state:
+        return prediction, diagnostics, dict(weights=weights, intercept=intercept, factor=factor)
     return prediction, diagnostics
 
 
