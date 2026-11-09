@@ -1,6 +1,6 @@
 model: quantile_tabm_final
 manifest: results/member_interaction_final_manifest_20261109/manifest.json
-manifest_sha256: PENDING
+manifest_sha256: 826fec022e384d0897826b269d7c7e0e0a039ecee486e542954335a66d9e454f
 development_source: results/quantile_member_interaction_development_20261109
 development_config: configs/quantile_member_interaction.yaml
 architecture_config: configs/environment_tabm.yaml

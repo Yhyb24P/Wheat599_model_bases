@@ -1,0 +1,9 @@
+{
+  "method": "independent numpy recomputation from predictions, targets and saved selection; validation only",
+  "records": 1920,
+  "files": 30,
+  "provenance_hashes_checked": 83,
+  "selection_recomputed": true,
+  "max_trajectory_pcc_difference": 0.0,
+  "max_summary_difference": 0.0
+}
