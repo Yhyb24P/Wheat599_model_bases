@@ -96,3 +96,18 @@ def test_selection_uses_one_configuration_and_step_across_all_inner_units(tmp_pa
     result=summarize(SimpleNamespace(Y=y),folds,dict(updates=2,seeds=[42,2026],training=dict(tie_tolerance=1e-12)),tmp_path)
     chosen=result['folds'][0]['selected'];assert chosen['config_index']==1 and chosen['step']==1
     assert result['macro']['joint']['pcc']==pytest.approx(1.)
+
+
+def test_output_transform_is_absorbed_once_and_preserves_curve_differences():
+    from wheat599.anchored_quantile import transform_head
+    from wheat599.quantile_tabm import build_model
+    torch.set_num_threads(1)
+    x=np.random.default_rng(4).normal(size=(12,8));y=np.arange(12,dtype=float)
+    config=dict(n_blocks=1,d_block=8,dropout=.3,k=2,learning_rate=.001,weight_decay=.01)
+    model=build_model(x,y,config,42,dict(n_quantiles=99),'cpu');model.eval()
+    inp=torch.tensor(x,dtype=torch.float32)
+    with torch.no_grad():before=model(inp).clone()
+    transform_head(model)
+    with torch.no_grad():after=model(inp)
+    torch.testing.assert_close(after,before-.5*before.mean(-1,keepdim=True),atol=2e-7,rtol=1e-5)
+    torch.testing.assert_close(after[:,:,1:]-after[:,:,:-1],before[:,:,1:]-before[:,:,:-1],atol=2e-7,rtol=1e-5)
