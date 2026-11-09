@@ -1,0 +1,32 @@
+{
+  "original_quantile": {
+    "delta_pcc_rmse_mae": [
+      0.0014636697962746234,
+      -0.0007938059089056315,
+      -0.0006036613323405465
+    ],
+    "pcc_higher_folds": 10,
+    "rmse_lower_folds": 10,
+    "mae_lower_folds": 6
+  },
+  "extra_training_lambda0": {
+    "delta_pcc_rmse_mae": [
+      0.0014118286273651832,
+      -0.000485720711054613,
+      -0.00021629772308121297
+    ],
+    "pcc_higher_folds": 10,
+    "rmse_lower_folds": 10,
+    "mae_lower_folds": 7
+  },
+  "original_fusion": {
+    "delta_pcc_rmse_mae": [
+      0.001516830193977782,
+      0.00021312512417223374,
+      0.0005281894293731771
+    ],
+    "pcc_higher_folds": 8,
+    "rmse_lower_folds": 6,
+    "mae_lower_folds": 4
+  }
+}

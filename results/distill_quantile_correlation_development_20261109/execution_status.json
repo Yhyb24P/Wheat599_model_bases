@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "completed": {
+    "student_initialization": 240,
+    "student_finetune": 960
+  },
+  "expected": {
+    "student_initialization": 240,
+    "student_finetune": 960
+  }
+}
