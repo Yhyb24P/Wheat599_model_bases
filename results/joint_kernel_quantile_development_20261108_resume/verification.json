@@ -1,0 +1,10 @@
+{
+  "units": 30,
+  "curves_per_unit": 36,
+  "records": 1080,
+  "all_finite": true,
+  "selection_recomputed": true,
+  "reused_first_unit_identical": true,
+  "max_metric_difference": 0.0,
+  "method": "independent numpy recomputation from saved validation curves and truth on omen"
+}

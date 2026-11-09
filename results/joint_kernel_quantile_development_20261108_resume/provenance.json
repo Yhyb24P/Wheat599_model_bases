@@ -1,0 +1,52 @@
+{
+  "config": {
+    "model": "joint_kernel_quantile",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "base_source": "results/heterogeneous_icm_development_20261103",
+    "baseline_source": "results/quantile_tabm_development_20261106_v2",
+    "reference_source": "results/joint_tabm_icm_development_20261106",
+    "baseline_audit": "results/tabicl_compare_20261106/summary.json",
+    "etas": [
+      0.0,
+      0.3,
+      0.6,
+      0.8
+    ],
+    "ridge_shared": [
+      1e-05,
+      0.0001,
+      0.001
+    ],
+    "gamma": 16.0,
+    "quantile_min": 0.001,
+    "quantile_max": 0.999,
+    "n_quantiles": 99,
+    "tolerance": 1e-06,
+    "max_iterations": 200000,
+    "check_every": 200,
+    "device": "cuda",
+    "gpu_memory_fraction": 0.3,
+    "cpu_threads": 2,
+    "resume_from": "results/joint_kernel_quantile_development_20261108"
+  },
+  "git_commit": "e4232aa0d12123bb0f96bbef7f9e335a5757a76a",
+  "sha256": {
+    "configs/joint_kernel_quantile_resume.yaml": "f38e2c8214cfac2d9955eb4d911c60a3535e7d13d3970c3e51acc94262019242",
+    "/tmp/wheat599-curve-permutation/scripts/run_background_nested.py": "37084bdec0f3fc6b6a5d02092d8aa070cca825c7115a4f3b5af3505e30a81254",
+    "/tmp/wheat599-curve-permutation/src/wheat599/joint_kernel_quantile_run.py": "2eb752dea009a46ad564552818517dda0c2a92d1eae9e0f5c238afcabd04fc36",
+    "/tmp/wheat599-curve-permutation/src/wheat599/joint_kernel_quantile.py": "fb8f23a72e813b17947bce74fe71ea300f8fbe8bbd5d2c09a378d39e22e1d73f",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/heterogeneous_icm_development_20261103/base_choices.json": "509755c350be2ad0515f143c8e7b75c9e2c18727f270372c63872c11586b8c45",
+    "results/heterogeneous_icm_development_20261103/training_splits.json": "d2d29a729ce9412bff20f871cc053669138c2b28ddaf10ec22decbd92d9394b3",
+    "results/tabicl_compare_20261106/summary.json": "a77925e20e1683c322cd843feead92e9987ba8fae306d4bfb6c85fcf20bc8d73",
+    "results/quantile_tabm_development_20261106_v2/summary.json": "6a4c741e1dfc162f125e7bff7b97f793212747ac06406dcce303515444d8d806",
+    "results/joint_kernel_quantile_development_20261108/curves_0_0.npz": "449ffd5b7ca23da1a16f0c0e9e38b9be342c44865c677b409cb2cea85350b9d3",
+    "results/joint_kernel_quantile_development_20261108/provenance.json": "9399102fca610edd5ba04171e225813695c6c412381b3ff028f5a4af2ffc1ebe",
+    "results/joint_kernel_quantile_development_20261108/trajectories.json": "5e95a49ede38490bd80996b8f2950f15f949213057c620b2d1d6ce90448beb43",
+    "results/joint_kernel_quantile_development_20261108/status.json": "eb1908968e6323d8eb33567950eff88d33fc62f8573135abc2cc876227e4fb3a",
+    "results/joint_kernel_quantile_development_20261108/STOP_NOTE.json": "d021cad396d9ce34c583fb3e745e585d402fe5982ef010962c15d3c4090c17dc"
+  },
+  "rule": "development only; shared, smooth and independent each select eta/ridge by macro PCC"
+}

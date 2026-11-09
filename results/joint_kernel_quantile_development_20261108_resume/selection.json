@@ -1,0 +1,402 @@
+{
+  "candidates": [
+    {
+      "id": 0,
+      "state": "shared",
+      "eta": 0.0,
+      "ridge": 9.999999999999996e-06
+    },
+    {
+      "id": 1,
+      "state": "shared",
+      "eta": 0.0,
+      "ridge": 9.999999999999995e-05
+    },
+    {
+      "id": 2,
+      "state": "shared",
+      "eta": 0.0,
+      "ridge": 0.0009999999999999996
+    },
+    {
+      "id": 3,
+      "state": "shared",
+      "eta": 0.3,
+      "ridge": 9.999999999999996e-06
+    },
+    {
+      "id": 4,
+      "state": "shared",
+      "eta": 0.3,
+      "ridge": 9.999999999999995e-05
+    },
+    {
+      "id": 5,
+      "state": "shared",
+      "eta": 0.3,
+      "ridge": 0.0009999999999999996
+    },
+    {
+      "id": 6,
+      "state": "shared",
+      "eta": 0.6,
+      "ridge": 9.999999999999996e-06
+    },
+    {
+      "id": 7,
+      "state": "shared",
+      "eta": 0.6,
+      "ridge": 9.999999999999995e-05
+    },
+    {
+      "id": 8,
+      "state": "shared",
+      "eta": 0.6,
+      "ridge": 0.0009999999999999996
+    },
+    {
+      "id": 9,
+      "state": "shared",
+      "eta": 0.8,
+      "ridge": 9.999999999999996e-06
+    },
+    {
+      "id": 10,
+      "state": "shared",
+      "eta": 0.8,
+      "ridge": 9.999999999999995e-05
+    },
+    {
+      "id": 11,
+      "state": "shared",
+      "eta": 0.8,
+      "ridge": 0.0009999999999999996
+    },
+    {
+      "id": 12,
+      "state": "smooth",
+      "eta": 0.0,
+      "ridge": 3.959389536159056e-06
+    },
+    {
+      "id": 13,
+      "state": "smooth",
+      "eta": 0.0,
+      "ridge": 3.959389536159056e-05
+    },
+    {
+      "id": 14,
+      "state": "smooth",
+      "eta": 0.0,
+      "ridge": 0.00039593895361590556
+    },
+    {
+      "id": 15,
+      "state": "smooth",
+      "eta": 0.3,
+      "ridge": 3.959389536159056e-06
+    },
+    {
+      "id": 16,
+      "state": "smooth",
+      "eta": 0.3,
+      "ridge": 3.959389536159056e-05
+    },
+    {
+      "id": 17,
+      "state": "smooth",
+      "eta": 0.3,
+      "ridge": 0.00039593895361590556
+    },
+    {
+      "id": 18,
+      "state": "smooth",
+      "eta": 0.6,
+      "ridge": 3.959389536159056e-06
+    },
+    {
+      "id": 19,
+      "state": "smooth",
+      "eta": 0.6,
+      "ridge": 3.959389536159056e-05
+    },
+    {
+      "id": 20,
+      "state": "smooth",
+      "eta": 0.6,
+      "ridge": 0.00039593895361590556
+    },
+    {
+      "id": 21,
+      "state": "smooth",
+      "eta": 0.8,
+      "ridge": 3.959389536159056e-06
+    },
+    {
+      "id": 22,
+      "state": "smooth",
+      "eta": 0.8,
+      "ridge": 3.959389536159056e-05
+    },
+    {
+      "id": 23,
+      "state": "smooth",
+      "eta": 0.8,
+      "ridge": 0.00039593895361590556
+    },
+    {
+      "id": 24,
+      "state": "independent",
+      "eta": 0.0,
+      "ridge": 1.0101010101010101e-07
+    },
+    {
+      "id": 25,
+      "state": "independent",
+      "eta": 0.0,
+      "ridge": 1.01010101010101e-06
+    },
+    {
+      "id": 26,
+      "state": "independent",
+      "eta": 0.0,
+      "ridge": 1.0101010101010101e-05
+    },
+    {
+      "id": 27,
+      "state": "independent",
+      "eta": 0.3,
+      "ridge": 1.0101010101010101e-07
+    },
+    {
+      "id": 28,
+      "state": "independent",
+      "eta": 0.3,
+      "ridge": 1.01010101010101e-06
+    },
+    {
+      "id": 29,
+      "state": "independent",
+      "eta": 0.3,
+      "ridge": 1.0101010101010101e-05
+    },
+    {
+      "id": 30,
+      "state": "independent",
+      "eta": 0.6,
+      "ridge": 1.0101010101010101e-07
+    },
+    {
+      "id": 31,
+      "state": "independent",
+      "eta": 0.6,
+      "ridge": 1.01010101010101e-06
+    },
+    {
+      "id": 32,
+      "state": "independent",
+      "eta": 0.6,
+      "ridge": 1.0101010101010101e-05
+    },
+    {
+      "id": 33,
+      "state": "independent",
+      "eta": 0.8,
+      "ridge": 1.0101010101010101e-07
+    },
+    {
+      "id": 34,
+      "state": "independent",
+      "eta": 0.8,
+      "ridge": 1.01010101010101e-06
+    },
+    {
+      "id": 35,
+      "state": "independent",
+      "eta": 0.8,
+      "ridge": 1.0101010101010101e-05
+    }
+  ],
+  "folds": [
+    {
+      "fold": 0,
+      "shared": {
+        "candidate": 10,
+        "eta": 0.8,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 1,
+      "shared": {
+        "candidate": 1,
+        "eta": 0.0,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 2,
+      "shared": {
+        "candidate": 1,
+        "eta": 0.0,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 3,
+      "shared": {
+        "candidate": 1,
+        "eta": 0.0,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 4,
+      "shared": {
+        "candidate": 1,
+        "eta": 0.0,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 5,
+      "shared": {
+        "candidate": 10,
+        "eta": 0.8,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 6,
+      "shared": {
+        "candidate": 10,
+        "eta": 0.8,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 7,
+      "shared": {
+        "candidate": 10,
+        "eta": 0.8,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 8,
+      "shared": {
+        "candidate": 10,
+        "eta": 0.8,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 22,
+        "eta": 0.8,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    },
+    {
+      "fold": 9,
+      "shared": {
+        "candidate": 1,
+        "eta": 0.0,
+        "ridge": 9.999999999999995e-05
+      },
+      "smooth": {
+        "candidate": 13,
+        "eta": 0.0,
+        "ridge": 3.959389536159056e-05
+      },
+      "independent": {
+        "candidate": 34,
+        "eta": 0.8,
+        "ridge": 1.01010101010101e-06
+      }
+    }
+  ]
+}
