@@ -208,6 +208,9 @@ def main():
     if cfg.get('model') == 'quantile_tabm_final':
         from wheat599.quantile_tabm_final import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'member_interaction_freeze':
+        from wheat599.quantile_tabm_final import freeze_member_manifest
+        return freeze_member_manifest(cfg, args, Path(__file__))
     if cfg.get('model') == 'rfm_development':
         from wheat599.rfm_development import run
         return run(cfg, args, Path(__file__))
