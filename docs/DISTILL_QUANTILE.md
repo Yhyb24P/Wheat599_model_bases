@@ -52,3 +52,5 @@
 切换时完整保留10/30个开发单元（5,760条教师选模、240教师重拟合、2,160核候选、30核重拟合、80原checkpoint重建、320学生微调）。原进程当前单元额外52条教师选模中断，仅保留执行记录；其单元在新执行中重算。剩余20个单元使用omen `/home/hsy/worktrees/distill-0d411e8/results/distill_quantile_development_20261109_parallel`，实际复用清单见`resume.json`。本机及omen各9项相关测试通过，正式恢复前10个完整单元全部通过产物核验。
 
 最终状态：开发已完成，未通过预定误差条件，当前配置结束、不进入外层。具体数值与核验见 `docs/RESULTS.md` 的异构教师蒸馏结果及 `results/distill_quantile_development_20261109_parallel/`。
+
+补充诊断已完成：固定lambda=1开发PCC 0.496191，接近择优学生0.496260；误差增加主要来自尺度偏离项。交叉融合教师合并块PCC 0.424349，各教师留出块PCC平均0.440203。逐单元及分解见RESULTS和同结果目录diagnostics.json。结束的是当前逐成员MSE配方，不是所有蒸馏方法；相关性蒸馏尚未训练。
