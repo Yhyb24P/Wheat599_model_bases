@@ -1,0 +1,16 @@
+{
+  "verified_units": 30,
+  "selection_matches": 40,
+  "max_metric_difference": 0.0,
+  "warm_prediction_max_difference": 0.0,
+  "counts": {
+    "teacher_selection": 17280,
+    "teacher_refit": 720,
+    "huber_selection": 6480,
+    "huber_refit": 90,
+    "student_initialization": 240,
+    "student_finetune": 960
+  },
+  "outer_gate_passed": false,
+  "scope": "Recomputed selected strengths and all three student-arm metrics from saved predictions; checked counts and warm-start logs."
+}

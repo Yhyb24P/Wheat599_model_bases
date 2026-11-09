@@ -1516,3 +1516,18 @@ fold-0 的四个 test 折在两次 smoke 中均已被观测（初始化/参数�
 - 配置：`configs/bimsgp.yaml`、`configs/bimsgp_selected_20261030.yaml`、`configs/bimsgp_residual.yaml`、`configs/bimsgp_induced.yaml`；运行入口：`scripts/run_ckpt_rules.py`、`scripts/run_residual.py`、`scripts/run_induced.py`；模型：`src/wheat599/induced_ftt.py`。
 
 Stage 1（TabPFN-3.5 / FT-T / Ridge 门控）与六方法 Stage 2 协议已暂停，保留在 `docs/STAGE1_PLAN.md` 与 `docs/STAGE2_PLAN.md`，不是本文件的当前结论。
+
+## 异构教师蒸馏开发结果（2026-11-09）
+
+30/30开发单元完成，0失败；17,280教师选模、720教师重拟合、6,480核候选、90核重拟合、240原checkpoint重建、960学生微调。执行代码`0d411e8`，复用`7a1e989`的10个完整单元；原进程为执行优化中断，不作模型失败。
+
+| 系统 | 开发PCC | RMSE | MAE |
+|---|---:|---:|---:|
+| 选中蒸馏学生 | 0.496260335 | 0.876261799 | 0.678239866 |
+| lambda=0继续训练 | 0.494550797 | 0.870922969 | 0.672244578 |
+| 原分位数TabM | 0.494565432 | 0.871241630 | 0.672710044 |
+| 原固定融合 | 0.494512272 | 0.870234699 | 0.671578193 |
+
+学生PCC相对原分位数提高0.001695，但RMSE增加0.005020、MAE增加0.005530；未满足预定PCC及误差联合晋级条件，结束当前配置，不进入外层、不追加强度搜索。现役冻结融合外层PCC 0.526506不变。本结果为开发选择结果，不能宣称泛化改善。
+
+从30份保存预测独立重算40个环境折强度选择及三种学生系统的PCC/RMSE/MAE，最大差0；240次原checkpoint重建预测最大差0。核验范围见`results/distill_quantile_development_20261109_parallel/verification.json`；完整权重与逐材料产物保留omen同名目录，不入Git。

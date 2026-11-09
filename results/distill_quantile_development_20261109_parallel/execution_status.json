@@ -1,0 +1,19 @@
+{
+  "status": "complete",
+  "completed": {
+    "teacher_selection": 17280,
+    "teacher_refit": 720,
+    "huber_selection": 6480,
+    "huber_refit": 90,
+    "student_initialization": 240,
+    "student_finetune": 960
+  },
+  "expected": {
+    "teacher_selection": 17280,
+    "teacher_refit": 720,
+    "huber_selection": 6480,
+    "huber_refit": 90,
+    "student_initialization": 240,
+    "student_finetune": 960
+  }
+}

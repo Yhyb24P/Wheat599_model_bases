@@ -38,6 +38,8 @@
 
 数据：BGLR `wheat.RData`（SHA-256 `8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21`），`data/raw/` 不入 Git；X/Y/A/sets 的事实见 `docs/DATA_FACTS.md`；许可见 `docs/LICENSE_NOTES.md`。
 
+**蒸馏开发完成（2026-11-09）：**30/30单元、0失败。学生开发PCC 0.496260、RMSE 0.876262、MAE 0.678240；PCC改善但两项误差退化，未通过预定晋级条件，当前配置结束，不追加搜索或外层。现役冻结融合不变，见docs/RESULTS.md及docs/DISTILL_QUANTILE.md。
+
 ## 核心原则（精简）
 
 1. **只保留两件事：跑出数字；数字不被做假。** 无泄漏底线保留：scaler/选模只用 Train/Val，Test 不参与任何训练决策，泄漏测试通过。其余流程性检查、ARS 评审轮、签核链、G0_VERSION 仪式、结构化门文档一律不做。
