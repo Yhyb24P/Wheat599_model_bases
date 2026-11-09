@@ -28,7 +28,7 @@ updates: 20
 learning_rate_multiplier: 0.1
 gradient_clip: 5.0
 solver:
-  tolerance: 1.0e-06
+  tolerance: 1.0e-10
   max_iterations: 10000
   rho: 0.1
 regularization:
