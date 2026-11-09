@@ -1,0 +1,23 @@
+{
+  "config": {
+    "model": "distill_correlation_final",
+    "manifest": "results/distill_correlation_final_manifest_20261109/manifest.json",
+    "development_source": "results/distill_quantile_correlation_development_20261109",
+    "development_config": "configs/distill_correlation.yaml",
+    "original_fits": "results/quantile_tabm_final_20261106/fits.json",
+    "original_seed_predictions": "results/quantile_tabm_final_20261106/seed_predictions.npz",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "execution": {
+      "workers": 2,
+      "cpu_threads_per_worker": 1
+    },
+    "huber_oof": "results/robust_icm_final_20261103/oof.csv",
+    "mse_oof": "results/independent_tabm_final_20261105/oof.csv",
+    "original_oof": "results/quantile_tabm_final_20261106/oof.csv"
+  },
+  "manifest_sha256": "86444f4873a8287de136078fb7c28cc6304a726b18ee3a6d0502009f05d823f3",
+  "git_commit": "beee56e5ca62bf85248956fec1d902b357d52a07",
+  "torch_version": "2.14.1+cu130"
+}

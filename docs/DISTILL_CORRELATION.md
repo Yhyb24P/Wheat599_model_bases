@@ -24,4 +24,6 @@
 
 预算为5760神经教师选模、240教师重拟合、2160Huber候选、30Huber重拟合、80原模型初始化、80固定轮数微调。外层训练函数只接收fit标签，查询仅X；全部80个预测固定后再汇总测试标签。双种子预测平均；折均与合并OOF分开，报告原分位数、Huber、冻结融合的相同材料配对结果。最终候选单独神经推理。
 
-执行冻结`beee56e`、标签`distill-correlation-outer`，本机/omen各13项相关测试通过。omen独立工作树`/home/hsy/worktrees/distill-outer`，结果`results/distill_correlation_final_20261109`。预定80条轨迹中53条微调中位轮数为0；保留原初始化，仍生成正式预测并计入80条，不据此重选停止规则。当前教师重建运行中，尚无新外层成绩。
+执行冻结`beee56e`、标签`distill-correlation-outer`，本机/omen各13项相关测试通过。omen独立工作树`/home/hsy/worktrees/distill-outer`，结果`results/distill_correlation_final_20261109`。预定80条轨迹中53条微调中位轮数为0；保留原初始化，仍生成正式预测并计入80条，不据此重选停止规则。该运行已完成，结果见下文。
+
+外层最终完成：全部教师预算及80学生轨迹、0失败，运行30.06分钟。学生PCC 0.518671、RMSE 0.853355、MAE 0.653471，略差于原分位数TabM（0.518829/0.852645/0.653095），未增强原神经基座，未替代冻结融合。本配置结束，不追加搜索。正式数值和独立复算见docs/RESULTS.md及results/distill_correlation_final_20261109。
