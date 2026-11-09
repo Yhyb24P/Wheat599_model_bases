@@ -43,6 +43,45 @@ def distillation_loss(output, target, teacher, quantiles, strength):
     return supervised + strength * distil, supervised, distil
 
 
+
+def correlation_distillation_loss(output, target, teacher, quantiles, strength, epsilon=1e-6):
+    supervised = qt.quantile_loss(output, target, quantiles)
+    student = output.mean((1, 2))
+    teacher = teacher.reshape(-1).detach()
+    if len(student) < 2 or teacher.std(unbiased=False) <= epsilon:
+        raise ValueError('Teacher block has undefined correlation')
+    def standardize(v):
+        return (v - v.mean()) / v.std(unbiased=False).clamp_min(epsilon)
+    distil = output.shape[-1] * .5 * (standardize(student) - standardize(teacher)).square().mean()
+    return supervised + strength * distil, supervised, distil
+
+
+def load_teacher_blocks(source, fold, inner, fit_ids, audit):
+    unit = Path(source) / f'unit_{fold}_{inner}'
+    for name in ('teacher_targets.npz', 'teacher_partitions.json'):
+        path = unit / name
+        # Audit uses paths relative to the original execution checkout.
+        key = str(Path('results') / Path(source).name / unit.name / name)
+        if sha256_of(path) != audit[key]:
+            raise ValueError('Teacher artifact hash mismatch')
+    with np.load(unit / 'teacher_targets.npz') as targets:
+        if not np.array_equal(targets['fit_ids'], fit_ids):
+            raise ValueError('Teacher fitting IDs changed')
+        teacher = targets['fusion'].copy()
+        if teacher.shape != (len(fit_ids), 4) or not np.isfinite(teacher).all():
+            raise ValueError('Invalid teacher targets')
+    blocks = []
+    fit = set(np.asarray(fit_ids).tolist())
+    for part in read(unit / 'teacher_partitions.json'):
+        tr, held = set(part['train_ids']), set(part['heldout_ids'])
+        if tr & held or tr | held != fit:
+            raise ValueError('Teacher block information boundary violated')
+        blocks.append(np.flatnonzero(np.isin(fit_ids, part['heldout_ids'])))
+    if len(blocks) != 3 or not np.array_equal(np.sort(np.concatenate(blocks)), np.arange(len(fit_ids))):
+        raise ValueError('Teacher blocks must partition fitting materials')
+    return teacher, blocks
+
+
 def predict(model, x, device):
     model.eval()
     with torch.no_grad():
@@ -159,7 +198,7 @@ def crossfit_teacher(x, y, fit_ids, configs, cfg, kernel_cfg, seed, device, reco
     return fusion
 
 
-def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed, index, cfg, device):
+def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed, index, cfg, device, blocks=None):
     start = time.perf_counter()
     torch.manual_seed(int(seed) + 900000)
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
@@ -179,9 +218,16 @@ def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed,
     history = []
     for epoch in range(1, spec['max_epochs'] + 1):
         model.train(); total_pin, total_kd, seen = 0., 0., 0
-        for batch in torch.randperm(len(x), generator=generator).to(device).split(cfg['training']['batch_size']):
+        if blocks is None:
+            batches = torch.randperm(len(x), generator=generator).to(device).split(cfg['training']['batch_size'])
+        else:
+            batches = [torch.as_tensor(blocks[i], device=device) for i in torch.randperm(len(blocks), generator=generator).tolist()]
+        for batch in batches:
             opt.zero_grad(set_to_none=True)
-            loss, pin, kd = distillation_loss(model(x[batch]), y[batch], t[batch], q, strength)
+            loss_fn = distillation_loss if blocks is None else correlation_distillation_loss
+            loss, pin, kd = loss_fn(model(x[batch]), y[batch], t[batch], q, strength)
+            if blocks is not None:
+                loss = loss * len(blocks) * len(batch) / len(x)
             if not torch.isfinite(loss):
                 raise FloatingPointError('Nonfinite distillation loss')
             loss.backward()
@@ -191,7 +237,7 @@ def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed,
         pred = predict(model, x_val, device); score = pcc(y_val, pred)
         if not np.isfinite(score):
             raise ValueError('Nonfinite student validation PCC')
-        history.append(dict(epoch=epoch, pinball=total_pin / seen, teacher_mse_times_q=total_kd / seen, val_pcc=score))
+        history.append(dict(epoch=epoch, pinball=total_pin / seen, auxiliary_times_q=total_kd / seen, val_pcc=score))
         if score > best_pcc + cfg['training']['tie_tolerance']:
             best_pcc, best_epoch, best_prediction = score, epoch, pred.copy()
             best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
@@ -218,8 +264,14 @@ def execute_unit(request):
         records.append(dict(kind=kind, fold=fold, inner=j, **detail))
         counts[kind] = counts.get(kind, 0) + 1
         write(unit / 'execution_status.json', dict(status='running', completed=counts))
-    teacher = crossfit_teacher(data.X[tr], data.Y[tr], tr, configs, cfg, kernel_cfg,
-                                cfg['split_seed'] + fold * 10 + j, device, record, unit)
+    blocks = None
+    if cfg.get('distillation_mode') == 'block_correlation':
+        teacher, blocks = load_teacher_blocks(cfg['teacher_source'], fold, j, tr,
+                                              read(cfg['teacher_audit'])['source_sha256'])
+        write(unit / 'teacher_reuse.json', dict(source=cfg['teacher_source'], block_sizes=[len(b) for b in blocks]))
+    else:
+        teacher = crossfit_teacher(data.X[tr], data.Y[tr], tr, configs, cfg, kernel_cfg,
+                                    cfg['split_seed'] + fold * 10 + j, device, record, unit)
     predictions, student_details = {}, []
     original = np.load(source / f'predictions_{fold}_{j}.npz')
     for e in range(4):
@@ -237,7 +289,7 @@ def execute_unit(request):
             for strength in cfg['strengths']:
                 model = copy.deepcopy(warm)
                 pred, _, detail = finetune(model,data.X[tr],data.Y[tr,e],teacher[:,e],data.X[va],data.Y[va,e],
-                                           strength,config,seed,c,cfg,device)
+                                           strength,config,seed,c,cfg,device,blocks=blocks)
                 predictions[f'e{e}_s{seed}_l{strength}']=pred
                 weight_path = unit / f'student_e{e}_s{seed}_l{strength}.pt'
                 torch.save({k:v.detach().cpu() for k,v in model.state_dict().items()},weight_path)
@@ -331,6 +383,11 @@ def run(cfg, args, runner):
     source_paths = [Path(__file__), Path(qt.__file__), Path(runner), Path(args.config), Path(cfg['splits']),
         Path(cfg['architecture_config']), Path(cfg['huber_config']), Path(cfg['baseline_audit']), source / 'summary.json',
         source / 'trajectories.json', source / 'provenance.json', Path(cfg['fusion_reference']) / 'summary.json']
+    if cfg.get('distillation_mode') == 'block_correlation':
+        source_paths += [Path(cfg['teacher_audit']), Path(cfg['teacher_source']) / 'provenance.json']
+        teacher_status = read(Path(cfg['teacher_source']) / 'execution_status.json')
+        if teacher_status['status'] != 'complete' or teacher_status['completed'] != teacher_status['expected']:
+            raise ValueError('Teacher run incomplete')
     if cfg.get('execution', {}).get('resume_source'):
         previous = Path(cfg['execution']['resume_source'])
         source_paths += [previous / 'provenance.json', previous / 'trajectories.json']
@@ -340,6 +397,8 @@ def run(cfg, args, runner):
         torch_version=str(torch.__version__), sha256={str(p):sha256_of(p) for p in source_paths}))
     expected = dict(teacher_selection=17280, teacher_refit=720, huber_selection=6480, huber_refit=90,
                     student_initialization=240, student_finetune=960)
+    if cfg.get('distillation_mode') == 'block_correlation':
+        expected = dict(student_initialization=240, student_finetune=960)
     state = dict(status='running', completed={k:0 for k in expected}, expected=expected)
     records, failures, start = [], [], time.perf_counter()
     context = {}
@@ -389,11 +448,14 @@ def run(cfg, args, runner):
                     scores[e,l]=np.mean([pcc(data.Y[s['val_idx'],e],np.mean([arrays[j][f'e{e}_s{seed}_l{strength}'] for seed in cfg['seeds']],axis=0)) for j,s in enumerate(f['inner'])])
             chosen=[cfg['strengths'][int(np.argmax(scores[e]))] for e in range(4)]
             methods={'student':[], 'extra_training_lambda0':[], 'original_quantile':[]}
+            if cfg.get('distillation_mode') == 'block_correlation':
+                methods.update({f'fixed_lambda_{l}':[] for l in cfg['strengths']})
             for method in methods:
                 for j,s in enumerate(f['inner']):
                     matrix=[]
                     for e in range(4):
                         suffix='original' if method=='original_quantile' else 'l0.0' if method=='extra_training_lambda0' else f'l{chosen[e]}'
+                        if method.startswith('fixed_lambda_'): suffix = 'l' + method.removeprefix('fixed_lambda_')
                         pred=np.mean([arrays[j][f'e{e}_s{seed}_{suffix}'] for seed in cfg['seeds']],axis=0)
                         matrix.append([fn(data.Y[s['val_idx'],e],pred) for fn in (pcc,rmse,mae)])
                     methods[method].append(matrix)
@@ -408,6 +470,10 @@ def run(cfg, args, runner):
         student, original = macro['student'], macro['original_quantile']
         gate = (student['pcc'] > max(macro[m]['pcc'] for m in ('original_quantile','original_fusion','extra_training_lambda0'))
                 and student['rmse'] <= original['rmse'] and student['mae'] <= original['mae'])
+        if cfg.get('distillation_mode') == 'block_correlation':
+            old_fixed = read(cfg['teacher_audit'])['student_macro']['lambda_1.0']
+            macro['previous_fixed_mse_lambda1'] = {k:old_fixed[k] for k in ('pcc','rmse','mae')}
+            gate = gate and student['pcc'] > old_fixed['pcc']
         write(args.out/'summary.json',dict(macro=macro,folds=summaries,outer_gate_passed=bool(gate)))
         state['status']='complete'
     except BaseException as exc:

@@ -124,3 +124,57 @@ def test_resume_rejects_changed_recipe_and_skips_partial_units(tmp_path):
     assert dq.reusable_units(tmp_path,{'execution':{'workers':2}},folds)=={}
     with pytest.raises(ValueError,match='scientific configuration'):
         dq.reusable_units(tmp_path,{'strengths':[1.]},folds)
+
+
+def test_correlation_loss_invariance_and_gradients():
+    torch.manual_seed(1)
+    output=torch.randn(12,3,9,dtype=torch.float64,requires_grad=True)
+    y=torch.randn(12,1,dtype=torch.float64); t=torch.randn(12,1,dtype=torch.float64)
+    q=torch.linspace(.01,.99,9,dtype=torch.float64)
+    total,pin,kd=dq.correlation_distillation_loss(output,y,t,q,.1)
+    pred=output.mean((1,2));r=torch.corrcoef(torch.stack((pred,t[:,0])))[0,1]
+    torch.testing.assert_close(kd,9*(1-r))
+    torch.testing.assert_close(pin,qt.quantile_loss(output,y,q))
+    torch.testing.assert_close(total,pin+.1*kd)
+    _,_,shift=dq.correlation_distillation_loss(3*output+2,y,5*t-8,q,.1)
+    torch.testing.assert_close(kd,shift)
+    offsets=torch.randn_like(output); offsets-=offsets.mean((1,2),keepdim=True)
+    _,_,diverse=dq.correlation_distillation_loss(output+offsets,y,t,q,.1)
+    torch.testing.assert_close(kd,diverse)
+    grad=torch.autograd.grad(kd,output)[0]
+    torch.testing.assert_close(grad.sum(),torch.zeros((),dtype=grad.dtype),atol=1e-12,rtol=0)
+    torch.testing.assert_close((grad*output).sum(),torch.zeros((),dtype=grad.dtype),atol=1e-12,rtol=0)
+    assert torch.autograd.gradcheck(lambda x:dq.correlation_distillation_loss(x,y,t,q,.1)[2],(output,))
+    constant=torch.ones_like(output,requires_grad=True)
+    loss=dq.correlation_distillation_loss(constant,y,t,q,.1)[0];loss.backward()
+    assert torch.isfinite(constant.grad).all()
+
+
+def test_full_block_finetuning_uses_complete_groups(monkeypatch):
+    torch.set_num_threads(1)
+    rng=np.random.default_rng(62);x=rng.normal(size=(24,8));y=rng.normal(size=24)
+    cfg=yaml.safe_load(Path('configs/distill_correlation.yaml').read_text())
+    cfg['finetuning'].update(max_epochs=2,patience=2)
+    config=dict(n_blocks=1,d_block=8,dropout=.1,k=2,learning_rate=.001,weight_decay=.001)
+    model=dq.fixed_fit(x[:18],y[:18],config,42,0,1,cfg,'cpu')
+    blocks=[np.arange(0,5),np.arange(5,11),np.arange(11,18)];calls=[]
+    original=dq.correlation_distillation_loss
+    def checked(output,target,teacher,*args):
+        calls.append(len(output));return original(output,target,teacher,*args)
+    monkeypatch.setattr(dq,'correlation_distillation_loss',checked)
+    pred,warm,info=dq.finetune(model,x[:18],y[:18],y[:18]*.5,x[18:],y[18:],0.,config,42,0,cfg,'cpu',blocks=blocks)
+    assert sorted(calls)==[5,5,6,6,7,7]
+    assert info['best_pcc']>=dq.pcc(y[18:],warm)-1e-12
+
+
+def test_saved_teacher_boundary_and_hash(tmp_path):
+    import pytest
+    unit=tmp_path/'unit_0_0';unit.mkdir();ids=np.arange(9)
+    np.savez(unit/'teacher_targets.npz',fit_ids=ids,fusion=np.ones((9,4)))
+    parts=[dict(train_ids=ids[~np.isin(ids,b)].tolist(),heldout_ids=b.tolist()) for b in np.array_split(ids,3)]
+    dq.write(unit/'teacher_partitions.json',parts)
+    def audit():return {str(Path('results')/tmp_path.name/unit.name/n):dq.sha256_of(unit/n) for n in ('teacher_targets.npz','teacher_partitions.json')}
+    teacher,blocks=dq.load_teacher_blocks(tmp_path,0,0,ids,audit());assert teacher.shape==(9,4) and len(blocks)==3
+    with pytest.raises(ValueError,match='hash mismatch'):dq.load_teacher_blocks(tmp_path,0,0,ids,{k:'bad' for k in audit()})
+    parts[0]['train_ids'].append(0);dq.write(unit/'teacher_partitions.json',parts)
+    with pytest.raises(ValueError,match='boundary'):dq.load_teacher_blocks(tmp_path,0,0,ids,audit())
