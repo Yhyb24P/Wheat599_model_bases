@@ -55,7 +55,7 @@ def freeze_member_manifest(cfg,args,runner):
     test_ids=[i for fold in folds for i in fold['test_idx']]
     if len(test_ids)!=599 or set(test_ids)!=set(range(599)) or any(set(f['dev_idx'])|set(f['test_idx'])!=set(range(599)) for f in folds):raise ValueError('Invalid outer material coverage')
     rows=member_manifest_rows(folds,selections,records,settings['seeds'])
-    paths=[Path(cfg['splits']),Path(cfg['development_config']),Path(cfg['architecture_config']),Path('src/wheat599/quantile_tabm.py'),Path('src/wheat599/member_interaction_tabm.py'),Path(__file__),Path(runner),source/'summary.json',source/'trajectories.json',source/'provenance.json',source/'execution_status.json',source/'failures.json',Path(cfg['huber_oof']),Path(cfg['mse_oof']),Path(cfg['original_oof'])]
+    paths=[Path(args.config),Path(cfg['splits']),Path(cfg['development_config']),Path(cfg['architecture_config']),Path('src/wheat599/quantile_tabm.py'),Path('src/wheat599/member_interaction_tabm.py'),Path(__file__),Path(runner),source/'summary.json',source/'trajectories.json',source/'provenance.json',source/'execution_status.json',source/'failures.json',Path(cfg['huber_oof']),Path(cfg['mse_oof']),Path(cfg['original_oof'])]
     data=load(Path(cfg['data']),cfg['data_sha256'])
     for fold in folds:
         f=fold['fold'];saved=next(r['selected'] for r in selections if r['fold']==f)
@@ -74,7 +74,7 @@ def freeze_member_manifest(cfg,args,runner):
                     scores.append(float(np.mean(parts)))
                 if int(np.argmax(scores))!=saved[e]:raise ValueError('Development selection mismatch')
     args.out.mkdir(parents=True,exist_ok=False)
-    (args.out/'manifest.json').write_text(json.dumps({'rule':'selected development configuration; per-seed median of three inner best epochs; outer test never selects','data_sha256':cfg['data_sha256'],'development_commit':provenance['git_commit'],'sha256':{str(p):sha256_of(p) for p in paths},'rows':rows},indent=2)+'\n')
+    (args.out/'manifest.json').write_text(json.dumps({'rule':'selected development configuration; per-seed median of three inner best epochs; outer test never selects','data_sha256':cfg['data_sha256'],'development_commit':provenance['git_commit'],'torch_version':provenance['torch_version'],'cuda_version':provenance['cuda_version'],'sha256':{str(p):sha256_of(p) for p in paths},'rows':rows},indent=2)+'\n')
 
 
 def validate_manifest(cfg, manifest, folds, settings, configs):
