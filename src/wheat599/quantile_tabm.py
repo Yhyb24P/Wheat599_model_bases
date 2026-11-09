@@ -32,26 +32,36 @@ def build_model(x_fit, y_fit, config, seed, settings, device):
 
 def update_epoch(model, x, y, q, opt, generator, spec, device):
     model.train()
+    optimizers=opt if isinstance(opt,list) else [opt]
     order = torch.randperm(len(x), generator=generator).to(device)
     for batch in order.split(spec['batch_size']):
-        opt.zero_grad(set_to_none=True)
+        for optimizer in optimizers:optimizer.zero_grad(set_to_none=True)
         loss = quantile_loss(model(x[batch]), y[batch], q)
         if not torch.isfinite(loss):
             raise FloatingPointError('Nonfinite quantile loss')
         loss.backward()
         torch.nn.utils.clip_grad_norm_(model.parameters(), spec['gradient_clip'])
-        opt.step()
+        for optimizer in optimizers:optimizer.step()
 
 
 def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
+    start=time.perf_counter()
     model = build_model(x_fit, y_fit, config, seed, settings, device)
+    variant=settings.get('optimizer_variant','adam')
+    if variant=='gated':
+        from wheat599.interaction_tabm import InteractionBackbone
+        model.backbone=InteractionBackbone(x_fit.shape[1],width=config['d_block'],members=config['k'],
+                                           dropout=config['dropout'],quantiles=settings['n_quantiles']).to(device)
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
     q = torch.linspace(settings['quantile_min'], settings['quantile_max'],
                        settings['n_quantiles'], device=device)
-    opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],
-                            weight_decay=config['weight_decay'])
+    if variant=='adam':
+        opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
+    else:
+        from wheat599.interaction_tabm import make_optimizers
+        opt=make_optimizers(model,config,variant)
     generator = torch.Generator().manual_seed(int(seed) * 1000 + index)
     spec = settings['training']
     best_score, best_epoch, best_prediction = -np.inf, -1, None
@@ -68,7 +78,8 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
             best_score, best_epoch, best_prediction = score, epoch, prediction.copy()
         elif epoch - best_epoch >= spec['patience']:
             break
-    return best_prediction, dict(best_pcc=best_score, best_epoch=best_epoch, epochs_run=epoch)
+    return best_prediction, dict(best_pcc=best_score, best_epoch=best_epoch, epochs_run=epoch,
+                                 parameters=sum(p.numel() for p in model.parameters()),seconds=time.perf_counter()-start)
 
 
 def read(path):
@@ -91,6 +102,13 @@ def run(cfg, args, runner):
     info = read(source/'provenance.json')
     if info['sha256'][cfg['splits']] != sha256_of(Path(cfg['splits'])):
         raise ValueError('Reference split mismatch')
+    baseline=Path(cfg['baseline_source']) if cfg.get('baseline_source') else None
+    if baseline:
+        audit=read(cfg['baseline_audit'])['sha256'];baseline_choices=read(baseline/'summary.json')['folds']
+        for fold in folds:
+            for j in range(3):
+                path=baseline/f"predictions_{fold['fold']}_{j}.npz"
+                if sha256_of(path)!=audit[str(path)]:raise ValueError('Baseline prediction hash mismatch')
     args.out.mkdir(parents=True, exist_ok=False)
     def write(name, obj):
         (args.out/name).write_text(json.dumps(obj, indent=2, allow_nan=False)+'\n')
@@ -98,7 +116,10 @@ def run(cfg, args, runner):
                Path(__file__).with_name('genomic_tabm.py'), Path(runner), Path(args.config),
                source/'provenance.json'] + [source/f"references_{f['fold']}_{j}.npz"
                                            for f in folds for j in range(3)]
-    write('provenance.json', {'config': cfg, 'git_commit': subprocess.check_output(
+    if baseline:
+        sources += [Path(__file__).with_name('interaction_tabm.py'),baseline/'summary.json',Path(cfg['baseline_audit'])]
+        sources += [baseline/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
+    write('provenance.json', {'config': cfg, 'torch_version':str(torch.__version__), 'cuda_version':torch.version.cuda, 'git_commit': subprocess.check_output(
         ['git', 'rev-parse', 'HEAD'], text=True).strip(),
         'sha256': {str(p): sha256_of(p) for p in sources}})
     expected = len(folds)*3*4*len(configs)*len(cfg['seeds'])
@@ -140,13 +161,18 @@ def run(cfg, args, runner):
                         np.mean([arrays[j][f'e{e}_c{c}_s{seed}'] for seed in cfg['seeds']], axis=0))
                         for j, split in enumerate(fold['inner'])]))
                 chosen.append(int(np.argmax(scores)))
-            per_method = {k: [] for k in ('quantile', 'huber', 'independent_tabm', 'fixed_fusion')}
+            methods=('quantile','huber','independent_tabm','fixed_fusion') + (('original_quantile','original_fusion') if baseline else ())
+            per_method = {k: [] for k in methods}
             for j, split in enumerate(fold['inner']):
                 truth = data.Y[split['val_idx']]
                 quantile = np.column_stack([np.mean([arrays[j][f'e{e}_c{chosen[e]}_s{seed}']
                                                     for seed in cfg['seeds']], axis=0) for e in range(4)])
+                if baseline:
+                    old=np.load(baseline/f'predictions_{f}_{j}.npz')
+                    old_choices=next(v['selected'] for v in baseline_choices if v['fold']==f)
+                    original=np.column_stack([np.mean([old[f'e{e}_c{old_choices[e]}_s{seed}'] for seed in cfg['seeds']],axis=0) for e in range(4)])
                 for method in per_method:
-                    pred = quantile if method == 'quantile' else refs[j][method]
+                    pred = quantile if method == 'quantile' else original if method=='original_quantile' else .5*(original+refs[j]['huber']) if method=='original_fusion' else refs[j][method]
                     metrics = [[fun(truth[:, e], pred[:, e]) for fun in (pcc, rmse, mae)] for e in range(4)]
                     if not np.isfinite(metrics).all():
                         raise ValueError('Nonfinite metrics')
@@ -155,7 +181,7 @@ def run(cfg, args, runner):
                                 metrics={k: np.mean(v, axis=0).tolist() for k, v in per_method.items()}))
         summary = {method: dict(zip(('pcc','rmse','mae'),
             np.mean([r['metrics'][method] for r in results], axis=(0, 1)).tolist()))
-            for method in ('quantile','huber','independent_tabm','fixed_fusion')}
+            for method in methods}
         write('summary.json', {'macro': summary, 'folds': results})
         state['status'] = 'complete'
     except BaseException as exc:

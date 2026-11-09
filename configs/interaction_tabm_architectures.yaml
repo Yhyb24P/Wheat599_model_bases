@@ -1,0 +1,9 @@
+configurations:
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, muon_lr: 0.002}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.002, weight_decay: 0.01, muon_lr: 0.02}
+  - {n_blocks: 2, d_block: 128, dropout: 0.0, k: 16, learning_rate: 0.0005, weight_decay: 0.0003, muon_lr: 0.002}
+  - {n_blocks: 2, d_block: 128, dropout: 0.1, k: 32, learning_rate: 0.002, weight_decay: 0.01, muon_lr: 0.02}
+  - {n_blocks: 2, d_block: 256, dropout: 0.2, k: 32, learning_rate: 0.0005, weight_decay: 0.01, muon_lr: 0.002}
+  - {n_blocks: 3, d_block: 128, dropout: 0.2, k: 16, learning_rate: 0.002, weight_decay: 0.0003, muon_lr: 0.02}
+  - {n_blocks: 4, d_block: 256, dropout: 0.1, k: 16, learning_rate: 0.0005, weight_decay: 0.0003, muon_lr: 0.002}
+  - {n_blocks: 4, d_block: 128, dropout: 0.0, k: 32, learning_rate: 0.002, weight_decay: 0.01, muon_lr: 0.02}
