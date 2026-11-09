@@ -214,6 +214,9 @@ def main():
     if cfg.get('model') == 'rfm_development':
         from wheat599.rfm_development import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'distill_correlation_final':
+        from wheat599.distill_correlation_final import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'distill_quantile':
         from wheat599.distill_quantile import run
         return run(cfg, args, Path(__file__))

@@ -198,6 +198,27 @@ def crossfit_teacher(x, y, fit_ids, configs, cfg, kernel_cfg, seed, device, reco
     return fusion
 
 
+def student_update_epoch(model, x, y, t, q, strength, opt, generator, cfg, device, blocks=None):
+    model.train(); total_pin, total_kd, seen = 0., 0., 0
+    if blocks is None:
+        batches = torch.randperm(len(x), generator=generator).to(device).split(cfg['training']['batch_size'])
+    else:
+        batches = [torch.as_tensor(blocks[i], device=device) for i in torch.randperm(len(blocks), generator=generator).tolist()]
+    for batch in batches:
+        opt.zero_grad(set_to_none=True)
+        loss_fn = distillation_loss if blocks is None else correlation_distillation_loss
+        loss, pin, kd = loss_fn(model(x[batch]), y[batch], t[batch], q, strength)
+        if blocks is not None:
+            loss = loss * len(blocks) * len(batch) / len(x)
+        if not torch.isfinite(loss):
+            raise FloatingPointError('Nonfinite distillation loss')
+        loss.backward()
+        torch.nn.utils.clip_grad_norm_(model.parameters(), cfg['training']['gradient_clip'])
+        opt.step()
+        total_pin += pin.item() * len(batch); total_kd += kd.item() * len(batch); seen += len(batch)
+    return total_pin / seen, total_kd / seen
+
+
 def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed, index, cfg, device, blocks=None):
     start = time.perf_counter()
     torch.manual_seed(int(seed) + 900000)
@@ -217,27 +238,11 @@ def finetune(model, x_fit, y_fit, teacher, x_val, y_val, strength, config, seed,
     best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
     history = []
     for epoch in range(1, spec['max_epochs'] + 1):
-        model.train(); total_pin, total_kd, seen = 0., 0., 0
-        if blocks is None:
-            batches = torch.randperm(len(x), generator=generator).to(device).split(cfg['training']['batch_size'])
-        else:
-            batches = [torch.as_tensor(blocks[i], device=device) for i in torch.randperm(len(blocks), generator=generator).tolist()]
-        for batch in batches:
-            opt.zero_grad(set_to_none=True)
-            loss_fn = distillation_loss if blocks is None else correlation_distillation_loss
-            loss, pin, kd = loss_fn(model(x[batch]), y[batch], t[batch], q, strength)
-            if blocks is not None:
-                loss = loss * len(blocks) * len(batch) / len(x)
-            if not torch.isfinite(loss):
-                raise FloatingPointError('Nonfinite distillation loss')
-            loss.backward()
-            torch.nn.utils.clip_grad_norm_(model.parameters(), cfg['training']['gradient_clip'])
-            opt.step()
-            total_pin += pin.item() * len(batch); total_kd += kd.item() * len(batch); seen += len(batch)
+        pin_mean, kd_mean = student_update_epoch(model, x, y, t, q, strength, opt, generator, cfg, device, blocks)
         pred = predict(model, x_val, device); score = pcc(y_val, pred)
         if not np.isfinite(score):
             raise ValueError('Nonfinite student validation PCC')
-        history.append(dict(epoch=epoch, pinball=total_pin / seen, auxiliary_times_q=total_kd / seen, val_pcc=score))
+        history.append(dict(epoch=epoch, pinball=pin_mean, auxiliary_times_q=kd_mean, val_pcc=score))
         if score > best_pcc + cfg['training']['tie_tolerance']:
             best_pcc, best_epoch, best_prediction = score, epoch, pred.copy()
             best_state = {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}

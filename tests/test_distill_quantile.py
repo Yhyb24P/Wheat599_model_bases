@@ -178,3 +178,29 @@ def test_saved_teacher_boundary_and_hash(tmp_path):
     with pytest.raises(ValueError,match='hash mismatch'):dq.load_teacher_blocks(tmp_path,0,0,ids,{k:'bad' for k in audit()})
     parts[0]['train_ids'].append(0);dq.write(unit/'teacher_partitions.json',parts)
     with pytest.raises(ValueError,match='boundary'):dq.load_teacher_blocks(tmp_path,0,0,ids,audit())
+
+
+def test_fixed_outer_training_has_no_evaluation_labels_and_preserves_epoch0():
+    import inspect
+    from wheat599.distill_correlation_final import fixed_finetune, manifest_rows
+    assert 'y_val' not in inspect.signature(fixed_finetune).parameters
+    assert 'y_test' not in inspect.signature(fixed_finetune).parameters
+    rng=np.random.default_rng(7);x=rng.normal(size=(18,8));y=rng.normal(size=18)
+    cfg=yaml.safe_load(Path('configs/distill_correlation.yaml').read_text())
+    config=dict(n_blocks=1,d_block=8,dropout=.1,k=2,learning_rate=.001,weight_decay=.001)
+    model=dq.fixed_fit(x,y,config,42,0,1,cfg,'cpu');before={k:v.clone() for k,v in model.state_dict().items()}
+    blocks=np.array_split(np.arange(18),3)
+    assert fixed_finetune(model,x,y,y*.5,blocks,.1,config,42,0,cfg,0,'cpu')==[]
+    assert all(torch.equal(v,before[k]) for k,v in model.state_dict().items())
+    a=copy.deepcopy(model);b=copy.deepcopy(model)
+    fixed_finetune(a,x,y,y*.5,blocks,.1,config,42,0,cfg,2,'cpu')
+    fixed_finetune(b,x,y,y*.5,blocks,.1,config,42,0,cfg,2,'cpu')
+    assert all(torch.equal(v,b.state_dict()[k]) for k,v in a.state_dict().items())
+    source=Path('results/distill_quantile_correlation_development_20261109')
+    rows=manifest_rows(dq.read(cfg['splits'])['folds'],dq.read(source/'summary.json')['folds'],dq.read(source/'trajectories.json'),dq.read('results/quantile_tabm_final_20261106/fits.json'),[42,2026])
+    assert len(rows)==80
+    assert all(r['finetuning_epochs']==sorted(r['inner_best_epochs'])[1] for r in rows)
+    records=dq.read(source/'trajectories.json')
+    for r in rows:
+        expected=[next(x['best_epoch'] for x in records if x['kind']=='student_finetune' and (x['fold'],x['inner'],x['environment'],x['seed'],x['strength'])==(r['fold'],j,r['environment'],r['seed'],r['strength'])) for j in range(3)]
+        assert r['inner_best_epochs']==expected
