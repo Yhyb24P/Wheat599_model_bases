@@ -40,3 +40,5 @@
 执行入口：`python scripts/run_background_nested.py --config configs/distill_quantile.yaml --out results/<新目录>`。只保留这一正式入口，无外部教师数据或权重。当前教师、学生配方的代码与数据/划分来源SHA随provenance记录；失败显式保存，不过滤。
 
 执行记录：初版`9ad8424`首次启动在第一条教师轨迹写记录时，教师内折与学生内折同名`inner`触发异常；产物保留omen `/home/hsy/worktrees/distill-9ad8424/results/distill_quantile_development_20261109/`，为实现失败，不作模型效果证据。修正仅将教师日志字段命名为`teacher_inner`，学生划分仍为`inner`，目标函数与预算未变；新增真实小问题的两层上下文记录回归测试。正式运行使用独立的新目录，不覆盖该失败记录。
+
+修正版本`7a1e989`已在omen独立工作树`/home/hsy/worktrees/distill-7a1e989`启动，正式结果目录`results/distill_quantile_development_20261109_v2`。本机和omen各7项测试通过；真实开发checkpoint重建与旧验证预测最大差为0。ds独立复核未发现信息边界或损失实现错误。当前仍在运行，尚无蒸馏效果结论。
