@@ -78,7 +78,7 @@ def fit_teacher(x, y, query, configs, cfg, kernel_cfg, split_seed, device, recor
                     pred, detail = qt.train(x[tr], y[tr, e], x[va], y[va, e], config, seed, c, cfg, device)
                     q_predictions[j, e, c, seed] = pred
                     q_epochs[j, e, c, seed] = detail['best_epoch']
-                    record('teacher_selection', dict(inner=j, environment=e, config_index=c, seed=seed, **detail))
+                    record('teacher_selection', dict(teacher_inner=j, environment=e, config_index=c, seed=seed, **detail))
     q_selected, q_target, refit_info = [], [], []
     weight_dir.mkdir(parents=True, exist_ok=False)
     for e in range(y.shape[1]):
@@ -113,7 +113,7 @@ def fit_teacher(x, y, query, configs, cfg, kernel_cfg, split_seed, device, recor
             if not np.isfinite(score):
                 raise ValueError('Nonfinite Huber teacher selection score')
             huber_scores[j, c] = score
-            record('huber_selection', dict(inner=j, eta=eta, delta=delta, multiplier=multiplier, pcc=float(score), **detail))
+            record('huber_selection', dict(teacher_inner=j, eta=eta, delta=delta, multiplier=multiplier, pcc=float(score), **detail))
     means = huber_scores.mean(0)
     best = next(i for i, score in enumerate(means) if max(means) - score <= kernel_cfg['tie_tolerance'])
     eta, delta, multiplier = huber_candidates[best]

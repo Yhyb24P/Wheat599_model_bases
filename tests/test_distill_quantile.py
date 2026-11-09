@@ -69,3 +69,22 @@ def test_finetune_preserves_warm_start_and_reproducibility():
     np.testing.assert_array_equal(p1,p2)
     assert info['best_pcc']>=dq.pcc(y[16:],original)-1e-12
     assert all(torch.equal(v,before[k]) for k,v in model.state_dict().items())
+
+
+def test_real_teacher_records_keep_student_and_teacher_inner_separate(tmp_path):
+    torch.set_num_threads(1)
+    rng=np.random.default_rng(37)
+    x=rng.normal(size=(18,8));y=rng.normal(size=(18,4));query=rng.normal(size=(4,8))
+    cfg=yaml.safe_load(Path('configs/distill_quantile.yaml').read_text())
+    cfg['seeds']=[42];cfg['training'].update(max_epochs=1,patience=1,batch_size=8)
+    configs=[dict(n_blocks=1,d_block=8,dropout=0.,k=2,learning_rate=.001,weight_decay=.001)]
+    kernel=yaml.safe_load(Path('configs/robust_icm.yaml').read_text())
+    kernel.update(bandwidths=[1.],additive_fractions=[.5],ridge=[1.],etas=[.3],huber_deltas=[1.345],ridge_multipliers=[1.])
+    records=[];context={'fold':7,'inner':2,'teacher_fold':1}
+    def record(kind, detail):
+        records.append(dict(kind=kind,**context,**detail))
+    qp,hp,_=dq.fit_teacher(x,y,query,configs,cfg,kernel,17,'cpu',record,tmp_path/'teacher')
+    assert qp.shape==hp.shape==(4,4)
+    assert len(records)==20
+    assert all(r['fold']==7 and r['inner']==2 and r['teacher_fold']==1 for r in records)
+    assert {r['teacher_inner'] for r in records if 'teacher_inner' in r}=={0,1,2}

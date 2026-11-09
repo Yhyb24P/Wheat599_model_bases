@@ -38,3 +38,5 @@
 在看到结果前固定外层条件：选中学生的开发PCC严格高于原分位数、原固定融合和lambda0继续训练三者，同时RMSE、MAE不劣于原分位数。未满足则结束本配置，不追加lambda/LR搜索。满足才生成仅依赖开发记录的外层两阶段重拟合方案；不直接使用旧外层OOF作为训练目标。外层替代目标仍为冻结融合0.526506；已有划分反复用于研究，应限定结论范围。
 
 执行入口：`python scripts/run_background_nested.py --config configs/distill_quantile.yaml --out results/<新目录>`。只保留这一正式入口，无外部教师数据或权重。当前教师、学生配方的代码与数据/划分来源SHA随provenance记录；失败显式保存，不过滤。
+
+执行记录：初版`9ad8424`首次启动在第一条教师轨迹写记录时，教师内折与学生内折同名`inner`触发异常；产物保留omen `/home/hsy/worktrees/distill-9ad8424/results/distill_quantile_development_20261109/`，为实现失败，不作模型效果证据。修正仅将教师日志字段命名为`teacher_inner`，学生划分仍为`inner`，目标函数与预算未变；新增真实小问题的两层上下文记录回归测试。正式运行使用独立的新目录，不覆盖该失败记录。
