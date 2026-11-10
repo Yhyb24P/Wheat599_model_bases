@@ -40,3 +40,7 @@ P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再�
 首轮正式执行`1f77591`在一个配置相对对偶间隙2.617e-6时按预定阈值1e-6停止，完整单元0/30，不作性能证据；原目录保留。后续仅补充基于原Huber目标及Hessian-vector积的trust-ncg数值精化，不改变模型、候选集或验收阈值；从独立新目录执行。另明确n×E表示总观测数4n，ridge=lambda*y.size是正确归一化，新增字段记录ridge/normalized_lambda/number_observations并测试该等式。
 
 数值精化版本冻结`5eabab4`、标签`structured-coefficient-dev-v2`，本机/omen各6项测试（含Hessian-vector有限差分、强制精化、归一化字段）通过。新运行路径omen `/home/hsy/worktrees/structured-coefficient-v2/results/structured_coefficient_development_20261110_v2`，旧失败目录不覆盖。所有模型候选、最终梯度与间隙验收阈值保持不变。
+
+## 开发结果
+
+完整重跑完成30/30单元、15120候选＋1890四目标参照、0失败，运行107.30秒。候选PCC 0.478143、RMSE 0.878864、MAE 0.677101，优于后验公式适配参照，但低于原Huber、原分位数及固定融合；相对融合10/10折PCC落后。本配置结束，不进入外层或追加搜索。全部原始系数预测、结构化目标、选择与梯度/对偶证书复核通过。完整数字及失败历史见docs/RESULTS.md和results/structured_coefficient_development_20261110_v2。

@@ -1,0 +1,9 @@
+{
+  "status": "complete",
+  "completed_units": 30,
+  "expected_units": 30,
+  "candidate_fits": 15120,
+  "expected_candidate_fits": 15120,
+  "reference_four_target_fits": 1890,
+  "expected_reference_four_target_fits": 1890
+}

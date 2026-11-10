@@ -1,0 +1,295 @@
+{
+  "refined_solutions": 16,
+  "verified_units": 30,
+  "candidate_fits": 15120,
+  "reference_four_target_fits": 1890,
+  "max_coefficient_prediction_replay_difference": 4.027889133340068e-12,
+  "max_selected_primal_objective_difference": 8.465450562766819e-16,
+  "max_relative_gap": 9.660226368956487e-07,
+  "max_iterations": 389,
+  "max_gradient_inf": 8.659486153704106e-08,
+  "max_dual_zero_sum_residual": 1.136509642199847e-16,
+  "max_dual_box_violation": 0.0,
+  "paired": {
+    "unweighted_posterior": {
+      "macro_delta": [
+        0.005365882433681894,
+        -0.004208983681419568,
+        -0.005851033624632604
+      ],
+      "fold_deltas": [
+        [
+          0.007409745506724366,
+          -0.008748275113408144,
+          -0.008350230517773866
+        ],
+        [
+          0.004117879417510226,
+          -0.003143235125091126,
+          -0.0028333842870715
+        ],
+        [
+          0.00024935487070153195,
+          -0.0028256951612991854,
+          -0.006062147383858907
+        ],
+        [
+          0.004832034683852654,
+          -0.0026830434831421335,
+          -0.001970376993624956
+        ],
+        [
+          -0.0003183685582125867,
+          -0.0025245989739622055,
+          -0.009519739849161157
+        ],
+        [
+          0.0011650813204731464,
+          -0.003509207677193843,
+          -0.008441511764679693
+        ],
+        [
+          0.01285363266124312,
+          -0.007362426211157153,
+          -0.0068280273396896796
+        ],
+        [
+          0.012372652178611887,
+          -0.005702361839543785,
+          -0.007042050476820799
+        ],
+        [
+          0.007258712786743421,
+          -0.0039621071944993536,
+          -0.002820698433079999
+        ],
+        [
+          0.0037180994691711766,
+          -0.0016288860348987466,
+          -0.0046421692005654824
+        ]
+      ],
+      "pcc_higher_folds": 9,
+      "rmse_lower_folds": 10,
+      "mae_lower_folds": 10
+    },
+    "original_quantile": {
+      "macro_delta": [
+        -0.016422169604747974,
+        0.007622312201148174,
+        0.004391348954139637
+      ],
+      "fold_deltas": [
+        [
+          -0.005250047111743789,
+          0.0011286173612787276,
+          -0.002201048376129583
+        ],
+        [
+          -0.012232750764613845,
+          0.005781341718367361,
+          0.0045580077092445825
+        ],
+        [
+          -0.01967053959909859,
+          0.009981612500403803,
+          0.00870669617743422
+        ],
+        [
+          -0.022630580986860202,
+          0.00814846265146818,
+          0.009874840969438803
+        ],
+        [
+          -0.024492351929884512,
+          0.008626404633429507,
+          0.004691687133963618
+        ],
+        [
+          -0.013225385052854019,
+          0.0028507996776135913,
+          -0.001850380510519778
+        ],
+        [
+          -0.010564229408862272,
+          0.007027898945448974,
+          0.005514366131875836
+        ],
+        [
+          -0.016820719927099936,
+          0.010097007503099303,
+          0.0019844156597485507
+        ],
+        [
+          -0.015678740487823167,
+          0.009812321295122522,
+          0.005209682803555243
+        ],
+        [
+          -0.023656350778639396,
+          0.012768655725249767,
+          0.007425221842784879
+        ]
+      ],
+      "pcc_higher_folds": 0,
+      "rmse_lower_folds": 0,
+      "mae_lower_folds": 2
+    },
+    "huber": {
+      "macro_delta": [
+        -0.0029393591598372458,
+        0.0012698058901537245,
+        3.7558559644065846e-05
+      ],
+      "fold_deltas": [
+        [
+          -0.0017999422686742067,
+          0.0004988122604777101,
+          -0.0003224296372154323
+        ],
+        [
+          0.0029046779741060125,
+          -0.0021702317837589413,
+          -0.0013038216698150473
+        ],
+        [
+          -0.002367342632343894,
+          -0.0006381471559623042,
+          -0.0012225431602962133
+        ],
+        [
+          -0.002977991416423395,
+          0.0010513765623922089,
+          0.0006385941200991729
+        ],
+        [
+          -0.01541576086222679,
+          0.005507229615187514,
+          0.002008404548165893
+        ],
+        [
+          -0.013429764621944978,
+          0.007812337572411565,
+          0.005291708935113493
+        ],
+        [
+          0.0018046672870929148,
+          -0.0011484937107987814,
+          -0.0005089221137147548
+        ],
+        [
+          0.004791388862162904,
+          -0.001898619397178003,
+          -0.003503941437956043
+        ],
+        [
+          0.0015577864944484043,
+          0.00300823245303361,
+          0.0008182192815952005
+        ],
+        [
+          -0.0044613104145694304,
+          0.000675562485732667,
+          -0.00151968326953561
+        ]
+      ],
+      "pcc_higher_folds": 4,
+      "rmse_lower_folds": 4,
+      "mae_lower_folds": 6
+    },
+    "fixed_fusion": {
+      "macro_delta": [
+        -0.016369009207044816,
+        0.00862924323422604,
+        0.00552319971585336
+      ],
+      "fold_deltas": [
+        [
+          -0.009662399652243914,
+          0.00464335500053753,
+          0.002116611624402742
+        ],
+        [
+          -0.010585125920967373,
+          0.005385930066068717,
+          0.004787318937318069
+        ],
+        [
+          -0.019147375708749817,
+          0.00938856759780815,
+          0.007416287070396932
+        ],
+        [
+          -0.020316940643105685,
+          0.009591698060918724,
+          0.00839802374903631
+        ],
+        [
+          -0.025863710426065514,
+          0.011911131720653445,
+          0.0071412682044557085
+        ],
+        [
+          -0.020810877397815036,
+          0.009663537258072452,
+          0.004970793677789742
+        ],
+        [
+          -0.01074514598895647,
+          0.006578740063335753,
+          0.005328329662770082
+        ],
+        [
+          -0.014304963387337444,
+          0.008731960287330032,
+          0.0032421777360525372
+        ],
+        [
+          -0.012705119995408201,
+          0.010144498723840906,
+          0.006287321345371716
+        ],
+        [
+          -0.01954843294979869,
+          0.01025301356369468,
+          0.00554386515093977
+        ]
+      ],
+      "pcc_higher_folds": 0,
+      "rmse_lower_folds": 0,
+      "mae_lower_folds": 0
+    }
+  },
+  "source_sha256": {
+    "results/structured_coefficient_development_20261110_v2/unit_0_0/predictions.npz": "bbb89aee387e1ab29cdf1c134c41f901f2d0b1a42da831c2c60a91211fa39148",
+    "results/structured_coefficient_development_20261110_v2/unit_0_1/predictions.npz": "c0f3b240dbcb2b5e46500352812f8da69396bb62e1498dc22b7e30fda789683f",
+    "results/structured_coefficient_development_20261110_v2/unit_0_2/predictions.npz": "225dd1ce5e5b75f3a4f6935b0cfd205c34ee91bc168b59a389aa9241c10e0193",
+    "results/structured_coefficient_development_20261110_v2/unit_1_0/predictions.npz": "e47c31235a2861152ffa01e6ab6afa4d59bf7cde7286a7f3cad481be1bf286a1",
+    "results/structured_coefficient_development_20261110_v2/unit_1_1/predictions.npz": "18b3f8f7231b610ee2ba91f9f5eebaf96c1d9ed8d5b917a5ec2b536a6d1812d4",
+    "results/structured_coefficient_development_20261110_v2/unit_1_2/predictions.npz": "edaac74b1b8cbbf889db8fcc9edf4c12fcafb28a5bdf4b23e449c54ecfd156ff",
+    "results/structured_coefficient_development_20261110_v2/unit_2_0/predictions.npz": "a78bbe1378563a47ce6c877b295523e304eac1383b5a50d56041ce1b529677c8",
+    "results/structured_coefficient_development_20261110_v2/unit_2_1/predictions.npz": "a6936e389f3283502dd9cda357c841b9e2354a3c983ea4e4f9c6e86684be65a0",
+    "results/structured_coefficient_development_20261110_v2/unit_2_2/predictions.npz": "61f273dba60c5ef4ae55f64063e931e505a3676e2cfb2cce1b75caf0bdd2e9a4",
+    "results/structured_coefficient_development_20261110_v2/unit_3_0/predictions.npz": "8a59f3fc1bc87276b89f5bc10f6141774282c2c0cf86341a00778c963df0aeeb",
+    "results/structured_coefficient_development_20261110_v2/unit_3_1/predictions.npz": "27516a72c66fd46cdc39b5ecda2f734e84189184780a0fdfb1358bed90e17f3c",
+    "results/structured_coefficient_development_20261110_v2/unit_3_2/predictions.npz": "0620cd11d84685a8207d1cfe4901cdfce32fccfd85d681b6ac46e8f249ab3ae1",
+    "results/structured_coefficient_development_20261110_v2/unit_4_0/predictions.npz": "b69d68a6d210a83fb030c9db659aa6898d8e263c82ee143008effe97f9d4ba7a",
+    "results/structured_coefficient_development_20261110_v2/unit_4_1/predictions.npz": "096f56ec7e5e3d6ee231f5be5fa03d5fa41052afca553981affb5cb282b7f10d",
+    "results/structured_coefficient_development_20261110_v2/unit_4_2/predictions.npz": "07127d6caa409b712a1b1598916f925aec598d7ca978b279f7efdcd4ea6662c4",
+    "results/structured_coefficient_development_20261110_v2/unit_5_0/predictions.npz": "9bb87f562fec988396abf46f57f813cd1273c42d0e685371cdac3a25695391d3",
+    "results/structured_coefficient_development_20261110_v2/unit_5_1/predictions.npz": "fe49db71610487e19dd7cb4080a3a4b040270450fa3c8d72c093630271c0dc40",
+    "results/structured_coefficient_development_20261110_v2/unit_5_2/predictions.npz": "d822f51ff57b7c943b79b502abc926fb7f09863625e7873c080ef2b639a02a4f",
+    "results/structured_coefficient_development_20261110_v2/unit_6_0/predictions.npz": "e2b1fe90090f2626bb1e7e40c8029f098f6209e5258d60783e49f4e0361bf443",
+    "results/structured_coefficient_development_20261110_v2/unit_6_1/predictions.npz": "7d0e4d2419ece680295db9f4f83ee5dec7af32f5f192b1939f03135fde178791",
+    "results/structured_coefficient_development_20261110_v2/unit_6_2/predictions.npz": "7aa4b28e0c4a6ea20315d62a230ac1664804ff664585489411dde6e878af04c0",
+    "results/structured_coefficient_development_20261110_v2/unit_7_0/predictions.npz": "cccf65c3a20da60dc99169415b5dda6095d98e7b1af2e2279265bf9e373818b1",
+    "results/structured_coefficient_development_20261110_v2/unit_7_1/predictions.npz": "1512612f340f57b0aed22106a0100e4310f07d1b4a4decacf63acca6fc166275",
+    "results/structured_coefficient_development_20261110_v2/unit_7_2/predictions.npz": "29a9c81395de3432ca32f59bfd2a707791e1a0908205cc8e6ce5e0716f38a68b",
+    "results/structured_coefficient_development_20261110_v2/unit_8_0/predictions.npz": "e406abd6d6167427a9804f20ba90a67e93b57f6badc4d9baa15feacefb16f728",
+    "results/structured_coefficient_development_20261110_v2/unit_8_1/predictions.npz": "20d3a6181538cdc72f8141c03f78569c62fd6155b57111680cde37af2908fcc8",
+    "results/structured_coefficient_development_20261110_v2/unit_8_2/predictions.npz": "a58f422369b9d862ebb1c17517024dd21d917d2ab5667a82a937e6fe3fbcde11",
+    "results/structured_coefficient_development_20261110_v2/unit_9_0/predictions.npz": "fe9cf8953eed1e1d0eda70c5e6e48a8d76d6889a29e263581c6c4c696db05e1f",
+    "results/structured_coefficient_development_20261110_v2/unit_9_1/predictions.npz": "3f92675f586c9039403ac7fe46221c351767bc3f47a1ef17a781609b63906233",
+    "results/structured_coefficient_development_20261110_v2/unit_9_2/predictions.npz": "eaaa4d5a0a68542794cdf896e7d958c05b45d25039e98984f44249c5d73e7095"
+  }
+}
