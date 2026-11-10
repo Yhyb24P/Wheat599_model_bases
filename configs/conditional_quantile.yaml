@@ -1,0 +1,24 @@
+model: quantile_tabm
+optimizer_variant: conditional
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+architecture_config: configs/conditional_quantile_search.yaml
+reference_source: results/joint_tabm_icm_development_20261106
+baseline_source: results/quantile_tabm_development_20261106_v2
+baseline_audit: results/tabicl_compare_20261106/summary.json
+seeds:
+- 42
+- 2026
+n_quantiles: 99
+quantile_min: 0.001
+quantile_max: 0.999
+device: cuda
+gpu_memory_fraction: 0.5
+cpu_threads: 2
+training:
+  max_epochs: 500
+  patience: 50
+  batch_size: 128
+  gradient_clip: 5.0
+  tie_tolerance: 1.0e-12

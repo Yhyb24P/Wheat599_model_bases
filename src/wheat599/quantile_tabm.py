@@ -46,8 +46,13 @@ def update_epoch(model, x, y, q, opt, generator, spec, device):
 
 def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     start=time.perf_counter()
-    model = build_model(x_fit, y_fit, config, seed, settings, device)
     variant=settings.get('optimizer_variant','adam')
+    if variant == 'conditional':
+        from wheat599.conditional_quantile import ConditionalQuantile
+        torch.manual_seed(int(seed))
+        model = ConditionalQuantile(x_fit, y_fit, quantiles=settings['n_quantiles']).to(device)
+    else:
+        model = build_model(x_fit, y_fit, config, seed, settings, device)
     if variant in ('gated','layered'):
         from wheat599.interaction_tabm import InteractionBackbone, LayerInteractionBackbone
         backbone=InteractionBackbone if variant=='gated' else LayerInteractionBackbone
@@ -63,7 +68,7 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
     q = torch.linspace(settings['quantile_min'], settings['quantile_max'],
                        settings['n_quantiles'], device=device)
-    if variant in ('adam','member_conditional'):
+    if variant in ('adam','member_conditional','conditional'):
         opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
     else:
         from wheat599.interaction_tabm import make_optimizers
@@ -127,6 +132,7 @@ def run(cfg, args, runner, *, trainer=None, extra_sources=()):
         sources += [Path(__file__).with_name('interaction_tabm.py'),baseline/'summary.json',Path(cfg['baseline_audit'])]
         sources += [baseline/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
     if cfg.get('optimizer_variant')=='member_conditional':sources.append(Path(__file__).with_name('member_interaction_tabm.py'))
+    if cfg.get('optimizer_variant')=='conditional':sources.append(Path(__file__).with_name('conditional_quantile.py'))
     sources.extend(Path(p) for p in extra_sources)
     comparison={}
     for name,path in cfg.get('comparison_sources',{}).items():
