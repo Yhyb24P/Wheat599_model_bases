@@ -4,4 +4,4 @@
 
 本轮比较8组学习率/权重衰减、30个开发单元、四环境和两种子，共1920次训练。比较原分位数TabM及其固定Huber融合；不使用测试表型选模。连续软连接不等于已发现的生物学逻辑，成员平均也不是后验平均。
 
-命令：`python scripts/run_background_nested.py --config configs/conditional_quantile.yaml --out results/conditional_quantile_development_20261110`。正式结果尚未完成。
+命令：`python scripts/run_background_nested.py --config configs/conditional_quantile.yaml --out results/conditional_quantile_development_20261110`。正式 v2 已完成 1,920/1,920、0 失败；候选开发 PCC 0.456096、RMSE 0.905181、MAE 0.701764，低于原分位数和固定融合，十个开发折均未超过原分位数。结果见 `docs/RESULTS.md`。
