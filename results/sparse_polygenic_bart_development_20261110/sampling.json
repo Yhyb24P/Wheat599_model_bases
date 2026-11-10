@@ -1,0 +1,2312 @@
+{
+  "unit_0_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1417236564087965,
+          "min_bulk_ess": 17.89729990425037,
+          "max_mcse": 0.11256904851020787,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2638848975394597,
+          "min_bulk_ess": 11.129450690752137,
+          "max_mcse": 0.01937088796810984,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1080950775333536,
+          "min_bulk_ess": 5.251415500983858,
+          "max_mcse": 845.6942034305578,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1000691779447145,
+          "min_bulk_ess": 25.612478042708847,
+          "max_mcse": 0.0996334145551734,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2284126892063645,
+          "min_bulk_ess": 12.61310087526417,
+          "max_mcse": 0.017237955579197307,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.0150730181389336,
+          "min_bulk_ess": 5.498178969349178,
+          "max_mcse": 849.5758143174854,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1090341152214362,
+          "min_bulk_ess": 23.206081868355312,
+          "max_mcse": 0.08237760036534615,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0378709210192791,
+          "min_bulk_ess": 86.51713299795502,
+          "max_mcse": 0.005723542446961821,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.194330449406295,
+          "min_bulk_ess": 5.204250087683733,
+          "max_mcse": 1617.244205741755,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_0_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1766668268199114,
+          "min_bulk_ess": 14.931783069972573,
+          "max_mcse": 0.12206448926875234,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1815936391031727,
+          "min_bulk_ess": 14.929967527923306,
+          "max_mcse": 0.015909686320788347,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8460522544475648,
+          "min_bulk_ess": 5.752680642694194,
+          "max_mcse": 1009.013126744581,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2702751915615214,
+          "min_bulk_ess": 10.800662379195819,
+          "max_mcse": 0.11780478896705279,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1333078831993886,
+          "min_bulk_ess": 19.535029147964224,
+          "max_mcse": 0.013658454485325986,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.2421442778882645,
+          "min_bulk_ess": 5.056430807286796,
+          "max_mcse": 2132.96149458165,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0836106675767048,
+          "min_bulk_ess": 28.915698725469518,
+          "max_mcse": 0.10244542254217999,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1327519563239847,
+          "min_bulk_ess": 19.934116261725908,
+          "max_mcse": 0.014277270497258092,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1691973325122036,
+          "min_bulk_ess": 5.153576342787918,
+          "max_mcse": 1851.5709064896748,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_0_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.105132559920783,
+          "min_bulk_ess": 23.332793761877056,
+          "max_mcse": 0.10267112961570314,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0818599045099617,
+          "min_bulk_ess": 34.12627173062389,
+          "max_mcse": 0.009182733671034424,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.0469291718842073,
+          "min_bulk_ess": 5.329528291444062,
+          "max_mcse": 2326.1244943534193,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2100105027021466,
+          "min_bulk_ess": 12.947900015334518,
+          "max_mcse": 0.122166578466269,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1672541772028038,
+          "min_bulk_ess": 16.113191995664053,
+          "max_mcse": 0.014869131602983093,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.07103151252089,
+          "min_bulk_ess": 5.285201824039915,
+          "max_mcse": 853.5850047253654,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2313360399303563,
+          "min_bulk_ess": 12.169421011606202,
+          "max_mcse": 0.10094500017585356,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0420723525102977,
+          "min_bulk_ess": 73.86648107840423,
+          "max_mcse": 0.006518625878682098,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1024950226343506,
+          "min_bulk_ess": 5.302842833803801,
+          "max_mcse": 718.1782364662157,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_1_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3616222602496735,
+          "min_bulk_ess": 8.891438545020405,
+          "max_mcse": 0.15588296493882137,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1976893019494332,
+          "min_bulk_ess": 14.610400827118188,
+          "max_mcse": 0.015678754401781625,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.556509206456103,
+          "min_bulk_ess": 4.7631439593435845,
+          "max_mcse": 1002.3726630998212,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.5352741687964695,
+          "min_bulk_ess": 7.056965759020719,
+          "max_mcse": 0.18204938687260117,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1368928639534166,
+          "min_bulk_ess": 19.46404466259391,
+          "max_mcse": 0.014626319525811938,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8956967298405452,
+          "min_bulk_ess": 5.72955226754376,
+          "max_mcse": 10.407674870510302,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0931101914820216,
+          "min_bulk_ess": 27.876845936390076,
+          "max_mcse": 0.07046460793144953,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0333299310696615,
+          "min_bulk_ess": 89.03184897525963,
+          "max_mcse": 0.005017309135332588,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.4256816552836615,
+          "min_bulk_ess": 4.881411092969577,
+          "max_mcse": 1127.5358035173965,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_1_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1850821945686418,
+          "min_bulk_ess": 14.408685047638077,
+          "max_mcse": 0.08959060316024108,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1029643521088164,
+          "min_bulk_ess": 28.091311726381154,
+          "max_mcse": 0.009063732515643111,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.5625345987574413,
+          "min_bulk_ess": 4.7635376493847135,
+          "max_mcse": 485.9556495945037,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1128986266183716,
+          "min_bulk_ess": 21.87693164161152,
+          "max_mcse": 0.09229721667375866,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1157046239975046,
+          "min_bulk_ess": 22.31073000779351,
+          "max_mcse": 0.012960085084160222,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.0595254374213936,
+          "min_bulk_ess": 5.285428621693446,
+          "max_mcse": 2359.1022975518454,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0438823316361898,
+          "min_bulk_ess": 59.74215224647857,
+          "max_mcse": 0.05940683130002519,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0282028083845023,
+          "min_bulk_ess": 157.50070948441285,
+          "max_mcse": 0.004928420829606858,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.262360098048041,
+          "min_bulk_ess": 5.036650433916571,
+          "max_mcse": 1816.6202350224619,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_1_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2850386670971083,
+          "min_bulk_ess": 10.369165799858777,
+          "max_mcse": 0.11966874310357727,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2611006323944012,
+          "min_bulk_ess": 11.428387322009133,
+          "max_mcse": 0.01925624823467054,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.6569002216938402,
+          "min_bulk_ess": 6.400290680938249,
+          "max_mcse": 1.8476610438039165,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2193557529298864,
+          "min_bulk_ess": 12.486685300590079,
+          "max_mcse": 0.14143952839088295,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.3131606247400973,
+          "min_bulk_ess": 9.931037140867007,
+          "max_mcse": 0.021374440449857302,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.306529789944279,
+          "min_bulk_ess": 4.98463647881552,
+          "max_mcse": 266.94918319694,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0944163843275598,
+          "min_bulk_ess": 25.881408178927213,
+          "max_mcse": 0.0827495647195266,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0818230008819183,
+          "min_bulk_ess": 34.12645551852033,
+          "max_mcse": 0.009707054969027988,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.2393709037023855,
+          "min_bulk_ess": 5.0532105813160175,
+          "max_mcse": 1630.9497623801665,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_2_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1708819633409067,
+          "min_bulk_ess": 15.65779026688322,
+          "max_mcse": 0.10411288973879575,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1067920744518225,
+          "min_bulk_ess": 25.524820822117455,
+          "max_mcse": 0.01114844082243308,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.7014492260354297,
+          "min_bulk_ess": 4.71667451872747,
+          "max_mcse": 629.9989068863911,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.129327174691909,
+          "min_bulk_ess": 19.584895537079976,
+          "max_mcse": 0.09883302205101492,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0899988230470667,
+          "min_bulk_ess": 29.49489385918489,
+          "max_mcse": 0.011727451449486422,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.9596462992665695,
+          "min_bulk_ess": 5.483487853009406,
+          "max_mcse": 1041.5613798040526,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0591316534186508,
+          "min_bulk_ess": 41.96922065656741,
+          "max_mcse": 0.06733829186510576,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0286327970726643,
+          "min_bulk_ess": 134.87204664131485,
+          "max_mcse": 0.005535902045917803,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3924068188937557,
+          "min_bulk_ess": 4.92266600588671,
+          "max_mcse": 5210.142833275952,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_2_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2027114188268142,
+          "min_bulk_ess": 13.408634027379449,
+          "max_mcse": 0.15095635514867017,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.153666165734455,
+          "min_bulk_ess": 17.115974552396278,
+          "max_mcse": 0.015729110158385295,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1915531166230218,
+          "min_bulk_ess": 5.120720966342041,
+          "max_mcse": 12438.099785545057,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1283555113172183,
+          "min_bulk_ess": 19.79901446018622,
+          "max_mcse": 0.1089325703956553,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1588983660298278,
+          "min_bulk_ess": 17.12571860660764,
+          "max_mcse": 0.015006154456142666,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8769470397133512,
+          "min_bulk_ess": 5.742233995714842,
+          "max_mcse": 1757.641745296973,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0849619770158558,
+          "min_bulk_ess": 29.151328738244793,
+          "max_mcse": 0.08756046443124299,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1421774569658045,
+          "min_bulk_ess": 18.594961015900022,
+          "max_mcse": 0.0152439944161894,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3451216828261296,
+          "min_bulk_ess": 4.954601035628466,
+          "max_mcse": 1168.4870204692809,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_2_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1826320750581776,
+          "min_bulk_ess": 14.521499905014569,
+          "max_mcse": 0.11280189563133167,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.256306792430771,
+          "min_bulk_ess": 11.372428944654688,
+          "max_mcse": 0.019071725576272985,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.2716598058731265,
+          "min_bulk_ess": 5.037213570462531,
+          "max_mcse": 587.1173321246551,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3304307393976122,
+          "min_bulk_ess": 9.45079284533262,
+          "max_mcse": 0.18670422263715283,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0873219442156894,
+          "min_bulk_ess": 29.315913543733977,
+          "max_mcse": 0.010826228623344746,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.2464992502010945,
+          "min_bulk_ess": 5.050878444203536,
+          "max_mcse": 512.9090117360857,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0719808479342925,
+          "min_bulk_ess": 36.10066066783086,
+          "max_mcse": 0.062211287004547124,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0843534865517745,
+          "min_bulk_ess": 31.76495186114379,
+          "max_mcse": 0.010604834303609683,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3555274616474753,
+          "min_bulk_ess": 4.941745790004025,
+          "max_mcse": 3754.3348141267174,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_3_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1835714083155433,
+          "min_bulk_ess": 14.451691077460763,
+          "max_mcse": 0.0988658607578826,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.139827596868047,
+          "min_bulk_ess": 18.8263387859136,
+          "max_mcse": 0.014214377243467769,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.9127535024973248,
+          "min_bulk_ess": 5.599580418486292,
+          "max_mcse": 341.18803155066905,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.5264750891056174,
+          "min_bulk_ess": 7.130723489227146,
+          "max_mcse": 0.16980389809561267,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.061683274687726,
+          "min_bulk_ess": 43.035071128043484,
+          "max_mcse": 0.008684718474687578,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.23864474549593,
+          "min_bulk_ess": 5.103017757326294,
+          "max_mcse": 1681.677431744905,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0710451433795296,
+          "min_bulk_ess": 35.1286095618759,
+          "max_mcse": 0.05795610669313708,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0474833582237866,
+          "min_bulk_ess": 56.39925418498424,
+          "max_mcse": 0.007610801841262615,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.377568717354113,
+          "min_bulk_ess": 4.921250704219571,
+          "max_mcse": 1504.6133356949335,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_3_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3359653042946849,
+          "min_bulk_ess": 9.293860631809967,
+          "max_mcse": 0.1655118477229338,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2381532297762325,
+          "min_bulk_ess": 11.942973938526864,
+          "max_mcse": 0.018824061689431522,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.169945027526762,
+          "min_bulk_ess": 5.15507787476404,
+          "max_mcse": 249.45284540761224,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1632424044770393,
+          "min_bulk_ess": 15.808283510718228,
+          "max_mcse": 0.12538886028502433,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1278810544310554,
+          "min_bulk_ess": 20.78698437704611,
+          "max_mcse": 0.013249785583271778,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.0223976281808733,
+          "min_bulk_ess": 5.3866704729048385,
+          "max_mcse": 17.59787038977768,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0974922737234054,
+          "min_bulk_ess": 24.99615830785836,
+          "max_mcse": 0.07306074835814277,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0397796065131024,
+          "min_bulk_ess": 87.57015607581168,
+          "max_mcse": 0.006126670523455188,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.655557120917752,
+          "min_bulk_ess": 4.696123993122492,
+          "max_mcse": 7040.712853545614,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_3_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2526606856197795,
+          "min_bulk_ess": 11.313773802315781,
+          "max_mcse": 0.12610229612252472,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1031482908194203,
+          "min_bulk_ess": 24.851776563784732,
+          "max_mcse": 0.011081266286249366,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8340400395165515,
+          "min_bulk_ess": 5.775795040919448,
+          "max_mcse": 1651.2121886084356,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2003085984013262,
+          "min_bulk_ess": 13.583226777594758,
+          "max_mcse": 0.12256075403074854,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1421162912272653,
+          "min_bulk_ess": 18.881129217949105,
+          "max_mcse": 0.01376984231308801,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.5122621124212414,
+          "min_bulk_ess": 4.800825669702948,
+          "max_mcse": 641.0788759229491,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.180689748096379,
+          "min_bulk_ess": 14.547976319879806,
+          "max_mcse": 0.11122402906129601,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1082749392593358,
+          "min_bulk_ess": 26.164506084209393,
+          "max_mcse": 0.011680244509659555,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.2877693699321364,
+          "min_bulk_ess": 5.010668169555878,
+          "max_mcse": 6079.79441244399,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_4_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2936114774301244,
+          "min_bulk_ess": 10.20171035164866,
+          "max_mcse": 0.12371216955942167,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0861374811685156,
+          "min_bulk_ess": 31.5671163861853,
+          "max_mcse": 0.00966838650883536,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.7647331265972939,
+          "min_bulk_ess": 5.9929017902864965,
+          "max_mcse": 14043.080473650121,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.140580985892678,
+          "min_bulk_ess": 17.970366927551417,
+          "max_mcse": 0.11045785855485593,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0785945514551933,
+          "min_bulk_ess": 33.54126369416486,
+          "max_mcse": 0.008330572976836334,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.091102329418819,
+          "min_bulk_ess": 5.274898841932204,
+          "max_mcse": 348.71019854537866,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1632515861211394,
+          "min_bulk_ess": 15.862053739469088,
+          "max_mcse": 0.0827489187002977,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.081808682374436,
+          "min_bulk_ess": 31.975386365751067,
+          "max_mcse": 0.010699848595016603,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1697629851711993,
+          "min_bulk_ess": 5.133131057940687,
+          "max_mcse": 1206.7235570660303,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_4_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.312285293981092,
+          "min_bulk_ess": 9.757439673756181,
+          "max_mcse": 0.10819709568860081,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.101286019719496,
+          "min_bulk_ess": 26.54564445265144,
+          "max_mcse": 0.012177433226786665,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8501714470675779,
+          "min_bulk_ess": 5.734215095580496,
+          "max_mcse": 736.9048231339161,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1497116590454026,
+          "min_bulk_ess": 17.14882587832587,
+          "max_mcse": 0.12478702630806209,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0820625534371755,
+          "min_bulk_ess": 32.51091177894127,
+          "max_mcse": 0.011073448377431476,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.959313808420585,
+          "min_bulk_ess": 5.478978119965148,
+          "max_mcse": 1790.5224520046722,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1425041558383695,
+          "min_bulk_ess": 18.16674467067429,
+          "max_mcse": 0.08623424722425312,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0911875355205436,
+          "min_bulk_ess": 29.77077544386973,
+          "max_mcse": 0.011349026459332974,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.7811051072657613,
+          "min_bulk_ess": 4.652033906763786,
+          "max_mcse": 962.6737257928048,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_4_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2865779609918928,
+          "min_bulk_ess": 10.348327553967518,
+          "max_mcse": 0.10547215224023954,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1150255045484048,
+          "min_bulk_ess": 23.223262178832076,
+          "max_mcse": 0.012840930631088184,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.335140003308419,
+          "min_bulk_ess": 4.967907670268159,
+          "max_mcse": 248.79327272591723,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2277872849065798,
+          "min_bulk_ess": 12.262851183913456,
+          "max_mcse": 0.1067626655994498,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.075366264137789,
+          "min_bulk_ess": 34.75141969082199,
+          "max_mcse": 0.010039141913659184,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.0596410911709246,
+          "min_bulk_ess": 5.296561350387073,
+          "max_mcse": 1604.4562415200287,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0887221861368872,
+          "min_bulk_ess": 28.248104597088993,
+          "max_mcse": 0.0715171342397159,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0341573882227644,
+          "min_bulk_ess": 96.75389265633721,
+          "max_mcse": 0.0059681127699305414,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.6204564320454775,
+          "min_bulk_ess": 4.738499093364421,
+          "max_mcse": 33248.03263923692,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_5_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2678676689664532,
+          "min_bulk_ess": 10.857953096610231,
+          "max_mcse": 0.12739374571895556,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1727012603821465,
+          "min_bulk_ess": 15.647807692713485,
+          "max_mcse": 0.013959406456428762,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.6483417178242197,
+          "min_bulk_ess": 6.6341772912863055,
+          "max_mcse": 3.3183512880370882,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.5744368504765103,
+          "min_bulk_ess": 6.811333750636952,
+          "max_mcse": 0.21701444258107758,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.4761703128983992,
+          "min_bulk_ess": 7.557312630170227,
+          "max_mcse": 0.024212284774863976,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3663796705066686,
+          "min_bulk_ess": 4.924167316237807,
+          "max_mcse": 23.858001868182118,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1955085415314535,
+          "min_bulk_ess": 13.763376044076441,
+          "max_mcse": 0.10730825830789517,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0606419600589487,
+          "min_bulk_ess": 46.47081674353905,
+          "max_mcse": 0.009514598444830236,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.638973011148898,
+          "min_bulk_ess": 4.744182173626507,
+          "max_mcse": 2925.540007952376,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_5_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3621506245763613,
+          "min_bulk_ess": 8.861063251285486,
+          "max_mcse": 0.1591591641465094,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1294177336109676,
+          "min_bulk_ess": 20.972788197335937,
+          "max_mcse": 0.01174734895451627,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.9855059465678324,
+          "min_bulk_ess": 5.478452076866752,
+          "max_mcse": 488.9295402596825,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.4057234093283657,
+          "min_bulk_ess": 8.25147691830699,
+          "max_mcse": 0.12793163468328966,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1509004922770647,
+          "min_bulk_ess": 17.669049479758645,
+          "max_mcse": 0.013758698566783505,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.272600153083458,
+          "min_bulk_ess": 5.0619771853628714,
+          "max_mcse": 4691.391095755957,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.199290292881842,
+          "min_bulk_ess": 13.463760310667062,
+          "max_mcse": 0.10985560422656307,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0727659572746493,
+          "min_bulk_ess": 35.82541087548714,
+          "max_mcse": 0.008784360252553641,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.568184141823807,
+          "min_bulk_ess": 4.773635904927238,
+          "max_mcse": 2602.700398333786,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_5_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3626196907673558,
+          "min_bulk_ess": 8.812952154492692,
+          "max_mcse": 0.18642174566474745,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1156555153944168,
+          "min_bulk_ess": 21.991147387807988,
+          "max_mcse": 0.013231394475041982,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3274632533373576,
+          "min_bulk_ess": 5.002452496908191,
+          "max_mcse": 797.2919517442464,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.347997886840354,
+          "min_bulk_ess": 9.065983732749638,
+          "max_mcse": 0.14543462976838886,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2440087503375334,
+          "min_bulk_ess": 11.81789734656262,
+          "max_mcse": 0.018192272589776785,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.8101868665938157,
+          "min_bulk_ess": 4.619443718925163,
+          "max_mcse": 1304.7811972956868,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0603329907540884,
+          "min_bulk_ess": 41.198425579193845,
+          "max_mcse": 0.06364817964070768,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0125407502282513,
+          "min_bulk_ess": 896.335556501143,
+          "max_mcse": 0.0019051016059346694,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.152787845285031,
+          "min_bulk_ess": 5.144068788944104,
+          "max_mcse": 1899.0043044484435,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_6_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2234294189350952,
+          "min_bulk_ess": 12.4508439900241,
+          "max_mcse": 0.12337706323157353,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.167949764154485,
+          "min_bulk_ess": 16.10840676860007,
+          "max_mcse": 0.013981491752678628,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.9634105425032513,
+          "min_bulk_ess": 5.4938000311589095,
+          "max_mcse": 40.004255261811174,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.277391368898646,
+          "min_bulk_ess": 10.706860449161166,
+          "max_mcse": 0.14641485236023305,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.150772209795669,
+          "min_bulk_ess": 17.93810095156871,
+          "max_mcse": 0.01570005677233066,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3208565471287437,
+          "min_bulk_ess": 4.999644350681965,
+          "max_mcse": 1873.3738041858603,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1657151976110074,
+          "min_bulk_ess": 15.717366670314473,
+          "max_mcse": 0.11017142648292767,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1223258050689826,
+          "min_bulk_ess": 21.740831978485254,
+          "max_mcse": 0.014102431110481345,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.7662579653010173,
+          "min_bulk_ess": 4.6302739679782,
+          "max_mcse": 937.7921058966665,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_6_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.511228442652493,
+          "min_bulk_ess": 7.232046293321816,
+          "max_mcse": 0.1652886080494376,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.279495416578422,
+          "min_bulk_ess": 10.713329074224209,
+          "max_mcse": 0.019818107418740207,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.166096604992652,
+          "min_bulk_ess": 5.123847637626469,
+          "max_mcse": 466.5825269412274,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.180840200713469,
+          "min_bulk_ess": 14.708877225587962,
+          "max_mcse": 0.10598610478741227,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.183923744840809,
+          "min_bulk_ess": 15.556014380939322,
+          "max_mcse": 0.013863031475046469,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.679287875753367,
+          "min_bulk_ess": 4.6837969786359395,
+          "max_mcse": 8876.388703243234,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1203226410577065,
+          "min_bulk_ess": 21.104568141000627,
+          "max_mcse": 0.09859284252997158,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0960018430394949,
+          "min_bulk_ess": 28.690487597310234,
+          "max_mcse": 0.01158707694701466,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3096539459532583,
+          "min_bulk_ess": 5.009233073058466,
+          "max_mcse": 11636.72173084018,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_6_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3665323822372455,
+          "min_bulk_ess": 8.851843082757377,
+          "max_mcse": 0.19238144727486597,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.3331501651076871,
+          "min_bulk_ess": 9.391902538890559,
+          "max_mcse": 0.024701415495741157,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.744401625874513,
+          "min_bulk_ess": 6.037222567352536,
+          "max_mcse": 4136.581292700377,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3706254342066986,
+          "min_bulk_ess": 8.750328798689806,
+          "max_mcse": 0.14514171592075,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2359134651733352,
+          "min_bulk_ess": 12.07030657709779,
+          "max_mcse": 0.01910677717943611,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.345807022601623,
+          "min_bulk_ess": 4.978772738440193,
+          "max_mcse": 531.2976040910387,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.4320811391773043,
+          "min_bulk_ess": 7.9520084094063295,
+          "max_mcse": 0.2025209119847981,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1514447369910228,
+          "min_bulk_ess": 17.518373360549695,
+          "max_mcse": 0.01473711162280394,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.7990742516543095,
+          "min_bulk_ess": 4.65670772106322,
+          "max_mcse": 672.0793973971015,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_7_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1749506736730593,
+          "min_bulk_ess": 15.095298785930932,
+          "max_mcse": 0.10408215764066736,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0639130089389222,
+          "min_bulk_ess": 41.918988512059684,
+          "max_mcse": 0.008696715299224986,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.5849387265838553,
+          "min_bulk_ess": 6.938669985019085,
+          "max_mcse": 997.7951625131104,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2211891720108954,
+          "min_bulk_ess": 12.518334022254995,
+          "max_mcse": 0.09671059308489337,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.072332696935628,
+          "min_bulk_ess": 37.47085111261394,
+          "max_mcse": 0.00914062314666138,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.4481820514179398,
+          "min_bulk_ess": 4.855495828888839,
+          "max_mcse": 1223.2921099885364,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0711338048937133,
+          "min_bulk_ess": 34.20082489182047,
+          "max_mcse": 0.06005315996459232,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0158717379648463,
+          "min_bulk_ess": 751.2654311388277,
+          "max_mcse": 0.002122630563440375,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1492093877797425,
+          "min_bulk_ess": 5.185568810024239,
+          "max_mcse": 8097.306968348942,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_7_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2872709139647784,
+          "min_bulk_ess": 10.340463352619143,
+          "max_mcse": 0.11824348958987517,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1085783627784727,
+          "min_bulk_ess": 24.951290664423546,
+          "max_mcse": 0.011251908506993955,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.5491830011700705,
+          "min_bulk_ess": 4.760282581469095,
+          "max_mcse": 406.20260558511166,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3083490869408478,
+          "min_bulk_ess": 9.849201353723782,
+          "max_mcse": 0.12543592131674977,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1296093436242962,
+          "min_bulk_ess": 20.17587392852355,
+          "max_mcse": 0.014229620843430173,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.9346513780280918,
+          "min_bulk_ess": 5.592728623586424,
+          "max_mcse": 2111.189446268059,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.125077688706535,
+          "min_bulk_ess": 19.939384680410193,
+          "max_mcse": 0.10301597058866165,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.050346098786138,
+          "min_bulk_ess": 57.79569872587793,
+          "max_mcse": 0.00827061221984148,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.4182212073703715,
+          "min_bulk_ess": 4.8781417899081285,
+          "max_mcse": 2010.0619572427704,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_7_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.349352001394496,
+          "min_bulk_ess": 9.042432619912587,
+          "max_mcse": 0.12130892717880228,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1333009090846176,
+          "min_bulk_ess": 19.62798416693309,
+          "max_mcse": 0.015737754121121505,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.7372741559272218,
+          "min_bulk_ess": 6.201440256656667,
+          "max_mcse": 1.9476238376159316,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2123451897885316,
+          "min_bulk_ess": 13.003519426335947,
+          "max_mcse": 0.13168589048858506,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2064424424476143,
+          "min_bulk_ess": 13.78442336460452,
+          "max_mcse": 0.014406014157098555,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1186958023831512,
+          "min_bulk_ess": 5.218962925141434,
+          "max_mcse": 459.7449717752048,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2289081688711792,
+          "min_bulk_ess": 12.161990166227241,
+          "max_mcse": 0.1268957535396044,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.060224764754668,
+          "min_bulk_ess": 45.66163489620393,
+          "max_mcse": 0.008359017611873387,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3180020797642995,
+          "min_bulk_ess": 4.959276072312486,
+          "max_mcse": 628.9079558120708,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_8_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.4959310708439388,
+          "min_bulk_ess": 7.342775085956904,
+          "max_mcse": 0.20215646348460894,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.3080828703595198,
+          "min_bulk_ess": 9.934763496531644,
+          "max_mcse": 0.020611388152954182,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8473719091561351,
+          "min_bulk_ess": 5.911123959564461,
+          "max_mcse": 531.7537920840166,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2467186157588086,
+          "min_bulk_ess": 11.535601988044242,
+          "max_mcse": 0.14172095674891486,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1469608033747003,
+          "min_bulk_ess": 18.161677321275725,
+          "max_mcse": 0.013339995155633222,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3590408283785758,
+          "min_bulk_ess": 4.928207960900304,
+          "max_mcse": 1014.0405783620527,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2376740432247413,
+          "min_bulk_ess": 11.767079333201522,
+          "max_mcse": 0.08323393529375749,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1003440299007676,
+          "min_bulk_ess": 26.775836222364216,
+          "max_mcse": 0.010679551290459806,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.8905735428603432,
+          "min_bulk_ess": 5.667331248994136,
+          "max_mcse": 2022.8154111177025,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_8_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3236502870546516,
+          "min_bulk_ess": 9.479441327915088,
+          "max_mcse": 0.15287485093354666,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1999029416104627,
+          "min_bulk_ess": 13.840752248400122,
+          "max_mcse": 0.015325966932745773,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.244286273282905,
+          "min_bulk_ess": 5.06878959825278,
+          "max_mcse": 1169.8031030746267,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2376762748999464,
+          "min_bulk_ess": 11.885286627013622,
+          "max_mcse": 0.131527150318131,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1079735337342023,
+          "min_bulk_ess": 26.868262589019537,
+          "max_mcse": 0.009792588459300464,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.318297593680792,
+          "min_bulk_ess": 5.0016923987312705,
+          "max_mcse": 1181.9787658742596,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0623632682326751,
+          "min_bulk_ess": 37.971717044829745,
+          "max_mcse": 0.06356993978348956,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0365470514147297,
+          "min_bulk_ess": 83.15192473485043,
+          "max_mcse": 0.005689465694209229,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.354576807388657,
+          "min_bulk_ess": 4.985858446876774,
+          "max_mcse": 1618.9565153561823,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_8_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1517813445992404,
+          "min_bulk_ess": 16.784999427919033,
+          "max_mcse": 0.12114617732985578,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0911231288376257,
+          "min_bulk_ess": 28.77387332095478,
+          "max_mcse": 0.010837448195340951,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.0757270546504243,
+          "min_bulk_ess": 5.297018349632491,
+          "max_mcse": 877.1768991500126,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.4808345537717964,
+          "min_bulk_ess": 7.447855173734649,
+          "max_mcse": 0.2398895314924458,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.182014037502364,
+          "min_bulk_ess": 15.049275553876395,
+          "max_mcse": 0.017254530729768368,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.010646448977347,
+          "min_bulk_ess": 5.381176537863433,
+          "max_mcse": 684.5422671090032,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1299961820246183,
+          "min_bulk_ess": 19.317761996110733,
+          "max_mcse": 0.11359455297668722,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0806558530493722,
+          "min_bulk_ess": 32.874310072694605,
+          "max_mcse": 0.009582893004895227,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.2411505424317175,
+          "min_bulk_ess": 5.048878482595107,
+          "max_mcse": 5058.914854721703,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_9_0": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2972372659074909,
+          "min_bulk_ess": 10.113953540766829,
+          "max_mcse": 0.1854172647380167,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1235459640233452,
+          "min_bulk_ess": 21.146596065564616,
+          "max_mcse": 0.012889745361796963,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.243122971009346,
+          "min_bulk_ess": 6.137310455029241,
+          "max_mcse": 50.234398933791766,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2436487764884194,
+          "min_bulk_ess": 11.658897670522165,
+          "max_mcse": 0.12499275151267827,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0849562005306286,
+          "min_bulk_ess": 29.84154155051594,
+          "max_mcse": 0.010597487866442658,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.106381280689744,
+          "min_bulk_ess": 5.207064468004973,
+          "max_mcse": 42.94008925567967,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.151239934990768,
+          "min_bulk_ess": 17.081322118684998,
+          "max_mcse": 0.08675379017274548,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0362849515323624,
+          "min_bulk_ess": 97.36803142936179,
+          "max_mcse": 0.005548523328220545,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.557204909453882,
+          "min_bulk_ess": 4.780447568422627,
+          "max_mcse": 1141.6008500384698,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_9_1": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3078619136396052,
+          "min_bulk_ess": 9.856802254266537,
+          "max_mcse": 0.12250997829774128,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.1231022693111217,
+          "min_bulk_ess": 22.033424629403374,
+          "max_mcse": 0.011496511397183752,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.9723655409174292,
+          "min_bulk_ess": 5.600824119812688,
+          "max_mcse": 685.5549576320262,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2048391132802683,
+          "min_bulk_ess": 13.548670035840667,
+          "max_mcse": 0.14492100505096434,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0867673241103781,
+          "min_bulk_ess": 30.527398110060048,
+          "max_mcse": 0.01095123564852453,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.1914616910004687,
+          "min_bulk_ess": 5.125848287428023,
+          "max_mcse": 714.4530454986807,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.0767641445968072,
+          "min_bulk_ess": 33.73765666871101,
+          "max_mcse": 0.06847320015111458,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.044933102635811,
+          "min_bulk_ess": 65.5775916374754,
+          "max_mcse": 0.007199549498581443,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.47510435690686,
+          "min_bulk_ess": 4.865132789758652,
+          "max_mcse": 1022.6504911685992,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ],
+  "unit_9_2": [
+    {
+      "configuration": 0,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.3275368663491072,
+          "min_bulk_ess": 9.57561551991715,
+          "max_mcse": 0.1405823663488121,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.2922306101051368,
+          "min_bulk_ess": 10.319965290530742,
+          "max_mcse": 0.02115292713602292,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.4076576539690313,
+          "min_bulk_ess": 4.873564459744839,
+          "max_mcse": 899.7422774175272,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 1,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.2589454592889642,
+          "min_bulk_ess": 11.202963292908022,
+          "max_mcse": 0.10666193511593743,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0577702982363213,
+          "min_bulk_ess": 48.33772818924468,
+          "max_mcse": 0.008658670218868141,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 1.896238372847396,
+          "min_bulk_ess": 5.6428099261911004,
+          "max_mcse": 2173.1956487570287,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    },
+    {
+      "configuration": 2,
+      "diagnostics": {
+        "training": {
+          "max_rhat": 1.1086973354070755,
+          "min_bulk_ess": 23.03251351145073,
+          "max_mcse": 0.09078182965547715,
+          "constant_columns": 0
+        },
+        "covariance": {
+          "max_rhat": 1.0313606185836974,
+          "min_bulk_ess": 121.84505227169281,
+          "max_mcse": 0.005139434373981416,
+          "constant_columns": 0
+        },
+        "state": {
+          "max_rhat": 2.3539437162835832,
+          "min_bulk_ess": 4.980795342584259,
+          "max_mcse": 13257.151663608809,
+          "constant_columns": 0
+        },
+        "chains": 4,
+        "draws_per_chain": 4000
+      }
+    }
+  ]
+}
