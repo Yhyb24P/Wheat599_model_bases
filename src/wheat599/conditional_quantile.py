@@ -21,7 +21,9 @@ class ConditionalQuantile(nn.Module):
         x = torch.as_tensor(fit_x, dtype=torch.float32)
         y = torch.as_tensor(fit_y, dtype=torch.float32).reshape(-1, 1)
         self.register_buffer('x_mean', x.mean(0))
-        self.register_buffer('x_std', x.std(0, unbiased=False).clamp_min(1e-12))
+        std = x.std(0, unbiased=False)
+        self.register_buffer('x_constant', std == 0)
+        self.register_buffer('x_std', torch.where(std == 0, torch.ones_like(std), std))
         self.register_buffer('y_mean', y.mean(0))
         self.register_buffer('y_std', y.std(0, unbiased=False).clamp_min(1e-12))
         p = x.shape[1]
@@ -56,5 +58,5 @@ class ConditionalQuantile(nn.Module):
                  c[..., 2]*u*(1-v) + c[..., 3]*u*v)
             hidden.append(h)
             features = torch.cat((features, h), dim=-1)
-        z = (x - self.x_mean) / self.x_std
+        z = ((x - self.x_mean) / self.x_std).masked_fill(self.x_constant, 0)
         return torch.einsum('bmp,mpq->bmq', torch.cat(hidden, dim=-1), self.readout) + (z @ self.linear.T)[..., None] + self.bias
