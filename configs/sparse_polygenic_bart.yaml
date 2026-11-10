@@ -1,0 +1,20 @@
+model: sparse_polygenic_bart
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+workers: 6
+seeds: [42, 2026, 1109, 1110]
+configurations:
+- {trees: 50, kappa: 2.0}
+- {trees: 100, kappa: 2.0}
+- {trees: 100, kappa: 3.0}
+mcmc:
+  warmup: 1000
+  draws: 2000
+  length_multipliers: [1, 2, 4, 8]
+  max_rhat: 1.05
+  min_bulk_ess: 100
+  max_prediction_mcse_sd: 0.025
+reference_seeds: [42, 2026]
+quantile_source: results/quantile_tabm_development_20261106_v2
+huber_reference: results/joint_tabm_icm_development_20261106

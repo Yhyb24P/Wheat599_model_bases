@@ -223,6 +223,9 @@ def main():
     if cfg.get('model') == 'structured_coefficient':
         from wheat599.structured_coefficient_run import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'sparse_polygenic_bart':
+        from wheat599.bayesian_trees_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'distill_quantile':
         from wheat599.distill_quantile import run
         return run(cfg, args, Path(__file__))
