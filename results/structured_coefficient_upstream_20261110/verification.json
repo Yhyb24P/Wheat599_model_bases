@@ -1,0 +1,9 @@
+{
+  "repository": "https://github.com/Wangxuer521/GWKBR",
+  "commit": "d9019e012cae4d7207eab8c318942450fded67d3",
+  "source_sha256": "880a53d15b4d554570b486536c79afb1256936fdcabb30c0dbdcc84ce6ab5486",
+  "checked_method": "K_Model._compute_posterior",
+  "reference_prediction_max_difference": 9.467426842491022e-14,
+  "adaptation": "Provided G=mean-diagonal-normalized centered binary marker relationship + epsilon I; effective ridge absorbs variance ratio; phenotype standardization is fit-only; no learned reference intercept",
+  "license_note": "No repository LICENSE present at pinned commit; no upstream source vendored or redistributed."
+}
