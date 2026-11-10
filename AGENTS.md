@@ -4,7 +4,7 @@
 
 **现役主候选：**四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合，同协议外层宏 PCC 0.526506；单独分位数 TabM、Huber、独立 MSE TabM 分别为 0.518829、0.521745、0.508190。80 次外层重拟合已完成、0 失败；此前历史结果与主候选以 `docs/RESULTS.md` 为准。外层划分已多轮用于项目研究，禁止用外层结果重选权重或配置。
 
-**当前任务：**结构化系数先验的稳健多环境回归开发比较，冻结1f77591。二值G归一化平均对角1，P=G+epsilon I；R P^-1/2白化，复用Huber ICM；候选15120次四环境凸拟合，未加权GWKBR后验公式适配参照1890次四目标解析计算。后者不等同作者完整流水线复现。训练侧容差验收通过、每次拟合检查对偶间隙；omen /home/hsy/worktrees/structured-coefficient，结果results/structured_coefficient_development_20261110。仅开发，不自动外层/追加搜索；现役融合不变，见docs/STRUCTURED_COEFFICIENT.md。
+**当前任务：**结构化系数先验的稳健多环境回归开发比较，冻结5eabab4（原1f77591因数值证书未达标停止并保留，不作性能证据）。二值G归一化平均对角1，P=G+epsilon I；R P^-1/2白化，复用Huber ICM；候选15120次四环境凸拟合，未加权GWKBR后验公式适配参照1890次四目标解析计算。后者不等同作者完整流水线复现。训练侧容差验收通过、每次拟合检查对偶间隙；omen /home/hsy/worktrees/structured-coefficient-v2，结果results/structured_coefficient_development_20261110_v2。仅开发，不自动外层/追加搜索；现役融合不变，见docs/STRUCTURED_COEFFICIENT.md。
 
 **最新任务：**MeNet性状关系＋全标记分位数TabM开发完成240/240次关系预训练、1920/1920次预测拟合，0失败；PCC 0.490742、RMSE 0.883239、MAE 0.683056，均差于原分位数和冻结融合开发参照。独立复算、曲线和权重SHA核验通过；按预定规则结束本配置，不进入外层、不追加搜索，现役融合不变。见 `docs/MENET_QUANTILE.md`、`docs/RESULTS.md`。
 

@@ -38,3 +38,5 @@ P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再�
 正式执行冻结`1f77591`、标签`structured-coefficient-dev`，omen工作树`/home/hsy/worktrees/structured-coefficient`，输出`results/structured_coefficient_development_20261110`。两个CPU工作进程各单线程，正式预算已启动；完成后重算全部候选选择、重载原始系数并复核目标与对偶证书，再交付性能结果。
 
 首轮正式执行`1f77591`在一个配置相对对偶间隙2.617e-6时按预定阈值1e-6停止，完整单元0/30，不作性能证据；原目录保留。后续仅补充基于原Huber目标及Hessian-vector积的trust-ncg数值精化，不改变模型、候选集或验收阈值；从独立新目录执行。另明确n×E表示总观测数4n，ridge=lambda*y.size是正确归一化，新增字段记录ridge/normalized_lambda/number_observations并测试该等式。
+
+数值精化版本冻结`5eabab4`、标签`structured-coefficient-dev-v2`，本机/omen各6项测试（含Hessian-vector有限差分、强制精化、归一化字段）通过。新运行路径omen `/home/hsy/worktrees/structured-coefficient-v2/results/structured_coefficient_development_20261110_v2`，旧失败目录不覆盖。所有模型候选、最终梯度与间隙验收阈值保持不变。
