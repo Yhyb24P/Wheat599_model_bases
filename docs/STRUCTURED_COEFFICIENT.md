@@ -34,3 +34,5 @@ P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再�
 正式入口`python scripts/run_background_nested.py --config configs/structured_coefficient.yaml --out results/<新目录>`，omen两个单线程CPU进程，不占GPU。数据/划分/源代码/配置/引用预测SHA写入provenance。实现与数值验收已完成，正式开发配置按本文件冻结；尚无新性能结果。
 
 训练侧验收（不读取验证标签）：真实首个拟合集，epsilon=0.001/0.1、lambda=1e-6/1、eta=.8四个边界配置通过原始梯度与相对对偶间隙检查。相对间隙最大2.26e-9；进一步收紧ftol至1e-16、gtol至1e-13后，拟合集预测最大变化1.76e-6。该检查仅用于数值精度与耗时，记录位于omen /tmp/structured_training_check.json，不作为性能证据。本机/omen各4项相关测试通过。
+
+正式执行冻结`1f77591`、标签`structured-coefficient-dev`，omen工作树`/home/hsy/worktrees/structured-coefficient`，输出`results/structured_coefficient_development_20261110`。两个CPU工作进程各单线程，正式预算已启动；完成后重算全部候选选择、重载原始系数并复核目标与对偶证书，再交付性能结果。
