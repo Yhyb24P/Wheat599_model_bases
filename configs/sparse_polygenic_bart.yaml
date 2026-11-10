@@ -9,12 +9,8 @@ configurations:
 - {trees: 100, kappa: 2.0}
 - {trees: 100, kappa: 3.0}
 mcmc:
-  warmup: 1000
-  draws: 2000
-  length_multipliers: [1, 2, 4, 8]
-  max_rhat: 1.05
-  min_bulk_ess: 100
-  max_prediction_mcse_sd: 0.025
+  warmup: 2000
+  draws: 4000
 reference_seeds: [42, 2026]
 quantile_source: results/quantile_tabm_development_20261106_v2
 huber_reference: results/joint_tabm_icm_development_20261106

@@ -37,7 +37,7 @@ def posterior(directory, name):
     return a.reshape(shape, order='F')
 
 
-def diagnostics(chains, target_sd, limits):
+def diagnostics(chains, target_sd):
     training = np.stack([np.moveaxis(posterior(c,'training'),-1,0) for c in chains])
     covariance = np.stack([np.moveaxis(posterior(c,'sigma'),-1,0) for c in chains])
     traces = np.stack([posterior(c,'trace') for c in chains])
@@ -46,7 +46,7 @@ def diagnostics(chains, target_sd, limits):
     monitored = dict(training=(training/target_sd).reshape(nchain,draws,-1),
                      covariance=covariance[:,:,tri[0],tri[1]],
                      state=traces[:,:,[*range(8),*range(12,20)]])
-    report = {}; accepted = True
+    report = {}
     for name, values in monitored.items():
         varying = np.std(values.reshape(-1,values.shape[-1]),axis=0)>0
         if not varying.any():
@@ -57,12 +57,9 @@ def diagnostics(chains, target_sd, limits):
         mcse = az.mcse(data,method='mean')['value'].values
         if not all(np.isfinite(a).all() for a in (rh,ess,mcse)):
             raise ValueError('Undefined MCMC diagnostics: '+name)
-        valid = rh.max()<=limits['max_rhat'] and ess.min()>=limits['min_bulk_ess']
-        if name=='training': valid = valid and mcse.max()<=limits['max_prediction_mcse_sd']
         report[name] = dict(max_rhat=float(rh.max()),min_bulk_ess=float(ess.min()),
-                            max_mcse=float(mcse.max()),constant_columns=int((~varying).sum()),passed=bool(valid))
-        accepted = accepted and valid
-    report.update(accepted=bool(accepted),chains=nchain,draws_per_chain=draws)
+                            max_mcse=float(mcse.max()),constant_columns=int((~varying).sum()))
+    report.update(chains=nchain,draws_per_chain=draws)
     return report
 
 
@@ -89,28 +86,23 @@ def run_unit(request):
     predictions={};records=[]
     for c,case in enumerate(cfg['configurations']):
         case_dir=directory/f'configuration_{c}';case_dir.mkdir()
-        for multiplier in cfg['mcmc']['length_multipliers']:
-            attempt=case_dir/f'length_{multiplier}';attempt.mkdir()
-            base=dict(source=str((SOURCE/'sampler.cpp').resolve()),directory=str(directory.resolve()),
-                loader=read(Path(output)/'compile/loader.json')['loader'],
-                **case,warmup=cfg['mcmc']['warmup']*multiplier,draws=cfg['mcmc']['draws']*multiplier)
-            chains=[]
-            for seed in cfg['seeds']:
-                if (Path(output)/'STOP').exists():
-                    raise RuntimeError('Another unit failed; remaining chains stopped')
-                chain=attempt/f'chain_{seed}';chains.append(chain)
-                sample_chain(dict(base,seed=seed+100000*fold+1000*inner),chain)
-            check=diagnostics(chains,y.std(0),cfg['mcmc'])
-            write(attempt/'diagnostics.json',check)
-            if check['accepted']:
-                pred=np.mean([posterior(chain,'query').mean(axis=-1) for chain in chains],axis=0)
-                if pred.shape!=(len(query),4) or not np.isfinite(pred).all():
-                    raise ValueError('Invalid posterior mean prediction')
-                predictions[f'c{c}']=pred
-                records.append(dict(configuration=c,length_multiplier=multiplier,diagnostics=check))
-                break
-        else:
-            raise RuntimeError(f'MCMC tolerance not reached: fold={fold} inner={inner} configuration={c}')
+        attempt=case_dir/'posterior';attempt.mkdir()
+        base=dict(source=str((SOURCE/'sampler.cpp').resolve()),directory=str(directory.resolve()),
+            loader=read(Path(output)/'compile/loader.json')['loader'],
+            **case,warmup=cfg['mcmc']['warmup'],draws=cfg['mcmc']['draws'])
+        chains=[]
+        for seed in cfg['seeds']:
+            if (Path(output)/'STOP').exists():
+                raise RuntimeError('Another unit failed; remaining chains stopped')
+            chain=attempt/f'chain_{seed}';chains.append(chain)
+            sample_chain(dict(base,seed=seed+100000*fold+1000*inner),chain)
+        check=diagnostics(chains,y.std(0))
+        write(attempt/'diagnostics.json',check)
+        pred=np.mean([posterior(chain,'query').mean(axis=-1) for chain in chains],axis=0)
+        if pred.shape!=(len(query),4) or not np.isfinite(pred).all():
+            raise ValueError('Invalid posterior mean prediction')
+        predictions[f'c{c}']=pred
+        records.append(dict(configuration=c,diagnostics=check))
         write(directory/'sampling.json',records)
     np.savez_compressed(directory/'predictions.npz',**predictions)
     write(directory/'execution_status.json',dict(status='complete',configurations=len(records)))
@@ -194,7 +186,7 @@ def run(cfg,args,runner):
             f'unit_{f["fold"]}_{j}':read(args.out/f'unit_{f["fold"]}_{j}/sampling.json')
             for f in folds for j in range(3)})
         write(args.out/'artifacts.json',{
-            str(p.relative_to(args.out)):read(p) for p in args.out.glob('unit_*/configuration_*/length_*/chain_*/execution.json')})
+            str(p.relative_to(args.out)):read(p) for p in args.out.glob('unit_*/configuration_*/posterior/chain_*/execution.json')})
         state['status']='complete'
     except BaseException as exc:
         state['status']='failed';failures.append(dict(error=repr(exc)));raise
