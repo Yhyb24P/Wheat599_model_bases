@@ -72,3 +72,36 @@ def huber_certificate(prepared,state,ridge,thresholds):
     return dict(primal=float(primal),dual=float(dual),relative_gap=float((primal-dual)/max(1e-12,abs(primal),abs(dual))),
                 dual_zero_sum_residual=float(abs(score.sum(0)).max()/y.size),
                 dual_box_violation=float(np.maximum(abs(score)-thresholds,0).max()/y.size))
+
+
+def huber_hessian_product(values,direction,design,factor,targets,ridge,thresholds,precondition,intercept_scale):
+    tasks=targets.shape[1];shape=(design.shape[1],tasks)
+    weights=values[:-tasks].reshape(shape)/precondition;bias=values[-tasks:]/intercept_scale
+    dw=direction[:-tasks].reshape(shape)/precondition;db=direction[-tasks:]/intercept_scale
+    residual=design@weights@factor.T+bias-targets
+    tangent=(abs(residual)<=thresholds)*(design@dw@factor.T+db)
+    return np.r_[((design.T@tangent@factor+ridge*dw)/precondition).ravel(),tangent.sum(0)/intercept_scale]/targets.size
+
+
+def fit_certified(prepared,ridge,eta,delta,cfg,gap_tolerance):
+    from scipy.optimize import minimize
+    from wheat599.robust_icm import fit_predict,huber_objective
+    # The first solve supplies an initial point; only the final joint certificate accepts a fit.
+    pred,diag,state=fit_predict(prepared,ridge,eta,delta,dict(cfg,accepted_gradient=np.inf),return_state=True)
+    initial_gradient=diag['gradient_inf']
+    certificate=huber_certificate(prepared,state,ridge,diag['thresholds'])
+    if certificate['relative_gap']>gap_tolerance or initial_gradient>cfg['accepted_gradient']:
+        d=prepared['train_features'];y=prepared['Y'].numpy();factor=state['factor'];tasks=y.shape[1]
+        precondition=np.sqrt(prepared['root'][:,None]**2*np.sum(factor**2,axis=0)[None,:]+ridge);intercept_scale=np.sqrt(len(y))
+        values=np.r_[(state['weights']*precondition).ravel(),state['intercept']*intercept_scale]
+        args=(d,factor,y,ridge,np.asarray(diag['thresholds']),precondition,intercept_scale)
+        result=minimize(huber_objective,values,args=args,jac=True,hessp=huber_hessian_product,method='trust-ncg',options=dict(gtol=1e-14,maxiter=cfg['max_iterations']))
+        state=dict(weights=result.x[:-tasks].reshape(state['weights'].shape)/precondition,intercept=result.x[-tasks:]/intercept_scale,factor=factor)
+        pred=(prepared['target_features']@state['weights']@factor.T+state['intercept'])*prepared['scale']+prepared['mean']
+        raw=np.r_[result.jac[:-tasks]*precondition.ravel(),result.jac[-tasks:]*intercept_scale]
+        diag.update(gradient_inf=float(abs(raw).max()),iterations=diag['iterations']+int(result.nit),refinement_solver='trust-ncg',refinement_success=bool(result.success),refinement_message=str(result.message),initial_gradient_inf=initial_gradient)
+        certificate=huber_certificate(prepared,state,ridge,diag['thresholds'])
+    if not np.isfinite(pred).all() or not(-1e-10<=certificate['relative_gap']<=gap_tolerance) or diag['gradient_inf']>cfg['accepted_gradient'] or certificate['dual_zero_sum_residual']>1e-12 or certificate['dual_box_violation']>1e-12:
+        raise ValueError(f'Uncertified structured Huber optimization: {certificate}; gradient={diag["gradient_inf"]}')
+    diag.update(certificate,number_observations=prepared['Y'].numel(),ridge=ridge,normalized_lambda=ridge/prepared['Y'].numel())
+    return pred,diag,state

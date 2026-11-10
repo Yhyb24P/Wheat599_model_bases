@@ -11,8 +11,7 @@ from scipy.linalg import solve_triangular
 from wheat599.data import load,sha256_of
 from wheat599.distill_quantile import read,write
 from wheat599.metrics import pcc,rmse,mae
-from wheat599.robust_icm import fit_predict
-from wheat599.structured_coefficient import expansion,prepared_features,spectrum,posterior_from_spectrum,huber_certificate
+from wheat599.structured_coefficient import expansion,prepared_features,spectrum,posterior_from_spectrum,fit_certified
 
 
 def configurations(cfg):
@@ -40,11 +39,8 @@ def run_unit(request):
             predictions[f'b{b}']=pred;weights[f'b{b}_coefficient']=coefficient
         for lam,eta,delta in itertools.product(cfg['lambdas'],cfg['etas'],cfg['deltas']):
             c=cindex[bandwidth,epsilon,lam,eta,delta];ridge=lam*y.size
-            pred,diag,state=fit_predict(prepared,ridge,eta,delta,cfg['optimizer'],return_state=True)
-            certificate=huber_certificate(prepared,state,ridge,diag['thresholds'])
-            if not (-1e-10<=certificate['relative_gap']<=cfg['relative_gap_tolerance']) or certificate['dual_zero_sum_residual']>1e-12 or certificate['dual_box_violation']>1e-12:
-                raise ValueError(f'Uncertified structured Huber optimization: {certificate}')
-            diag.update(certificate)
+            try:pred,diag,state=fit_certified(prepared,ridge,eta,delta,cfg['optimizer'],cfg['relative_gap_tolerance'])
+            except ValueError as exc:raise ValueError(f'fold={fold}, inner={inner}, configuration={cases[c]}: {exc}') from exc
             theta=prepared['rotation']@state['weights']@state['factor'].T
             coefficient=solve_triangular(meta['lower'].T,theta,lower=False)
             bias=state['intercept']-prepared['feature_mean']@theta

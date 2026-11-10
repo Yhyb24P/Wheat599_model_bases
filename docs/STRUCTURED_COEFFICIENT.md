@@ -13,7 +13,7 @@
 - 在标准化表型尺度，优化`sum Huber/(4n) + lambda/2 trace(B^-1 A^T P A)`，b为不惩罚的截距。lambda候选1e-6、1e-5、1e-4、0.001、0.01、0.1、1。这里lambda是归一化目标系数；调用原Huber求解器的ridge严格取`lambda*(4n)`。
 - Huber delta为1.345、2.5乘以当前配置拟合集初始岭解残差MAD（沿用现有Huber实现与1e-6尺度下限），阈值在优化前固定，不读取验证标签。
 
-P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再因子化为B，使用现有`robust_icm.fit_predict()`，没有新写平行优化器。D的拟合集列均值可吸收到自由截距，不改变模型。SVD仅去掉相对最大奇异值<=1e-12的数值零方向，查询使用同一旋转和均值。保存时转换回原A及b，逐配置核对`R* A+b`预测。
+P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再因子化为B，使用现有`robust_icm.fit_predict()`，复用原损失/梯度；不满足最终证书时用SciPy trust-ncg及同一目标的精确Hessian-vector积进一步收敛。D的拟合集列均值可吸收到自由截距，不改变模型。SVD仅去掉相对最大奇异值<=1e-12的数值零方向，查询使用同一旋转和均值。保存时转换回原A及b，逐配置核对`R* A+b`预测。
 
 ## 作者基础方法参照
 
@@ -27,7 +27,7 @@ P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再�
 
 主参照复用同材料原分位数TabM、Huber及固定等权融合预测，目标为开发融合PCC 0.494512且误差竞争，不把大网格择优增益直接称为泛化改进。只评价完整模型，不增加消融或新一轮搜索。
 
-每次候选拟合必须通过原始梯度阈值1e-5，以及Huber Fenchel对偶证书：对偶score满足每环境零和与Huber盒约束（残差<=1e-12）；相对间隙`(P-D)/max(1e-12,abs(P),abs(D))`必须在[-1e-10,1e-6]。求解上限1000次、ftol1e-15、gtol1e-12；达到上限不自动视为收敛。非有限值、无定义PCC或精度不达标显式失败，不过滤配置。
+每次候选拟合必须通过原始梯度阈值1e-5，以及Huber Fenchel对偶证书：对偶score满足每环境零和与Huber盒约束（残差<=1e-12）；相对间隙`(P-D)/max(1e-12,abs(P),abs(D))`必须在[-1e-10,1e-6]。初始L-BFGS-B最多1000次、ftol1e-15、gtol1e-12；若证书未达标，固定同一阈值、lambda及起点后使用trust-ncg最多1000次（gtol1e-14）。初始阶段仅提供数值起点，最终仍严格检查原梯度、可行性及对偶间隙，达到迭代上限不自动视为收敛。非有限值、无定义PCC或精度不达标显式失败，不过滤配置。
 
 必要测试：白化与直接结构化后验/有效核等价、与直接多环境原始问题对照、奇异G加epsilon、查询基函数不依赖其他查询、系数重载及对偶可行性。正式运行前可仅在训练侧检查数值精度/耗时，不用验证成绩调求解容差。
 
@@ -36,3 +36,5 @@ P的Cholesky为L时，以`D=R L^-T`白化，`theta=L^T A`。任务协方差再�
 训练侧验收（不读取验证标签）：真实首个拟合集，epsilon=0.001/0.1、lambda=1e-6/1、eta=.8四个边界配置通过原始梯度与相对对偶间隙检查。相对间隙最大2.26e-9；进一步收紧ftol至1e-16、gtol至1e-13后，拟合集预测最大变化1.76e-6。该检查仅用于数值精度与耗时，记录位于omen /tmp/structured_training_check.json，不作为性能证据。本机/omen各4项相关测试通过。
 
 正式执行冻结`1f77591`、标签`structured-coefficient-dev`，omen工作树`/home/hsy/worktrees/structured-coefficient`，输出`results/structured_coefficient_development_20261110`。两个CPU工作进程各单线程，正式预算已启动；完成后重算全部候选选择、重载原始系数并复核目标与对偶证书，再交付性能结果。
+
+首轮正式执行`1f77591`在一个配置相对对偶间隙2.617e-6时按预定阈值1e-6停止，完整单元0/30，不作性能证据；原目录保留。后续仅补充基于原Huber目标及Hessian-vector积的trust-ncg数值精化，不改变模型、候选集或验收阈值；从独立新目录执行。另明确n×E表示总观测数4n，ridge=lambda*y.size是正确归一化，新增字段记录ridge/normalized_lambda/number_observations并测试该等式。

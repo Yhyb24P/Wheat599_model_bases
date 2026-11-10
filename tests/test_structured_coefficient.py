@@ -62,5 +62,34 @@ def test_development_unit_saves_finite_predictions_and_certificates(tmp_path):
         assert len(predictions.files)==6
         assert all(predictions[k].shape==(5,4) and np.isfinite(predictions[k]).all() for k in predictions.files)
     for record in read(root/'optimization.json'):
+        assert record['ridge']==record['normalized_lambda']*y.size
+        assert record['number_observations']==y.size
         assert record['relative_gap']<=cfg['relative_gap_tolerance']
         assert record['dual_zero_sum_residual']<=1e-12 and record['dual_box_violation']<=1e-12
+
+
+def test_preconditioned_huber_hessian_product_matches_gradient_difference():
+    from wheat599.structured_coefficient import huber_hessian_product
+    from wheat599.robust_icm import huber_objective
+    rng=np.random.default_rng(22);d=rng.normal(size=(9,5));factor=np.array([[1.,.1],[.3,.8]]);y=rng.normal(size=(9,2));pre=rng.uniform(.5,2.,(5,2));values=rng.normal(size=12);direction=rng.normal(size=12)
+    args=(d,factor,y,.3,np.array([.9,1.1]),pre,3.)
+    product=huber_hessian_product(values,direction,*args)
+    numerical=(huber_objective(values+1e-6*direction,*args)[1]-huber_objective(values-1e-6*direction,*args)[1])/(2e-6)
+    np.testing.assert_allclose(product,numerical,atol=1e-8,rtol=1e-7)
+
+
+def test_certified_solver_refines_inaccurate_start(monkeypatch):
+    import yaml
+    import wheat599.robust_icm as robust
+    from wheat599.structured_coefficient import fit_certified
+    rng=np.random.default_rng(54);x=rng.integers(0,2,(20,15));q=rng.integers(0,2,(5,15));y=rng.normal(size=(20,4));d,dc,_=expansion(x,q,1.,.01);prepared=prepared_features(d,dc,y)
+    cfg=yaml.safe_load(Path('configs/structured_coefficient.yaml').read_text())
+    original=robust.fit_predict;expected,_,_=original(prepared,1.,.6,1.345,cfg['optimizer'],return_state=True)
+    def inaccurate(*args,**kwargs):
+        prediction,diag,state=original(*args,**kwargs);state['intercept']=state['intercept']+.4
+        return prediction,diag,state
+    monkeypatch.setattr(robust,'fit_predict',inaccurate)
+    result,diag,state=fit_certified(prepared,1.,.6,1.345,cfg['optimizer'],1e-6)
+    assert diag['refinement_solver']=='trust-ncg' and diag['relative_gap']<=1e-6
+    np.testing.assert_allclose(result,expected,atol=2e-5)
+    assert diag['ridge']==diag['normalized_lambda']*diag['number_observations']
