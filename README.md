@@ -2,6 +2,8 @@
 
 当前仅推进 **Wheat599**。现役主候选为四独立分位数 TabM 与多环境 Huber ICM 的固定等权融合：同协议外层宏 PCC **0.526506**，高于 Huber 的 **0.521745**。分位数 TabM 单独为 **0.518829**，高于原独立 MSE TabM 的 **0.508190**；融合权重在外层评价前固定。结果与验证见 [RESULTS](docs/RESULTS.md)，规则见 [QUANTILE_TABM_FINAL](docs/QUANTILE_TABM_FINAL.md)。
 
+各模型指标、评价口径和历史对照汇总见 [模型对比](docs/MODEL_COMPARISON.md)。
+
 WheatGP 公开网络的 Wheat599 同协议外层比较已完成（PCC 0.470014；固定融合 0.526506）；详见 [协议](docs/WHEATGP.md)。TabICLv2 遗传任务适配开发比较已完成，未超过官方权重和现役融合；中点分位数批次已因范围调整停止，未完成结果不用于比较。已冻结外层主候选不变。Wheat2000 维持停止，BiMSGP 不跑。已有划分曾多轮用于研究，当前领先为项目内同协议结果，跨数据集表现尚未确认。
 
 最新的[结构化系数先验稳健多环境开发比较](docs/STRUCTURED_COEFFICIENT.md)已完成15,120次候选拟合及1,890次解析参照，正式重跑0失败。候选开发PCC 0.478143低于原分位数和固定融合，本配置结束，不进入外层或追加搜索。完整结果见[RESULTS](docs/RESULTS.md)。
