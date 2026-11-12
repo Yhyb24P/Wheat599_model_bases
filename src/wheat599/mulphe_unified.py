@@ -44,6 +44,7 @@ from __future__ import annotations
 
 import csv
 import json
+import os
 import subprocess
 import time
 from pathlib import Path
@@ -350,6 +351,9 @@ def _fit_calibration(pred, truth):
 def run(cfg, args, runner):
     if args.selection is not None:
         raise ValueError('Mul-PheG2P selects on inner validation; there is no selection input')
+    cfg = dict(cfg)
+    if os.environ.get('WHEAT599_GPU_FRACTION'):
+        cfg['gpu_memory_fraction'] = float(os.environ['WHEAT599_GPU_FRACTION'])
     seeds = [int(seed) for seed in cfg['seeds']]
     configurations = list(cfg['configurations'])
     author_index = int(cfg['author_default_index'])
