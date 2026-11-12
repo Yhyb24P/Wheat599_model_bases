@@ -205,6 +205,9 @@ def main():
     if cfg.get('model') == 'multihead_mse':
         from wheat599.multihead_mse import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'mulphe_unified':
+        from wheat599.mulphe_unified import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'quantile_tabm_final':
         from wheat599.quantile_tabm_final import run
         return run(cfg, args, Path(__file__))
