@@ -70,3 +70,5 @@ results/sparse_polygenic_bart_*/unit_*/
 results/sparse_polygenic_bart_*/compile/
 
 results/conditional_quantile_*/predictions_*.npz
+
+results/sparse_residual_quantile_*/predictions_*.npz

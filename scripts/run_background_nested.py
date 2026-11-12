@@ -232,6 +232,9 @@ def main():
     if cfg.get('model') == 'menet_quantile':
         from wheat599.menet_quantile import run
         return run(cfg, args, Path(__file__))
+    if cfg.get('model') == 'sparse_residual_quantile':
+        from wheat599.sparse_residual_run import run
+        return run(cfg, args, Path(__file__))
     if cfg.get('model') == 'quantile_tabm':
         from wheat599.quantile_tabm import run
         return run(cfg, args, Path(__file__))

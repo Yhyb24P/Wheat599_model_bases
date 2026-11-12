@@ -97,7 +97,7 @@ def read(path):
     return json.loads(Path(path).read_text())
 
 
-def run(cfg, args, runner, *, trainer=None, extra_sources=()):
+def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=()):
     trainer = train if trainer is None else trainer
     if args.selection is not None:
         raise ValueError('Development only')
@@ -157,9 +157,14 @@ def run(cfg, args, runner, *, trainer=None, extra_sources=()):
                 predictions = {}
                 for environment in range(4):
                     for c, config in enumerate(configs):
-                        for seed in cfg['seeds']:
-                            pred, details = trainer(data.X[tr], data.Y[tr, environment],
+                        if paired_trainer is not None:
+                            outputs = paired_trainer(data.X[tr], data.Y[tr, environment],
+                                data.X[val], data.Y[val, environment], config, cfg['seeds'], c, cfg, device)
+                        else:
+                            outputs = [trainer(data.X[tr], data.Y[tr, environment],
                                 data.X[val], data.Y[val, environment], config, seed, c, cfg, device)
+                                for seed in cfg['seeds']]
+                        for seed, (pred, details) in zip(cfg['seeds'], outputs):
                             predictions[f'e{environment}_c{c}_s{seed}'] = pred
                             records.append(dict(fold=f, inner=inner, environment=environment,
                                                 config_index=c, seed=seed, **details))
