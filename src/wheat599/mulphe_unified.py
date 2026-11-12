@@ -362,6 +362,12 @@ def run(cfg, args, runner):
     environments = [str(name) for name in data.environments]
     if len(folds) != 10 or any(len(f['inner']) != 3 for f in folds):
         raise ValueError('Expected 10 outer folds with 3 inner splits each')
+    subset = getattr(args, 'outer_folds', None)
+    if subset is not None:
+        if len(subset) != len(set(subset)) or not set(subset).issubset({f['fold'] for f in folds}):
+            raise ValueError('Invalid outer fold subset')
+        folds = [f for f in folds if f['fold'] in subset]
+    covered = np.sort(np.concatenate([np.asarray(f['test_idx'], dtype=int) for f in folds]))
     if len(configurations) != 8 or not 0 <= author_index < len(configurations):
         raise ValueError('Expected 8 configurations and a valid author_default_index')
     if len(set(seeds)) != len(seeds) or not seeds:
@@ -574,22 +580,32 @@ def run(cfg, args, runner):
                                          'environment': environment, 'seed': seed,
                                          'materials': len(test), **scores})
                             oof[e_index, s_index, test] = prediction
-                if not np.isfinite(oof).all():
-                    raise ValueError('Pooled OOF leaves materials uncovered')
-                per_environment = {
+                if not np.isfinite(oof[:,:,covered]).all():
+                    raise ValueError('Selected outer folds leave materials uncovered')
+                seed_mean_environment = {
                     environment: _mean([g for g in grid if g['environment'] == environment])
                     for environment in environments}
+                ensemble_grid = []
+                for e_index, environment in enumerate(environments):
+                    for fold in folds:
+                        test = np.asarray(fold['test_idx'], dtype=np.int64)
+                        scores = _macro(truth[test, e_index], oof[e_index][:,test].mean(axis=0))
+                        ensemble_grid.append({'fold':int(fold['fold']), 'environment':environment, **scores})
+                per_environment = {e: _mean([g for g in ensemble_grid if g['environment']==e])
+                                   for e in environments}
                 pooled_environment = {
-                    environment: _mean([_macro(truth[:, e_index], oof[e_index, s_index])
+                    environment: _mean([_macro(truth[covered, e_index], oof[e_index, s_index, covered])
                                         for s_index in range(len(seeds))])
                     for e_index, environment in enumerate(environments)}
                 summary[f'{variant}/{system}'] = {
                     'per_fold_macro': _mean([per_environment[e] for e in environments]),
                     'per_environment': per_environment,
+                    'seed_metric_mean': _mean([seed_mean_environment[e] for e in environments]),
+                    'ensemble_grid': ensemble_grid,
                     'pooled_oof_macro': _mean([pooled_environment[e] for e in environments]),
                     'pooled_oof_per_environment': pooled_environment,
                     'seed_ensemble_pooled_macro': _mean([
-                        _macro(truth[:, e_index], oof[e_index].mean(axis=0))
+                        _macro(truth[covered, e_index], oof[e_index][:,covered].mean(axis=0))
                         for e_index in range(len(environments))]),
                     'grid': grid}
         _write_csv(args.out / 'per_fold.csv',
@@ -606,7 +622,7 @@ def run(cfg, args, runner):
             'output_systems': list(SYSTEMS), 'variants': list(variants),
             'folds': [int(f['fold']) for f in folds], 'seeds': seeds,
             'author_default_index': author_index,
-            'note': 'per_fold_macro averages the 40 environment-fold readings; pooled_oof_macro '
+            'note': 'per_fold_macro averages seed predictions before scoring environment-folds; seed_metric_mean averages per-seed scores; pooled_oof_macro '
                     'evaluates one OOF vector per environment and is a different reading; '
                     'seed_ensemble averages seed predictions before scoring; hidden_with_target is '
                     'inner-OOF-calibrated, hidden_with_target_uncalibrated is the raw fusion output'})

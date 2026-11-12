@@ -157,6 +157,7 @@ def main():
     p.add_argument('--config', type=Path, default=ROOT/'configs/background_ridge_nested.yaml')
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
+    p.add_argument('--outer-folds', nargs='+', type=int, default=None, help='Mul-PheG2P: process only these frozen outer folds')
     p.add_argument('--resume-summary', action='store_true',
                    help='Independent TabM only: finalize saved fits and predictions without training')
     args = p.parse_args()

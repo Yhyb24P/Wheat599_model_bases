@@ -158,7 +158,8 @@ def _fake_fit(x_train, y_train, x_val, y_val, x_predict, *, target_name, source_
             'mode': 'validation' if x_val is not None else 'fixed_full_dev'}
 
 
-def test_run_wiring(tmp_path, monkeypatch):
+@pytest.mark.parametrize("subset", [None, [0]])
+def test_run_wiring(tmp_path, monkeypatch, subset):
     n, n_env = 20, 4
     x = RNG.normal(size=(n, MARKERS))
     y = RNG.normal(size=(n, n_env))
@@ -188,17 +189,17 @@ def test_run_wiring(tmp_path, monkeypatch):
                               (0.0005, 0.001, 0.001, 0.0005, 0.002, 0.002, 0.003, 0.003)]}
     config_file.write_text(json.dumps(cfg))
     out = tmp_path / 'out'
-    args = SimpleNamespace(out=out, config=config_file, selection=None)
+    args = SimpleNamespace(out=out, config=config_file, selection=None, outer_folds=subset)
 
     summary = mulphe_unified.run(cfg, args, Path(__file__))
     assert set(summary) == {f'{v}/{a}' for v in ('selected', 'author_default')
                             for a in mulphe_unified.SYSTEMS}
     for entry in summary.values():
         assert np.isfinite(entry['per_fold_macro']['pcc'])
-        assert len(entry['grid']) == 40
+        assert len(entry['grid']) == (40 if subset is None else 4)
     assert json.loads((out / 'execution_status.json').read_text())['status'] == 'complete'
     assert json.loads((out / 'failures.json').read_text()) == []
-    assert len(json.loads((out / 'selection.json').read_text())) == 10
+    assert len(json.loads((out / 'selection.json').read_text())) == (10 if subset is None else 1)
     assert (out / 'predictions.csv').is_file()
     assert json.loads((out / 'refit.json').read_text())
     assert (out / 'artifact_manifest.json').is_file()
