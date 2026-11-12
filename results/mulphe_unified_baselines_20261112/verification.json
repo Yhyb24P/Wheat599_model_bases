@@ -1,0 +1,31 @@
+{
+  "rows": 2396,
+  "fold_environment_keys_valid": true,
+  "max_truth_difference": 0.0,
+  "max_huber_difference": 0.0,
+  "max_fusion_difference": 0.0,
+  "sha256": {
+    "results/quantile_tabm_final_20261106/oof.csv": "3f9c675e428c9caa32a9886b7c164b73e69be0e3d17792bb6e32817fdfcf73d2",
+    "results/robust_icm_final_20261103/oof.csv": "1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2"
+  },
+  "macro": {
+    "quantile": {
+      "pcc": 0.5188293087798735,
+      "rmse": 0.8526446887177264,
+      "mae": 0.653095190779936
+    },
+    "huber": {
+      "pcc": 0.5217453973029079,
+      "rmse": 0.8567433974003,
+      "mae": 0.6584419604880517
+    },
+    "quantile_huber": {
+      "pcc": 0.5265060305388152,
+      "rmse": 0.8492417820162304,
+      "mae": 0.6510629616973147
+    }
+  },
+  "note": "40 environment-fold metrics equally weighted; no fitting or test selection",
+  "max_raw_truth_difference": 0.0
+}
