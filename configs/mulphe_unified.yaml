@@ -1,0 +1,32 @@
+model: mulphe_unified
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+seeds: [42, 2026]
+device: cuda
+cpu_threads: 2
+gpu_memory_fraction: 0.5
+reference_oof: results/quantile_tabm_final_20261106/oof.csv
+baseline_verification: results/mulphe_unified_baselines_20261112/verification.json
+author_default_index: 2
+# Candidate order is fixed before evaluation. Only hidden width and learning rate vary.
+configurations:
+- {hidden_dim: 64, lr: 0.0005}
+- {hidden_dim: 64, lr: 0.001}
+- {hidden_dim: 128, lr: 0.001}
+- {hidden_dim: 128, lr: 0.0005}
+- {hidden_dim: 64, lr: 0.002}
+- {hidden_dim: 128, lr: 0.002}
+- {hidden_dim: 64, lr: 0.003}
+- {hidden_dim: 128, lr: 0.003}
+model_config:
+  conv_channels: 32
+  kernel_size: 7
+  stride: 2
+  batch_size: 32
+  pretrain_epochs: 300
+  finetune_epochs: 300
+  fusion_epochs: 200
+  direct_epochs: 200
+  dropout: 0.5
+  seed: 42
