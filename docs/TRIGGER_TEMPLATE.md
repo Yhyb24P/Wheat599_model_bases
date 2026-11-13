@@ -1,3 +1,5 @@
+> 历史记录：不作为现役运行、评审或成员分工要求。当前边界见 [AGENTS.md](../AGENTS.md)，结果见 [RESULTS.md](RESULTS.md)。
+
 # Stage 1 Trigger Report Template
 
 运行目录：`results/<stage1_run>/trigger.md`。本文件是 Stage 2 冻结申请的必备附件；未填完不得申请 Stage 2。

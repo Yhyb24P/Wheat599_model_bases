@@ -1,40 +1,25 @@
 # Wheat599 植物基因组表型预测研究
 
-当前仅推进 **Wheat599**。现役主候选为四独立分位数 TabM 与多环境 Huber ICM 的固定等权融合：同协议外层宏 PCC **0.526506**，高于 Huber 的 **0.521745**。分位数 TabM 单独为 **0.518829**，高于原独立 MSE TabM 的 **0.508190**；融合权重在外层评价前固定。结果与验证见 [RESULTS](docs/RESULTS.md)，规则见 [QUANTILE_TABM_FINAL](docs/QUANTILE_TABM_FINAL.md)。
+现役主候选是**四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合**。统一协议外层宏 PCC 为 **0.526506**；项目内结果不代表跨数据集领先。主比较沿用既有材料级十外折、三内折，随机模型使用种子 42、2026 的平均预测；不根据外层结果更改配置或融合权重。
 
-Wheat599 主比较统一规则见 [评价协议](docs/EVALUATION_PROTOCOL.md)；各模型指标和历史对照见 [模型对比](docs/MODEL_COMPARISON.md)。
+## 阅读结果与模型
 
-WheatGP 公开网络的 Wheat599 同协议外层比较已完成（PCC 0.470014；固定融合 0.526506）；详见 [协议](docs/WHEATGP.md)。TabICLv2 遗传任务适配开发比较已完成，未超过官方权重和现役融合；中点分位数批次已因范围调整停止，未完成结果不用于比较。已冻结外层主候选不变。Wheat2000 维持停止，BiMSGP 不跑。已有划分曾多轮用于研究，当前领先为项目内同协议结果，跨数据集表现尚未确认。
+- [结果与架构 HTML](docs/models.html)：统一协议指标、历次完整运行记录、模型架构与当前最优候选的原理讲解。
+- [参考文献与逐篇讲解](ref/index.html)：文献、来源及其与本项目的关系。
+- [运行目录索引](results/index.html)：按原始运行目录查找摘要、配置、划分与状态。
+- [结果原文](docs/RESULTS.md)、[评价协议](docs/EVALUATION_PROTOCOL.md)、[历史模型对比](docs/MODEL_COMPARISON.md)：可视化的事实来源。
 
-当前工作为[统一十折协议下的 Mul-PheG2P 比较](docs/MULPHE_UNIFIED.md)：三项强参照已核对并复用，完整候选正在实现，尚无新结果。最新完成的稀疏残差网络开发比较见 [RESULTS](docs/RESULTS.md)。
+HTML 可直接用浏览器打开，不需要联网或启动服务；外部论文链接需要联网。页面是生成视图，修订证据后在仓库根目录重建：
 
-目标是形成有可靠预测与效率证据的植物基因组表型预测方法论文；成熟神经架构的有效任务适配可以成为贡献。Wheat599是现阶段主要任务；SSH omen和已授权的本机算力按当前范围使用。跨数据集执行暂缓，已有记录见 [WHEAT2000](docs/WHEAT2000.md)，Wheat599证据见 [RESULTS](docs/RESULTS.md)。
+```bash
+python3 scripts/build_report.py
+python3 ref/build.py
+python3 tests/test_report.py
+```
 
-按用户最新提案实现的[材料—位点双向推断原型](docs/MATRIX_INFERENCE.md)在首轮模拟学习中整体未超过固定核，当前参数化开发已结束，未进入 Wheat599 评价。 随后完成的稀疏交互模拟诊断已建立其具体推断缺口：未知位置统计方法在全部 16 个成对任务上超过首版网络，但加性任务族表现变差；尚无新的神经模型或真实数据增益，见 [结果](docs/RESULTS.md)。
+结果页构建使用 Python 标准库和 Pandoc（含原生 MathML 输出），文献页仅需标准库。上述命令不调用训练入口、不读取原始表型、不重新计算模型成绩；测试在安装 BibTeX 时检查书目能否实际解析。文献内容统一维护在 `ref/build.py`。
 
-Huber ICM 保留为强统计参照；完整比较见 [RESULTS](docs/RESULTS.md)，当前任务见 [RESEARCH_PLAN](docs/RESEARCH_PLAN.md)。
-
-以下为先前阶段记录；现役状态以上方和 RESULTS 为准。
-
-背景 + RBF 模型完成 40/40 环境折，折均宏 PCC **0.4919**、RMSE **0.8680**、MAE **0.6676**；同折 Gaussian kernel ridge 和加性＋RBF kernel ridge 的宏 PCC 分别为 **0.5025 / 0.5092**，均高于三核。结果为探索性比较，详见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-运行新候选：`python scripts/run_background_nested.py --config configs/background_rbf_nested.yaml --out results/<开发选模目录>`；固定选择后追加 `--selection results/<开发选模目录>/selection.json` 并指定新的 `--out` 进行外层重拟合与评价。
-
-背景条件化联合收缩候选已完成 40/40 次：折均宏平均 PCC 0.4760、RMSE 0.8851、MAE 0.6868；相对同折 RR-BLUP 的 PCC 差 +0.0232、RMSE 差 −0.0106。详见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-复现命令：`python scripts/run_background_ridge.py --config configs/background_ridge.yaml --out results/<新运行目录>`。
-
-MoEGP 独立专家固定配置已完成同折评价：宏均 PCC 0.4454、RMSE 0.8966、MAE 0.6998；相对 RR-BLUP 的 PCC 差 −0.0074。配置和完整结果见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-复现 MoEGP 时，将官方仓库检出至 `configs/moegp.yaml` 的 `source` 路径，并保持配置中指定的提交及干净工作树；然后运行 `python scripts/run_moegp.py --out results/<新运行目录>`。原始数据和 OOF 预测不随 Git 分发。
-
-Direct FT-T 固定配置已完成 40/40 次：折均宏平均 PCC 0.4193、RMSE 0.9387、MAE 0.7317；预设 GO=False。与固定初始化 A 及同折 RR-BLUP 的比较见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-**状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照、固定 RR-BLUP + A 骨干的残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮。val-PCC 规则宏均 test PCC 0.4342；残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 −0.0011 / +0.0218）；完整重构宏均 PCC 0.3382、RMSE 0.9764，预注册 GO=False。该 NO-GO 只针对本配置/单 seed/固定十折，不构成对重构方向的一般性否定，也未做模块消融。预测 SD 小本身不是退化，MSE 最优尺度为 k=r。完整数字与判读见 [docs/RESULTS.md](docs/RESULTS.md)。
-
-当前任务不跑 TabPFN；不做测试集调参。Stage 1（TabPFN-3.5 / FT-T / Ridge 门控）与六方法 Stage 2 协议已暂停，相关文档保留为历史。
-
-**规范：** [AGENTS.md](AGENTS.md)。旧仓库 `RC_CKRR_semisynth` 已按用户授权清空，原路径现为指向本仓库的软链接；备份与会话史见 [docs/MIGRATION.md](docs/MIGRATION.md)。本项目不延续其 C1 半合成路径。
+最新完成的是[完整 Mul-PheG2P 同协议适配](docs/MULPHE_UNIFIED.md)：1,920 个开发单元、320 次外层重拟合、0 运行失败；调优标量融合 PCC 0.438225，默认配置 0.443596。目标编码器已包含；适配差异见原记录。该批结束，不自动追加实验。
 
 ## 环境
 
@@ -61,91 +46,40 @@ python scripts/fetch_data.py
 
 数据事实、R 列主序读取要求与旧 C-order 故障见 [docs/DATA_FACTS.md](docs/DATA_FACTS.md)。`data/raw/` 不入 Git。
 
-## 运行
+## 运行与验证
 
-复现本轮 Huber ICM 的冻结选择与完整开发集重拟合（指定新的输出目录）：
+正式实现保留在 `src/wheat599/`，运行配置保留在 `configs/`；多数当前方法复用 `scripts/run_background_nested.py`。以下命令供复现使用，不表示本轮整理会启动训练。输出必须指定新目录；不要覆盖历史运行。
 
 ```bash
+# Huber ICM：复用已冻结选择，完整开发集重拟合
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/run_background_nested.py --config configs/robust_icm.yaml --selection results/robust_icm_development_20261103/selection.json --out results/robust_icm_reproduction
+
+# 分位数 TabM：使用已冻结外层清单（需要本地数据与基线 OOF）
+python scripts/run_background_nested.py --config configs/quantile_tabm_final.yaml --out results/quantile_tabm_reproduction
+
+# 现有代码测试
+PYTHONPATH=src python -m pytest tests/ -q
 ```
 
-本轮实际使用 CPU、Python 3.12.15、NumPy 1.26.4、SciPy 1.13.1、PyTorch 2.7.1+cu128，详见结果目录的 `runtime.json`。以下为历史 FT-T 及其基线入口。
+分位数训练配方见 [开发说明](docs/QUANTILE_TABM.md) 与 [最终重拟合](docs/QUANTILE_TABM_FINAL.md)；其他方法的运行命令在各自方案中，可从架构 HTML 查找。大预测、数据与权重不随 Git 分发，因此仅克隆仓库不足以复现依赖历史预测的运行。当前任务不跑 TabPFN、BiMSGP 或新数据集；TabPFN 测试依赖缺失时会跳过。
 
-正式 10 折 FT-Transformer（seed 42；test 9×60 + 1×59、val 54、train 485/486；test 只评一次）：
+## 文件与结果约定
 
-```bash
-python scripts/run_bimsgp.py --config configs/bimsgp.yaml --out results/bimsgp_ftt_fixed_20261029
-```
+| 路径 | 职责 |
+|---|---|
+| `src/wheat599/` | 唯一正式模型、训练与汇总实现 |
+| `scripts/` | 现有 CLI、数据获取及离线报告构建 |
+| `configs/` | 各次运行配置；由原运行 provenance/manifest 确定版本 |
+| `results/<run>/` | 原始运行产物；保留路径、命名与来源，不为展示搬移或重复复制 |
+| `results/index.html` | 从本地运行目录生成的导航，不作运行成功判定 |
+| `docs/RESULTS.md` | 结果、失败、停止原因和证据限制的主记录 |
+| `docs/models.html` | 从结果与方案生成的离线展示 |
+| `ref/` | 参考文献和简要 HTML 讲解 |
+| `docs/` | 使用协议、数据事实、模型方案、许可与历史记录 |
+| `data/raw/`、`models/` | 本地只读数据与权重，不入 Git |
+| `env/` | 依赖与已授权机器环境 |
+| `ars-output/`、`unused/`、`临时文档/` | 既有历史或本地材料，不作为现役入口，不自动删除 |
 
-同折 RR-BLUP 与 FT-T 训练/验证/测试诊断：
+新运行沿用 `results/<方法>_<阶段>_<日期>/`，无需重命名既有目录。主表只接收已核对统一协议的结果；开发选模、历史不同协议、模拟、其他数据集、停止与失败记录各保留原口径。常见 `summary` 保存指标，`provenance` / `manifest` 保存数据 SHA、源码、配置、种子和划分，`execution_status` / `failures` / `interruption` 保存执行状态；不同历史文件格式不强制重写。逐材料与逐种子预测保留原位置，不能因导航整理而丢弃。
 
-```bash
-python scripts/run_bimsgp_diag.py --config configs/bimsgp.yaml --parts rrblup --out results/bimsgp_diag_fixed_20261029
-python scripts/run_bimsgp_diag.py --config configs/bimsgp.yaml --parts ftt --out results/bimsgp_diag_ftt_fixed_20261029
-```
-
-逐 epoch 轨迹与验证集变体选择（后者默认在选中后只评一次 test）：
-
-```bash
-python scripts/run_trajectory.py --config configs/bimsgp.yaml --out results/bimsgp_trajectory_20261030
-python scripts/run_variants.py --config configs/bimsgp.yaml --out results/bimsgp_variants_20261030
-```
-
-同一条训练轨迹内比较两种预先固定的 checkpoint 规则（最高验证 PCC / 最低验证 RMSE），test 只作评价、不选规则：
-
-```bash
-python scripts/run_ckpt_rules.py --config configs/bimsgp.yaml --out results/bimsgp_ckpt_rules_20261030
-```
-
-固定 RR-BLUP + A 骨干残差修正（末层零初始化；RR-only 与 residual 按验证 PCC 选分支；test 只评一次）：
-
-```bash
-python scripts/run_residual.py --config configs/bimsgp_residual.yaml --out results/bimsgp_residual_20261030
-```
-
-完整诱导注意力重构（共享低秩 tokenizer + 双向诱导块 + 多槽读出；首轮完整模型）：
-
-```bash
-python scripts/run_induced.py --config configs/bimsgp_induced.yaml --out results/bimsgp_induced_20261030
-```
-
-原 FT 编码 + 一层完整标记交互 + 因子化线性读出（第四候选，正式运行待执行）：
-
-```bash
-python scripts/run_direct.py --config configs/bimsgp_direct.yaml --out results/bimsgp_direct_20261030
-```
-
-测试：
-
-```bash
-pytest tests/ -q
-```
-
-`tests/test_torch_models.py` 的 TabPFN 用例需要 TabPFN 权重与 `TABPFN_TOKEN`，缺失时自动跳过；当前任务不跑 TabPFN。
-
-## 布局
-
-| 路径 | 内容 |
-|------|------|
-| `src/wheat599/` | 数据读取、指标与历史 Stage 1 代码 |
-| `scripts/` | 命令行入口（数据获取、10 折运行、诊断、变体选择） |
-| `configs/` | 运行配置；当前为 `bimsgp.yaml` 与 `bimsgp_selected_20261030.yaml` |
-| `data/raw/` | 只读数据（不入 Git；`SHA256SUMS` 固定版本） |
-| `results/<run>/` | 配置快照、划分、OOF 预测、指标、manifest |
-| `docs/` | 数据事实、当前结果、许可与历史方案 |
-| `env/` | 依赖锁 |
-| `ars-output/` | 历史 ARS Phase 1 中间产物，不参与当前运行 |
-
-## 文档
-
-| 文档 | 职责 |
-|------|------|
-| [AGENTS.md](AGENTS.md) | Agent 行为约束、授权与协作、硬边界 |
-| [docs/RESULTS.md](docs/RESULTS.md) | 当前有效结果与限制 |
-| [docs/DATA_FACTS.md](docs/DATA_FACTS.md) | BGLR 数据核验、R 列主序读取与文档差异 |
-| [docs/LICENSE_NOTES.md](docs/LICENSE_NOTES.md) | 数据、代码与权重许可 |
-| [docs/REFERENCES.md](docs/REFERENCES.md) | 文献与代码核验状态 |
-| [docs/STAGE1_PLAN.md](docs/STAGE1_PLAN.md) | 历史 Stage 1 门控方案，暂停 |
-| [docs/STAGE2_PLAN.md](docs/STAGE2_PLAN.md) | 历史六方法协议，未冻结 |
-| [docs/REVIEW_PROTOCOL.md](docs/REVIEW_PROTOCOL.md) | 历史评审流程记录 |
-| [docs/MIGRATION.md](docs/MIGRATION.md) | 旧仓库清空与 AIA 迁移 |
+[AGENTS.md](AGENTS.md) 保存执行边界；[DATA_FACTS](docs/DATA_FACTS.md) 保存数据事实；[LICENSE_NOTES](docs/LICENSE_NOTES.md) 保存许可；[REFERENCES](docs/REFERENCES.md) 保留历史文献核验记录。旧路径 `RC_CKRR_semisynth` 是本仓库软链接，见 [迁移记录](docs/MIGRATION.md)。旧评审、G0、Stage 1/2 与交接文档只作历史，不重新启用其流程。

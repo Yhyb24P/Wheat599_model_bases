@@ -1,0 +1,1512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="citation_title" content="Wheat599 参考文献库">
+<title>Wheat599 参考文献库</title>
+<style>
+:root {
+  --primary-light:#0072B2; --primary-dark:#56B4E9;
+  --bg-light:#f6f5ef; --bg-dark:#14181d;
+  --text-light:#172e38; --text-dark:#e6e8ea;
+  --panel-light:#ffffff; --panel-dark:#1e242b;
+  --muted-light:#5a6b73; --muted-dark:#9fb0b8;
+  --border-light:#e2e0d6; --border-dark:#323a42;
+  --primary:var(--primary-light); --bg:var(--bg-light); --text:var(--text-light);
+  --panel:var(--panel-light); --muted:var(--muted-light); --border:var(--border-light);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --primary:var(--primary-dark); --bg:var(--bg-dark); --text:var(--text-dark);
+          --panel:var(--panel-dark); --muted:var(--muted-dark); --border:var(--border-dark); }
+  .badge { color:var(--text); }
+}
+@supports (color: light-dark(white, black)) {
+  :root { --primary:light-dark(var(--primary-light),var(--primary-dark));
+          --bg:light-dark(var(--bg-light),var(--bg-dark));
+          --text:light-dark(var(--text-light),var(--text-dark));
+          --panel:light-dark(var(--panel-light),var(--panel-dark));
+          --muted:light-dark(var(--muted-light),var(--muted-dark));
+          --border:light-dark(var(--border-light),var(--border-dark)); }
+}
+* { box-sizing:border-box; }
+html { accent-color:var(--primary); scroll-behavior:smooth; }
+body { margin:0; background:var(--bg); color:var(--text);
+  font-family:"Source Han Serif SC","Noto Serif CJK SC","Songti SC",Georgia,"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",serif;
+  line-height:1.75; text-autospace:normal; overflow-wrap:anywhere; }
+:lang(zh) { font-style:normal; }
+.wrap { max-width:74rem; margin:0 auto; padding:1.5rem 1.25rem 4rem; }
+header.site { border-bottom:2px solid var(--primary); padding-bottom:.75rem; margin-bottom:1.25rem; }
+header.site h1 { font-size:1.6rem; margin:0 0 .25rem; line-height:1.4; }
+header.site p { margin:.25rem 0; color:var(--muted); }
+nav.crumbs { margin:.5rem 0 1.25rem; font-size:.95rem; }
+nav.crumbs a { color:var(--primary); text-decoration:none; margin-right:1rem; }
+nav.crumbs a:hover, nav.crumbs a:focus-visible { text-decoration:underline; }
+nav.toc { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:.75rem 1.1rem; margin-bottom:1.5rem; }
+nav.toc a { color:var(--primary); text-decoration:none; margin-right:1.25rem; white-space:normal; }
+nav.toc a:hover { text-decoration:underline; }
+h2 { font-size:1.25rem; border-left:4px solid var(--primary); padding-left:.6rem; margin:1.75rem 0 .75rem; scroll-margin-top:1rem; }
+a { color:var(--primary); }
+.panel { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:1rem 1.25rem; margin-bottom:1rem; }
+.refcard { background:var(--panel); border:1px solid var(--border); border-radius:10px; padding:.9rem 1.15rem; margin-bottom:.9rem; scroll-margin-top:1rem; }
+.refcard h3 { margin:0 0 .35rem; font-size:1.04rem; line-height:1.5; }
+.refcard .apa { margin:.25rem 0 .5rem; }
+.refcard .meta { font-size:.9rem; color:var(--muted); margin:.35rem 0; display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; min-width:0; }
+.refcard .meta > * { min-width:0; overflow-wrap:anywhere; }
+.refcard p { margin:.4rem 0; }
+.label { font-weight:700; color:var(--primary); }
+.badge { display:inline-flex; align-items:center; gap:.4em; font-size:.8rem; border:1px solid var(--badge);
+  color:var(--badge); border-radius:999px; padding:.1em .7em; white-space:nowrap; }
+.badge .dot { width:.6em; height:.6em; border-radius:50%; background:var(--badge); }
+code { font-family:"SFMono-Regular",Consolas,"Liberation Mono",monospace; font-size:.88em;
+  background:color-mix(in srgb, var(--primary) 10%, transparent); padding:.08em .35em; border-radius:4px; }
+details.bib { margin:.5rem 0 .25rem; }
+details.bib summary { cursor:pointer; color:var(--primary); font-size:.9rem; }
+pre { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:.7rem .9rem; overflow:auto; margin:.5rem 0 0; }
+pre code { background:none; padding:0; }
+.table-wrapper { overflow:auto; max-inline-size:100%; container-type:inline-size; border:1px solid var(--border); border-radius:8px; background:var(--panel); }
+table { border-collapse:separate; border-spacing:0; width:100%; font-size:.92rem; }
+caption { text-align:left; padding:.6rem .8rem; color:var(--muted); font-size:.9rem; }
+th, td { text-align:left; padding:.5rem .8rem; border-bottom:1px solid var(--border); vertical-align:top; }
+thead th { position:sticky; inset-block-start:0; background:var(--panel); z-index:1; border-bottom:2px solid var(--primary); }
+tbody tr:last-child td { border-bottom:none; }
+ul.pitfalls li { margin:.45rem 0; }
+.note { font-size:.9rem; color:var(--muted); }
+math { font-size:1.05em; }
+.mathblock { background:var(--bg); border:1px solid var(--border); border-radius:8px; padding:.5rem .9rem; margin:.5rem 0; overflow:auto; }
+footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1rem; color:var(--muted); font-size:.9rem; }
+@media print {
+  :root { --bg:#fff; --text:#000; --panel:#fff; --muted:#333; --border:#999; --primary:#0056b3; }
+  nav.crumbs, nav.toc, .noprint { display:none; }
+  .refcard, .panel, pre { break-inside:avoid; }
+  pre { white-space:pre-wrap; }
+  details.bib { display:block; }
+  a { color:#000; text-decoration:underline; }
+  body { font-size:10.5pt; }
+  a[href^="http"]::after { content:" (" attr(href) ")"; font-size:8pt; overflow-wrap:anywhere; }
+  thead th { position:static; }
+  h2, h3 { break-after:avoid; }
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="site">
+  <h1>Wheat599 参考文献库</h1>
+  <p>植物基因组表型预测方法论文 · 离线自包含中文研究页 · 共 71 条文献，4 篇本地全文 PDF。</p>
+  <p class="note">单一数据源 <code>ref/build.py</code> 生成；历史核验记录沿用 <code>docs/REFERENCES.md</code>，未覆盖。</p>
+</header>
+<nav class="crumbs" aria-label="项目导航">
+  <a href="../docs/models.html">模型与架构（docs/models.html）</a>
+  <a href="../results/index.html">结果导航（results/index.html）</a>
+  <a href="references.bib">BibTeX 书目</a>
+</nav>
+<nav class="toc" aria-label="文献分组目录"><a href="#g-main">一、现役主方法核心出处（8）</a> <a href="#g-method_data">二、方法与数据（REFERENCES.md 既有）（11）</a> <a href="#g-gp">三、GP 基础与方法学（REFERENCES.md 既有，law 核验）（14）</a> <a href="#g-plan">四、docs 方法方案引用的其他来源（38）</a></nav>
+<main>
+<section aria-label="阅读说明">
+  <h2>阅读说明</h2>
+  <div class="panel">
+    <p>每条文献含<span class="label">简讲</span>、<span class="label">项目关系</span>、<span class="label">原文链接</span>、<span class="label">核验状态</span>与可展开 <span class="label">BibTeX</span>。全部简讲集中于本页（无逐篇独立页面）。</p>
+    <p>核验状态徽章（色盲安全 Okabe-Ito 配色，均带文字标签作第二通道）：</p>
+    <p><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> 沿用 gb/law 历史核验 · <span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> 本轮在线核验 · <span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> 规范著录，写作前复核 · <span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> 仅文档链接/描述，元数据待核</p>
+    <p class="note">链接与核验说明：核验状态逐条以徽章标注，具体见各卡片“核验状态”。历史核验＝沿用 gb/law 此前一手核验；本轮在线核验＝本轮经一手摘要、Crossref API 或原文核验；规范著录＝完整书目但本轮未在线核验，写作引用前复核；待核＝仅文档链接/描述，题名作者待补。GP 基础文献 DOI 本轮经 Crossref 一手核验，个别返回 404 者已更正为真实 DOI；全文不可获取者明确标注，不冒充全文。</p>
+  </div>
+</section>
+<section aria-labelledby="g-main"><h2 id="g-main">一、现役主方法核心出处</h2><article class="refcard" id="wang2026mulpheg2p">
+  <h3>Mul-PheG2P: decoupled learning and prediction-space fusion enables robust and interpretable multi-phenotype genomic prediction</h3>
+  <p class="apa">Wang, Jiahui, Zhang, Yong, Li, Bo, Piao, Xinglin, Zhao, Xiangyu, Zhang, Dongfeng, Wang, Aiwen, Zhang, Bob, Wang, Kaiyi (2026). <cite>Mul-PheG2P: decoupled learning and prediction-space fusion enables robust and interpretable multi-phenotype genomic prediction</cite>. New Phytologist, 252(1), 503–519.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1111/nph.71461">原文链接</a> · <a href="https://doi.org/10.1111/nph.71461">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>两阶段解耦的多表型基因组预测：先训练性状特异 SNP-CNN 编码器保留独特遗传模式，再在预测空间用 Meta-Phenotype Attention 融合标量贡献；声称避免负迁移，提供注意力（宏观）与 Integrated Gradients（微观）可解释链及零微调迁移。</p>
+  <p><span class="label">项目关系：</span>现役同协议完整适配候选。本仓固定提交 e20ca68 完整适配（train-only 标准化/插补、允许目标环境编码器参与、标量融合与隐藏融合分列）；此前“仅其他环境作源、目标环境不作源”的适配保留为历史机制对照，不代表完整候选。统一十折外层宏 PCC 0.438225（选配置）/0.443596（默认），低于固定融合 0.526506；称同协议适配重评，不称原论文精确复现。</p>
+  <p class="note">发表版 New Phytologist 2026;252(1):503–519（本轮 PMC 一手核验）；仓库 README 著录年份 2025 为代码/预印年份。论文 γ=0.2（MSE+0.2 Pearson）、预训练/微调/融合 500/300/200、H=128；公开 train.py 默认 300/300/200，以代码为准。论文标量融合与公开默认隐藏融合不可混称。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：PMC13539974 一手确认题名/九位作者/New Phytologist 252(1):503–519/DOI 10.1111/nph.71461/PMID 42552668；并据固定提交 e20ca68 README 核对方法。</p>
+  <p class="note"><span class="label">全文可获取性：</span>PMC 提供公开 PDF（NPH-252-503.pdf，Wiley Open Access）；本轮自动下载两次返回 HTML 挑战页，未收全文，不冒充。© New Phytologist Foundation，含 TDM/AI 权利保留声明；按需自取。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{wang2026mulpheg2p,
+  title = {Mul-PheG2P: decoupled learning and prediction-space fusion enables robust and interpretable multi-phenotype genomic prediction},
+  author = {Wang, Jiahui and Zhang, Yong and Li, Bo and Piao, Xinglin and Zhao, Xiangyu and Zhang, Dongfeng and Wang, Aiwen and Zhang, Bob and Wang, Kaiyi},
+  year = {2026},
+  journal = {New Phytologist, 252(1), 503–519},
+  doi = {10.1111/nph.71461},
+  url = {https://doi.org/10.1111/nph.71461}
+}</code></pre></details>
+</article>
+<article class="refcard" id="mulpheg2p_repo">
+  <h3>Mul-PheG2P 官方 PyTorch 实现（固定提交）</h3>
+  <p class="apa">Wang, Jiahui, et al. (2025). <cite>Mul-PheG2P 官方 PyTorch 实现（固定提交）</cite>. GitHub: wjhhh2928/Mul-PheG2P @ e20ca6847c7dec6ce80386e94df4378ad2d1fbec.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://github.com/wjhhh2928/Mul-PheG2P/tree/e20ca6847c7dec6ce80386e94df4378ad2d1fbec">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>MIT</p>
+  <p><span class="label">简讲：</span>官方实现：SNP-CNN 编码器、直接基线、多环境预训练、冻结编码器目标适配、预测标量/隐藏表示融合。</p>
+  <p><span class="label">项目关系：</span>本仓 mulphe.py / mulphe_unified.py 适配的上游源码（固定提交，MIT）；适配差异见 docs/MULPHE_UNIFIED.md。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：固定提交 README 确认 MIT 许可与方法描述；提交哈希与本仓代码 OFFICIAL_COMMIT 一致。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{mulpheg2p_repo,
+  title = {Mul-PheG2P 官方 PyTorch 实现（固定提交）},
+  author = {Wang, Jiahui and others},
+  year = {2025},
+  howpublished = {GitHub: wjhhh2928/Mul-PheG2P @ e20ca6847c7dec6ce80386e94df4378ad2d1fbec},
+  url = {https://github.com/wjhhh2928/Mul-PheG2P/tree/e20ca6847c7dec6ce80386e94df4378ad2d1fbec},
+  note = {MIT}
+}</code></pre></details>
+</article>
+<article class="refcard" id="koenker1978regression">
+  <h3>Regression Quantiles</h3>
+  <p class="apa">Koenker, R., Bassett, G. (1978). <cite>Regression Quantiles</cite>. Econometrica, 46(1), 33–50.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://doi.org/10.2307/1913643">原文链接</a> · <a href="https://doi.org/10.2307/1913643">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>提出回归分位数：最小化非对称绝对损失（pinball）估计条件分位数，奠定分位数回归。</p>
+  <p><span class="label">项目关系：</span>分位数 TabM 的 pinball 损失与 99 分位点（0.001–0.999）输出的方法学基础；本仓 raw 全标记、分位点 pinball 求和、成员/材料平均。</p>
+  <div class="mathblock"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>L</mi><mi>τ</mi></msub><mo>(</mo><mi>y</mi><mo>,</mo><mover><mi>y</mi><mo>^</mo></mover><mo>)</mo><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left"><mtr><mtd><mi>τ</mi><mo>(</mo><mi>y</mi><mo>−</mo><mover><mi>y</mi><mo>^</mo></mover><mo>)</mo></mtd><mtd><mrow><mi>y</mi><mo>≥</mo><mover><mi>y</mi><mo>^</mo></mover></mrow></mtd></mtr><mtr><mtd><mo>(</mo><mn>1</mn><mo>−</mo><mi>τ</mi><mo>)</mo><mo>(</mo><mover><mi>y</mi><mo>^</mo></mover><mo>−</mo><mi>y</mi><mo>)</mo></mtd><mtd><mrow><mi>y</mi><mo>&lt;</mo><mover><mi>y</mi><mo>^</mo></mover></mrow></mtd></mtr></mtable></mrow></mrow></math></div>
+  <p><span class="label">核验状态：</span>本轮：DOI 10.2307/1913643 确认解析至 JSTOR stable/1913643；JSTOR 全文页需 JavaScript，本轮未能逐字在线核验全文；书目据规范著录。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未取得全文（DOI 解析至 JSTOR，全文页需 JavaScript）；不冒充已获取。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{koenker1978regression,
+  title = {Regression Quantiles},
+  author = {Koenker, R. and Bassett, G.},
+  year = {1978},
+  journal = {Econometrica, 46(1), 33–50},
+  doi = {10.2307/1913643},
+  url = {https://doi.org/10.2307/1913643},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="huber1964robust">
+  <h3>Robust Estimation of a Location Parameter</h3>
+  <p class="apa">Huber, P. J. (1964). <cite>Robust Estimation of a Location Parameter</cite>. Annals of Mathematical Statistics, 35(1), 73–101.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1214/aoms/1177703732">原文链接</a> · <a href="https://doi.org/10.1214/aoms/1177703732">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>提出 Huber M-估计：损失 ρ(t) 在 |t|&lt;k 时为 ½t²、否则为 k|t|−½k²，介于样本均值与中位数之间，在污染正态下渐近最稳健。</p>
+  <p><span class="label">项目关系：</span>Huber ICM 的稳健损失出处。本仓 robust_icm.py 为凸 Huber 惩罚风险最小化（材料核 + ICM 任务核），不是完整 Huber GP 贝叶斯算法。</p>
+  <div class="mathblock"><math display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>ρ</mi><mo>(</mo><mi>t</mi><mo>)</mo><mo>=</mo><mrow><mo>{</mo><mtable columnalign="left"><mtr><mtd><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>t</mi><mn>2</mn></msup></mtd><mtd><mrow><mo>|</mo><mi>t</mi><mo>|</mo><mo>&lt;</mo><mi>k</mi></mrow></mtd></mtr><mtr><mtd><mi>k</mi><mo>|</mo><mi>t</mi><mo>|</mo><mo>−</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><msup><mi>k</mi><mn>2</mn></msup></mtd><mtd><mrow><mo>|</mo><mi>t</mi><mo>|</mo><mo>≥</mo><mi>k</mi></mrow></mtd></mtr></mtable></mrow></mrow></math></div>
+  <p><span class="label">核验状态：</span>本轮在线核验：Project Euclid（开放获取）确认题名/作者/期刊/卷期页/DOI 与摘要；摘要给出的 ρ(t) 即项目 Huber 损失。</p>
+  <p class="note"><span class="label">全文可获取性：</span>开放获取（Project Euclid）；本轮自动下载返回 HTML 挑战页而非 PDF，未收全文，不冒充。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{huber1964robust,
+  title = {Robust Estimation of a Location Parameter},
+  author = {Huber, P. J.},
+  year = {1964},
+  journal = {Annals of Mathematical Statistics, 35(1), 73–101},
+  doi = {10.1214/aoms/1177703732},
+  url = {https://doi.org/10.1214/aoms/1177703732}
+}</code></pre></details>
+</article>
+<article class="refcard" id="hubergp2023">
+  <h3>Robust Gaussian Process Regression with Huber Likelihood</h3>
+  <p class="apa">Algikar, P., Mili, L. (2023). <cite>Robust Gaussian Process Regression with Huber Likelihood</cite>. arXiv:2301.07858（stat.AP；投稿 Annals of Applied Statistics，发表未确认）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2301.07858">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>以 Huber 似然实现稳健高斯过程回归，降低长尾/异常残差的影响。</p>
+  <p><span class="label">项目关系：</span>Huber ICM 参考其稳健观测思想；本实现为凸惩罚风险最小化，不复现其完整贝叶斯算法（docs/RESEARCH_PLAN.md）。</p>
+  <p class="note">arXiv 预印本；页面注明投稿 Annals of Applied Statistics，正式发表状态未确认。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2301.07858 一手摘要确认题名/作者（Algikar &amp; Mili）；期刊发表未确认。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{hubergp2023,
+  title = {Robust Gaussian Process Regression with Huber Likelihood},
+  author = {Algikar, P. and Mili, L.},
+  year = {2023},
+  journal = {arXiv:2301.07858（stat.AP；投稿 Annals of Applied Statistics，发表未确认）},
+  eprint = {2301.07858},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2301.07858}
+}</code></pre></details>
+</article>
+<article class="refcard" id="bonilla2007multitask">
+  <h3>Multi-task Gaussian Process Prediction</h3>
+  <p class="apa">Bonilla, E. V., Chai, K. M. A., Williams, C. K. I. (2007). <cite>Multi-task Gaussian Process Prediction</cite>. NeurIPS 20 (2007).</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://papers.nips.cc/paper/3189-multi-task-gaussian-process-prediction.pdf">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>多任务高斯过程预测：用可分离（separable）协方差建模多输出，任务间相关用任务核、输入间相关用输入核；intrinsic coregionalization（ICM）是其可分离形式之一。</p>
+  <p><span class="label">项目关系：</span>多任务 GP 可分离协方差（含 ICM 形式）的方法学参考；本仓 Huber ICM 的任务核思路与此相关，但实现为凸惩罚风险最小化，非完整贝叶斯多任务 GP。不据本文主张 ICM 起源（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>规范著录；链接 papers.nips.cc/paper/3189 取自 docs/RESEARCH_PLAN.md；本轮未在线逐字核验全文。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{bonilla2007multitask,
+  title = {Multi-task Gaussian Process Prediction},
+  author = {Bonilla, E. V. and Chai, K. M. A. and Williams, C. K. I.},
+  year = {2007},
+  booktitle = {NeurIPS 20 (2007)},
+  url = {https://papers.nips.cc/paper/3189-multi-task-gaussian-process-prediction.pdf},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="alvarez2012kernels">
+  <h3>Kernels for Vector-Valued Functions: a Review</h3>
+  <p class="apa">Alvarez, M. A., Rosasco, L., Lawrence, N. D. (2012). <cite>Kernels for Vector-Valued Functions: a Review</cite>. arXiv:1106.6251 (v2)；Foundations and Trends in Machine Learning, DOI 10.1561/2200000036.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/1106.6251">原文链接</a> · <a href="https://doi.org/10.48550/arXiv.1106.6251">DOI</a> · <a href="pdfs/alvarez2012kernels.pdf">本地 PDF（37 页）</a></span></p>
+
+  <p><span class="label">简讲：</span>综述多输出/向量值函数的核方法，系统连接概率与泛函视角，含共区域化（含 ICM/LMC）等多输出核。</p>
+  <p><span class="label">项目关系：</span>Huber ICM 与 BH-LMC 的向量值核方法学出处（docs/Wheat599_BH-LMC.md 引期刊 DOI 10.1561/2200000036）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:1106.6251（v2, 2012）确认题名/作者/摘要；arXiv DOI 10.48550/arXiv.1106.6251。期刊 DOI 10.1561/2200000036 取自 docs/Wheat599_BH-LMC.md。</p>
+  <p class="note"><span class="label">全文：</span><a href="pdfs/alvarez2012kernels.pdf">pdfs/alvarez2012kernels.pdf</a>（37 页，本轮下载并核验为完整 PDF）。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{alvarez2012kernels,
+  title = {Kernels for Vector-Valued Functions: a Review},
+  author = {Alvarez, M. A. and Rosasco, L. and Lawrence, N. D.},
+  year = {2012},
+  journal = {arXiv:1106.6251 (v2)；Foundations and Trends in Machine Learning, DOI 10.1561/2200000036},
+  doi = {10.48550/arXiv.1106.6251},
+  eprint = {1106.6251},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/1106.6251}
+}</code></pre></details>
+</article>
+<article class="refcard" id="tabular_regression_repo">
+  <h3>tabular-regression：分位数回归实现（固定提交）</h3>
+  <p class="apa">Yandex Research (2025). <cite>tabular-regression：分位数回归实现（固定提交）</cite>. GitHub: yandex-research/tabular-regression @ 79e273f1af14c9a9703a1f385e9c9ea8faf5bae0.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://github.com/yandex-research/tabular-regression/blob/79e273f1af14c9a9703a1f385e9c9ea8faf5bae0/bin/quantile_regression.py">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>许可以仓库为准</p>
+  <p><span class="label">简讲：</span>Yandex 表格回归实现，含分位数回归（pinball）入口 bin/quantile_regression.py。</p>
+  <p><span class="label">项目关系：</span>分位数 TabM 的分位数回归实现依据（固定提交，docs/QUANTILE_TABM.md）。作者公开示例用 1024 分位点，本项目 99 为有限预算近似网格，非逐项复现。</p>
+
+  <p><span class="label">核验状态：</span>沿用 docs/QUANTILE_TABM.md 已引用的固定提交链接；本轮未重新核验仓库许可。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{tabular_regression_repo,
+  title = {tabular-regression：分位数回归实现（固定提交）},
+  author = {Yandex Research},
+  year = {2025},
+  howpublished = {GitHub: yandex-research/tabular-regression @ 79e273f1af14c9a9703a1f385e9c9ea8faf5bae0},
+  url = {https://github.com/yandex-research/tabular-regression/blob/79e273f1af14c9a9703a1f385e9c9ea8faf5bae0/bin/quantile_regression.py},
+  note = {许可以仓库为准}
+}</code></pre></details>
+</article></section><section aria-labelledby="g-method_data"><h2 id="g-method_data">二、方法与数据（REFERENCES.md 既有）</h2><article class="refcard" id="gorishniy2021revisiting">
+  <h3>Revisiting Deep Learning Models for Tabular Data</h3>
+  <p class="apa">Gorishniy, Yury, Rubachev, Ivan, Khrulkov, Valentin, Babenko, Artem (2021). <cite>Revisiting Deep Learning Models for Tabular Data</cite>. NeurIPS 2021.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://arxiv.org/abs/2106.11959">原文链接</a> · <a href="pdfs/gorishniy2021revisiting.pdf">本地 PDF（25 页）</a></span></p>
+  <p><span class="label">代码/许可：</span>yandex-research/rtdl-revisiting-models（Apache-2.0）</p>
+  <p><span class="label">简讲：</span>系统比较表格数据深度模型（MLP、ResNet 式、FT-Transformer 等），提出 FT-Transformer：把每个特征 tokenize 后用 Transformer 建模特征交互；给出官方默认配置与调参空间。</p>
+  <p><span class="label">项目关系：</span>本项目“A 骨干”FT-Transformer 架构标签的出处。本项目 d=16/32、1–2 层是自主小模型选择，不是官方默认。</p>
+  <p class="note">论文默认 FT-Transformer 为 3 层、embedding 192、8 头（Appendix E.2 Table 12）；调参空间层数 [1,4]、embedding [64,512]（Table 13）。rtdl 旧仓库名 tabular-dl-revisiting-models 已 404，现行官方仓库为 rtdl-revisiting-models。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验；本地核验 wheel LICENSE；law 核验默认/调参空间。本轮据 arXiv:2106.11959 原文 PDF 首页一手核验作者为 Yury Gorishniy 等——旧 REFERENCES.md 写 “Gorishniy, N.” 有误，已修正为 Y.（Yury）。</p>
+  <p class="note"><span class="label">全文：</span><a href="pdfs/gorishniy2021revisiting.pdf">pdfs/gorishniy2021revisiting.pdf</a>（25 页，本轮下载并核验为完整 PDF）。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{gorishniy2021revisiting,
+  title = {Revisiting Deep Learning Models for Tabular Data},
+  author = {Gorishniy, Yury and Rubachev, Ivan and Khrulkov, Valentin and Babenko, Artem},
+  year = {2021},
+  booktitle = {NeurIPS 2021},
+  eprint = {2106.11959},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2106.11959},
+  note = {yandex-research/rtdl-revisiting-models（Apache-2.0）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="yu2026fttransformer_sti">
+  <h3>FT-Transformer 预测 STI 风险（Natsal-3）［应用论文，描述性题名］</h3>
+  <p class="apa">Yu, W., Chen, Y., Liu, B., Huang, E., Guo, F. (2026). <cite>FT-Transformer 预测 STI 风险（Natsal-3）［应用论文，描述性题名］</cite>. BMC Public Health, 26(1), 1097.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13049863/">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>将 FT-Transformer 应用于 Natsal-3 性传播感染风险预测的应用研究。</p>
+  <p><span class="label">项目关系：</span>只作应用引用，不是 FT-Transformer 架构出处；架构出处见 Gorishniy 2021。</p>
+  <p class="note">准确英文题名以 PMC13049863 为准；此处为描述性题名，不冒充原文标题。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验；只作应用引用，不是 FT-Transformer 架构出处。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{yu2026fttransformer_sti,
+  title = {FT-Transformer 预测 STI 风险（Natsal-3）［应用论文，描述性题名］},
+  author = {Yu, W. and Chen, Y. and Liu, B. and Huang, E. and Guo, F.},
+  year = {2026},
+  journal = {BMC Public Health, 26(1), 1097},
+  url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC13049863/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="gorishniy2025tabm">
+  <h3>TabM: Advancing Tabular Deep Learning with Parameter-Efficient Ensembling</h3>
+  <p class="apa">Gorishniy, Yury, Kotelnikov, Akim, Babenko, Artem (2025). <cite>TabM: Advancing Tabular Deep Learning with Parameter-Efficient Ensembling</cite>. ICLR 2025.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://arxiv.org/abs/2410.24210">原文链接</a> · <a href="pdfs/gorishniy2025tabm.pdf">本地 PDF（37 页）</a></span></p>
+  <p><span class="label">代码/许可：</span>yandex-research/tabm（Apache-2.0）</p>
+  <p><span class="label">简讲：</span>提出 TabM：共享骨干 + 多成员轻量适配的参数高效集成，一个 TabM 高效模仿 MLP 集成、每对象输出多预测，提升表格深度学习性能与效率。</p>
+  <p><span class="label">项目关系：</span>现役分位数 TabM 与独立 MSE TabM 的骨架出处。本项目每环境独立训练、99 分位点 pinball 监督、双种子预测平均为自主适配。</p>
+  <p class="note">作者为 Yury Gorishniy, Akim Kotelnikov, Artem Babenko；不要写成 Akhanov 等。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验。本轮据 arXiv:2410.24210 原文 PDF 首页一手核验作者为 Yury Gorishniy, Akim Kotelnikov, Artem Babenko——旧 REFERENCES.md 写 “Gorishniy, N.” 有误，已修正为 Y.（Yury）。</p>
+  <p class="note"><span class="label">全文：</span><a href="pdfs/gorishniy2025tabm.pdf">pdfs/gorishniy2025tabm.pdf</a>（37 页，本轮下载并核验为完整 PDF）。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{gorishniy2025tabm,
+  title = {TabM: Advancing Tabular Deep Learning with Parameter-Efficient Ensembling},
+  author = {Gorishniy, Yury and Kotelnikov, Akim and Babenko, Artem},
+  year = {2025},
+  booktitle = {ICLR 2025},
+  eprint = {2410.24210},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2410.24210},
+  note = {yandex-research/tabm（Apache-2.0）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="qu2025tabicl">
+  <h3>TabICL: A Tabular Foundation Model for In-Context Learning on Tables</h3>
+  <p class="apa">Qu, J. T. G., Holzmüller, D., Varoquaux, G., Le Morvan, Z. (2025). <cite>TabICL: A Tabular Foundation Model for In-Context Learning on Tables</cite>. ICML 2025, PMLR v267 (qu25d).</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://proceedings.mlr.press/v267/qu25d.html">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>soda-inria/tabicl（含 TabICLv2, ICML 2026）；回归权重 jingang/TabICL（BSD-3-Clause）</p>
+  <p><span class="label">简讲：</span>表格基础模型，通过在合成任务上预训练、以上下文学习方式做表格预测。</p>
+  <p><span class="label">项目关系：</span>历史比较候选（TabICL 基因组适配），非现役主候选。回归权重 tabicl-regressor-v2-20260212.ckpt（BSD-3-Clause，docs/LICENSE_NOTES.md）。</p>
+  <p class="note">TabICL 是 ICML 2025，不是 ICLR；TabICLv2 才是 ICML 2026。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{qu2025tabicl,
+  title = {TabICL: A Tabular Foundation Model for In-Context Learning on Tables},
+  author = {Qu, J. T. G. and Holzmüller, D. and Varoquaux, G. and Le Morvan, Z.},
+  year = {2025},
+  booktitle = {ICML 2025, PMLR v267 (qu25d)},
+  url = {https://proceedings.mlr.press/v267/qu25d.html},
+  note = {soda-inria/tabicl（含 TabICLv2, ICML 2026）；回归权重 jingang/TabICL（BSD-3-Clause）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="wu2024gpformer">
+  <h3>A transformer-based genomic prediction method fused with knowledge-guided module (GPformer)</h3>
+  <p class="apa">Wu, C., Zhang, Y., Ying, Z., et al. (2024). <cite>A transformer-based genomic prediction method fused with knowledge-guided module (GPformer)</cite>. Briefings in Bioinformatics, 25(1), bbad438.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10701102/">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>融合知识引导模块的 Transformer 基因组预测方法（GPformer）。</p>
+  <p><span class="label">项目关系：</span>历史方法对照。无公开代码（Data Availability：“reasonable request”）。与 GPTransformer（大麦, Front Plant Sci 2021）、Cropformer 是不同工作，引用写全称。</p>
+
+  <p><span class="label">核验状态：</span>gb 在线核验；无公开代码（Data Availability：“reasonable request”）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{wu2024gpformer,
+  title = {A transformer-based genomic prediction method fused with knowledge-guided module (GPformer)},
+  author = {Wu, C. and Zhang, Y. and Ying, Z. and others},
+  year = {2024},
+  journal = {Briefings in Bioinformatics, 25(1), bbad438},
+  url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10701102/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="li2026gpwaiter">
+  <h3>Leveraging weighted embedding and Transformer architecture to improve phenotype prediction of complex traits for crops (GP-WAITER)</h3>
+  <p class="apa">Li, J., Yu, L., Li, M., et al. (2026). <cite>Leveraging weighted embedding and Transformer architecture to improve phenotype prediction of complex traits for crops (GP-WAITER)</cite>. Nature Communications.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1038/s41467-026-71035-5">原文链接</a> · <a href="https://doi.org/10.1038/s41467-026-71035-5">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>snowo-w/GP-WAITER</p>
+  <p><span class="label">简讲：</span>加权嵌入 + Transformer 架构的基因组预测方法（GP-WAITER）。</p>
+  <p><span class="label">项目关系：</span>历史比较；不作为工程基座。核心为 .so；train-test.py L64/82 reshape(180,4589)、L212–218 test_loss 早停；正文每训练子集重算加权。</p>
+
+  <p><span class="label">核验状态：</span>gb 在线核验；核心 .so；train-test.py L64/82 reshape(180,4589)、L212–218 test_loss 早停；正文每训练子集重算加权。本轮 Crossref 一手核验 DOI/完整题名。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{li2026gpwaiter,
+  title = {Leveraging weighted embedding and Transformer architecture to improve phenotype prediction of complex traits for crops (GP-WAITER)},
+  author = {Li, J. and Yu, L. and Li, M. and others},
+  year = {2026},
+  journal = {Nature Communications},
+  doi = {10.1038/s41467-026-71035-5},
+  url = {https://doi.org/10.1038/s41467-026-71035-5},
+  note = {snowo-w/GP-WAITER}
+}</code></pre></details>
+</article>
+<article class="refcard" id="fan2024tabular">
+  <h3>Tabular deep learning: a comparative study applied to multi-task genome-wide prediction</h3>
+  <p class="apa">Fan, Y., Waldmann, P. (2024). <cite>Tabular deep learning: a comparative study applied to multi-task genome-wide prediction</cite>. BMC Bioinformatics, 25, 322.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11452967/">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>angelYHF/Tabular-deep-learning-for-GWP</p>
+  <p><span class="label">简讲：</span>表格深度学习在多任务全基因组预测上的比较研究。</p>
+  <p><span class="label">项目关系：</span>历史比较。LassoNet 0.691 / LightGBM 0.657 / FT-Transformer 0.602 是合并多任务 r，不是四环境各自精度。law 逐文件核验公开代码缺陷。</p>
+  <p class="note">不得写“评审者指出全样本标准化”（无公开出处）。Regression.zip 尚未逐项复核；冻结文本标“待复核”。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验论文与数字；law 逐文件核验五项缺陷 + 两项新发现（vendored lassonet score() 正 MSE + argmax；LightGBM 测试集早停/调参），证据见 ars-output/supervision_factcheck_20261029.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{fan2024tabular,
+  title = {Tabular deep learning: a comparative study applied to multi-task genome-wide prediction},
+  author = {Fan, Y. and Waldmann, P.},
+  year = {2024},
+  journal = {BMC Bioinformatics, 25, 322},
+  url = {https://www.ncbi.nlm.nih.gov/pmc/articles/PMC11452967/},
+  note = {angelYHF/Tabular-deep-learning-for-GWP}
+}</code></pre></details>
+</article>
+<article class="refcard" id="yang2026gsformer">
+  <h3>Gsformer: a dual-architecture deep learning framework with CNN-self-attention and sparse-attention for genomic selection</h3>
+  <p class="apa">Yang, T., Wu, W., Xue, Y., Zhou, L., Kang, H., Liu, J. (2026). <cite>Gsformer: a dual-architecture deep learning framework with CNN-self-attention and sparse-attention for genomic selection</cite>. Genetics Selection Evolution.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1186/s12711-026-01055-8">原文链接</a> · <a href="https://doi.org/10.1186/s12711-026-01055-8">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>hajudien/GSformer</p>
+  <p><span class="label">简讲：</span>Gsformer 基因组预测方法。</p>
+  <p><span class="label">项目关系：</span>历史比较。五折外层/三折内层；SVR 最好于 GY1/GY3/GY4，GBLUP 最好于 GY2；目标为 DNNGP 预处理 EBV；输入 SNP/PC，不含谱系。</p>
+  <p class="note">GY1–GY4 与本仓列名 &quot;1&quot;,&quot;2&quot;,&quot;4&quot;,&quot;5&quot; 的映射未核；跨论文引用其排名时不假设对应。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验；GY1–GY4 与本仓列名 &quot;1&quot;,&quot;2&quot;,&quot;4&quot;,&quot;5&quot; 的映射未核；跨论文引用其排名时不假设对应。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{yang2026gsformer,
+  title = {Gsformer: a dual-architecture deep learning framework with CNN-self-attention and sparse-attention for genomic selection},
+  author = {Yang, T. and Wu, W. and Xue, Y. and Zhou, L. and Kang, H. and Liu, J.},
+  year = {2026},
+  journal = {Genetics Selection Evolution},
+  doi = {10.1186/s12711-026-01055-8},
+  url = {https://doi.org/10.1186/s12711-026-01055-8},
+  note = {hajudien/GSformer}
+}</code></pre></details>
+</article>
+<article class="refcard" id="priorlabs2026tabpfn35">
+  <h3>TabPFN-3.5: Technical Report</h3>
+  <p class="apa">Prior Labs (Jäger et al.) (2026). <cite>TabPFN-3.5: Technical Report</cite>. arXiv technical report.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://arxiv.org/abs/2609.17895">原文链接</a> · <a href="pdfs/priorlabs2026tabpfn35.pdf">本地 PDF（33 页）</a></span></p>
+  <p><span class="label">代码/许可：</span>tabpfn==9.2.0（Apache-2.0）；权重 Prior-Labs/tabpfn_3_5（tabpfn-3-5-license-v1.0，非商用）</p>
+  <p><span class="label">简讲：</span>TabPFN-3.5 技术报告：表格基础模型，上下文学习做小样本表格预测。</p>
+  <p><span class="label">项目关系：</span>历史 Stage 2 条件协议冻结 ICL；当前任务不跑 TabPFN。权重许可非商用，全文在 docs/licenses/。</p>
+
+  <p><span class="label">核验状态：</span>本地核验 checkpoint 元数据（8 成员/balanced/768/无全局投影）与许可；gb 在线核验技术报告 §3.2 与 &lt;1000 行微调警告原文。arXiv 与报告对应关系由 PyPI 官方 BibTeX 闭合（Jäger et al., 2026）。</p>
+  <p class="note"><span class="label">全文：</span><a href="pdfs/priorlabs2026tabpfn35.pdf">pdfs/priorlabs2026tabpfn35.pdf</a>（33 页，本轮下载并核验为完整 PDF）。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@techreport{priorlabs2026tabpfn35,
+  title = {TabPFN-3.5: Technical Report},
+  author = {Prior Labs (Jäger et al.)},
+  year = {2026},
+  institution = {arXiv technical report},
+  eprint = {2609.17895},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2609.17895},
+  note = {tabpfn==9.2.0（Apache-2.0）；权重 Prior-Labs/tabpfn_3_5（tabpfn-3-5-license-v1.0，非商用）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="bglr_wheat_data">
+  <h3>BGLR wheat.RData（CIMMYT Global Wheat Program）</h3>
+  <p class="apa">CIMMYT Global Wheat Program, BGLR-R (2026). <cite>BGLR wheat.RData（CIMMYT Global Wheat Program）</cite>. gdlc/BGLR-R@7e92aa2d, data/wheat.RData.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://github.com/gdlc/BGLR-R/blob/master/data/wheat.RData">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>BGLR（GPL-3）</p>
+  <p><span class="label">简讲：</span>599 份小麦材料、1279 标记、4 环境表型（原表型列 1/2/4/5）。man/wheat.Rd 载明 MAF≥0.05 过滤声明与 Bernoulli 插补。</p>
+  <p><span class="label">项目关系：</span>本项目唯一数据出处。SHA-256 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21；data/raw/ 只读；R as.vector 列主序，读取 reshape(order=&quot;F&quot;)。</p>
+  <p class="note">“实测 96 列 MAF&lt;0.05”与文档差异并列记录。</p>
+  <p><span class="label">核验状态：</span>本地核验；man/wheat.Rd 载明 MAF≥0.05 过滤声明与 Bernoulli 插补；“实测 96 列 MAF&lt;0.05”与文档差异并列记录。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{bglr_wheat_data,
+  title = {BGLR wheat.RData（CIMMYT Global Wheat Program）},
+  author = {CIMMYT Global Wheat Program and BGLR-R},
+  year = {2026},
+  howpublished = {gdlc/BGLR-R@7e92aa2d, data/wheat.RData},
+  url = {https://github.com/gdlc/BGLR-R/blob/master/data/wheat.RData},
+  note = {BGLR（GPL-3）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="lemhadri2021lassonet">
+  <h3>LassoNet: A Neural Network with Feature Sparsity</h3>
+  <p class="apa">Lemhadri, I., et al. (2021). <cite>LassoNet: A Neural Network with Feature Sparsity</cite>. JMLR, 22(20-848).</p>
+  <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://jmlr.org/papers/v22/20-848.html">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>lasso-net/lassonet（MIT）</p>
+  <p><span class="label">简讲：</span>带特征稀疏性的神经网络，结合 L1 正则与隐藏层。</p>
+  <p><span class="label">项目关系：</span>扩展比较使用；正式引用前核对。</p>
+
+  <p><span class="label">核验状态：</span>待核验（扩展比较使用；正式引用前核对）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{lemhadri2021lassonet,
+  title = {LassoNet: A Neural Network with Feature Sparsity},
+  author = {Lemhadri, I. and others},
+  year = {2021},
+  journal = {JMLR, 22(20-848)},
+  url = {https://jmlr.org/papers/v22/20-848.html},
+  note = {lasso-net/lassonet（MIT）；元数据待核，正式引用前复核}
+}</code></pre></details>
+</article></section><section aria-labelledby="g-gp"><h2 id="g-gp">三、GP 基础与方法学（REFERENCES.md 既有，law 核验）</h2><article class="refcard" id="meuwissen2001prediction">
+  <h3>Prediction of total genetic value using genome-wide dense marker maps</h3>
+  <p class="apa">Meuwissen, T. H. E., Hayes, B. J., Goddard, M. E. (2001). <cite>Prediction of total genetic value using genome-wide dense marker maps</cite>. Genetics, 157(4), 1819–1829.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1093/genetics/157.4.1819">原文链接</a> · <a href="https://doi.org/10.1093/genetics/157.4.1819">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>基因组预测奠基工作：用全基因组稠密标记估计总遗传值，提出 BayesA/BayesB 等。</p>
+  <p><span class="label">项目关系：</span>基因组预测方法学基础；RR-BLUP/GBLUP 等基础参照的理论源头。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；DOI 10.1093/genetics/157.4.1819 本轮经 Crossref 一手 API 核验解析（题名/作者一致）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{meuwissen2001prediction,
+  title = {Prediction of total genetic value using genome-wide dense marker maps},
+  author = {Meuwissen, T. H. E. and Hayes, B. J. and Goddard, M. E.},
+  year = {2001},
+  journal = {Genetics, 157(4), 1819–1829},
+  doi = {10.1093/genetics/157.4.1819},
+  url = {https://doi.org/10.1093/genetics/157.4.1819}
+}</code></pre></details>
+</article>
+<article class="refcard" id="vanraden2008efficient">
+  <h3>Efficient methods to compute genomic predictions</h3>
+  <p class="apa">VanRaden, P. M. (2008). <cite>Efficient methods to compute genomic predictions</cite>. Journal of Dairy Science, 91(11), 4414–4423.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.3168/jds.2007-0980">原文链接</a> · <a href="https://doi.org/10.3168/jds.2007-0980">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>提出高效计算基因组预测的方法与基因组关系矩阵 G（VanRaden 法）。</p>
+  <p><span class="label">项目关系：</span>GBLUP/关系矩阵基础；本项目谱系矩阵 A 仅用于 Stage 2 亲缘敏感性。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；DOI 10.3168/jds.2007-0980 本轮经 Crossref 一手 API 核验解析。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{vanraden2008efficient,
+  title = {Efficient methods to compute genomic predictions},
+  author = {VanRaden, P. M.},
+  year = {2008},
+  journal = {Journal of Dairy Science, 91(11), 4414–4423},
+  doi = {10.3168/jds.2007-0980},
+  url = {https://doi.org/10.3168/jds.2007-0980}
+}</code></pre></details>
+</article>
+<article class="refcard" id="crossa2010prediction">
+  <h3>Prediction of genetic values of quantitative traits in plant breeding using pedigree and molecular markers</h3>
+  <p class="apa">Crossa, J., et al. (2010). <cite>Prediction of genetic values of quantitative traits in plant breeding using pedigree and molecular markers</cite>. Genetics, 186(2), 713–724.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1534/genetics.110.118521">原文链接</a> · <a href="https://doi.org/10.1534/genetics.110.118521">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>植物育种中结合谱系与分子标记预测数量性状遗传值；在 599×1279 小麦数据上报告 marker-only RKHS。</p>
+  <p><span class="label">项目关系：</span>小麦/植物 GP 基础；CIMMYT 小麦数据语境。docs/RESEARCH_PLAN.md 与 RESULTS.md 以 PMC2954475 引用其 RKHS 先例。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；原构造 DOI 10.1093/genetics/186.2.713 经 Crossref 返回 404，本轮更正为真实 DOI 10.1534/genetics.110.118521（Genetics/OUP）；PMC2954475 取自 docs。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{crossa2010prediction,
+  title = {Prediction of genetic values of quantitative traits in plant breeding using pedigree and molecular markers},
+  author = {Crossa, J. and others},
+  year = {2010},
+  journal = {Genetics, 186(2), 713–724},
+  doi = {10.1534/genetics.110.118521},
+  url = {https://doi.org/10.1534/genetics.110.118521}
+}</code></pre></details>
+</article>
+<article class="refcard" id="deloscampos2013whole">
+  <h3>Whole-genome regression and prediction methods applied to plant and animal breeding</h3>
+  <p class="apa">de los Campos, G., Hickey, J. M., Pong-Wong, R., Daetwyler, H. D., Calus, M. P. L. (2013). <cite>Whole-genome regression and prediction methods applied to plant and animal breeding</cite>. Genetics, 193(2), 327–345.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1534/genetics.112.143313">原文链接</a> · <a href="https://doi.org/10.1534/genetics.112.143313">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>全基因组回归与预测方法在动植物育种中的综述。</p>
+  <p><span class="label">项目关系：</span>全基因组回归方法学基础（含贝叶斯/岭回归类）。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；原构造 DOI 10.1093/genetics/193.2.327 经 Crossref 返回 404，本轮更正为真实 DOI 10.1534/genetics.112.143313（Genetics/OUP）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{deloscampos2013whole,
+  title = {Whole-genome regression and prediction methods applied to plant and animal breeding},
+  author = {de los Campos, G. and Hickey, J. M. and Pong-Wong, R. and Daetwyler, H. D. and Calus, M. P. L.},
+  year = {2013},
+  journal = {Genetics, 193(2), 327–345},
+  doi = {10.1534/genetics.112.143313},
+  url = {https://doi.org/10.1534/genetics.112.143313}
+}</code></pre></details>
+</article>
+<article class="refcard" id="crossa2017genomic">
+  <h3>Genomic selection in plant breeding: methods, models, and perspectives</h3>
+  <p class="apa">Crossa, J., et al. (2017). <cite>Genomic selection in plant breeding: methods, models, and perspectives</cite>. Trends in Plant Science, 22(11), 961–975.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1016/j.tplants.2017.08.011">原文链接</a> · <a href="https://doi.org/10.1016/j.tplants.2017.08.011">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>植物育种基因组选择的方法、模型与展望综述。</p>
+  <p><span class="label">项目关系：</span>GP 评估规范与方法学语境。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；DOI 10.1016/j.tplants.2017.08.011 本轮经 Crossref 一手 API 核验解析（题名/作者一致）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{crossa2017genomic,
+  title = {Genomic selection in plant breeding: methods, models, and perspectives},
+  author = {Crossa, J. and others},
+  year = {2017},
+  journal = {Trends in Plant Science, 22(11), 961–975},
+  doi = {10.1016/j.tplants.2017.08.011},
+  url = {https://doi.org/10.1016/j.tplants.2017.08.011}
+}</code></pre></details>
+</article>
+<article class="refcard" id="cawley2010overfitting">
+  <h3>On over-fitting in model selection and subsequent selection bias in performance evaluation</h3>
+  <p class="apa">Cawley, G. C., Talbot, N. L. C. (2010). <cite>On over-fitting in model selection and subsequent selection bias in performance evaluation</cite>. JMLR, 11, 2079–2107.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://jmlr.org/papers/v11/cawley10a.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>论证模型选择中的过拟合及随后性能评估的选择偏差；嵌套验证可缓解。</p>
+  <p><span class="label">项目关系：</span>本项目无泄漏底线与嵌套选模的方法学依据；有限验证数据反复选模可能产生选择偏差（docs/MULPHE_UNIFIED.md 引用）。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；JMLR 链接 cawley10a 已在 docs/MULPHE_UNIFIED.md 引用。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cawley2010overfitting,
+  title = {On over-fitting in model selection and subsequent selection bias in performance evaluation},
+  author = {Cawley, G. C. and Talbot, N. L. C.},
+  year = {2010},
+  journal = {JMLR, 11, 2079–2107},
+  url = {https://jmlr.org/papers/v11/cawley10a.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="vabalas2019machine">
+  <h3>Machine learning algorithm validation with a limited sample size</h3>
+  <p class="apa">Vabalas, A., Gowen, E., Poliakoff, E., Casson, A. J. (2019). <cite>Machine learning algorithm validation with a limited sample size</cite>. PLOS ONE, 14(11), e0224365.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1371/journal.pone.0224365">原文链接</a> · <a href="https://doi.org/10.1371/journal.pone.0224365">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>小样本下机器学习算法验证的偏差与交叉验证行为研究。</p>
+  <p><span class="label">项目关系：</span>小样本验证方法学；Wheat599 n=599 属小样本语境。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；DOI 10.1371/journal.pone.0224365 本轮经 Crossref 一手 API 核验解析。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{vabalas2019machine,
+  title = {Machine learning algorithm validation with a limited sample size},
+  author = {Vabalas, A. and Gowen, E. and Poliakoff, E. and Casson, A. J.},
+  year = {2019},
+  journal = {PLOS ONE, 14(11), e0224365},
+  doi = {10.1371/journal.pone.0224365},
+  url = {https://doi.org/10.1371/journal.pone.0224365}
+}</code></pre></details>
+</article>
+<article class="refcard" id="bengio2004no">
+  <h3>No unbiased estimator of the variance of K-fold cross-validation</h3>
+  <p class="apa">Bengio, Y., Grandvalet, Y. (2004). <cite>No unbiased estimator of the variance of K-fold cross-validation</cite>. JMLR, 5, 1089–1105.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://www.jmlr.org/papers/v5/grandvalet04a.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>证明 K 折交叉验证方差不存在无偏估计。</p>
+  <p><span class="label">项目关系：</span>本项目“10 折不独立，只描述、不做 p/CI”的方法学依据之一（docs/EVALUATION_PROTOCOL.md 引用）。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；JMLR 链接 grandvalet04a 取自 docs/EVALUATION_PROTOCOL.md（修正先前误构的 bengio04a）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{bengio2004no,
+  title = {No unbiased estimator of the variance of K-fold cross-validation},
+  author = {Bengio, Y. and Grandvalet, Y.},
+  year = {2004},
+  journal = {JMLR, 5, 1089–1105},
+  url = {https://www.jmlr.org/papers/v5/grandvalet04a.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="nadeau2003inference">
+  <h3>Inference for the generalization error</h3>
+  <p class="apa">Nadeau, C., Bengio, Y. (2003). <cite>Inference for the generalization error</cite>. Machine Learning, 52(3), 239–281.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1023/A:1024068626366">原文链接</a> · <a href="https://doi.org/10.1023/A:1024068626366">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>泛化误差的推断与修正重采样 t 检验。</p>
+  <p><span class="label">项目关系：</span>泛化误差推断方法学；本项目不做 p/CI 的相关背景。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；DOI 10.1023/A:1024068626366 本轮经 Crossref 一手 API 核验解析。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{nadeau2003inference,
+  title = {Inference for the generalization error},
+  author = {Nadeau, C. and Bengio, Y.},
+  year = {2003},
+  journal = {Machine Learning, 52(3), 239–281},
+  doi = {10.1023/A:1024068626366},
+  url = {https://doi.org/10.1023/A:1024068626366}
+}</code></pre></details>
+</article>
+<article class="refcard" id="dietterich1998approximate">
+  <h3>Approximate statistical tests for comparing supervised classification learning algorithms</h3>
+  <p class="apa">Dietterich, T. G. (1998). <cite>Approximate statistical tests for comparing supervised classification learning algorithms</cite>. Neural Computation, 10(7), 1895–1923.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1162/089976698300017197">原文链接</a> · <a href="https://doi.org/10.1162/089976698300017197">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>比较监督学习算法的近似统计检验（含 5×2 折配对 t 检验）。</p>
+  <p><span class="label">项目关系：</span>配对检验方法学背景；本项目折均比较只描述、不做 p/CI。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；原构造 DOI …017195 经 Crossref 返回 404，本轮更正为真实 DOI 10.1162/089976698300017197。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{dietterich1998approximate,
+  title = {Approximate statistical tests for comparing supervised classification learning algorithms},
+  author = {Dietterich, T. G.},
+  year = {1998},
+  journal = {Neural Computation, 10(7), 1895–1923},
+  doi = {10.1162/089976698300017197},
+  url = {https://doi.org/10.1162/089976698300017197}
+}</code></pre></details>
+</article>
+<article class="refcard" id="demsar2006statistical">
+  <h3>Statistical comparisons of classifiers over multiple data sets</h3>
+  <p class="apa">Demšar, J. (2006). <cite>Statistical comparisons of classifiers over multiple data sets</cite>. JMLR, 7, 1–30.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://jmlr.org/papers/v7/demsar06a.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>多数据集分类器比较的 Friedman + Nemenyi 非参数检验框架。</p>
+  <p><span class="label">项目关系：</span>多模型比较方法学背景。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；JMLR 链接 demsar06a 本轮经一手摘要页核验（题名/作者一致）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{demsar2006statistical,
+  title = {Statistical comparisons of classifiers over multiple data sets},
+  author = {Demšar, J.},
+  year = {2006},
+  journal = {JMLR, 7, 1–30},
+  url = {https://jmlr.org/papers/v7/demsar06a.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="benavoli2017time">
+  <h3>Time for a change: a tutorial for comparing multiple classifiers through Bayesian analysis</h3>
+  <p class="apa">Benavoli, A., Corani, G., Demšar, J., Zaffalon, M. (2017). <cite>Time for a change: a tutorial for comparing multiple classifiers through Bayesian analysis</cite>. JMLR, 18(77), 1–36.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://www.jmlr.org/papers/v18/16-305.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>用贝叶斯分析比较多分类器的教程（替代 NHST）。</p>
+  <p><span class="label">项目关系：</span>贝叶斯配对比较方法学背景。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；原链接 16-568.html 经一手核验指向他文（Zhang &amp; Xiao, SPDC, 18(84)），本轮更正为真实 JMLR 链接 16-305.html（题名/作者一致）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{benavoli2017time,
+  title = {Time for a change: a tutorial for comparing multiple classifiers through Bayesian analysis},
+  author = {Benavoli, A. and Corani, G. and Demšar, J. and Zaffalon, M.},
+  year = {2017},
+  journal = {JMLR, 18(77), 1–36},
+  url = {https://www.jmlr.org/papers/v18/16-305.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="bouckaert2004evaluating">
+  <h3>Evaluating the replicability of significance tests for comparing learning algorithms</h3>
+  <p class="apa">Bouckaert, R. R., Frank, E. (2004). <cite>Evaluating the replicability of significance tests for comparing learning algorithms</cite>. LNCS, 3056, 3–12.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1007/978-3-540-24775-3_3">原文链接</a> · <a href="https://doi.org/10.1007/978-3-540-24775-3_3">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>评估比较学习算法显著性检验的可重复性。</p>
+  <p><span class="label">项目关系：</span>重复 CV 检验方法学背景。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；DOI 10.1007/978-3-540-24775-3_3 本轮经 Crossref 一手 API 核验解析。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{bouckaert2004evaluating,
+  title = {Evaluating the replicability of significance tests for comparing learning algorithms},
+  author = {Bouckaert, R. R. and Frank, E.},
+  year = {2004},
+  booktitle = {LNCS, 3056, 3–12},
+  doi = {10.1007/978-3-540-24775-3_3},
+  url = {https://doi.org/10.1007/978-3-540-24775-3_3}
+}</code></pre></details>
+</article>
+<article class="refcard" id="wainer2021nested">
+  <h3>Nested cross-validation when selecting classifiers is overzealous for most practical applications</h3>
+  <p class="apa">Wainer, J., Cawley, G. (2021). <cite>Nested cross-validation when selecting classifiers is overzealous for most practical applications</cite>. Expert Systems with Applications, 171, 115222.</p>
+  <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1016/j.eswa.2021.115222">原文链接</a> · <a href="https://doi.org/10.1016/j.eswa.2021.115222">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>讨论嵌套交叉验证在选择分类器时是否过度；支撑“嵌套 CV 给无偏泛化估计”。</p>
+  <p><span class="label">项目关系：</span>反方视角：不支撑“嵌套 CV 总是必要”；本项目超参网格大，嵌套属必要侧。</p>
+
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；原构造 DOI 10.1016/j.eswa.2020.115222 经 Crossref 返回 404，本轮更正为真实 DOI 10.1016/j.eswa.2021.115222（ScienceDirect S0957417421006540/作者 UEA 存档确认）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{wainer2021nested,
+  title = {Nested cross-validation when selecting classifiers is overzealous for most practical applications},
+  author = {Wainer, J. and Cawley, G.},
+  year = {2021},
+  journal = {Expert Systems with Applications, 171, 115222},
+  doi = {10.1016/j.eswa.2021.115222},
+  url = {https://doi.org/10.1016/j.eswa.2021.115222}
+}</code></pre></details>
+</article></section><section aria-labelledby="g-plan"><h2 id="g-plan">四、docs 方法方案引用的其他来源</h2><article class="refcard" id="rakitsch2013noise">
+  <h3>It is all in the noise: Efficient multi-task Gaussian process inference with structured residuals</h3>
+  <p class="apa">Rakitsch, B., Lippert, C., Borgwardt, K., Stegle, O. (2013). <cite>It is all in the noise: Efficient multi-task Gaussian process inference with structured residuals</cite>. NeurIPS 2013.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://papers.nips.cc/paper/5089-it-is-all-in-the-noise-efficient-multi-task-gaussian-process-inference-with-structured-residuals">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>区分任务信号与残差协方差的结构化残差多任务高斯过程推断。</p>
+  <p><span class="label">项目关系：</span>BH-LMC/GET-ICM 的结构化残差多任务核家族方法定位（docs/RESULTS.md、Wheat599_BH-LMC.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2013 一手摘要页确认题名/作者（Rakitsch, Lippert, Borgwardt, Stegle）；链接取自 docs/Wheat599_BH-LMC.md、RESULTS.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{rakitsch2013noise,
+  title = {It is all in the noise: Efficient multi-task Gaussian process inference with structured residuals},
+  author = {Rakitsch, B. and Lippert, C. and Borgwardt, K. and Stegle, O.},
+  year = {2013},
+  booktitle = {NeurIPS 2013},
+  url = {https://papers.nips.cc/paper/5089-it-is-all-in-the-noise-efficient-multi-task-gaussian-process-inference-with-structured-residuals}
+}</code></pre></details>
+</article>
+<article class="refcard" id="gianola2016crossvalidation">
+  <h3>Cross-Validation Without Doing Cross-Validation in Genome-Enabled Prediction</h3>
+  <p class="apa">Gianola, D., Schön, C.-C. (2016). <cite>Cross-Validation Without Doing Cross-Validation in Genome-Enabled Prediction</cite>. G3.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1534/g3.116.033381">原文链接</a> · <a href="https://doi.org/10.1534/g3.116.033381">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>基因组预测中无需实际做交叉验证的解析条件 CV / 核预测代数。</p>
+  <p><span class="label">项目关系：</span>条件 CV/核预测代数基础；同一 Wheat599 数据上的解析交叉验证与多核（docs/Wheat599_BH-LMC.md、RESULTS.md）。</p>
+  <p class="note">RESULTS.md 记录：原报告误标 Genetics、DOI 10.1534/genetics.115.185850；实际发表于 G3，正确 DOI 10.1534/g3.116.033381。</p>
+  <p><span class="label">核验状态：</span>题名/期刊/DOI 取自 docs/Wheat599_BH-LMC.md，并经 RESULTS.md 纠错记录确认（G3 非 Genetics）；本轮 Crossref 一手 API 核验 DOI 10.1534/g3.116.033381 解析（题名/作者一致）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gianola2016crossvalidation,
+  title = {Cross-Validation Without Doing Cross-Validation in Genome-Enabled Prediction},
+  author = {Gianola, D. and Schön, C.-C.},
+  year = {2016},
+  journal = {G3},
+  doi = {10.1534/g3.116.033381},
+  url = {https://doi.org/10.1534/g3.116.033381}
+}</code></pre></details>
+</article>
+<article class="refcard" id="cuevas2018genomic">
+  <h3>Genomic-Enabled Prediction Kernel Models with Random Intercepts for Multi-environment Trials</h3>
+  <p class="apa">Cuevas, Granato, Fritsche-Neto, Montesinos-Lopez, Burgueño, Bandeira e Sousa, Crossa (2018). <cite>Genomic-Enabled Prediction Kernel Models with Random Intercepts for Multi-environment Trials</cite>. G3.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1534/g3.117.300454">原文链接</a> · <a href="https://doi.org/10.1534/g3.117.300454">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>带随机截距的多环境试验基因组核预测模型。</p>
+  <p><span class="label">项目关系：</span>多环境基因组核模型的相关先例（docs/Wheat599_BH-LMC.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cuevas, Granato, Fritsche-Neto 等）；链接取自 docs/Wheat599_BH-LMC.md。作者名字待补。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cuevas2018genomic,
+  title = {Genomic-Enabled Prediction Kernel Models with Random Intercepts for Multi-environment Trials},
+  author = {Cuevas and Granato and Fritsche-Neto and Montesinos-Lopez and Burgueño and Bandeira e Sousa and Crossa},
+  year = {2018},
+  journal = {G3},
+  doi = {10.1534/g3.117.300454},
+  url = {https://doi.org/10.1534/g3.117.300454}
+}</code></pre></details>
+</article>
+<article class="refcard" id="gonen2008localized">
+  <h3>Localized Multiple Kernel Learning</h3>
+  <p class="apa">Gönen, M., Alpaydın, E. (2008). <cite>Localized Multiple Kernel Learning</cite>. ICML 2008.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://icml.cc/Conferences/2008/papers/158.pdf">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>输入相关门控组合局部核的多核学习。</p>
+  <p><span class="label">项目关系：</span>门控多核方法定位：已使用输入相关门控组合局部核（docs/RESULTS.md）；不能将门控/多核单独宣称首创。</p>
+
+  <p><span class="label">核验状态：</span>链接 icml.cc/Conferences/2008/papers/158.pdf 本轮解析为真实 PDF；题名/作者据通识（Gönen &amp; Alpaydın 2008），PDF 无可提取元数据，本轮未逐字核验，写作引用前复核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{gonen2008localized,
+  title = {Localized Multiple Kernel Learning},
+  author = {Gönen, M. and Alpaydın, E.},
+  year = {2008},
+  booktitle = {ICML 2008},
+  url = {https://icml.cc/Conferences/2008/papers/158.pdf},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="genetic_heterogeneity_wgr">
+  <h3>Incorporating Genetic Heterogeneity in Whole-Genome Regressions Using Interactions</h3>
+  <p class="apa">de los Campos, G., Veturi, Y., Vazquez, A. I., Lehermeier, C., Pérez-Rodríguez, P. (2015). <cite>Incorporating Genetic Heterogeneity in Whole-Genome Regressions Using Interactions</cite>. Journal of Agricultural, Biological and Environmental Statistics, 20(4), 467–490.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4666286/">原文链接</a> · <a href="https://doi.org/10.1007/s13253-015-0222-5">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>用交互项在全基因组回归中纳入遗传异质性（群体相关标记效应）。</p>
+  <p><span class="label">项目关系：</span>遗传异质性/群体相关标记效应先例（docs/RESULTS.md 方法定位）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：PMC4666286 一手确认题名/作者（de los Campos 等）/JABES 20(4):467–490/DOI/PMID；年份 2015。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{genetic_heterogeneity_wgr,
+  title = {Incorporating Genetic Heterogeneity in Whole-Genome Regressions Using Interactions},
+  author = {de los Campos, G. and Veturi, Y. and Vazquez, A. I. and Lehermeier, C. and Pérez-Rodríguez, P.},
+  year = {2015},
+  journal = {Journal of Agricultural, Biological and Environmental Statistics, 20(4), 467–490},
+  doi = {10.1007/s13253-015-0222-5},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC4666286/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="jiang2015epistasis">
+  <h3>Modeling Epistasis in Genomic Selection</h3>
+  <p class="apa">Jiang, Y., Reif, J. C. (2015). <cite>Modeling Epistasis in Genomic Selection</cite>. Genetics, 201(2), 759–768.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4596682/">原文链接</a> · <a href="https://doi.org/10.1534/genetics.115.177907">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>基因组选择中建模上位性；比较加性、加性×加性互作与高斯核等预测。</p>
+  <p><span class="label">项目关系：</span>核方法用于基因组预测的先例；高斯核预测贡献不能直接解释为生物学上位性（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：PMC4596682 一手确认题名/作者（Jiang &amp; Reif）/Genetics 201(2):759–768/DOI/PMID。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{jiang2015epistasis,
+  title = {Modeling Epistasis in Genomic Selection},
+  author = {Jiang, Y. and Reif, J. C.},
+  year = {2015},
+  journal = {Genetics, 201(2), 759–768},
+  doi = {10.1534/genetics.115.177907},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC4596682/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="joint_quantile_rkhs2016">
+  <h3>Joint quantile regression in vector-valued RKHSs</h3>
+  <p class="apa">Sangnier, M., Fercoq, O., d&#x27;Alché-Buc, F. (2016). <cite>Joint quantile regression in vector-valued RKHSs</cite>. NeurIPS 2016.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://papers.neurips.cc/paper_files/paper/2016/hash/dfce06801e1a85d6d06f1fdd4475dacd-Abstract.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>向量值 RKHS 中的联合分位数回归。</p>
+  <p><span class="label">项目关系：</span>RELATION_QUANTILE 的数学近邻；本实现不宣称 GP 或严格 RKHS 等价（docs/RELATION_QUANTILE.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2016 一手摘要页确认题名/作者（Sangnier, Fercoq, d’Alché-Buc）；链接取自 docs/RELATION_QUANTILE.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{joint_quantile_rkhs2016,
+  title = {Joint quantile regression in vector-valued RKHSs},
+  author = {Sangnier, M. and Fercoq, O. and d&#x27;Alché-Buc, F.},
+  year = {2016},
+  booktitle = {NeurIPS 2016},
+  url = {https://papers.neurips.cc/paper_files/paper/2016/hash/dfce06801e1a85d6d06f1fdd4475dacd-Abstract.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="rudner2023functionspace">
+  <h3>Function-Space Regularization in Neural Networks: A Probabilistic Perspective</h3>
+  <p class="apa">Rudner, T. G. J., Kapoor, S., Qiu, S., Wilson, A. G. (2023). <cite>Function-Space Regularization in Neural Networks: A Probabilistic Perspective</cite>. ICML 2023, PMLR 202:29275–29290.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.mlr.press/v202/rudner23a.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>函数空间正则化的概率视角（FS-EB），将变分推断置于函数空间。</p>
+  <p><span class="label">项目关系：</span>RELATION_QUANTILE 的函数空间正则化近邻（docs/RELATION_QUANTILE.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：PMLR v202 rudner23a 一手摘要页确认题名/作者/卷页；链接取自 docs/RELATION_QUANTILE.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{rudner2023functionspace,
+  title = {Function-Space Regularization in Neural Networks: A Probabilistic Perspective},
+  author = {Rudner, T. G. J. and Kapoor, S. and Qiu, S. and Wilson, A. G.},
+  year = {2023},
+  booktitle = {ICML 2023, PMLR 202:29275–29290},
+  url = {https://proceedings.mlr.press/v202/rudner23a.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="rfm_repo">
+  <h3>recursive_feature_machines（LaplaceRFM / AGOP，固定提交）</h3>
+  <p class="apa">Radhakrishnan, A., et al. (2022). <cite>recursive_feature_machines（LaplaceRFM / AGOP，固定提交）</cite>. GitHub: aradha/recursive_feature_machines @ 58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2（MIT）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://github.com/aradha/recursive_feature_machines/tree/58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>递归特征机：核求解与 AGOP 更新（LaplaceRFM）。</p>
+  <p><span class="label">项目关系：</span>RFM_DEVELOPMENT 直接调用作者 LaplaceRFM，完整 1279×1279 特征矩阵、无梯度中心化、每环境单独拟合（docs/RFM_DEVELOPMENT.md）。</p>
+  <p class="note">GitHub 仓库 MIT，创建于 2022-12；README 关联 Science 论文 Mechanism for feature learning in neural networks and backpropagation-free machine learning models（DOI 10.1126/science.adi5639）；owner 账号 aradha，作者全名页面未列出。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：GitHub 仓库页确认 MIT 许可/创建年/关联 Science 论文；固定提交链接取自 docs/RFM_DEVELOPMENT.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{rfm_repo,
+  title = {recursive_feature_machines（LaplaceRFM / AGOP，固定提交）},
+  author = {Radhakrishnan, A. and others},
+  year = {2022},
+  howpublished = {GitHub: aradha/recursive_feature_machines @ 58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2（MIT）},
+  url = {https://github.com/aradha/recursive_feature_machines/tree/58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2}
+}</code></pre></details>
+</article>
+<article class="refcard" id="cwags2026">
+  <h3>CWAGS: multi-trait genomic selection using channel weighted attention convolutional network</h3>
+  <p class="apa">Cao, Mohamed, Sunar, Chan (2026). <cite>CWAGS: multi-trait genomic selection using channel weighted attention convolutional network</cite>. BMC Genomics.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://link.springer.com/article/10.1186/s12864-026-12980-9">原文链接</a> · <a href="https://doi.org/10.1186/s12864-026-12980-9">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>报告 Wheat599 四环境平均 PCC 0.5368，声明十折均值、固定种子、AdamW、400 epoch。</p>
+  <p><span class="label">项目关系：</span>未列源码链接/实际折 ID/完整选模信息；GitHub 搜索 CWAGS genomic 未发现匹配仓库（2026-11-06）；暂不能忠实适配或同协议排名，不自行搭建冒充作者实现（docs/SEED_STABILITY.md）。</p>
+  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cao, Mohamed, Sunar, Chan）；描述取自 docs/SEED_STABILITY.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cwags2026,
+  title = {CWAGS: multi-trait genomic selection using channel weighted attention convolutional network},
+  author = {Cao and Mohamed and Sunar and Chan},
+  year = {2026},
+  journal = {BMC Genomics},
+  doi = {10.1186/s12864-026-12980-9},
+  url = {https://link.springer.com/article/10.1186/s12864-026-12980-9}
+}</code></pre></details>
+</article>
+<article class="refcard" id="hybrid_kernel2025">
+  <h3>Enhancing wheat genomic prediction by a hybrid kernel approach</h3>
+  <p class="apa">Cuevas, J., Crossa, J., Montesinos-López, A., et al. (2025). <cite>Enhancing wheat genomic prediction by a hybrid kernel approach</cite>. Frontiers in Plant Science, 16, 1605202.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1605202/full">原文链接</a> · <a href="https://doi.org/10.3389/fpls.2025.1605202">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>使用标记和谱系关系矩阵的混合核研究，报告不同交叉验证方案。</p>
+  <p><span class="label">项目关系：</span>单环境 S5 属额外信息输入类别；不与现有仅标记模型十折结果直接排名；wheat.A 与该论文矩阵/行序一致性须核验；本轮不训练（docs/SEED_STABILITY.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Frontiers 一手页面（JSON-LD ScholarlyArticle）确认题名/作者（Cuevas, Crossa, Montesinos-López 等）/卷 16 文章号 1605202/DOI；描述取自 docs/SEED_STABILITY.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{hybrid_kernel2025,
+  title = {Enhancing wheat genomic prediction by a hybrid kernel approach},
+  author = {Cuevas, J. and Crossa, J. and Montesinos-López, A. and others},
+  year = {2025},
+  journal = {Frontiers in Plant Science, 16, 1605202},
+  doi = {10.3389/fpls.2025.1605202},
+  url = {https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1605202/full}
+}</code></pre></details>
+</article>
+<article class="refcard" id="distill_semiparametric2021">
+  <h3>Knowledge Distillation as Semiparametric Inference</h3>
+  <p class="apa">待核（Microsoft Research） (2021). <cite>Knowledge Distillation as Semiparametric Inference</cite>. Microsoft Research.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://www.microsoft.com/en-us/research/publication/knowledge-distillation-as-semiparametric-inference-paper/">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>把知识蒸馏视为半参数推断，讨论教师过拟合与交叉拟合。</p>
+  <p><span class="label">项目关系：</span>DISTILL_QUANTILE 的依据之一（知识蒸馏与交叉拟合，而非新神经骨干）（docs/DISTILL_QUANTILE.md）。</p>
+
+  <p><span class="label">核验状态：</span>题名/年份/链接取自 docs/DISTILL_QUANTILE.md；作者待核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{distill_semiparametric2021,
+  title = {Knowledge Distillation as Semiparametric Inference},
+  author = {待核（Microsoft Research）},
+  year = {2021},
+  journal = {Microsoft Research},
+  url = {https://www.microsoft.com/en-us/research/publication/knowledge-distillation-as-semiparametric-inference-paper/},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="distill_tabular2026">
+  <h3>Distillation of Tabular Foundation Models into Efficient Predictors</h3>
+  <p class="apa">作者待核 (2026). <cite>Distillation of Tabular Foundation Models into Efficient Predictors</cite>. arXiv:2610.01435.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://arxiv.org/abs/2610.01435">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>把表格基础模型蒸馏为高效预测器，给出 TabM 等学生的蒸馏证据。</p>
+  <p><span class="label">项目关系：</span>其全训练上下文、合成查询条件与本项目不同，不作为本项目全上下文或 CutMix 的依据（docs/DISTILL_QUANTILE.md）。</p>
+
+  <p><span class="label">核验状态：</span>题名/链接取自 docs/DISTILL_QUANTILE.md；作者待核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{distill_tabular2026,
+  title = {Distillation of Tabular Foundation Models into Efficient Predictors},
+  year = {2026},
+  journal = {arXiv:2610.01435},
+  eprint = {2610.01435},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2610.01435},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="xyz_interaction2018">
+  <h3>The xyz algorithm for fast interaction search in high-dimensional data</h3>
+  <p class="apa">Thanei, G.-A., Meinshausen, N., Shah, R. D. (2018). <cite>The xyz algorithm for fast interaction search in high-dimensional data</cite>. JMLR, 19(37), 1–42.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://www.jmlr.org/papers/volume19/16-515/16-515.pdf">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>高维数据快速交互搜索的 xyz 算法（二值输入交互搜索与全空间 KKT 条件）。</p>
+  <p><span class="label">项目关系：</span>交互搜索的成熟算法基础；本项目实现统计参照，不命名为新神经架构（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：JMLR 19(37) 一手摘要页确认题名/作者（Thanei, Meinshausen, Shah）；链接取自 docs/SPARSE_INTERACTION_DIAGNOSTIC.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{xyz_interaction2018,
+  title = {The xyz algorithm for fast interaction search in high-dimensional data},
+  author = {Thanei, G.-A. and Meinshausen, N. and Shah, R. D.},
+  year = {2018},
+  journal = {JMLR, 19(37), 1–42},
+  url = {https://www.jmlr.org/papers/volume19/16-515/16-515.pdf}
+}</code></pre></details>
+</article>
+<article class="refcard" id="intht2019">
+  <h3>Interaction Hard Thresholding: Consistent Sparse Quadratic Regression in Sub-quadratic Time and Space</h3>
+  <p class="apa">Yang, S., Shen, Y., Sanghavi, S. (2019). <cite>Interaction Hard Thresholding: Consistent Sparse Quadratic Regression in Sub-quadratic Time and Space</cite>. NeurIPS 2019.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.neurips.cc/paper/2019/file/3c7417b8df0daf23f39f445e740c7a43-Paper.pdf">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>交互硬阈值（IntHT）稀疏二次回归，亚二次时间/空间，含设计条件保证。</p>
+  <p><span class="label">项目关系：</span>稀疏二次回归的成熟基础（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2019 一手摘要页确认题名/作者（Yang, Shen, Sanghavi）；链接取自 docs/SPARSE_INTERACTION_DIAGNOSTIC.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{intht2019,
+  title = {Interaction Hard Thresholding: Consistent Sparse Quadratic Regression in Sub-quadratic Time and Space},
+  author = {Yang, S. and Shen, Y. and Sanghavi, S.},
+  year = {2019},
+  booktitle = {NeurIPS 2019},
+  url = {https://proceedings.neurips.cc/paper/2019/file/3c7417b8df0daf23f39f445e740c7a43-Paper.pdf}
+}</code></pre></details>
+</article>
+<article class="refcard" id="lista2010">
+  <h3>Learning Fast Approximations of Sparse Coding (LISTA)</h3>
+  <p class="apa">Gregor, K., LeCun, Y. (2010). <cite>Learning Fast Approximations of Sparse Coding (LISTA)</cite>. ICML 2010.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://icml.cc/2010/papers/449.pdf">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>学习 ISTA 的快速近似（LISTA），可学习稀疏推断。</p>
+  <p><span class="label">项目关系：</span>可学习稀疏推断的成熟基础（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+
+  <p><span class="label">核验状态：</span>链接 icml.cc/2010/papers/449.pdf 本轮解析为真实 PDF；题名/作者据通识（Gregor &amp; LeCun 2010 LISTA），PDF 无可提取元数据，本轮未逐字核验，写作引用前复核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{lista2010,
+  title = {Learning Fast Approximations of Sparse Coding (LISTA)},
+  author = {Gregor, K. and LeCun, Y.},
+  year = {2010},
+  booktitle = {ICML 2010},
+  url = {https://icml.cc/2010/papers/449.pdf},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="mrmash2023">
+  <h3>A flexible empirical Bayes approach to multivariate multiple regression, and its improved accuracy in predicting multi-tissue gene expression from genotypes</h3>
+  <p class="apa">Morgante, Carbonetto, Wang, Zou, Sarkar, Stephens (2023). <cite>A flexible empirical Bayes approach to multivariate multiple regression, and its improved accuracy in predicting multi-tissue gene expression from genotypes</cite>. PLOS Genetics.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1010539">原文链接</a> · <a href="https://doi.org/10.1371/journal.pgen.1010539">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>多元多重回归的灵活经验贝叶斯方法（mr.mash），自适应共享/收缩效应，提升从基因型预测多组织基因表达的精度。</p>
+  <p><span class="label">项目关系：</span>多元效应共享的成熟基础（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Morgante 等）；PLOS Genetics 2023。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{mrmash2023,
+  title = {A flexible empirical Bayes approach to multivariate multiple regression, and its improved accuracy in predicting multi-tissue gene expression from genotypes},
+  author = {Morgante and Carbonetto and Wang and Zou and Sarkar and Stephens},
+  year = {2023},
+  journal = {PLOS Genetics},
+  doi = {10.1371/journal.pgen.1010539},
+  url = {https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1010539}
+}</code></pre></details>
+</article>
+<article class="refcard" id="menet2025">
+  <h3>MeNet: A mixed-effect deep neural network for multi-environment genomic prediction of agronomic traits</h3>
+  <p class="apa">Li, Ren, Li, Lee, Wan, Gan (2025). <cite>MeNet: A mixed-effect deep neural network for multi-environment genomic prediction of agronomic traits</cite>. Plant Communications.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1016/j.xplc.2025.101620">原文链接</a> · <a href="https://doi.org/10.1016/j.xplc.2025.101620">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>GANLAB/MENET Version2.0 @ 06456e4542ab26716c4db8dd8f17517aa5155ff4（Academic Use Licence，内部非商业）</p>
+  <p><span class="label">简讲：</span>混合效应深度神经网络用于多环境农艺性状基因组预测；表型相关遗传背景嵌入与跨信息特征融合。</p>
+  <p><span class="label">项目关系：</span>MENET_QUANTILE 上游：原样动态加载 TraitSpecificEncoderForRepGeno/RepGeno/CrossInformationFeatureFusion；源码/数据/权重不入 Git；Academic Use Licence 限内部非商业学术研究（docs/MENET_QUANTILE.md、RESEARCH_PLAN.md）。</p>
+  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Li 等）；固定提交/许可取自 docs/MENET_QUANTILE.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{menet2025,
+  title = {MeNet: A mixed-effect deep neural network for multi-environment genomic prediction of agronomic traits},
+  author = {Li and Ren and Li and Lee and Wan and Gan},
+  year = {2025},
+  journal = {Plant Communications},
+  doi = {10.1016/j.xplc.2025.101620},
+  url = {https://doi.org/10.1016/j.xplc.2025.101620},
+  note = {GANLAB/MENET Version2.0 @ 06456e4542ab26716c4db8dd8f17517aa5155ff4（Academic Use Licence，内部非商业）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="batchensemble2020">
+  <h3>BatchEnsemble: An Alternative Approach to Efficient Ensemble and Lifelong Learning</h3>
+  <p class="apa">Wen, Y., Tran, D., Ba, J. (2020). <cite>BatchEnsemble: An Alternative Approach to Efficient Ensemble and Lifelong Learning</cite>. ICLR 2020.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://research.google/pubs/batchensemble-an-alternative-approach-to-efficient-ensemble-and-lifelong-learning/">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>共享矩阵乘性调制的高效集成与终身学习。</p>
+  <p><span class="label">项目关系：</span>ENVIRONMENT_TABM 沿用其共享矩阵乘性调制机制，不作为新集成原理（docs/ENVIRONMENT_TABM.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Google Research 一手页面确认题名/作者（Wen, Tran, Ba）/ICLR 2020；链接取自 docs/ENVIRONMENT_TABM.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{batchensemble2020,
+  title = {BatchEnsemble: An Alternative Approach to Efficient Ensemble and Lifelong Learning},
+  author = {Wen, Y. and Tran, D. and Ba, J.},
+  year = {2020},
+  booktitle = {ICLR 2020},
+  url = {https://research.google/pubs/batchensemble-an-alternative-approach-to-efficient-ensemble-and-lifelong-learning/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="tabr2023">
+  <h3>TabR: Tabular Deep Learning Meets Nearest Neighbors in 2023</h3>
+  <p class="apa">Gorishniy, Y., Rubachev, I., Kartashev, N., Shlenskii, D., Kotelnikov, A., Babenko, A. (2023). <cite>TabR: Tabular Deep Learning Meets Nearest Neighbors in 2023</cite>. arXiv:2307.14338.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2307.14338">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>yandex-research/tabular-dl-tabr</p>
+  <p><span class="label">简讲：</span>检索增强的表格深度学习：标签编码与差异校正。</p>
+  <p><span class="label">项目关系：</span>RETRIEVAL_TABM 依据 TabR 官方代码的标签编码与差异校正；RESEARCH_PLAN 检索机制边界（docs/RETRIEVAL_TABM.md、RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2307.14338 一手摘要确认题名/作者（Gorishniy 等）；代码链接取自 docs/RETRIEVAL_TABM.md、RESEARCH_PLAN.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{tabr2023,
+  title = {TabR: Tabular Deep Learning Meets Nearest Neighbors in 2023},
+  author = {Gorishniy, Y. and Rubachev, I. and Kartashev, N. and Shlenskii, D. and Kotelnikov, A. and Babenko, A.},
+  year = {2023},
+  journal = {arXiv:2307.14338},
+  eprint = {2307.14338},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2307.14338},
+  note = {yandex-research/tabular-dl-tabr}
+}</code></pre></details>
+</article>
+<article class="refcard" id="ragp2026">
+  <h3>RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding</h3>
+  <p class="apa">Zuo, Li, Wang, Man, Yang (2026). <cite>RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding</cite>. Plant Methods.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1186/s13007-026-01574-x">原文链接</a> · <a href="https://doi.org/10.1186/s13007-026-01574-x">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>公开源码 @ 85675b1e8054fe3e91fdb3e974150f1dde81eee3</p>
+  <p><span class="label">简讲：</span>检索增强基因组预测：PCA95 输入、逐环境单输出、Pearson 损失、triplet 对比、cosine top-5、特征融合 0.4、邻居标签乘 0.01。</p>
+  <p><span class="label">项目关系：</span>RETRIEVAL_TABM 直接相关参照；已单独同协议适配；PCA 只在 fit 拟合，cosine 库改材料 ID 严格排除并记录差异；论文原划分分数不用于本协议排名（docs/RETRIEVAL_TABM.md）。</p>
+  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Zuo 等）；固定提交/配置取自 docs/RETRIEVAL_TABM.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{ragp2026,
+  title = {RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding},
+  author = {Zuo and Li and Wang and Man and Yang},
+  year = {2026},
+  journal = {Plant Methods},
+  doi = {10.1186/s13007-026-01574-x},
+  url = {https://doi.org/10.1186/s13007-026-01574-x},
+  note = {公开源码 @ 85675b1e8054fe3e91fdb3e974150f1dde81eee3}
+}</code></pre></details>
+</article>
+<article class="refcard" id="gpfn2025">
+  <h3>GPFN：基因组预测摊销推断（题名待核）</h3>
+  <p class="apa">作者待核 (n.d.). <cite>GPFN：基因组预测摊销推断（题名待核）</cite>. PubMed 40811178.</p>
+  <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://pubmed.ncbi.nlm.nih.gov/40811178/">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>基因组预测的模拟任务摊销推断，报告植物数据结果（据语境）。</p>
+  <p><span class="label">项目关系：</span>MATRIX_INFERENCE/JOINT_INFERENCE 的摊销推断先例；跨任务学习不能单独作为原创贡献（docs/MATRIX_INFERENCE.md）。</p>
+
+  <p><span class="label">核验状态：</span>仅 docs/MATRIX_INFERENCE.md 给出 PubMed 40811178 链接；本轮 PubMed 返回 JS 挑战页，未取得题名/作者/年份，保持待核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gpfn2025,
+  title = {GPFN：基因组预测摊销推断（题名待核）},
+  journal = {PubMed 40811178},
+  url = {https://pubmed.ncbi.nlm.nih.gov/40811178/},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="linearpfn2026">
+  <h3>LinearPFN：主效应与成对交互摊销推断（题名待核）</h3>
+  <p class="apa">作者待核 (2026). <cite>LinearPFN：主效应与成对交互摊销推断（题名待核）</cite>. arXiv:2610.06580.</p>
+  <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://arxiv.org/abs/2610.06580">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>schiekiera/LinearPFN @ 97ac4f970df655b12d40a3b4a35fa3b2264ce6dd</p>
+  <p><span class="label">简讲：</span>覆盖主效应与成对交互的摊销推断，发布模型预测变量范围 2–30；逐单元双轴注意力、可选原始成对统计量。</p>
+  <p><span class="label">项目关系：</span>MATRIX_INFERENCE/JOINT_INFERENCE 的交互摊销推断先例；双向矩阵计算与交互统计量不能单独作为原创贡献（docs/MATRIX_INFERENCE.md、JOINT_INFERENCE.md）。</p>
+
+  <p><span class="label">核验状态：</span>arXiv/代码链接取自 docs/MATRIX_INFERENCE.md、JOINT_INFERENCE.md；确切题名/作者待核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{linearpfn2026,
+  title = {LinearPFN：主效应与成对交互摊销推断（题名待核）},
+  year = {2026},
+  journal = {arXiv:2610.06580},
+  eprint = {2610.06580},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2610.06580},
+  note = {schiekiera/LinearPFN @ 97ac4f970df655b12d40a3b4a35fa3b2264ce6dd；元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="gwkbr2026">
+  <h3>GWKBR: a novel method integrating machine learning and Bayesian inference framework to improve genomic prediction accuracy</h3>
+  <p class="apa">Wang, Jiang, Zhang, Zhang (2026). <cite>GWKBR: a novel method integrating machine learning and Bayesian inference framework to improve genomic prediction accuracy</cite>. Briefings in Bioinformatics.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1093/bib/bbag133">原文链接</a> · <a href="https://doi.org/10.1093/bib/bbag133">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>Wangxuer521/GWKBR @ d9019e012cae4d7207eab8c318942450fded67d3</p>
+  <p><span class="label">简讲：</span>K_Model 后验解 (RᵀR + λ_eff·G)⁻¹Rᵀy，G 约束系数精度；有效函数核 R·G⁻¹·Rᵀ。</p>
+  <p><span class="label">项目关系：</span>STRUCTURED_COEFFICIENT 依据；原文 Wheat 四环境最终均选 unweighted，不以该结果证明标记加权有效；与加性/RBF 相加有实质区别；文献成绩不与项目结果直接排名（docs/STRUCTURED_COEFFICIENT.md）。</p>
+  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Wang 等）；固定提交/公式取自 docs/STRUCTURED_COEFFICIENT.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gwkbr2026,
+  title = {GWKBR: a novel method integrating machine learning and Bayesian inference framework to improve genomic prediction accuracy},
+  author = {Wang and Jiang and Zhang and Zhang},
+  year = {2026},
+  journal = {Briefings in Bioinformatics},
+  doi = {10.1093/bib/bbag133},
+  url = {https://doi.org/10.1093/bib/bbag133},
+  note = {Wangxuer521/GWKBR @ d9019e012cae4d7207eab8c318942450fded67d3}
+}</code></pre></details>
+</article>
+<article class="refcard" id="subart2024">
+  <h3>Seemingly unrelated Bayesian additive regression trees for cost-effectiveness analyses in healthcare</h3>
+  <p class="apa">Esser, J., Maia, M., Parnell, A. C., Bosmans, J., van Dongen, H., Klausch, T., Murphy, K. (2024). <cite>Seemingly unrelated Bayesian additive regression trees for cost-effectiveness analyses in healthcare</cite>. arXiv:2404.02228（stat.ME）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2404.02228">原文链接</a></span></p>
+  <p><span class="label">代码/许可：</span>MateusMaiaDS/subart @ deddf4ea1290513cd6bce4e7867349d6c32fc2fa（MIT）</p>
+  <p><span class="label">简讲：</span>似不相关贝叶斯加性回归树（subart）：为每个连续/二元结局各建一棵树集成，同时建模结局间依赖（非参数似不相关回归/多元 probit），面向医疗成本效果分析。不是 SoftBART（Chipman 等）。</p>
+  <p><span class="label">项目关系：</span>SPARSE_POLYGENIC_BART 复用 subart 仓库的 BART 回归路径（不引入分类/缺失表型/类别重编码）；源码及原许可在 src/wheat599/bayesian_trees/。原文为医疗成本效果的多元似不相关 BART，非基因组学应用（docs/SPARSE_POLYGENIC_BART.md）。</p>
+  <p class="note">subart＝seemingly unrelated BART，非 SoftBART；R 包 subart；arXiv v1 2024-04，v3 2025-02。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2404.02228 一手摘要确认题名/作者（Esser, Maia, Parnell 等）；代码/许可取自 docs/SPARSE_POLYGENIC_BART.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{subart2024,
+  title = {Seemingly unrelated Bayesian additive regression trees for cost-effectiveness analyses in healthcare},
+  author = {Esser, J. and Maia, M. and Parnell, A. C. and Bosmans, J. and van Dongen, H. and Klausch, T. and Murphy, K.},
+  year = {2024},
+  journal = {arXiv:2404.02228（stat.ME）},
+  eprint = {2404.02228},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2404.02228},
+  note = {MateusMaiaDS/subart @ deddf4ea1290513cd6bce4e7867349d6c32fc2fa（MIT）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="dart2018">
+  <h3>Bayesian Regression Trees for High-Dimensional Prediction and Variable Selection</h3>
+  <p class="apa">Linero, A. R. (2018). <cite>Bayesian Regression Trees for High-Dimensional Prediction and Variable Selection</cite>. JASA.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1080/01621459.2016.1264957">原文链接</a> · <a href="https://doi.org/10.1080/01621459.2016.1264957">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>高维预测与变量选择的贝叶斯回归树（DART 稀疏先验）。</p>
+  <p><span class="label">项目关系：</span>SPARSE_POLYGENIC_BART 的稀疏先验来源（docs/SPARSE_POLYGENIC_BART.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者（Linero）；DART 为其稀疏先验方法。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{dart2018,
+  title = {Bayesian Regression Trees for High-Dimensional Prediction and Variable Selection},
+  author = {Linero, A. R.},
+  year = {2018},
+  journal = {JASA},
+  doi = {10.1080/01621459.2016.1264957},
+  url = {https://doi.org/10.1080/01621459.2016.1264957}
+}</code></pre></details>
+</article>
+<article class="refcard" id="susie2021">
+  <h3>SuSiE / susieR：单效应之和回归</h3>
+  <p class="apa">Wang, G., Sarkar, A., Carbonetto, P., Stephens, M. (2020). <cite>SuSiE / susieR：单效应之和回归</cite>. susieR（stephenslab.github.io/susieR）；主文献 JRSS-B 82:1273–1300.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://stephenslab.github.io/susieR/">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>相关变量的联合选择与不确定性（sum of single effects）。</p>
+  <p><span class="label">项目关系：</span>JOINT_INFERENCE 的先例；本轮不声称这些机制首次提出（docs/JOINT_INFERENCE.md）。</p>
+  <p class="note">主文献：Wang, Sarkar, Carbonetto &amp; Stephens (2020) A simple new approach to variable selection in regression, with application to genetic fine mapping. JRSS-B 82:1273–1300；项目页另列 SuSiE 2.0（2025）等。key 年份 2021 与主文献 2020 不一致，以 2020 为准。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：项目页一手确认主文献题名/作者/年份（2020，JRSS-B）；链接取自 docs/JOINT_INFERENCE.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{susie2021,
+  title = {SuSiE / susieR：单效应之和回归},
+  author = {Wang, G. and Sarkar, A. and Carbonetto, P. and Stephens, M.},
+  year = {2020},
+  howpublished = {susieR（stephenslab.github.io/susieR）；主文献 JRSS-B 82:1273–1300},
+  url = {https://stephenslab.github.io/susieR/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="sblgnn2025">
+  <h3>Channel Estimation for XL-MIMO Systems with Decentralized Baseband Processing: Integrating Local Reconstruction with Global Refinement</h3>
+  <p class="apa">Tang, A., Wang, J.-B., Pan, Y., Zeng, C., Chen, Y., Yu, H., Xiao, M., de Lamare, R. C., Wang, J. (2025). <cite>Channel Estimation for XL-MIMO Systems with Decentralized Baseband Processing: Integrating Local Reconstruction with Global Refinement</cite>. arXiv:2501.17059（接收 IEEE TCOM）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2501.17059">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>SBL-GNN：GNN 增强的稀疏贝叶斯学习，结合神经先验更新与解析后验；原文面向 XL-MIMO 无线信道估计（去中心化基带处理），非基因组学应用。</p>
+  <p><span class="label">项目关系：</span>JOINT_INFERENCE 引用其 SBL-GNN（稀疏贝叶斯学习+GNN）机制；原文为无线信道估计应用，作方法参考而非基因组学先例（docs/JOINT_INFERENCE.md）。</p>
+  <p class="note">arXiv 2501.17059 一手核验：SBL-GNN 为该无线信道估计论文内部算法；docs 以 SBL-GNN 机制引用，域差异如实标注。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2501.17059 一手摘要确认题名/作者（Tang 等）；SBL-GNN 为其内部算法，应用域为无线信道估计。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{sblgnn2025,
+  title = {Channel Estimation for XL-MIMO Systems with Decentralized Baseband Processing: Integrating Local Reconstruction with Global Refinement},
+  author = {Tang, A. and Wang, J.-B. and Pan, Y. and Zeng, C. and Chen, Y. and Yu, H. and Xiao, M. and de Lamare, R. C. and Wang, J.},
+  year = {2025},
+  journal = {arXiv:2501.17059（接收 IEEE TCOM）},
+  eprint = {2501.17059},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2501.17059}
+}</code></pre></details>
+</article>
+<article class="refcard" id="wilson2016dkl">
+  <h3>Deep Kernel Learning</h3>
+  <p class="apa">Wilson, A. G., Hu, Z., Salakhutdinov, R., Xing, E. P. (2016). <cite>Deep Kernel Learning</cite>. AISTATS 2016, PMLR 51:370–378.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.mlr.press/v51/wilson16.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>深核学习：用神经网络学习核函数的输入表示。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的深核学习家族；不能把这些成熟技术本身当作原创（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：PMLR v51 wilson16 一手摘要页确认题名/作者/卷页；链接取自 docs/RESEARCH_PLAN.md。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{wilson2016dkl,
+  title = {Deep Kernel Learning},
+  author = {Wilson, A. G. and Hu, Z. and Salakhutdinov, R. and Xing, E. P.},
+  year = {2016},
+  booktitle = {AISTATS 2016, PMLR 51:370–378},
+  url = {https://proceedings.mlr.press/v51/wilson16.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="bertinetto2019closedform">
+  <h3>Meta-learning with differentiable closed-form solvers</h3>
+  <p class="apa">Bertinetto, L., Henriques, J. F., Torr, P. H. S., Vedaldi, A. (2019). <cite>Meta-learning with differentiable closed-form solvers</cite>. ICLR 2019（arXiv:1805.08136）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/1805.08136">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>可微闭式求解器/读出：元学习中用闭式解（如岭回归）作为可微读出层。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的可微闭式读出家族；拟检验差异是位点维保留的自排除背景表示（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:1805.08136 一手摘要确认题名/作者（Bertinetto 等），页面注明 ICLR 2019；arXiv v1 2018。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{bertinetto2019closedform,
+  title = {Meta-learning with differentiable closed-form solvers},
+  author = {Bertinetto, L. and Henriques, J. F. and Torr, P. H. S. and Vedaldi, A.},
+  year = {2019},
+  journal = {ICLR 2019（arXiv:1805.08136）},
+  eprint = {1805.08136},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/1805.08136}
+}</code></pre></details>
+</article>
+<article class="refcard" id="efa2023">
+  <h3>Factorizing polygenic epistasis improves prediction and uncovers biological pathways in complex traits</h3>
+  <p class="apa">Tang, D., Freudenberg, J., Dahl, A. (2023). <cite>Factorizing polygenic epistasis improves prediction and uncovers biological pathways in complex traits</cite>. American Journal of Human Genetics, 110(11), 1875–1887.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10645564/">原文链接</a> · <a href="https://doi.org/10.1016/j.ajhg.2023.10.002">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>因子化多基因上位性（EFA）：低秩分解上位性效应以改善预测并揭示生物学通路。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的低秩基因交互先例；本轮考察位点自排除/共享非线性/稀疏调制的具体组合（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：PMC10645564 一手确认题名/作者（Tang, Freudenberg, Dahl）/AJHG 110(11):1875–1887/DOI/PMID。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{efa2023,
+  title = {Factorizing polygenic epistasis improves prediction and uncovers biological pathways in complex traits},
+  author = {Tang, D. and Freudenberg, J. and Dahl, A.},
+  year = {2023},
+  journal = {American Journal of Human Genetics, 110(11), 1875–1887},
+  doi = {10.1016/j.ajhg.2023.10.002},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC10645564/}
+}</code></pre></details>
+</article>
+<article class="refcard" id="contextnet2021">
+  <h3>ContextNet: A Click-Through Rate Prediction Framework Using Contextual information to Refine Feature Embedding</h3>
+  <p class="apa">Wang, Z., She, Q., Zhang, P., Zhang, J. (2021). <cite>ContextNet: A Click-Through Rate Prediction Framework Using Contextual information to Refine Feature Embedding</cite>. arXiv:2107.12025（cs.IR）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2107.12025">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>输入相关的特征调制：用上下文信息精炼特征嵌入（原文面向点击率预测）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的输入相关特征调制先例（docs/RESEARCH_PLAN.md）；原文为 CTR 预测应用，作机制参考。</p>
+  <p class="note">原文为点击率（CTR）预测框架，非基因组学应用；题名 information 小写为原文 verbatim。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2107.12025 一手摘要确认题名/作者（Wang 等）；应用域为 CTR 预测。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{contextnet2021,
+  title = {ContextNet: A Click-Through Rate Prediction Framework Using Contextual information to Refine Feature Embedding},
+  author = {Wang, Z. and She, Q. and Zhang, P. and Zhang, J.},
+  year = {2021},
+  journal = {arXiv:2107.12025（cs.IR）},
+  eprint = {2107.12025},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2107.12025}
+}</code></pre></details>
+</article>
+<article class="refcard" id="dnawhisper2026">
+  <h3>DNAwhisper: An Integrated Deep Learning Pyramidal Framework for Multi-Trait Genomic Prediction and Adaptive Marker Prioritisation</h3>
+  <p class="apa">Ma, Y., Li, X., Ji, X., Wang, C., Zhang, D., Zhai, T., Wang, H., Liu, P. (2026). <cite>DNAwhisper: An Integrated Deep Learning Pyramidal Framework for Multi-Trait Genomic Prediction and Adaptive Marker Prioritisation</cite>. Plant Biotechnology Journal, 24(6), 4005–4026.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13205711/">原文链接</a> · <a href="https://doi.org/10.1111/pbi.70619">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>Marxin1992/Whisperer_of_DNA @ 7a657cc00d44263c4b1085d3991ecc0e935c14e5</p>
+  <p><span class="label">简讲：</span>DNA 预训练模型；表 1 的 0.80 是验证集均值，预训练使用全体材料基因型。</p>
+  <p><span class="label">项目关系：</span>官方 CSV 入口在划分前按完整表型归一化、预训练配置用全部输入材料、模型代码无条件计算主损失——直接载入将使测试表型参与训练；同协议适配须把预训练与监督限制在训练材料内（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：PMC13205711 一手确认题名/作者（Ma 等）/Plant Biotechnol J 24(6):4005–4026/DOI/PMID；固定提交与泄漏分析取自 docs/RESEARCH_PLAN.md，结论针对所核查公开代码版本。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{dnawhisper2026,
+  title = {DNAwhisper: An Integrated Deep Learning Pyramidal Framework for Multi-Trait Genomic Prediction and Adaptive Marker Prioritisation},
+  author = {Ma, Y. and Li, X. and Ji, X. and Wang, C. and Zhang, D. and Zhai, T. and Wang, H. and Liu, P.},
+  year = {2026},
+  journal = {Plant Biotechnology Journal, 24(6), 4005–4026},
+  doi = {10.1111/pbi.70619},
+  url = {https://pmc.ncbi.nlm.nih.gov/articles/PMC13205711/},
+  note = {Marxin1992/Whisperer_of_DNA @ 7a657cc00d44263c4b1085d3991ecc0e935c14e5}
+}</code></pre></details>
+</article>
+<article class="refcard" id="caruana2004ensemble">
+  <h3>Ensemble selection from libraries of models</h3>
+  <p class="apa">Caruana, R., Niculescu-Mizil, A., Crew, G., Ksikes, A. (2004). <cite>Ensemble selection from libraries of models</cite>. ICML 2004.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://www.cs.cornell.edu/~caruana/ctp/ct.papers/caruana.icml04.icdm06long.pdf">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>从模型库前向选择集成成员以优化验证分数。</p>
+  <p><span class="label">项目关系：</span>模型库预测平均的成熟依据；本项目固定 top-5，不是其完整前向选择算法，不把预测平均等同于对核矩阵求和（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>链接 cs.cornell.edu/~caruana/ctp/ct.papers/caruana.icml04.icdm06long.pdf 本轮解析为真实 PDF；题名/作者据通识（Caruana 等 2004），PDF 无可提取元数据，本轮未逐字核验，写作引用前复核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{caruana2004ensemble,
+  title = {Ensemble selection from libraries of models},
+  author = {Caruana, R. and Niculescu-Mizil, A. and Crew, G. and Ksikes, A.},
+  year = {2004},
+  booktitle = {ICML 2004},
+  url = {https://www.cs.cornell.edu/~caruana/ctp/ct.papers/caruana.icml04.icdm06long.pdf},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="mtg2_2016">
+  <h3>MTG2：多性状基因组分析（题名待核）</h3>
+  <p class="apa">作者待核 (2016). <cite>MTG2：多性状基因组分析（题名待核）</cite>. Bioinformatics, 32(9), 1420.</p>
+  <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://academic.oup.com/bioinformatics/article/32/9/1420/1744518">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>多性状混合模型的协方差估计（MTG2，AI 算法）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 参考其协方差估计思想；本实现用 L-BFGS-B 而非 MTG2 的 AI 算法，不宣称复现其软件或新模型家族（docs/RESEARCH_PLAN.md）。</p>
+
+  <p><span class="label">核验状态：</span>链接/卷期页取自 docs/RESEARCH_PLAN.md；本轮 OUP 返回 403，未取得题名/作者，保持待核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{mtg2_2016,
+  title = {MTG2：多性状基因组分析（题名待核）},
+  year = {2016},
+  journal = {Bioinformatics, 32(9), 1420},
+  url = {https://academic.oup.com/bioinformatics/article/32/9/1420/1744518},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="kernelreml2026">
+  <h3>REML implementations of kernel-based genomic prediction models for genotype x environment x management interactions</h3>
+  <p class="apa">Melsen, K. A. C., Gezan, S., Tolhurst, D. J., van Eeuwijk, F. A., Peeters, C. F. W. (2025). <cite>REML implementations of kernel-based genomic prediction models for genotype x environment x management interactions</cite>. arXiv:2501.06844（stat.ME；v1 2025-01，v3 2026-03）.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2501.06844">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>核基因组预测模型的 REML 方差组分估计实现，面向基因型×环境×管理交互。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 参考；基于材料谱分解的 REML 目标与预测已对照列主序稠密 GLS（误差约 2.2e-16/3.0e-15）（docs/RESEARCH_PLAN.md）。</p>
+  <p class="note">arXiv v1 2025-01，v3 修订 2026-03；key 年份 2026 对应修订稿。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2501.06844 一手摘要确认题名/作者（Melsen 等）；年份以 v1 2025 计，修订 2026。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{kernelreml2026,
+  title = {REML implementations of kernel-based genomic prediction models for genotype x environment x management interactions},
+  author = {Melsen, K. A. C. and Gezan, S. and Tolhurst, D. J. and van Eeuwijk, F. A. and Peeters, C. F. W.},
+  year = {2025},
+  journal = {arXiv:2501.06844（stat.ME；v1 2025-01，v3 2026-03）},
+  eprint = {2501.06844},
+  archivePrefix = {arXiv},
+  url = {https://arxiv.org/abs/2501.06844}
+}</code></pre></details>
+</article>
+<article class="refcard" id="sklearn_pitfalls">
+  <h3>scikit-learn: Common pitfalls and recommended practices</h3>
+  <p class="apa">scikit-learn developers (n.d.). <cite>scikit-learn: Common pitfalls and recommended practices</cite>. scikit-learn 官方文档.</p>
+  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://scikit-learn.org/stable/common_pitfalls.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>训练侧预处理与数据泄漏的常见陷阱及推荐做法。</p>
+  <p><span class="label">项目关系：</span>EVALUATION_PROTOCOL 训练侧预处理（scaler/插补只在拟合集拟合）的依据（docs/EVALUATION_PROTOCOL.md）。</p>
+
+  <p><span class="label">核验状态：</span>链接取自 docs/EVALUATION_PROTOCOL.md；官方文档，本轮未重新核验版本。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{sklearn_pitfalls,
+  title = {scikit-learn: Common pitfalls and recommended practices},
+  author = {scikit-learn developers},
+  howpublished = {scikit-learn 官方文档},
+  url = {https://scikit-learn.org/stable/common_pitfalls.html},
+  note = {元数据待核，正式引用前复核}
+}</code></pre></details>
+</article>
+<article class="refcard" id="spyromitrosxioufis2016multitarget">
+  <h3>Multi-Target Regression via Input Space Expansion: Treating Targets as Inputs</h3>
+  <p class="apa">Spyromitros-Xioufis, E., Tsoumakas, G., Groves, W., Vlahavas, I. (2016). <cite>Multi-Target Regression via Input Space Expansion: Treating Targets as Inputs</cite>. Machine Learning.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1007/s10994-016-5546-z">原文链接</a> · <a href="https://doi.org/10.1007/s10994-016-5546-z">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>多目标回归的输入空间扩展法（stacked single-target）：把其他目标的预测作为附加输入分阶段学习，以利用目标间依赖。</p>
+  <p><span class="label">项目关系：</span>docs/LATE_TRANSFER.md 引用的多目标/目标间依赖先例（stacked multi-target regression）。</p>
+  <p class="note">arXiv:1211.6581（2012 初稿，2016 v5）；期刊版 Machine Learning 2016，DOI 10.1007/s10994-016-5546-z。</p>
+  <p><span class="label">核验状态：</span>本轮核验：arXiv:1211.6581 一手摘要确认题名/作者（Spyromitros-Xioufis, Tsoumakas, Groves, Vlahavas）；期刊版 Machine Learning 2016 DOI 10.1007/s10994-016-5546-z 据 arXiv journal-ref。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{spyromitrosxioufis2016multitarget,
+  title = {Multi-Target Regression via Input Space Expansion: Treating Targets as Inputs},
+  author = {Spyromitros-Xioufis, E. and Tsoumakas, G. and Groves, W. and Vlahavas, I.},
+  year = {2016},
+  journal = {Machine Learning},
+  doi = {10.1007/s10994-016-5546-z},
+  eprint = {1211.6581},
+  archivePrefix = {arXiv},
+  url = {https://doi.org/10.1007/s10994-016-5546-z}
+}</code></pre></details>
+</article></section>
+<section aria-label="代码与权重许可">
+  <h2>代码与权重许可</h2>
+  <div class="table-wrapper" tabindex="0" role="region" aria-label="代码与权重许可表">
+    <table>
+      <caption>沿用 docs/REFERENCES.md 许可表，并补本轮与方法文档核验项。</caption>
+      <thead><tr><th scope="col">项</th><th scope="col">许可 / 状态</th></tr></thead>
+      <tbody><tr><th scope="row">PriorLabs/TabPFN</th><td>Apache-2.0（本地核验）</td></tr>
+<tr><th scope="row">Prior-Labs/tabpfn_3_5 权重</th><td>tabpfn-3-5-license-v1.0，非商用；允许研究/内部基准，禁止商业决策、客户交付、付费产品；全文在 docs/licenses/</td></tr>
+<tr><th scope="row">yandex-research/rtdl-revisiting-models</th><td>Apache-2.0（仓库 LICENSE 与 wheel dist-info 均核验）</td></tr>
+<tr><th scope="row">yandex-research/tabm</th><td>Apache-2.0（GitHub API）</td></tr>
+<tr><th scope="row">lasso-net/lassonet</th><td>MIT（GitHub API，扩展比较）</td></tr>
+<tr><th scope="row">wjhhh2928/Mul-PheG2P</th><td>MIT（本轮固定提交 README 核验）</td></tr>
+<tr><th scope="row">GANLAB/MENET</th><td>Academic Use Licence，内部非商业学术研究（docs/MENET_QUANTILE.md）</td></tr>
+<tr><th scope="row">MateusMaiaDS/subart</th><td>MIT（docs/SPARSE_POLYGENIC_BART.md）</td></tr>
+<tr><th scope="row">jingang/TabICL 回归权重</th><td>BSD-3-Clause（docs/LICENSE_NOTES.md）</td></tr>
+<tr><th scope="row">BGLR</th><td>GPL-3</td></tr></tbody>
+    </table>
+  </div>
+</section>
+<section aria-label="不引用与易错项">
+  <h2>不引用 / 易错项</h2>
+  <div class="panel"><ul class="pitfalls"><li>PMC13049863 是 FT-Transformer 用于性传播感染风险预测的应用论文（Natsal-3），不是 FT-Transformer 原始论文；只作应用引用。</li>
+<li>TabICL 是 ICML 2025，不是 ICLR；TabICLv2 才是 ICML 2026。</li>
+<li>TabM / FT-Transformer 作者为 Yury Gorishniy（Y.）；旧 REFERENCES.md 写 “N.” 有误，本轮据 arXiv 原文 PDF 一手修正。TabM 合著者为 Akim Kotelnikov、Artem Babenko，不要写成 Akhanov 等。</li>
+<li>GPformer 与 GPTransformer（大麦 2021）、Cropformer 是不同工作；引用写全称。</li>
+<li>Gsformer 的 GY1–GY4 与本仓列名映射未核；不要假设其四任务顺序与 &quot;1&quot;,&quot;2&quot;,&quot;4&quot;,&quot;5&quot; 相同。</li>
+<li>Fan &amp; Waldmann 公开代码的四项问题目前是简报审查结论；Regression.zip 尚未逐项复核。冻结文本标“待复核”，不写成已证实事实。</li>
+<li>“评审者曾指出全样本标准化”没有找到公开出处；不写入论文或仓库文本，除非给出可引用来源。</li>
+<li>Mul-PheG2P 发表版为 New Phytologist 2026;252(1):503–519（DOI 10.1111/nph.71461）；README 著录 2025 为代码/预印年份。标量融合（论文）与隐藏融合（公开默认）不可混称；论文 500/300/200 与公开 train.py 默认 300/300/200 不同，以代码为准。</li>
+<li>Gianola &amp; Schön 文章发表于 G3（DOI 10.1534/g3.116.033381），不是 Genetics（旧报告误标 10.1534/genetics.115.185850）。</li>
+<li>Huber ICM 是凸 Huber 惩罚风险最小化，不是完整 Huber GP 贝叶斯算法；分位数 TabM 为 raw 全标记、99 个 0.001–0.999 分位点、pinball 求和、成员/材料平均。</li>
+<li>第四组多数条目仅据 docs 方法方案引用著录，元数据未在线核验者已标“待核/待复核”；写作引用前须核对一手来源，不编造题名/作者/卷期页。</li></ul></div>
+</section>
+</main>
+<footer class="site">
+  <p>Wheat599 参考文献库 · 生成自 <code>ref/build.py</code> · 配色与导航对齐 docs/models.html 与 results/index.html。</p>
+  <p>核验底线：不编造元数据；未在线核验项明确标注；全文不可获取不冒充。数据只读，本目录不含实验。</p>
+</footer>
+</div>
+</body>
+</html>

@@ -1,3 +1,5 @@
+> 历史记录：不作为现役运行、评审或成员分工要求。当前边界见 [AGENTS.md](../AGENTS.md)，结果见 [RESULTS.md](RESULTS.md)。
+
 > **历史锚点：** 本清单生成于 Stage 1 收敛前（含 `configs/core.yaml` 旧路径）。Stage 1 修订版将在 iq 完成 stage1 代码与测试后重新生成；冻结以新 `G0_VERSION` 为准。
 
 # G0 Review Version Anchor
