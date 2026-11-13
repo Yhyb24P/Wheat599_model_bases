@@ -1,4 +1,4 @@
-"""Evaluation metrics (docs/RESEARCH_PLAN.md §4.3).
+"""Evaluation metrics (docs/history/RESEARCH_PLAN.md §4.3).
 
 PCC and RMSE are the co-primary metrics; MAE and R2 are reported alongside.
 Every metric takes 1-D arrays of equal length (truth, prediction) for one

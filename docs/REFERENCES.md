@@ -14,7 +14,7 @@
 | 4 | Qu, J. T. G., Holzmüller, D., Varoquaux, G., & Le Morvan, Z. (2025). TabICL: A Tabular Foundation Model for In-Context Learning on Tables. *ICML 2025*. PMLR v267 (qu25d). 代码 `soda-inria/tabicl`（含 TabICLv2, ICML 2026）。 | gb 在线核验。 |
 | 5 | Wu, C., Zhang, Y., Ying, Z., et al. (2024). A transformer-based genomic prediction method fused with knowledge-guided module (GPformer). *Briefings in Bioinformatics, 25*(1), bbad438. PMC10701102. | gb 在线核验；**无公开代码**（Data Availability：“reasonable request”）。与 GPTransformer（大麦, Front Plant Sci 2021）、Cropformer 区分，引用写全称。 |
 | 6 | Li, J., Yu, L., Li, M., et al. (2026). Leveraging weighted embedding and Transformer architecture (GP-WAITER). *Nature Communications*. DOI 10.1038/s41467-026-71035-5. 代码 `snowo-w/GP-WAITER`。 | gb 在线核验；核心 `.so`；`train-test.py` L64/82 `reshape(180,4589)`、L212–218 `test_loss` 早停；正文每训练子集重算加权。 |
-| 7 | Fan, Y., & Waldmann, P. (2024). Tabular deep learning: a comparative study applied to multi-task genome-wide prediction. *BMC Bioinformatics, 25*, 322. PMC11452967. 代码 `angelYHF/Tabular-deep-learning-for-GWP`。 | gb 在线核验论文与数字；law 逐文件核验五项缺陷 + 两项新发现（vendored lassonet `score()` 正 MSE + `argmax`；LightGBM 测试集早停/调参），证据见 `ars-output/supervision_factcheck_20261029.md`。LassoNet 0.691 / LightGBM 0.657 / FT-Transformer 0.602 是合并多任务 $r$，不是四环境各自精度。不得写“评审者指出全样本标准化”（无公开出处）。 |
+| 7 | Fan, Y., & Waldmann, P. (2024). Tabular deep learning: a comparative study applied to multi-task genome-wide prediction. *BMC Bioinformatics, 25*, 322. PMC11452967. 代码 `angelYHF/Tabular-deep-learning-for-GWP`。 | gb 在线核验论文与数字；law 逐文件核验五项缺陷 + 两项新发现（vendored lassonet `score()` 正 MSE + `argmax`；LightGBM 测试集早停/调参），证据见 `docs/history/ars/supervision_factcheck_20261029.md`。LassoNet 0.691 / LightGBM 0.657 / FT-Transformer 0.602 是合并多任务 $r$，不是四环境各自精度。不得写“评审者指出全样本标准化”（无公开出处）。 |
 | 8 | Yang, T., Wu, W., Xue, Y., Zhou, L., Kang, H., & Liu, J. (2026). Gsformer. *Genetics Selection Evolution*. DOI 10.1186/s12711-026-01055-8（PMC13455463）。代码 `hajudien/GSformer`。 | gb 在线核验；五折外层/三折内层；SVR 最好于 GY1/GY3/GY4，GBLUP 最好于 GY2；目标为 DNNGP 预处理 EBV；输入为 SNP/PC，**不含谱系**。**GY1–GY4 与本仓列名 `"1","2","4","5"` 的映射未核**；跨论文引用其排名时不假设对应。 |
 | 9 | Prior Labs (2026). *TabPFN-3.5 technical report*. arXiv:2609.17895. 权重 `Prior-Labs/tabpfn_3_5`（`tabpfn-v3.5-20260909.safetensors`，876MB，许可 `tabpfn-3-5-license-v1.0`）；代码 `tabpfn==9.2.0`（Apache-2.0）。 | 本地核验 checkpoint 元数据（8 成员/balanced/768/无全局投影）与许可；gb 在线核验技术报告 §3.2 与 <1000 行微调警告原文。 |
 | 10 | 数据出处：CIMMYT Global Wheat Program；BGLR-R 随包文档。`gdlc/BGLR-R`@`7e92aa2d`，`data/wheat.RData`，SHA-256 见 `DATA_FACTS.md`。 | 本地核验；man/wheat.Rd 载明 MAF≥0.05 过滤声明与 Bernoulli 插补；“实测 96 列 MAF<0.05”与文档差异并列记录。 |
@@ -33,11 +33,11 @@
 
 ## 独立监管核验（law, 2026-10-29）
 
-- 报告：`ars-output/supervision_factcheck_20261029.md`（SHA-256 `62697f9f187fbb0b20cd15fee09be9539459df8b32812917c6f554aac1475208`，11435 字节）。
+- 报告：`docs/history/ars/supervision_factcheck_20261029.md`（SHA-256 `62697f9f187fbb0b20cd15fee09be9539459df8b32812917c6f554aac1475208`，11435 字节）。
 - 升级：Fan & Waldmann 代码缺陷从“待复核”升为“逐文件已核验”；新增 vendored lassonet 的 `score()` 正 MSE + `argmax` 与 LightGBM 测试集早停两项。
 - 状态更新（law/gb 核验）：`tabpfn==9.2.0` 在 PyPI 存在（2026-10-12，trusted-publishing provenance 齐全）；arXiv:2609.17895 与 TabPFN-3.5 技术报告的对应关系由 PyPI 官方 BibTeX 闭合（Jäger et al., 2026）。此前“arXiv 未核实”条目可升级。
 - rtdl 仓库名：arXiv 页脚旧链接 `yandex-research/tabular-dl-revisiting-models` 已 404；现行官方仓库为 `yandex-research/rtdl-revisiting-models`，引用 URL 用后者。
-- 监管章程（冻结先于运行、网格即预算、再来一轮须命名决策、M1/M2 无稳定差异即负结论）已写入 `docs/REVIEW_PROTOCOL.md` 与 `AGENTS.md`。
+- 监管章程（冻结先于运行、网格即预算、再来一轮须命名决策、M1/M2 无稳定差异即负结论）已写入 `docs/history/REVIEW_PROTOCOL.md` 与 `AGENTS.md`。
 
 ## GP 基础与方法学文献（law 在线核验，写作引用前复核）
 

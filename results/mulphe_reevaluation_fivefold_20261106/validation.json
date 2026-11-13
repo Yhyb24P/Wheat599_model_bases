@@ -1,0 +1,682 @@
+[
+  {
+    "best_epochs": {
+      "direct": 40,
+      "embedding": 5,
+      "frozen_sources": 89,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 27
+    },
+    "fixed_epochs": null,
+    "fold": 0,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.9844287349988,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 45,
+        "name": "2"
+      },
+      {
+        "best_epoch": 20,
+        "name": "4"
+      },
+      {
+        "best_epoch": 16,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "1"
+  },
+  {
+    "best_epochs": {
+      "direct": 28,
+      "embedding": 8,
+      "frozen_sources": 79,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 31
+    },
+    "fixed_epochs": null,
+    "fold": 0,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.9844287349988,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 35,
+        "name": "1"
+      },
+      {
+        "best_epoch": 20,
+        "name": "4"
+      },
+      {
+        "best_epoch": 16,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "2"
+  },
+  {
+    "best_epochs": {
+      "direct": 15,
+      "embedding": 6,
+      "frozen_sources": 56,
+      "linear_prediction": 0,
+      "scalar_prediction": 7,
+      "target_pretrain": 21
+    },
+    "fixed_epochs": null,
+    "fold": 0,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.9844287349988,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 35,
+        "name": "1"
+      },
+      {
+        "best_epoch": 45,
+        "name": "2"
+      },
+      {
+        "best_epoch": 16,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "4"
+  },
+  {
+    "best_epochs": {
+      "direct": 54,
+      "embedding": 53,
+      "frozen_sources": 132,
+      "linear_prediction": 0,
+      "scalar_prediction": 8,
+      "target_pretrain": 15
+    },
+    "fixed_epochs": null,
+    "fold": 0,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.9844287349988,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 35,
+        "name": "1"
+      },
+      {
+        "best_epoch": 45,
+        "name": "2"
+      },
+      {
+        "best_epoch": 20,
+        "name": "4"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "5"
+  },
+  {
+    "best_epochs": {
+      "direct": 31,
+      "embedding": 190,
+      "frozen_sources": 299,
+      "linear_prediction": 0,
+      "scalar_prediction": 36,
+      "target_pretrain": 20
+    },
+    "fixed_epochs": null,
+    "fold": 1,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.2290035479964,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 23,
+        "name": "2"
+      },
+      {
+        "best_epoch": 16,
+        "name": "4"
+      },
+      {
+        "best_epoch": 21,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "1"
+  },
+  {
+    "best_epochs": {
+      "direct": 61,
+      "embedding": 14,
+      "frozen_sources": 100,
+      "linear_prediction": 0,
+      "scalar_prediction": 8,
+      "target_pretrain": 25
+    },
+    "fixed_epochs": null,
+    "fold": 1,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.2290035479964,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 23,
+        "name": "1"
+      },
+      {
+        "best_epoch": 16,
+        "name": "4"
+      },
+      {
+        "best_epoch": 21,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "2"
+  },
+  {
+    "best_epochs": {
+      "direct": 53,
+      "embedding": 137,
+      "frozen_sources": 82,
+      "linear_prediction": 0,
+      "scalar_prediction": 19,
+      "target_pretrain": 19
+    },
+    "fixed_epochs": null,
+    "fold": 1,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.2290035479964,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 23,
+        "name": "1"
+      },
+      {
+        "best_epoch": 23,
+        "name": "2"
+      },
+      {
+        "best_epoch": 21,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "4"
+  },
+  {
+    "best_epochs": {
+      "direct": 28,
+      "embedding": 50,
+      "frozen_sources": 284,
+      "linear_prediction": 0,
+      "scalar_prediction": 8,
+      "target_pretrain": 16
+    },
+    "fixed_epochs": null,
+    "fold": 1,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.2290035479964,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 23,
+        "name": "1"
+      },
+      {
+        "best_epoch": 23,
+        "name": "2"
+      },
+      {
+        "best_epoch": 16,
+        "name": "4"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "5"
+  },
+  {
+    "best_epochs": {
+      "direct": 62,
+      "embedding": 182,
+      "frozen_sources": 299,
+      "linear_prediction": 0,
+      "scalar_prediction": 133,
+      "target_pretrain": 33
+    },
+    "fixed_epochs": null,
+    "fold": 2,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.274470442003803,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 23,
+        "name": "2"
+      },
+      {
+        "best_epoch": 17,
+        "name": "4"
+      },
+      {
+        "best_epoch": 16,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "1"
+  },
+  {
+    "best_epochs": {
+      "direct": 75,
+      "embedding": 182,
+      "frozen_sources": 298,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 19
+    },
+    "fixed_epochs": null,
+    "fold": 2,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.274470442003803,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 34,
+        "name": "1"
+      },
+      {
+        "best_epoch": 17,
+        "name": "4"
+      },
+      {
+        "best_epoch": 16,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "2"
+  },
+  {
+    "best_epochs": {
+      "direct": 33,
+      "embedding": 24,
+      "frozen_sources": 57,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 22
+    },
+    "fixed_epochs": null,
+    "fold": 2,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.274470442003803,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 34,
+        "name": "1"
+      },
+      {
+        "best_epoch": 23,
+        "name": "2"
+      },
+      {
+        "best_epoch": 16,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "4"
+  },
+  {
+    "best_epochs": {
+      "direct": 40,
+      "embedding": 1,
+      "frozen_sources": 122,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 17
+    },
+    "fixed_epochs": null,
+    "fold": 2,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.274470442003803,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 34,
+        "name": "1"
+      },
+      {
+        "best_epoch": 23,
+        "name": "2"
+      },
+      {
+        "best_epoch": 17,
+        "name": "4"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "5"
+  },
+  {
+    "best_epochs": {
+      "direct": 13,
+      "embedding": 36,
+      "frozen_sources": 1,
+      "linear_prediction": 0,
+      "scalar_prediction": 3,
+      "target_pretrain": 12
+    },
+    "fixed_epochs": null,
+    "fold": 3,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.137711029994534,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 19,
+        "name": "2"
+      },
+      {
+        "best_epoch": 26,
+        "name": "4"
+      },
+      {
+        "best_epoch": 40,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "1"
+  },
+  {
+    "best_epochs": {
+      "direct": 58,
+      "embedding": 1,
+      "frozen_sources": 52,
+      "linear_prediction": 0,
+      "scalar_prediction": 5,
+      "target_pretrain": 10
+    },
+    "fixed_epochs": null,
+    "fold": 3,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.137711029994534,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 16,
+        "name": "1"
+      },
+      {
+        "best_epoch": 26,
+        "name": "4"
+      },
+      {
+        "best_epoch": 40,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "2"
+  },
+  {
+    "best_epochs": {
+      "direct": 43,
+      "embedding": 173,
+      "frozen_sources": 279,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 29
+    },
+    "fixed_epochs": null,
+    "fold": 3,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.137711029994534,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 16,
+        "name": "1"
+      },
+      {
+        "best_epoch": 19,
+        "name": "2"
+      },
+      {
+        "best_epoch": 40,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "4"
+  },
+  {
+    "best_epochs": {
+      "direct": 41,
+      "embedding": 2,
+      "frozen_sources": 39,
+      "linear_prediction": 0,
+      "scalar_prediction": 5,
+      "target_pretrain": 16
+    },
+    "fixed_epochs": null,
+    "fold": 3,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.137711029994534,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 16,
+        "name": "1"
+      },
+      {
+        "best_epoch": 19,
+        "name": "2"
+      },
+      {
+        "best_epoch": 26,
+        "name": "4"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "5"
+  },
+  {
+    "best_epochs": {
+      "direct": 32,
+      "embedding": 174,
+      "frozen_sources": 269,
+      "linear_prediction": 0,
+      "scalar_prediction": 26,
+      "target_pretrain": 27
+    },
+    "fixed_epochs": null,
+    "fold": 4,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.228892093989998,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 29,
+        "name": "2"
+      },
+      {
+        "best_epoch": 34,
+        "name": "4"
+      },
+      {
+        "best_epoch": 23,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "1"
+  },
+  {
+    "best_epochs": {
+      "direct": 19,
+      "embedding": 63,
+      "frozen_sources": 289,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 26
+    },
+    "fixed_epochs": null,
+    "fold": 4,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.228892093989998,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 22,
+        "name": "1"
+      },
+      {
+        "best_epoch": 34,
+        "name": "4"
+      },
+      {
+        "best_epoch": 23,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "2"
+  },
+  {
+    "best_epochs": {
+      "direct": 174,
+      "embedding": 146,
+      "frozen_sources": 242,
+      "linear_prediction": 0,
+      "scalar_prediction": 6,
+      "target_pretrain": 25
+    },
+    "fixed_epochs": null,
+    "fold": 4,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.228892093989998,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 22,
+        "name": "1"
+      },
+      {
+        "best_epoch": 29,
+        "name": "2"
+      },
+      {
+        "best_epoch": 23,
+        "name": "5"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "4"
+  },
+  {
+    "best_epochs": {
+      "direct": 32,
+      "embedding": 98,
+      "frozen_sources": 299,
+      "linear_prediction": 0,
+      "scalar_prediction": 14,
+      "target_pretrain": 18
+    },
+    "fixed_epochs": null,
+    "fold": 4,
+    "mode": "validation",
+    "model_mode": "validation",
+    "seed": 42,
+    "shared_source_pretraining_seconds": 19.228892093989998,
+    "source_encoder_reuse": true,
+    "source_fixed_epochs": null,
+    "source_pretraining": [
+      {
+        "best_epoch": 22,
+        "name": "1"
+      },
+      {
+        "best_epoch": 29,
+        "name": "2"
+      },
+      {
+        "best_epoch": 34,
+        "name": "4"
+      }
+    ],
+    "source_pretraining_seconds": 0.0,
+    "target_environment": "5"
+  }
+]

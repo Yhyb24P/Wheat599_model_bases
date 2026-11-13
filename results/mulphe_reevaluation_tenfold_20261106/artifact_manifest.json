@@ -1,0 +1,54 @@
+{
+  "files": {
+    "development_predictions.csv": {
+      "bytes": 551809,
+      "sha256": "c4f558cf70ac2daa1f504d4251059eb7762c4df3619018963e2271871131a660"
+    },
+    "execution_status.json": {
+      "bytes": 222,
+      "sha256": "76d7797d5c5cdd7663f5c4d5bc67406ecc3eca4e78fe1aa2562e23bc76f8053d"
+    },
+    "failures.json": {
+      "bytes": 2,
+      "sha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945"
+    },
+    "fits.json": {
+      "bytes": 483018,
+      "sha256": "c8a2144dbb397218de93c52bd983c3e5cc649f5bfdff486d23c7d7ca1a8a5c68"
+    },
+    "frozen_epochs.json": {
+      "bytes": 8362,
+      "sha256": "1a27e56ca828ecdd0288e4c6b327d4c93eda1e71b98cf31921bf8c2ce1bdf720"
+    },
+    "manifest_validation.json": {
+      "bytes": 1856,
+      "sha256": "76a2a2a78ccd69735a9d40438f8ee0b6c6cd33f64ac41b2ce419086b2144ecab"
+    },
+    "per_fold.csv": {
+      "bytes": 16452,
+      "sha256": "7f0f75224ba8a661435ceead9b17f3331b04e2b7cc7645b7abf8a020da0950ad"
+    },
+    "predictions.csv": {
+      "bytes": 551542,
+      "sha256": "55e8fa9a7512681392dbb2ea16b0d593060f2f3c54ad9bb3f3d2f5a9c5f8b83a"
+    },
+    "provenance.json": {
+      "bytes": 2921,
+      "sha256": "57d47c357d64291a9d9e01d9d78968d3baea20b9c5808f8ef0e344a262e75ec3"
+    },
+    "summary.json": {
+      "bytes": 497567,
+      "sha256": "e40ef79cc121d9e5c6712b201397a7def13622598fe600a89ff6f621c9a4ad36"
+    },
+    "timings.json": {
+      "bytes": 256,
+      "sha256": "74f567b0dfeaa7b840c3e8407844177ff89281f115071da784477608d90a63a6"
+    },
+    "validation.json": {
+      "bytes": 64172,
+      "sha256": "be99127067223df8075e456bdf9e413992692e29eed5505b108cc988cc4f2d91"
+    }
+  },
+  "note": "the model returns state hashes only, so no checkpoint files exist for this run",
+  "weights_stored": false
+}

@@ -1,0 +1,46 @@
+# Dell 接入与独立环境记录；不是 conda env create 输入文件。
+# 2026-11-13；仅准备环境，不新增研究运行。
+ssh_alias: dell
+proxy_jump: omen
+host: 10.88.103.184
+user: dell
+allowed_root: /home/dell/mnt/data/projects/intern/active/pangjy
+repository: /home/dell/mnt/data/projects/intern/active/pangjy/Wheat599-research
+repository_commit_at_setup: 423bdb1
+# 当前私有仓库只含结果说明、三个配置和四个模型文件；缺少完整 CLI、
+# 数据/划分、data/metrics 等被引用模块，环境安装不代表训练入口已贯通。
+conda_executable: /home/dell/miniconda3/bin/conda
+conda_prefix: /home/dell/mnt/data/projects/intern/active/pangjy/conda-envs/wheat599
+interpreter: /home/dell/mnt/data/projects/intern/active/pangjy/conda-envs/wheat599/bin/python
+cache_root: /home/dell/mnt/data/projects/intern/active/pangjy/.cache
+# 激活时设置 XDG_CACHE_HOME、PIP_CACHE_DIR、TMPDIR 和 PYTHONNOUSERSITE=1。
+# 未修改 base、全局代理或其他人的环境。安装时仅在命令内取消失效的代理变量。
+activation: |
+  source /home/dell/miniconda3/etc/profile.d/conda.sh
+  conda activate /home/dell/mnt/data/projects/intern/active/pangjy/conda-envs/wheat599
+  cd /home/dell/mnt/data/projects/intern/active/pangjy/Wheat599-research
+gpu: NVIDIA GeForce RTX 3090
+gpu_count: 2
+gpu_memory_mib_each: 24576
+torch_build: "2.14.1+cu130"
+cuda_runtime: "13.0"
+# 核心依赖按 omen 实际已安装版本固定；不安装历史 benchmark/TabPFN 依赖。
+python: "3.12.14"
+pip_requirements:
+  - torch==2.14.1
+  - numpy==2.5.3
+  - scipy==1.18.1
+  - scikit-learn==1.9.1
+  - pandas==3.1.0
+  - pyyaml==6.0.3
+  - tabm==0.0.3
+  - rtdl_num_embeddings==0.0.12
+verification:
+  pip_check: passed
+  user_site_disabled: true
+  genomic_tabm_forward_backward_gpu_0: passed
+  genomic_tabm_forward_backward_gpu_1: passed
+  cpu_gpu_predictions_close: true
+  log: /home/dell/mnt/data/projects/intern/active/pangjy/.cache/wheat599-environment-check.json
+conda_explicit: /home/dell/mnt/data/projects/intern/active/pangjy/.cache/wheat599-conda-explicit.txt
+pip_freeze: /home/dell/mnt/data/projects/intern/active/pangjy/.cache/wheat599-pip-freeze.txt

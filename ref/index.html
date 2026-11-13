@@ -139,7 +139,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://github.com/wjhhh2928/Mul-PheG2P/tree/e20ca6847c7dec6ce80386e94df4378ad2d1fbec">原文链接</a></span></p>
   <p><span class="label">代码/许可：</span>MIT</p>
   <p><span class="label">简讲：</span>官方实现：SNP-CNN 编码器、直接基线、多环境预训练、冻结编码器目标适配、预测标量/隐藏表示融合。</p>
-  <p><span class="label">项目关系：</span>本仓 mulphe.py / mulphe_unified.py 适配的上游源码（固定提交，MIT）；适配差异见 docs/MULPHE_UNIFIED.md。</p>
+  <p><span class="label">项目关系：</span>本仓 mulphe.py / mulphe_unified.py 适配的上游源码（固定提交，MIT）；适配差异见 docs/methods/MULPHE_UNIFIED.md。</p>
 
   <p><span class="label">核验状态：</span>本轮在线核验：固定提交 README 确认 MIT 许可与方法描述；提交哈希与本仓代码 OFFICIAL_COMMIT 一致。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -197,7 +197,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2301.07858">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>以 Huber 似然实现稳健高斯过程回归，降低长尾/异常残差的影响。</p>
-  <p><span class="label">项目关系：</span>Huber ICM 参考其稳健观测思想；本实现为凸惩罚风险最小化，不复现其完整贝叶斯算法（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>Huber ICM 参考其稳健观测思想；本实现为凸惩罚风险最小化，不复现其完整贝叶斯算法（docs/history/RESEARCH_PLAN.md）。</p>
   <p class="note">arXiv 预印本；页面注明投稿 Annals of Applied Statistics，正式发表状态未确认。</p>
   <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2301.07858 一手摘要确认题名/作者（Algikar &amp; Mili）；期刊发表未确认。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -217,9 +217,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://papers.nips.cc/paper/3189-multi-task-gaussian-process-prediction.pdf">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>多任务高斯过程预测：用可分离（separable）协方差建模多输出，任务间相关用任务核、输入间相关用输入核；intrinsic coregionalization（ICM）是其可分离形式之一。</p>
-  <p><span class="label">项目关系：</span>多任务 GP 可分离协方差（含 ICM 形式）的方法学参考；本仓 Huber ICM 的任务核思路与此相关，但实现为凸惩罚风险最小化，非完整贝叶斯多任务 GP。不据本文主张 ICM 起源（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>多任务 GP 可分离协方差（含 ICM 形式）的方法学参考；本仓 Huber ICM 的任务核思路与此相关，但实现为凸惩罚风险最小化，非完整贝叶斯多任务 GP。不据本文主张 ICM 起源（docs/history/RESEARCH_PLAN.md）。</p>
 
-  <p><span class="label">核验状态：</span>规范著录；链接 papers.nips.cc/paper/3189 取自 docs/RESEARCH_PLAN.md；本轮未在线逐字核验全文。</p>
+  <p><span class="label">核验状态：</span>规范著录；链接 papers.nips.cc/paper/3189 取自 docs/history/RESEARCH_PLAN.md；本轮未在线逐字核验全文。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{bonilla2007multitask,
   title = {Multi-task Gaussian Process Prediction},
@@ -236,9 +236,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/1106.6251">原文链接</a> · <a href="https://doi.org/10.48550/arXiv.1106.6251">DOI</a> · <a href="pdfs/alvarez2012kernels.pdf">本地 PDF（37 页）</a></span></p>
 
   <p><span class="label">简讲：</span>综述多输出/向量值函数的核方法，系统连接概率与泛函视角，含共区域化（含 ICM/LMC）等多输出核。</p>
-  <p><span class="label">项目关系：</span>Huber ICM 与 BH-LMC 的向量值核方法学出处（docs/Wheat599_BH-LMC.md 引期刊 DOI 10.1561/2200000036）。</p>
+  <p><span class="label">项目关系：</span>Huber ICM 与 BH-LMC 的向量值核方法学出处（docs/methods/Wheat599_BH-LMC.md 引期刊 DOI 10.1561/2200000036）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:1106.6251（v2, 2012）确认题名/作者/摘要；arXiv DOI 10.48550/arXiv.1106.6251。期刊 DOI 10.1561/2200000036 取自 docs/Wheat599_BH-LMC.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:1106.6251（v2, 2012）确认题名/作者/摘要；arXiv DOI 10.48550/arXiv.1106.6251。期刊 DOI 10.1561/2200000036 取自 docs/methods/Wheat599_BH-LMC.md。</p>
   <p class="note"><span class="label">全文：</span><a href="pdfs/alvarez2012kernels.pdf">pdfs/alvarez2012kernels.pdf</a>（37 页，本轮下载并核验为完整 PDF）。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{alvarez2012kernels,
   title = {Kernels for Vector-Valued Functions: a Review},
@@ -257,9 +257,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://github.com/yandex-research/tabular-regression/blob/79e273f1af14c9a9703a1f385e9c9ea8faf5bae0/bin/quantile_regression.py">原文链接</a></span></p>
   <p><span class="label">代码/许可：</span>许可以仓库为准</p>
   <p><span class="label">简讲：</span>Yandex 表格回归实现，含分位数回归（pinball）入口 bin/quantile_regression.py。</p>
-  <p><span class="label">项目关系：</span>分位数 TabM 的分位数回归实现依据（固定提交，docs/QUANTILE_TABM.md）。作者公开示例用 1024 分位点，本项目 99 为有限预算近似网格，非逐项复现。</p>
+  <p><span class="label">项目关系：</span>分位数 TabM 的分位数回归实现依据（固定提交，docs/methods/QUANTILE_TABM.md）。作者公开示例用 1024 分位点，本项目 99 为有限预算近似网格，非逐项复现。</p>
 
-  <p><span class="label">核验状态：</span>沿用 docs/QUANTILE_TABM.md 已引用的固定提交链接；本轮未重新核验仓库许可。</p>
+  <p><span class="label">核验状态：</span>沿用 docs/methods/QUANTILE_TABM.md 已引用的固定提交链接；本轮未重新核验仓库许可。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{tabular_regression_repo,
   title = {tabular-regression：分位数回归实现（固定提交）},
@@ -394,7 +394,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p><span class="label">简讲：</span>表格深度学习在多任务全基因组预测上的比较研究。</p>
   <p><span class="label">项目关系：</span>历史比较。LassoNet 0.691 / LightGBM 0.657 / FT-Transformer 0.602 是合并多任务 r，不是四环境各自精度。law 逐文件核验公开代码缺陷。</p>
   <p class="note">不得写“评审者指出全样本标准化”（无公开出处）。Regression.zip 尚未逐项复核；冻结文本标“待复核”。</p>
-  <p><span class="label">核验状态：</span>gb 在线核验论文与数字；law 逐文件核验五项缺陷 + 两项新发现（vendored lassonet score() 正 MSE + argmax；LightGBM 测试集早停/调参），证据见 ars-output/supervision_factcheck_20261029.md。</p>
+  <p><span class="label">核验状态：</span>gb 在线核验论文与数字；law 逐文件核验五项缺陷 + 两项新发现（vendored lassonet score() 正 MSE + argmax；LightGBM 测试集早停/调参），证据见 docs/history/ars/supervision_factcheck_20261029.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{fan2024tabular,
   title = {Tabular deep learning: a comparative study applied to multi-task genome-wide prediction},
@@ -527,7 +527,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://doi.org/10.1534/genetics.110.118521">原文链接</a> · <a href="https://doi.org/10.1534/genetics.110.118521">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>植物育种中结合谱系与分子标记预测数量性状遗传值；在 599×1279 小麦数据上报告 marker-only RKHS。</p>
-  <p><span class="label">项目关系：</span>小麦/植物 GP 基础；CIMMYT 小麦数据语境。docs/RESEARCH_PLAN.md 与 RESULTS.md 以 PMC2954475 引用其 RKHS 先例。</p>
+  <p><span class="label">项目关系：</span>小麦/植物 GP 基础；CIMMYT 小麦数据语境。docs/history/RESEARCH_PLAN.md 与 RESULTS.md 以 PMC2954475 引用其 RKHS 先例。</p>
 
   <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；原构造 DOI 10.1093/genetics/186.2.713 经 Crossref 返回 404，本轮更正为真实 DOI 10.1534/genetics.110.118521（Genetics/OUP）；PMC2954475 取自 docs。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -584,9 +584,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#0072B2"><span class="dot" aria-hidden="true"></span>历史已核验</span> <span><a href="https://jmlr.org/papers/v11/cawley10a.html">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>论证模型选择中的过拟合及随后性能评估的选择偏差；嵌套验证可缓解。</p>
-  <p><span class="label">项目关系：</span>本项目无泄漏底线与嵌套选模的方法学依据；有限验证数据反复选模可能产生选择偏差（docs/MULPHE_UNIFIED.md 引用）。</p>
+  <p><span class="label">项目关系：</span>本项目无泄漏底线与嵌套选模的方法学依据；有限验证数据反复选模可能产生选择偏差（docs/methods/MULPHE_UNIFIED.md 引用）。</p>
 
-  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；JMLR 链接 cawley10a 已在 docs/MULPHE_UNIFIED.md 引用。</p>
+  <p><span class="label">核验状态：</span>书目沿用 law 在线核验（REFERENCES.md）；JMLR 链接 cawley10a 已在 docs/methods/MULPHE_UNIFIED.md 引用。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cawley2010overfitting,
   title = {On over-fitting in model selection and subsequent selection bias in performance evaluation},
@@ -752,7 +752,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p><span class="label">简讲：</span>区分任务信号与残差协方差的结构化残差多任务高斯过程推断。</p>
   <p><span class="label">项目关系：</span>BH-LMC/GET-ICM 的结构化残差多任务核家族方法定位（docs/RESULTS.md、Wheat599_BH-LMC.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2013 一手摘要页确认题名/作者（Rakitsch, Lippert, Borgwardt, Stegle）；链接取自 docs/Wheat599_BH-LMC.md、RESULTS.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2013 一手摘要页确认题名/作者（Rakitsch, Lippert, Borgwardt, Stegle）；链接取自 docs/methods/Wheat599_BH-LMC.md、RESULTS.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{rakitsch2013noise,
   title = {It is all in the noise: Efficient multi-task Gaussian process inference with structured residuals},
@@ -768,9 +768,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1534/g3.116.033381">原文链接</a> · <a href="https://doi.org/10.1534/g3.116.033381">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>基因组预测中无需实际做交叉验证的解析条件 CV / 核预测代数。</p>
-  <p><span class="label">项目关系：</span>条件 CV/核预测代数基础；同一 Wheat599 数据上的解析交叉验证与多核（docs/Wheat599_BH-LMC.md、RESULTS.md）。</p>
+  <p><span class="label">项目关系：</span>条件 CV/核预测代数基础；同一 Wheat599 数据上的解析交叉验证与多核（docs/methods/Wheat599_BH-LMC.md、RESULTS.md）。</p>
   <p class="note">RESULTS.md 记录：原报告误标 Genetics、DOI 10.1534/genetics.115.185850；实际发表于 G3，正确 DOI 10.1534/g3.116.033381。</p>
-  <p><span class="label">核验状态：</span>题名/期刊/DOI 取自 docs/Wheat599_BH-LMC.md，并经 RESULTS.md 纠错记录确认（G3 非 Genetics）；本轮 Crossref 一手 API 核验 DOI 10.1534/g3.116.033381 解析（题名/作者一致）。</p>
+  <p><span class="label">核验状态：</span>题名/期刊/DOI 取自 docs/methods/Wheat599_BH-LMC.md，并经 RESULTS.md 纠错记录确认（G3 非 Genetics）；本轮 Crossref 一手 API 核验 DOI 10.1534/g3.116.033381 解析（题名/作者一致）。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gianola2016crossvalidation,
   title = {Cross-Validation Without Doing Cross-Validation in Genome-Enabled Prediction},
@@ -787,9 +787,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1534/g3.117.300454">原文链接</a> · <a href="https://doi.org/10.1534/g3.117.300454">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>带随机截距的多环境试验基因组核预测模型。</p>
-  <p><span class="label">项目关系：</span>多环境基因组核模型的相关先例（docs/Wheat599_BH-LMC.md）。</p>
+  <p><span class="label">项目关系：</span>多环境基因组核模型的相关先例（docs/methods/Wheat599_BH-LMC.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cuevas, Granato, Fritsche-Neto 等）；链接取自 docs/Wheat599_BH-LMC.md。作者名字待补。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cuevas, Granato, Fritsche-Neto 等）；链接取自 docs/methods/Wheat599_BH-LMC.md。作者名字待补。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cuevas2018genomic,
   title = {Genomic-Enabled Prediction Kernel Models with Random Intercepts for Multi-environment Trials},
@@ -844,7 +844,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC4596682/">原文链接</a> · <a href="https://doi.org/10.1534/genetics.115.177907">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>基因组选择中建模上位性；比较加性、加性×加性互作与高斯核等预测。</p>
-  <p><span class="label">项目关系：</span>核方法用于基因组预测的先例；高斯核预测贡献不能直接解释为生物学上位性（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>核方法用于基因组预测的先例；高斯核预测贡献不能直接解释为生物学上位性（docs/history/RESEARCH_PLAN.md）。</p>
 
   <p><span class="label">核验状态：</span>本轮在线核验：PMC4596682 一手确认题名/作者（Jiang &amp; Reif）/Genetics 201(2):759–768/DOI/PMID。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -863,9 +863,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://papers.neurips.cc/paper_files/paper/2016/hash/dfce06801e1a85d6d06f1fdd4475dacd-Abstract.html">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>向量值 RKHS 中的联合分位数回归。</p>
-  <p><span class="label">项目关系：</span>RELATION_QUANTILE 的数学近邻；本实现不宣称 GP 或严格 RKHS 等价（docs/RELATION_QUANTILE.md）。</p>
+  <p><span class="label">项目关系：</span>RELATION_QUANTILE 的数学近邻；本实现不宣称 GP 或严格 RKHS 等价（docs/methods/RELATION_QUANTILE.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2016 一手摘要页确认题名/作者（Sangnier, Fercoq, d’Alché-Buc）；链接取自 docs/RELATION_QUANTILE.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2016 一手摘要页确认题名/作者（Sangnier, Fercoq, d’Alché-Buc）；链接取自 docs/methods/RELATION_QUANTILE.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{joint_quantile_rkhs2016,
   title = {Joint quantile regression in vector-valued RKHSs},
@@ -881,9 +881,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.mlr.press/v202/rudner23a.html">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>函数空间正则化的概率视角（FS-EB），将变分推断置于函数空间。</p>
-  <p><span class="label">项目关系：</span>RELATION_QUANTILE 的函数空间正则化近邻（docs/RELATION_QUANTILE.md）。</p>
+  <p><span class="label">项目关系：</span>RELATION_QUANTILE 的函数空间正则化近邻（docs/methods/RELATION_QUANTILE.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：PMLR v202 rudner23a 一手摘要页确认题名/作者/卷页；链接取自 docs/RELATION_QUANTILE.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：PMLR v202 rudner23a 一手摘要页确认题名/作者/卷页；链接取自 docs/methods/RELATION_QUANTILE.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{rudner2023functionspace,
   title = {Function-Space Regularization in Neural Networks: A Probabilistic Perspective},
@@ -899,9 +899,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://github.com/aradha/recursive_feature_machines/tree/58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>递归特征机：核求解与 AGOP 更新（LaplaceRFM）。</p>
-  <p><span class="label">项目关系：</span>RFM_DEVELOPMENT 直接调用作者 LaplaceRFM，完整 1279×1279 特征矩阵、无梯度中心化、每环境单独拟合（docs/RFM_DEVELOPMENT.md）。</p>
+  <p><span class="label">项目关系：</span>RFM_DEVELOPMENT 直接调用作者 LaplaceRFM，完整 1279×1279 特征矩阵、无梯度中心化、每环境单独拟合（docs/methods/RFM_DEVELOPMENT.md）。</p>
   <p class="note">GitHub 仓库 MIT，创建于 2022-12；README 关联 Science 论文 Mechanism for feature learning in neural networks and backpropagation-free machine learning models（DOI 10.1126/science.adi5639）；owner 账号 aradha，作者全名页面未列出。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：GitHub 仓库页确认 MIT 许可/创建年/关联 Science 论文；固定提交链接取自 docs/RFM_DEVELOPMENT.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：GitHub 仓库页确认 MIT 许可/创建年/关联 Science 论文；固定提交链接取自 docs/methods/RFM_DEVELOPMENT.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{rfm_repo,
   title = {recursive_feature_machines（LaplaceRFM / AGOP，固定提交）},
@@ -917,9 +917,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://link.springer.com/article/10.1186/s12864-026-12980-9">原文链接</a> · <a href="https://doi.org/10.1186/s12864-026-12980-9">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>报告 Wheat599 四环境平均 PCC 0.5368，声明十折均值、固定种子、AdamW、400 epoch。</p>
-  <p><span class="label">项目关系：</span>未列源码链接/实际折 ID/完整选模信息；GitHub 搜索 CWAGS genomic 未发现匹配仓库（2026-11-06）；暂不能忠实适配或同协议排名，不自行搭建冒充作者实现（docs/SEED_STABILITY.md）。</p>
+  <p><span class="label">项目关系：</span>未列源码链接/实际折 ID/完整选模信息；GitHub 搜索 CWAGS genomic 未发现匹配仓库（2026-11-06）；暂不能忠实适配或同协议排名，不自行搭建冒充作者实现（docs/methods/SEED_STABILITY.md）。</p>
   <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cao, Mohamed, Sunar, Chan）；描述取自 docs/SEED_STABILITY.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cao, Mohamed, Sunar, Chan）；描述取自 docs/methods/SEED_STABILITY.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cwags2026,
   title = {CWAGS: multi-trait genomic selection using channel weighted attention convolutional network},
@@ -936,9 +936,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1605202/full">原文链接</a> · <a href="https://doi.org/10.3389/fpls.2025.1605202">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>使用标记和谱系关系矩阵的混合核研究，报告不同交叉验证方案。</p>
-  <p><span class="label">项目关系：</span>单环境 S5 属额外信息输入类别；不与现有仅标记模型十折结果直接排名；wheat.A 与该论文矩阵/行序一致性须核验；本轮不训练（docs/SEED_STABILITY.md）。</p>
+  <p><span class="label">项目关系：</span>单环境 S5 属额外信息输入类别；不与现有仅标记模型十折结果直接排名；wheat.A 与该论文矩阵/行序一致性须核验；本轮不训练（docs/methods/SEED_STABILITY.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：Frontiers 一手页面（JSON-LD ScholarlyArticle）确认题名/作者（Cuevas, Crossa, Montesinos-López 等）/卷 16 文章号 1605202/DOI；描述取自 docs/SEED_STABILITY.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Frontiers 一手页面（JSON-LD ScholarlyArticle）确认题名/作者（Cuevas, Crossa, Montesinos-López 等）/卷 16 文章号 1605202/DOI；描述取自 docs/methods/SEED_STABILITY.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{hybrid_kernel2025,
   title = {Enhancing wheat genomic prediction by a hybrid kernel approach},
@@ -955,9 +955,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://www.microsoft.com/en-us/research/publication/knowledge-distillation-as-semiparametric-inference-paper/">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>把知识蒸馏视为半参数推断，讨论教师过拟合与交叉拟合。</p>
-  <p><span class="label">项目关系：</span>DISTILL_QUANTILE 的依据之一（知识蒸馏与交叉拟合，而非新神经骨干）（docs/DISTILL_QUANTILE.md）。</p>
+  <p><span class="label">项目关系：</span>DISTILL_QUANTILE 的依据之一（知识蒸馏与交叉拟合，而非新神经骨干）（docs/methods/DISTILL_QUANTILE.md）。</p>
 
-  <p><span class="label">核验状态：</span>题名/年份/链接取自 docs/DISTILL_QUANTILE.md；作者待核。</p>
+  <p><span class="label">核验状态：</span>题名/年份/链接取自 docs/methods/DISTILL_QUANTILE.md；作者待核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{distill_semiparametric2021,
   title = {Knowledge Distillation as Semiparametric Inference},
@@ -974,9 +974,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://arxiv.org/abs/2610.01435">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>把表格基础模型蒸馏为高效预测器，给出 TabM 等学生的蒸馏证据。</p>
-  <p><span class="label">项目关系：</span>其全训练上下文、合成查询条件与本项目不同，不作为本项目全上下文或 CutMix 的依据（docs/DISTILL_QUANTILE.md）。</p>
+  <p><span class="label">项目关系：</span>其全训练上下文、合成查询条件与本项目不同，不作为本项目全上下文或 CutMix 的依据（docs/methods/DISTILL_QUANTILE.md）。</p>
 
-  <p><span class="label">核验状态：</span>题名/链接取自 docs/DISTILL_QUANTILE.md；作者待核。</p>
+  <p><span class="label">核验状态：</span>题名/链接取自 docs/methods/DISTILL_QUANTILE.md；作者待核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{distill_tabular2026,
   title = {Distillation of Tabular Foundation Models into Efficient Predictors},
@@ -994,9 +994,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://www.jmlr.org/papers/volume19/16-515/16-515.pdf">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>高维数据快速交互搜索的 xyz 算法（二值输入交互搜索与全空间 KKT 条件）。</p>
-  <p><span class="label">项目关系：</span>交互搜索的成熟算法基础；本项目实现统计参照，不命名为新神经架构（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+  <p><span class="label">项目关系：</span>交互搜索的成熟算法基础；本项目实现统计参照，不命名为新神经架构（docs/methods/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：JMLR 19(37) 一手摘要页确认题名/作者（Thanei, Meinshausen, Shah）；链接取自 docs/SPARSE_INTERACTION_DIAGNOSTIC.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：JMLR 19(37) 一手摘要页确认题名/作者（Thanei, Meinshausen, Shah）；链接取自 docs/methods/SPARSE_INTERACTION_DIAGNOSTIC.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{xyz_interaction2018,
   title = {The xyz algorithm for fast interaction search in high-dimensional data},
@@ -1012,9 +1012,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.neurips.cc/paper/2019/file/3c7417b8df0daf23f39f445e740c7a43-Paper.pdf">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>交互硬阈值（IntHT）稀疏二次回归，亚二次时间/空间，含设计条件保证。</p>
-  <p><span class="label">项目关系：</span>稀疏二次回归的成熟基础（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+  <p><span class="label">项目关系：</span>稀疏二次回归的成熟基础（docs/methods/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2019 一手摘要页确认题名/作者（Yang, Shen, Sanghavi）；链接取自 docs/SPARSE_INTERACTION_DIAGNOSTIC.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 2019 一手摘要页确认题名/作者（Yang, Shen, Sanghavi）；链接取自 docs/methods/SPARSE_INTERACTION_DIAGNOSTIC.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{intht2019,
   title = {Interaction Hard Thresholding: Consistent Sparse Quadratic Regression in Sub-quadratic Time and Space},
@@ -1030,7 +1030,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://icml.cc/2010/papers/449.pdf">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>学习 ISTA 的快速近似（LISTA），可学习稀疏推断。</p>
-  <p><span class="label">项目关系：</span>可学习稀疏推断的成熟基础（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+  <p><span class="label">项目关系：</span>可学习稀疏推断的成熟基础（docs/methods/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
 
   <p><span class="label">核验状态：</span>链接 icml.cc/2010/papers/449.pdf 本轮解析为真实 PDF；题名/作者据通识（Gregor &amp; LeCun 2010 LISTA），PDF 无可提取元数据，本轮未逐字核验，写作引用前复核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1049,7 +1049,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.1010539">原文链接</a> · <a href="https://doi.org/10.1371/journal.pgen.1010539">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>多元多重回归的灵活经验贝叶斯方法（mr.mash），自适应共享/收缩效应，提升从基因型预测多组织基因表达的精度。</p>
-  <p><span class="label">项目关系：</span>多元效应共享的成熟基础（docs/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
+  <p><span class="label">项目关系：</span>多元效应共享的成熟基础（docs/methods/SPARSE_INTERACTION_DIAGNOSTIC.md）。</p>
   <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
   <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Morgante 等）；PLOS Genetics 2023。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1068,9 +1068,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1016/j.xplc.2025.101620">原文链接</a> · <a href="https://doi.org/10.1016/j.xplc.2025.101620">DOI</a></span></p>
   <p><span class="label">代码/许可：</span>GANLAB/MENET Version2.0 @ 06456e4542ab26716c4db8dd8f17517aa5155ff4（Academic Use Licence，内部非商业）</p>
   <p><span class="label">简讲：</span>混合效应深度神经网络用于多环境农艺性状基因组预测；表型相关遗传背景嵌入与跨信息特征融合。</p>
-  <p><span class="label">项目关系：</span>MENET_QUANTILE 上游：原样动态加载 TraitSpecificEncoderForRepGeno/RepGeno/CrossInformationFeatureFusion；源码/数据/权重不入 Git；Academic Use Licence 限内部非商业学术研究（docs/MENET_QUANTILE.md、RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>MENET_QUANTILE 上游：原样动态加载 TraitSpecificEncoderForRepGeno/RepGeno/CrossInformationFeatureFusion；源码/数据/权重不入 Git；Academic Use Licence 限内部非商业学术研究（docs/methods/MENET_QUANTILE.md、RESEARCH_PLAN.md）。</p>
   <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Li 等）；固定提交/许可取自 docs/MENET_QUANTILE.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Li 等）；固定提交/许可取自 docs/methods/MENET_QUANTILE.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{menet2025,
   title = {MeNet: A mixed-effect deep neural network for multi-environment genomic prediction of agronomic traits},
@@ -1088,9 +1088,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://research.google/pubs/batchensemble-an-alternative-approach-to-efficient-ensemble-and-lifelong-learning/">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>共享矩阵乘性调制的高效集成与终身学习。</p>
-  <p><span class="label">项目关系：</span>ENVIRONMENT_TABM 沿用其共享矩阵乘性调制机制，不作为新集成原理（docs/ENVIRONMENT_TABM.md）。</p>
+  <p><span class="label">项目关系：</span>ENVIRONMENT_TABM 沿用其共享矩阵乘性调制机制，不作为新集成原理（docs/methods/ENVIRONMENT_TABM.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：Google Research 一手页面确认题名/作者（Wen, Tran, Ba）/ICLR 2020；链接取自 docs/ENVIRONMENT_TABM.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Google Research 一手页面确认题名/作者（Wen, Tran, Ba）/ICLR 2020；链接取自 docs/methods/ENVIRONMENT_TABM.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{batchensemble2020,
   title = {BatchEnsemble: An Alternative Approach to Efficient Ensemble and Lifelong Learning},
@@ -1106,9 +1106,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2307.14338">原文链接</a></span></p>
   <p><span class="label">代码/许可：</span>yandex-research/tabular-dl-tabr</p>
   <p><span class="label">简讲：</span>检索增强的表格深度学习：标签编码与差异校正。</p>
-  <p><span class="label">项目关系：</span>RETRIEVAL_TABM 依据 TabR 官方代码的标签编码与差异校正；RESEARCH_PLAN 检索机制边界（docs/RETRIEVAL_TABM.md、RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>RETRIEVAL_TABM 依据 TabR 官方代码的标签编码与差异校正；RESEARCH_PLAN 检索机制边界（docs/methods/RETRIEVAL_TABM.md、RESEARCH_PLAN.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2307.14338 一手摘要确认题名/作者（Gorishniy 等）；代码链接取自 docs/RETRIEVAL_TABM.md、RESEARCH_PLAN.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2307.14338 一手摘要确认题名/作者（Gorishniy 等）；代码链接取自 docs/methods/RETRIEVAL_TABM.md、RESEARCH_PLAN.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{tabr2023,
   title = {TabR: Tabular Deep Learning Meets Nearest Neighbors in 2023},
@@ -1127,9 +1127,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1186/s13007-026-01574-x">原文链接</a> · <a href="https://doi.org/10.1186/s13007-026-01574-x">DOI</a></span></p>
   <p><span class="label">代码/许可：</span>公开源码 @ 85675b1e8054fe3e91fdb3e974150f1dde81eee3</p>
   <p><span class="label">简讲：</span>检索增强基因组预测：PCA95 输入、逐环境单输出、Pearson 损失、triplet 对比、cosine top-5、特征融合 0.4、邻居标签乘 0.01。</p>
-  <p><span class="label">项目关系：</span>RETRIEVAL_TABM 直接相关参照；已单独同协议适配；PCA 只在 fit 拟合，cosine 库改材料 ID 严格排除并记录差异；论文原划分分数不用于本协议排名（docs/RETRIEVAL_TABM.md）。</p>
+  <p><span class="label">项目关系：</span>RETRIEVAL_TABM 直接相关参照；已单独同协议适配；PCA 只在 fit 拟合，cosine 库改材料 ID 严格排除并记录差异；论文原划分分数不用于本协议排名（docs/methods/RETRIEVAL_TABM.md）。</p>
   <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Zuo 等）；固定提交/配置取自 docs/RETRIEVAL_TABM.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Zuo 等）；固定提交/配置取自 docs/methods/RETRIEVAL_TABM.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{ragp2026,
   title = {RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding},
@@ -1147,9 +1147,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://pubmed.ncbi.nlm.nih.gov/40811178/">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>基因组预测的模拟任务摊销推断，报告植物数据结果（据语境）。</p>
-  <p><span class="label">项目关系：</span>MATRIX_INFERENCE/JOINT_INFERENCE 的摊销推断先例；跨任务学习不能单独作为原创贡献（docs/MATRIX_INFERENCE.md）。</p>
+  <p><span class="label">项目关系：</span>MATRIX_INFERENCE/JOINT_INFERENCE 的摊销推断先例；跨任务学习不能单独作为原创贡献（docs/methods/MATRIX_INFERENCE.md）。</p>
 
-  <p><span class="label">核验状态：</span>仅 docs/MATRIX_INFERENCE.md 给出 PubMed 40811178 链接；本轮 PubMed 返回 JS 挑战页，未取得题名/作者/年份，保持待核。</p>
+  <p><span class="label">核验状态：</span>仅 docs/methods/MATRIX_INFERENCE.md 给出 PubMed 40811178 链接；本轮 PubMed 返回 JS 挑战页，未取得题名/作者/年份，保持待核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gpfn2025,
   title = {GPFN：基因组预测摊销推断（题名待核）},
@@ -1164,9 +1164,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://arxiv.org/abs/2610.06580">原文链接</a></span></p>
   <p><span class="label">代码/许可：</span>schiekiera/LinearPFN @ 97ac4f970df655b12d40a3b4a35fa3b2264ce6dd</p>
   <p><span class="label">简讲：</span>覆盖主效应与成对交互的摊销推断，发布模型预测变量范围 2–30；逐单元双轴注意力、可选原始成对统计量。</p>
-  <p><span class="label">项目关系：</span>MATRIX_INFERENCE/JOINT_INFERENCE 的交互摊销推断先例；双向矩阵计算与交互统计量不能单独作为原创贡献（docs/MATRIX_INFERENCE.md、JOINT_INFERENCE.md）。</p>
+  <p><span class="label">项目关系：</span>MATRIX_INFERENCE/JOINT_INFERENCE 的交互摊销推断先例；双向矩阵计算与交互统计量不能单独作为原创贡献（docs/methods/MATRIX_INFERENCE.md、JOINT_INFERENCE.md）。</p>
 
-  <p><span class="label">核验状态：</span>arXiv/代码链接取自 docs/MATRIX_INFERENCE.md、JOINT_INFERENCE.md；确切题名/作者待核。</p>
+  <p><span class="label">核验状态：</span>arXiv/代码链接取自 docs/methods/MATRIX_INFERENCE.md、JOINT_INFERENCE.md；确切题名/作者待核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{linearpfn2026,
   title = {LinearPFN：主效应与成对交互摊销推断（题名待核）},
@@ -1184,9 +1184,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1093/bib/bbag133">原文链接</a> · <a href="https://doi.org/10.1093/bib/bbag133">DOI</a></span></p>
   <p><span class="label">代码/许可：</span>Wangxuer521/GWKBR @ d9019e012cae4d7207eab8c318942450fded67d3</p>
   <p><span class="label">简讲：</span>K_Model 后验解 (RᵀR + λ_eff·G)⁻¹Rᵀy，G 约束系数精度；有效函数核 R·G⁻¹·Rᵀ。</p>
-  <p><span class="label">项目关系：</span>STRUCTURED_COEFFICIENT 依据；原文 Wheat 四环境最终均选 unweighted，不以该结果证明标记加权有效；与加性/RBF 相加有实质区别；文献成绩不与项目结果直接排名（docs/STRUCTURED_COEFFICIENT.md）。</p>
+  <p><span class="label">项目关系：</span>STRUCTURED_COEFFICIENT 依据；原文 Wheat 四环境最终均选 unweighted，不以该结果证明标记加权有效；与加性/RBF 相加有实质区别；文献成绩不与项目结果直接排名（docs/methods/STRUCTURED_COEFFICIENT.md）。</p>
   <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Wang 等）；固定提交/公式取自 docs/STRUCTURED_COEFFICIENT.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Wang 等）；固定提交/公式取自 docs/methods/STRUCTURED_COEFFICIENT.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gwkbr2026,
   title = {GWKBR: a novel method integrating machine learning and Bayesian inference framework to improve genomic prediction accuracy},
@@ -1204,9 +1204,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2404.02228">原文链接</a></span></p>
   <p><span class="label">代码/许可：</span>MateusMaiaDS/subart @ deddf4ea1290513cd6bce4e7867349d6c32fc2fa（MIT）</p>
   <p><span class="label">简讲：</span>似不相关贝叶斯加性回归树（subart）：为每个连续/二元结局各建一棵树集成，同时建模结局间依赖（非参数似不相关回归/多元 probit），面向医疗成本效果分析。不是 SoftBART（Chipman 等）。</p>
-  <p><span class="label">项目关系：</span>SPARSE_POLYGENIC_BART 复用 subart 仓库的 BART 回归路径（不引入分类/缺失表型/类别重编码）；源码及原许可在 src/wheat599/bayesian_trees/。原文为医疗成本效果的多元似不相关 BART，非基因组学应用（docs/SPARSE_POLYGENIC_BART.md）。</p>
+  <p><span class="label">项目关系：</span>SPARSE_POLYGENIC_BART 复用 subart 仓库的 BART 回归路径（不引入分类/缺失表型/类别重编码）；源码及原许可在 src/wheat599/bayesian_trees/。原文为医疗成本效果的多元似不相关 BART，非基因组学应用（docs/methods/SPARSE_POLYGENIC_BART.md）。</p>
   <p class="note">subart＝seemingly unrelated BART，非 SoftBART；R 包 subart；arXiv v1 2024-04，v3 2025-02。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2404.02228 一手摘要确认题名/作者（Esser, Maia, Parnell 等）；代码/许可取自 docs/SPARSE_POLYGENIC_BART.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2404.02228 一手摘要确认题名/作者（Esser, Maia, Parnell 等）；代码/许可取自 docs/methods/SPARSE_POLYGENIC_BART.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{subart2024,
   title = {Seemingly unrelated Bayesian additive regression trees for cost-effectiveness analyses in healthcare},
@@ -1225,7 +1225,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1080/01621459.2016.1264957">原文链接</a> · <a href="https://doi.org/10.1080/01621459.2016.1264957">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>高维预测与变量选择的贝叶斯回归树（DART 稀疏先验）。</p>
-  <p><span class="label">项目关系：</span>SPARSE_POLYGENIC_BART 的稀疏先验来源（docs/SPARSE_POLYGENIC_BART.md）。</p>
+  <p><span class="label">项目关系：</span>SPARSE_POLYGENIC_BART 的稀疏先验来源（docs/methods/SPARSE_POLYGENIC_BART.md）。</p>
 
   <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者（Linero）；DART 为其稀疏先验方法。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1244,9 +1244,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://stephenslab.github.io/susieR/">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>相关变量的联合选择与不确定性（sum of single effects）。</p>
-  <p><span class="label">项目关系：</span>JOINT_INFERENCE 的先例；本轮不声称这些机制首次提出（docs/JOINT_INFERENCE.md）。</p>
+  <p><span class="label">项目关系：</span>JOINT_INFERENCE 的先例；本轮不声称这些机制首次提出（docs/methods/JOINT_INFERENCE.md）。</p>
   <p class="note">主文献：Wang, Sarkar, Carbonetto &amp; Stephens (2020) A simple new approach to variable selection in regression, with application to genetic fine mapping. JRSS-B 82:1273–1300；项目页另列 SuSiE 2.0（2025）等。key 年份 2021 与主文献 2020 不一致，以 2020 为准。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：项目页一手确认主文献题名/作者/年份（2020，JRSS-B）；链接取自 docs/JOINT_INFERENCE.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：项目页一手确认主文献题名/作者/年份（2020，JRSS-B）；链接取自 docs/methods/JOINT_INFERENCE.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{susie2021,
   title = {SuSiE / susieR：单效应之和回归},
@@ -1262,7 +1262,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2501.17059">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>SBL-GNN：GNN 增强的稀疏贝叶斯学习，结合神经先验更新与解析后验；原文面向 XL-MIMO 无线信道估计（去中心化基带处理），非基因组学应用。</p>
-  <p><span class="label">项目关系：</span>JOINT_INFERENCE 引用其 SBL-GNN（稀疏贝叶斯学习+GNN）机制；原文为无线信道估计应用，作方法参考而非基因组学先例（docs/JOINT_INFERENCE.md）。</p>
+  <p><span class="label">项目关系：</span>JOINT_INFERENCE 引用其 SBL-GNN（稀疏贝叶斯学习+GNN）机制；原文为无线信道估计应用，作方法参考而非基因组学先例（docs/methods/JOINT_INFERENCE.md）。</p>
   <p class="note">arXiv 2501.17059 一手核验：SBL-GNN 为该无线信道估计论文内部算法；docs 以 SBL-GNN 机制引用，域差异如实标注。</p>
   <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2501.17059 一手摘要确认题名/作者（Tang 等）；SBL-GNN 为其内部算法，应用域为无线信道估计。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1282,9 +1282,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.mlr.press/v51/wilson16.html">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>深核学习：用神经网络学习核函数的输入表示。</p>
-  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的深核学习家族；不能把这些成熟技术本身当作原创（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的深核学习家族；不能把这些成熟技术本身当作原创（docs/history/RESEARCH_PLAN.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：PMLR v51 wilson16 一手摘要页确认题名/作者/卷页；链接取自 docs/RESEARCH_PLAN.md。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：PMLR v51 wilson16 一手摘要页确认题名/作者/卷页；链接取自 docs/history/RESEARCH_PLAN.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{wilson2016dkl,
   title = {Deep Kernel Learning},
@@ -1300,7 +1300,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/1805.08136">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>可微闭式求解器/读出：元学习中用闭式解（如岭回归）作为可微读出层。</p>
-  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的可微闭式读出家族；拟检验差异是位点维保留的自排除背景表示（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的可微闭式读出家族；拟检验差异是位点维保留的自排除背景表示（docs/history/RESEARCH_PLAN.md）。</p>
 
   <p><span class="label">核验状态：</span>本轮在线核验：arXiv:1805.08136 一手摘要确认题名/作者（Bertinetto 等），页面注明 ICLR 2019；arXiv v1 2018。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1320,7 +1320,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10645564/">原文链接</a> · <a href="https://doi.org/10.1016/j.ajhg.2023.10.002">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>因子化多基因上位性（EFA）：低秩分解上位性效应以改善预测并揭示生物学通路。</p>
-  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的低秩基因交互先例；本轮考察位点自排除/共享非线性/稀疏调制的具体组合（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的低秩基因交互先例；本轮考察位点自排除/共享非线性/稀疏调制的具体组合（docs/history/RESEARCH_PLAN.md）。</p>
 
   <p><span class="label">核验状态：</span>本轮在线核验：PMC10645564 一手确认题名/作者（Tang, Freudenberg, Dahl）/AJHG 110(11):1875–1887/DOI/PMID。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1339,7 +1339,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2107.12025">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>输入相关的特征调制：用上下文信息精炼特征嵌入（原文面向点击率预测）。</p>
-  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的输入相关特征调制先例（docs/RESEARCH_PLAN.md）；原文为 CTR 预测应用，作机制参考。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 的输入相关特征调制先例（docs/history/RESEARCH_PLAN.md）；原文为 CTR 预测应用，作机制参考。</p>
   <p class="note">原文为点击率（CTR）预测框架，非基因组学应用；题名 information 小写为原文 verbatim。</p>
   <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2107.12025 一手摘要确认题名/作者（Wang 等）；应用域为 CTR 预测。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1359,9 +1359,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC13205711/">原文链接</a> · <a href="https://doi.org/10.1111/pbi.70619">DOI</a></span></p>
   <p><span class="label">代码/许可：</span>Marxin1992/Whisperer_of_DNA @ 7a657cc00d44263c4b1085d3991ecc0e935c14e5</p>
   <p><span class="label">简讲：</span>DNA 预训练模型；表 1 的 0.80 是验证集均值，预训练使用全体材料基因型。</p>
-  <p><span class="label">项目关系：</span>官方 CSV 入口在划分前按完整表型归一化、预训练配置用全部输入材料、模型代码无条件计算主损失——直接载入将使测试表型参与训练；同协议适配须把预训练与监督限制在训练材料内（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>官方 CSV 入口在划分前按完整表型归一化、预训练配置用全部输入材料、模型代码无条件计算主损失——直接载入将使测试表型参与训练；同协议适配须把预训练与监督限制在训练材料内（docs/history/RESEARCH_PLAN.md）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：PMC13205711 一手确认题名/作者（Ma 等）/Plant Biotechnol J 24(6):4005–4026/DOI/PMID；固定提交与泄漏分析取自 docs/RESEARCH_PLAN.md，结论针对所核查公开代码版本。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：PMC13205711 一手确认题名/作者（Ma 等）/Plant Biotechnol J 24(6):4005–4026/DOI/PMID；固定提交与泄漏分析取自 docs/history/RESEARCH_PLAN.md，结论针对所核查公开代码版本。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{dnawhisper2026,
   title = {DNAwhisper: An Integrated Deep Learning Pyramidal Framework for Multi-Trait Genomic Prediction and Adaptive Marker Prioritisation},
@@ -1379,7 +1379,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://www.cs.cornell.edu/~caruana/ctp/ct.papers/caruana.icml04.icdm06long.pdf">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>从模型库前向选择集成成员以优化验证分数。</p>
-  <p><span class="label">项目关系：</span>模型库预测平均的成熟依据；本项目固定 top-5，不是其完整前向选择算法，不把预测平均等同于对核矩阵求和（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>模型库预测平均的成熟依据；本项目固定 top-5，不是其完整前向选择算法，不把预测平均等同于对核矩阵求和（docs/history/RESEARCH_PLAN.md）。</p>
 
   <p><span class="label">核验状态：</span>链接 cs.cornell.edu/~caruana/ctp/ct.papers/caruana.icml04.icdm06long.pdf 本轮解析为真实 PDF；题名/作者据通识（Caruana 等 2004），PDF 无可提取元数据，本轮未逐字核验，写作引用前复核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1398,9 +1398,9 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#CC79A7"><span class="dot" aria-hidden="true"></span>元数据待核</span> <span><a href="https://academic.oup.com/bioinformatics/article/32/9/1420/1744518">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>多性状混合模型的协方差估计（MTG2，AI 算法）。</p>
-  <p><span class="label">项目关系：</span>RESEARCH_PLAN 参考其协方差估计思想；本实现用 L-BFGS-B 而非 MTG2 的 AI 算法，不宣称复现其软件或新模型家族（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 参考其协方差估计思想；本实现用 L-BFGS-B 而非 MTG2 的 AI 算法，不宣称复现其软件或新模型家族（docs/history/RESEARCH_PLAN.md）。</p>
 
-  <p><span class="label">核验状态：</span>链接/卷期页取自 docs/RESEARCH_PLAN.md；本轮 OUP 返回 403，未取得题名/作者，保持待核。</p>
+  <p><span class="label">核验状态：</span>链接/卷期页取自 docs/history/RESEARCH_PLAN.md；本轮 OUP 返回 403，未取得题名/作者，保持待核。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{mtg2_2016,
   title = {MTG2：多性状基因组分析（题名待核）},
@@ -1416,7 +1416,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2501.06844">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>核基因组预测模型的 REML 方差组分估计实现，面向基因型×环境×管理交互。</p>
-  <p><span class="label">项目关系：</span>RESEARCH_PLAN 参考；基于材料谱分解的 REML 目标与预测已对照列主序稠密 GLS（误差约 2.2e-16/3.0e-15）（docs/RESEARCH_PLAN.md）。</p>
+  <p><span class="label">项目关系：</span>RESEARCH_PLAN 参考；基于材料谱分解的 REML 目标与预测已对照列主序稠密 GLS（误差约 2.2e-16/3.0e-15）（docs/history/RESEARCH_PLAN.md）。</p>
   <p class="note">arXiv v1 2025-01，v3 修订 2026-03；key 年份 2026 对应修订稿。</p>
   <p><span class="label">核验状态：</span>本轮在线核验：arXiv:2501.06844 一手摘要确认题名/作者（Melsen 等）；年份以 v1 2025 计，修订 2026。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1454,7 +1454,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1007/s10994-016-5546-z">原文链接</a> · <a href="https://doi.org/10.1007/s10994-016-5546-z">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>多目标回归的输入空间扩展法（stacked single-target）：把其他目标的预测作为附加输入分阶段学习，以利用目标间依赖。</p>
-  <p><span class="label">项目关系：</span>docs/LATE_TRANSFER.md 引用的多目标/目标间依赖先例（stacked multi-target regression）。</p>
+  <p><span class="label">项目关系：</span>docs/methods/LATE_TRANSFER.md 引用的多目标/目标间依赖先例（stacked multi-target regression）。</p>
   <p class="note">arXiv:1211.6581（2012 初稿，2016 v5）；期刊版 Machine Learning 2016，DOI 10.1007/s10994-016-5546-z。</p>
   <p><span class="label">核验状态：</span>本轮核验：arXiv:1211.6581 一手摘要确认题名/作者（Spyromitros-Xioufis, Tsoumakas, Groves, Vlahavas）；期刊版 Machine Learning 2016 DOI 10.1007/s10994-016-5546-z 据 arXiv journal-ref。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
@@ -1481,8 +1481,8 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 <tr><th scope="row">yandex-research/tabm</th><td>Apache-2.0（GitHub API）</td></tr>
 <tr><th scope="row">lasso-net/lassonet</th><td>MIT（GitHub API，扩展比较）</td></tr>
 <tr><th scope="row">wjhhh2928/Mul-PheG2P</th><td>MIT（本轮固定提交 README 核验）</td></tr>
-<tr><th scope="row">GANLAB/MENET</th><td>Academic Use Licence，内部非商业学术研究（docs/MENET_QUANTILE.md）</td></tr>
-<tr><th scope="row">MateusMaiaDS/subart</th><td>MIT（docs/SPARSE_POLYGENIC_BART.md）</td></tr>
+<tr><th scope="row">GANLAB/MENET</th><td>Academic Use Licence，内部非商业学术研究（docs/methods/MENET_QUANTILE.md）</td></tr>
+<tr><th scope="row">MateusMaiaDS/subart</th><td>MIT（docs/methods/SPARSE_POLYGENIC_BART.md）</td></tr>
 <tr><th scope="row">jingang/TabICL 回归权重</th><td>BSD-3-Clause（docs/LICENSE_NOTES.md）</td></tr>
 <tr><th scope="row">BGLR</th><td>GPL-3</td></tr></tbody>
     </table>

@@ -62,6 +62,20 @@ class ReportTest(unittest.TestCase):
             bibliography = (temporary/'check.bbl').read_text()
             self.assertEqual(bibliography.count(r'\bibitem{'), len(keys))
 
+    def test_invalid_bibliography_does_not_replace_existing_files(self):
+        spec = importlib.util.spec_from_file_location('references', ROOT/'ref/build.py')
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        with tempfile.TemporaryDirectory() as directory:
+            module.ROOT = Path(directory)
+            for name in ['index.html', 'references.bib']:
+                (module.ROOT/name).write_text('previous valid artifact')
+            module.REFERENCES.append(module.REFERENCES[0])
+            with self.assertRaisesRegex(ValueError, 'duplicate reference keys'):
+                module.main()
+            for name in ['index.html', 'references.bib']:
+                self.assertEqual((module.ROOT/name).read_text(), 'previous valid artifact')
+
     def check_report(self, tmp_path):
         spec = importlib.util.spec_from_file_location('report', ROOT/'scripts/build_report.py')
         report = importlib.util.module_from_spec(spec)
@@ -69,8 +83,10 @@ class ReportTest(unittest.TestCase):
         # Build against a copy so the check cannot replace the checked-in reports.
         for folder in ['docs', 'results']:
             (tmp_path/folder).mkdir()
-        for path in (ROOT/'docs').glob('*.md'):
-            shutil.copyfile(path, tmp_path/'docs'/path.name)
+        for path in (ROOT/'docs').rglob('*.md'):
+            target = tmp_path/path.relative_to(ROOT)
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(path, target)
         for name in ['quantile_tabm_final_20261106', 'mulphe_unified_parallel_20261112']:
             (tmp_path/'results'/name).mkdir()
             shutil.copyfile(ROOT/'results'/name/'summary.json', tmp_path/'results'/name/'summary.json')
@@ -82,6 +98,13 @@ class ReportTest(unittest.TestCase):
         report.ROOT = tmp_path
         report.build()
         output = (tmp_path/'docs/models.html').read_text()
+        inventory = (tmp_path/'results/index.html').read_text()
+        self.assertNotIn('model-data', inventory)
+        self.assertNotIn('drawNetwork', inventory)
+        self.assertIn('filterGroup', inventory)
+        report.build()
+        self.assertEqual(output, (tmp_path/'docs/models.html').read_text())
+        self.assertEqual(inventory, (tmp_path/'results/index.html').read_text())
         document = Document()
         document.feed(output)
         expected = len(re.findall(r'^## ', (ROOT/'docs/RESULTS.md').read_text(), re.M))

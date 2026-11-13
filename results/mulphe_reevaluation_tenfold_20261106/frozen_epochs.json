@@ -1,0 +1,412 @@
+[
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 38,
+        "embedding": 193,
+        "frozen_sources": 286,
+        "scalar_prediction": 20,
+        "target_pretrain": 21
+      },
+      "2": {
+        "direct": 38,
+        "embedding": 57,
+        "frozen_sources": 83,
+        "scalar_prediction": 200,
+        "target_pretrain": 23
+      },
+      "4": {
+        "direct": 31,
+        "embedding": 122,
+        "frozen_sources": 122,
+        "scalar_prediction": 125,
+        "target_pretrain": 298
+      },
+      "5": {
+        "direct": 25,
+        "embedding": 182,
+        "frozen_sources": 43,
+        "scalar_prediction": 5,
+        "target_pretrain": 17
+      }
+    },
+    "fold": 0,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 36,
+      "2": 26,
+      "4": 26,
+      "5": 13
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 34,
+        "embedding": 20,
+        "frozen_sources": 90,
+        "scalar_prediction": 7,
+        "target_pretrain": 21
+      },
+      "2": {
+        "direct": 28,
+        "embedding": 5,
+        "frozen_sources": 42,
+        "scalar_prediction": 4,
+        "target_pretrain": 19
+      },
+      "4": {
+        "direct": 179,
+        "embedding": 46,
+        "frozen_sources": 197,
+        "scalar_prediction": 6,
+        "target_pretrain": 19
+      },
+      "5": {
+        "direct": 50,
+        "embedding": 41,
+        "frozen_sources": 49,
+        "scalar_prediction": 6,
+        "target_pretrain": 15
+      }
+    },
+    "fold": 1,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 19,
+      "2": 2,
+      "4": 17,
+      "5": 16
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 35,
+        "embedding": 15,
+        "frozen_sources": 190,
+        "scalar_prediction": 7,
+        "target_pretrain": 18
+      },
+      "2": {
+        "direct": 8,
+        "embedding": 75,
+        "frozen_sources": 294,
+        "scalar_prediction": 5,
+        "target_pretrain": 15
+      },
+      "4": {
+        "direct": 42,
+        "embedding": 154,
+        "frozen_sources": 40,
+        "scalar_prediction": 5,
+        "target_pretrain": 19
+      },
+      "5": {
+        "direct": 86,
+        "embedding": 48,
+        "frozen_sources": 32,
+        "scalar_prediction": 4,
+        "target_pretrain": 11
+      }
+    },
+    "fold": 2,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 15,
+      "2": 24,
+      "4": 9,
+      "5": 4
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 169,
+        "embedding": 200,
+        "frozen_sources": 241,
+        "scalar_prediction": 200,
+        "target_pretrain": 27
+      },
+      "2": {
+        "direct": 40,
+        "embedding": 200,
+        "frozen_sources": 19,
+        "scalar_prediction": 4,
+        "target_pretrain": 13
+      },
+      "4": {
+        "direct": 162,
+        "embedding": 11,
+        "frozen_sources": 13,
+        "scalar_prediction": 2,
+        "target_pretrain": 1
+      },
+      "5": {
+        "direct": 42,
+        "embedding": 189,
+        "frozen_sources": 264,
+        "scalar_prediction": 21,
+        "target_pretrain": 26
+      }
+    },
+    "fold": 3,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 31,
+      "2": 23,
+      "4": 5,
+      "5": 26
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 23,
+        "embedding": 7,
+        "frozen_sources": 86,
+        "scalar_prediction": 7,
+        "target_pretrain": 16
+      },
+      "2": {
+        "direct": 17,
+        "embedding": 200,
+        "frozen_sources": 88,
+        "scalar_prediction": 5,
+        "target_pretrain": 23
+      },
+      "4": {
+        "direct": 8,
+        "embedding": 24,
+        "frozen_sources": 118,
+        "scalar_prediction": 29,
+        "target_pretrain": 22
+      },
+      "5": {
+        "direct": 13,
+        "embedding": 36,
+        "frozen_sources": 124,
+        "scalar_prediction": 7,
+        "target_pretrain": 13
+      }
+    },
+    "fold": 4,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 19,
+      "2": 17,
+      "4": 23,
+      "5": 14
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 45,
+        "embedding": 198,
+        "frozen_sources": 290,
+        "scalar_prediction": 58,
+        "target_pretrain": 24
+      },
+      "2": {
+        "direct": 11,
+        "embedding": 5,
+        "frozen_sources": 160,
+        "scalar_prediction": 5,
+        "target_pretrain": 78
+      },
+      "4": {
+        "direct": 118,
+        "embedding": 3,
+        "frozen_sources": 73,
+        "scalar_prediction": 5,
+        "target_pretrain": 25
+      },
+      "5": {
+        "direct": 49,
+        "embedding": 192,
+        "frozen_sources": 73,
+        "scalar_prediction": 185,
+        "target_pretrain": 21
+      }
+    },
+    "fold": 5,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 19,
+      "2": 26,
+      "4": 19,
+      "5": 35
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 26,
+        "embedding": 177,
+        "frozen_sources": 21,
+        "scalar_prediction": 13,
+        "target_pretrain": 21
+      },
+      "2": {
+        "direct": 1,
+        "embedding": 84,
+        "frozen_sources": 135,
+        "scalar_prediction": 4,
+        "target_pretrain": 5
+      },
+      "4": {
+        "direct": 1,
+        "embedding": 196,
+        "frozen_sources": 36,
+        "scalar_prediction": 2,
+        "target_pretrain": 21
+      },
+      "5": {
+        "direct": 193,
+        "embedding": 34,
+        "frozen_sources": 300,
+        "scalar_prediction": 1,
+        "target_pretrain": 9
+      }
+    },
+    "fold": 6,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 18,
+      "2": 4,
+      "4": 3,
+      "5": 13
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 41,
+        "embedding": 8,
+        "frozen_sources": 1,
+        "scalar_prediction": 6,
+        "target_pretrain": 23
+      },
+      "2": {
+        "direct": 122,
+        "embedding": 24,
+        "frozen_sources": 66,
+        "scalar_prediction": 5,
+        "target_pretrain": 20
+      },
+      "4": {
+        "direct": 62,
+        "embedding": 44,
+        "frozen_sources": 258,
+        "scalar_prediction": 52,
+        "target_pretrain": 97
+      },
+      "5": {
+        "direct": 59,
+        "embedding": 123,
+        "frozen_sources": 27,
+        "scalar_prediction": 4,
+        "target_pretrain": 18
+      }
+    },
+    "fold": 7,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 18,
+      "2": 33,
+      "4": 40,
+      "5": 26
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 69,
+        "embedding": 1,
+        "frozen_sources": 155,
+        "scalar_prediction": 7,
+        "target_pretrain": 38
+      },
+      "2": {
+        "direct": 20,
+        "embedding": 164,
+        "frozen_sources": 57,
+        "scalar_prediction": 4,
+        "target_pretrain": 17
+      },
+      "4": {
+        "direct": 17,
+        "embedding": 48,
+        "frozen_sources": 240,
+        "scalar_prediction": 13,
+        "target_pretrain": 19
+      },
+      "5": {
+        "direct": 49,
+        "embedding": 200,
+        "frozen_sources": 267,
+        "scalar_prediction": 5,
+        "target_pretrain": 18
+      }
+    },
+    "fold": 8,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 30,
+      "2": 16,
+      "4": 21,
+      "5": 22
+    }
+  },
+  {
+    "arm_epochs": {
+      "1": {
+        "direct": 121,
+        "embedding": 3,
+        "frozen_sources": 4,
+        "scalar_prediction": 1,
+        "target_pretrain": 49
+      },
+      "2": {
+        "direct": 73,
+        "embedding": 122,
+        "frozen_sources": 93,
+        "scalar_prediction": 9,
+        "target_pretrain": 26
+      },
+      "4": {
+        "direct": 37,
+        "embedding": 165,
+        "frozen_sources": 50,
+        "scalar_prediction": 31,
+        "target_pretrain": 22
+      },
+      "5": {
+        "direct": 189,
+        "embedding": 102,
+        "frozen_sources": 72,
+        "scalar_prediction": 134,
+        "target_pretrain": 13
+      }
+    },
+    "fold": 9,
+    "seed": 42,
+    "source_encoder_rows": "dev",
+    "source_epochs": {
+      "1": 249,
+      "2": 24,
+      "4": 22,
+      "5": 4
+    }
+  }
+]

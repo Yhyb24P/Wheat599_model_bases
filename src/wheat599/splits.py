@@ -1,6 +1,6 @@
 """Cross-validation split generation.
 
-Two protocols are defined in docs/RESEARCH_PLAN.md §4.1:
+Two protocols are defined in docs/history/RESEARCH_PLAN.md §4.1:
 
 * ``random`` — material-level stratified 5-fold outer, 3-fold inner, repeated
   with fixed seeds. Implemented here.

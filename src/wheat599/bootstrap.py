@@ -1,4 +1,4 @@
-"""Uncertainty for paired method comparisons (docs/RESEARCH_PLAN.md §4.3).
+"""Uncertainty for paired method comparisons (docs/history/RESEARCH_PLAN.md §4.3).
 
 Two interval families, per gb's 2026-10-29 R3 ruling:
 

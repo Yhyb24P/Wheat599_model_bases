@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 """Nested PCC selection and full-development refit for conditioned ridge and RR."""
 import argparse
+from importlib import import_module
 import csv
 import hashlib
 import itertools
@@ -152,6 +153,76 @@ def run_hybrid(cfg, args):
     print(json.dumps(summary), flush=True)
 
 
+RUNNERS = {
+    'relation_quantile_controls': ('relation_quantile_controls', 'run'),
+    'joint_kernel_quantile': ('joint_kernel_quantile_run', 'run'),
+    'relation_quantile': ('relation_quantile', 'run'),
+    'seed_stability': ('seed_stability', 'run'),
+    'wheatgp_refit_diagnostic': ('wheatgp_refit_diagnostic', 'run'),
+    'wheatgp_rebuilt': ('wheatgp_rebuilt', 'run'),
+    'wheatgp_nested': ('wheatgp_nested', 'run'),
+    'tabicl_compare': ('tabicl_compare', 'run'),
+    'tabicl_genomic': ('tabicl_genomic', 'run'),
+    'midpoint_quantile': ('midpoint_quantile', 'run'),
+    'fusion_refit': ('fusion_refit', 'run'),
+    'mean_quantile': ('mean_quantile', 'run'),
+    'fusion_reselect': ('fusion_reselect', 'run'),
+    'multihead_mse': ('multihead_mse', 'run'),
+    'mulphe_unified': ('mulphe_unified', 'run'),
+    'quantile_tabm_final': ('quantile_tabm_final', 'run'),
+    'member_interaction_freeze': ('quantile_tabm_final', 'freeze_member_manifest'),
+    'rfm_development': ('rfm_development', 'run'),
+    'distill_correlation_final': ('distill_correlation_final', 'run'),
+    'anchored_quantile': ('anchored_quantile_run', 'run'),
+    'structured_coefficient': ('structured_coefficient_run', 'run'),
+    'sparse_polygenic_bart': ('bayesian_trees_run', 'run'),
+    'distill_quantile': ('distill_quantile', 'run'),
+    'menet_quantile': ('menet_quantile', 'run'),
+    'sparse_residual_quantile': ('sparse_residual_run', 'run'),
+    'quantile_tabm': ('quantile_tabm', 'run'),
+    'joint_tabm_icm': ('joint_tabm_icm_run', 'run'),
+    'robust_icm': ('robust_icm', 'run'),
+    'non_gaussian_icm': ('non_gaussian_icm', 'run'),
+    'non_gaussian_control': ('posterior_control', 'run'),
+    'lcm_gp': ('lcm_gp', 'run'),
+    'dnawhisper': ('dnawhisper.run', 'run'),
+    'locus_context': ('locus_context_run', 'run'),
+    'genomic_tabm': ('genomic_tabm_run', 'run'),
+    'retrieval_tabm': ('retrieval_run', 'run'),
+    'retrieval_fusion': ('retrieval_fusion', 'run'),
+    'ragp': ('ragp_run', 'run'),
+    'environment_tabm': ('environment_run', 'run'),
+    'mulphe': ('mulphe_run', 'run'),
+    'grouped_weights': ('grouped_weights_run', 'run'),
+    'grouped_kernel': ('grouped_kernel_run', 'run'),
+    'grouped_kernel_final': ('grouped_kernel_final_run', 'run'),
+    'phenotype_rotation': ('rotation_run', 'run'),
+    'wheat2000_gblup': ('wheat2000_gblup', 'run'),
+    'wheat2000_tabm': ('wheat2000_run', 'run'),
+    'wheat2000_deepgs': ('wheat2000_neural_run', 'run'),
+    'wheat2000_bimsgp': ('wheat2000_neural_run', 'run'),
+    'environment_selection': ('environment_selection', 'run'),
+    'late_transfer': ('late_transfer_run', 'run'),
+    'independent_tabm_freeze': ('independent_freeze', 'run'),
+    'independent_tabm_final': ('independent_final', 'run'),
+    'vector_diagnostic': ('vector_diagnostic', 'run'),
+    'joint_inference': ('joint_training', 'run'),
+    'matrix_inference': ('matrix_training', 'run'),
+    'matrix_kernel_reference': ('matrix_kernel_reference', 'run'),
+    'sparse_interaction_diagnostic': ('sparse_diagnostic', 'run'),
+    'heterogeneous_icm': ('heterogeneous_icm', 'run'),
+    'kernel_averaging': ('kernel_averaging', 'run'),
+    'target_icm': ('joint_kernel_selection', 'run_target'),
+    'reml_icm': ('reml_icm', 'run'),
+    'get_icm_joint': ('joint_kernel_selection', 'run'),
+    'get_icm': ('get_icm', 'run'),
+    'bh_lmc': ('bh_lmc', 'run'),
+    'spectral_icm': ('spectral_icm', 'run'),
+    'multienv_kernel': ('multienv_kernel', 'run'),
+    'kernel_baselines': ('kernel_baselines', 'run'),
+}
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('--config', type=Path, default=ROOT/'configs/background_ridge_nested.yaml')
@@ -163,201 +234,14 @@ def main():
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
         p.error('--resume-summary requires model independent_tabm_final')
-    if cfg.get('model') == 'relation_quantile_controls':
-        from wheat599.relation_quantile_controls import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'joint_kernel_quantile':
-        from wheat599.joint_kernel_quantile_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'relation_quantile':
-        from wheat599.relation_quantile import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'seed_stability':
-        from wheat599.seed_stability import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'wheatgp_refit_diagnostic':
-        from wheat599.wheatgp_refit_diagnostic import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'wheatgp_rebuilt':
-        from wheat599.wheatgp_rebuilt import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'wheatgp_nested':
-        from wheat599.wheatgp_nested import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'tabicl_compare':
-        from wheat599.tabicl_compare import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'tabicl_genomic':
-        from wheat599.tabicl_genomic import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'midpoint_quantile':
-        from wheat599.midpoint_quantile import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'fusion_refit':
-        from wheat599.fusion_refit import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'mean_quantile':
-        from wheat599.mean_quantile import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'fusion_reselect':
-        from wheat599.fusion_reselect import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'multihead_mse':
-        from wheat599.multihead_mse import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'mulphe_unified':
-        from wheat599.mulphe_unified import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'quantile_tabm_final':
-        from wheat599.quantile_tabm_final import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'member_interaction_freeze':
-        from wheat599.quantile_tabm_final import freeze_member_manifest
-        return freeze_member_manifest(cfg, args, Path(__file__))
-    if cfg.get('model') == 'rfm_development':
-        from wheat599.rfm_development import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'distill_correlation_final':
-        from wheat599.distill_correlation_final import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'anchored_quantile':
-        from wheat599.anchored_quantile_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'structured_coefficient':
-        from wheat599.structured_coefficient_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'sparse_polygenic_bart':
-        from wheat599.bayesian_trees_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'distill_quantile':
-        from wheat599.distill_quantile import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'menet_quantile':
-        from wheat599.menet_quantile import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'sparse_residual_quantile':
-        from wheat599.sparse_residual_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'quantile_tabm':
-        from wheat599.quantile_tabm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'joint_tabm_icm':
-        from wheat599.joint_tabm_icm_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'robust_icm':
-        from wheat599.robust_icm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'non_gaussian_icm':
-        from wheat599.non_gaussian_icm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'non_gaussian_control':
-        from wheat599.posterior_control import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'lcm_gp':
-        from wheat599.lcm_gp import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'dnawhisper':
-        from wheat599.dnawhisper.run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'locus_context':
-        from wheat599.locus_context_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'genomic_tabm':
-        from wheat599.genomic_tabm_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'retrieval_tabm':
-        from wheat599.retrieval_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'retrieval_fusion':
-        from wheat599.retrieval_fusion import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'ragp':
-        from wheat599.ragp_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'environment_tabm':
-        from wheat599.environment_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'mulphe':
-        from wheat599.mulphe_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'grouped_weights':
-        from wheat599.grouped_weights_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'grouped_kernel':
-        from wheat599.grouped_kernel_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'grouped_kernel_final':
-        from wheat599.grouped_kernel_final_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'phenotype_rotation':
-        from wheat599.rotation_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'wheat2000_gblup':
-        from wheat599.wheat2000_gblup import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'wheat2000_tabm':
-        from wheat599.wheat2000_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') in ('wheat2000_deepgs', 'wheat2000_bimsgp'):
-        from wheat599.wheat2000_neural_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'environment_selection':
-        from wheat599.environment_selection import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'late_transfer':
-        from wheat599.late_transfer_run import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'independent_tabm_freeze':
-        from wheat599.independent_freeze import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'independent_tabm_final':
-        from wheat599.independent_final import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'vector_diagnostic':
-        from wheat599.vector_diagnostic import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'joint_inference':
-        from wheat599.joint_training import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'matrix_inference':
-        from wheat599.matrix_training import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'matrix_kernel_reference':
-        from wheat599.matrix_kernel_reference import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'sparse_interaction_diagnostic':
-        from wheat599.sparse_diagnostic import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'heterogeneous_icm':
-        from wheat599.heterogeneous_icm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'kernel_averaging':
-        from wheat599.kernel_averaging import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'target_icm':
-        from wheat599.joint_kernel_selection import run_target
-        return run_target(cfg, args, Path(__file__))
-    if cfg.get('model') == 'reml_icm':
-        from wheat599.reml_icm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'get_icm_joint':
-        from wheat599.joint_kernel_selection import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'get_icm':
-        from wheat599.get_icm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'bh_lmc':
-        from wheat599.bh_lmc import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'spectral_icm':
-        from wheat599.spectral_icm import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'multienv_kernel':
-        from wheat599.multienv_kernel import run
-        return run(cfg, args, Path(__file__))
-    if cfg.get('model') == 'kernel_baselines':
-        from wheat599.kernel_baselines import run
-        return run(cfg, args, Path(__file__))
+    model = cfg.get('model')
+    if model is not None and not isinstance(model, str):
+        p.error('model must be a name, not a nested architecture configuration')
+    if model in RUNNERS:
+        module, function = RUNNERS[model]
+        return getattr(import_module('wheat599.' + module), function)(cfg, args, Path(__file__))
+    if model not in (None, 'background_rbf'):
+        p.error(f'Unknown model: {model!r}; check --config')
     if cfg.get('model') == 'background_rbf':
         return run_hybrid(cfg, args)
     data = load(Path(cfg['data']), cfg['data_sha256'])

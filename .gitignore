@@ -47,13 +47,11 @@ results/fusion_refit_*/predictions.npz
 results/fusion_refit_*/oof.csv
 results/rfm_development_*/predictions_*.npz
 
-# 本地临时文件
-临时文档/
+# 本地附件、未整合副本与临时产物
+local/
 # 冒烟结果与本地遗留
 results/a_rr_nested_smoke/
 results/bimsgp_nested_smoke/
-unused/
-src/wheat599/posterior_gibbs.py
 
 results/menet_quantile_*/predictions_*.npz
 results/menet_quantile_*/curves/

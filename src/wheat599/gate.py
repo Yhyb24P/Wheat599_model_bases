@@ -236,7 +236,7 @@ def write_trigger_md(
     t2: dict,
     caveat: str,
 ) -> None:
-    """Write trigger.md aligned with docs/TRIGGER_TEMPLATE.md.
+    """Write trigger.md aligned with docs/history/TRIGGER_TEMPLATE.md.
 
     ``t1``/``t2`` are the per-comparison gate outputs: each is
     ``{"by_metric": {metric: [GateResult]}, "agg": aggregate_signal_dict}``.
