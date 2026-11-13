@@ -95,7 +95,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 <div class="wrap">
 <header class="site">
   <h1>Wheat599 参考文献库</h1>
-  <p>植物基因组表型预测方法论文 · 离线自包含中文研究页 · 共 71 条文献，4 篇本地全文 PDF。</p>
+  <p>植物基因组表型预测方法论文 · 离线自包含中文研究页 · 共 75 条文献，4 篇本地全文 PDF。</p>
   <p class="note">单一数据源 <code>ref/build.py</code> 生成；历史核验记录沿用 <code>docs/REFERENCES.md</code>，未覆盖。</p>
 </header>
 <nav class="crumbs" aria-label="项目导航">
@@ -103,7 +103,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <a href="../results/index.html">结果导航（results/index.html）</a>
   <a href="references.bib">BibTeX 书目</a>
 </nav>
-<nav class="toc" aria-label="文献分组目录"><a href="#g-main">一、现役主方法核心出处（8）</a> <a href="#g-method_data">二、方法与数据（REFERENCES.md 既有）（11）</a> <a href="#g-gp">三、GP 基础与方法学（REFERENCES.md 既有，law 核验）（14）</a> <a href="#g-plan">四、docs 方法方案引用的其他来源（38）</a></nav>
+<nav class="toc" aria-label="文献分组目录"><a href="#g-main">一、现役主方法核心出处（8）</a> <a href="#g-method_data">二、方法与数据（REFERENCES.md 既有）（11）</a> <a href="#g-gp">三、GP 基础与方法学（REFERENCES.md 既有，law 核验）（14）</a> <a href="#g-plan">四、docs 方法方案引用的其他来源（42）</a></nav>
 <main>
 <section aria-label="阅读说明">
   <h2>阅读说明</h2>
@@ -1467,6 +1467,76 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   eprint = {1211.6581},
   archivePrefix = {arXiv},
   url = {https://doi.org/10.1007/s10994-016-5546-z}
+}</code></pre></details>
+</article>
+<article class="refcard" id="dabney2018iqn">
+  <h3>Implicit Quantile Networks for Distributional Reinforcement Learning</h3>
+  <p class="apa">Dabney, Will, Ostrovski, Georg, Silver, David, Munos, Remi (2018). <cite>Implicit Quantile Networks for Distributional Reinforcement Learning</cite>. ICML, PMLR 80:1096–1105.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.mlr.press/v80/dabney18a.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>以连续分位水平为输入学习分位函数，原任务是学习强化学习中的回报分布。</p>
+  <p><span class="label">项目关系：</span>QueryQuantile 借鉴连续分位查询表示，使用监督 pinball；不迁移 Bellman 更新，也不声称复现 IQN。</p>
+
+  <p><span class="label">核验状态：</span>本轮核对 PMLR 作者、题名、年份及摘要；本项目频率数和读取骨干是自主配置。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{dabney2018iqn,
+  title = {Implicit Quantile Networks for Distributional Reinforcement Learning},
+  author = {Dabney, Will and Ostrovski, Georg and Silver, David and Munos, Remi},
+  year = {2018},
+  booktitle = {ICML, PMLR 80:1096–1105},
+  url = {https://proceedings.mlr.press/v80/dabney18a.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="jaegle2022perceiverio">
+  <h3>Perceiver IO: A General Architecture for Structured Inputs &amp; Outputs</h3>
+  <p class="apa">Jaegle, Andrew, Borgeaud, Sebastian, Alayrac, Jean-Baptiste, Doersch, Carl, Ionescu, Catalin, Ding, David, Koppula, Skanda, Zoran, Daniel, Brock, Andrew, Shelhamer, Evan, Henaff, Olivier, Botvinick, Matthew M., Zisserman, Andrew, Vinyals, Oriol, Carreira, Joao (2022). <cite>Perceiver IO: A General Architecture for Structured Inputs &amp; Outputs</cite>. ICLR 2022; arXiv:2107.14795v3.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/2107.14795">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>通过具有不同语义的输出查询读取潜在表示，支持不同形状和类型的输出。</p>
+  <p><span class="label">项目关系：</span>查询驱动解码的已有方法边界；本候选直接读取标记 token，不宣称复现整个 Perceiver IO 或据此证明原创。</p>
+
+  <p><span class="label">核验状态：</span>本轮核对 arXiv 作者、题名、ICLR 2022 标注及摘要。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{jaegle2022perceiverio,
+  title = {Perceiver IO: A General Architecture for Structured Inputs &amp; Outputs},
+  author = {Jaegle, Andrew and Borgeaud, Sebastian and Alayrac, Jean-Baptiste and Doersch, Carl and Ionescu, Catalin and Ding, David and Koppula, Skanda and Zoran, Daniel and Brock, Andrew and Shelhamer, Evan and Henaff, Olivier and Botvinick, Matthew M. and Zisserman, Andrew and Vinyals, Oriol and Carreira, Joao},
+  year = {2022},
+  booktitle = {ICLR 2022; arXiv:2107.14795v3},
+  url = {https://arxiv.org/abs/2107.14795}
+}</code></pre></details>
+</article>
+<article class="refcard" id="jeva_matrix_decision_code">
+  <h3>Jeva MatrixDecisionBlock（固定提交源码）</h3>
+  <p class="apa">LiQiiiii (n.d.). <cite>Jeva MatrixDecisionBlock（固定提交源码）</cite>. GitHub e2104e0720100f979f2cdd456a1cbbee96da0abd.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/matrix_decision.py">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>请求向量读取候选记忆，经受控残差与 FFN 更新；提供候选 K/V 缓存路径。</p>
+  <p><span class="label">项目关系：</span>帮助区分查询独立性和集合条件化；本项目不让分位查询集合改写材料记忆，不复制其语言模型骨干。</p>
+
+  <p><span class="label">核验状态：</span>本轮读取固定源码的 project_options、forward_from_kv 及决策块构造；此项著录代码来源，非论文作者列表。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{jeva_matrix_decision_code,
+  title = {Jeva MatrixDecisionBlock（固定提交源码）},
+  author = {LiQiiiii},
+  howpublished = {GitHub e2104e0720100f979f2cdd456a1cbbee96da0abd},
+  url = {https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/matrix_decision.py}
+}</code></pre></details>
+</article>
+<article class="refcard" id="cloudflare_clef_code">
+  <h3>Clef joint_schema_model.py（官方代码）</h3>
+  <p class="apa">Cloudflare (n.d.). <cite>Clef joint_schema_model.py（官方代码）</cite>. Hugging Face Cloudflare/clef; main 分支访问快照.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://huggingface.co/Cloudflare/clef/raw/main/joint_schema_model.py">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>候选上下文、词汇及问题表征构成查询，读取输入记忆后形成字段表征并进行匹配评分。</p>
+  <p><span class="label">项目关系：</span>提供候选读取证据的方向性参考；本项目改为连续 τ 查询和标量回归，不复制语言模型权重或词汇先验。</p>
+
+  <p><span class="label">核验状态：</span>本轮读取 option_queries、evidence_layers、字段聚合与匹配评分路径；main 是浮动分支，候选运行不依赖它。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@misc{cloudflare_clef_code,
+  title = {Clef joint_schema_model.py（官方代码）},
+  author = {Cloudflare},
+  howpublished = {Hugging Face Cloudflare/clef; main 分支访问快照},
+  url = {https://huggingface.co/Cloudflare/clef/raw/main/joint_schema_model.py}
 }</code></pre></details>
 </article></section>
 <section aria-label="代码与权重许可">

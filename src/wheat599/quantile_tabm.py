@@ -47,7 +47,13 @@ def update_epoch(model, x, y, q, opt, generator, spec, device):
 def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     start=time.perf_counter()
     variant=settings.get('optimizer_variant','adam')
-    if variant == 'conditional':
+    if variant == 'query':
+        from wheat599.query_quantile import QueryQuantile
+        torch.manual_seed(int(seed))
+        model = QueryQuantile(x_fit, y_fit, width=config['width'], heads=config['heads'],
+            dropout=config['dropout'], quantiles=settings['n_quantiles'],
+            quantile_min=settings['quantile_min'], quantile_max=settings['quantile_max']).to(device)
+    elif variant == 'conditional':
         from wheat599.conditional_quantile import ConditionalQuantile
         torch.manual_seed(int(seed))
         model = ConditionalQuantile(x_fit, y_fit, quantiles=settings['n_quantiles']).to(device)
@@ -66,9 +72,10 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
-    q = torch.linspace(settings['quantile_min'], settings['quantile_max'],
-                       settings['n_quantiles'], device=device)
-    if variant in ('adam','member_conditional','conditional'):
+    q = (model.quantiles if variant == 'query' else
+         torch.linspace(settings['quantile_min'], settings['quantile_max'],
+                        settings['n_quantiles'], device=device))
+    if variant in ('adam','member_conditional','conditional','query'):
         opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
     else:
         from wheat599.interaction_tabm import make_optimizers
@@ -133,6 +140,8 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
         sources += [baseline/f"predictions_{f['fold']}_{j}.npz" for f in folds for j in range(3)]
     if cfg.get('optimizer_variant')=='member_conditional':sources.append(Path(__file__).with_name('member_interaction_tabm.py'))
     if cfg.get('optimizer_variant')=='conditional':sources.append(Path(__file__).with_name('conditional_quantile.py'))
+    if cfg.get('optimizer_variant')=='query':
+        sources.extend(Path(__file__).with_name(name) for name in ('query_quantile.py','induced_ftt.py'))
     sources.extend(Path(p) for p in extra_sources)
     comparison={}
     for name,path in cfg.get('comparison_sources',{}).items():

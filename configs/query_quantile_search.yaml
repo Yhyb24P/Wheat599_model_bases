@@ -1,0 +1,9 @@
+configurations:
+  - {width: 64, heads: 4, dropout: 0.0, learning_rate: 0.0005, weight_decay: 0.01}
+  - {width: 64, heads: 4, dropout: 0.0, learning_rate: 0.002, weight_decay: 0.01}
+  - {width: 64, heads: 4, dropout: 0.1, learning_rate: 0.0005, weight_decay: 0.01}
+  - {width: 64, heads: 4, dropout: 0.1, learning_rate: 0.002, weight_decay: 0.01}
+  - {width: 128, heads: 4, dropout: 0.0, learning_rate: 0.0005, weight_decay: 0.01}
+  - {width: 128, heads: 4, dropout: 0.0, learning_rate: 0.002, weight_decay: 0.01}
+  - {width: 128, heads: 4, dropout: 0.1, learning_rate: 0.0005, weight_decay: 0.01}
+  - {width: 128, heads: 4, dropout: 0.1, learning_rate: 0.002, weight_decay: 0.01}

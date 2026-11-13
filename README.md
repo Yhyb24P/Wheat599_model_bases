@@ -21,6 +21,8 @@ python3 tests/test_report.py
 
 最新完成的是[完整 Mul-PheG2P 同协议适配](docs/methods/MULPHE_UNIFIED.md)：1,920 个开发单元、320 次外层重拟合、0 运行失败；调优标量融合 PCC 0.438225，默认配置 0.443596。目标编码器已包含；适配差异见原记录。该批结束，不自动追加实验。
 
+新实现：[查询条件分位数候选](docs/methods/QUERY_QUANTILE.md)，在标记汇总前由连续 τ 读取证据；实现与训练链路已验证，尚无正式 Wheat599 成绩。
+
 ## 环境
 
 基础依赖：

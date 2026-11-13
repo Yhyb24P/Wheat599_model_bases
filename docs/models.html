@@ -8745,7 +8745,77 @@ PCC；RMSE、MAE 同口径。各环境折均与合并折预测的 PCC
 <p>同一开发单元的固定分位数–Huber 融合，PCC 0.494512、RMSE
 0.870235；比较用的单独分位数 PCC 0.494565、RMSE
 0.871242。该开发重汇总不改变预固定 0.5 权重。</p>
-</div></details><details class="architecture-item"><summary>关系约束分位数 TabM：Wheat599 开发比较</summary><div><p><a href="methods/RELATION_QUANTILE.md">原始说明</a></p><h1 id="section-116-关系约束分位数-tabmwheat599-开发比较">关系约束分位数
+</div></details><details class="architecture-item"><summary>查询条件化的标记证据读取网络</summary><div><p><a href="methods/QUERY_QUANTILE.md">原始说明</a></p><h1 id="section-116-查询条件化的标记证据读取网络">查询条件化的标记证据读取网络</h1>
+<p>状态：完整候选及开发比较入口已实现；完成软件测试和合成输入训练链路验证，尚无
+Wheat599
+正式开发或外层结果。当前最优固定融合不变。本候选从头初始化，不保留 TabM
+或 Huber 的预测函数。</p>
+<h2 id="section-116-完整计算路径">完整计算路径</h2>
+<p>四环境独立建模，每个环境每个种子一套网络。全部 1,279
+个标记进入模型；0 是观测状态，不作
+padding，也不把列顺序解释为物理距离。</p>
+<ol type="1">
+<li>标记按当前拟合集均值/总体标准差处理，拟合集常量列归零。标记 j 的
+token 为共享两层 GELU MLP 作用于 <code>b_j + z_j w_j</code>；b、w
+为每个标记的可学习向量。没有跨标记自注意力或全局预池化。</li>
+<li>连续分位水平 τ 编码为
+<code>[cos(π r τ)]</code>，r=0,…,32，再经过两层共享 GELU MLP。τ 必须在
+(0,1) 内，支持任意非空一维查询列表。</li>
+<li>两层 Pre-LN 交叉注意力：query 逐层更新，K/V
+来自同一份材料标记记忆；每层后接残差 ReGLU FFN。直接复用
+<code>induced_ftt.PreLNCrossAttention</code>，隐藏宽度 d，4 头，FFN 隐层
+2d。无查询间自注意力、查询集合池化或跨材料注意力。</li>
+<li>共享读出 <code>LayerNorm → Linear(d,d) → GELU → Linear(d,1)</code>
+输出每个查询的标准化分位值。标准接口为
+<code>[batch, 1, queries]</code>，中间的 1
+是单成员兼容轴，不是假称保留了 TabM 内部集成。</li>
+</ol>
+<p>在 eval 模式下，同一个 τ
+的输出不随其他查询、查询顺序、重复查询或无关批次材料变化（浮点误差容差内）。训练时
+Dropout
+有随机性，不要求不同调用的随机掩码逐元素一致。查询处理独立并不保证分位数单调，也未验证区间覆盖率。</p>
+<h2 id="section-116-训练与预设开发预算">训练与预设开发预算</h2>
+<p>复用 <code>quantile_tabm.train/run</code>
+的损失、逐种子早停、三内折选模、预测存储、失败记录和汇总，不复制训练器。损失对
+99
+个分位点求和，对材料和成员轴平均；点预测对分位点平均、反标准化后再平均种子
+42/2026。固定网格仍为 0.001–0.999 的 99 点。</p>
+<p>预设八配置：宽度 64/128 × Dropout 0/0.1 × 学习率
+0.0005/0.002；均为两次读取、4 头、AdamW weight decay 0.01。每次最多 500
+epoch、patience 50、batch 128、梯度裁剪
+5。沿用既有十外折的三个内折；开发预算上限为 30 × 4 × 8 × 2 = 1,920
+次拟合，不追加配置。当前实现完成不代表这批拟合已经运行。</p>
+<p>参考预测复用已核对的 Huber、原分位数 TabM 和原固定分位数–Huber
+融合。汇总中 <code>quantile</code>
+是本候选、<code>original_quantile</code>
+是原分位数、<code>original_fusion</code> 是原分位数固定融合；历史
+<code>fixed_fusion</code> 键仍是 MSE TabM
+的固定融合，不能混称。不自动增加候选–Huber 融合或进入外层。</p>
+<p>候选只有一个成员，原 TabM 有 16/32
+个成员，骨干和参数共享方式也不同；首批只能比较完整系统，不能把任何差异单独归因于查询参与的时间位置。旧诱导注意力配置及层级条件网络的负结果不等于这个新候选的结果。</p>
+<div class="sourceCode" id="section-116-cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="section-116-cb1-1"><a href="#section-116-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> scripts/run_background_nested.py <span class="at">--config</span> configs/query_quantile.yaml <span class="at">--out</span> results/query_quantile_development_<span class="op">&lt;</span>日期<span class="op">&gt;</span></span></code></pre></div>
+<p>配置中的 <code>model: quantile_tabm</code>
+选择现有分位开发执行器，<code>optimizer_variant: query</code>
+选择新架构并使用 AdamW；模型本身不是
+TabM。必须准备原始数据、既有划分与基线预测；输出新目录，不能覆盖历史产物。生成
+provenance 同时记录新模型和复用交叉注意力模块的 SHA。</p>
+<h2 id="section-116-实现检查">实现检查</h2>
+<p>测试覆盖两层读取与编码/读出的梯度、查询单独/联合/置换/重复推理一致性、材料批次隔离、保留全部标记、拟合统计量固定、常量列安全、checkpoint
+恢复、初始化种子重置，以及完整十折三内折开发执行器的合成产物保存与双种子预测聚合。合成测试不作为
+Wheat599 性能证据。</p>
+<h2 id="section-116-方法来源与边界">方法来源与边界</h2>
+<p><a
+href="https://proceedings.mlr.press/v80/dabney18a.html">IQN</a>提供连续分位编码的已有依据，本候选不使用其
+Bellman 更新；<a href="https://arxiv.org/abs/2107.14795">Perceiver
+IO</a>已有查询驱动输出机制。<a
+href="https://github.com/LiQiiiii/Jeva/blob/e2104e0720100f979f2cdd456a1cbbee96da0abd/src/jeva/_runtime/matrix_decision.py">Jeva
+决策块</a>与<a
+href="https://huggingface.co/Cloudflare/clef/raw/main/joint_schema_model.py">Clef
+源码</a>是读取方向的参考，不导入语言模型权重，也不声称复现它们。这里不实现候选集合反向改写基因型表示。</p>
+<p>可检验的差异是：τ
+在标记证据汇总之前进入计算。交叉注意力、连续查询编码或两层读取本身不是原创性证据，注意力也不直接构成因果位点解释。</p>
+</div></details><details class="architecture-item"><summary>关系约束分位数 TabM：Wheat599 开发比较</summary><div><p><a href="methods/RELATION_QUANTILE.md">原始说明</a></p><h1 id="section-117-关系约束分位数-tabmwheat599-开发比较">关系约束分位数
 TabM：Wheat599 开发比较</h1>
 <p>在现有四个环境独立的全标记 TabM、99 分位点逐成员 pinball
 损失上增加拟合材料的中心关系惩罚。每个环境的模型架构沿用原分位数模型在该外折、该环境的开发选择（8
@@ -8789,7 +8859,7 @@ GP 或严格 RKHS 等价。原冻结分位数–Huber 外层 0.526506
 0.000060，但仅 4/10 开发集更高、RMSE 更差。详见 <a
 href="RESULTS.md">RESULTS</a>。按附件的收益条件，对 λ=10
 补做材料置换与全曲线约束两项开发对照；λ根据已观察的同一开发集挑选，对照不能当成独立确认。</p>
-<h2 id="section-116-两项机制对照">两项机制对照</h2>
+<h2 id="section-117-两项机制对照">两项机制对照</h2>
 <p>仅使用开发 PCC 均值最高的固定强度
 λ=10（该值在观察同一开发批次后选定），不再搜索：① <code>P K Pᵀ</code>
 用固定种子 <code>20261107 + 3*fold + inner</code>
@@ -8820,12 +8890,12 @@ Git；未保存旧原模型曲线，因此本轮这些曲线指标仅比较两�
 0.495940，但真实核 RMSE 和 MAE
 更低。两臂区间覆盖偏低、分位点存在交叉；结果与复算见 <a
 href="RESULTS.md">RESULTS</a>。</p>
-</div></details><details class="architecture-item"><summary>全标记 TabM 的材料级检索增强</summary><div><p><a href="methods/RETRIEVAL_TABM.md">原始说明</a></p><h1 id="section-117-全标记-tabm-的材料级检索增强">全标记 TabM 的材料级检索增强</h1>
+</div></details><details class="architecture-item"><summary>全标记 TabM 的材料级检索增强</summary><div><p><a href="methods/RETRIEVAL_TABM.md">原始说明</a></p><h1 id="section-118-全标记-tabm-的材料级检索增强">全标记 TabM 的材料级检索增强</h1>
 <p>2026-11-05，用户授权实施。基线提交
 <code>5d63183</code>。三臂开发、ICM融合和RAGP参照开发均已完成；分别冻结
 <code>22faf5b</code> 与 <code>15c630e</code>。结果统一见 <a
 href="RESULTS.md">RESULTS.md</a>，本文件保留实际执行协议。当前预算结束，不追加训练、校准、消融或外层测试。</p>
-<h2 id="section-117-研究问题与模型">研究问题与模型</h2>
+<h2 id="section-118-研究问题与模型">研究问题与模型</h2>
 <p>保留全部 1279 个标记和官方 TabM 0.0.3
 的成员机制。在成员中间表示后，使用同一映射空间的负平方距离选邻居，聚合训练参考材料的四环境标签编码与查询—参考
 key
@@ -8835,7 +8905,7 @@ href="https://github.com/yandex-research/tabular-dl-tabr/blob/main/bin/tabr.py">
 官方代码</a> 的标签编码和差异校正；<a
 href="https://github.com/yandex-research/tabm">TabM 官方代码</a>
 提供全标记基座。公式和成熟组件本身不构成原创证据。</p>
-<h2 id="section-117-数据边界与选择">数据边界与选择</h2>
+<h2 id="section-118-数据边界与选择">数据边界与选择</h2>
 <p>复用
 <code>results/get_icm_protocol_20261103/splits_manifest.json</code>。每个外层开发集沿用三内层
 fit/val，参考库只能含当前 fit 材料及其四环境标签。预处理只拟合
@@ -8846,7 +8916,7 @@ dropout 模式并计入重编码成本。当前阶段不运行外层测试。</p
 的宏平均，继而平均三内层分数，作为每外层开发集的选模指标；并列取配置列表较前者。另报告逐种子
 PCC 均值，不能将其称为预测集成成绩。早停逐轨迹使用验证宏
 PCC，最高者优先、并列较早 epoch。所有开发数字均为条件选模描述。</p>
-<h2 id="section-117-预算与对照">预算与对照</h2>
+<h2 id="section-118-预算与对照">预算与对照</h2>
 <p>三个神经臂：原始全标记 TabM、多成员检索、单成员四环境检索。每臂预定 8
 配置 × 2 种子 × 10 个开发集 × 3 内层，合计上限 1440 条正式轨迹；每条最多
 500 epoch、patience 50，种子
@@ -8865,7 +8935,7 @@ Git。</p>
 0.01。已单独作同协议适配，未以多环境单成员检索替代。PCA 只在 fit
 拟合；其 cosine 库更新通过减单位阵抑制对角而非严格排除，适配改为材料 ID
 严格排除，并记录与上游的差异。论文原划分分数不用于本协议排名。</p>
-<h2 id="section-117-协作">协作</h2>
+<h2 id="section-118-协作">协作</h2>
 <p>gpt66：统筹、检索核心实现、配置、CLI、文档、Git，以及 Huber ICM
 融合集成。gb：<code>src/wheat599/retrieval_run.py</code>、<code>tests/test_retrieval_run.py</code>
 与正式执行。cn 已确认未写检索核心文件并交接，改分配
@@ -8890,7 +8960,7 @@ state 暂存在内存，重载核对预测后流式记录 SHA，不保存每条�
 和库更新之后，不是未训练空库状态。选模异常记录失败并中止，不能标记为完整完成。正式执行已在
 omen
 串行接续三臂与融合，共480条、0失败，3536.57秒；GPU任务结束后已释放。</p>
-</div></details><details class="architecture-item"><summary>Wheat599 独立环境 RFM：开发比较</summary><div><p><a href="methods/RFM_DEVELOPMENT.md">原始说明</a></p><h1 id="section-118-wheat599-独立环境-rfm开发比较">Wheat599 独立环境
+</div></details><details class="architecture-item"><summary>Wheat599 独立环境 RFM：开发比较</summary><div><p><a href="methods/RFM_DEVELOPMENT.md">原始说明</a></p><h1 id="section-119-wheat599-独立环境-rfm开发比较">Wheat599 独立环境
 RFM：开发比较</h1>
 <p>使用作者 <a
 href="https://github.com/aradha/recursive_feature_machines/tree/58bd5404bd252d1f4e7e20e01f103a3fcb5a65b2">recursive_feature_machines</a>
@@ -8906,7 +8976,7 @@ AGOP 更新，而非将非对角项解释为生物学互作。</p>
 <p>同一批验证材料上比较 Huber ICM、四独立 TabM、固定等权融合。RFM
 的配置与迭代选择自由度和 TabM
 不同，因此这是完整系统开发比较，不能归因于单独某一个超参数；所有分数均为开发证据，不涉及外层测试标签。</p>
-</div></details><details class="architecture-item"><summary>Wheat599 固定选模多种子比较</summary><div><p><a href="methods/SEED_STABILITY.md">原始说明</a></p><h1 id="section-119-wheat599-固定选模多种子比较">Wheat599 固定选模多种子比较</h1>
+</div></details><details class="architecture-item"><summary>Wheat599 固定选模多种子比较</summary><div><p><a href="methods/SEED_STABILITY.md">原始说明</a></p><h1 id="section-120-wheat599-固定选模多种子比较">Wheat599 固定选模多种子比较</h1>
 <p>已完成 400/400 次拟合、0 失败；五种子融合指标均值 PCC 0.523731，MoEGP
 0.480522。详见 <a href="RESULTS.md">RESULTS</a>。</p>
 <p>在已使用的十外折上固定五个种子
@@ -8920,7 +8990,7 @@ MAE，再对五个种子的指标取算术平均，并列出全部种子结果�
 0.526506 另列，不能把五个单种子的分数平均当作预测集成结果。</p>
 <p>该比较评估固定选模后的初始化／训练随机性，不等于对手已获得相同超参数选择预算，也不使重复使用的外折成为独立验证。预测和权重保留
 omen，不入 Git。</p>
-<h2 id="section-119-cwags-与谱系混合核核查">CWAGS 与谱系混合核核查</h2>
+<h2 id="section-120-cwags-与谱系混合核核查">CWAGS 与谱系混合核核查</h2>
 <p>CWAGS 论文报告 Wheat599 四环境平均 PCC
 0.5368，声明十折均值、固定随机种子、AdamW 与 400
 epoch，但未在正文列出源码链接、实际折 ID 或完整选模信息；GitHub 仓库搜索
@@ -8934,12 +9004,12 @@ Genomics</a>。</p>
 已确认是谱系关系矩阵；它与该论文具体使用的矩阵及材料行序是否一致仍须核验。本轮不训练该模型。来源：<a
 href="https://www.frontiersin.org/journals/plant-science/articles/10.3389/fpls.2025.1605202/full">Frontiers
 in Plant Science</a>。</p>
-</div></details><details class="architecture-item"><summary>稀疏交互的有限诊断</summary><div><p><a href="methods/SPARSE_INTERACTION_DIAGNOSTIC.md">原始说明</a></p><h1 id="section-120-稀疏交互的有限诊断">稀疏交互的有限诊断</h1>
+</div></details><details class="architecture-item"><summary>稀疏交互的有限诊断</summary><div><p><a href="methods/SPARSE_INTERACTION_DIAGNOSTIC.md">原始说明</a></p><h1 id="section-121-稀疏交互的有限诊断">稀疏交互的有限诊断</h1>
 <p>本轮已完成，定位材料—位点网络的推断缺口；没有训练新网络或读取
 Wheat599。沿用首轮的 32 个模拟验证任务与 24
 个已查看的混合群体结构任务；后者是历史诊断面板，不是新的确认集。神经参照直接复用两个种子的逐任务误差，不做预测集成。结果归入
 <a href="RESULTS.md">RESULTS.md</a>。</p>
-<h2 id="section-120-先明确能够证明什么">先明确能够证明什么</h2>
+<h2 id="section-121-先明确能够证明什么">先明确能够证明什么</h2>
 <p>二值标记经上下文中心化、全局尺度
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>s</mi><annotation encoding="application/x-tex">s</annotation></semantics></math>
 标准化后，有</p>
@@ -8962,7 +9032,7 @@ Gram、查询范数一致至浮点误差。在均匀位点对、等概率正负�
 1 时，给定上述表型的两个预测都为
 0.5692599620。该反例不能证明神经网络的必要性；本轮仍需通过同特征稠密 L2
 参照实际检验稀疏推断的收益。</p>
-<h2 id="section-120-相同可观测信息与目标">相同可观测信息与目标</h2>
+<h2 id="section-121-相同可观测信息与目标">相同可观测信息与目标</h2>
 <p>所有方法只由带噪上下文估计效应，评价标准化的无噪声查询目标。<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>Z</mi><mo>,</mo><mi>Y</mi></mrow><annotation encoding="application/x-tex">Z,Y</annotation></semantics></math>
 采用原模拟任务的上下文预处理；<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>A</mi><mo>=</mo><mi>Z</mi><mi>/</mi><msqrt><mi>p</mi></msqrt></mrow><annotation encoding="application/x-tex">A=Z/\sqrt p</annotation></semantics></math>。<math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mi>W</mi><annotation encoding="application/x-tex">W</annotation></semantics></math>
 包含全部
@@ -8989,14 +9059,14 @@ sklearn 的多任务 ElasticNet 独立求解其小规模限制问题。</p>
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>K</mi><mo>*</mo></msub><mo stretchy="false" form="prefix">(</mo><mi>K</mi><mo>+</mo><mi>I</mi><msup><mo stretchy="false" form="postfix">)</mo><mrow><mi>−</mi><mn>1</mn></mrow></msup><mi>Y</mi></mrow><annotation encoding="application/x-tex">K_* (K+I)^{-1}Y</annotation></semantics></math>。空
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><msub><mi>r</mi><mi>P</mi></msub><annotation encoding="application/x-tex">r_P</annotation></semantics></math>
 直接退化为既有加性岭解。</p>
-<h2 id="section-120-固定预算与数值证书">固定预算与数值证书</h2>
+<h2 id="section-121-固定预算与数值证书">固定预算与数值证书</h2>
 <p>配置为
 <code>configs/sparse_interaction_diagnostic.yaml</code>，统一入口：</p>
-<div class="sourceCode" id="section-120-cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="section-120-cb1-1"><a href="#section-120-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">OPENBLAS_NUM_THREADS</span><span class="op">=</span>2 <span class="va">OMP_NUM_THREADS</span><span class="op">=</span>2 <span class="va">MKL_NUM_THREADS</span><span class="op">=</span>2 <span class="va">PYTHONPATH</span><span class="op">=</span>src <span class="dt">\</span></span>
-<span id="section-120-cb1-2"><a href="#section-120-cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">python</span> scripts/run_background_nested.py <span class="dt">\</span></span>
-<span id="section-120-cb1-3"><a href="#section-120-cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--config</span> configs/sparse_interaction_diagnostic.yaml <span class="dt">\</span></span>
-<span id="section-120-cb1-4"><a href="#section-120-cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--out</span> results/sparse_interaction_diagnostic_20261104</span></code></pre></div>
+<div class="sourceCode" id="section-121-cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="section-121-cb1-1"><a href="#section-121-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">OPENBLAS_NUM_THREADS</span><span class="op">=</span>2 <span class="va">OMP_NUM_THREADS</span><span class="op">=</span>2 <span class="va">MKL_NUM_THREADS</span><span class="op">=</span>2 <span class="va">PYTHONPATH</span><span class="op">=</span>src <span class="dt">\</span></span>
+<span id="section-121-cb1-2"><a href="#section-121-cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="ex">python</span> scripts/run_background_nested.py <span class="dt">\</span></span>
+<span id="section-121-cb1-3"><a href="#section-121-cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">--config</span> configs/sparse_interaction_diagnostic.yaml <span class="dt">\</span></span>
+<span id="section-121-cb1-4"><a href="#section-121-cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">--out</span> results/sparse_interaction_diagnostic_20261104</span></code></pre></div>
 <ul>
 <li>固定 λ_A=3（既有加性参照的选择）、λ_E=0.001；λ_G/λ_max 为
 <code>1,0.5,0.2,0.1,0.05</code>，其中 λ_max=max_l||W_l^T M Y/n||₂。</li>
@@ -9023,7 +9093,7 @@ GiB，分块构建，运行后释放显存。</li>
 <p>[ =_G_l|C_l|+_E|C|_F^2 +_l-C,s. ]</p>
 <p>它须不大于
 <math display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mn>10</mn><mrow><mi>−</mi><mn>7</mn></mrow></msup><mrow><mi mathvariant="normal">max</mi><mo>&#8289;</mo></mrow><mo stretchy="false" form="prefix">(</mo><mn>1</mn><mo>,</mo><mo stretchy="false" form="prefix">|</mo><mrow><mi mathvariant="normal">o</mi><mi mathvariant="normal">b</mi><mi mathvariant="normal">j</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">c</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">v</mi><mi mathvariant="normal">e</mi></mrow><mo stretchy="false" form="prefix">|</mo><mo stretchy="false" form="postfix">)</mo></mrow><annotation encoding="application/x-tex">10^{-7}\max(1,|\mathrm{objective}|)</annotation></semantics></math>，实质负间隙判失败。未知位置证书覆盖全候选空间，已知位置证书只覆盖给定支持。</p>
-<h2 id="section-120-判读边界">判读边界</h2>
+<h2 id="section-121-判读边界">判读边界</h2>
 <p>已知位置也无收益时，不能据此评价搜索能力；已知位置有效而未知位置无效，只排除这套估计器和正则预算，不能声称信息论不可识别。未知位置有效而网络无效，才建立明确推断缺口。精确支持恢复只作解释，相关标记的替代位置仍可能预测正确。即使模拟诊断成功，也不能代替
 Wheat599 上的优势。</p>
 <p>相关算法本身已有成熟基础：<a
@@ -9037,7 +9107,7 @@ href="https://journals.plos.org/plosgenetics/article?id=10.1371/journal.pgen.101
 </div></details><details class="architecture-item"><summary>密集多基因背景＋多环境稀疏贝叶斯树</summary><div><p><a href="methods/SPARSE_POLYGENIC_BART.md">原始说明</a></p><h1
 id="密集多基因背景多环境稀疏贝叶斯树">密集多基因背景＋多环境稀疏贝叶斯树</h1>
 <p>本轮只开发一个完整候选：所有标记的高斯线性背景、各环境专属的稀疏森林、四环境相关残差联合采样。仅做既有30个开发单元，候选未通过前不进入外层。现役固定融合外层PCC仍为0.526506。</p>
-<h2 id="section-121-模型与先验">模型与先验</h2>
+<h2 id="section-122-模型与先验">模型与先验</h2>
 <p>拟合集内按列标准化表型和线性背景标记；常量标记中心化后为零，仍保留输入位置。树使用原二值标记及阈值0.5，不赋予物理列序意义。查询只输入标记。</p>
 <p>[ Y_i=+B^z_i+(f_1(x_i),,f_4(x_i))+_i, _iN_4(0,). ]</p>
 <ul>
@@ -9047,7 +9117,7 @@ id="密集多基因背景多环境稀疏贝叶斯树">密集多基因背景＋�
 <li>各环境有独立(_eDirichlet(_e/p,,_e/p))，共享于该环境的全部树；(_e/(_e+p)Beta(1/2,1))。这是DART式稀疏分裂先验，不是训练前硬筛变量。</li>
 <li>沿用suBART的Huang–Wand协方差层次先验，nu=3，A由拟合集表型标准差与half-t的90%分位数校准；每轮更新辅助a和逆Wishart条件分布。它是残差协方差，不是遗传相关矩阵。</li>
 </ul>
-<h2 id="section-121-推断实现">推断实现</h2>
+<h2 id="section-122-推断实现">推断实现</h2>
 <p>成熟来源：<a
 href="https://github.com/MateusMaiaDS/subart/tree/deddf4ea1290513cd6bce4e7867349d6c32fc2fa">suBART</a>，MIT。复用节点管理、条件残差充分统计量、叶高斯后验及层次逆Wishart更新；仅保留回归必需路径，不引入分类、缺失表型、类别重编码等未使用分支。源码及原许可在<code>src/wheat599/bayesian_trees/</code>。</p>
 <p>扩展后的联合链依次更新：密集B、截距、四个森林、稀疏概率及其浓度、协方差。B采用观测空间精确高斯抽样；对Sigma旋转后，各通道使用固定的(ZZ^T)谱分解，避免p×p分解。</p>
@@ -9055,20 +9125,20 @@ href="https://github.com/MateusMaiaDS/subart/tree/deddf4ea1290513cd6bce4e7867349
 <p>合法变量集合的归一化会影响DART全条件：</p>
 <p>[ p(T,)Dir(;/p+N_j) <em>{v}(</em>{jA_v}_j)^{-1}. ]</p>
 <p>因此不能直接套用Dirichlet计数更新。使用Dirichlet独立提议，并以合法集合归一化乘积作精确MH校正；概率在log域计算。另对(theta,pi)作联合提议，接受率包含Dirichlet–多项式正规化比、浓度超先验和合法集合校正，缓解高维逐块Gibbs锁定。不使用期望伪计数近似。</p>
-<h2 id="section-121-采样与评价边界">采样与评价边界</h2>
+<h2 id="section-122-采样与评价边界">采样与评价边界</h2>
 <p>四条独立种子链，预热2000、保留4000，按一次训练侧试运行的混合与成本固定，不再自动加倍或重复试运行。所有保留的完整函数样本等权平均，不按验证PCC选迭代。用户要求直接推进数字交付，混合诊断作为结果记录而非运行门控。</p>
 <p>使用ArviZ记录训练材料预测、Sigma及浓度/分裂数/分量RMS的Rhat、ESS和MCSE，不以这些数值中断或筛选候选、材料或链。若混合不足，明确把结果标为固定预算下的探索性Monte
 Carlo近似，不宣称已收敛；所有配置完整报告。采样长度不看验证成绩，查询标签不进入采样器。</p>
 <p>各配置完成全部3个内部单元后，每个开发折按四环境平均PCC选择一个完整配置，平分取列表先者。所有配置与选中配置的分数分别保存。参照沿用同材料原分位数TabM（0.494565432）、Huber（0.481082622）和固定融合（0.494512272，RMSE0.870234699），不新训参照。</p>
 <p>正式入口：</p>
-<div class="sourceCode" id="section-121-cb1"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="section-121-cb1-1"><a href="#section-121-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">WHEAT599_R_PREFIX</span><span class="op">=</span>/home/hsy/venvs/wheat599-r <span class="dt">\</span></span>
-<span id="section-121-cb1-2"><a href="#section-121-cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">OPENBLAS_NUM_THREADS</span><span class="op">=</span>1 <span class="va">OMP_NUM_THREADS</span><span class="op">=</span>1 <span class="dt">\</span></span>
-<span id="section-121-cb1-3"><a href="#section-121-cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/hsy/venvs/wheat599/bin/python</span> scripts/run_background_nested.py <span class="dt">\</span></span>
-<span id="section-121-cb1-4"><a href="#section-121-cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="at">--config</span> configs/sparse_polygenic_bart.yaml <span class="at">--out</span> results/sparse_polygenic_bart_development_20261110</span></code></pre></div>
+<div class="sourceCode" id="section-122-cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="section-122-cb1-1"><a href="#section-122-cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">WHEAT599_R_PREFIX</span><span class="op">=</span>/home/hsy/venvs/wheat599-r <span class="dt">\</span></span>
+<span id="section-122-cb1-2"><a href="#section-122-cb1-2" aria-hidden="true" tabindex="-1"></a><span class="va">OPENBLAS_NUM_THREADS</span><span class="op">=</span>1 <span class="va">OMP_NUM_THREADS</span><span class="op">=</span>1 <span class="dt">\</span></span>
+<span id="section-122-cb1-3"><a href="#section-122-cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">/home/hsy/venvs/wheat599/bin/python</span> scripts/run_background_nested.py <span class="dt">\</span></span>
+<span id="section-122-cb1-4"><a href="#section-122-cb1-4" aria-hidden="true" tabindex="-1"></a> <span class="at">--config</span> configs/sparse_polygenic_bart.yaml <span class="at">--out</span> results/sparse_polygenic_bart_development_20261110</span></code></pre></div>
 <p>Rcpp只编译一次，工作进程只加载已编译共享库，不并行写sourceCpp缓存。R环境与Python
 ArviZ版本记入运行清单。原始输入、逐链样本、完整系数和大预测仅存运行机；小型诊断、摘要、文件SHA及协议提交Git。</p>
-<h2 id="section-121-验证与当前状态">验证与当前状态</h2>
+<h2 id="section-122-验证与当前状态">验证与当前状态</h2>
 <p>原生R测试<code>tests/test_bayesian_trees.R</code>对照完整高斯后验矩、两状态树精确后验概率、合法集合下DART先验矩、浓度超先验矩及逆Wishart全条件矩，并检查重现与查询行置换隔离。</p>
 <p>固定预算开发任务已完成 30/30 单元、360 链、0 运行失败；候选 PCC
 0.419657。部分链混合不充分，结果是探索性 Monte Carlo
@@ -9077,7 +9147,7 @@ ArviZ版本记入运行清单。原始输入、逐链样本、完整系数和大
 <p>方法依据：<a
 href="https://arxiv.org/html/2404.02228v3">suBART论文</a>、<a
 href="https://doi.org/10.1080/01621459.2016.1264957">DART论文</a>。稀疏先验、半参数树与相关残差分别已有研究；本轮检验的是完整预测器在相同材料留出条件下是否增加实际预测能力。</p>
-</div></details><details class="architecture-item"><summary>稀疏残差分位数网络</summary><div><p><a href="methods/SPARSE_RESIDUAL_QUANTILE.md">原始说明</a></p><h1 id="section-122-稀疏残差分位数网络">稀疏残差分位数网络</h1>
+</div></details><details class="architecture-item"><summary>稀疏残差分位数网络</summary><div><p><a href="methods/SPARSE_RESIDUAL_QUANTILE.md">原始说明</a></p><h1 id="section-123-稀疏残差分位数网络">稀疏残差分位数网络</h1>
 <p>四环境分别训练；每个模型由全标记稠密入口、三个两层残差块及 32
 个共享矩阵成员构成。仅残差块共享矩阵采用逐坐标预条件的 L1/2
 近端，入口、输出头和成员适配使用常规 AdamW 衰减。输出 99
@@ -9099,7 +9169,7 @@ id="结构化系数先验的稳健多环境回归">结构化系数先验的稳�
 0.526506不变；本轮不自动进入外层、扩展数据集或追加其他基线。</p>
 <p>依据：<a href="https://doi.org/10.1093/bib/bbag133">GWKBR论文</a>及<a
 href="https://github.com/Wangxuer521/GWKBR/blob/d9019e012cae4d7207eab8c318942450fded67d3/GWKBR.py">作者代码d9019e0</a>。原文Wheat四环境最终均选择unweighted，因此不以该结果证明标记加权有效。作者K_Model后验解为<code>(R^T R + lambda_eff G)^-1 R^T y</code>，G约束系数精度；其对应的有效函数核为<code>R G^-1 R^T</code>，与加性/RBF相加有实质区别。文献成绩不与项目结果直接排名。</p>
-<h2 id="section-123-固定模型定义">固定模型定义</h2>
+<h2 id="section-124-固定模型定义">固定模型定义</h2>
 <ul>
 <li>0/1
 DArT保持原始编码。G沿用项目<code>kernels()</code>的拟合集中心化二值标记Gram矩阵，并归一化为平均对角1；不使用作者的二倍体剂量频率解释。</li>
@@ -9112,10 +9182,10 @@ delta为1.345、2.5乘以当前配置拟合集初始岭解残差MAD（沿用现�
 </ul>
 <p>P的Cholesky为L时，以<code>D=R L^-T</code>白化，<code>theta=L^T A</code>。任务协方差再因子化为B，使用现有<code>robust_icm.fit_predict()</code>，复用原损失/梯度；不满足最终证书时用SciPy
 trust-ncg及同一目标的精确Hessian-vector积进一步收敛。D的拟合集列均值可吸收到自由截距，不改变模型。SVD仅去掉相对最大奇异值&lt;=1e-12的数值零方向，查询使用同一旋转和均值。保存时转换回原A及b，逐配置核对<code>R* A+b</code>预测。</p>
-<h2 id="section-123-作者基础方法参照">作者基础方法参照</h2>
+<h2 id="section-124-作者基础方法参照">作者基础方法参照</h2>
 <p>参照为作者未加权K_Model后验公式，显式提供同一二值P；fit表型中心化/标准化后求解，再反标准化，不另拟合截距。有效ridge候选0.001、0.01、0.1、1、10、100、1000，吸收sigma_e2/sigma_a2。各环境分别按三内折PCC选择h/epsilon/ridge。</p>
 <p>该参照不是作者完整GWKBR流水线的原样复现：不运行GWAS、REML或100次贝叶斯搜索，不使用其二倍体G构造。它用于核对基础结构机制与整体预测比较，不据此声称已超过论文完整方法。作者仓库该提交无LICENSE文件，未vendoring/分发作者代码；独立公式实现已与指定提交的<code>K_Model._compute_posterior()</code>实际方法数值核对（显式传入P、方差比为1），最大预测差9.47e-14，源SHA及说明见<code>results/structured_coefficient_upstream_20261110/verification.json</code>。</p>
-<h2 id="section-123-开发预算和验收">开发预算和验收</h2>
+<h2 id="section-124-开发预算和验收">开发预算和验收</h2>
 <p>30单元（10外层开发集×3内折），候选每单元3带宽×3epsilon×7lambda×4eta×2delta=504次四环境凸拟合，总15,120次；参照每单元63次四目标解析计算，总1,890次（等价7,560单环境计算）。参照和候选均保存全部预测及系数；候选按12个“内折×环境”PCC平均选一个完整配置，不拆环境拼接最优。参照允许各环境独立选配置，其额外选择自由度公开记录。</p>
 <p>主参照复用同材料原分位数TabM、Huber及固定等权融合预测，目标为开发融合PCC
 0.494512且误差竞争，不把大网格择优增益直接称为泛化改进。只评价完整模型，不增加消融或新一轮搜索。</p>
@@ -9129,11 +9199,11 @@ Fenchel对偶证书：对偶score满足每环境零和与Huber盒约束（残差
 <p>首轮正式执行<code>1f77591</code>在一个配置相对对偶间隙2.617e-6时按预定阈值1e-6停止，完整单元0/30，不作性能证据；原目录保留。后续仅补充基于原Huber目标及Hessian-vector积的trust-ncg数值精化，不改变模型、候选集或验收阈值；从独立新目录执行。另明确n×E表示总观测数4n，ridge=lambda*y.size是正确归一化，新增字段记录ridge/normalized_lambda/number_observations并测试该等式。</p>
 <p>数值精化版本冻结<code>5eabab4</code>、标签<code>structured-coefficient-dev-v2</code>，本机/omen各6项测试（含Hessian-vector有限差分、强制精化、归一化字段）通过。新运行路径omen
 <code>/home/hsy/worktrees/structured-coefficient-v2/results/structured_coefficient_development_20261110_v2</code>，旧失败目录不覆盖。所有模型候选、最终梯度与间隙验收阈值保持不变。</p>
-<h2 id="section-123-开发结果">开发结果</h2>
+<h2 id="section-124-开发结果">开发结果</h2>
 <p>完整重跑完成30/30单元、15120候选＋1890四目标参照、0失败，运行107.30秒。候选PCC
 0.478143、RMSE 0.878864、MAE
 0.677101，优于后验公式适配参照，但低于原Huber、原分位数及固定融合；相对融合10/10折PCC落后。本配置结束，不进入外层或追加搜索。全部原始系数预测、结构化目标、选择与梯度/对偶证书复核通过。完整数字及失败历史见docs/RESULTS.md和results/structured_coefficient_development_20261110_v2。</p>
-</div></details><details class="architecture-item"><summary>TabICLv2 遗传任务适配：Wheat599 开发比较</summary><div><p><a href="methods/TABICL_GENOMIC.md">原始说明</a></p><h1 id="section-124-tabiclv2-遗传任务适配wheat599-开发比较">TabICLv2
+</div></details><details class="architecture-item"><summary>TabICLv2 遗传任务适配：Wheat599 开发比较</summary><div><p><a href="methods/TABICL_GENOMIC.md">原始说明</a></p><h1 id="section-125-tabiclv2-遗传任务适配wheat599-开发比较">TabICLv2
 遗传任务适配：Wheat599 开发比较</h1>
 <p>本配置已完成，遗传续训低于官方权重及现役融合，未通过晋级条件；结果见
 <a href="RESULTS.md">RESULTS</a>。</p>
@@ -9165,7 +9235,7 @@ TabM（494/3840fit）和本机DeepGS（1/480fit），进程均已退出，各原
 <p>GBLUP外层证据位于<code>results/wheat2000_gblup_final_20261105/</code>，完整重拟合/预测CPU墙钟5.03秒；16000条保存OOF的全部材料、双ID、真值和十折覆盖已独立逐项核对，80项指标与summary重算一致。合并OOF
 PCC另为0.615484、RMSE0.788406，不与上述折均混称；逐性状合并指标另存<code>pooled_oof_metrics.json</code>。主候选尚在开发，此处没有神经架构收益或领先结论。</p>
 <p>GBLUP的7.32/5.03秒均从加载数据与校验选择之后开始，包含原始标记核构造、拟合、相应选模/评分和结果写入；不包含Python启动、依赖导入、数据缓存加载及前置SHA校验，不能称完整进程端到端耗时。原运行未保存后一口径，不为补计时重复训练；后续正式运行另记进程总墙钟，与runner内部计时分列。</p>
-<h2 id="section-125-明确的数据版本">明确的数据版本</h2>
+<h2 id="section-126-明确的数据版本">明确的数据版本</h2>
 <p>采用<a
 href="https://github.com/cma2015/DeepGS/tree/33ae2dc1ed7bda4e38b76460b18756649d4478a5">官方DeepGS仓库</a>发布的<code>wheat_GS.RData</code>，SHA256为<code>e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696</code>。它是2000×33709二值标记和2000×8表型矩阵，顺序固定为TKW、TW、GL、GW、GH、GP、SDS、PHT，八性状均2000条完整记录，不作完整表型交集筛选。原文件已是发布方处理后的矩阵，本项目不从中声称重建了原始测量或标记质控。</p>
 <p>不能确认该文件与BiMSGP
@@ -9177,10 +9247,10 @@ ID三套索引。表型行名是非连续、非严格排序的原索引，范围
 training”仅指无神经/正式协议训练，现更正。该R划分与本项目sklearn外折不同，命令和原日志未持久保存，诊断数值不进入正式主表、不据此选网络/配置/报告性状，也不声称GL留出信息完全首次接触。没有重跑该诊断。</p>
 <p>本地R分别导出列主序和行主序X/Y，Python逐元素核对，文件MD5/SHA一致，float32二值X转换精确。缓存NPZ
 SHA为<code>6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733</code>，omen只读取已核验缓存和原RData，无需安装R。原件和缓存留<code>data/raw/wheat2000/</code>，不入Git；小型证据见<code>results/wheat2000_protocol_20261105/data_provenance.json</code>。</p>
-<h2 id="section-125-材料与选模边界">材料与选模边界</h2>
+<h2 id="section-126-材料与选模边界">材料与选模边界</h2>
 <p>固定KFold10、shuffle、seed42，每折test200、dev1800；dev内KFold3、shuffle、seed42+fold，每内折fit1200/val600。八性状共用同一份已核验完整材料列表，十折test恰覆盖全部材料一次。划分源码不依赖标签数值。清单<code>results/wheat2000_protocol_20261105/splits_manifest.json</code>的SHA为<code>4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c</code>。</p>
 <p>每次拟合的表型与基因型预处理仅用当前fit；配置、checkpoint和停止轮数只从内层选择，最终选择记录提交/打标签后再完整dev重拟合，test不用于调整学习率或选checkpoint。原BiMSGP论文的留出折选checkpoint报告值单独列为文献结果，不能作为本协议下已超过的对手。主要比较必须来自这里相同版本、相同测试材料的新预测。</p>
-<h2 id="section-125-先冻结原tabm与gblup">先冻结原TabM与GBLUP</h2>
+<h2 id="section-126-先冻结原tabm与gblup">先冻结原TabM与GBLUP</h2>
 <p><code>configs/wheat2000_tabm.yaml</code>原样保留现有八组官方TabM深度/宽度/成员数/正则与AdamW配置，全部33709标记、每次单输出、逐成员MSE、batch128、clip5、max500epoch/patience50，seed42/2026。八性状×十外折×三内折×八配置×两seed=3840次开发拟合，不按早期性状成绩缩减报告。每trait/fold按三内折的两seed向量平均PCC选配置；所选配置每seed三个best_epoch的整数中位数用于完整dev重拟合，保留epoch数，0合法。冻结160行重拟合清单后执行160fit，先平均成员、再平均两seed；保存16000条集成OOF、32000条seed预测、时间、显存、参数与权重SHA，权重仅留omen。开发checkpoint只记录state
 SHA，不存成大量权重文件。</p>
 <p><code>configs/wheat2000_gblup.yaml</code>使用线性标记核K=ZZᵀ/p（Z仅按当前fit均值中心化）、fit表型均值截距，各性状独立选择lambda，候选为10的−6到3次方间19个对数等距值。三内折平均PCC选lambda。固定原始marker点积可共享缓存，但中心化和截距仅依赖当前fit；共用特征核的谱分解不等于共用表型系数。选择记录冻结后再外层重拟合。NumPy实现已在合成数据上与原始标记岭回归解析解逐元素对齐，查询表型改成NaN不影响预测。</p>
@@ -9191,9 +9261,9 @@ SHA为<code>9ccd91229426bb2b2680b993af91674c71d658b5e064d70b91da9458a88d0cf6</co
 <p>DeepGS历史配置<code>configs/wheat2000_deepgs.yaml</code>冻结于<code>f6f96e7</code>，原预算480次开发、160次外层，现已中断。它保留6000轮上限、600轮耐心、batch30和SGD，采用fit-only表型标准化及MSE、按验证PCC选checkpoint，属于明确的同协议适配，不声称与mxnet逐步更新完全一致；只使用公开单一配置，未获得TabM的八配置搜索自由度。BiMSGP的未冻结配置已按用户决定撤下，不进行真实数据训练。</p>
 <p>历史硬件准备：本机DeepGS使用torch2.7.1+cu128、RTX5090
 D，1200/600合成行通过训练/SGD动量/预测，峰值369.65MiB；正式开发cap0.15、线程2，现已停止。BiMSGP本机sm120隔离依赖已构建，合成探针在cap0.75触及限额，在cap0.85通过两次以上实际Adam更新及预测，分配峰值25318.81MiB；与DeepGS共享GPU下每步约0.22–0.30秒，对720万步开发工作量的外推约440–600小时。用户随后明确不跑，未启动真实数据训练；校准不作预测证据，日志仅留/tmp，不继续探针或安装工作。</p>
-<h2 id="section-125-报告口径">报告口径</h2>
+<h2 id="section-126-报告口径">报告口径</h2>
 <p>主指标为80个trait×outer-fold的等权PCC，另报逐性状十折均PCC/RMSE/MAE及合并OOF，合并和折均明确区分；原表型单位随性状不同，误差同时逐性状报告。保留全部失败，不nanmean，不以十折作独立重复构造p/CI。开发搜索、完整dev重拟合和推理成本分开计，完整八性状、双seed系统总成本与单trait单seed参数/峰值分开。成熟架构适配可以成为论文贡献，是否领先由实际同协议结果决定。</p>
-</div></details><details class="architecture-item"><summary>WheatGP：Wheat599 配对比较</summary><div><p><a href="methods/WHEATGP.md">原始说明</a></p><h1 id="section-126-wheatgpwheat599-配对比较">WheatGP：Wheat599 配对比较</h1>
+</div></details><details class="architecture-item"><summary>WheatGP：Wheat599 配对比较</summary><div><p><a href="methods/WHEATGP.md">原始说明</a></p><h1 id="section-127-wheatgpwheat599-配对比较">WheatGP：Wheat599 配对比较</h1>
 <p>现有统一协议外层比较已完成：WheatGP PCC 0.470014，固定融合
 0.526506。细节见 <a
 href="RESULTS.md">RESULTS</a>；作者规则重建的双向比较尚未完成。</p>
@@ -9240,7 +9310,7 @@ Huber，输出与分位数专家固定等权平均。每折的超参数和轮次
 <p>十折预测全部保存，但 WheatGP 有五个环境折输出常数，标准 PCC
 无定义，原汇总失败状态保留；核验结果见 <a
 href="RESULTS.md">RESULTS</a>。</p>
-</div></details><details class="architecture-item"><summary>WheatGP 重拟合定位与 MoEGP 原实现比较</summary><div><p><a href="methods/WHEATGP_MOEGP_FOLLOWUP.md">原始说明</a></p><h1 id="section-127-wheatgp-重拟合定位与-moegp-原实现比较">WheatGP 重拟合定位与
+</div></details><details class="architecture-item"><summary>WheatGP 重拟合定位与 MoEGP 原实现比较</summary><div><p><a href="methods/WHEATGP_MOEGP_FOLLOWUP.md">原始说明</a></p><h1 id="section-128-wheatgp-重拟合定位与-moegp-原实现比较">WheatGP 重拟合定位与
 MoEGP 原实现比较</h1>
 <p>WheatGP
 仅重放重建流程中已固定的五个常数预测单元：严格使用已选配置、种子、轮数、训练数据和标准化，分别重放选模拟合与完整开发集重拟合，逐轮记录训练输出离散程度、损失和梯度范数。量化选模验证
@@ -9270,7 +9340,7 @@ href="RESULTS.md">RESULTS.md</a>。</strong></p>
 <strong>0.52019</strong>，RMSE <strong>0.85449</strong>，MAE
 <strong>0.65784</strong>） <strong>候选名称：</strong> BH-LMC——条件 LOO
 校准的双核、环境特异正则化线性共区域化模型</p>
-<h2 id="section-128-科学问题与本轮边界">1. 科学问题与本轮边界</h2>
+<h2 id="section-129-科学问题与本轮边界">1. 科学问题与本轮边界</h2>
 <p>研究问题：在未见材料的四环境预测（CV1）中，<strong>让加性核与 RBF
 核具有不同的环境共享结构，并使用训练集内部的预测可靠性调节核比例和正则化，是否能在现有普通
 ICM 之上提供有效增量？</strong></p>
@@ -9282,7 +9352,7 @@ ICM 之上提供有效增量？</strong></p>
 的可分离结构是性能瓶颈，也不能预先把 RBF 成分解释为真实上位性。</p>
 <p>只开展
 <strong>一个完整候选</strong>；不增加数据集、神经网络、核函数、事后消融或临时扩张搜索网格。</p>
-<h2 id="section-128-数据划分与固定参照">2. 数据、划分与固定参照</h2>
+<h2 id="section-129-数据划分与固定参照">2. 数据、划分与固定参照</h2>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="记录数据表"><table>
 <colgroup>
 <col style="width: 50%" />
@@ -9344,7 +9414,7 @@ ICM 之上提供有效增量？</strong></p>
 <em>plug-in mean</em>（训练均值代入）截距，不应误称为与核系数同时优化的
 GLS 无惩罚截距。实施时必须与原 ICM
 的实际中心化和预测反变换完全一致；否则不能报告“精确退化到原 ICM”。</p>
-<h2 id="section-128-两个固定基础核">3. 两个固定基础核</h2>
+<h2 id="section-129-两个固定基础核">3. 两个固定基础核</h2>
 <p>记当前拟合子集有 (n) 份材料，原始标记矩阵
 (X{0,1}^{np})，(p=1279)；表型 (YR^{n})。令</p>
 <p>[ _X=1n^X,Z=X-_X, _Y=1n^Y,Y_c=Y-_Y. ]</p>
@@ -9360,14 +9430,14 @@ K_R(h)<em>{ij}=!(-hD</em>{ij}/d_0),h{0.25,1,4}. ]</p>
 <p>测试交叉距离与 RBF 核使用同一 (d_0)，要求
 (d_0&gt;0)。两个训练核均有平均对角线
 1；<strong>这只是核尺度规范化，不保证预测校准或遗传方差分解正确。</strong></p>
-<h2 id="section-128-条件-loo明确截距与适用范围">4. 条件 LOO：明确截距与适用范围</h2>
-<h3 id="section-128-固定基准参数">4.1 固定基准参数</h3>
+<h2 id="section-129-条件-loo明确截距与适用范围">4. 条件 LOO：明确截距与适用范围</h2>
+<h3 id="section-129-固定基准参数">4.1 固定基准参数</h3>
 <p>在<strong>当前拟合子集内部</strong>，按已有普通 ICM
 的基础核选择流程确定 ((h,w_0,_0))，其中 (_0&gt;0)，(w_0)。定义</p>
 <p>[ K_0=w_0K_A+(1-w_0)K_R(h). ]</p>
 <p>以下分别对 (K_m{K_A,K_R(h),K_0}) 计算条件 LOO；三者使用同一个
 (_0)，不额外为每个核调参。</p>
-<h3 id="section-128-正确的闭式公式">4.2 正确的闭式公式</h3>
+<h3 id="section-129-正确的闭式公式">4.2 正确的闭式公式</h3>
 <p>设
 (C_m=K_m+_0I_n)，(R_m=C_m^{-1})（实现中以线性求解取得，不必显式求逆）。令</p>
 <p>[ a_m=R_mY_c,v_m=R_m,d_{m,i}=(R_m)_{ii}. ]</p>
@@ -9389,16 +9459,16 @@ LOO，更不能称为独立测试。</p>
 plug-in，本节公式不能混用。必须先统一实现约定，并使用对应的 GLS
 LOO：(P=R-R(^R)<sup>{-1}</sup>R)，(e_i=(PY)<em>i/P</em>{ii})。该情况不应作为运行后临时选择的配置。</p>
 </blockquote>
-<h2 id="section-128-训练集内部的校准统计量">5. 训练集内部的校准统计量</h2>
+<h2 id="section-129-训练集内部的校准统计量">5. 训练集内部的校准统计量</h2>
 <p>下述全部统计量仅对当前训练子集计算；() 时应直接返回基准 ICM
 路径，以保证退化关系不受任何 LOO 数值退化影响。</p>
-<h3 id="section-128-环境特异核混合权重">5.1 环境特异核混合权重</h3>
+<h3 id="section-129-环境特异核混合权重">5.1 环境特异核混合权重</h3>
 <p>对于 (m{A,R}) 和环境 (t)，令</p>
 <p>[ r_{m,t}=(0,(Y_{,t},G^{}_{m,,t})). ]</p>
 <p>定义</p>
 <p>[ _t=, w_t()=(1-)w_0+_t. ]</p>
 <p>(w_t)；它是模型的<strong>经验核混合比例</strong>，不是加性遗传方差占比。</p>
-<h3 id="section-128-预测可靠性驱动的正则化">5.2 预测可靠性驱动的正则化</h3>
+<h3 id="section-129-预测可靠性驱动的正则化">5.2 预测可靠性驱动的正则化</h3>
 <p>对基准核 (K_0) 的条件 LOO 残差，定义环境 (t) 的截断预测分数</p>
 <p>[ q_t=(1-,;0.10,;0.50). ]</p>
 <p><strong>(q_t) 是截断的条件 LOO 预测 (R^2)，不是遗传力。</strong>
@@ -9406,7 +9476,7 @@ LOO：(P=R-R(^R)<sup>{-1}</sup>R)，(e_i=(PY)<em>i/P</em>{ii})。该情况不应
 <p>[ <em>t=, =(</em>{t=1}<sup>4_t)</sup>{1/4}, _t()=_0()^. ]</p>
 <p>该规则保证 (_t&gt;0) 且 ((_t_t)^{1/4}=_0)。(_t)
 是<strong>经验环境特异正则化强度</strong>；可作为工作协方差中的对角噪声项使用，不能声称已估计真实残差方差。</p>
-<h3 id="section-128-两个任务相关靶标">5.3 两个任务相关靶标</h3>
+<h3 id="section-129-两个任务相关靶标">5.3 两个任务相关靶标</h3>
 <p>令 (C_Y=(Y))，以及 (C_A,C_R) 分别为四环境的条件 LOO
 预测矩阵相关系数矩阵。定义</p>
 <p>[ C_A=(1-0.5)C_Y+0.5C_A, C_R=(1-0.5)C_Y+0.5C_R. ]</p>
@@ -9415,7 +9485,7 @@ LOO：(P=R-R(^R)<sup>{-1}</sup>R)，(e_i=(PY)<em>i/P</em>{ii})。该情况不应
 倍当前标签标准差），相关系数无定义：将该环境在对应 (C_A) 或 (C_R)
 中的<strong>非对角相关置 0、对角置 1</strong>；其 (r_{m,t}) 置
 0。该规则保持半正定，不删除材料、不使用验证标签修复。</p>
-<h2 id="section-128-双核协方差与预测">6. 双核协方差与预测</h2>
+<h2 id="section-129-双核协方差与预测">6. 双核协方差与预测</h2>
 <p>设 (D_A=())、(D_R=())，并定义</p>
 <p>[ B_A=D_A[(1-_A)I_4+_AC_A]D_A, ] [ B_R=D_R[(1-_R)I_4+_RC_R]D_R, ] [
 =(_1,,_4), =B_AK_A+B_RK_R+I_n. ]</p>
@@ -9431,14 +9501,14 @@ LOO：(P=R-R(^R)<sup>{-1}</sup>R)，(e_i=(PY)<em>i/P</em>{ii})。该情况不应
 1；<strong>这不保证 RMSE、预测方差或真实遗传方差守恒。</strong> 当某个
 (w_t) 为 0/1 时，分量核可能奇异；只需求解完整的正定 ()，不计算
 (B_A^{-1}) 或 (B_R^{-1})。</p>
-<h3 id="section-128-与-icm-的精确关系">与 ICM 的精确关系</h3>
+<h3 id="section-129-与-icm-的精确关系">与 ICM 的精确关系</h3>
 <p>[ ,_A=_R= =K_0+<em>0I</em>{4n}. ]</p>
 <p>这**严格恢复采用相同 ((h,w_0,_0,))、中心化与截距约定的普通
 ICM**。</p>
 <p>若 (_A=_R=0)，四环境计算解耦为独立核岭，但共享基础 (h) 与
 (_0)；<strong>并不等同于四环境各自独立调参的历史单环境基线</strong>。</p>
-<h2 id="section-128-固定实验与超参数选择">7. 固定实验与超参数选择</h2>
-<h3 id="section-128-训练与选模流程">7.1 训练与选模流程</h3>
+<h2 id="section-129-固定实验与超参数选择">7. 固定实验与超参数选择</h2>
+<h3 id="section-129-训练与选模流程">7.1 训练与选模流程</h3>
 <p>对每个外层折：</p>
 <ol type="1">
 <li><strong>内部三折：</strong> 对每个内部训练子集，按当前普通 ICM
@@ -9456,7 +9526,7 @@ ICM**。</p>
 在外层开发集重新选择基础核参数、重算全部训练统计量和条件 LOO，固定第 2
 步的 ((_A,_R,)) 拟合一次；随后只对外层测试材料输出一次四环境预测。</li>
 </ol>
-<h3 id="section-128-一个必要的公平比较共享强度范围">7.2
+<h3 id="section-129-一个必要的公平比较共享强度范围">7.2
 一个必要的公平比较：共享强度范围</h3>
 <p>原 ICM 已有结果在 ({0,0.3,0.6}) 中 <strong>10/10 折选中
 0.6</strong>；新候选进一步允许 0.8。因此，如果新方法提高
@@ -9470,7 +9540,7 @@ ICM</strong>。该子集可重用同一计算过程；它与历史 ICM（PCC
 0.52019）应<strong>分别报告</strong>。</p>
 <p>这样可以区分“扩大共享强度搜索”与“BH-LMC
 新增结构”的预测增量，不需要补做其他消融。</p>
-<h3 id="section-128-固定参照">7.3 固定参照</h3>
+<h3 id="section-129-固定参照">7.3 固定参照</h3>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="记录数据表"><table>
 <thead>
 <tr>
@@ -9507,7 +9577,7 @@ ICM</strong>。该子集可重用同一计算过程；它与历史 ICM（PCC
 </tr>
 </tbody>
 </table></div>
-<h2 id="section-128-运行前的最少正确性验收">8. 运行前的最少正确性验收</h2>
+<h2 id="section-129-运行前的最少正确性验收">8. 运行前的最少正确性验收</h2>
 <p>只进行直接决定数值正确性的检查，不开展额外性能消融：</p>
 <ol type="1">
 <li><strong>条件 LOO：</strong> 在小规模合成核矩阵上，以固定核和 ()
@@ -9526,7 +9596,7 @@ Wheat599 逐个样本重训。</li>
 时，(2160) 的 <code>float64</code> 原始矩阵约占 <strong>37.3
 MB</strong>；分解与其他中间量需额外内存。<strong>不预设训练时间或声称已经完成
 Wheat599 运行。</strong></p>
-<h2 id="section-128-结果报告与决策">9. 结果报告与决策</h2>
+<h2 id="section-129-结果报告与决策">9. 结果报告与决策</h2>
 <p><strong>主指标：</strong> 环境内每折 PCC → 十折均值 →
 四环境宏平均。另报告十折样本
 SD（<code>ddof=1</code>）、RMSE、MAE、每环境增量、40
@@ -9535,7 +9605,7 @@ SD（<code>ddof=1</code>）、RMSE、MAE、每环境增量、40
 <p>保存：所有外层 fold 的选中
 ((h,w_0,_0,_A,_R,))、内层全候选验证分数、条件 LOO (q_t,w_t,_t)
 及相关靶标摘要、完整开发集拟合记录、四环境 OOF、失败日志、运行耗时。</p>
-<h3 id="section-128-预先设定的实用-go-no-go-门槛">预先设定的实用 GO / NO-GO
+<h3 id="section-129-预先设定的实用-go-no-go-门槛">预先设定的实用 GO / NO-GO
 门槛</h3>
 <p>保留原提案的工程判据；它们不是显著性检验，也不是理论定理：</p>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="记录数据表"><table>
@@ -9578,7 +9648,7 @@ ICM。无论结果如何，不依据测试折事后扩大网格、调整阈值�
 <p>该固定划分已经参加多轮模型开发，因此本轮结果属于<strong>探索性同协议比较</strong>，不是全新独立样本上的最终确认。若未取得增量，只能否定当前
 BH-LMC 具体配置的实用收益，<strong>不能</strong>推出 ICM
 已达到信息论上限、环境异方差不存在或 LMC 方法类别无效。</p>
-<h2 id="section-128-理论与实现依据">10. 理论与实现依据</h2>
+<h2 id="section-129-理论与实现依据">10. 理论与实现依据</h2>
 <ul>
 <li>Gianola &amp; Schön (2016), <em>Cross-Validation Without Doing
 Cross-Validation in Genome-Enabled Prediction</em>. G3. DOI: <a
