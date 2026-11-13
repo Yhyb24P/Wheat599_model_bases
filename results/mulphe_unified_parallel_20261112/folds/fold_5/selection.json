@@ -1,0 +1,23 @@
+[
+  {
+    "fold": 5,
+    "selected": {
+      "0": {
+        "hidden_with_target": 7,
+        "scalar_with_target": 7
+      },
+      "1": {
+        "hidden_with_target": 2,
+        "scalar_with_target": 2
+      },
+      "2": {
+        "hidden_with_target": 5,
+        "scalar_with_target": 5
+      },
+      "3": {
+        "hidden_with_target": 7,
+        "scalar_with_target": 7
+      }
+    }
+  }
+]
