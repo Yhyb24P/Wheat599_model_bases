@@ -74,6 +74,11 @@ class ReportTest(unittest.TestCase):
         for name in ['quantile_tabm_final_20261106', 'mulphe_unified_parallel_20261112']:
             (tmp_path/'results'/name).mkdir()
             shutil.copyfile(ROOT/'results'/name/'summary.json', tmp_path/'results'/name/'summary.json')
+        for name in ['results/quantile_tabm_final_manifest_20261106/manifest.json',
+                     'results/environment_tabm_development_20261105/provenance.json']:
+            target = tmp_path/name
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT/name, target)
         report.ROOT = tmp_path
         report.build()
         output = (tmp_path/'docs/models.html').read_text()
@@ -82,7 +87,17 @@ class ReportTest(unittest.TestCase):
         expected = len(re.findall(r'^## ', (ROOT/'docs/RESULTS.md').read_text(), re.M))
         assert document.history == expected
         assert not [key for key, count in Counter(document.ids).items() if count > 1]
-        assert document.math >= 2
+        assert document.math >= 5
+        mechanisms = json.loads(re.search(r'<script id="mechanism-data" type="application/json">(.*?)</script>', output, re.S)[1])
+        self.assertEqual(len(mechanisms), 40)
+        frozen = json.loads((ROOT/'results/quantile_tabm_final_manifest_20261106/manifest.json').read_text())
+        for model in mechanisms:
+            source = [r for r in frozen['rows'] if r['fold'] == model['fold'] and r['environment_index'] == model['environment']]
+            self.assertEqual({r['config_index'] for r in source}, {model['config_index']})
+            self.assertEqual(model['epochs'], {str(r['seed']):r['epochs'] for r in source})
+        self.assertEqual((mechanisms[0]['n_blocks'], mechanisms[0]['d_block'], mechanisms[0]['k']), (4,128,32))
+        self.assertIn('LinearBatchEnsemble', output)
+        self.assertIn('最后输出头不共享', output)
         q = json.loads((ROOT/'results/quantile_tabm_final_20261106/summary.json').read_text())
         for key, label in [('quantile_huber', '固定等权分位数–Huber 融合'), ('quantile', '四独立分位数 TabM'), ('huber', 'Huber ICM')]:
             row = '<tr><th scope="row">' + label + '</th>'

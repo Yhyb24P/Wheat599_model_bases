@@ -4,7 +4,7 @@
 
 ## 阅读结果与模型
 
-- [结果与架构 HTML](docs/models.html)：可搜索、筛选、排序并导出 CSV 的模型总表；默认候选与公开强模型置前，最优候选提供可切换分支讲解的结构图。
+- [结果与架构 HTML](docs/models.html)：可搜索、筛选、排序并导出 CSV 的模型总表；默认候选与公开强模型置前，最优候选提供可按外折/环境切换的真实网络层级图，以及参数共享、分位数监督、ICM 核与损失机理图。
 - [参考文献与逐篇讲解](ref/index.html)：文献、来源及其与本项目的关系。
 - [运行目录索引](results/index.html)：按原始运行目录查找摘要、配置、划分与状态。
 - [结果原文](docs/RESULTS.md)、[评价协议](docs/EVALUATION_PROTOCOL.md)、[历史模型对比](docs/MODEL_COMPARISON.md)：可视化的事实来源。

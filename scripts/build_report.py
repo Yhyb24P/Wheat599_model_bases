@@ -140,6 +140,89 @@ JS += r"""
 """
 
 
+CSS += r"""
+.mechanism-atlas{margin-block:2rem}.mechanism-atlas>section{scroll-margin-top:1rem;margin-block:2rem;padding-block:1rem;border-top:1px solid var(--line)}.mechanism-atlas p{max-width:90ch}.mechanism-nav{background:#e9eff1;padding:1rem;gap:1rem}.mechanism-controls{display:flex;gap:1.2rem;flex-wrap:wrap;align-items:center;margin:1rem 0}.mechanism-controls label{display:flex;gap:.5rem;align-items:center;font-size:.88rem}.mechanism-controls select{max-width:100%;font-size:.9rem}.mechanism-controls output{font-variant-numeric:tabular-nums}.mechanism-controls span{font-size:.9rem;color:var(--muted)}.mechanism-svg{display:block;width:100%;min-width:1120px;height:auto;font-family:inherit}.mechanism-figure{padding:1rem}.mechanism-figure text{font-family:inherit}.mechanism-equation{background:#edf6fb;padding:1rem;font-family:ui-monospace,monospace;font-size:.88rem;max-width:none!important}.equation-panel{overflow-x:auto;background:#fafcfd}.equation-panel math{padding-block:.8rem;min-width:max-content}.kernel-sharing{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:center}.kernel-sharing input{display:block;width:100%;margin:1rem 0}.kernel-sharing svg{display:block;width:100%;max-width:650px;margin:auto}.loss-plates{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem}.loss-plates figure{min-width:0;margin:0}.loss-plates svg{display:block;width:100%}.fit-steps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.2rem}.fit-steps>div{padding:1rem;background:#edf3f5;border-top:3px solid #0072B2}.fit-steps p{font-size:.9rem}.mechanism-atlas figcaption{max-width:none}.mechanism-atlas h3{font-size:1.3rem}
+@media(max-width:900px){.loss-plates{grid-template-columns:1fr}.loss-plates svg{max-width:600px;margin:auto}.kernel-sharing{grid-template-columns:1fr}.fit-steps{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.fit-steps{grid-template-columns:1fr}.mechanism-controls label{flex-wrap:wrap}.mechanism-atlas h3{font-size:1.1rem}}
+@media print{.mechanism-controls,.mechanism-nav{display:none}.mechanism-svg{min-width:0}.mechanism-atlas>section{break-before:auto}.loss-plates{grid-template-columns:1fr 1fr}.mechanism-figure{break-inside:avoid}.diagram-viewport{overflow:visible}.fit-steps{break-inside:avoid}}
+"""
+JS += r"""
+(() => {
+ const data=document.getElementById('mechanism-data'); if(!data)return;
+ const models=JSON.parse(data.textContent), ns='http://www.w3.org/2000/svg';
+ const blue='#0072B2', purple='#7953a6', orange='#b94c16', ink='#172e38';
+ function element(parent,tag,attrs={},content){const node=document.createElementNS(ns,tag);Object.entries(attrs).forEach(([key,value])=>node.setAttribute(key,value));if(content!==undefined)node.textContent=content;parent.append(node);return node;}
+ function text(svg,x,y,content,size=15,fill=ink,anchor='start'){return element(svg,'text',{x,y,'font-size':size,fill,'text-anchor':anchor},content);}
+ function line(svg,x1,y1,x2,y2,color='#8497a1',arrow=true){return element(svg,'path',{d:`M${x1} ${y1} L${x2} ${y2}`,fill:'none',stroke:color,'stroke-width':1.8,...(arrow?{'marker-end':`url(#${svg.id}-arrow)`}:{})});}
+ function box(svg,x,y,w,h,title,sub='',color=blue){element(svg,'rect',{x,y,width:w,height:h,rx:7,fill:color===orange?'#fff3eb':color===purple?'#f5effb':'#edf6fb',stroke:color,'stroke-width':1.2});text(svg,x+14,y+27,title,16,color);if(sub)text(svg,x+14,y+51,sub,13);}
+ function reset(id,title){const svg=document.getElementById(id);svg.replaceChildren();element(svg,'title',{id:id+'-title'},title);svg.setAttribute('aria-labelledby',id+'-title');const defs=element(svg,'defs'), marker=element(defs,'marker',{id:id+'-arrow',markerWidth:7,markerHeight:7,refX:6,refY:3.5,orient:'auto'});element(marker,'path',{d:'M0 0L7 3.5L0 7Z',fill:'#8497a1'});return svg;}
+ function drawNetwork(){
+  const fold=Number(document.getElementById('network-fold').value),env=Number(document.getElementById('network-environment').value);
+  const m=models.find(row=>row.fold===fold&&row.environment===env);
+  document.getElementById('network-config').textContent=`冻结配置索引 ${m.config_index} · ${m.n_blocks} 块 · 宽度 ${m.d_block} · ${m.k} 成员 · Dropout ${m.dropout}`;
+  document.getElementById('network-shapes').textContent=`[batch, 1279] → EnsembleView → [batch, ${m.k}, 1279] → ${m.n_blocks} 个隐藏块 → [batch, ${m.k}, ${m.d_block}] → 独立输出头 → [batch, ${m.k}, 99]`;
+  document.getElementById('network-training').textContent=`本外折完整开发集重拟合：种子 42 训练 ${m.epochs['42']} epoch；种子 2026 训练 ${m.epochs['2026']} epoch。AdamW 学习率 ${m.learning_rate}，weight decay ${m.weight_decay}；梯度裁剪范数 5。数值读取冻结清单，不是页面新选出的参数。`;
+  const svg=reset('network-svg',`外折${fold}环境${env+1}：${m.n_blocks}个${m.d_block}维隐藏块与99输出的单成员神经网络`);
+  text(svg,30,31,`一个环境 × 一个种子 × 一个代表成员；实际 K = ${m.k}`,18);
+  text(svg,30,60,'隐藏块顺序固定：LinearBatchEnsemble → ReLU → Dropout；输出头为独立 LinearEnsemble',14);
+  const xs=Array.from({length:m.n_blocks+2},(_,i)=>80+i*880/(m.n_blocks+1)), ys=[145,195,245,295];
+  // Sparse drawn neurons stand for dense layers; crossing wires illustrate full connectivity, not measured weights.
+  const wires=element(svg,'g',{'data-graph-role':'decoration','aria-hidden':'true'});
+  xs.slice(1).forEach((x,i)=>ys.forEach(y1=>ys.forEach(y2=>element(wires,'line',{x1:xs[i]+10,y1,x2:x-10,y2,stroke:'#93a8b9','stroke-width':.8,opacity:.48}))));
+  xs.forEach((x,i)=>{
+   const output=i===xs.length-1, color=output?purple:blue;
+   text(svg,x,105,i===0?'1,279 个输入':output?'99 个输出':`隐藏块 ${i} · ${m.d_block} 维`,14,color,'middle');
+   ys.forEach((y,j)=>{element(svg,'circle',{cx:x,cy:y,r:11,fill:i===0?'#eef1f3':output?'#eadff5':'#d8ebf7',stroke:color,'stroke-width':1.5});if(output)text(svg,x+20,y+5,['q₁','q₃₃','q₆₆','q₉₉'][j],13,purple)});
+   text(svg,x,325,'⋮',22,color,'middle');
+   text(svg,x,358,i===0?'拟合集标准化':output?'独立线性输出头':'LinearBatchEnsemble',i===0||output?13:12,ink,'middle');
+   if(i>0&&!output){text(svg,x,382,'ReLU → Dropout',13,ink,'middle');text(svg,x,405,`dropout = ${m.dropout}`,12,'#52656c','middle');}
+  });
+ }
+ document.getElementById('network-fold').addEventListener('change',drawNetwork);
+ document.getElementById('network-environment').addEventListener('change',drawNetwork);drawNetwork();
+ {
+  const svg=reset('member-svg','隐藏层主矩阵共享，成员输入缩放、输出缩放和偏置各自独立');
+  text(svg,30,30,'把任意一个 LinearBatchEnsemble 隐藏层放大',18);
+  text(svg,30,57,'同一层的 W 只存一份；rₖ、sₖ、bₖ 按成员分别学习。各隐藏层之间不共享 W。',14);
+  element(svg,'rect',{x:380,y:91,width:260,height:270,rx:9,fill:'#edf6fb',stroke:blue,'stroke-width':2});
+  text(svg,510,122,'同一个共享主矩阵 W',18,blue,'middle');text(svg,510,146,'形状 d_out × d_in',14,ink,'middle');
+  for(let r=0;r<3;r++)for(let c=0;c<3;c++){element(svg,'rect',{x:447+c*43,y:169+r*43,width:39,height:39,fill:(r+c)%2?'#d8ebf7':'white',stroke:'#80b5d4'});text(svg,466+c*43,194+r*43,`w${r+1}${c+1}`,13,blue,'middle');}
+  text(svg,510,329,'符号矩阵；不是实际权重',13,'#52656c','middle');
+  [1,2,'K'].forEach((k,i)=>{const y=105+i*95;box(svg,25,y,130,60,`成员 ${k}`,`输入 h${k}`);line(svg,155,y+30,195,y+30);box(svg,200,y,140,60,`⊙ r${k}`,'成员输入缩放',purple);line(svg,340,y+30,380,y+30);line(svg,640,y+30,680,y+30);box(svg,685,y,170,60,`⊙ s${k} + b${k}`,'成员输出缩放 / 偏置',purple);line(svg,855,y+30,895,y+30);box(svg,900,y,190,60,'ReLU → Dropout','送到下一个隐藏块');});
+  text(svg,30,400,'等效成员矩阵 Wₖ = diag(sₖ) W diag(rₖ)：以共享隐藏层主矩阵减少成员间重复存储。',16);
+ }
+ {
+  const svg=reset('quantile-svg','成员分位点输出的训练损失与推理聚合路径');
+  text(svg,30,30,'当前批次输出 Q 的形状：N × K × 99',18);text(svg,30,57,'下面只画一个材料的代表性成员和分位点；每一个 q 都有自己的监督信号。',14);
+  const labels=['τ₁=.001','…','τ₅₀=.5','…','τ₉₉=.999'];
+  labels.forEach((label,c)=>text(svg,115+c*78,107,label,12,blue,'middle'));
+  ['成员1','成员2','⋮','成员K'].forEach((label,r)=>{text(svg,25,147+r*47,label,13);for(let c=0;c<5;c++){element(svg,'rect',{x:80+c*78,y:123+r*47,width:70,height:40,rx:3,fill:'#edf6fb',stroke:'#a6c9dd'});text(svg,115+c*78,148+r*47,r===2?'⋮':c===1||c===3?'…':`q${r===3?'K':r+1},${[1,'',50,'',99][c]}`,13,blue,'middle')}});
+  line(svg,470,155,520,155);box(svg,525,105,270,95,'训练：逐 q 计算 pinball','目标 y* 广播到全部成员 / 分位点',purple);text(svg,539,181,'先求和 99 点，再平均 N 和 K',13);line(svg,795,153,835,153);box(svg,840,105,250,95,'反向传播 + AdamW','更新全部隐藏参数与独立输出头',purple);
+  line(svg,470,280,520,280);box(svg,525,230,270,95,'推理：先平均 K × 99 输出','每材料、每环境、每种子一个数');text(svg,539,306,'推理阶段不需要查询材料表型',13);line(svg,795,277,835,277);box(svg,840,230,250,95,'反标准化 → 双种子平均','得到该环境的 TabM 点预测');
+  box(svg,80,362,990,65,'训练与预测使用同一组输出，但计算顺序不同','训练不能把所有 q 先平均后再套 pinball；输出均值也不是已校准的概率区间。');
+ }
+ {
+  const svg=reset('kernel-svg','材料核与环境核分别构建，谱特征进入带岭惩罚的多环境 Huber 回归');
+  text(svg,30,28,'材料侧 X_fit（n × 1279）',18,blue);text(svg,770,28,'表型侧 Y_fit（n × 4）',18,orange);
+  box(svg,25,55,300,90,'加性核 K_add','Z = X − 拟合列均值');text(svg,39,132,'ZZᵀ / 1279，再除以平均对角',13);
+  box(svg,365,55,300,90,'RBF 核 K_rbf','exp(−h · d² / d₀)');text(svg,379,132,'d₀：拟合材料两两平方距离中位数',13);
+  box(svg,770,55,320,90,'标准化表型 → C_Y','只使用当前拟合集四环境标签',orange);
+  line(svg,175,145,175,165);line(svg,515,145,515,165);box(svg,25,170,640,65,'K = w K_add + (1−w) K_rbf','材料共享相似性，K 的形状为 n × n');
+  line(svg,930,145,930,165);box(svg,770,170,320,65,'B = (1−η) I + η C_Y','环境矩阵：4 × 4',orange);
+  line(svg,345,235,345,270);box(svg,25,275,640,75,'K = U Λ Uᵀ → Φ = U_r √Λ_r','保留谱值 > 1e−12；查询 Φ* = K* U_r / √Λ_r');
+  line(svg,930,235,930,270);box(svg,770,275,320,75,'B = V D Vᵀ → F = V √D','F Fᵀ = B',orange);
+  line(svg,345,350,345,390);line(svg,930,350,930,390);box(svg,25,395,1065,95,'标准化预测：Ŷ* = Φ* W Fᵀ + 1 bᵀ','W 的形状 r × 4；以 Huber 残差损失 + λ‖W‖²/2 求解，b 为不惩罚的四环境截距');
+  text(svg,39,471,'拟合完成后应用查询核特征，再按各环境拟合集均值与标准差反标准化。',14);
+ }
+ function drawBlocks(){const eta=Number(document.getElementById('icm-eta').value);document.getElementById('eta-value').value=eta.toFixed(1);document.getElementById('eta-explanation').textContent=eta===0?'η = 0：B = I，非对角任务块为零，四环境不通过 B 交换预测信息。':'η > 0：非对角任务块带入拟合表型相关性，正则化求解可以同时使用其他环境的信息。实际增益需由保存结果判断。';const svg=reset('icm-block-svg','四环境信号协方差的克罗内克积分块示意');text(svg,230,27,'Ω = B ⊗ K · 结构示意',18,ink,'middle');for(let r=0;r<4;r++)for(let c=0;c<4;c++){const diag=r===c,x=30+c*100,y=58+r*66;const block=element(svg,'rect',{x,y,width:94,height:60,rx:3,fill:diag?'#d7e9f5':eta===0?'#f1f2f2':'#f8e2d2',stroke:diag?blue:'#bdc8ce'});block.dataset.offDiagonal=String(!diag);text(svg,x+47,y+36,diag?'K':eta===0?'0':`${eta.toFixed(1)} C${r+1}${c+1} K`,14,diag?blue:orange,'middle');}text(svg,230,340,'每一个小块都是 n × n 矩阵',13,'#52656c','middle');}
+ document.getElementById('icm-eta').addEventListener('input',drawBlocks);drawBlocks();
+ function plot(id,title,functions,ymin,ymax,xlabel){const svg=reset(id,title),left=55,top=45,width=375,height=225;const X=x=>left+(x+3)/6*width,Y=y=>top+(ymax-y)/(ymax-ymin)*height;for(let i=0;i<=3;i++){const y=ymin+(ymax-ymin)*i/3;line(svg,left,Y(y),left+width,Y(y),'#dfe5e8',false);text(svg,left-10,Y(y)+4,y.toFixed(1),12,'#52656c','end');}[-3,0,3].forEach(x=>text(svg,X(x),293,String(x),12,ink,'middle'));line(svg,left,top,left,top+height,ink,false);line(svg,left,top+height,left+width,top+height,ink,false);functions.forEach(f=>{const points=Array.from({length:121},(_,i)=>{const x=-3+i*.05;return `${X(x)},${Y(f.fn(x))}`}).join(' ');element(svg,'polyline',{points,fill:'none',stroke:f.color,'stroke-width':2.5,...(f.dashed?{'stroke-dasharray':'6 4'}:{})});});text(svg,55,25,title,16);text(svg,240,322,xlabel,12,ink,'middle');return svg;}
+ function drawLosses(){const tau=Number(document.getElementById('pinball-tau').value),delta=Number(document.getElementById('huber-delta').value);document.getElementById('delta-value').value=delta.toFixed(1);plot('pinball-plot',`Pinball · τ = ${tau}`,[{color:blue,fn:u=>Math.max(tau*u,(tau-1)*u)}],0,3,'u = 真实值 − 分位点预测');plot('huber-plot',`Huber（橙）与 ½r²（灰）· δ = ${delta}`,[{color:'#87939b',dashed:true,fn:r=>.5*r*r},{color:orange,fn:r=>Math.abs(r)<=delta?.5*r*r:delta*(Math.abs(r)-.5*delta)}],0,4.5,'r = 预测 − 目标');plot('huber-gradient-plot','对残差的导数：Huber 橙 / 平方损失灰',[{color:'#87939b',dashed:true,fn:r=>r},{color:orange,fn:r=>Math.max(-delta,Math.min(delta,r))}],-3,3,'残差 r');}
+ document.getElementById('pinball-tau').addEventListener('change',drawLosses);document.getElementById('huber-delta').addEventListener('input',drawLosses);drawLosses();
+})();
+"""
+
+
 def esc(value):
     return html.escape(str(value), quote=True)
 
@@ -327,7 +410,52 @@ def candidate_diagram():
 <rect x="265" y="493" width="510" height="65" rx="8" fill="#172e38"/><text x="520" y="519" text-anchor="middle" class="title" style="fill:white">③ 0.5 × 神经预测 ＋ 0.5 × 核预测</text><text x="520" y="545" text-anchor="middle" class="note" style="fill:#d5e1e7">在原表型尺度融合；权重在外层评价前固定</text>
 <path class="arrow" d="M520 558 V580"/><text x="520" y="606" text-anchor="middle" class="title">四环境产量预测 · 折均宏 PCC 0.526506</text>
 </svg></div><p id="diagram-explanation" class="diagram-explanation" role="status">两条分支分别完成内层选模与完整开发集重拟合，再在预测空间固定等权平均。这里没有联合训练的新融合头，也不根据外层结果改权重。</p>
-<figcaption><b>图 1 · 最优候选的完整推理结构。</b>n = 599，4 个环境；图中表示结构与预测聚合，无误差条。来源：quantile_tabm.py、quantile_tabm_final.py、robust_icm.py 及 2026-11-06 最终汇总。环境编号对应原表型列 1、2、4、5。</figcaption></figure>'''
+<p class="mechanism-jump"><a href="#neural-anatomy">查看实际神经网络 ↓</a> · <a href="#member-mechanism">查看参数共享机理 ↓</a> · <a href="#kernel-mechanism">查看 ICM 核与求解 ↓</a> · <a href="#loss-mechanism">查看损失与梯度曲线 ↓</a></p><figcaption><b>图 1 · 最优候选的完整推理结构。</b>n = 599，4 个环境；图中表示结构与预测聚合，无误差条。来源：quantile_tabm.py、quantile_tabm_final.py、robust_icm.py 及 2026-11-06 最终汇总。环境编号对应原表型列 1、2、4、5。</figcaption></figure>'''
+
+
+def mechanism_atlas():
+    manifest_path = ROOT/'results/quantile_tabm_final_manifest_20261106/manifest.json'
+    manifest = json.loads(manifest_path.read_text())
+    configurations = json.loads((ROOT/'results/environment_tabm_development_20261105/provenance.json').read_text())['config']['configurations']
+    models = []
+    for fold in range(10):
+        for environment in range(4):
+            rows = [r for r in manifest['rows'] if r['fold'] == fold and r['environment_index'] == environment]
+            if len(rows) != 2 or {r['seed'] for r in rows} != {42, 2026} or len({r['config_index'] for r in rows}) != 1:
+                raise ValueError('Frozen neural architecture rows disagree')
+            models.append(dict(fold=fold, environment=environment, config_index=rows[0]['config_index'],
+                               **configurations[rows[0]['config_index']],
+                               epochs={str(r['seed']):r['epochs'] for r in rows}))
+    data = json.dumps(models, ensure_ascii=False).replace("<", "\\u003c")
+    return '''<section id="mechanisms" class="mechanism-atlas" aria-labelledby="mechanisms-title">
+<h2 id="mechanisms-title">进入模型内部：网络与计算机理</h2>
+<p>总览图只说明两条分支如何组合。下面把实际神经网络、参数共享、分位数监督和核求解分别展开；层级、算子和张量维度对应冻结实现。</p>
+<nav class="mechanism-nav" aria-label="机制图导航"><a href="#neural-anatomy">网络层级</a><a href="#member-mechanism">成员如何共享参数</a><a href="#quantile-mechanism">分位数如何训练与预测</a><a href="#kernel-mechanism">ICM 如何共享环境</a><a href="#loss-mechanism">损失如何作用</a><a href="#fit-mechanism">训练与预测边界</a></nav>
+<section id="neural-anatomy"><h3>① 实际选中的神经网络：单环境、单种子</h3>
+<div class="mechanism-controls"><label>外折 <select id="network-fold">''' + ''.join(f'<option value="{i}">外折 {i}</option>' for i in range(10)) + '''</select></label><label>环境 <select id="network-environment"><option value="0">Env1 · 原列 1</option><option value="1">Env2 · 原列 2</option><option value="2">Env3 · 原列 4</option><option value="3">Env4 · 原列 5</option></select></label><span id="network-config" role="status"></span></div>
+<figure class="mechanism-figure"><div class="diagram-viewport" tabindex="0" role="region" aria-label="实际神经网络层级图"><svg id="network-svg" class="mechanism-svg" viewBox="0 0 1120 440" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="network-svg-title"><title id="network-svg-title">单成员神经网络内部与张量形状</title></svg></div><figcaption><b>图 3 · 冻结配置驱动的网络层级图。</b>图中每列仅画 4 个神经元来表示稠密连接，实际宽度按列名标注；显示一个成员的计算路径，其他成员使用同一隐藏层主权重、各自缩放参数与输出头。没有数值权重或生物学位点重要性编码。来源：80 行外层重拟合清单、官方 tabm 0.0.3（源码 SHA 与许可记录一致）；不是额外运行。</figcaption></figure>
+<p id="network-shapes" class="mechanism-equation"></p><p id="network-training" class="muted"></p>
+<p>输入是按拟合集均值/标准差处理的完整标记向量，常量列归零。原始分支直接进入 MLP，不经过注意力、tokenizer、分组核、BatchNorm 或 LayerNorm。一个外折有四套独立环境模型；每套训练两个种子，各成员在一次训练中共同更新。</p></section>
+<section id="member-mechanism"><h3>② 多成员不是复制 K 套完整隐藏层：共享 W，保留成员差异</h3>
+<figure class="mechanism-figure"><div class="diagram-viewport" tabindex="0" role="region" aria-label="BatchEnsemble 参数共享机制"><svg id="member-svg" class="mechanism-svg" viewBox="0 0 1120 420" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="member-svg-title"><title id="member-svg-title">三个代表成员通过输入缩放、共享矩阵与输出缩放产生不同隐藏表示</title></svg></div><figcaption><b>图 4 · 每个隐藏块中的成员特异计算。</b>只画成员 1、2、K；中间的共享矩阵是同一个参数对象，各行的 r、s、b 独立。r 与 s 是逐元素缩放向量，不是注意力权重。实际 K 随上方选择变化，矩阵符号不代表学到的数值。来源：官方 LinearBatchEnsemble.forward 与 _MLPBackboneBase。</figcaption></figure>
+<figure class="equation-panel"><math display="block" aria-label="成员隐藏块等于 Dropout 作用于 ReLU，内部为输入乘成员缩放、共享线性矩阵、输出缩放并加成员偏置"><msubsup><mi>h</mi><mi>k</mi><mrow><mi>l</mi><mo>+</mo><mn>1</mn></mrow></msubsup><mo>=</mo><mi mathvariant="normal">Dropout</mi><mo>(</mo><mi mathvariant="normal">ReLU</mi><mo>(</mo><mo>(</mo><msubsup><mi>h</mi><mi>k</mi><mi>l</mi></msubsup><mo>⊙</mo><msubsup><mi>r</mi><mi>k</mi><mi>l</mi></msubsup><mo>)</mo><msup><mi>W</mi><mi>T</mi></msup><mo>⊙</mo><msubsup><mi>s</mi><mi>k</mi><mi>l</mi></msubsup><mo>+</mo><msubsup><mi>b</mi><mi>k</mi><mi>l</mi></msubsup><mo>)</mo><mo>)</mo></math><figcaption><b>式 3 · 官方隐藏层的运算顺序。</b>每层各有自己的 W；同一层的 W 在 K 个成员间共享。Dropout 只在训练时启用，输出层之后没有 ReLU。</figcaption></figure>
+<p>隐藏层：W 的形状是 d_out × d_in；成员参数 r 为 K × d_in，s、b 为 K × d_out。<strong>最后输出头不共享：</strong>LinearEnsemble 保存 K × d × 99 的权重与 K × 99 的偏置，让每个成员独立给出 99 个分位点。共享 W 接收所有成员损失汇总后的梯度；各成员的缩放、偏置和输出头沿自己的路径更新。</p></section>
+<section id="quantile-mechanism"><h3>③ 一张“成员 × 分位点”输出表，两条不同的使用路径</h3>
+<figure class="mechanism-figure"><div class="diagram-viewport" tabindex="0" role="region" aria-label="分位点监督与点预测聚合"><svg id="quantile-svg" class="mechanism-svg" viewBox="0 0 1120 455" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="quantile-svg-title"><title id="quantile-svg-title">每个分位点分别接受 pinball 监督；推理时平均分位点、成员和种子</title></svg></div><figcaption><b>图 5 · 训练先逐输出计算损失，预测才取平均。</b>小表只画代表性行列，实际输出为 batch × K × 99；q 是预测符号，不是实测值。目标表型只在拟合集上标准化。来源：quantile_loss、update_epoch 与 quantile_tabm_final.py。</figcaption></figure>
+<figure class="equation-panel"><math display="block" aria-label="损失为材料和成员平均，99 个分位点损失求和"><mi>L</mi><mo>=</mo><mfrac><mn>1</mn><mrow><mi>N</mi><mi>K</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>K</mi></munderover><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mn>99</mn></munderover><msub><mi>ρ</mi><msub><mi>τ</mi><mi>j</mi></msub></msub><mo>(</mo><msubsup><mi>y</mi><mi>i</mi><mo>*</mo></msubsup><mo>−</mo><msub><mi>q</mi><mrow><mi>i</mi><mi>k</mi><mi>j</mi></mrow></msub><mo>)</mo></math><figcaption><b>式 4 · 本实现不把损失再除以 99。</b>N 是当前批次材料数；训练时每个成员的每个分位点都参与监督，而不是只监督最终均值。</figcaption></figure>
+<p>点预测先对 99 个分位点与 K 个成员取均值，再反标准化，最后对两种子平均。这是有限分位网格的点预测聚合；代码没有强制分位点单调，也没有据此验证区间覆盖率。</p></section>
+<section id="kernel-mechanism"><h3>④ Huber ICM：从两个核矩阵到四环境联合预测</h3>
+<figure class="mechanism-figure"><div class="diagram-viewport" tabindex="0" role="region" aria-label="材料核与环境核的构造和谱特征求解"><svg id="kernel-svg" class="mechanism-svg" viewBox="0 0 1120 525" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="kernel-svg-title"><title id="kernel-svg-title">中心化加性核与距离 RBF 核组合为材料核，拟合表型相关形成环境核，再求解 Huber 回归</title></svg></div><figcaption><b>图 6 · 两种材料相似性与环境共享分别构建。</b>n 是当前拟合集材料数，r 是保留的材料核谱秩。这里的 W 是核特征回归系数，和 TabM 的隐藏层 W 是不同参数。截距不惩罚。来源：kernel_baselines.kernels 与 robust_icm.features/fit_predict。</figcaption></figure>
+<div class="kernel-sharing"><div><label for="icm-eta">环境耦合示意 η：<output id="eta-value">0.6</output></label><input id="icm-eta" type="range" min="0" max="1" step="0.1" value="0.6"><p id="eta-explanation"></p><p class="muted">滑块只演示 B 的代数结构，不修改已选配置或预测。对角块均为 K；非对角块为 η C_ab K，C 是拟合集表型相关矩阵。颜色只标示耦合项是否存在，不显示实测相关强弱。</p></div><figure class="mechanism-figure"><svg id="icm-block-svg" viewBox="0 0 460 345" role="img" aria-labelledby="icm-block-title" xmlns="http://www.w3.org/2000/svg"><title id="icm-block-title">B 与 K 的克罗内克积结构示意，四乘四任务块</title></svg><figcaption><b>图 7 · Ω = B ⊗ K 的块结构。</b>按环境分块，每块为 n × n；η = 0 时四个环境没有由 B 引入的交叉耦合。不是实际估计矩阵或遗传相关热图。</figcaption></figure></div>
+<figure class="equation-panel"><math display="block" aria-label="最小化所有拟合材料环境的 Huber 损失加系数岭惩罚"><munder><mi mathvariant="normal">min</mi><mrow><mi>W</mi><mo>,</mo><mi>b</mi></mrow></munder><mfrac><mn>1</mn><mrow><mn>4</mn><mi>n</mi></mrow></mfrac><mo>[</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>,</mo><mi>e</mi></mrow></munder><msub><mi>ρ</mi><msub><mi>δ</mi><mi>e</mi></msub></msub><mo>(</mo><msub><mrow><mo>(</mo><mi>Φ</mi><mi>W</mi><msup><mi>F</mi><mi>T</mi></msup><mo>+</mo><mn>1</mn><msup><mi>b</mi><mi>T</mi></msup><mo>−</mo><msup><mi>Y</mi><mo>*</mo></msup><mo>)</mo></mrow><mrow><mi>i</mi><mi>e</mi></mrow></msub><mo>)</mo><mo>+</mo><mfrac><mi>λ</mi><mn>2</mn></mfrac><msubsup><mrow><mo>‖</mo><mi>W</mi><mo>‖</mo></mrow><mi>F</mi><mn>2</mn></msubsup><mo>]</mo></math><figcaption><b>式 5 · 实际核分支的惩罚风险目标。</b>Φ Φᵀ 是 K 的保留谱重构（仅保留谱值 > 1e−12），F Fᵀ = B；代码用谱因子构造特征并以 L-BFGS-B 优化。δ_e 由拟合集初始平方损失残差的 MAD 与选定倍数组成；不是完整贝叶斯后验采样。</figcaption></figure></section>
+<section id="loss-mechanism"><h3>⑤ 损失函数为什么产生不同的学习行为？</h3>
+<div class="loss-controls mechanism-controls"><label>神经分位点 τ <select id="pinball-tau"><option value="0.001">0.001（网格下端）</option><option value="0.5" selected>0.5（中位点）</option><option value="0.999">0.999（网格上端）</option></select></label><label>Huber 阈值 δ（示意）<input id="huber-delta" type="range" min="0.5" max="2" step="0.1" value="1"><output id="delta-value">1.0</output></label></div>
+<div class="loss-plates"><figure class="mechanism-figure"><svg id="pinball-plot" viewBox="0 0 460 330" role="img" aria-labelledby="pinball-title" xmlns="http://www.w3.org/2000/svg"><title id="pinball-title">pinball 损失曲线，改变分位点会改变低估和高估的代价</title></svg><figcaption><b>图 8a · Pinball 的非对称斜率。</b>横轴 u = 真实标准化表型 − 分位点预测；u &gt; 0 为低估，斜率为 τ；u &lt; 0 为高估，斜率为 τ − 1。曲线由损失公式生成，不是训练轨迹。</figcaption></figure><figure class="mechanism-figure"><svg id="huber-plot" viewBox="0 0 460 330" role="img" aria-labelledby="huber-title" xmlns="http://www.w3.org/2000/svg"><title id="huber-title">Huber 损失在大残差区线性增长，对照平方损失</title></svg><figcaption><b>图 8b · Huber 的尾部变为线性。</b>横轴为预测减目标的残差；灰虚线是 ½r²，橙实线是 Huber。δ 是演示阈值，不是某折某环境实际估计值；同样保留全部拟合材料。</figcaption></figure><figure class="mechanism-figure"><svg id="huber-gradient-plot" viewBox="0 0 460 330" role="img" aria-labelledby="huber-gradient-title" xmlns="http://www.w3.org/2000/svg"><title id="huber-gradient-title">Huber 对残差的导数限制在正负阈值之间</title></svg><figcaption><b>图 8c · 大残差的梯度影响受限。</b>Huber 导数为 clip(r, −δ, δ)；灰虚线平方损失导数为 r。此图解释目标函数，不证明本数据异常点的成因。</figcaption></figure></div>
+</section><section id="fit-mechanism"><h3>⑥ 学习、选模与最终融合：信息在哪一步进入？</h3>
+<div class="fit-steps"><div><b>1 · 外折留出材料</b><p>测试 59–60 份材料的四环境表型全部留出；其余 539–540 份为开发材料。</p></div><div><b>2 · 三内折选择</b><p>仅用拟合集估计预处理与核。神经模型逐环境按双种子平均预测 PCC 选八配置之一；各自记录最佳 epoch。</p></div><div><b>3 · 完整开发集重拟合</b><p>每环境、每种子取三个内折最佳 epoch 的中位数。该外折包含 4 × 2 个神经网络，另有一个四环境 Huber ICM。</p></div><div><b>4 · 冻结后预测</b><p>先分别还原原表型尺度；神经两种子平均，再与 Huber 各半融合。每份材料只使用其对应外折的留出预测。</p></div></div>
+<p>80 次神经外层拟合是 10 折 × 4 环境 × 2 种子，<strong>不是把 80 个网络同时集成到每份材料上</strong>。固定融合的增量属于完整系统结果，以上结构图不把参数共享、核非线性或稳健损失单独宣称为已证实的增益机制。</p>
+<p class="muted">核对来源：<a href="../src/wheat599/quantile_tabm.py">神经构建与损失</a> · <a href="../src/wheat599/genomic_tabm.py">标准化与 raw 路径</a> · <a href="../src/wheat599/robust_icm.py">核特征与 Huber 求解</a> · <a href="../results/quantile_tabm_final_manifest_20261106/manifest.json">冻结外层清单</a> · <a href="LICENSE_NOTES.md">tabm 0.0.3 源码 SHA</a>。</p></section>
+<script id="mechanism-data" type="application/json">''' + data + '''</script></section>'''
 
 
 def build():
@@ -346,7 +474,7 @@ def build():
     rows = ''.join('<tr><th scope="row">'+esc(name)+'</th>'+''.join(f'<td>{values[k]:.6f}</td>' for k in ['pcc','rmse','mae'])+
                    ''.join(f'<td>{env[e]["pcc"]:.6f}</td>' for e in ['1','2','4','5'])+'</tr>' for name,values,env in systems)
     bars = ''.join(f'<div class="barrow"><span>{esc(name)}</span><div class="track"><div class="bar" style="width:{values["pcc"]*100:.6f}%"></div></div><strong>{values["pcc"]:.6f}</strong></div>' for name,values,_ in systems)
-    head = '''<header><nav><a href="../README.md">项目说明</a><a href="../ref/index.html">参考文献</a><a href="../results/index.html">运行目录</a><a href="#comparison">模型总表</a><a href="#best">最优候选图解</a><a href="#history">历次结果</a><a href="#architectures">架构库</a></nav>
+    head = '''<header><nav><a href="../README.md">项目说明</a><a href="../ref/index.html">参考文献</a><a href="../results/index.html">运行目录</a><a href="#comparison">模型总表</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a></nav>
 <p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-13</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
     body = head + result_workbench(systems) + '''<details class="legacy-overview"><summary>已核对统一协议：完整指标与来源</summary><section aria-labelledby="overview"><h2 id="overview">统一协议下的结果</h2><div class="grid">
 <article class="card best"><span class="tag">当前固定融合 · 折均宏 PCC</span><div class="big">0.526506</div><p>相对 Huber ICM 增加 0.004761；是项目内描述性差值。</p></article>
@@ -358,7 +486,7 @@ def build():
 <p>来源：<a href="../results/quantile_tabm_final_20261106/summary.json">分位数与参照 JSON</a> · <a href="../results/mulphe_unified_parallel_20261112/summary.json">Mul-PheG2P JSON</a> · <a href="EVALUATION_PROTOCOL.md">统一协议与搜索预算</a></p></section></details>'''
     body += '''<section id="best"><h2>最优候选是什么，如何工作？</h2>
 <p>这是两个已经独立训练的预测器的平均，不是一张端到端联合网络。神经分支为每个环境学习单独的非线性标记函数；统计分支通过材料相似性和四环境相关性联合预测。融合在原表型尺度进行，权重在外层评价前固定为各 50%。</p>
-''' + candidate_diagram() + '''
+''' + candidate_diagram() + mechanism_atlas() + '''
 <details><summary>展开训练规则、损失公式与实现证据</summary>
 <h3>A：为什么叫“分位数 TabM”？</h3>
 <p>TabM 是参数高效的 MLP 集成。成员共享大部分矩阵参数，并用成员特异的乘性参数产生不同预测；成员数不是独立训练种子数。本项目全标记 raw 分支不使用分组 tokenizer、Transformer 注意力或预训练权重。四环境分别训练，避免把共享环境模型误称为当前候选。</p>
