@@ -95,6 +95,31 @@ class ReportTest(unittest.TestCase):
         for system in m['systems'].values():
             for metric in ['pcc', 'rmse', 'mae']:
                 assert f'{system["macro"][metric]:.6f}' in output
+        payload = json.loads(re.search(r'<script id="model-data" type="application/json">(.*?)</script>', output, re.S)[1])
+        records = payload['records']
+        comparison = (ROOT/'docs/MODEL_COMPARISON.md').read_text().split('## 全模型总对比表', 1)[1].split('\n## ', 1)[0]
+        original = [tuple(cell.strip() for cell in line.strip('|').split('|'))
+                    for line in comparison.splitlines() if line.startswith('| ') and not line.startswith('| 评价层')]
+        self.assertEqual(len(records), len(original) + 9)
+        actual = {(r['stage'], r['name'], r['pcc'], r['rmse'], r['mae']) for r in records}
+        for stage, name, pcc, rmse, mae, _ in original:
+            self.assertIn((stage, name.replace('`', ''), pcc, rmse, mae), actual)
+        self.assertEqual(records[0]['role'], '主候选')
+        first = {r['family'] for r in records[:11]}
+        self.assertTrue({'WheatGP', 'MoEGP', 'BiMSGP', 'DNAwhisper', 'RAGP', 'TabICLv2'} <= first)
+        self.assertIn('RAGP', next(r['name'] for r in records if r['family'] == 'RAGP'))
+        # A comparison's title must not turn its TabM control into the RAGP architecture.
+        self.assertEqual(report.model_family('单成员检索网络', 'RAGP 同协议参照'), 'TabM')
+        undefined = [r for r in records if '无定义' in r['pcc']]
+        self.assertTrue(undefined)
+        self.assertTrue(all(r['values']['pcc'] is None for r in undefined))
+        self.assertTrue(all(r['family'] in payload['architectures'] for r in records))
+        self.assertIn('id="candidate-svg-title"', output)
+        if shutil.which('node'):
+            script = tmp_path/'report.js'
+            script.write_text(report.JS)
+            result = subprocess.run(['node', '--check', str(script)], capture_output=True, text=True)
+            self.assertEqual(result.returncode, 0, result.stderr)
         assert '无定义（5/40 折）' in output
         assert '中点分位数批次按研究范围调整停止' in output
         assert '无效结果' in output
