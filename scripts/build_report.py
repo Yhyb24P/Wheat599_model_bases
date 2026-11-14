@@ -267,6 +267,9 @@ def page(title, body, destination, css, js):
 
 
 ARCHITECTURES = {
+    '监督 Ising': (['全标记拟合标准化','输入场 a = Wz + b','T=1 精确枚举隐状态期望','线性直连 + 条件均值读出'], '隐维8/12，J只连接隐状态；有限温度期望由全部状态计算，不调用退火或量子设备。本预算开发未超过强参照。', 'methods/SUPERVISED_ISING.md'),
+    'Ising J=0': (['同样的全标记标准化','与耦合臂匹配的输入场','解析 tanh(a)，J 固定为0','同样的线性直连与读出'], 'J=0是条件独立退化形式；同种子W/b/β/c/μ初值与耦合臂一致，分别按相同预算选模。', 'methods/SUPERVISED_ISING.md'),
+    '普通 MLP 对照': (['全标记标准化','64/128宽度 ReLU层','第二层 ReLU → 标量读出','与线性直连相加'], 'Ising比较中的普通容量网络，MSE目标；不声称与低维Ising模型参数量相同。', 'methods/SUPERVISED_ISING.md'),
     '查询条件分位数': (['全部标记身份与状态编码','连续 τ 余弦查询编码','两层独立查询交叉注意力','共享标量读出 → 分位值'], '四环境独立、单成员、双种子；τ 在证据汇总前进入计算。已完成开发比较，未超过原分位数。', 'methods/QUERY_QUANTILE.md'),
     '固定融合': (['全标记输入', '神经预测分支 ＋ 核预测分支', '各自还原表型尺度', '按本行约定进行融合'], '融合家族示意：当前主候选为分位数 TabM 与 Huber ICM 各占 50%；历史 MSE 分支、融合选模与其他配方分别见本行原记录。', 'methods/QUANTILE_TABM_FINAL.md'),
     'TabM': (['拟合集标准化 · 全标记', '共享主权重的 MLP 成员', '单值 MSE 或 99 分位点输出', '成员平均 · 种子预测平均'], 'TabM 家族示意：当前分位数模型为四环境独立；共享、检索、交互与蒸馏变体的实际改动见该行原记录。', 'methods/QUANTILE_TABM.md'),
@@ -290,6 +293,10 @@ ARCHITECTURES = {
 def model_family(name, source):
     def identify(text):
         text = text.lower()
+        if 'ising 配对' in text and 'mlp' in text:
+            return '普通 MLP 对照'
+        if 'ising' in text:
+            return 'Ising J=0' if 'j=0' in text else '监督 Ising'
         if '查询条件分位数' in text:
             return '查询条件分位数'
         for token, family in [('mulphe', 'Mul-PheG2P'), ('mul-phe', 'Mul-PheG2P'), ('wheatgp', 'WheatGP'),

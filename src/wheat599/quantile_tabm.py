@@ -1,5 +1,7 @@
 """Independent full-marker TabM with per-member quantile regression."""
 import json
+import multiprocessing
+from concurrent.futures import ProcessPoolExecutor
 import subprocess
 import time
 from pathlib import Path
@@ -115,17 +117,47 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
                                  parameters=sum(p.numel() for p in model.parameters()),seconds=time.perf_counter()-start)
 
 
+_FIT_CONTEXT = None
+
+
+def _init_fit_worker(x, y, folds, configs, settings, workers):
+    global _FIT_CONTEXT
+    torch.set_num_threads(settings['cpu_threads'])
+    device = torch.device(settings['device'])
+    if device.type == 'cuda':
+        torch.cuda.set_per_process_memory_fraction(settings['gpu_memory_fraction'] / workers)
+    _FIT_CONTEXT = (x, y, {f['fold']: f for f in folds}, configs, settings, device)
+
+
+def _fit_worker(task):
+    fold, inner, environment, index, seed = task
+    x, y, folds, configs, settings, device = _FIT_CONTEXT
+    split = folds[fold]['inner'][inner]
+    tr, val = np.asarray(split['train_idx']), np.asarray(split['val_idx'])
+    try:
+        prediction, details = train(x[tr], y[tr, environment], x[val], y[val, environment],
+                                    configs[index], seed, index, settings, device)
+    except Exception as error:
+        raise RuntimeError(f'Fit failed: fold/inner/environment/config/seed={task}') from error
+    return environment, index, seed, prediction, details
+
+
 def read(path):
     return json.loads(Path(path).read_text())
 
 
 def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=()):
     trainer = train if trainer is None else trainer
+    workers = cfg.get('workers', 1)
+    if not isinstance(workers, int) or workers < 1:
+        raise ValueError('workers must be a positive integer')
+    if workers > 1 and (trainer is not train or paired_trainer is not None):
+        raise ValueError('Custom or paired trainers require workers=1')
     if args.selection is not None:
         raise ValueError('Development only')
     torch.set_num_threads(cfg['cpu_threads'])
     device = torch.device(cfg['device'])
-    if device.type == 'cuda':
+    if device.type == 'cuda' and workers == 1:
         torch.cuda.set_per_process_memory_fraction(cfg['gpu_memory_fraction'])
     data = load(Path(cfg['data']), cfg['data_sha256'])
     folds = read(cfg['splits'])['folds']
@@ -166,13 +198,19 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
         if p['sha256'][cfg['splits']]!=sha256_of(Path(cfg['splits'])):raise ValueError('Comparison split mismatch')
         if read(path/'execution_status.json')!={'status':'complete','completed':1920,'expected':1920} or read(path/'failures.json'):raise ValueError('Incomplete comparison')
         comparison[name]=read(path/'summary.json');sources += [path/'summary.json',path/'provenance.json',path/'execution_status.json',path/'failures.json']
-    write('provenance.json', {'config': cfg, 'torch_version':str(torch.__version__), 'cuda_version':torch.version.cuda, 'git_commit': subprocess.check_output(
+    write('provenance.json', {'execution': {'workers': workers,
+        'gpu_fraction_per_worker': cfg.get('gpu_memory_fraction', 0) / workers if device.type == 'cuda' else None}, 'config': cfg, 'torch_version':str(torch.__version__), 'cuda_version':torch.version.cuda, 'git_commit': subprocess.check_output(
         ['git', 'rev-parse', 'HEAD'], text=True).strip(),
         'sha256': {str(p): sha256_of(p) for p in sources}})
     expected = len(folds)*3*4*len(configs)*len(cfg['seeds'])
     state = dict(status='running', completed=0, expected=expected)
     records, failures, start = [], [], time.perf_counter()
+    pool = None
     try:
+        if workers > 1:
+            pool = ProcessPoolExecutor(max_workers=workers,
+                mp_context=multiprocessing.get_context('spawn'), initializer=_init_fit_worker,
+                initargs=(data.X, data.Y, folds, configs, cfg, workers))
         for fold in folds:
             f = fold['fold']
             for inner, split in enumerate(fold['inner']):
@@ -181,23 +219,31 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
                         or (set(tr) | set(val)) & set(fold['test_idx'])):
                     raise ValueError('Invalid split')
                 predictions = {}
-                for environment in range(4):
-                    for c, config in enumerate(configs):
-                        if paired_trainer is not None:
-                            outputs = paired_trainer(data.X[tr], data.Y[tr, environment],
-                                data.X[val], data.Y[val, environment], config, cfg['seeds'], c, cfg, device)
-                        else:
-                            outputs = [trainer(data.X[tr], data.Y[tr, environment],
-                                data.X[val], data.Y[val, environment], config, seed, c, cfg, device)
-                                for seed in cfg['seeds']]
-                        for seed, (pred, details) in zip(cfg['seeds'], outputs):
-                            predictions[f'e{environment}_c{c}_s{seed}'] = pred
-                            records.append(dict(fold=f, inner=inner, environment=environment,
-                                                config_index=c, seed=seed, **details))
-                            state['completed'] += 1
-                            write('execution_status.json', state)
-                np.savez_compressed(args.out/f'predictions_{f}_{inner}.npz', **predictions)
-                write('trajectories.json', records)
+                def serial_outputs():
+                    for environment in range(4):
+                        for c, config in enumerate(configs):
+                            if paired_trainer is not None:
+                                outputs = paired_trainer(data.X[tr], data.Y[tr, environment],
+                                    data.X[val], data.Y[val, environment], config, cfg['seeds'], c, cfg, device)
+                            else:
+                                outputs = [trainer(data.X[tr], data.Y[tr, environment],
+                                    data.X[val], data.Y[val, environment], config, seed, c, cfg, device)
+                                    for seed in cfg['seeds']]
+                            for seed, (pred, details) in zip(cfg['seeds'], outputs):
+                                yield environment, c, seed, pred, details
+                tasks = [(f, inner, e, c, seed) for e in range(4)
+                         for c in range(len(configs)) for seed in cfg['seeds']]
+                outputs = pool.map(_fit_worker, tasks, chunksize=1) if pool else serial_outputs()
+                try:
+                    for environment, c, seed, pred, details in outputs:
+                        predictions[f'e{environment}_c{c}_s{seed}'] = pred
+                        records.append(dict(fold=f, inner=inner, environment=environment,
+                                            config_index=c, seed=seed, **details))
+                        state['completed'] += 1
+                        write('execution_status.json', state)
+                finally:
+                    np.savez_compressed(args.out/f'predictions_{f}_{inner}.npz', **predictions)
+                    write('trajectories.json', records)
         if state['completed'] != expected:
             raise ValueError('Incomplete experiment')
         results = []
@@ -245,6 +291,8 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
         failures.append({'completed': state['completed'], 'error': repr(exc)})
         raise
     finally:
+        if pool is not None:
+            pool.shutdown(wait=True, cancel_futures=True)
         write('execution_status.json', state)
         write('trajectories.json', records)
         write('failures.json', failures)

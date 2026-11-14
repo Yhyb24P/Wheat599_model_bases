@@ -1,6 +1,6 @@
 # 监督条件 Ising 隐状态：本机开发比较
 
-本轮授权：实现并在本机运行，不前往 omen，不进入外层。实际运行是否完成及指标以 `docs/RESULTS.md` 为准。
+已完成：冻结1011915的三臂各1,920次开发拟合、0失败。耦合/J=0/MLP开发PCC分别为0.458179/0.457658/0.482152，未超过原分位数0.494565；不进入外层或扩网格。详见 [RESULTS](../RESULTS.md)。本轮只在本机运行，未前往omen。
 
 ## 模型及三项比较
 
@@ -28,7 +28,9 @@ python scripts/run_background_nested.py --config configs/supervised_ising_indepe
 python scripts/run_background_nested.py --config configs/supervised_ising_mlp.yaml --out results/supervised_ising_mlp_development_20261114
 ```
 
-一个进程顺序运行三个预算，CUDA显存比例上限0.3，保持其他任务可用空间；不安装或调用Kaiwu SDK。数据与基线预测沿用现有只读文件，原始预测不入Git。若发生失败，保留失败和已完成产物，不以默认结果替换。
+首批冻结 `1011915` 使用一个进程顺序运行三臂。根据用户的效率要求，当前配置明确设置 `workers: 4`，以后通过4个独立进程执行同一内折内的独立拟合；不改变每次拟合的种子、batch、更新、早停或选模规则。作业 CUDA 显存比例0.3由worker均分（每worker 0.075）。自定义 trainer / paired trainer 默认仍为1个worker，未改变其他任务。首批结果保留原串行来源，不为展示加速重跑或冒充并行结果。不安装或调用Kaiwu SDK。数据与基线预测沿用现有只读文件，原始预测不入Git。若发生失败，保留失败和已完成产物，不以默认结果替换。
+
+本机 RTX 5090 D 的合成吞吐检查（540材料、1,279标记、12隐状态、128任务、每任务10轮）中，串行6.236秒、四进程稳定执行2.723秒，吞吐为2.29倍；进程池启动及16任务预热另计3.855秒，短任务总耗时未必更短。两种执行的预测逐元素一致。该结果只衡量合成任务计算效率，不代表正式整批加速倍数。复查入口：`PYTHONPATH=src python tests/benchmark_fit_workers.py`；记录写入 `.state/ising_parallel_timing.json`。
 
 ## 方法与实现依据
 

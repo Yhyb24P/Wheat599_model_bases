@@ -23,6 +23,8 @@ python3 tests/test_report.py
 
 新实现：[查询条件分位数候选](docs/methods/QUERY_QUANTILE.md)，在标记汇总前由连续 τ 读取证据；两机开发均已完成，PCC分别为0.465247/0.463586，低于原分位数0.494565；未进入外层。
 
+[监督条件 Ising 比较](docs/methods/SUPERVISED_ISING.md)三臂均已完成，各1,920次、0失败；耦合/J=0/MLP开发PCC为0.458179/0.457658/0.482152，未超过现役参照。新执行器支持独立拟合的进程池并发，Ising配置明确使用4个worker；首批已完成成绩仍按串行版本记录。
+
 ## 环境
 
 基础依赖：

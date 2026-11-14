@@ -73,3 +73,33 @@ def test_fit_boundaries_and_training_loop(kind):
     second,_=train(x[:16],y[:16],x[16:],y[16:],cfg,42,0,settings,'cpu')
     np.testing.assert_array_equal(first,second)
     assert first.shape==(8,) and np.isfinite(first).all() and 0<=info['best_epoch']<=2
+
+
+@pytest.mark.parametrize('device', ['cpu', pytest.param('cuda', marks=pytest.mark.skipif(not torch.cuda.is_available(), reason='CUDA unavailable'))])
+def test_parallel_fits_match_serial_predictions_and_epochs(device):
+    import multiprocessing
+    from concurrent.futures import ProcessPoolExecutor
+    from wheat599.quantile_tabm import _init_fit_worker, _fit_worker
+    x,y=data();x=np.asfortranarray(x.astype(np.float64));ys=np.asfortranarray(np.column_stack([y,np.roll(y,1),-y,2*y]).astype(np.float64))
+    folds=[dict(fold=0,inner=[dict(train_idx=list(range(16)),val_idx=list(range(16,24)))]),
+           dict(fold=1,inner=[dict(train_idx=list(range(8,24)),val_idx=list(range(8)))])]
+    cfg=dict(spins=4,width=8,learning_rate=.001,weight_decay=.01)
+    settings=dict(device=device,gpu_memory_fraction=.3,cpu_threads=1,optimizer_variant='ising',n_quantiles=1,
+        quantile_min=.001,quantile_max=.999,seeds=[42,2026],
+        training=dict(objective='mse',max_epochs=2,patience=1,batch_size=8,gradient_clip=5,tie_tolerance=1e-12))
+    tasks=[(f,0,e,0,seed) for f in [0,1] for e in [0,1] for seed in settings['seeds']]
+    _init_fit_worker(x,ys,folds,[cfg],settings,1)
+    expected=[]
+    for fold,inner,e,index,seed in tasks:
+        tr=np.asarray(folds[fold]['inner'][inner]['train_idx'])
+        val=np.asarray(folds[fold]['inner'][inner]['val_idx'])
+        pred,info=train(x[tr],ys[tr,e],x[val],ys[val,e],cfg,seed,index,settings,torch.device(device))
+        expected.append((e,index,seed,pred,info))
+    with ProcessPoolExecutor(max_workers=2,mp_context=multiprocessing.get_context('spawn'),
+        initializer=_init_fit_worker,initargs=(x,ys,folds,[cfg],settings,2)) as pool:
+        actual=list(pool.map(_fit_worker,tasks))
+    for first,second in zip(expected,actual):
+        assert first[:3]==second[:3]
+        np.testing.assert_array_equal(first[3],second[3])
+        for key in ['best_epoch','epochs_run','best_pcc','parameters']:
+            assert first[4][key]==second[4][key]

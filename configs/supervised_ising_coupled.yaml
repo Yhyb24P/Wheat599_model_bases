@@ -16,6 +16,7 @@ quantile_max: 0.999
 device: cuda
 gpu_memory_fraction: 0.3
 cpu_threads: 2
+workers: 4
 training:
   objective: mse
   max_epochs: 500
