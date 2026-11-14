@@ -29,10 +29,7 @@ def test_all_routes_have_existing_implementations(runner):
 @pytest.mark.parametrize('name,module,function', [
     ('robust_icm','robust_icm','run'),
     ('quantile_tabm_final','quantile_tabm_final','run'),
-    ('mulphe_unified','mulphe_unified','run'),
     ('member_interaction_freeze','quantile_tabm_final','freeze_member_manifest'),
-    ('target_icm','joint_kernel_selection','run_target'),
-    ('wheat2000_deepgs','wheat2000_neural_run','run'),
 ])
 def test_dispatch_is_lazy_and_keeps_cli_arguments(runner, monkeypatch, tmp_path, name, module, function):
     config = tmp_path/'config.yaml'

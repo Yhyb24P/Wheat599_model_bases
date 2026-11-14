@@ -153,72 +153,18 @@ def run_hybrid(cfg, args):
     print(json.dumps(summary), flush=True)
 
 
+# Active routes only; frozen experiments are reproduced by checking out their tag.
 RUNNERS = {
-    'relation_quantile_controls': ('relation_quantile_controls', 'run'),
-    'joint_kernel_quantile': ('joint_kernel_quantile_run', 'run'),
-    'relation_quantile': ('relation_quantile', 'run'),
-    'seed_stability': ('seed_stability', 'run'),
-    'wheatgp_refit_diagnostic': ('wheatgp_refit_diagnostic', 'run'),
-    'wheatgp_rebuilt': ('wheatgp_rebuilt', 'run'),
-    'wheatgp_nested': ('wheatgp_nested', 'run'),
-    'tabicl_compare': ('tabicl_compare', 'run'),
-    'tabicl_genomic': ('tabicl_genomic', 'run'),
-    'midpoint_quantile': ('midpoint_quantile', 'run'),
-    'fusion_refit': ('fusion_refit', 'run'),
-    'mean_quantile': ('mean_quantile', 'run'),
-    'fusion_reselect': ('fusion_reselect', 'run'),
-    'multihead_mse': ('multihead_mse', 'run'),
-    'mulphe_unified': ('mulphe_unified', 'run'),
     'quantile_tabm_final': ('quantile_tabm_final', 'run'),
     'member_interaction_freeze': ('quantile_tabm_final', 'freeze_member_manifest'),
-    'rfm_development': ('rfm_development', 'run'),
-    'distill_correlation_final': ('distill_correlation_final', 'run'),
-    'anchored_quantile': ('anchored_quantile_run', 'run'),
-    'structured_coefficient': ('structured_coefficient_run', 'run'),
-    'sparse_polygenic_bart': ('bayesian_trees_run', 'run'),
-    'distill_quantile': ('distill_quantile', 'run'),
-    'menet_quantile': ('menet_quantile', 'run'),
-    'sparse_residual_quantile': ('sparse_residual_run', 'run'),
     'quantile_tabm': ('quantile_tabm', 'run'),
-    'adaptive_anova': ('adaptive_anova_run', 'run'),
-    'joint_tabm_icm': ('joint_tabm_icm_run', 'run'),
     'robust_icm': ('robust_icm', 'run'),
-    'non_gaussian_icm': ('non_gaussian_icm', 'run'),
-    'non_gaussian_control': ('posterior_control', 'run'),
-    'lcm_gp': ('lcm_gp', 'run'),
-    'dnawhisper': ('dnawhisper.run', 'run'),
-    'locus_context': ('locus_context_run', 'run'),
     'genomic_tabm': ('genomic_tabm_run', 'run'),
-    'retrieval_tabm': ('retrieval_run', 'run'),
-    'retrieval_fusion': ('retrieval_fusion', 'run'),
-    'ragp': ('ragp_run', 'run'),
-    'environment_tabm': ('environment_run', 'run'),
-    'mulphe': ('mulphe_run', 'run'),
-    'grouped_weights': ('grouped_weights_run', 'run'),
-    'grouped_kernel': ('grouped_kernel_run', 'run'),
-    'grouped_kernel_final': ('grouped_kernel_final_run', 'run'),
-    'phenotype_rotation': ('rotation_run', 'run'),
-    'wheat2000_gblup': ('wheat2000_gblup', 'run'),
-    'wheat2000_tabm': ('wheat2000_run', 'run'),
-    'wheat2000_deepgs': ('wheat2000_neural_run', 'run'),
-    'wheat2000_bimsgp': ('wheat2000_neural_run', 'run'),
-    'environment_selection': ('environment_selection', 'run'),
-    'late_transfer': ('late_transfer_run', 'run'),
-    'independent_tabm_freeze': ('independent_freeze', 'run'),
     'independent_tabm_final': ('independent_final', 'run'),
-    'vector_diagnostic': ('vector_diagnostic', 'run'),
-    'joint_inference': ('joint_training', 'run'),
-    'matrix_inference': ('matrix_training', 'run'),
-    'matrix_kernel_reference': ('matrix_kernel_reference', 'run'),
-    'sparse_interaction_diagnostic': ('sparse_diagnostic', 'run'),
     'heterogeneous_icm': ('heterogeneous_icm', 'run'),
-    'kernel_averaging': ('kernel_averaging', 'run'),
-    'target_icm': ('joint_kernel_selection', 'run_target'),
     'reml_icm': ('reml_icm', 'run'),
-    'get_icm_joint': ('joint_kernel_selection', 'run'),
     'get_icm': ('get_icm', 'run'),
     'bh_lmc': ('bh_lmc', 'run'),
-    'spectral_icm': ('spectral_icm', 'run'),
     'multienv_kernel': ('multienv_kernel', 'run'),
     'kernel_baselines': ('kernel_baselines', 'run'),
 }
@@ -238,6 +184,8 @@ def main():
     model = cfg.get('model')
     if model is not None and not isinstance(model, str):
         p.error('model must be a name, not a nested architecture configuration')
+    if args.selection is not None and model == 'quantile_tabm' and cfg.get('optimizer_variant', '').startswith('shape_'):
+        return import_module('wheat599.shape_quantile_final').run(cfg, args, Path(__file__))
     if model in RUNNERS:
         module, function = RUNNERS[model]
         return getattr(import_module('wheat599.' + module), function)(cfg, args, Path(__file__))

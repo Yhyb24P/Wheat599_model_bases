@@ -267,6 +267,7 @@ def page(title, body, destination, css, js):
 
 
 ARCHITECTURES = {
+    '形状分解分位数 TabM': (['全标记标准化 → TabM 成员', '成员位置、正尺度与有序标准形状', '共享或收缩形状 → 99 个位置', '成员和种子点预测平均／分布混合'], '自由、强制共享和有限收缩的形状臂采用相同骨干；分布覆盖来自成员与种子的等权混合。', '../src/wheat599/shape_quantile.py'),
     '分阶自适应互作核 GP': (['二值标记映射到 ±1', '完整一、二、三阶组合核＋高阶尾核', '二、三阶各 8 个模板调整方向方差', '单环境 GP 后验预测'], '保留完整互作空间，模板调整少量方向的收缩；开发比较低于原分位数 TabM。', '../src/wheat599/adaptive_anova.py'),
     '监督 Ising': (['全标记拟合标准化','输入场 a = Wz + b','T=1 精确枚举隐状态期望','线性直连 + 条件均值读出'], '隐维8/12，J只连接隐状态；有限温度期望由全部状态计算，不调用退火或量子设备。本预算开发未超过强参照。', 'methods/SUPERVISED_ISING.md'),
     'Ising J=0': (['同样的全标记标准化','与耦合臂匹配的输入场','解析 tanh(a)，J 固定为0','同样的线性直连与读出'], 'J=0是条件独立退化形式；同种子W/b/β/c/μ初值与耦合臂一致，分别按相同预算选模。', 'methods/SUPERVISED_ISING.md'),
@@ -294,6 +295,8 @@ ARCHITECTURES = {
 def model_family(name, source):
     def identify(text):
         text = text.lower()
+        if '形状' in text and 'tabm' in text:
+            return '形状分解分位数 TabM'
         if '分阶自适应互作核' in text:
             return '分阶自适应互作核 GP'
         if 'ising 配对' in text and 'mlp' in text:

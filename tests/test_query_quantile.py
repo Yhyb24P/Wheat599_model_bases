@@ -98,7 +98,7 @@ def test_checkpoint_and_marker_identity_permutation(tmp_path):
     torch.testing.assert_close(restored(x[:,permutation]),m(x),atol=1e-6,rtol=1e-5)
 
 
-@pytest.mark.parametrize('variant', ['query', 'ising', 'ising_independent', 'ising_mlp'])
+@pytest.mark.parametrize('variant', ['query', 'ising', 'ising_independent', 'ising_mlp', 'shape_midpoint'])
 def test_development_runner_saves_seed_predictions_and_original_references(tmp_path,monkeypatch,variant):
     import json
     from types import SimpleNamespace
@@ -139,7 +139,11 @@ def test_development_runner_saves_seed_predictions_and_original_references(tmp_p
         calls.append(seed)
         # Opposite seed errors cancel only when predictions, not scores, are averaged.
         sign=1 if seed==42 else -1
-        return y_val+sign*(index+1)*x_val[:,0]**2,dict(best_epoch=2)
+        pred=y_val+sign*(index+1)*x_val[:,0]**2
+        info=dict(best_epoch=2)
+        if variant == 'shape_midpoint':
+            info['_distribution']=np.repeat(pred[:,None,None],5,axis=2)
+        return pred,info
     out=tmp_path/'out'
     runner.run(config,SimpleNamespace(selection=None,out=out,config=config_file),__file__,trainer=trainer)
     assert len(calls)==1920
@@ -154,8 +158,12 @@ def test_development_runner_saves_seed_predictions_and_original_references(tmp_p
     if variant == 'query':
         assert any(path.endswith('/query_quantile.py') for path in provenance['sha256'])
         assert any(path.endswith('/induced_ftt.py') for path in provenance['sha256'])
-    else:
+    elif variant.startswith('ising'):
         assert any(path.endswith('/supervised_ising.py') for path in provenance['sha256'])
+    else:
+        assert summary['probabilistic']['metrics'] == ['crps', 'coverage90', 'width90']
+        assert summary['probabilistic']['macro'][1] == pytest.approx(1.)
+        assert summary['probabilistic']['macro'][0] > 0
 
 
 def test_fitted_buffers_are_detached_from_input_graphs():

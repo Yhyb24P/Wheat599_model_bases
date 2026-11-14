@@ -152,6 +152,10 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(anova['family'], '分阶自适应互作核 GP')
         for metric, value in json.loads((ROOT/'results/adaptive_anova_development_20261114/summary.json').read_text())['macro']['quantile'].items():
             self.assertEqual(anova[metric], f'{value:.6f}')
+        shape = next(r for r in records if r['stage'] == '外层' and r['name'] == '有限形状收缩分位数 TabM')
+        self.assertEqual(shape['family'], '形状分解分位数 TabM')
+        for metric, value in json.loads((ROOT/'results/shape_quantile_shrink_outer_20261114/summary.json').read_text())['macro']['quantile'].items():
+            self.assertEqual(shape[metric], f'{value:.6f}')
         undefined = [r for r in records if '无定义' in r['pcc']]
         self.assertTrue(undefined)
         self.assertTrue(all(r['values']['pcc'] is None for r in undefined))

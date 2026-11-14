@@ -43,6 +43,11 @@ def update_epoch(model, x, y, q, opt, generator, spec, device):
             if output.shape != (len(batch), 1, 1):
                 raise ValueError('Point-MSE model must return [batch,1,1]')
             loss = torch.nn.functional.mse_loss(output[:, 0, :], y[batch])
+        elif spec.get('objective') == 'shape':
+            output, penalty = model.shape_transform(output)
+            loss = (2 / len(q)) * quantile_loss(output, y[batch], q) + spec['shape_penalty'] * penalty
+        elif spec.get('objective') == 'midpoint':
+            loss = (2 / len(q)) * quantile_loss(output, y[batch], q)
         else:
             loss = quantile_loss(output, y[batch], q)
         if not torch.isfinite(loss):
@@ -55,8 +60,11 @@ def update_epoch(model, x, y, q, opt, generator, spec, device):
 def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     start=time.perf_counter()
     variant=settings.get('optimizer_variant','adam')
-    if settings['training'].get('objective', 'pinball') not in ('pinball', 'mse'):
+    objective = settings['training'].get('objective', 'pinball')
+    if objective not in ('pinball', 'mse', 'midpoint', 'shape'):
         raise ValueError('Unknown training objective')
+    if variant.startswith('shape_') and objective != ('midpoint' if variant == 'shape_midpoint' else 'shape'):
+        raise ValueError('Shape model and loss do not match')
     if variant in ('ising', 'ising_independent', 'ising_mlp'):
         from wheat599.supervised_ising import SupervisedIsing, AdditiveMLP
         if settings['training'].get('objective') != 'mse':
@@ -75,7 +83,11 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
         torch.manual_seed(int(seed))
         model = ConditionalQuantile(x_fit, y_fit, quantiles=settings['n_quantiles']).to(device)
     else:
-        model = build_model(x_fit, y_fit, config, seed, settings, device)
+        outputs = 2 if variant == 'shape_shared' else settings['n_quantiles'] + 1 if variant in ('shape_free', 'shape_shrink') else settings['n_quantiles']
+        model = build_model(x_fit, y_fit, config, seed, {**settings, 'n_quantiles': outputs}, device)
+        if variant in ('shape_free', 'shape_shared', 'shape_shrink'):
+            from wheat599.shape_quantile import ShapeTransform
+            model.shape_transform = ShapeTransform(variant.removeprefix('shape_'), settings['n_quantiles'], dtype=torch.float32).to(device)
     if variant in ('gated','layered'):
         from wheat599.interaction_tabm import InteractionBackbone, LayerInteractionBackbone
         backbone=InteractionBackbone if variant=='gated' else LayerInteractionBackbone
@@ -89,32 +101,61 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
-    q = (model.quantiles if variant == 'query' else
+    q = ((torch.arange(settings['n_quantiles'], device=device) + .5) / settings['n_quantiles']
+         if variant in ('shape_midpoint', 'shape_free', 'shape_shared', 'shape_shrink') else
+         model.quantiles if variant == 'query' else
          torch.linspace(settings['quantile_min'], settings['quantile_max'],
                         settings['n_quantiles'], device=device))
-    if variant in ('adam','member_conditional','conditional','query','ising','ising_independent','ising_mlp'):
+    if variant in ('adam','member_conditional','conditional','query','ising','ising_independent','ising_mlp',
+                   'shape_midpoint','shape_free','shape_shared','shape_shrink'):
         opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
     else:
         from wheat599.interaction_tabm import make_optimizers
         opt=make_optimizers(model,config,variant)
-    generator = torch.Generator().manual_seed(int(seed) * 1000 + index)
-    spec = settings['training']
-    best_score, best_epoch, best_prediction = -np.inf, -1, None
-    for epoch in range(spec['max_epochs'] + 1):
+    generator = torch.Generator().manual_seed(int(seed) * 1000 + config.get('batch_seed_index', index))
+    spec = {**settings['training'], 'shape_penalty': config.get('shape_penalty', 0.)}
+    probabilistic = variant in ('shape_midpoint', 'shape_free', 'shape_shared', 'shape_shrink')
+    best_score, best_epoch, best_prediction, best_distribution = -np.inf, -1, None, None
+    fixed_epochs = settings.get('fixed_epochs')
+    if fixed_epochs is not None and (not isinstance(fixed_epochs, int) or fixed_epochs < 0):
+        raise ValueError('Invalid fixed epoch count')
+    for epoch in range((spec['max_epochs'] if fixed_epochs is None else fixed_epochs) + 1):
         if epoch:
             update_epoch(model, x, y, q, opt, generator, spec, device)
+        if fixed_epochs is not None and epoch != fixed_epochs:
+            continue
         model.eval()
         with torch.no_grad():
-            prediction = model.inverse_y(model(xv).mean(dim=(1, 2))[:, None])[:, 0].cpu().numpy()
-        score = pcc(y_val, prediction)
-        if not np.isfinite(score):
+            output = model(xv)
+            if variant in ('shape_free', 'shape_shared', 'shape_shrink'):
+                output, _ = model.shape_transform(output)
+            prediction = model.inverse_y(output.mean(dim=(1, 2))[:, None])[:, 0].cpu().numpy()
+        score = pcc(y_val, prediction) if fixed_epochs is None else None
+        if fixed_epochs is None and not np.isfinite(score):
             raise ValueError('Nonfinite validation PCC')
-        if score > best_score + spec['tie_tolerance']:
+        if fixed_epochs is not None or score > best_score + spec['tie_tolerance']:
             best_score, best_epoch, best_prediction = score, epoch, prediction.copy()
+            if probabilistic:
+                best_distribution = model.inverse_y(output).cpu().numpy()
+            if fixed_epochs is not None:
+                break
         elif epoch - best_epoch >= spec['patience']:
             break
-    return best_prediction, dict(best_pcc=best_score, best_epoch=best_epoch, epochs_run=epoch,
-                                 parameters=sum(p.numel() for p in model.parameters()),seconds=time.perf_counter()-start)
+    details = dict(best_pcc=best_score, best_epoch=best_epoch, epochs_run=epoch,
+                   parameters=sum(p.numel() for p in model.parameters()),seconds=time.perf_counter()-start)
+    if probabilistic:
+        details['_distribution'] = best_distribution
+    return best_prediction, details
+
+
+def mixture_scores(distributions, truth):
+    """Per-material CRPS and 90% interval for the exact equal-weight atom mixture."""
+    atoms = np.concatenate(distributions, axis=1).reshape(len(truth), -1).astype(np.float64)
+    atoms.sort(axis=1)
+    n = atoms.shape[1]
+    crps = np.abs(atoms - np.asarray(truth)[:, None]).mean(axis=1) - (atoms @ (2 * np.arange(1, n + 1) - n - 1)) / n**2
+    lo, hi = np.quantile(atoms, [.05, .95], axis=1, method='inverted_cdf')
+    return np.column_stack([crps, (truth >= lo) & (truth <= hi), hi - lo])
 
 
 _FIT_CONTEXT = None
@@ -162,8 +203,8 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
     data = load(Path(cfg['data']), cfg['data_sha256'])
     folds = read(cfg['splits'])['folds']
     configs = yaml.safe_load(Path(cfg['architecture_config']).read_text())['configurations']
-    if len(folds) != 10 or any(len(f['inner']) != 3 for f in folds) or len(configs) != 8:
-        raise ValueError('Expected 10 folds, 3 inner splits and 8 configurations')
+    if len(folds) != 10 or any(len(f['inner']) != 3 for f in folds) or not configs:
+        raise ValueError('Expected 10 folds, 3 inner splits and at least one configuration')
     source = Path(cfg['reference_source'])
     info = read(source/'provenance.json')
     if info['sha256'][cfg['splits']] != sha256_of(Path(cfg['splits'])):
@@ -191,6 +232,8 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
         sources.extend(Path(__file__).with_name(name) for name in ('query_quantile.py','induced_ftt.py'))
     if cfg.get('optimizer_variant') in ('ising','ising_independent','ising_mlp'):
         sources.append(Path(__file__).with_name('supervised_ising.py'))
+    if cfg.get('optimizer_variant') in ('shape_free','shape_shared','shape_shrink'):
+        sources.append(Path(__file__).with_name('shape_quantile.py'))
     sources.extend(Path(p) for p in extra_sources)
     comparison={}
     for name,path in cfg.get('comparison_sources',{}).items():
@@ -218,7 +261,7 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
                 if (set(tr) & set(val) or set(tr) | set(val) != set(fold['dev_idx'])
                         or (set(tr) | set(val)) & set(fold['test_idx'])):
                     raise ValueError('Invalid split')
-                predictions = {}
+                predictions, pending = {}, {}
                 def serial_outputs():
                     for environment in range(4):
                         for c, config in enumerate(configs):
@@ -236,17 +279,25 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
                 outputs = pool.map(_fit_worker, tasks, chunksize=1) if pool else serial_outputs()
                 try:
                     for environment, c, seed, pred, details in outputs:
+                        distribution = details.pop('_distribution', None)
+                        if distribution is not None:
+                            key = (environment, c)
+                            pending.setdefault(key, []).append(distribution)
+                            if len(pending[key]) == len(cfg['seeds']):
+                                predictions[f'e{environment}_c{c}_prob'] = mixture_scores(pending.pop(key), data.Y[val, environment])
                         predictions[f'e{environment}_c{c}_s{seed}'] = pred
                         records.append(dict(fold=f, inner=inner, environment=environment,
                                             config_index=c, seed=seed, **details))
                         state['completed'] += 1
                         write('execution_status.json', state)
+                    if pending:
+                        raise ValueError('Incomplete predictive mixtures')
                 finally:
                     np.savez_compressed(args.out/f'predictions_{f}_{inner}.npz', **predictions)
                     write('trajectories.json', records)
         if state['completed'] != expected:
             raise ValueError('Incomplete experiment')
-        results = []
+        results, probabilistic_results = [], []
         for fold in folds:
             f = fold['fold']
             arrays = [np.load(args.out/f'predictions_{f}_{j}.npz') for j in range(3)]
@@ -277,6 +328,9 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
                     per_method[method].append(metrics)
             results.append(dict(fold=f, selected=chosen,
                                 metrics={k: np.mean(v, axis=0).tolist() for k, v in per_method.items()}))
+            if cfg.get('optimizer_variant', '').startswith('shape_'):
+                probabilistic_results.append(np.array([[arrays[j][f'e{e}_c{chosen[e]}_prob'].mean(axis=0)
+                    for e in range(4)] for j in range(3)]).mean(axis=0))
         summary = {method: dict(zip(('pcc','rmse','mae'),
             np.mean([r['metrics'][method] for r in results], axis=(0, 1)).tolist()))
             for method in methods}
@@ -284,7 +338,13 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
             for result in results:
                 result['metrics'][name]=next(v['metrics']['quantile'] for v in previous['folds'] if v['fold']==result['fold'])
             summary[name]=dict(zip(('pcc','rmse','mae'),np.mean([r['metrics'][name] for r in results],axis=(0,1)).tolist()))
-        write('summary.json', {'macro': summary, 'folds': results})
+        result = {'macro': summary, 'folds': results}
+        if probabilistic_results:
+            values = np.stack(probabilistic_results)
+            result['probabilistic'] = {'metrics': ['crps', 'coverage90', 'width90'],
+                'macro': values.mean(axis=(0, 1)).tolist(), 'per_environment': values.mean(axis=0).tolist(),
+                'folds': values.tolist()}
+        write('summary.json', result)
         state['status'] = 'complete'
     except BaseException as exc:
         state['status'] = 'failed'
