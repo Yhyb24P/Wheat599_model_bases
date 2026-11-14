@@ -1,7 +1,7 @@
 {
   "version": 1,
   "max_file_lines": 2000,
-  "slack": 0,
+  "slack": 50,
   "groups": {
     "tests": {
       "include": [
@@ -217,10 +217,10 @@
     }
   },
   "ceilings": {
-    "tests": 10277,
+    "tests": 2370,
     "docs": 3760,
-    "maintenance": 8844,
-    "source": 24780
+    "maintenance": 3539,
+    "source": 5869
   },
   "file_ceilings": {}
 }
