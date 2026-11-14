@@ -8,6 +8,7 @@
 - [参考文献与逐篇讲解](ref/index.html)：文献、来源及其与本项目的关系。
 - [运行目录索引](results/index.html)：按原始运行目录查找摘要、配置、划分与状态。
 - [结果原文](docs/RESULTS.md)、[评价协议](docs/EVALUATION_PROTOCOL.md)、[历史模型对比](docs/MODEL_COMPARISON.md)：可视化的事实来源。
+- [冻结证据索引](docs/FROZEN_INDEX.md)：已结束实验的代码/配置由 58 个 Git 标签逐字保存，按家族导航到标签与 `results/`；精确复现检出原标签。
 
 HTML 可直接用浏览器打开，不需要联网或启动服务；外部论文链接需要联网。页面是生成视图，修订证据后在仓库根目录重建：
 
@@ -85,16 +86,16 @@ PYTHONPATH=src python -m pytest tests/ -q
 
 | 用途 | 唯一入口 / 实现 | 配置 |
 |---|---|---|
-| 当前模型开发、重拟合与汇总 | `scripts/run_background_nested.py`；`RUNNERS` 明确映射到 `src/wheat599/`，只导入所选模型 | `model: <名称>` 的运行配置，如 `robust_icm.yaml`、`quantile_tabm_final.yaml`、`mulphe_unified.yaml` |
+| 当前模型开发、重拟合与汇总 | `scripts/run_background_nested.py`；`RUNNERS` 明确映射到 `src/wheat599/`，只导入所选模型 | `model: <名称>` 的运行配置，如 `robust_icm.yaml`、`quantile_tabm_final.yaml`、`heterogeneous_icm.yaml` |
 | 原背景岭回归 | 同一入口；保留无 `model` 字段的历史约定 | `background_ridge_nested.yaml` |
 | 数据下载 | `scripts/fetch_data.py` | 固定来源与 SHA，不改 `data/raw/` |
 | 展示与文献 | `scripts/build_report.py`、`ref/build.py` | 只读取已有结果、配置及文献，不训练 |
-| 历史独立入口 | `run_bimsgp*`、`run_moegp*`、`run_a_rr_nested.py`、`run_stage1.py`、`run_benchmark.py` 等 | 沿用各自配置结构；不是统一入口的新运行许可 |
-| 已有独立核验 | `verify_*.py` | 保留独立复算口径，不改成调用被核验的汇总函数 |
+| 历史独立入口 | `run_bimsgp*`、`run_moegp*`、`run_a_rr_nested.py`、`run_stage1.py`、`run_benchmark.py` 等已移出现役树，由冻结标签保存 | 检出对应标签后沿用各自配置结构；不是统一入口的新运行许可 |
+| 已有独立核验 | `verify_*.py` 已移出现役树，由冻结标签保存 | 检出对应标签后保留独立复算口径，不改成调用被核验的汇总函数 |
 
 `configs/` 中的运行配置、搜索空间和架构配方职责不同，不能把所有 YAML 都直接交给训练入口。统一入口拒绝未知模型名及误传的嵌套架构字典。`src/wheat599/models/` 是历史通用基线适配器；当前方法的实际实现由统一入口的映射确定。
 
-源码、配置和运行目录的既有路径保留，因为冻结清单记录了路径与 SHA；历史精确复现应检出原记录的提交/标签，而不是改写旧清单来适应最新代码。完整 Mul-PheG2P 实现及测试已从正式冻结版本 `742132f` 纳入主分支；此前本地未跟踪版本保存在 `local/incoming/mulphe_unified_pre_final/`，不混作正式运行源码。
+源码、配置和运行目录的既有路径保留，因为冻结清单记录了路径与 SHA；历史精确复现应检出原记录的提交/标签，而不是改写旧清单来适应最新代码。完整 Mul-PheG2P 实现及测试由冻结标签 `mulphe-unified-*`（源自 `742132f`）保存，结果留在 `results/mulphe_*`；此前本地未跟踪版本保存在 `local/incoming/mulphe_unified_pre_final/`，不混作正式运行源码。
 
 ## 文件与结果约定
 
