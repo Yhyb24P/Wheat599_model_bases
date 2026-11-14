@@ -36,7 +36,13 @@ def update_epoch(model, x, y, q, opt, generator, spec, device):
     order = torch.randperm(len(x), generator=generator).to(device)
     for batch in order.split(spec['batch_size']):
         for optimizer in optimizers:optimizer.zero_grad(set_to_none=True)
-        loss = quantile_loss(model(x[batch]), y[batch], q)
+        output = model(x[batch])
+        if spec.get('objective', 'pinball') == 'mse':
+            if output.shape != (len(batch), 1, 1):
+                raise ValueError('Point-MSE model must return [batch,1,1]')
+            loss = torch.nn.functional.mse_loss(output[:, 0, :], y[batch])
+        else:
+            loss = quantile_loss(output, y[batch], q)
         if not torch.isfinite(loss):
             raise FloatingPointError('Nonfinite quantile loss')
         loss.backward()
@@ -47,7 +53,16 @@ def update_epoch(model, x, y, q, opt, generator, spec, device):
 def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     start=time.perf_counter()
     variant=settings.get('optimizer_variant','adam')
-    if variant == 'query':
+    if settings['training'].get('objective', 'pinball') not in ('pinball', 'mse'):
+        raise ValueError('Unknown training objective')
+    if variant in ('ising', 'ising_independent', 'ising_mlp'):
+        from wheat599.supervised_ising import SupervisedIsing, AdditiveMLP
+        if settings['training'].get('objective') != 'mse':
+            raise ValueError('Supervised Ising comparisons require point MSE')
+        torch.manual_seed(int(seed))
+        model = (AdditiveMLP(x_fit, y_fit, width=config['width']) if variant == 'ising_mlp' else
+                 SupervisedIsing(x_fit, y_fit, spins=config['spins'], coupled=variant == 'ising')).to(device)
+    elif variant == 'query':
         from wheat599.query_quantile import QueryQuantile
         torch.manual_seed(int(seed))
         model = QueryQuantile(x_fit, y_fit, width=config['width'], heads=config['heads'],
@@ -75,7 +90,7 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
     q = (model.quantiles if variant == 'query' else
          torch.linspace(settings['quantile_min'], settings['quantile_max'],
                         settings['n_quantiles'], device=device))
-    if variant in ('adam','member_conditional','conditional','query'):
+    if variant in ('adam','member_conditional','conditional','query','ising','ising_independent','ising_mlp'):
         opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
     else:
         from wheat599.interaction_tabm import make_optimizers
@@ -142,6 +157,8 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
     if cfg.get('optimizer_variant')=='conditional':sources.append(Path(__file__).with_name('conditional_quantile.py'))
     if cfg.get('optimizer_variant')=='query':
         sources.extend(Path(__file__).with_name(name) for name in ('query_quantile.py','induced_ftt.py'))
+    if cfg.get('optimizer_variant') in ('ising','ising_independent','ising_mlp'):
+        sources.append(Path(__file__).with_name('supervised_ising.py'))
     sources.extend(Path(p) for p in extra_sources)
     comparison={}
     for name,path in cfg.get('comparison_sources',{}).items():

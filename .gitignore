@@ -74,3 +74,5 @@ results/sparse_residual_quantile_*/predictions_*.npz
 results/query_quantile_*/predictions_*.npz
 
 results/adaptive_anova_*/predictions_*.npz
+
+results/supervised_ising_*/predictions_*.npz

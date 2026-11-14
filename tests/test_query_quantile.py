@@ -98,7 +98,8 @@ def test_checkpoint_and_marker_identity_permutation(tmp_path):
     torch.testing.assert_close(restored(x[:,permutation]),m(x),atol=1e-6,rtol=1e-5)
 
 
-def test_development_runner_saves_seed_predictions_and_original_references(tmp_path,monkeypatch):
+@pytest.mark.parametrize('variant', ['query', 'ising', 'ising_independent', 'ising_mlp'])
+def test_development_runner_saves_seed_predictions_and_original_references(tmp_path,monkeypatch,variant):
     import json
     from types import SimpleNamespace
     from wheat599 import quantile_tabm as runner
@@ -127,7 +128,7 @@ def test_development_runner_saves_seed_predictions_and_original_references(tmp_p
             hashes[str(path)]=sha256_of(path)
     (baseline/'summary.json').write_text(json.dumps({'folds':[dict(fold=f,selected=[0]*4) for f in range(10)]}))
     audit=tmp_path/'audit.json';audit.write_text(json.dumps({'sha256':hashes}))
-    config=dict(optimizer_variant='query',device='cpu',cpu_threads=1,data='synthetic',data_sha256='synthetic',
+    config=dict(optimizer_variant=variant,device='cpu',cpu_threads=1,data='synthetic',data_sha256='synthetic',
                 splits=str(splits),architecture_config=str(architectures),reference_source=str(source),
                 baseline_source=str(baseline),baseline_audit=str(audit),seeds=[42,2026])
     config_file=tmp_path/'config.yaml';config_file.write_text(json.dumps(config))
@@ -150,8 +151,11 @@ def test_development_runner_saves_seed_predictions_and_original_references(tmp_p
     assert all(r['selected']==[0]*4 for r in summary['folds'])
     assert len(list(out.glob('predictions_*.npz')))==30
     provenance=json.loads((out/'provenance.json').read_text())
-    assert any(path.endswith('/query_quantile.py') for path in provenance['sha256'])
-    assert any(path.endswith('/induced_ftt.py') for path in provenance['sha256'])
+    if variant == 'query':
+        assert any(path.endswith('/query_quantile.py') for path in provenance['sha256'])
+        assert any(path.endswith('/induced_ftt.py') for path in provenance['sha256'])
+    else:
+        assert any(path.endswith('/supervised_ising.py') for path in provenance['sha256'])
 
 
 def test_fitted_buffers_are_detached_from_input_graphs():
