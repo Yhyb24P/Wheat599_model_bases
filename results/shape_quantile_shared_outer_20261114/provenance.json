@@ -1,0 +1,45 @@
+{
+  "config": {
+    "model": "quantile_tabm",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "architecture_config": "configs/shape_quantile_search.yaml",
+    "reference_source": "results/joint_tabm_icm_development_20261106",
+    "seeds": [
+      42,
+      2026
+    ],
+    "n_quantiles": 99,
+    "quantile_min": 0.001,
+    "quantile_max": 0.999,
+    "device": "cuda",
+    "gpu_memory_fraction": 0.4,
+    "cpu_threads": 1,
+    "training": {
+      "max_epochs": 500,
+      "patience": 50,
+      "batch_size": 128,
+      "gradient_clip": 5.0,
+      "tie_tolerance": 1e-12,
+      "objective": "shape"
+    },
+    "baseline_source": "results/quantile_tabm_development_20261106_v2",
+    "baseline_audit": "results/tabicl_compare_20261106/summary.json",
+    "workers": 2,
+    "optimizer_variant": "shape_shared"
+  },
+  "git_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
+  "sha256": {
+    "configs/shape_quantile_shared.yaml": "31098a400a6467fb4bcd7b2721beadd0663150745af91907762a088ca3cfad18",
+    "configs/shape_quantile_search.yaml": "b769337b66924e8cce58a5a1bdbf786dfbd6e1d38d7ec77e3be97168c01cf0f3",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "src/wheat599/quantile_tabm.py": "99482dfac0f8faa9a1fba13b813bd59dcb03ef62374a7b871bf78ff187fa5fc1",
+    "src/wheat599/shape_quantile.py": "cd18a701244ac772893a4a7f863ea6e09cda601921495b6e3817abd9ed327af7",
+    "/home/yhshy/git_files/Wheat599_model_bases/.state/worktrees/shape-shrink-20261114/scripts/run_background_nested.py": "cbb9c7f0ec55c418872c0dfe82a0d9952acd69e5d0de8bc91bc091884c74bd16",
+    "/home/yhshy/git_files/Wheat599_model_bases/.state/worktrees/shape-shrink-20261114/src/wheat599/shape_quantile_final.py": "7dc5d8a3f88b00f56c24d4fc4c677fe8423b62e2a58ce25a0bea91802773a722",
+    "results/shape_quantile_shared_development_20261114/summary.json": "d27abcc73b6a6fdeb88d50944445d0fd805d199205cec28d5025c8d8eccc11a4",
+    "results/shape_quantile_shared_development_20261114/trajectories.json": "6104e19e66ef16e9532a515108ac7284f0d6aa1ae77e556201b8550889671708",
+    "results/quantile_tabm_final_20261106/oof.csv": "3f9c675e428c9caa32a9886b7c164b73e69be0e3d17792bb6e32817fdfcf73d2"
+  }
+}

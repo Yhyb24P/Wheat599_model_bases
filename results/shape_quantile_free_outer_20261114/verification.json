@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "fits": 80,
+  "material_environment_keys": 2396,
+  "max_seed_mean_error": 0.0,
+  "files_sha256": {
+    "oof.csv": "71edf329aaede34435c98e070009478735019f203067586eb75a3d4286011170",
+    "seed_predictions.npz": "2861b553356d59f196912b6bfda40fb3850cc74c44f2d93af71cbcc14aaa61af"
+  },
+  "probability_note": "saved per-material scores and intervals reaggregated; atom-level scoring checked in unit tests"
+}
