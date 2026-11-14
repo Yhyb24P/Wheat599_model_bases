@@ -4,7 +4,7 @@
 
 目标是植物基因组表型预测方法论文，整体论文目标尚未完成。成熟架构的有效适配可以成为贡献；当前只推进 Wheat599，跨数据集领先尚无证据。
 
-本轮授权实现完整的查询条件分位数候选，复用现有开发入口并做必要实现验证；架构与预设开发预算见 [QUERY_QUANTILE](docs/methods/QUERY_QUANTILE.md)。正式运行状态以结果记录为准，不自动进入外层或扩展网格。现役主候选是四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合。最新完整 Mul-PheG2P 比较已结束；数字、失败、停止原因和适配限制统一见 [RESULTS](docs/RESULTS.md)，协议见 [EVALUATION_PROTOCOL](docs/EVALUATION_PROTOCOL.md)。不因目录整理或新发现重开历史路线、追加消融、外层评价或新数据集。
+分阶自适应互作核 GP 的开发比较已完成，结果见 [RESULTS](docs/RESULTS.md)；不自动进入外层或扩展网格。现役主候选是四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合。最新完整 Mul-PheG2P 比较已结束；数字、失败、停止原因和适配限制统一见结果记录，协议见 [EVALUATION_PROTOCOL](docs/EVALUATION_PROTOCOL.md)。不因目录整理或新发现重开历史路线、追加消融、外层评价或新数据集。
 
 硬边界：不跑 BiMSGP；当前不跑 TabPFN，不微调或从零预训练，冻结 ICL 仅保留在 Stage 2 条件协议。Wheat2000、DeepGS、中点分位数的中断记录不作完整结果或算法失败。GPformer、GP-WAITER 不作为工程基座；“A 骨干”是 FT-Transformer 架构标签，不是 `wheat.A`；当前 marker-only，谱系矩阵仅用于 Stage 2 亲缘敏感性。不沿用旧 C1 半合成路径，不向用户索要 BiMSGP 划分/OOF/配置，不联系作者。
 

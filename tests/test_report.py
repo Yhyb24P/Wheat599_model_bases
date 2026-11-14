@@ -148,6 +148,10 @@ class ReportTest(unittest.TestCase):
         self.assertIn('RAGP', next(r['name'] for r in records if r['family'] == 'RAGP'))
         # A comparison's title must not turn its TabM control into the RAGP architecture.
         self.assertEqual(report.model_family('单成员检索网络', 'RAGP 同协议参照'), 'TabM')
+        anova = next(r for r in records if r['name'] == '分阶自适应互作核 GP')
+        self.assertEqual(anova['family'], '分阶自适应互作核 GP')
+        for metric, value in json.loads((ROOT/'results/adaptive_anova_development_20261114/summary.json').read_text())['macro']['quantile'].items():
+            self.assertEqual(anova[metric], f'{value:.6f}')
         undefined = [r for r in records if '无定义' in r['pcc']]
         self.assertTrue(undefined)
         self.assertTrue(all(r['values']['pcc'] is None for r in undefined))

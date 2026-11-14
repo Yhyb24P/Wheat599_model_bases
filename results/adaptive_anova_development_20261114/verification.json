@@ -1,0 +1,92 @@
+{
+  "status": "passed",
+  "prediction_files_sha256": {
+    "predictions_0_0.npz": "488bd8ca970ed3fb785ce8bdad1cb7737802ee7b73f95ca216b054cf4c1bf354",
+    "predictions_0_1.npz": "f44638c8ab87d7a08726546cd10e7a794476d6d8f8814862836d9b49200d035b",
+    "predictions_0_2.npz": "8b01ff18c2cb387d2f1ead007454e5566bcb03129e234b5ee41d389c6932f7f2",
+    "predictions_1_0.npz": "f3b0b046eee18542d71de4ffa238c33b6e1d1f5bedefb9c0a43aaa5e828bc6ff",
+    "predictions_1_1.npz": "2d56afc051daa583f9160180c0499479ee836f76959d8903b718503f92d5a292",
+    "predictions_1_2.npz": "08402f3542ff870058ea0c42cec9adfd348310717a8b2ae561d0c67f44ce29eb",
+    "predictions_2_0.npz": "ea436f02a8bf7fde9b552beaf9174517ac389c5d5bebecba07920fd9d507e60b",
+    "predictions_2_1.npz": "425a12f5c96e2feabeb6a9d81e887c21f626c550b8752e457c67c32100c453bd",
+    "predictions_2_2.npz": "6f1208171ab9b45ffcc6e296424a5f0140d73e801a86913217871f18ac372598",
+    "predictions_3_0.npz": "7aefb76df2f8c8c91bd141c6c3611ec6b1be05cb4552dca9ba86c9d1c17e6c51",
+    "predictions_3_1.npz": "02c8b185f7a052e6ffa064f1eb191bd127ba7744235ea61562dc137a3eecdd97",
+    "predictions_3_2.npz": "c6af5069336c55dc307ae468935fc4524a7ea39cfa61a7d84105e18132d493b4",
+    "predictions_4_0.npz": "57bf34c2253c13b2148a94e2e264f21becf9366554f20d367df76e9563a140f2",
+    "predictions_4_1.npz": "62bb4f667c8c3082c611f35870e7e05428347170d86fcb069f96c8bc77360059",
+    "predictions_4_2.npz": "11b47bb1119377bfbed13d9fd8408d3e5423c1f07bb34d6ed66eca0c9bc6ad8d",
+    "predictions_5_0.npz": "68fd62255f0b6121c370871fb57ead9370610becfe5651cb11b19d4c924ea783",
+    "predictions_5_1.npz": "a02329cd420c3159ab71015a1a68030a7bce2c7bf3ba265a98763a237a69c9d5",
+    "predictions_5_2.npz": "d3d0c8b1ac2f9fe3dbd1c0af74c8146d5db18e6a61542ca700357ff0b5faf909",
+    "predictions_6_0.npz": "1f2eb835386c676bed1bb1cd14ec2019358f87300e174ff3cbe43863d453900c",
+    "predictions_6_1.npz": "3ec87f460f274cad7df30012af1c2a4212c71e40e93e1ba1ec3b0f9e2e181e67",
+    "predictions_6_2.npz": "c99a3961db58d66adccfe80cbcbf653a9dc3e1157a056d39a3456519d06ac964",
+    "predictions_7_0.npz": "c1eb23f1817492671dd29f44cbfd6560f8373bd2684287450dcf76bf1f81c3ce",
+    "predictions_7_1.npz": "5bed49002ace52c0d197cc9436d7198be4e3ebaae11020797a6a47350b4ae34e",
+    "predictions_7_2.npz": "8f3f85a4e316cc5193fed23db055bbd0785f3a2b49645da4d075f89b040a7ae4",
+    "predictions_8_0.npz": "ccc8bb513676c4085114cf0c52e1028a76cf8ce468b4239e3f59f4f4c1f73070",
+    "predictions_8_1.npz": "9090c42020040bebedefc6a3000d3e8544380984ecf812d5c216c5e366e87b3a",
+    "predictions_8_2.npz": "483ea7b6f98d215af26fce3e71e92fb0be29e6833c10087839e0e998a63426f3",
+    "predictions_9_0.npz": "763b73afab5df0dab2bdb57a6b5f6904da680c319e1008dab03eb15fe6717a29",
+    "predictions_9_1.npz": "533fad76323bd12a50151de8eb2e61f86328784d0b795891975af02c17b71ebf",
+    "predictions_9_2.npz": "fcb5c5881cb12d9d0db85f1d4b31f509d4eb652efbac351d95f037cf0ae2a515"
+  },
+  "fit_count": 1920,
+  "selection_count": 40,
+  "max_trajectory_pcc_error": 0.0,
+  "macro": {
+    "pcc": 0.4790394929005234,
+    "rmse": 0.8781189594304699,
+    "mae": 0.6769133486653145
+  },
+  "environment_mean": [
+    [
+      0.543803629302327,
+      0.8416445882753815,
+      0.6581481618162643
+    ],
+    [
+      0.4782200687007583,
+      0.8793348318850823,
+      0.6727420507577816
+    ],
+    [
+      0.38488711923087376,
+      0.9267743413339666,
+      0.7105752099470786
+    ],
+    [
+      0.5092471543681348,
+      0.864722076227449,
+      0.6661879721401338
+    ]
+  ],
+  "per_fold_pcc": [
+    0.4905702973639344,
+    0.492933742100617,
+    0.48233636334392593,
+    0.4930196262575338,
+    0.462160004384805,
+    0.46411273413594484,
+    0.4950545060567403,
+    0.46149765078262117,
+    0.4766782412473485,
+    0.4720317633317638
+  ],
+  "huber_comparison": {
+    "fold_wins_pcc": 4,
+    "environment_fold_wins_pcc": 16,
+    "mean_difference_pcc": -0.002043128765622078
+  },
+  "original_quantile_comparison": {
+    "fold_wins_pcc": 0,
+    "environment_fold_wins_pcc": 7,
+    "mean_difference_pcc": -0.015525939210532805
+  },
+  "original_fusion_comparison": {
+    "fold_wins_pcc": 0,
+    "environment_fold_wins_pcc": 7,
+    "mean_difference_pcc": -0.015472778812829647
+  }
+}
