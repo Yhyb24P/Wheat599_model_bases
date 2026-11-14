@@ -180,6 +180,7 @@ RUNNERS = {
     'menet_quantile': ('menet_quantile', 'run'),
     'sparse_residual_quantile': ('sparse_residual_run', 'run'),
     'quantile_tabm': ('quantile_tabm', 'run'),
+    'adaptive_anova': ('adaptive_anova_run', 'run'),
     'joint_tabm_icm': ('joint_tabm_icm_run', 'run'),
     'robust_icm': ('robust_icm', 'run'),
     'non_gaussian_icm': ('non_gaussian_icm', 'run'),
