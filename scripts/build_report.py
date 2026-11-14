@@ -267,6 +267,7 @@ def page(title, body, destination, css, js):
 
 
 ARCHITECTURES = {
+    '查询条件分位数': (['全部标记身份与状态编码','连续 τ 余弦查询编码','两层独立查询交叉注意力','共享标量读出 → 分位值'], '四环境独立、单成员、双种子；τ 在证据汇总前进入计算。已完成开发比较，未超过原分位数。', 'methods/QUERY_QUANTILE.md'),
     '固定融合': (['全标记输入', '神经预测分支 ＋ 核预测分支', '各自还原表型尺度', '按本行约定进行融合'], '融合家族示意：当前主候选为分位数 TabM 与 Huber ICM 各占 50%；历史 MSE 分支、融合选模与其他配方分别见本行原记录。', 'methods/QUANTILE_TABM_FINAL.md'),
     'TabM': (['拟合集标准化 · 全标记', '共享主权重的 MLP 成员', '单值 MSE 或 99 分位点输出', '成员平均 · 种子预测平均'], 'TabM 家族示意：当前分位数模型为四环境独立；共享、检索、交互与蒸馏变体的实际改动见该行原记录。', 'methods/QUANTILE_TABM.md'),
     'ICM / 核方法': (['拟合集材料相似性核', '核组合 / 多环境任务结构', '正则化求解或稳健拟合', '查询材料的表型预测'], '核方法家族示意：Huber ICM 使用加性＋RBF 材料核及拟合表型相关矩阵，带 Huber 损失和岭惩罚。其他 ICM/LMC 变体的核结构和选模规则分别记录。', 'history/RESEARCH_PLAN.md'),
@@ -289,6 +290,8 @@ ARCHITECTURES = {
 def model_family(name, source):
     def identify(text):
         text = text.lower()
+        if '查询条件分位数' in text:
+            return '查询条件分位数'
         for token, family in [('mulphe', 'Mul-PheG2P'), ('mul-phe', 'Mul-PheG2P'), ('wheatgp', 'WheatGP'),
                               ('moegp', 'MoEGP'), ('bimsgp', 'BiMSGP'), ('dnawhisper', 'DNAwhisper'),
                               ('ragp', 'RAGP'), ('tabicl', 'TabICLv2'), ('rfm', 'RFM')]:
