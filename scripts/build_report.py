@@ -328,7 +328,7 @@ def comparison_records(systems):
         records.append(dict(name=name, stage='统一协议外层', pcc=f'{metrics["pcc"]:.6f}',
                             rmse=f'{metrics["rmse"]:.6f}', mae=f'{metrics["mae"]:.6f}',
                             env=[f'{environments[e]["pcc"]:.6f}' for e in ['1','2','4','5']],
-                            source=source, link='#run-0' if 'Mul-Phe' in name else 'methods/QUANTILE_TABM_FINAL.md',
+                            source=source, link='methods/MULPHE_UNIFIED.md' if 'Mul-Phe' in name else 'methods/QUANTILE_TABM_FINAL.md',
                             role='主候选' if index == 0 else '强参照' if index < 3 else '公开模型',
                             priority=(0 if index == 0 else index if index < 3 else 3 if '三内折选配置' in name and '标量融合' in name else 4 if '公开默认配置' in name and '标量融合' in name else 90 + index), primary=True))
     comparison = (ROOT/'docs/MODEL_COMPARISON.md').read_text().split('## 全模型总对比表', 1)[1].split('\n## ', 1)[0]
