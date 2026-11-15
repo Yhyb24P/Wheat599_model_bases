@@ -1,6 +1,8 @@
 """Gaussian and additive/Gaussian kernel ridge under nested CV."""
 import csv
 import json
+import subprocess
+import time
 from pathlib import Path
 
 import numpy as np
@@ -45,6 +47,161 @@ def write(path, fields, rows):
     with path.open('w', newline='') as f:
         w = csv.DictWriter(f, fieldnames=fields, lineterminator='\n')
         w.writeheader(); w.writerows(rows)
+
+
+def gcv(eigenvalues, vectors, y, ridges):
+    """GCV including an unpenalized intercept, evaluated on the original grid."""
+    eigenvalues, vectors, y = map(np.asarray, (eigenvalues, vectors, y))
+    if eigenvalues.min() < -1e-8 or any(r <= 0 for r in ridges):
+        raise ValueError('GCV requires a PSD kernel and positive ridge values')
+    eigenvalues = np.maximum(eigenvalues, 0)
+    transformed_y = vectors.T @ y
+    one = vectors.sum(0)
+    scores = []
+    for ridge in ridges:
+        inverse = 1 / (eigenvalues + ridge)
+        denominator = np.sum(one**2 * inverse)
+        intercept = np.sum(one * inverse * transformed_y) / denominator
+        alpha = inverse * (transformed_y - intercept * one)
+        trace_projection = inverse.sum() - np.sum(one**2 * inverse**2) / denominator
+        # Residual=lambda*P*y, n-tr(H)=lambda*tr(P); cancel lambda stably.
+        scores.append(float(len(y) * np.sum(alpha**2) / trace_projection**2))
+    if not np.isfinite(scores).all():
+        raise FloatingPointError('Nonfinite GCV')
+    return scores
+
+
+def run_gcv(cfg, args, runner_path):
+    """Freeze GCV choices before one outer evaluation; geometry stays frozen."""
+    if args.selection is not None:
+        raise ValueError('GCV comparison uses only its configured frozen kernel selections')
+    torch.set_num_threads(1)
+    start = time.perf_counter()
+    read = lambda path: json.loads(Path(path).read_text())
+    data = load(Path(cfg['data']), cfg['data_sha256'])
+    folds = read(cfg['splits'])['folds']
+    frozen = read(cfg['selection'])
+    old_cfg = frozen['config']
+    if old_cfg['data_sha256'] != cfg['data_sha256']:
+        raise ValueError('Frozen selection data mismatch')
+    old_folds = read(old_cfg['splits'])['folds']
+    if len(folds) != 10 or sorted(i for f in folds for i in f['test_idx']) != list(range(data.n)):
+        raise ValueError('Invalid outer material coverage')
+    for f in folds:
+        old = next(row for row in old_folds if row['fold'] == f['fold'])
+        old_dev = old['dev_idx'] if 'dev_idx' in old else old['train_idx'] + old['val_idx']
+        if (set(f['dev_idx']) != set(old_dev) or set(f['test_idx']) != set(old['test_idx'])
+                or set(f['dev_idx']) & set(f['test_idx'])
+                or set(f['dev_idx']) | set(f['test_idx']) != set(range(data.n))):
+            raise ValueError('Frozen kernel split differs from protocol')
+    expected = {(m, e, f['fold']) for m in ('gaussian', 'additive_rbf')
+                for e in data.environments for f in folds}
+    index = {(r['model'], r['environment'], r['fold']): r for r in frozen['selected']}
+    if set(index) != expected or len(index) != len(frozen['selected']):
+        raise ValueError('Incomplete frozen kernel selection')
+    baseline_path = Path(cfg['reference']) / 'oof.csv'
+    baseline, reference_cfg = {}, read(Path(cfg['reference']) / 'provenance.json')['config']
+    if reference_cfg != old_cfg:
+        raise ValueError('Reference and selection configurations differ')
+    with baseline_path.open() as handle:
+        for row in csv.DictReader(handle):
+            key = row['model'], row['environment'], int(row['fold']), int(row['material_index'])
+            e = data.environments.index(row['environment'])
+            if key in baseline or abs(float(row['y_true']) - data.Y[key[3], e]) > 1e-6:
+                raise ValueError('Reference duplicate or truth mismatch')
+            baseline[key] = float(row['y_pred'])
+    expected_predictions = {(m, e, f['fold'], i) for m in ('gaussian', 'additive_rbf')
+                            for e in data.environments for f in folds for i in f['test_idx']}
+    if set(baseline) != expected_predictions or not np.isfinite(list(baseline.values())).all():
+        raise ValueError('Reference OOF coverage or finite-value mismatch')
+    args.out.mkdir(parents=True, exist_ok=False)
+
+    def save(name, obj):
+        (args.out / name).write_text(json.dumps(obj, indent=2, allow_nan=False) + '\n')
+
+    paths = [Path(__file__), Path(runner_path), Path(args.config), Path(cfg['splits']),
+             Path(cfg['selection']), Path(old_cfg['splits']), baseline_path,
+             Path(cfg['reference']) / 'provenance.json']
+    save('provenance.json', dict(config=cfg, original_grid=old_cfg['ridge'],
+        git_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+        rule='GCV on complete development set, original ridge grid; freeze all choices before test; kernel geometry fixed from original inner PCC selection',
+        sha256={str(p): sha256_of(p) for p in paths}))
+    state, failures, choices, rows, oof = dict(status='selecting', completed=0, expected=80), [], [], [], []
+    save('execution_status.json', state)
+    try:
+        for f in folds:
+            dev = np.array(f['dev_idx'])
+            for model in ('gaussian', 'additive_rbf'):
+                for e, env in enumerate(data.environments):
+                    original = index[model, env, f['fold']]
+                    a, _, r, _ = kernels(data.X, dev, np.array([], dtype=int), original['bandwidth'], 'cpu')
+                    fraction = original['additive_fraction']
+                    eigenvalues, vectors = np.linalg.eigh(fraction * a.numpy() + (1 - fraction) * r.numpy())
+                    scores = gcv(eigenvalues, vectors, data.Y[dev, e], old_cfg['ridge'])
+                    ridge = old_cfg['ridge'][int(np.argmin(scores))]
+                    choices.append({**original, 'pcc_selected_ridge': original['ridge'],
+                                    'ridge': ridge, 'gcv_scores': scores})
+        save('selection.json', dict(config=cfg, selected=choices, rule='Frozen before any test scoring'))
+        state['status'] = 'evaluating'
+        save('execution_status.json', state)
+        for choice in choices:
+            f = next(row for row in folds if row['fold'] == choice['fold'])
+            dev, test = np.array(f['dev_idx']), np.array(f['test_idx'])
+            e, env, model = data.environments.index(choice['environment']), choice['environment'], choice['model']
+            pred = predict(*kernels(data.X, dev, test, choice['bandwidth'], 'cpu'), data.Y[dev, e],
+                           choice['additive_fraction'], choice['ridge'])
+            reference = np.array([baseline[model, env, f['fold'], i] for i in test])
+            if pred.shape != (len(test),) or not np.isfinite(pred).all():
+                raise ValueError('Invalid test prediction')
+            oof.extend(dict(model=model, environment=env, fold=f['fold'], material_index=int(i),
+                            y_true=float(data.Y[i, e]), gcv=float(p), inner_pcc=float(old))
+                       for i, p, old in zip(test, pred, reference))
+            for rule, values in (('gcv', pred), ('inner_pcc', reference)):
+                row = dict(model=model, environment=env, fold=f['fold'], rule=rule,
+                           ridge=choice['ridge'] if rule == 'gcv' else choice['pcc_selected_ridge'])
+                row.update({fn.__name__: float(fn(data.Y[test, e], values)) for fn in (pcc, rmse, mae)})
+                rows.append(row)
+                if not np.isfinite(list(row[k] for k in ('pcc', 'rmse', 'mae'))).all():
+                    raise ValueError('Undefined test metric; predictions retained and failure recorded')
+            state['completed'] += 1
+        summary = gcv_summary(choices, rows, oof, data.environments)
+        save('summary.json', summary)
+        state['status'] = 'complete'
+    except BaseException as error:
+        state['status'] = 'failed'
+        failures.append(dict(completed=state['completed'], error=repr(error)))
+        raise
+    finally:
+        write(args.out / 'per_fold.csv', ['model', 'environment', 'fold', 'rule', 'ridge', 'pcc', 'rmse', 'mae'], rows)
+        write(args.out / 'oof.csv', ['model', 'environment', 'fold', 'material_index', 'y_true', 'gcv', 'inner_pcc'], oof)
+        save('execution_status.json', state)
+        save('failures.json', failures)
+        save('timing.json', dict(seconds=time.perf_counter() - start))
+
+
+def gcv_summary(choices, rows, oof, environments):
+    """Summarize complete predictions, also used to recover serialization failures."""
+    summary = dict(n_units=len(choices), n_failures=0, comparison={})
+    for model in ('gaussian', 'additive_rbf'):
+        part = [c for c in choices if c['model'] == model]
+        summary['comparison'][model] = dict(
+            same_lambda=sum(c['ridge'] == c['pcc_selected_ridge'] for c in part),
+            within_factor_ten=sum(bool(abs(np.log10(c['ridge'] / c['pcc_selected_ridge'])) <= 1) for c in part),
+            increased_lambda=sum(c['ridge'] > c['pcc_selected_ridge'] for c in part),
+            decreased_lambda=sum(c['ridge'] < c['pcc_selected_ridge'] for c in part),
+            median_lambda_ratio=float(np.median([c['ridge'] / c['pcc_selected_ridge'] for c in part])))
+        for rule in ('gcv', 'inner_pcc'):
+            per = {env: {metric: float(np.mean([r[metric] for r in rows if r['model'] == model
+                and r['rule'] == rule and r['environment'] == env])) for metric in ('pcc', 'rmse', 'mae')}
+                for env in environments}
+            pooled = {}
+            for env in environments:
+                values = [r for r in oof if r['model'] == model and r['environment'] == env]
+                pooled[env] = {fn.__name__: fn([r['y_true'] for r in values], [r[rule] for r in values])
+                               for fn in (pcc, rmse, mae)}
+            summary['comparison'][model][rule] = dict(per_environment=per, pooled_oof=pooled,
+                macro={metric: float(np.mean([per[e][metric] for e in environments])) for metric in ('pcc', 'rmse', 'mae')})
+    return summary
 
 
 def run(cfg, args, runner_path):

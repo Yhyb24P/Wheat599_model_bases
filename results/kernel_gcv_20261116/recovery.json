@@ -1,0 +1,15 @@
+{
+  "status": "complete_from_saved_predictions",
+  "completed": 80,
+  "expected": 80,
+  "repeated_fits": 0,
+  "repeated_test_predictions": 0,
+  "original_failure": {
+    "completed": 80,
+    "error": "TypeError('Object of type int64 is not JSON serializable')"
+  },
+  "original_source_snapshot": "source_before_summary_repair.tar.gz",
+  "recovery_source_sha256": "dbf1c4bcdefb12b6bf0e026eec56b8c686bd476e54dc7eeee922eee4f20345b5",
+  "checks": "Previously completed once: original source archive matches provenance; all choices grid GCV minima; saved IDs/truth/finite values/coverage and fold metrics verified; original baseline summary matches; equal-ridge predictions match.",
+  "metric_tolerance": 0.000001
+}

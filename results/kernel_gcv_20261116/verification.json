@@ -1,0 +1,27 @@
+{
+  "scope": "One recovery and consistency check from saved selections and predictions; no repeat fits or test prediction generation",
+  "estimator_self_check": "GCV matches dense hat matrix with an unpenalized intercept; target-shift invariant",
+  "serialization_regression_test": "Python integer count serializes; both tests pass",
+  "checked_units": 80,
+  "checked_fold_metric_rows": 160,
+  "checked_oof_material_environment_model_rows": 4792,
+  "selected_gcv_grid_minima_checked": 80,
+  "material_truth_and_split_coverage_checked": true,
+  "metric_tolerance": 1e-6,
+  "original_reference_macro_reproduced_from_saved_predictions": true,
+  "gaussian": {
+    "macro_gcv_minus_inner_pcc": {"pcc": 0.001190919298002524, "rmse": 0.007967357519585883, "mae": 0.008724999076638373},
+    "pcc_fold_wins": 6,
+    "per_fold_pcc_delta": [-0.01901799552065042, 0.010623698646612945, 0.008883164896815954, 0.02900494660351094, 0.006007816103600683, -0.00807622599153024, 0.01590190602483671, -0.02076801362200964, 0.00990923590590198, -0.020559340067062726],
+    "same_lambda_prediction_max_difference": 4.565237077258644e-13
+  },
+  "additive_rbf": {
+    "macro_gcv_minus_inner_pcc": {"pcc": 0.0028952596970792666, "rmse": 0.0024814211961071697, "mae": 0.007007057460327926},
+    "pcc_fold_wins": 4,
+    "pcc_fold_ties": 1,
+    "per_fold_pcc_delta": [-0.018156757222010267, -0.001533059258970182, 0.017817825165672763, 0.030314797878895572, 0.0, -0.0048948622290074795, 0.020212653210229525, -0.016680443415716617, 0.02372552734412009, -0.021853084502420517],
+    "same_lambda_prediction_max_difference": 3.1846747461372615e-13
+  },
+  "interpretation": "GCV typically chooses stronger ridge, with small PCC increases and worse aggregate RMSE/MAE. This fixed-geometry comparison does not establish an optimal shrinkage rule or exclude other regularization mechanisms.",
+  "limits": "Geometry was originally chosen jointly with lambda by inner PCC; GCV only replaces the final development-set lambda rule. No joint GCV geometry search or REML comparison was run. These outer folds have been reused for research; no significance claims or environment-specific rule selection."
+}

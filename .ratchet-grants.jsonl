@@ -16,3 +16,6 @@
 {"after": 11319, "before": 11150, "by": "YHyb24P", "lines": 169, "reason": "User standing default approval 2026-11-16: extrapolation A/B diagnostic module", "target": "source", "ts": "2026-11-15T19:29:07Z"}
 {"after": 3292, "before": 3275, "by": "YHyb24P", "lines": 17, "reason": "User standing default approval 2026-11-16: extrapolation diagnostic self-check", "target": "tests", "ts": "2026-11-15T19:29:07Z"}
 {"after": 4731, "before": 4722, "by": "YHyb24P", "lines": 9, "reason": "User standing default approval 2026-11-16: extrapolation diagnostic config and CLI route", "target": "maintenance", "ts": "2026-11-15T19:29:07Z"}
+{"after": 11468, "before": 11319, "by": "YHyb24P", "lines": 149, "reason": "User standing default approval 2026-11-16: GCV shrinkage estimator in kernel_baselines", "target": "source", "ts": "2026-11-15T19:38:21Z"}
+{"after": 3322, "before": 3292, "by": "YHyb24P", "lines": 30, "reason": "User standing default approval 2026-11-16: GCV hat-matrix and serialization regression tests", "target": "tests", "ts": "2026-11-15T19:38:21Z"}
+{"after": 4738, "before": 4731, "by": "YHyb24P", "lines": 7, "reason": "User standing default approval 2026-11-16: kernel_gcv config and CLI route", "target": "maintenance", "ts": "2026-11-15T19:38:22Z"}

@@ -1,0 +1,31 @@
+{
+  "config": {
+    "model": "kernel_gcv",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "selection": "results/kernel_baselines_selection_20261102/selection.json",
+    "reference": "results/kernel_baselines_final_20261102"
+  },
+  "original_grid": [
+    0.001,
+    0.01,
+    0.1,
+    1.0,
+    10.0,
+    100.0,
+    1000.0
+  ],
+  "git_commit": "302ae4996d1ad2f4d59a2a0e1cfabf6a952e0387",
+  "rule": "GCV on complete development set, original ridge grid; freeze all choices before test; kernel geometry fixed from original inner PCC selection",
+  "sha256": {
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/kernel_baselines.py": "2c023982f2824d7875facb785ce409d934049744c76512e3946371bc00d32e1c",
+    "/home/yhshy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "c1eae6d0950c5d1479a9a5fc9c5938c5b5ef89447615c630b8cf13bfad660eb4",
+    "configs/kernel_gcv.yaml": "5df82c20eafb903bdaf80fa804d96630f476b4cd404a2a04cc6a58309e7120c1",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "results/kernel_baselines_selection_20261102/selection.json": "9becbf93b30268b0c8febb4866e0c3349bdeda85c38fbc931c7151f64d131606",
+    "results/bimsgp_ftt_fixed_20261029/splits_manifest.json": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+    "results/kernel_baselines_final_20261102/oof.csv": "4266d101059505f862709796356405b42e1f58d6b6b8d47612af1934e688e375",
+    "results/kernel_baselines_final_20261102/provenance.json": "d5698791e46cf0144718babadcf1657040aba6947cfcf8d059404da6a2a14ada"
+  }
+}
