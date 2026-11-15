@@ -95,7 +95,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 <div class="wrap">
 <header class="site">
   <h1>Wheat599 参考文献库</h1>
-  <p>植物基因组表型预测方法论文 · 离线自包含中文研究页 · 共 75 条文献，4 篇本地全文 PDF。</p>
+  <p>植物基因组表型预测方法论文 · 离线自包含中文研究页 · 共 88 条文献，4 篇本地全文 PDF。</p>
   <p class="note">单一数据源 <code>ref/build.py</code> 生成；历史核验记录沿用 <code>docs/REFERENCES.md</code>，未覆盖。</p>
 </header>
 <nav class="crumbs" aria-label="项目导航">
@@ -103,7 +103,7 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   <a href="../results/index.html">结果导航（results/index.html）</a>
   <a href="references.bib">BibTeX 书目</a>
 </nav>
-<nav class="toc" aria-label="文献分组目录"><a href="#g-main">一、现役主方法核心出处（8）</a> <a href="#g-method_data">二、方法与数据（REFERENCES.md 既有）（11）</a> <a href="#g-gp">三、GP 基础与方法学（REFERENCES.md 既有，law 核验）（14）</a> <a href="#g-plan">四、docs 方法方案引用的其他来源（42）</a></nav>
+<nav class="toc" aria-label="文献分组目录"><a href="#g-main">一、现役主方法核心出处（8）</a> <a href="#g-method_data">二、方法与数据（REFERENCES.md 既有）（11）</a> <a href="#g-gp">三、GP 基础与方法学（REFERENCES.md 既有，law 核验）（14）</a> <a href="#g-plan">四、docs 方法方案引用的其他来源（42）</a> <a href="#g-baseline">五、统一基线比较模型书目（WS5 核验）（13）</a></nav>
 <main>
 <section aria-label="阅读说明">
   <h2>阅读说明</h2>
@@ -213,39 +213,38 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 </article>
 <article class="refcard" id="bonilla2007multitask">
   <h3>Multi-task Gaussian Process Prediction</h3>
-  <p class="apa">Bonilla, E. V., Chai, K. M. A., Williams, C. K. I. (2007). <cite>Multi-task Gaussian Process Prediction</cite>. NeurIPS 20 (2007).</p>
-  <p class="meta"><span class="badge" style="--badge:#E69F00"><span class="dot" aria-hidden="true"></span>规范著录·待复核</span> <span><a href="https://papers.nips.cc/paper/3189-multi-task-gaussian-process-prediction.pdf">原文链接</a></span></p>
+  <p class="apa">Bonilla, E. V., Chai, K. M. A., Williams, C. K. I. (2007). <cite>Multi-task Gaussian Process Prediction</cite>. NeurIPS 20 (NIPS 2007).</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.neurips.cc/paper_files/paper/2007/hash/66368270ffd51418ec58bd793f2d9b1b-Abstract.html">原文链接</a></span></p>
 
   <p><span class="label">简讲：</span>多任务高斯过程预测：用可分离（separable）协方差建模多输出，任务间相关用任务核、输入间相关用输入核；intrinsic coregionalization（ICM）是其可分离形式之一。</p>
   <p><span class="label">项目关系：</span>多任务 GP 可分离协方差（含 ICM 形式）的方法学参考；本仓 Huber ICM 的任务核思路与此相关，但实现为凸惩罚风险最小化，非完整贝叶斯多任务 GP。不据本文主张 ICM 起源（docs/history/RESEARCH_PLAN.md）。</p>
 
-  <p><span class="label">核验状态：</span>规范著录；链接 papers.nips.cc/paper/3189 取自 docs/history/RESEARCH_PLAN.md；本轮未在线逐字核验全文。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 官方摘要页与官方 BibTeX 确认题名/作者（Edwin V. Bonilla, Kian M. Chai, Christopher Williams）/NIPS 2007（卷 20）；官方 BibTeX 无页码，不著录页码。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{bonilla2007multitask,
   title = {Multi-task Gaussian Process Prediction},
   author = {Bonilla, E. V. and Chai, K. M. A. and Williams, C. K. I.},
   year = {2007},
-  booktitle = {NeurIPS 20 (2007)},
-  url = {https://papers.nips.cc/paper/3189-multi-task-gaussian-process-prediction.pdf},
-  note = {元数据待核，正式引用前复核}
+  booktitle = {NeurIPS 20 (NIPS 2007)},
+  url = {https://proceedings.neurips.cc/paper_files/paper/2007/hash/66368270ffd51418ec58bd793f2d9b1b-Abstract.html}
 }</code></pre></details>
 </article>
 <article class="refcard" id="alvarez2012kernels">
   <h3>Kernels for Vector-Valued Functions: a Review</h3>
-  <p class="apa">Alvarez, M. A., Rosasco, L., Lawrence, N. D. (2012). <cite>Kernels for Vector-Valued Functions: a Review</cite>. arXiv:1106.6251 (v2)；Foundations and Trends in Machine Learning, DOI 10.1561/2200000036.</p>
-  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/1106.6251">原文链接</a> · <a href="https://doi.org/10.48550/arXiv.1106.6251">DOI</a> · <a href="pdfs/alvarez2012kernels.pdf">本地 PDF（37 页）</a></span></p>
+  <p class="apa">Alvarez, M. A., Rosasco, L., Lawrence, N. D. (2012). <cite>Kernels for Vector-Valued Functions: a Review</cite>. Foundations and Trends in Machine Learning, 4(3), 195–266.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://arxiv.org/abs/1106.6251">原文链接</a> · <a href="https://doi.org/10.1561/2200000036">DOI</a> · <a href="pdfs/alvarez2012kernels.pdf">本地 PDF（37 页）</a></span></p>
 
   <p><span class="label">简讲：</span>综述多输出/向量值函数的核方法，系统连接概率与泛函视角，含共区域化（含 ICM/LMC）等多输出核。</p>
   <p><span class="label">项目关系：</span>Huber ICM 与 BH-LMC 的向量值核方法学出处（docs/methods/Wheat599_BH-LMC.md 引期刊 DOI 10.1561/2200000036）。</p>
 
-  <p><span class="label">核验状态：</span>本轮在线核验：arXiv:1106.6251（v2, 2012）确认题名/作者/摘要；arXiv DOI 10.48550/arXiv.1106.6251。期刊 DOI 10.1561/2200000036 取自 docs/methods/Wheat599_BH-LMC.md。</p>
+  <p><span class="label">核验状态：</span>arXiv:1106.6251（v2, 2012）历史一手核验题名/作者/摘要；本轮 Crossref 一手 API 核验期刊版 Foundations and Trends in Machine Learning 4(3):195–266，DOI 10.1561/2200000036（此前仅取自 docs/methods/Wheat599_BH-LMC.md）。</p>
   <p class="note"><span class="label">全文：</span><a href="pdfs/alvarez2012kernels.pdf">pdfs/alvarez2012kernels.pdf</a>（37 页，本轮下载并核验为完整 PDF）。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{alvarez2012kernels,
   title = {Kernels for Vector-Valued Functions: a Review},
   author = {Alvarez, M. A. and Rosasco, L. and Lawrence, N. D.},
   year = {2012},
-  journal = {arXiv:1106.6251 (v2)；Foundations and Trends in Machine Learning, DOI 10.1561/2200000036},
-  doi = {10.48550/arXiv.1106.6251},
+  journal = {Foundations and Trends in Machine Learning, 4(3), 195–266},
+  doi = {10.1561/2200000036},
   eprint = {1106.6251},
   archivePrefix = {arXiv},
   url = {https://arxiv.org/abs/1106.6251}
@@ -913,19 +912,19 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 </article>
 <article class="refcard" id="cwags2026">
   <h3>CWAGS: multi-trait genomic selection using channel weighted attention convolutional network</h3>
-  <p class="apa">Cao, Mohamed, Sunar, Chan (2026). <cite>CWAGS: multi-trait genomic selection using channel weighted attention convolutional network</cite>. BMC Genomics.</p>
+  <p class="apa">Cao, Chunqing, Mohamed, Farhan Bin, Sunar, Mohd Shahrizal Bin, Chan, Vei Siang (2026). <cite>CWAGS: multi-trait genomic selection using channel weighted attention convolutional network</cite>. BMC Genomics, 27(1), 625.</p>
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://link.springer.com/article/10.1186/s12864-026-12980-9">原文链接</a> · <a href="https://doi.org/10.1186/s12864-026-12980-9">DOI</a></span></p>
 
   <p><span class="label">简讲：</span>报告 Wheat599 四环境平均 PCC 0.5368，声明十折均值、固定种子、AdamW、400 epoch。</p>
   <p><span class="label">项目关系：</span>未列源码链接/实际折 ID/完整选模信息；GitHub 搜索 CWAGS genomic 未发现匹配仓库（2026-11-06）；暂不能忠实适配或同协议排名，不自行搭建冒充作者实现（docs/methods/SEED_STABILITY.md）。</p>
-  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Cao, Mohamed, Sunar, Chan）；描述取自 docs/methods/SEED_STABILITY.md。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/完整作者（Cao Chunqing, Mohamed Farhan Bin, Sunar Mohd Shahrizal Bin, Chan Vei Siang）/BMC Genomics 27(1):625，2026；描述取自 docs/methods/SEED_STABILITY.md；待复现核查见 results/repro_availability_20261115/verification.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cwags2026,
   title = {CWAGS: multi-trait genomic selection using channel weighted attention convolutional network},
-  author = {Cao and Mohamed and Sunar and Chan},
+  author = {Cao, Chunqing and Mohamed, Farhan Bin and Sunar, Mohd Shahrizal Bin and Chan, Vei Siang},
   year = {2026},
-  journal = {BMC Genomics},
+  journal = {BMC Genomics, 27(1), 625},
   doi = {10.1186/s12864-026-12980-9},
   url = {https://link.springer.com/article/10.1186/s12864-026-12980-9}
 }</code></pre></details>
@@ -1123,19 +1122,19 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 </article>
 <article class="refcard" id="ragp2026">
   <h3>RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding</h3>
-  <p class="apa">Zuo, Li, Wang, Man, Yang (2026). <cite>RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding</cite>. Plant Methods.</p>
+  <p class="apa">Zuo, Lingling, Li, Xinger, Wang, Xiaoli, Man, Rui, Yang, Yang (2026). <cite>RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding</cite>. Plant Methods, 22(1), 98.</p>
   <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1186/s13007-026-01574-x">原文链接</a> · <a href="https://doi.org/10.1186/s13007-026-01574-x">DOI</a></span></p>
   <p><span class="label">代码/许可：</span>公开源码 @ 85675b1e8054fe3e91fdb3e974150f1dde81eee3</p>
   <p><span class="label">简讲：</span>检索增强基因组预测：PCA95 输入、逐环境单输出、Pearson 损失、triplet 对比、cosine top-5、特征融合 0.4、邻居标签乘 0.01。</p>
   <p><span class="label">项目关系：</span>RETRIEVAL_TABM 直接相关参照；已单独同协议适配；PCA 只在 fit 拟合，cosine 库改材料 ID 严格排除并记录差异；论文原划分分数不用于本协议排名（docs/methods/RETRIEVAL_TABM.md）。</p>
-  <p class="note">作者为 Crossref 姓氏（名字待补）；正式引用前复核。</p>
-  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/作者姓氏（Zuo 等）；固定提交/配置取自 docs/methods/RETRIEVAL_TABM.md。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/DOI/完整作者（Zuo Lingling, Li Xinger, Wang Xiaoli, Man Rui, Yang Yang）/Plant Methods 22(1):98，2026；固定提交/配置取自 docs/methods/RETRIEVAL_TABM.md。</p>
   <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
   <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{ragp2026,
   title = {RAGP: a retrieval-augmented deep learning model for genomic prediction in crop breeding},
-  author = {Zuo and Li and Wang and Man and Yang},
+  author = {Zuo, Lingling and Li, Xinger and Wang, Xiaoli and Man, Rui and Yang, Yang},
   year = {2026},
-  journal = {Plant Methods},
+  journal = {Plant Methods, 22(1), 98},
   doi = {10.1186/s13007-026-01574-x},
   url = {https://doi.org/10.1186/s13007-026-01574-x},
   note = {公开源码 @ 85675b1e8054fe3e91fdb3e974150f1dde81eee3}
@@ -1538,6 +1537,252 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
   howpublished = {Hugging Face Cloudflare/clef; main 分支访问快照},
   url = {https://huggingface.co/Cloudflare/clef/raw/main/joint_schema_model.py}
 }</code></pre></details>
+</article></section><section aria-labelledby="g-baseline"><h2 id="g-baseline">五、统一基线比较模型书目（WS5 核验）</h2><article class="refcard" id="cortes1995support">
+  <h3>Support-vector networks</h3>
+  <p class="apa">Cortes, Corinna, Vapnik, Vladimir (1995). <cite>Support-vector networks</cite>. Machine Learning, 20(3), 273–297.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1007/BF00994018">原文链接</a> · <a href="https://doi.org/10.1007/BF00994018">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>支持向量网络（SVM）原始论文；回归形式（SVR）为经典基线。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的经典基线 SVR 出处（docs/models.html 书目标注）；论文成绩不混入本项目同协议结果。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/作者（Cortes, Vapnik）/Machine Learning 20(3):273–297，1995/DOI。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{cortes1995support,
+  title = {Support-vector networks},
+  author = {Cortes, Corinna and Vapnik, Vladimir},
+  year = {1995},
+  journal = {Machine Learning, 20(3), 273–297},
+  doi = {10.1007/BF00994018},
+  url = {https://doi.org/10.1007/BF00994018}
+}</code></pre></details>
+</article>
+<article class="refcard" id="breiman2001random">
+  <h3>Random Forests</h3>
+  <p class="apa">Breiman, Leo (2001). <cite>Random Forests</cite>. Machine Learning, 45(1), 5–32.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1023/A:1010933404324">原文链接</a> · <a href="https://doi.org/10.1023/A:1010933404324">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>随机森林：bagging 决策树集成与随机特征选择。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的经典基线 Random Forest 出处（docs/models.html 书目标注）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/作者（Breiman）/Machine Learning 45(1):5–32，2001/DOI。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{breiman2001random,
+  title = {Random Forests},
+  author = {Breiman, Leo},
+  year = {2001},
+  journal = {Machine Learning, 45(1), 5–32},
+  doi = {10.1023/A:1010933404324},
+  url = {https://doi.org/10.1023/A:1010933404324}
+}</code></pre></details>
+</article>
+<article class="refcard" id="chen2016xgboost">
+  <h3>XGBoost: A Scalable Tree Boosting System</h3>
+  <p class="apa">Chen, Tianqi, Guestrin, Carlos (2016). <cite>XGBoost: A Scalable Tree Boosting System</cite>. KDD 2016, 785–794.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1145/2939672.2939785">原文链接</a> · <a href="https://doi.org/10.1145/2939672.2939785">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>XGBoost：可扩展树提升系统。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的经典基线 XGBoost 出处（docs/models.html 书目标注）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名（含副标题 A Scalable Tree Boosting System）/作者/KDD 2016 pp 785–794/DOI。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{chen2016xgboost,
+  title = {XGBoost: A Scalable Tree Boosting System},
+  author = {Chen, Tianqi and Guestrin, Carlos},
+  year = {2016},
+  booktitle = {KDD 2016, 785–794},
+  doi = {10.1145/2939672.2939785},
+  url = {https://doi.org/10.1145/2939672.2939785}
+}</code></pre></details>
+</article>
+<article class="refcard" id="ke2017lightgbm">
+  <h3>LightGBM: A Highly Efficient Gradient Boosting Decision Tree</h3>
+  <p class="apa">Ke, Guolin, Meng, Qi, Finley, Thomas, Wang, Taifeng, Chen, Wei, Ma, Weidong, Ye, Qiwei, Liu, Tie-Yan (2017). <cite>LightGBM: A Highly Efficient Gradient Boosting Decision Tree</cite>. NeurIPS 30 (NIPS 2017).</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html">原文链接</a></span></p>
+
+  <p><span class="label">简讲：</span>LightGBM：基于梯度单边采样（GOSS）与互斥特征捆绑（EFB）的高效 GBDT。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的经典基线 LightGBM 出处（docs/models.html 书目标注）。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：NeurIPS 官方摘要页与官方 BibTeX 确认题名/八位作者/NIPS 2017（卷 30）；官方 BibTeX 无页码，不著录页码。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@inproceedings{ke2017lightgbm,
+  title = {LightGBM: A Highly Efficient Gradient Boosting Decision Tree},
+  author = {Ke, Guolin and Meng, Qi and Finley, Thomas and Wang, Taifeng and Chen, Wei and Ma, Weidong and Ye, Qiwei and Liu, Tie-Yan},
+  year = {2017},
+  booktitle = {NeurIPS 30 (NIPS 2017)},
+  url = {https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html}
+}</code></pre></details>
+</article>
+<article class="refcard" id="ma2018deepgs">
+  <h3>A deep convolutional neural network approach for predicting phenotypes from genotypes</h3>
+  <p class="apa">Ma, Wenlong, Qiu, Zhixu, Song, Jie, Li, Jiajia, Cheng, Qian, Zhai, Jingjing, Ma, Chuang (2018). <cite>A deep convolutional neural network approach for predicting phenotypes from genotypes</cite>. Planta, 248(5), 1307–1318.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1007/s00425-018-2976-9">原文链接</a> · <a href="https://doi.org/10.1007/s00425-018-2976-9">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>DeepGS：用深度卷积神经网络从基因型预测表型。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的深度基线（docs/models.html 书目标注）；本仓 DeepGS 中断记录不作完整结果或算法失败（AGENTS.md）。</p>
+  <p class="note">发表版题名不含 DeepGS；方法名来自 bioRxiv 预印本（2017，DOI 10.1101/241414）与 R 包 cma2015/DeepGS；引用以发表版为准。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/七位作者/Planta 248(5):1307–1318，2018/DOI；Europe PMC PMID 30101399 一致；预印本 bioRxiv 10.1101/241414 经检索确认存在。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{ma2018deepgs,
+  title = {A deep convolutional neural network approach for predicting phenotypes from genotypes},
+  author = {Ma, Wenlong and Qiu, Zhixu and Song, Jie and Li, Jiajia and Cheng, Qian and Zhai, Jingjing and Ma, Chuang},
+  year = {2018},
+  journal = {Planta, 248(5), 1307–1318},
+  doi = {10.1007/s00425-018-2976-9},
+  url = {https://doi.org/10.1007/s00425-018-2976-9}
+}</code></pre></details>
+</article>
+<article class="refcard" id="wang2023dnngp">
+  <h3>DNNGP, a deep neural network-based method for genomic prediction using multi-omics data in plants</h3>
+  <p class="apa">Wang, Kelin, Abid, Muhammad Ali, Rasheed, Awais, Crossa, Jose, Hearne, Sarah, Li, Huihui (2023). <cite>DNNGP, a deep neural network-based method for genomic prediction using multi-omics data in plants</cite>. Molecular Plant, 16(1), 279–293.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1016/j.molp.2022.11.004">原文链接</a> · <a href="https://doi.org/10.1016/j.molp.2022.11.004">DOI</a></span></p>
+  <p><span class="label">代码/许可：</span>AIBreeding/DNNGP（许可以仓库为准）</p>
+  <p><span class="label">简讲：</span>DNNGP：整合植物多组学数据的深度神经网络基因组预测。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的深度基线（docs/models.html 书目标注）；Gsformer 条目所述目标为 DNNGP 预处理 EBV。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/六位作者/Molecular Plant 16(1):279–293，2023/DOI；代码仓库经检索发现，许可未核。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{wang2023dnngp,
+  title = {DNNGP, a deep neural network-based method for genomic prediction using multi-omics data in plants},
+  author = {Wang, Kelin and Abid, Muhammad Ali and Rasheed, Awais and Crossa, Jose and Hearne, Sarah and Li, Huihui},
+  year = {2023},
+  journal = {Molecular Plant, 16(1), 279–293},
+  doi = {10.1016/j.molp.2022.11.004},
+  url = {https://doi.org/10.1016/j.molp.2022.11.004},
+  note = {AIBreeding/DNNGP（许可以仓库为准）}
+}</code></pre></details>
+</article>
+<article class="refcard" id="gao2023soydngp">
+  <h3>SoyDNGP: a web-accessible deep learning framework for genomic prediction in soybean breeding</h3>
+  <p class="apa">Gao, Pengfei, Zhao, Haonan, Luo, Zheng, Lin, Yifan, Feng, Wanjie, Li, Yaling, Kong, Fanjiang, Li, Xia, Fang, Chao, Wang, Xutong (2023). <cite>SoyDNGP: a web-accessible deep learning framework for genomic prediction in soybean breeding</cite>. Briefings in Bioinformatics, 24(6), bbad349.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1093/bib/bbad349">原文链接</a> · <a href="https://doi.org/10.1093/bib/bbad349">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>SoyDNGP：面向大豆育种基因组预测的 Web 可访问深度学习框架。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的深度基线（docs/models.html 书目标注）；论文成绩不混入本项目同协议结果。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/十位作者/Briefings in Bioinformatics 24(6):bbad349，2023/DOI；Europe PMC PMID 37824739 一致。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{gao2023soydngp,
+  title = {SoyDNGP: a web-accessible deep learning framework for genomic prediction in soybean breeding},
+  author = {Gao, Pengfei and Zhao, Haonan and Luo, Zheng and Lin, Yifan and Feng, Wanjie and Li, Yaling and Kong, Fanjiang and Li, Xia and Fang, Chao and Wang, Xutong},
+  year = {2023},
+  journal = {Briefings in Bioinformatics, 24(6), bbad349},
+  doi = {10.1093/bib/bbad349},
+  url = {https://doi.org/10.1093/bib/bbad349}
+}</code></pre></details>
+</article>
+<article class="refcard" id="wang2025wheatgp">
+  <h3>WheatGP, a genomic prediction method based on CNN and LSTM</h3>
+  <p class="apa">Wang, Chunying, Zhang, Di, Ma, Yuexin, Zhao, Yonghao, Liu, Ping, Li, Xiang (2025). <cite>WheatGP, a genomic prediction method based on CNN and LSTM</cite>. Briefings in Bioinformatics, 26(2), bbaf191.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1093/bib/bbaf191">原文链接</a> · <a href="https://doi.org/10.1093/bib/bbaf191">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>WheatGP：CNN 与 LSTM 结合的小麦基因组预测方法。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的近期方法参照（docs/models.html 书目标注）；论文成绩不混入本项目同协议结果。</p>
+  <p class="note">请求所给“山东农大”单位本轮未核验，不写入书目。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/六位作者/Briefings in Bioinformatics 26(2):bbaf191，2025/DOI。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{wang2025wheatgp,
+  title = {WheatGP, a genomic prediction method based on CNN and LSTM},
+  author = {Wang, Chunying and Zhang, Di and Ma, Yuexin and Zhao, Yonghao and Liu, Ping and Li, Xiang},
+  year = {2025},
+  journal = {Briefings in Bioinformatics, 26(2), bbaf191},
+  doi = {10.1093/bib/bbaf191},
+  url = {https://doi.org/10.1093/bib/bbaf191}
+}</code></pre></details>
+</article>
+<article class="refcard" id="pan2026moegp">
+  <h3>MoEGP: an efficient crop genomic prediction approach based on the mixture of experts network</h3>
+  <p class="apa">Pan, Ruiqing, Yang, Yaolong, Zhang, Yuanyuan, Xu, Qun, Feng, Yue, Chen, Junyu, Li, Wei, Wei, Xinghua, Zhang, Mengchen (2026). <cite>MoEGP: an efficient crop genomic prediction approach based on the mixture of experts network</cite>. Plant Methods, 22(1), 23.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1186/s13007-026-01500-1">原文链接</a> · <a href="https://doi.org/10.1186/s13007-026-01500-1">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>MoEGP：基于混合专家网络的高效作物基因组预测。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的近期方法参照（docs/models.html 书目标注）；论文成绩不混入本项目同协议结果。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/九位作者/Plant Methods 22(1):23，2026/DOI。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{pan2026moegp,
+  title = {MoEGP: an efficient crop genomic prediction approach based on the mixture of experts network},
+  author = {Pan, Ruiqing and Yang, Yaolong and Zhang, Yuanyuan and Xu, Qun and Feng, Yue and Chen, Junyu and Li, Wei and Wei, Xinghua and Zhang, Mengchen},
+  year = {2026},
+  journal = {Plant Methods, 22(1), 23},
+  doi = {10.1186/s13007-026-01500-1},
+  url = {https://doi.org/10.1186/s13007-026-01500-1}
+}</code></pre></details>
+</article>
+<article class="refcard" id="chao2025mtcro">
+  <h3>MtCro: multi-task deep learning framework improves multi-trait genomic prediction of crops</h3>
+  <p class="apa">Chao, Dian, Wang, Hao, Wan, Fengqiang, Yan, Shen, Fang, Wei, Yang, Yang (2025). <cite>MtCro: multi-task deep learning framework improves multi-trait genomic prediction of crops</cite>. Plant Methods, 21(1), 12.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1186/s13007-024-01321-0">原文链接</a> · <a href="https://doi.org/10.1186/s13007-024-01321-0">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>MtCro：多任务深度学习框架同时预测作物多个性状。</p>
+  <p><span class="label">项目关系：</span>统一基线比较的近期方法参照（docs/models.html 书目标注）；论文成绩不混入本项目同协议结果。</p>
+  <p class="note">发表年份 2025；DOI 后缀为 s13007-024。</p>
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/六位作者/Plant Methods 21(1):12，2025/DOI；期刊名确认为 Plant Methods（请求中原待核）。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{chao2025mtcro,
+  title = {MtCro: multi-task deep learning framework improves multi-trait genomic prediction of crops},
+  author = {Chao, Dian and Wang, Hao and Wan, Fengqiang and Yan, Shen and Fang, Wei and Yang, Yang},
+  year = {2025},
+  journal = {Plant Methods, 21(1), 12},
+  doi = {10.1186/s13007-024-01321-0},
+  url = {https://doi.org/10.1186/s13007-024-01321-0}
+}</code></pre></details>
+</article>
+<article class="refcard" id="liu2026bimsgp">
+  <h3>BiMSGP: A Bidirectional Mamba-Based Model for Scalable and Accurate Genomic Prediction in Plants</h3>
+  <p class="apa">Liu, Qingjie, Yao, Xinwei, Ma, Jinyan, Cheng, Huilin, Zhou, Huahao, Ding, Licong, Huai, Songyang, Liu, Xu (2026). <cite>BiMSGP: A Bidirectional Mamba-Based Model for Scalable and Accurate Genomic Prediction in Plants</cite>. Genes, 17(9), 1156.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.3390/genes17091156">原文链接</a> · <a href="https://doi.org/10.3390/genes17091156">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>BiMSGP：基于双向 Mamba（选择性状态空间）的植物基因组预测模型。</p>
+  <p><span class="label">项目关系：</span>仅书目标注（docs/models.html）；AGENTS.md 硬边界不跑 BiMSGP，历史条目本轮不运行。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/八位作者/Genes 17(9):1156，2026/DOI。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{liu2026bimsgp,
+  title = {BiMSGP: A Bidirectional Mamba-Based Model for Scalable and Accurate Genomic Prediction in Plants},
+  author = {Liu, Qingjie and Yao, Xinwei and Ma, Jinyan and Cheng, Huilin and Zhou, Huahao and Ding, Licong and Huai, Songyang and Liu, Xu},
+  year = {2026},
+  journal = {Genes, 17(9), 1156},
+  doi = {10.3390/genes17091156},
+  url = {https://doi.org/10.3390/genes17091156}
+}</code></pre></details>
+</article>
+<article class="refcard" id="xie2024pnngs">
+  <h3>PNNGS, a multi-convolutional parallel neural network for genomic selection</h3>
+  <p class="apa">Xie, Zhengchao, Weng, Lin, He, Jingjing, Feng, Xianzhong, Xu, Xiaogang, Ma, Yinxing, Bai, Panpan, Kong, Qihui (2024). <cite>PNNGS, a multi-convolutional parallel neural network for genomic selection</cite>. Frontiers in Plant Science, 15, 1410596.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.3389/fpls.2024.1410596">原文链接</a> · <a href="https://doi.org/10.3389/fpls.2024.1410596">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>PNNGS：多卷积并行神经网络用于基因组选择。</p>
+  <p><span class="label">项目关系：</span>待复现方法（results/repro_availability_20261115/verification.md）：公开仓库 996184745/code-for-PNNGS 与论文架构不符（分支/超参/损失），不作忠实适配基座。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/八位作者/Frontiers in Plant Science 15:1410596，2024/DOI；实现可用性见 WS4 核查记录。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{xie2024pnngs,
+  title = {PNNGS, a multi-convolutional parallel neural network for genomic selection},
+  author = {Xie, Zhengchao and Weng, Lin and He, Jingjing and Feng, Xianzhong and Xu, Xiaogang and Ma, Yinxing and Bai, Panpan and Kong, Qihui},
+  year = {2024},
+  journal = {Frontiers in Plant Science, 15, 1410596},
+  doi = {10.3389/fpls.2024.1410596},
+  url = {https://doi.org/10.3389/fpls.2024.1410596}
+}</code></pre></details>
+</article>
+<article class="refcard" id="mao2025mdnn">
+  <h3>MDNN: memetic deep neural network for genomic prediction</h3>
+  <p class="apa">Mao, Yijun, Peng, Xingcheng, Weng, Jian, Jiang, Rongjin, Kuang, Yingjie, Weng, Jiasi, Pang, Rui, Xiong, Yunyan, Gu, Wanrong, Tang, Deyu (2025). <cite>MDNN: memetic deep neural network for genomic prediction</cite>. Briefings in Bioinformatics, 26(4), bbaf352.</p>
+  <p class="meta"><span class="badge" style="--badge:#009E73"><span class="dot" aria-hidden="true"></span>本轮在线核验</span> <span><a href="https://doi.org/10.1093/bib/bbaf352">原文链接</a> · <a href="https://doi.org/10.1093/bib/bbaf352">DOI</a></span></p>
+
+  <p><span class="label">简讲：</span>MDNN：模因（memetic）深度神经网络用于基因组预测。</p>
+  <p><span class="label">项目关系：</span>待复现方法（results/repro_availability_20261115/verification.md）：仓库 xxXPCSC/MDNN 作者归属未确认、无数据与依赖说明。</p>
+
+  <p><span class="label">核验状态：</span>本轮在线核验：Crossref 一手 API 确认题名/十位作者/Briefings in Bioinformatics 26(4):bbaf352，2025/DOI；实现可用性见 WS4 核查记录。</p>
+  <p class="note"><span class="label">全文可获取性：</span>本轮未下载全文；原文链接见上。</p>
+  <details class="bib"><summary>BibTeX</summary><pre tabindex="0"><code>@article{mao2025mdnn,
+  title = {MDNN: memetic deep neural network for genomic prediction},
+  author = {Mao, Yijun and Peng, Xingcheng and Weng, Jian and Jiang, Rongjin and Kuang, Yingjie and Weng, Jiasi and Pang, Rui and Xiong, Yunyan and Gu, Wanrong and Tang, Deyu},
+  year = {2025},
+  journal = {Briefings in Bioinformatics, 26(4), bbaf352},
+  doi = {10.1093/bib/bbaf352},
+  url = {https://doi.org/10.1093/bib/bbaf352}
+}</code></pre></details>
 </article></section>
 <section aria-label="代码与权重许可">
   <h2>代码与权重许可</h2>
@@ -1570,7 +1815,8 @@ footer.site { margin-top:3rem; border-top:1px solid var(--border); padding-top:1
 <li>Mul-PheG2P 发表版为 New Phytologist 2026;252(1):503–519（DOI 10.1111/nph.71461）；README 著录 2025 为代码/预印年份。标量融合（论文）与隐藏融合（公开默认）不可混称；论文 500/300/200 与公开 train.py 默认 300/300/200 不同，以代码为准。</li>
 <li>Gianola &amp; Schön 文章发表于 G3（DOI 10.1534/g3.116.033381），不是 Genetics（旧报告误标 10.1534/genetics.115.185850）。</li>
 <li>Huber ICM 是凸 Huber 惩罚风险最小化，不是完整 Huber GP 贝叶斯算法；分位数 TabM 为 raw 全标记、99 个 0.001–0.999 分位点、pinball 求和、成员/材料平均。</li>
-<li>第四组多数条目仅据 docs 方法方案引用著录，元数据未在线核验者已标“待核/待复核”；写作引用前须核对一手来源，不编造题名/作者/卷期页。</li></ul></div>
+<li>第四组多数条目仅据 docs 方法方案引用著录，元数据未在线核验者已标“待核/待复核”；写作引用前须核对一手来源，不编造题名/作者/卷期页。</li>
+<li>DeepGS 发表版（Planta 2018，DOI 10.1007/s00425-018-2976-9）题名不含 DeepGS；方法名来自 bioRxiv 预印本（10.1101/241414）与 R 包 cma2015/DeepGS，引用以发表版为准。</li></ul></div>
 </section>
 </main>
 <footer class="site">
