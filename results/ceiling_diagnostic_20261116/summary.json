@@ -1,0 +1,88 @@
+{
+  "scope": "H1 diagnostic, not a protocol comparison; GRM uses all materials for variance components",
+  "estimand": "h_X^2 = sigma_X^2/(sigma_X^2+sigma_eps^2) of the additive marker GRM; r_max=sqrt(h_X^2), no extra capture fraction",
+  "h2_per_env": {
+    "1": 0.6754612948213968,
+    "2": 0.6701323703453971,
+    "4": 0.6451373173731084,
+    "5": 0.6638954583350434
+  },
+  "reml_delta_per_env": {
+    "1": 0.4804697288605063,
+    "2": 0.4922424945456429,
+    "4": 0.5500575971513061,
+    "5": 0.5062612455699874
+  },
+  "r_max_per_env": {
+    "1": 0.821864523398715,
+    "2": 0.8186161312516368,
+    "4": 0.8032044057231686,
+    "5": 0.8147978021172144
+  },
+  "fusion_outer_pcc_reference": {
+    "1": 0.587756,
+    "2": 0.506038,
+    "4": 0.470057,
+    "5": 0.542173
+  },
+  "gap_r_max_minus_fusion": {
+    "1": 0.23410852339871502,
+    "2": 0.3125781312516368,
+    "4": 0.33314740572316864,
+    "5": 0.2726248021172144
+  },
+  "phenotype_correlation": {
+    "envs": [
+      "1",
+      "2",
+      "4",
+      "5"
+    ],
+    "matrix": [
+      [
+        1.0,
+        -0.01977717410025191,
+        -0.19340897290772893,
+        -0.12303247247468144
+      ],
+      [
+        -0.01977717410025191,
+        1.0,
+        0.6610174634865299,
+        0.4110400701078094
+      ],
+      [
+        -0.19340897290772893,
+        0.6610174634865299,
+        1.0,
+        0.3879220128189714
+      ],
+      [
+        -0.12303247247468144,
+        0.4110400701078094,
+        0.3879220128189714,
+        1.0
+      ]
+    ]
+  },
+  "marker_saturation_gblup": {
+    "0.1": {
+      "macro_pcc": 0.3378733561329807,
+      "n_markers": 128
+    },
+    "0.25": {
+      "macro_pcc": 0.43281649418032336,
+      "n_markers": 320
+    },
+    "1.0": {
+      "macro_pcc": 0.4673243475437504,
+      "n_markers": 1279
+    }
+  },
+  "caveats": [
+    "r_max is the additive ceiling of this marker model, not an absolute ceiling; non-additive signal is outside it",
+    "multi-environment borrowing can push per-env PCC above sqrt(h2_single)",
+    "small-n optimization/regularization error means attainable PCC may sit below r_max",
+    "subset saturation is corroborating only: LD redundancy and small-sample estimation confound it"
+  ]
+}
