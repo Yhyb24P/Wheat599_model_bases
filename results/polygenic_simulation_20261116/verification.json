@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "saved_simulation_array_shapes": [
+    599,
+    100
+  ],
+  "arrays": 16,
+  "metric_rows": 12000,
+  "coverage_and_finite_checked": true,
+  "pcc_recomputation_tolerance": 0.000001,
+  "simulation_redraws": 0,
+  "reference": "One pipeline self-check passed; one reload/coverage check from retained generated outcomes and predictions"
+}

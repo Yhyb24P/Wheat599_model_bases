@@ -78,3 +78,5 @@ results/adaptive_anova_*/predictions_*.npz
 results/supervised_ising_*/predictions_*.npz
 results/treewidth_ising_*/predictions_*.npz
 results/*_basis_*/predictions_*.npz
+
+results/polygenic_simulation_*/simulation_arrays.npz

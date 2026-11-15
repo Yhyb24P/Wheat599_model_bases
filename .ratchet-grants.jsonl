@@ -19,3 +19,6 @@
 {"after": 11468, "before": 11319, "by": "YHyb24P", "lines": 149, "reason": "User standing default approval 2026-11-16: GCV shrinkage estimator in kernel_baselines", "target": "source", "ts": "2026-11-15T19:38:21Z"}
 {"after": 3322, "before": 3292, "by": "YHyb24P", "lines": 30, "reason": "User standing default approval 2026-11-16: GCV hat-matrix and serialization regression tests", "target": "tests", "ts": "2026-11-15T19:38:21Z"}
 {"after": 4738, "before": 4731, "by": "YHyb24P", "lines": 7, "reason": "User standing default approval 2026-11-16: kernel_gcv config and CLI route", "target": "maintenance", "ts": "2026-11-15T19:38:22Z"}
+{"after": 11608, "before": 11468, "by": "YHyb24P", "lines": 140, "reason": "User standing default approval 2026-11-16: polygenic simulation module", "target": "source", "ts": "2026-11-15T19:47:12Z"}
+{"after": 3342, "before": 3322, "by": "YHyb24P", "lines": 20, "reason": "User standing default approval 2026-11-16: polygenic simulation pipeline self-check", "target": "tests", "ts": "2026-11-15T19:47:12Z"}
+{"after": 4746, "before": 4738, "by": "YHyb24P", "lines": 8, "reason": "User standing default approval 2026-11-16: polygenic simulation config, CLI route, NPZ ignore", "target": "maintenance", "ts": "2026-11-15T19:47:12Z"}

@@ -1,0 +1,7 @@
+{
+  "known_g_minus_conditional_pcc_mean": 0.14417269307868394,
+  "paired_repetition_sd": 0.01859316942050378,
+  "paired_monte_carlo_se": 0.001859316942050378,
+  "sqrt_h2_macro_reference": 0.6817363077274704,
+  "warning": "Conditional on the specified fitted-parameter Gaussian generator; not an identified real reducible/irreducible error decomposition."
+}
