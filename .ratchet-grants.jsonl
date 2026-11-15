@@ -13,3 +13,6 @@
 {"after": 4722, "before": 4685, "by": "YHyb24P", "lines": 37, "reason": "User approved 2026-11-16: H2 median-heads control config and dev CLI", "target": "maintenance", "ts": "2026-11-15T18:53:08Z"}
 {"after": 11150, "before": 11009, "by": "YHyb24P", "lines": 141, "reason": "User standing default approval 2026-11-16: tree-tensor ALS coordinate solver", "target": "source", "ts": "2026-11-15T19:11:01Z"}
 {"after": 3275, "before": 3218, "by": "YHyb24P", "lines": 57, "reason": "User standing default approval 2026-11-16: tree-tensor ALS local-solution self-check", "target": "tests", "ts": "2026-11-15T19:11:01Z"}
+{"after": 11319, "before": 11150, "by": "YHyb24P", "lines": 169, "reason": "User standing default approval 2026-11-16: extrapolation A/B diagnostic module", "target": "source", "ts": "2026-11-15T19:29:07Z"}
+{"after": 3292, "before": 3275, "by": "YHyb24P", "lines": 17, "reason": "User standing default approval 2026-11-16: extrapolation diagnostic self-check", "target": "tests", "ts": "2026-11-15T19:29:07Z"}
+{"after": 4731, "before": 4722, "by": "YHyb24P", "lines": 9, "reason": "User standing default approval 2026-11-16: extrapolation diagnostic config and CLI route", "target": "maintenance", "ts": "2026-11-15T19:29:07Z"}

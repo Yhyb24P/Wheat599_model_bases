@@ -155,6 +155,7 @@ def run_hybrid(cfg, args):
 
 # Active routes only; frozen experiments are reproduced by checking out their tag.
 RUNNERS = {
+    'extrapolation_diagnostic': ('extrapolation_diagnostic', 'run'),
     'quantile_tabm_final': ('quantile_tabm_final', 'run'),
     'member_interaction_freeze': ('quantile_tabm_final', 'freeze_member_manifest'),
     'quantile_tabm': ('quantile_tabm', 'run'),

@@ -1,0 +1,29 @@
+{
+  "config": {
+    "model": "extrapolation_diagnostic",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "raw_source": "results/quantile_tabm_final_20261106",
+    "kernel_source": "results/kernel_baselines_final_20261102",
+    "reml_source": "results/reml_icm_final_20261103",
+    "huber_selection": "results/robust_icm_development_20261103/selection.json"
+  },
+  "git_commit": "bdc920eb016d23748f347ec9f27615e5c43c6242",
+  "seconds": 0.9038467510108603,
+  "sha256": {
+    "configs/extrapolation_diagnostic.yaml": "20165a9d9543b379381a2b6c34bdedb760c7f3e884d95ccf218271742b2438de",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "/home/yhshy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "3c2df4917be7d68d87beb188e25e977323a03ecc12fba7716249941aa342c905",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/extrapolation_diagnostic.py": "10c346538ce7a3a9bd79863929346620eeba583bc3446a719d229b9005ed3dcc",
+    "/home/yhshy/git_files/Wheat599_model_bases/src/wheat599/kernel_baselines.py": "07bc4c1dc9feb4a38bd6ae2865a2d51cbfb424d09abe7a5e36ef3fbf5c7ef6d4",
+    "results/quantile_tabm_final_20261106/provenance.json": "81a29fefe855b2e7ddab1bb7dd6755601d33d9ce3769bdb718ec435112161828",
+    "results/kernel_baselines_final_20261102/provenance.json": "d5698791e46cf0144718babadcf1657040aba6947cfcf8d059404da6a2a14ada",
+    "results/bimsgp_ftt_fixed_20261029/splits_manifest.json": "ec8097ebd023b4c1871f6c9f8614a75a2866564be5dc9318074b11cd078f24f8",
+    "results/reml_icm_final_20261103/provenance.json": "5369ea30e1fbb3e46fb118a52bbe28c02a61e58aa775ed8d489cc0eac9d9e5ad",
+    "results/quantile_tabm_final_20261106/oof.csv": "3f9c675e428c9caa32a9886b7c164b73e69be0e3d17792bb6e32817fdfcf73d2",
+    "results/kernel_baselines_final_20261102/oof.csv": "4266d101059505f862709796356405b42e1f58d6b6b8d47612af1934e688e375",
+    "results/reml_icm_final_20261103/calibration.json": "e1609ec77197f085ca0ea0e132b0862c6a983bef1069e3f351896eaf10bb32e2",
+    "results/robust_icm_development_20261103/selection.json": "94bb23749d9e2dcaf2006e323c5cfebeff5b433f0cd86557e022431e9584e304"
+  }
+}

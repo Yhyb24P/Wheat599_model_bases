@@ -1,0 +1,767 @@
+{
+  "scope": "Descriptive saved outer-OOF diagnostic; no model fits, no configuration or cutoff selection",
+  "observations": {
+    "distance_min_max": [0.0023455824863174357, 0.290852228303362],
+    "distance_quartile_means_approximate": [0.020, 0.061, 0.128, 0.201],
+    "tabm_near_far_amplitude_ratio_environment_order_1_2_4_5": [[0.7235, 0.4284], [0.6685, 0.4542], [0.6716, 0.4430], [0.7049, 0.4278]],
+    "reml_effective_df_fold_mean": 971.0718115336604,
+    "diagonal_counterfactual_effective_df_fold_mean": 1175.2628975732434,
+    "huber_squared_geometry_proxy_effective_df_fold_mean": 1524.1192660167571,
+    "effective_df_in_material_modes_at_most_1e_minus12_all_records": 0.0
+  },
+  "interpretation": "No increasing remote-bin amplitude pattern in the saved stable models; distance-associated errors are shared across neural and kernel methods. This does not establish estimation noise as the cause, optimal shrinkage, or correct prediction away from observed support. The diagnostic does not trigger the conditional heat-kernel or global-certificate fitting experiments.",
+  "binning": "Within-fold nearest-dev Hamming distance quartiles, ties stay together; fold-fit phenotype centering/scaling",
+  "amplitude": "RMS prediction deviation from fit mean / RMS truth deviation from that same fit mean",
+  "distance_correlations": [
+    {
+      "model": "gaussian",
+      "environment": "1",
+      "spearman_distance_squared_error": 0.13342362887043427
+    },
+    {
+      "model": "gaussian",
+      "environment": "2",
+      "spearman_distance_squared_error": 0.09649252492390585
+    },
+    {
+      "model": "gaussian",
+      "environment": "4",
+      "spearman_distance_squared_error": 0.14916304849491346
+    },
+    {
+      "model": "gaussian",
+      "environment": "5",
+      "spearman_distance_squared_error": 0.11587131036544944
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "1",
+      "spearman_distance_squared_error": 0.12742587806746675
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "2",
+      "spearman_distance_squared_error": 0.0885013865935524
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "4",
+      "spearman_distance_squared_error": 0.15651567857425372
+    },
+    {
+      "model": "additive_rbf",
+      "environment": "5",
+      "spearman_distance_squared_error": 0.13128219319232806
+    },
+    {
+      "model": "tabm",
+      "environment": "1",
+      "spearman_distance_squared_error": 0.15298736980858765
+    },
+    {
+      "model": "tabm",
+      "environment": "2",
+      "spearman_distance_squared_error": 0.08077382031504693
+    },
+    {
+      "model": "tabm",
+      "environment": "4",
+      "spearman_distance_squared_error": 0.15410385889846215
+    },
+    {
+      "model": "tabm",
+      "environment": "5",
+      "spearman_distance_squared_error": 0.0782953608248542
+    },
+    {
+      "model": "huber",
+      "environment": "1",
+      "spearman_distance_squared_error": 0.13910875602796233
+    },
+    {
+      "model": "huber",
+      "environment": "2",
+      "spearman_distance_squared_error": 0.09976926629637183
+    },
+    {
+      "model": "huber",
+      "environment": "4",
+      "spearman_distance_squared_error": 0.13660491924774418
+    },
+    {
+      "model": "huber",
+      "environment": "5",
+      "spearman_distance_squared_error": 0.10067553427085438
+    },
+    {
+      "model": "fusion",
+      "environment": "1",
+      "spearman_distance_squared_error": 0.1477851928602449
+    },
+    {
+      "model": "fusion",
+      "environment": "2",
+      "spearman_distance_squared_error": 0.09211490051780763
+    },
+    {
+      "model": "fusion",
+      "environment": "4",
+      "spearman_distance_squared_error": 0.15113463221205756
+    },
+    {
+      "model": "fusion",
+      "environment": "5",
+      "spearman_distance_squared_error": 0.08921848348199297
+    }
+  ],
+  "spectra": [
+    {
+      "fold": 0,
+      "model": "reml_full",
+      "effective_df": 737.7915865673398,
+      "modes_signal_above_noise": 661,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.032161766171193006,
+        1.237370373068793,
+        2.130253588055005,
+        7.247925600275123
+      ],
+      "material_eigenvalue_at_snr_one": [
+        31.09281979966917,
+        0.8081654626333968,
+        0.4694276801632028,
+        0.13797051117109163
+      ]
+    },
+    {
+      "fold": 0,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 913.4368553867346,
+      "modes_signal_above_noise": 751,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.7556180357558964,
+        2.3621377402657924,
+        2.715405723879877,
+        2.760398434347777
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.5695999811083289,
+        0.42334533797655594,
+        0.3682690918730042,
+        0.3622665436833138
+      ]
+    },
+    {
+      "fold": 0,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.30000000000000004,
+      "effective_df": 1369.9428788534392,
+      "modes_signal_above_noise": 1690,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.4869781880714907,
+        2.480865142481423,
+        3.3144205230527026,
+        6.0510694797277145
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.6725048208655513,
+        0.40308519107966306,
+        0.3017118657830912,
+        0.1652600426007665
+      ]
+    },
+    {
+      "fold": 1,
+      "model": "reml_full",
+      "effective_df": 758.6676635033532,
+      "modes_signal_above_noise": 709,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.011970873735124697,
+        1.9421620646870765,
+        2.424256944363684,
+        5.394758306918183
+      ],
+      "material_eigenvalue_at_snr_one": [
+        83.53609119322846,
+        0.5148900898551538,
+        0.41249752932541517,
+        0.1853651161197732
+      ]
+    },
+    {
+      "fold": 1,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 906.934292154732,
+      "modes_signal_above_noise": 740,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.849456098925518,
+        1.9449561303901466,
+        2.8095031101095778,
+        2.9289662173907214
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.5406995065094932,
+        0.5141504141789593,
+        0.3559348257710231,
+        0.34141738954259876
+      ]
+    },
+    {
+      "fold": 1,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.3,
+      "effective_df": 1335.679819339408,
+      "modes_signal_above_noise": 1673,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        2.6452632226017516,
+        3.0095934124238988,
+        3.3187279741798648,
+        4.359748724127824
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.37803421279809307,
+        0.3322707964045579,
+        0.3013202672168765,
+        0.2293710172941336
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "reml_full",
+      "effective_df": 1119.979687010636,
+      "modes_signal_above_noise": 1296,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.1834314953724313,
+        1.5772556986039672,
+        3.568245344196115,
+        6.0297769502692535
+      ],
+      "material_eigenvalue_at_snr_one": [
+        5.4516264939651915,
+        0.6340126086626933,
+        0.28024978765166403,
+        0.16584361382643614
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1352.5109609457932,
+      "modes_signal_above_noise": 1726,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        2.385741834406187,
+        2.5645312983324087,
+        2.797209851126372,
+        3.611226504576798
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.4191568364935432,
+        0.3899348004254235,
+        0.3574990984667536,
+        0.2769142280974676
+      ]
+    },
+    {
+      "fold": 2,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.03,
+      "effective_df": 2019.3448844305424,
+      "modes_signal_above_noise": 2136,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        33.333333333333336,
+        33.333333333333336,
+        33.333333333333336,
+        33.333333333333336
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.03,
+        0.03,
+        0.03,
+        0.03
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "reml_full",
+      "effective_df": 1064.0090650079335,
+      "modes_signal_above_noise": 1162,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.14128181729360811,
+        1.2521899756583628,
+        3.1489425337174732,
+        5.620452780371053
+      ],
+      "material_eigenvalue_at_snr_one": [
+        7.078051649929067,
+        0.7986008668327111,
+        0.31756692581476026,
+        0.17792160864555498
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1309.4317711475373,
+      "modes_signal_above_noise": 1676,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        2.0685249353562782,
+        2.449551052289942,
+        2.5258627275707406,
+        3.1189283918235344
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.48343628007934175,
+        0.408238072468487,
+        0.39590433363009964,
+        0.3206229430023345
+      ]
+    },
+    {
+      "fold": 3,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.30000000000000004,
+      "effective_df": 1366.6648326760514,
+      "modes_signal_above_noise": 1690,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.509092616120908,
+        2.4801324361431165,
+        3.328335446499668,
+        6.015772834569639
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.6626498528436775,
+        0.40320427466974784,
+        0.3004504852573308,
+        0.16622968112318004
+      ]
+    },
+    {
+      "fold": 4,
+      "model": "reml_full",
+      "effective_df": 1068.7243507029857,
+      "modes_signal_above_noise": 1143,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        2.788803906468623e-06,
+        1.2922212555716057,
+        1.9512624425294651,
+        64.13775205483847
+      ],
+      "material_eigenvalue_at_snr_one": [
+        358576.6635224882,
+        0.7738612839622859,
+        0.5124887243274552,
+        0.015591441358047428
+      ]
+    },
+    {
+      "fold": 4,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1253.5646227484986,
+      "modes_signal_above_noise": 1417,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.1963200120481146,
+        1.6663229735337808,
+        1.8146983152927536,
+        8.731449526355544
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.8358967416151367,
+        0.600123755048095,
+        0.5510557824255633,
+        0.11452852094964742
+      ]
+    },
+    {
+      "fold": 4,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 3.0,
+      "effective_df": 432.93145197307035,
+      "modes_signal_above_noise": 82,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.19605616408797188,
+        0.27215014337643056,
+        0.32912314122920955,
+        0.5360038846397217
+      ],
+      "material_eigenvalue_at_snr_one": [
+        5.100579237851927,
+        3.6744423045069925,
+        3.0383764455613744,
+        1.8656581205043992
+      ]
+    },
+    {
+      "fold": 5,
+      "model": "reml_full",
+      "effective_df": 1131.8393600330212,
+      "modes_signal_above_noise": 1212,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.19618273967895644,
+        1.4653872010833375,
+        1.9238860008908125,
+        25.062939749927143
+      ],
+      "material_eigenvalue_at_snr_one": [
+        5.097288383455403,
+        0.6824134940312812,
+        0.5197813173633845,
+        0.03989954929380968
+      ]
+    },
+    {
+      "fold": 5,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1270.4803713481115,
+      "modes_signal_above_noise": 1578,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.6535046588574138,
+        1.7413977571688826,
+        1.874250579154929,
+        5.968175423616624
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.6047760401782047,
+        0.5742513425684969,
+        0.5335465871649269,
+        0.16755539658618399
+      ]
+    },
+    {
+      "fold": 5,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.30000000000000004,
+      "effective_df": 1363.42535658672,
+      "modes_signal_above_noise": 1681,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.5072879114464701,
+        2.437867042447624,
+        3.3062043885508046,
+        6.081973990888424
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.6634432561993742,
+        0.4101946425248843,
+        0.30246163953533617,
+        0.16442030194442264
+      ]
+    },
+    {
+      "fold": 6,
+      "model": "reml_full",
+      "effective_df": 1074.2938579119264,
+      "modes_signal_above_noise": 1166,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.17161037356781314,
+        1.2727010052919439,
+        3.112566975586632,
+        5.775013777767296
+      ],
+      "material_eigenvalue_at_snr_one": [
+        5.827153564261908,
+        0.785730502169762,
+        0.32127822721357757,
+        0.1731597600424452
+      ]
+    },
+    {
+      "fold": 6,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1315.110152297495,
+      "modes_signal_above_noise": 1688,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        2.240255544597783,
+        2.4017859414565788,
+        2.580290482657632,
+        3.109560163501694
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.44637764759088705,
+        0.4163568379426617,
+        0.3875532645340094,
+        0.32158888955983217
+      ]
+    },
+    {
+      "fold": 6,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.03,
+      "effective_df": 1993.4501071437771,
+      "modes_signal_above_noise": 2134,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        15.39376954017227,
+        24.031460858111878,
+        32.9062857923283,
+        61.00181714272088
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.06496134669226762,
+        0.04161211862667298,
+        0.030389330668037225,
+        0.016392954289548182
+      ]
+    },
+    {
+      "fold": 7,
+      "model": "reml_full",
+      "effective_df": 1037.2386360860519,
+      "modes_signal_above_noise": 1133,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.09400345857194892,
+        1.2123835789597464,
+        3.269182857828432,
+        5.493290910420679
+      ],
+      "material_eigenvalue_at_snr_one": [
+        10.637906468458436,
+        0.8248214652148486,
+        0.30588683578998516,
+        0.18204024077862271
+      ]
+    },
+    {
+      "fold": 7,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1291.986202592041,
+      "modes_signal_above_noise": 1660,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        2.076757623018086,
+        2.3468761070584048,
+        2.3748727287300015,
+        3.2703543469743135
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.4815198407923654,
+        0.4260983342888981,
+        0.42107519611577876,
+        0.30577726261534505
+      ]
+    },
+    {
+      "fold": 7,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.03,
+      "effective_df": 2000.9617250581425,
+      "modes_signal_above_noise": 2136,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        19.675855690786577,
+        26.692086400454887,
+        33.14814531439808,
+        53.81724592769385
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.0508237108319645,
+        0.03746428754190448,
+        0.03016760034431382,
+        0.01858140420904388
+      ]
+    },
+    {
+      "fold": 8,
+      "model": "reml_full",
+      "effective_df": 748.4479278098438,
+      "modes_signal_above_noise": 686,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.01531316881123928,
+        1.5471705994490499,
+        2.3186550039279292,
+        6.636885068144098
+      ],
+      "material_eigenvalue_at_snr_one": [
+        65.30327016744165,
+        0.6463411341684632,
+        0.43128451550832053,
+        0.15067309283383967
+      ]
+    },
+    {
+      "fold": 8,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 911.1494121588389,
+      "modes_signal_above_noise": 751,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.8952786026665642,
+        2.227921923175372,
+        2.4485778475890565,
+        3.1789519422859347
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.5276269138442491,
+        0.4488487633241376,
+        0.4084003295972926,
+        0.3145690838222976
+      ]
+    },
+    {
+      "fold": 8,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.30000000000000004,
+      "effective_df": 1365.5766036596638,
+      "modes_signal_above_noise": 1684,
+      "observations": 2156,
+      "material_numerical_rank": 539,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.5158107422489198,
+        2.4905932648386697,
+        3.309746816278705,
+        6.01718250996703
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.6597129655621509,
+        0.40151076216163134,
+        0.3021379143206924,
+        0.16619073766560544
+      ]
+    },
+    {
+      "fold": 9,
+      "model": "reml_full",
+      "effective_df": 969.7259807035107,
+      "modes_signal_above_noise": 1005,
+      "observations": 2160,
+      "material_numerical_rank": 540,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        0.11864545921684364,
+        0.9657830066396225,
+        3.047028939933722,
+        6.5286985493849885
+      ],
+      "material_eigenvalue_at_snr_one": [
+        8.42847258210143,
+        1.0354292766854878,
+        0.32818854684778664,
+        0.15316988407960744
+      ]
+    },
+    {
+      "fold": 9,
+      "model": "reml_diagonal_counterfactual",
+      "effective_df": 1228.0243349526509,
+      "modes_signal_above_noise": 1450,
+      "observations": 2160,
+      "material_numerical_rank": 540,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        1.6543944812670008,
+        2.831126124412446,
+        2.9865794922157627,
+        3.1880558572799664
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.6044507590681518,
+        0.3532163372649227,
+        0.3348312015824141,
+        0.313670790214195
+      ]
+    },
+    {
+      "fold": 9,
+      "model": "huber_squared_geometry_proxy",
+      "ridge": 0.03,
+      "effective_df": 1993.2150004467578,
+      "modes_signal_above_noise": 2140,
+      "observations": 2160,
+      "material_numerical_rank": 540,
+      "effective_df_in_material_modes_at_most_1e_minus12": 0.0,
+      "task_generalized_eigenvalues": [
+        33.333333333333336,
+        33.333333333333336,
+        33.333333333333336,
+        33.333333333333336
+      ],
+      "material_eigenvalue_at_snr_one": [
+        0.03,
+        0.03,
+        0.03,
+        0.03
+      ]
+    }
+  ],
+  "limitations": [
+    "Distance association does not identify a causal error mechanism; weak association does not prove estimation noise dominance.",
+    "Effective df is a conditional Gaussian smoother trace, not effective sample size, excluding fitted-intercept correction.",
+    "REML matrices are the saved fold-specific fitted estimates; the diagonal counterpart is not separately refitted.",
+    "Huber spectrum is its squared-loss geometry proxy, not the nonlinear Huber estimator hat matrix.",
+    "The 1e-12 cutoff is numerical; SNR=1 is a descriptive crossover, not a chosen statistical truncation rule.",
+    "Repeatedly used outer folds support descriptive diagnostics only, never new configuration choices."
+  ]
+}
