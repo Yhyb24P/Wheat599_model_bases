@@ -90,6 +90,18 @@ class ReportTest(unittest.TestCase):
         for name in ['quantile_tabm_final_20261106', 'mulphe_unified_parallel_20261112']:
             (tmp_path/'results'/name).mkdir()
             shutil.copyfile(ROOT/'results'/name/'summary.json', tmp_path/'results'/name/'summary.json')
+        for run, rel in [('classical_baselines_final_20261115', 'summary.json'),
+                         ('deepgs_final_20261115', 'summary.json'),
+                         ('soydngp_final_20261115', 'summary.json'),
+                         ('gsformer_csa_outer_20261115', 'summary.json'),
+                         ('gsformer_nsa_outer_20261115', 'summary.json'),
+                         ('moegp_unified_20261115', 'test/summary.json'),
+                         ('mtcro_unified_outer_20261115', 'summary.json'),
+                         ('ragp_outer_20261115', 'summary.json'),
+                         ('wheatgp_unified_outer_20261115', 'summary.json')]:
+            target = tmp_path/'results'/run/rel
+            target.parent.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(ROOT/'results'/run/rel, target)
         for name in ['results/quantile_tabm_final_manifest_20261106/manifest.json',
                      'results/environment_tabm_development_20261105/provenance.json']:
             target = tmp_path/name
@@ -138,14 +150,27 @@ class ReportTest(unittest.TestCase):
         comparison = (ROOT/'docs/MODEL_COMPARISON.md').read_text().split('## 全模型总对比表', 1)[1].split('\n## ', 1)[0]
         original = [tuple(cell.strip() for cell in line.strip('|').split('|'))
                     for line in comparison.splitlines() if line.startswith('| ') and not line.startswith('| 评价层')]
-        self.assertEqual(len(records), len(original) + 9)
+        self.assertEqual(len(records), len(original) + 9 + 16)
         actual = {(r['stage'], r['name'], r['pcc'], r['rmse'], r['mae']) for r in records}
         for stage, name, pcc, rmse, mae, _ in original:
             self.assertIn((stage, name.replace('`', ''), pcc, rmse, mae), actual)
         self.assertEqual(records[0]['role'], '主候选')
-        first = {r['family'] for r in records[:11]}
-        self.assertTrue({'WheatGP', 'MoEGP', 'BiMSGP', 'DNAwhisper', 'RAGP', 'TabICLv2'} <= first)
+        first = {r['family'] for r in records[:13]}
+        self.assertTrue({'WheatGP', 'DeepGS', 'Gsformer', 'MoEGP', 'MtCro', 'RAGP', 'SoyDNGP'} <= first)
+        self.assertTrue({'BiMSGP', 'DNAwhisper', 'TabICLv2'} <= {r['family'] for r in records})
         self.assertIn('RAGP', next(r['name'] for r in records if r['family'] == 'RAGP'))
+        sota = [r for r in records if '20261115' in r['source'] and r['status'] == '有记录']
+        self.assertEqual(len(sota), 12)
+        for r in sota:
+            self.assertTrue(all(v != '—' for v in r['env']), r['name'])
+            self.assertNotEqual(r['journal'], '本项目', r['name'])
+            self.assertTrue(r['journal_url'], r['name'])
+        pending = {r['name']: r['status'] for r in records if r['status'] in ('运行中', '待复现')}
+        self.assertEqual(pending, {'DNNGP 同协议适配': '运行中', 'PNNGS（待复现）': '待复现',
+                                   'MDNN（待复现）': '待复现', 'CWAGS（待复现）': '待复现'})
+        moegp = next(r for r in records if r['name'] == 'MoEGP 统一适配（外层）')
+        self.assertEqual(moegp['pcc'], '0.481402')
+        self.assertEqual(moegp['env'][0], '0.549105')
         # A comparison's title must not turn its TabM control into the RAGP architecture.
         self.assertEqual(report.model_family('单成员检索网络', 'RAGP 同协议参照'), 'TabM')
         anova = next(r for r in records if r['name'] == '分阶自适应互作核 GP')

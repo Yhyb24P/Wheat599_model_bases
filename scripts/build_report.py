@@ -23,7 +23,7 @@ BASE_CSS = CSS
 CSS += r"""
 
 /* A compact research workbench; full records stay in the same offline page. */
-header,main,footer{max-width:1600px}header{padding-block:1.2rem}header h1{font-size:2rem;margin:.5rem 0}header .lead{font-size:1rem;margin:.5rem 0}header p:last-child{font-size:.88rem;margin:0}h2{margin-top:1.6rem}.workbench{margin:1.4rem 0 2rem}.workbench-heading{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap}.workbench-heading h2{margin:0}.workbench-heading p{margin:.3rem 0;font-size:.88rem}.table-toolbar{display:flex;gap:.7rem;flex-wrap:wrap;padding:1rem;background:#e9eff1;border:1px solid var(--line);border-bottom:0}.table-toolbar label{display:grid;gap:.25rem;font-size:.76rem;color:var(--muted)}.table-toolbar input,.table-toolbar select{max-width:100%;font-size:.88rem;min-height:2.5rem}.table-toolbar .search{flex:1;min-width:min(100%,220px)}.table-toolbar .range{width:7.5rem}.table-status{display:flex;gap:1rem;justify-content:space-between;align-items:center;padding:.55rem .8rem;font-size:.8rem;border:1px solid var(--line);border-top:0;background:white}.result-grid{max-block-size:650px;border:1px solid var(--line);background:white}.result-grid table{min-width:1200px;font-size:.82rem}.result-grid th,.result-grid td{padding:.65rem .7rem;min-width:0;white-space:nowrap}.result-grid tbody tr:nth-child(even){background:#f6f8f9}.result-grid tbody tr.selected{background:#e6f2fa}.result-grid thead th{padding:0}.result-grid thead button{width:100%;min-height:44px;border:0;border-radius:0;background:transparent;text-align:start;font-size:.8rem;font-weight:650;white-space:nowrap}.result-grid th[aria-sort=ascending] .sort-icon::after{content:' ↑'}.result-grid th[aria-sort=descending] .sort-icon::after{content:' ↓'}.result-grid th:not([aria-sort]) .sort-icon::after{content:' ↕';opacity:.45}.result-grid td:nth-child(2){position:sticky;inset-inline-start:0;z-index:1;background:inherit;min-width:280px;max-width:370px;white-space:normal}.result-grid tbody{background:white}.model-button{border:0;padding:0;background:transparent;color:#005e91;text-align:start;font-size:.86rem;font-weight:650;line-height:1.5}.model-button:hover{text-decoration:underline}.result-grid .numeric{font-variant-numeric:tabular-nums;text-align:end}.source-label{display:block;max-width:17rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.badge{display:inline-block;padding:.15rem .45rem;border-radius:3px;font-size:.72rem;background:#edf1f3;color:#41575f}.badge.candidate{background:#d9edf9;color:#005680}.metric-cell{display:flex;align-items:center;justify-content:end;gap:.5rem}.mini-bar{width:44px;height:4px;background:#dce5eb}.mini-bar i{display:block;height:100%;background:#0072B2}.inspector{padding:1.2rem 1.4rem;background:white;border:1px solid var(--line);border-top:3px solid #0072B2;margin-top:1rem}.inspector-heading{display:flex;gap:1rem;justify-content:space-between;align-items:start}.inspector h3{margin:0}.inspector p{font-size:.9rem;max-width:none}.inspector-metrics{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.6rem 0}.inspector-metrics strong{font-size:1.25rem;font-variant-numeric:tabular-nums}.flow-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;counter-reset:step}.flow-step{position:relative;padding:.8rem;border:1px solid #cbdee9;background:#f1f7fa;font-size:.85rem;counter-increment:step}.flow-step::before{content:'0' counter(step);display:block;color:#0072B2;font-weight:700;font-size:.7rem}.flow-step:not(:last-child)::after{content:'→';position:absolute;right:-1.25rem;top:40%;font-size:1.2rem;color:#0072B2}.diagram-viewport{overflow:auto;max-width:100%}.candidate-svg{display:block;min-width:760px;width:100%;height:auto}.candidate-svg text{font-family:inherit;fill:#172e38}.candidate-svg .title{font-size:18px;font-weight:700}.candidate-svg .label{font-size:15px}.candidate-svg .note{font-size:13px;fill:#52656c}.candidate-svg .arrow{fill:none;stroke:#687f8a;stroke-width:2;marker-end:url(#flow-arrow)}.diagram-controls{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.diagram-controls button{font-size:.85rem}.diagram-controls [aria-pressed=true]{background:#172e38;color:white}.diagram-focus-tabm .kernel-branch,.diagram-focus-huber .neural-branch{opacity:.25}.diagram-focus-fusion .neural-branch,.diagram-focus-fusion .kernel-branch{opacity:.35}.diagram-explanation{background:#edf3f5;padding:.9rem 1.2rem;margin-top:.8rem;border-left:3px solid #0072B2;font-size:.92rem}.legacy-overview{margin-top:1rem}.archive{padding:1rem}.archive>summary{font-size:1.1rem}.empty-state{text-align:center;padding:2rem;border:1px solid var(--line);background:white}.pagination{display:flex;gap:.5rem;align-items:center}.table-status button{padding:.2rem .6rem;font-size:.8rem}.workbench button:disabled{opacity:.4;cursor:not-allowed}
+header,main,footer{max-width:1600px}header{padding-block:1.2rem}header h1{font-size:2rem;margin:.5rem 0}header .lead{font-size:1rem;margin:.5rem 0}header p:last-child{font-size:.88rem;margin:0}h2{margin-top:1.6rem}.workbench{margin:1.4rem 0 2rem}.workbench-heading{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap}.workbench-heading h2{margin:0}.workbench-heading p{margin:.3rem 0;font-size:.88rem}.table-toolbar{display:flex;gap:.7rem;flex-wrap:wrap;padding:1rem;background:#e9eff1;border:1px solid var(--line);border-bottom:0}.table-toolbar label{display:grid;gap:.25rem;font-size:.76rem;color:var(--muted)}.table-toolbar input,.table-toolbar select{max-width:100%;font-size:.88rem;min-height:2.5rem}.table-toolbar .search{flex:1;min-width:min(100%,220px)}.table-toolbar .range{width:7.5rem}.table-status{display:flex;gap:1rem;justify-content:space-between;align-items:center;padding:.55rem .8rem;font-size:.8rem;border:1px solid var(--line);border-top:0;background:white}.result-grid{max-block-size:650px;border:1px solid var(--line);background:white}.result-grid table{min-width:1560px;font-size:.82rem}.result-grid td.journal{font-size:.76rem;max-width:13rem;white-space:normal;line-height:1.4}.result-grid td.muted{color:var(--muted)}.result-grid th,.result-grid td{padding:.65rem .7rem;min-width:0;white-space:nowrap}.result-grid tbody tr:nth-child(even){background:#f6f8f9}.result-grid tbody tr.selected{background:#e6f2fa}.result-grid thead th{padding:0}.result-grid thead button{width:100%;min-height:44px;border:0;border-radius:0;background:transparent;text-align:start;font-size:.8rem;font-weight:650;white-space:nowrap}.result-grid th[aria-sort=ascending] .sort-icon::after{content:' ↑'}.result-grid th[aria-sort=descending] .sort-icon::after{content:' ↓'}.result-grid th:not([aria-sort]) .sort-icon::after{content:' ↕';opacity:.45}.result-grid td:nth-child(2){position:sticky;inset-inline-start:0;z-index:1;background:inherit;min-width:280px;max-width:370px;white-space:normal}.result-grid tbody{background:white}.model-button{border:0;padding:0;background:transparent;color:#005e91;text-align:start;font-size:.86rem;font-weight:650;line-height:1.5}.model-button:hover{text-decoration:underline}.result-grid .numeric{font-variant-numeric:tabular-nums;text-align:end}.source-label{display:block;max-width:17rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.badge{display:inline-block;padding:.15rem .45rem;border-radius:3px;font-size:.72rem;background:#edf1f3;color:#41575f}.badge.candidate{background:#d9edf9;color:#005680}.metric-cell{display:flex;align-items:center;justify-content:end;gap:.5rem}.mini-bar{width:44px;height:4px;background:#dce5eb}.mini-bar i{display:block;height:100%;background:#0072B2}.inspector{padding:1.2rem 1.4rem;background:white;border:1px solid var(--line);border-top:3px solid #0072B2;margin-top:1rem}.inspector-heading{display:flex;gap:1rem;justify-content:space-between;align-items:start}.inspector h3{margin:0}.inspector p{font-size:.9rem;max-width:none}.inspector-metrics{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.6rem 0}.inspector-metrics strong{font-size:1.25rem;font-variant-numeric:tabular-nums}.flow-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1.5rem;counter-reset:step}.flow-step{position:relative;padding:.8rem;border:1px solid #cbdee9;background:#f1f7fa;font-size:.85rem;counter-increment:step}.flow-step::before{content:'0' counter(step);display:block;color:#0072B2;font-weight:700;font-size:.7rem}.flow-step:not(:last-child)::after{content:'→';position:absolute;right:-1.25rem;top:40%;font-size:1.2rem;color:#0072B2}.diagram-viewport{overflow:auto;max-width:100%}.candidate-svg{display:block;min-width:760px;width:100%;height:auto}.candidate-svg text{font-family:inherit;fill:#172e38}.candidate-svg .title{font-size:18px;font-weight:700}.candidate-svg .label{font-size:15px}.candidate-svg .note{font-size:13px;fill:#52656c}.candidate-svg .arrow{fill:none;stroke:#687f8a;stroke-width:2;marker-end:url(#flow-arrow)}.diagram-controls{display:flex;flex-wrap:wrap;gap:.5rem;margin:.8rem 0}.diagram-controls button{font-size:.85rem}.diagram-controls [aria-pressed=true]{background:#172e38;color:white}.diagram-focus-tabm .kernel-branch,.diagram-focus-huber .neural-branch{opacity:.25}.diagram-focus-fusion .neural-branch,.diagram-focus-fusion .kernel-branch{opacity:.35}.diagram-explanation{background:#edf3f5;padding:.9rem 1.2rem;margin-top:.8rem;border-left:3px solid #0072B2;font-size:.92rem}.legacy-overview{margin-top:1rem}.archive{padding:1rem}.archive>summary{font-size:1.1rem}.empty-state{text-align:center;padding:2rem;border:1px solid var(--line);background:white}.pagination{display:flex;gap:.5rem;align-items:center}.table-status button{padding:.2rem .6rem;font-size:.8rem}.workbench button:disabled{opacity:.4;cursor:not-allowed}
 @media(max-width:650px){.flow-strip{grid-template-columns:1fr 1fr}.flow-step::after{display:none}.table-status{align-items:start;flex-direction:column}.inspector{padding:1rem}.inspector-heading{display:block}.result-grid td:nth-child(2){position:static;min-width:220px}.table-toolbar label{max-width:100%}.diagram-controls button{flex:1}.table-toolbar .search{flex-basis:100%}}
 @media print{.table-toolbar,.pagination,.diagram-controls{display:none}.result-grid{max-block-size:none}.result-grid table{min-width:0;font-size:7pt}.result-grid td:nth-child(2){min-width:0;max-width:none;position:static}.result-grid th,.result-grid td{white-space:normal}.model-button{display:inline;color:black}.candidate-svg{min-width:0}.flow-strip{break-inside:avoid}.inspector{break-inside:avoid}}
 """
@@ -74,6 +74,9 @@ JS += r"""
   const doc=document.getElementById('inspector-doc');doc.href=record.role==='主候选'?'#best':href;doc.textContent=record.role==='主候选'?'查看重点图解 ↓':'查看模型方案 ↗';
   const metrics=document.getElementById('inspector-metrics');metrics.replaceChildren();
   ['pcc','rmse','mae'].forEach(key=>{const div=document.createElement('div'), strong=document.createElement('strong');strong.textContent=record[key];div.append(key.toUpperCase()+' ',strong);metrics.append(div)});
+  const journal=document.getElementById('inspector-journal');journal.replaceChildren();
+  if(record.journal && record.journal!=='本项目'){journal.append('来源：');if(record.journal_url){const a=document.createElement('a');a.href=record.journal_url;a.textContent=record.journal;journal.append(a);}else journal.append(record.journal);}
+  const note=document.getElementById('inspector-note');note.textContent=record.note||'';note.hidden=!record.note;
   const flow=document.getElementById('inspector-flow');flow.replaceChildren();
   const shownSteps=record.role==='主候选'?['全标记输入','四独立分位数 TabM ＋ Huber ICM','各自反标准化 · 神经双种子平均','固定各占 50% → 四环境预测']:steps;
   shownSteps.forEach(text=>{const step=document.createElement('div');step.className='flow-step';step.textContent=text;flow.append(step)});
@@ -95,7 +98,7 @@ JS += r"""
    return true;
   });
   filtered.sort((a,b)=>{
-   const numeric=['pcc','rmse','mae','priority'].includes(sortKey);
+   const numeric=['pcc','rmse','mae','priority','env1','env2','env3','env4'].includes(sortKey);
    const av=sortKey==='priority'?a.id:numeric?a.values[sortKey]:a[sortKey];
    const bv=sortKey==='priority'?b.id:numeric?b.values[sortKey]:b[sortKey];
    if(av===null)return bv===null?a.id-b.id:1;
@@ -128,8 +131,8 @@ JS += r"""
  document.getElementById('reset-models').addEventListener('click',()=>{Object.entries(controls).forEach(([id,control])=>control.value=id==='page-size'?'25':'');sortKey='priority';direction=1;pageIndex=0;apply();inspect(0)});
  document.getElementById('export-models').addEventListener('click',()=>{
   const csvCell=value=>{let text=String(value??'');if(/^[=+@\t\r]/.test(text)||(/^\-/.test(text)&&!/^\-\d+(\.\d+)?$/.test(text)))text="'"+text;return '"'+text.replaceAll('"','""')+'"'};
-  const header=['模型','类别','架构家族','评价口径','PCC','RMSE','MAE','Env1 PCC','Env2 PCC','Env3 PCC','Env4 PCC','状态','来源','来源链接'];
-  const values=filtered.map(r=>[r.name,r.role,r.family,r.stage,r.pcc,r.rmse,r.mae,...r.env,r.status,r.source,r.link]);
+  const header=['模型','类别','架构家族','评价口径','期刊/年份','PCC','RMSE','MAE','Env1 PCC','Env2 PCC','Env3 PCC','Env4 PCC','状态','来源','来源链接'];
+  const values=filtered.map(r=>[r.name,r.role,r.family,r.stage,r.journal,r.pcc,r.rmse,r.mae,...r.env,r.status,r.source,r.link]);
   const csv='\ufeff'+[header,...values].map(row=>row.map(csvCell).join(',')).join('\r\n');
   const url=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));
   const anchor=document.createElement('a');anchor.href=url;anchor.download='wheat599-model-results.csv';document.body.append(anchor);anchor.click();anchor.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
@@ -289,6 +292,18 @@ ARCHITECTURES = {
     '稀疏 / 条件网络': (['全标记与环境任务', '条件单元 / 双线性残差', '逐成员 99 分位点', '成员与种子平均'], '两类具体网络须区分：层级条件网络读取先前单元输出；稀疏残差网络使用双线性残差块。完整定义见各行结果与架构库。', 'methods/SPARSE_RESIDUAL_QUANTILE.md'),
     '贝叶斯树': (['全标记线性背景', '环境专属稀疏森林', '联合采样残差协方差', '保留样本预测平均'], '固定预算 Monte Carlo 预测；部分链混合不足，结果不代表已收敛后验或整个模型家族失败。', 'methods/SPARSE_POLYGENIC_BART.md'),
     '其他研究变体': (['该运行的拟合材料', '按具体配置构建模型', '开发集选模 / 固定规则', '对应评价层的结果'], '这一行无法仅凭系统简称确定完整网络；请打开本行原记录，架构库保留其详细方案，不把家族示意冒充实际配置。', '#architectures'),
+    'SVR': (['拟合集标准化标记', 'RBF 核支持向量回归', '内折验证 PCC 选超参', '完整开发集重拟合 → 预测'], 'Cortes & Vapnik 1995 的经典基线；marker-only，预处理与选模限于拟合集；本运行单种子 42。', '../ref/index.html#cortes1995support'),
+    'Random Forest': (['拟合集标准化标记', 'Bagging 决策树＋随机特征', '内折验证 PCC 选超参', '双种子预测平均'], 'Breiman 2001 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#breiman2001random'),
+    'XGBoost': (['拟合集标准化标记', '正则化梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Chen & Guestrin 2016 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#chen2016xgboost'),
+    'LightGBM': (['拟合集标准化标记', 'GOSS＋EFB 梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Ke 等 2017 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#ke2017lightgbm'),
+    'DeepGS': (['全标记输入', '官方深度卷积网络结构', 'PyTorch 结构适配', '逐环境预测'], '官方 cma2015/DeepGS（33ae2dc1）网络结构与训练默认值的 PyTorch 适配；Wheat2000 运行记录不迁移。发表版题名不含 DeepGS，见 ref 书目。', '../ref/index.html#ma2018deepgs'),
+    'DNNGP': (['拟合集 PCA95', '官方编译训练器（TF 2.6）', '协议划分直接传入', '深度网络预测'], 'AIBreeding/DNNGP 官方训练器（3bbac096），固定 Python 3.9/TF 2.6 环境；绕过官方 KFold，使用协议划分。运行进行中，暂无外层结果。', '../ref/index.html#wang2023dnngp'),
+    'SoyDNGP': (['DArT 标记 → VCF one-hot/resize', '官方 SoyDNGPNext 网络', 'SmoothL1＋Adam', '拟合集 min/max 目标缩放'], 'IndigoFloyd/SoyDNGPNext（ebda01d0）官方 remodel；目标 min/max 仅取拟合集（上游用全数据）。本运行预测尺度发散，RMSE/MAE 按原值保留。', '../ref/index.html#gao2023soydngp'),
+    'Gsformer': (['原始 1279 标记零填充', 'CSA 32×40 块 / NSA 20×72 token', '作者模型类未改动', '双种子中位轮次重拟合'], '作者仓库提供 CSA/NSA 架构与训练规则但无 Wheat599 训练文件，本运行提供项目划分。论文输入为 DNNGP 风格 SNP/PC，此处用原始标记，差异已记录。', '../ref/index.html#yang2026gsformer'),
+    'MtCro': (['原始 1279 标记', 'MMOE：4 专家/4 门/4 塔', '作者配方（4096 宽，Adam 1e-4）', '双种子中位轮次重拟合'], 'torch_rechub MMOE；作者玉米脚本把任务数传在 n_expert 位置，四环境运行用 4 专家。作者模板用 250 PC，本运行用原始标记；划分用 canonical manifest。', '../ref/index.html#chao2025mtcro'),
+    'PNNGS': (['多卷积并行 Inception1d', 'BN＋Dropout', '线性读出', '逐环境预测'], '待复现：公开仓库 996184745/code-for-PNNGS 与论文架构不符（分支/超参/损失），不作忠实适配基座（WS4 核查）。', '../ref/index.html#xie2024pnngs'),
+    'MDNN': (['Memetic 架构搜索', 'CBAM＋树结构解码', '神经网络训练', '逐环境预测'], '待复现：仓库 xxXPCSC/MDNN 作者归属未确认、无数据与依赖说明（WS4 核查）。', '../ref/index.html#mao2025mdnn'),
+    'CWAGS': (['通道加权注意力', '卷积网络', '多性状输出', '逐环境预测'], '待复现：未找到作者实现；论文报告 Wheat599 四环境平均 PCC 0.5368（原文划分，非本协议，不参与排名）。', '../ref/index.html#cwags2026'),
 }
 
 
@@ -307,7 +322,11 @@ def model_family(name, source):
             return '查询条件分位数'
         for token, family in [('mulphe', 'Mul-PheG2P'), ('mul-phe', 'Mul-PheG2P'), ('wheatgp', 'WheatGP'),
                               ('moegp', 'MoEGP'), ('bimsgp', 'BiMSGP'), ('dnawhisper', 'DNAwhisper'),
-                              ('ragp', 'RAGP'), ('tabicl', 'TabICLv2'), ('rfm', 'RFM')]:
+                              ('ragp', 'RAGP'), ('tabicl', 'TabICLv2'), ('rfm', 'RFM'),
+                              ('soydngp', 'SoyDNGP'), ('dnngp', 'DNNGP'), ('deepgs', 'DeepGS'),
+                              ('gsformer', 'Gsformer'), ('mtcro', 'MtCro'), ('pnngs', 'PNNGS'),
+                              ('mdnn', 'MDNN'), ('cwags', 'CWAGS'), ('xgboost', 'XGBoost'),
+                              ('lightgbm', 'LightGBM'), ('random forest', 'Random Forest'), ('svr', 'SVR')]:
             if token in text:
                 return family
         if ('融合' in text and ('tabm' in text or 'huber' in text or '分位数' in text)) or '预固定0.5' in text:
@@ -333,6 +352,76 @@ def model_family(name, source):
     return '其他研究变体'
 
 
+# 期刊/年份经一手来源核验（Crossref、NeurIPS 官方页、Europe PMC），书目见 ref/（提交 6abdad3）。
+SOTA_META = {
+    'TabM': ('ICLR · 2025', 'https://arxiv.org/abs/2410.24210'), 'Mul-PheG2P': ('New Phytologist · 2026', 'https://doi.org/10.1111/nph.71461'),
+    'WheatGP': ('Briefings in Bioinformatics · 2025', 'https://doi.org/10.1093/bib/bbaf191'), 'MoEGP': ('Plant Methods · 2026', 'https://doi.org/10.1186/s13007-026-01500-1'),
+    'MtCro': ('Plant Methods · 2025', 'https://doi.org/10.1186/s13007-024-01321-0'), 'Gsformer': ('Genetics Selection Evolution · 2026', 'https://doi.org/10.1186/s12711-026-01055-8'),
+    'RAGP': ('Plant Methods · 2026', 'https://doi.org/10.1186/s13007-026-01574-x'), 'DeepGS': ('Planta · 2018', 'https://doi.org/10.1007/s00425-018-2976-9'),
+    'DNNGP': ('Molecular Plant · 2023', 'https://doi.org/10.1016/j.molp.2022.11.004'), 'SoyDNGP': ('Briefings in Bioinformatics · 2023', 'https://doi.org/10.1093/bib/bbad349'),
+    'BiMSGP': ('Genes · 2026', 'https://doi.org/10.3390/genes17091156'), 'DNAwhisper': ('Plant Biotechnology Journal · 2026', 'https://doi.org/10.1111/pbi.70619'),
+    'TabICLv2': ('ICML · 2026（v2）', 'https://proceedings.mlr.press/v267/qu25d.html'), 'SVR': ('Machine Learning · 1995', 'https://doi.org/10.1007/BF00994018'),
+    'Random Forest': ('Machine Learning · 2001', 'https://doi.org/10.1023/A:1010933404324'), 'XGBoost': ('KDD · 2016', 'https://doi.org/10.1145/2939672.2939785'),
+    'LightGBM': ('NeurIPS · 2017', 'https://proceedings.neurips.cc/paper/2017/hash/6449f44a102fde848669bdd9eb6b76fa-Abstract.html'),
+    'RR-BLUP': ('Genetics · 2001（Meuwissen）', 'https://doi.org/10.1093/genetics/157.4.1819'), 'PNNGS': ('Frontiers in Plant Science · 2024', 'https://doi.org/10.3389/fpls.2024.1410596'),
+    'MDNN': ('Briefings in Bioinformatics · 2025', 'https://doi.org/10.1093/bib/bbaf352'), 'CWAGS': ('BMC Genomics · 2026', 'https://doi.org/10.1186/s12864-026-12980-9'),
+    '固定融合': ('本项目', None), 'ICM / 核方法': ('本项目', None),
+}
+KERNEL_RIDGE_NAMES = {'Gaussian kernel ridge', '加性＋RBF kernel ridge', '单环境加性＋RBF', '单环境加性＋RBF 核岭'}
+CROSSA_2010 = ('Genetics · 2010（Crossa）', 'https://doi.org/10.1534/genetics.110.118521')
+
+# 历史公开模型与强参照的逐环境 PCC：转录自 docs/MODEL_COMPARISON.md 冻结逐环境表，键为（模型名, 宏 PCC 原文）。
+LEGACY_ENV = {
+    ('WheatGP 公开网络，单种子 555', '0.470014'): '0.523104 0.476030 0.385997 0.494925'.split(),
+    ('MoEGP 共享专家', '0.471970'): '0.538498 0.455500 0.419463 0.474417'.split(),
+    ('MoEGP 独立专家', '0.459201'): '0.5142 0.4352 0.3964 0.4910'.split(), ('MoEGP', '0.4592'): '0.5142 0.4352 0.3964 0.4910'.split(),
+    ('MoEGP 固定配置基线', '0.4454'): '0.5146 0.4570 0.3516 0.4584'.split(), ('BiMSGP', '0.4708'): '0.5566 0.4300 0.4003 0.4963'.split(),
+    ('BiMSGP同协议适配', '0.470781'): '0.556618 0.429968 0.400287 0.496251'.split(), ('DNAwhisper 适配版', '0.35484'): '0.37149 0.31018 0.33531 0.40239'.split(),
+    ('RR-BLUP', '0.4599'): '0.4949 0.4938 0.4040 0.4468'.split(), ('同折 RR-BLUP 对照', '0.4528'): '0.4788 0.4826 0.3937 0.4561'.split(),
+    ('Gaussian kernel ridge', '0.5025'): '0.5475 0.4942 0.4428 0.5254'.split(), ('加性＋RBF kernel ridge', '0.5092'): '0.5408 0.4960 0.4598 0.5403'.split(),
+    ('单环境加性＋RBF', '0.50923'): '0.54081 0.49600 0.45979 0.54033'.split(), ('单环境加性＋RBF 核岭', '0.5092'): '0.5408 0.4960 0.4598 0.5403'.split(),
+    ('四独立 MSE TabM', '0.508190043'): '0.574825 0.481689 0.450379 0.525867'.split(), ('四独立分位数 TabM', '0.518829309'): '0.588633 0.487916 0.463581 0.535188'.split(),
+    ('Huber ICM', '0.52175'): '0.573227 0.512376 0.466467 0.534911'.split(), ('分位数 TabM–Huber 固定等权融合', '0.526506031'): '0.587756 0.506038 0.470057 0.542173'.split(),
+    ('预固定w=0.5 TabM–ICM融合（已评）', '0.521055'): '0.580605 0.503036 0.463832 0.536747'.split(), ('预固定0.5融合', '0.521055'): '0.580605 0.503036 0.463832 0.536747'.split(),
+}
+
+
+def unified_sota_records():
+    """2026-11-15 统一协议 SOTA 外层：数字一律取各运行 summary.json。"""
+    records = []
+    for run, rel, key, name, family, priority, role, note in [
+            ('classical_baselines_final_20261115', 'summary.json', 'svr', 'SVR（种子 42）', 'SVR', 18, '经典基线', '单种子 42；RBF 核。'),
+            ('classical_baselines_final_20261115', 'summary.json', 'rf', 'Random Forest', 'Random Forest', 19, '经典基线', None),
+            ('classical_baselines_final_20261115', 'summary.json', 'xgb', 'XGBoost', 'XGBoost', 20, '经典基线', None),
+            ('classical_baselines_final_20261115', 'summary.json', 'lgbm', 'LightGBM', 'LightGBM', 21, '经典基线', None),
+            ('wheatgp_unified_outer_20261115', 'summary.json', None, 'WheatGP 统一适配（双种子）', 'WheatGP', 10, 'SOTA 公开模型', None),
+            ('deepgs_final_20261115', 'summary.json', None, 'DeepGS 同协议适配', 'DeepGS', 11, 'SOTA 公开模型', None),
+            ('gsformer_nsa_outer_20261115', 'summary.json', None, 'Gsformer NSA（稀疏注意力）', 'Gsformer', 12, 'SOTA 公开模型', '原始标记零填充至 1440（20×72 token）；论文输入为 SNP/PC。'),
+            ('moegp_unified_20261115', 'test/summary.json', None, 'MoEGP 统一适配（外层）', 'MoEGP', 13, 'SOTA 公开模型', None),
+            ('mtcro_unified_outer_20261115', 'summary.json', None, 'MtCro 同协议适配', 'MtCro', 14, 'SOTA 公开模型', '原始标记；作者模板用 250 PC。'),
+            ('ragp_outer_20261115', 'summary.json', None, 'RAGP 同协议适配（外层）', 'RAGP', 15, 'SOTA 公开模型', '预测尺度未校准（预测 SD≈40–101，真值≈1）；RMSE/MAE 按原值保留，不与他行误差直接比较。'),
+            ('gsformer_csa_outer_20261115', 'summary.json', None, 'Gsformer CSA（CNN-自注意力）', 'Gsformer', 16, 'SOTA 公开模型', '原始标记零填充至 1280（32×40 块）。'),
+            ('soydngp_final_20261115', 'summary.json', None, 'SoyDNGP 同协议适配', 'SoyDNGP', 17, 'SOTA 公开模型', '预测偏离表型尺度（宏 RMSE≈12.5）；按原值保留，PCC 近 0。')]:
+        j = json.loads((ROOT / 'results' / run / rel).read_text())
+        m = j['models'][key] if key else j
+        env = m['per_environment']
+        pcc = lambda v: v['mean'] if isinstance(v, dict) else v
+        records.append(dict(name=name, stage='统一协议外层', pcc=f'{m["macro"]["pcc"]:.6f}',
+                            rmse=f'{m["macro"]["rmse"]:.6f}', mae=f'{m["macro"]["mae"]:.6f}',
+                            env=[f'{pcc(env[e]["pcc"]):.6f}' for e in ['1', '2', '4', '5']],
+                            source=f'results/{run}/{rel}（2026-11-15）', link=f'../results/{run}/{rel}',
+                            role=role, priority=priority, primary=False, note=note))
+    for name, family, priority, status, note in [
+            ('DNNGP 同协议适配', 'DNNGP', 26, '运行中', '官方训练器运行进行中（约 6–8 小时）；暂无外层结果，完成后重建纳入，不编造数字。'),
+            ('PNNGS（待复现）', 'PNNGS', 27, '待复现', '公开实现与论文架构不符（WS4 核查）；无同协议结果。'),
+            ('MDNN（待复现）', 'MDNN', 28, '待复现', '仓库作者归属未确认、无数据与依赖说明（WS4 核查）；无同协议结果。'),
+            ('CWAGS（待复现）', 'CWAGS', 29, '待复现', '未找到作者实现；论文报告 Wheat599 四环境平均 PCC 0.5368（原文划分，非本协议，不参与排名）。')]:
+        records.append(dict(name=name, stage='统一协议外层', pcc='—', rmse='—', mae='—', env=['—'] * 4,
+                            source='状态行：无已完成外层结果', link='../ref/index.html',
+                            role='SOTA 公开模型', priority=priority, primary=False, note=note, status=status))
+    return records
+
+
 def comparison_records(systems):
     records = []
     current_source = '已核对统一协议 · 分位数最终评价'
@@ -344,6 +433,7 @@ def comparison_records(systems):
                             source=source, link='methods/MULPHE_UNIFIED.md' if 'Mul-Phe' in name else 'methods/QUANTILE_TABM_FINAL.md',
                             role='主候选' if index == 0 else '强参照' if index < 3 else '公开模型',
                             priority=(0 if index == 0 else index if index < 3 else 3 if '三内折选配置' in name and '标量融合' in name else 4 if '公开默认配置' in name and '标量融合' in name else 90 + index), primary=True))
+    records.extend(unified_sota_records())
     comparison = (ROOT/'docs/MODEL_COMPARISON.md').read_text().split('## 全模型总对比表', 1)[1].split('\n## ', 1)[0]
     source_ids = {block.split('\n',1)[0]: f'#run-{i}' for i, block in enumerate(
         re.split(r'^## ', (ROOT/'docs/RESULTS.md').read_text(), flags=re.M)[1:])}
@@ -366,19 +456,26 @@ def comparison_records(systems):
         priority = 100 + public.index(family) if family in public else 500
         # Give each published comparator one visible representative before its historical variants.
         if family in public and family not in representatives and not ('异常' in stage or '重建' in stage):
-            priority = 15 + public.index(family)
+            priority = 40 + public.index(family)
             representatives.add(family)
-        records.append(dict(name=name, stage=stage, pcc=pcc, rmse=rmse, mae=mae, env=['—']*4,
+        records.append(dict(name=name, stage=stage, pcc=pcc, rmse=rmse, mae=mae,
+                            env=LEGACY_ENV.get((name, pcc), ['—']*4),
                             source=source, link=source_ids.get(source, link), role=role,
                             priority=priority, primary=False))
     records.sort(key=lambda row: row['priority'])
     for i, record in enumerate(records):
         record['id'] = i
         record['family'] = model_family(record['name'], record['source'])
-        record['status'] = '指标无定义' if '无定义' in record['pcc'] else '有记录'
+        record['status'] = record.get('status') or ('指标无定义' if '无定义' in record['pcc'] else '有记录')
+        record.setdefault('note', None)
+        label, url = (CROSSA_2010 if record['name'] in KERNEL_RIDGE_NAMES
+                      else SOTA_META.get(record['family'], ('本项目', None)))
+        record['journal'], record['journal_url'] = label, url
         record['values'] = {}
         for key in ['pcc','rmse','mae']:
             value = record[key].replace('−','-')
+            record['values'][key] = float(value) if re.fullmatch(r'[+-]?\d+(?:\.\d+)?', value) else None
+        for key, value in zip(['env1','env2','env3','env4'], record['env']):
             record['values'][key] = float(value) if re.fullmatch(r'[+-]?\d+(?:\.\d+)?', value) else None
     return records
 
@@ -386,8 +483,9 @@ def comparison_records(systems):
 def result_workbench(systems):
     records = comparison_records(systems)
     headers = [('priority','默认序'),('name','模型 / 完整系统'),('role','类别'),('family','架构家族'),
-               ('stage','评价口径'),('pcc','PCC ↑'),('rmse','RMSE ↓'),('mae','MAE ↓'),
-               ('status','状态'),('source','记录来源')]
+               ('stage','评价口径'),('journal','期刊 / 年份'),('pcc','PCC ↑'),('rmse','RMSE ↓'),('mae','MAE ↓'),
+               ('env1','Env1 PCC ↑'),('env2','Env2 PCC ↑'),('env3','Env3 PCC ↑'),('env4','Env4 PCC ↑'),
+               ('status','状态')]
     headings = ''.join(f'<th scope="col" data-key="{key}"' + (' aria-sort="ascending"' if key == 'priority' else '') +
                        f'><button type="button" commandfor="model-table" command="--sort" data-sort="{key}">{label}<span class="sort-icon" aria-hidden="true"></span></button></th>' for key,label in headers)
     rows = []
@@ -396,9 +494,14 @@ def result_workbench(systems):
         bar = f'<span class="mini-bar" aria-hidden="true"><i style="width:{max(0,number)*100}%"></i></span>' if number is not None else ''
         row = f'<tr data-record="{record["id"]}"><td>{record["id"]+1:03}</td><td><button type="button" class="model-button" data-model="{record["id"]}">{esc(record["name"])}</button></td>'
         row += f'<td><span class="badge {"candidate" if record["role"]=="主候选" else ""}">{esc(record["role"])}</span></td>'
-        row += f'<td>{esc(record["family"])}</td><td>{esc(record["stage"])}</td><td class="numeric"><span class="metric-cell">{bar}{esc(record["pcc"])}</span></td>'
+        row += f'<td>{esc(record["family"])}</td><td>{esc(record["stage"])}</td>'
+        journal = (f'<a href="{esc(record["journal_url"])}" title="来源论文（ref/ 已核验）">{esc(record["journal"])}</a>'
+                   if record.get('journal_url') else f'<span class="muted">{esc(record["journal"])}</span>')
+        row += f'<td class="journal">{journal}</td>'
+        row += f'<td class="numeric"><span class="metric-cell">{bar}{esc(record["pcc"])}</span></td>'
         row += ''.join(f'<td class="numeric">{esc(record[key])}</td>' for key in ['rmse','mae'])
-        row += f'<td>{esc(record["status"])}</td><td><a class="source-label" href="{esc(record["link"])}" title="{esc(record["source"])}">{esc(record["source"])}</a></td></tr>'
+        row += ''.join(f'<td class="numeric">{esc(value)}</td>' if value != '—' else '<td class="numeric muted">—</td>' for value in record['env'])
+        row += f'<td>{esc(record["status"])}</td></tr>'
         rows.append(row)
     options = lambda key: '<option value="">全部</option>' + ''.join(f'<option>{esc(value)}</option>' for value in dict.fromkeys(r[key] for r in records))
     data = json.dumps({'records':records, 'architectures':ARCHITECTURES}, ensure_ascii=False).replace('<','\\u003c')
@@ -413,11 +516,11 @@ def result_workbench(systems):
 <label class="range">PCC 上限<input id="pcc-max" type="number" min="-1" max="1" step="0.01" placeholder="不限"></label>
 <label>每页<select id="page-size"><option>25</option><option>50</option><option>100</option><option value="0">全部</option></select></label>
 </div>
-<div class="table-wrapper result-grid" tabindex="0" role="region" aria-labelledby="model-table-caption"><table id="model-table"><caption id="model-table-caption">{len(records)} 条系统记录 · 每行保留评价口径与来源；同一模型的不同运行分别展示</caption><thead><tr>{headings}</tr></thead><tbody>{''.join(rows)}</tbody></table></div>
+<div class="table-wrapper result-grid" tabindex="0" role="region" aria-labelledby="model-table-caption"><table id="model-table"><caption id="model-table-caption">{len(records)} 条系统记录 · Env1–4 为折均 PCC（原表型列 1、2、4、5）；— 表示该汇总行未记录该指标</caption><thead><tr>{headings}</tr></thead><tbody>{''.join(rows)}</tbody></table></div>
 <div id="model-empty" class="empty-state" hidden>没有匹配记录，请调整筛选条件。</div>
 <div class="table-status"><span id="model-count" role="status">{len(records)} 条记录</span><div class="pagination"><button id="reset-models" type="button">恢复默认</button><button id="export-models" type="button">导出筛选结果 CSV</button><button id="previous-page" type="button">上一页</button><span id="page-number"></span><button id="next-page" type="button">下一页</button></div></div>
-<p class="muted" style="font-size:.8rem">开发、外层、历史重建与种子指标均值保留原口径。公开模型是本项目的适配结果；请按评价口径筛选后比较。无定义与缺失指标保留原文字，不当作 0。筛选和排序不改变模型选择。</p>
-<aside id="model-inspector" class="inspector" aria-labelledby="inspector-title"><div class="inspector-heading"><div><span id="inspector-family" class="tag"></span><h3 id="inspector-title">固定等权分位数–Huber 融合</h3></div><a id="inspector-doc" href="#best">查看完整架构</a></div><div id="inspector-metrics" class="inspector-metrics"></div><div id="inspector-flow" class="flow-strip"></div><p id="inspector-description"></p><p id="inspector-source" class="muted"></p></aside>
+<p class="muted" style="font-size:.8rem">期刊/年份经一手来源核验（Crossref、NeurIPS 官方页、Europe PMC；书目见 <a href="../ref/index.html">ref/</a>）。公开模型是本项目的同协议适配，不是论文原结果；SoyDNGP/RAGP 预测尺度未校准，误差按原值保留。开发、外层、历史重建与种子指标均值保留原口径，请按评价口径筛选后比较。无定义与缺失指标保留原文字，不当作 0。筛选和排序不改变模型选择。</p>
+<aside id="model-inspector" class="inspector" aria-labelledby="inspector-title"><div class="inspector-heading"><div><span id="inspector-family" class="tag"></span><h3 id="inspector-title">固定等权分位数–Huber 融合</h3></div><a id="inspector-doc" href="#best">查看完整架构</a></div><div id="inspector-metrics" class="inspector-metrics"></div><p id="inspector-journal" class="muted"></p><div id="inspector-flow" class="flow-strip"></div><p id="inspector-description"></p><p id="inspector-note" class="muted"></p><p id="inspector-source" class="muted"></p></aside>
 <script id="model-data" type="application/json">{data}</script></section>'''
 
 
@@ -510,11 +613,11 @@ def build():
                    ''.join(f'<td>{env[e]["pcc"]:.6f}</td>' for e in ['1','2','4','5'])+'</tr>' for name,values,env in systems)
     bars = ''.join(f'<div class="barrow"><span>{esc(name)}</span><div class="track"><div class="bar" style="width:{values["pcc"]*100:.6f}%"></div></div><strong>{values["pcc"]:.6f}</strong></div>' for name,values,_ in systems)
     head = '''<header><nav><a href="../README.md">项目说明</a><a href="../ref/index.html">参考文献</a><a href="../results/index.html">运行目录</a><a href="#comparison">模型总表</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a></nav>
-<p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-13</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
+<p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-15</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
     body = head + result_workbench(systems) + '''<details class="legacy-overview"><summary>已核对统一协议：完整指标与来源</summary><section aria-labelledby="overview"><h2 id="overview">统一协议下的结果</h2><div class="grid">
 <article class="card best"><span class="tag">当前固定融合 · 折均宏 PCC</span><div class="big">0.526506</div><p>相对 Huber ICM 增加 0.004761；是项目内描述性差值。</p></article>
 <article class="card"><span class="tag">训练与评价</span><h3>10 外折 × 3 内折</h3><p>神经模型使用种子 42、2026，先平均预测再评分。所有预处理和选择限于拟合集及内层验证集。</p></article>
-<article class="card"><span class="tag">最新完成 · Mul-PheG2P</span><h3>0.438225 / 0.443596</h3><p>分别为调优与默认标量融合。1,920 开发单元、320 外层重拟合，0 运行失败。</p></article></div>
+<article class="card"><span class="tag">最新完成 · 统一 SOTA 基线（2026-11-15）</span><h3>12 项外层 · 0 失败</h3><p>经典 SVR/RF/XGBoost/LightGBM 与 DeepGS、SoyDNGP、Gsformer CSA/NSA、MoEGP、MtCro、RAGP、WheatGP 统一适配；逐环境指标与来源期刊见总表。DNNGP 运行中。</p></article></div>
 <p>主指标是 40 个环境–外折 PCC 等权平均；折均与合并 OOF 不同。外层划分已多轮用于研究，不是新的独立验证，不计算独立折 p 值或置信区间，也不根据本页重选融合权重。不同预算的完整系统比较不单独归因于架构。</p>
 <figure>''' + bars + '''<figcaption><b>图 2 · 固定融合的折均宏 PCC 高于本页已核对的强参照及完整 Mul-PheG2P 适配。</b>n = 599，四环境、十外折；横条从 0 起、满宽为 PCC = 1，无误差条。来源：2026-11-06 分位数最终汇总与 2026-11-13 Mul-PheG2P 汇总；不是文献成绩排名。确切值见下表。</figcaption></figure>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="统一协议指标"><table><caption>折均指标；Env1–4 对应原表型列 1、2、4、5</caption><thead><tr><th scope="col">完整系统</th><th scope="col">PCC ↑</th><th scope="col">RMSE ↓</th><th scope="col">MAE ↓</th><th scope="col">Env1 PCC</th><th scope="col">Env2 PCC</th><th scope="col">Env3 PCC</th><th scope="col">Env4 PCC</th></tr></thead><tbody>''' + rows + '''</tbody></table></div>
@@ -576,7 +679,8 @@ def build():
         title = next((s.lstrip('# ') for s in content.splitlines() if s.startswith('# ')), path.stem)
         body += f'<details class="architecture-item"><summary>{esc(title)}</summary><div><p><a href="{esc(path.relative_to(ROOT/"docs"))}">原始说明</a></p>{markdown(content, path.parent)}</div></details>'
     body += '</section></details><section><h2>证据版本</h2><p>可视化不重新评分，不重新训练。主图从 JSON 直接取数；历史全文与方案从 Markdown 生成。下列 SHA-256 指向本次生成所用内容。</p><ul>'
-    for path in [qpath,mpath,ROOT/'docs/RESULTS.md']:
+    sota_paths = [ROOT / r['link'][3:] for r in unified_sota_records() if r['pcc'] != '—']
+    for path in [qpath,mpath,ROOT/'docs/RESULTS.md'] + sota_paths:
         body += f'<li>{esc(path.relative_to(ROOT))}<br><code>{hashlib.sha256(path.read_bytes()).hexdigest()}</code></li>'
     body += '</ul></section></main>'
     page('Wheat599 · 模型结果与架构',body,ROOT/'docs/models.html', CSS, JS)
