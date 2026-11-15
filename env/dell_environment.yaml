@@ -2,7 +2,7 @@
 # 2026-11-13；仅准备环境，不新增研究运行。
 ssh_alias: dell
 proxy_jump: omen
-host: 10.88.103.184
+host: 10.88.103.185
 user: dell
 allowed_root: /home/dell/mnt/data/projects/intern/active/pangjy
 repository: /home/dell/mnt/data/projects/intern/active/pangjy/Wheat599-research
