@@ -1,0 +1,21 @@
+{
+  "phase": "preflight only; no formal fits started",
+  "status": "passed after cache-path correction",
+  "loss_and_backward_check": "Passed at tolerance 1e-3 for both arms; dropout disabled only in this numerical preflight",
+  "actual_optimizer_check": "Both arms completed fixed 2-epoch and 10-epoch runs with the proposed training dropout",
+  "cache_note": "Partially warmed disk cache; these are not guaranteed cold-start compilation times",
+  "shared_compile_and_first_backward_seconds": 11.408339809990139,
+  "independent_compile_and_first_backward_seconds": 4.955526449004537,
+  "shared_two_epoch_seconds_including_new_graph_warmup": 6.274532534007449,
+  "independent_two_epoch_seconds_including_new_graph_warmup": 4.212468154000817,
+  "shared_warm_ten_epoch_seconds": 0.1161038739955984,
+  "independent_warm_ten_epoch_seconds": 0.10281979899446014,
+  "failures": [
+    {
+      "error": "torch._inductor.exc.InductorError: CppCompileError",
+      "cause": "Relative TORCHINDUCTOR_CACHE_DIR resolved incorrectly when the C++ builder changed its working directory",
+      "evidence": "cc1plus could not find .state/shared_basis_torchinductor/gu/cgug57jxhkmr532tgcrrpvuqrldz7ghcb2mz3s7wdqaaa2xmn4ln.main.cpp",
+      "correction": "Use the absolute project-local cache path; no model or training change"
+    }
+  ]
+}

@@ -1,0 +1,83 @@
+{
+  "scope": "Both shared_basis and independent_basis development runs; no outer test evaluation",
+  "verified_fits_per_arm": 1440,
+  "failures_per_arm": 0,
+  "verified_config_selections_per_arm": 40,
+  "verified_prediction_files_per_arm": 30,
+  "checks": "Complete trajectory key coverage; material shapes and finite predictions; seed averaging before scoring; configuration choices and fold/macro metrics recomputed once",
+  "metric_tolerance": 1e-6,
+  "metric_order": ["pcc", "rmse", "mae"],
+  "environment_order": ["1", "2", "4", "5"],
+  "shared_basis": {
+    "macro": [0.4910954623879439, 0.8716027816244329, 0.6729038936974292],
+    "per_environment": [
+      [0.5659133000697474, 0.8263941015508782, 0.6508419051242659],
+      [0.48617492221560477, 0.8749623956893329, 0.6652985366769446],
+      [0.41132785601261457, 0.9146855202782544, 0.705988644633224],
+      [0.5009657712538079, 0.8703691089792664, 0.6694864883552818]
+    ],
+    "single_seed_macro_at_ensemble_selected_configs": [
+      [0.4876482223806956, 0.8744071923979222, 0.6754071928964106],
+      [0.48912375998135926, 0.8729213646523748, 0.67382085083053]
+    ],
+    "selected_config_counts_0_through_5": [6, 8, 7, 7, 3, 9],
+    "parameters_by_rank_2_4_8": [1382270, 1385404, 1391672],
+    "selected_best_epoch_median": 35,
+    "selected_checkpoint_diagnostics": {
+      "coefficient_rms": {"median": 0.002533141407184303, "min": 0.000878269609529525, "max": 0.026104940101504326},
+      "delta_rms": {"median": 0.00011319760596961714, "min": 0.00003250801455578767, "max": 0.00154314620885998},
+      "delta_relative_to_shared_weight_rms": {"median": 0.0054576622873200266, "min": 0.0013625010416202033, "max": 0.06677863033854231}
+    }
+  },
+  "independent_basis": {
+    "macro": [0.49097605024102275, 0.8717288637788101, 0.6729565302137949],
+    "per_environment": [
+      [0.5656722549418027, 0.82662449971332, 0.6512499346254642],
+      [0.48644589672482913, 0.8747807834553466, 0.6649664187427466],
+      [0.41069793534951204, 0.914923703201082, 0.7059707512239525],
+      [0.5010881139479475, 0.870586468745492, 0.6696390162630157]
+    ],
+    "single_seed_macro_at_ensemble_selected_configs": [
+      [0.4878554618491287, 0.8743089212359069, 0.6753933021230396],
+      [0.4890189004618611, 0.8729542669166269, 0.6737709910226081]
+    ],
+    "selected_config_counts_0_through_5": [9, 8, 6, 5, 5, 7],
+    "parameters_by_rank_2_4_8": [1477376, 1575616, 1772096],
+    "selected_best_epoch_median": 34,
+    "selected_checkpoint_diagnostics": {
+      "delta_rms": {"median": 0.0006797980749979615, "min": 0.0003054564876947552, "max": 0.002155728405341506},
+      "delta_relative_to_shared_weight_rms": {"median": 0.03289040050003844, "min": 0.015792148057566412, "max": 0.09073069604569133}
+    }
+  },
+  "historical_default_raw_config_0": {
+    "source": "results/quantile_tabm_development_20261106_v2/predictions_<fold>_<inner>.npz; c0, seeds 42/2026",
+    "macro": [0.48967435564202744, 0.8722388728482061, 0.6732222872614192],
+    "parameters": 1379136
+  },
+  "shared_minus_independent": {
+    "macro_delta": [0.0001194121469208831, -0.0001260821543770274, -0.00005263651636566724],
+    "pcc_fold_wins": 7,
+    "per_fold_pcc_delta": [0.00029261419948824197, -0.00023254457639024229, -0.0002748253880428403, -0.00018379773245194575, 0.000004599322600551403, 0.00031154430687374557, 0.000048166477187472356, 0.0010835159858536697, 0.00011797869788966742, 0.000026870176200510798],
+    "matching_selected_configurations": 24
+  },
+  "shared_minus_default_raw": {
+    "macro_delta": [0.0014211067459161911, -0.0006360912237728389, -0.000318393563990213],
+    "pcc_fold_wins": 10
+  },
+  "independent_minus_default_raw": {
+    "macro_delta": [0.001301694598995308, -0.0005100090693958114, -0.0002657570476245458],
+    "pcc_fold_wins": 10
+  },
+  "shared_minus_eight_configuration_raw": {
+    "macro_delta": [-0.0034699697231125814, 0.000361152037046486, 0.00019384952713344394],
+    "pcc_fold_wins": 0
+  },
+  "independent_minus_eight_configuration_raw": {
+    "macro_delta": [-0.0035893818700334645, 0.00048723419142351345, 0.0002464860434991112],
+    "pcc_fold_wins": 0
+  },
+  "seed_order": [42, 2026],
+  "diagnostic_record_count_per_arm": 240,
+  "interpretation": "Shared bases used fewer parameters for nearly the same development accuracy as independent changes, but neither beat the existing tuned raw model. The shared update was active, small in weight norm, and not identically zero.",
+  "limits": "Development scores include selection. Both new arms search six rank/penalty settings on one fixed architecture; the main raw reference searches eight architectures/recipes, and the matching raw architecture is a historical eager run. Compiled dropout RNG can differ from eager execution, so the small improvement over matching-architecture raw is not isolated evidence for connection changes. Independent changes are rank R before centering; centering their actual matrices can increase the final per-member rank. No biological mechanism or independent-test gain is established."
+}

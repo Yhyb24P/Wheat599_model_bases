@@ -1,0 +1,22 @@
+{
+  "device": "local NVIDIA GeForce RTX 5090 D, WSL2",
+  "logical_cpus": 24,
+  "cuda_processes_per_arm": 1,
+  "gpu_memory_fraction_per_process": 0.4,
+  "training": "torch.compile(basis_loss, mode=reduce-overhead, dynamic=True); pinball plus actual-weight penalty; original float32 precision",
+  "inductor_cache": "Absolute project-local .state/shared_basis_torchinductor; two compilation threads",
+  "shared_seconds": 1441.9521537010005,
+  "independent_seconds": 1478.9630953630112,
+  "sampled_gpu_power_watts_range": [307.50, 346.42],
+  "sampled_gpu_utilization_percent_range": [73, 78],
+  "maximum_observed_gpu_memory_mib": 22299,
+  "gpu_total_memory_mib": 32607,
+  "gpu_memory_after_completion_mib": 170,
+  "oom_or_observed_vram_overflow": false,
+  "memory_note": "CUDA graphs retain prior-fit model parameters; this fixed 1440-fit-per-arm run completed within the allocator caps. Increasing the run size requires reassessing this retention. Details and the isolated unsuccessful partial-reset attempt are in memory_observation.json.",
+  "timing_note": "Wall times include first-use compilation and validation. Power observations are samples, not a controlled compiler comparison or proof of full theoretical GPU utilization; the workload also differs from the Ising study.",
+  "preflight": "compile_preflight.json retains the initial relative-cache-path failure and successful loss/backward/optimizer checks",
+  "source_snapshot": "source.tar.gz",
+  "source_snapshot_sha256": "4430538574a463626c584f63626f462276c2d9af03f5d8bcaf23a10feb4bcd3b",
+  "affected_tests_passed": 26
+}

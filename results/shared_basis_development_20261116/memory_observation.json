@@ -1,0 +1,17 @@
+{
+  "scope": "isolated short fits; formal experiments unchanged",
+  "observation": "CUDA graph caches retain roughly one prior model's parameters per fit",
+  "repeated_two_epoch_shared_fits_allocated_mib": [18.7075, 19.2246, 24.9404, 30.2368, 35.5332, 41.2842],
+  "isolated_cleanup_attempt": {
+    "function": "torch._inductor.cudagraph_trees.reset_cudagraph_trees",
+    "first_fit_after_cleanup_allocated_mib": 8.125,
+    "next_fit": "failed: AssertionError: Running CUDAGraph after shutdown",
+    "interpretation": "Resetting graph trees alone invalidates cached compiled callables; do not insert this partial cleanup into running fits"
+  },
+  "formal_observations": [
+    {"approximately_completed_per_arm": 180, "gpu_used_mib": 5027},
+    {"approximately_completed_per_arm": 382, "gpu_used_mib": 7875},
+    {"approximately_completed_per_arm": 465, "gpu_used_mib": 9071}
+  ],
+  "decision": "Continue the fixed 1440 fits per arm under the existing 0.4 per-process allocator caps; sampled growth projects roughly 22-24 GB total, below device capacity. Continue monitoring; no mid-run solver or configuration change, no repeated formal fits."
+}
