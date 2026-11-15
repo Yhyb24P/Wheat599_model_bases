@@ -1,8 +1,11 @@
 """Projected tree-tensor functions and fit-only local response regularization."""
+import time
 import numpy as np
 import torch
 from scipy.sparse.csgraph import minimum_spanning_tree
 from torch import nn
+
+from wheat599.metrics import pcc
 
 
 def geometry(fit_x):
@@ -58,6 +61,55 @@ def gram(core, left, right):
     return torch.einsum('abc,nbd,nce,fde->naf', core, left, right, core)
 
 
+def data_message(core, left, right):
+    l0, l1, l2 = left
+    r0, r1, r2 = right
+    return (bilinear(core, l0, r0),
+            bilinear(core, l1, r0) + bilinear(core, l0, r1),
+            bilinear(core, l2, r0 + r1 + r2) + bilinear(core, l0, r2)
+            + bilinear(core, l1, r1 + r2))
+
+
+def norm_message(core, left, right):
+    l0, l1, l2, ld1, ld2 = left
+    r0, r1, r2, rd1, rd2 = right
+    la, ra = l0 + l1 + l2, r0 + r1 + r2
+    return (gram(core, l0, r0),
+            gram(core, l1, r0) + gram(core, l0, r1),
+            gram(core, l2, ra) + gram(core, l0, r2) + gram(core, l1, r1 + r2),
+            gram(core, ld1, ra) + gram(core, la, rd1),
+            gram(core, ld2, ra) + 2 * gram(core, ld1, rd1) + gram(core, la, rd2))
+
+
+def high_terms(outside, left, right):
+    e0, e1, e2 = outside[:3]
+    l0, l1, l2 = left[:3]
+    r0, r1, r2 = right[:3]
+    return ((e2, l0 + l1 + l2, r0 + r1 + r2),
+            (e0, l2, r0 + r1 + r2), (e0, l0, r2), (e0, l1, r1 + r2),
+            (e1, l1 + l2, r0 + r1 + r2), (e1, l0, r1 + r2))
+
+
+def covariance_product(a, b, c):
+    value = torch.einsum('ad,be,cf->abcdef', a[0], b[0], c[0])
+    size = a.shape[1] * b.shape[1] * c.shape[1]
+    return value.reshape(size, size)
+
+
+def node_norm(outside, left, right, eta):
+    result = sum(covariance_product(*terms) for terms in high_terms(outside, left, right))
+    if eta:
+        ea, la, ra = sum(outside[:3]), sum(left[:3]), sum(right[:3])
+        second = (covariance_product(outside[4], la, ra)
+                  + covariance_product(ea, left[4], ra)
+                  + covariance_product(ea, la, right[4])
+                  + 2 * covariance_product(outside[3], left[3], ra)
+                  + 2 * covariance_product(outside[3], la, right[3])
+                  + 2 * covariance_product(ea, left[3], right[3]))
+        result = result + eta * second
+    return result
+
+
 class TreeTensor(nn.Module):
     """Full additive path plus the degree-at-least-two part of a tree function."""
     def __init__(self, children, rank=4, seed=42):
@@ -102,14 +154,7 @@ class TreeTensor(nn.Module):
             return constant, linear, torch.zeros_like(constant)
 
         for i, (left, right) in enumerate(self.nodes):
-            l0, l1, l2 = take(left)
-            r0, r1, r2 = take(right)
-            t = self.cores[i]
-            c0 = bilinear(t, l0, r0)
-            c1 = bilinear(t, l1, r0) + bilinear(t, l0, r1)
-            c2 = (bilinear(t, l2, r0 + r1 + r2) + bilinear(t, l0, r2)
-                  + bilinear(t, l1, r1 + r2))
-            values[self.p + i] = c0, c1, c2
+            values[self.p + i] = data_message(self.cores[i], take(left), take(right))
         return values[self.p + len(self.nodes) - 1]
 
     def interaction(self, s):
@@ -129,16 +174,7 @@ class TreeTensor(nn.Module):
             return values.pop(node) if node >= self.p else (leaf0, leaf1, zero, leaf1, zero)
 
         for i, (left, right) in enumerate(self.nodes):
-            l0, l1, l2, ld1, ld2 = take(left)
-            r0, r1, r2, rd1, rd2 = take(right)
-            la, ra = l0 + l1 + l2, r0 + r1 + r2
-            t = self.cores[i]
-            c0 = gram(t, l0, r0)
-            c1 = gram(t, l1, r0) + gram(t, l0, r1)
-            c2 = gram(t, l2, ra) + gram(t, l0, r2) + gram(t, l1, r1 + r2)
-            d1 = gram(t, ld1, ra) + gram(t, la, rd1)
-            d2 = gram(t, ld2, ra) + 2 * gram(t, ld1, rd1) + gram(t, la, rd2)
-            values[self.p + i] = c0, c1, c2, d1, d2
+            values[self.p + i] = norm_message(self.cores[i], take(left), take(right))
         _, _, high, _, second = values[self.p + len(self.nodes) - 1]
         return high[0, 0, 0] + eta * second[0, 0, 0]
 
@@ -151,11 +187,138 @@ class TreeTensor(nn.Module):
 
     @torch.no_grad()
     def orthogonalize(self):
-        for i, t in enumerate(self.cores[:-1]):
-            q, r = torch.linalg.qr(t.flatten(1).T)
-            t.copy_(q.T.reshape_as(t))
-            parent, axis = self.parents[self.p + i]
-            old = self.cores[parent]
-            updated = (torch.einsum('abc,db->adc', old, r) if axis == 1 else
-                       torch.einsum('abc,dc->abd', old, r))
-            old.copy_(updated)
+        for i in range(len(self.cores) - 1):
+            self.orthogonalize_node(i)
+
+    def orthogonalize_node(self, i):
+        t = self.cores[i]
+        q, r = torch.linalg.qr(t.flatten(1).T)
+        t.copy_(q.T.reshape_as(t))
+        parent, axis = self.parents[self.p + i]
+        old = self.cores[parent]
+        updated = (torch.einsum('abc,db->adc', old, r) if axis == 1 else
+                   torch.einsum('abc,dc->abd', old, r))
+        old.copy_(updated)
+
+
+class ALSState:
+    """Cached subtree messages; the current DFS path supplies outside messages."""
+    def __init__(self, model, all_s, edges, target, ridge, interaction, eta):
+        if ridge <= 0 or interaction < 0 or eta < 0:
+            raise ValueError('Require positive additive ridge and nonnegative interaction penalties')
+        self.model, self.s, self.edges, self.target = model, all_s, edges, target
+        self.ridge, self.strength, self.eta = ridge, interaction, eta
+        self.n = len(target)
+        zero = torch.zeros_like(all_s[:, 0])
+        constant = torch.stack((torch.ones_like(zero), zero), 1)
+        empty = torch.zeros_like(constant)
+        self.data = [(constant, torch.stack((zero, all_s[:, j]), 1), empty) for j in range(model.p)]
+        leaf0 = torch.diag(model.beta.new_tensor([1., 0.]))[None]
+        leaf1 = torch.diag(model.beta.new_tensor([0., 1.]))[None]
+        leafz = torch.zeros_like(leaf0)
+        self.norms = [(leaf0, leaf1, leafz, leaf1, leafz)] * model.p
+        for i, (left, right) in enumerate(model.nodes):
+            self.data.append(data_message(model.cores[i], self.data[left], self.data[right]))
+            self.norms.append(norm_message(model.cores[i], self.norms[left], self.norms[right]))
+        one = all_s.new_ones(len(all_s), 1)
+        self.root_data = (one, torch.zeros_like(one), torch.zeros_like(one))
+        one = all_s.new_ones(1, 1, 1)
+        zero = torch.zeros_like(one)
+        self.root_norm = (one, zero, zero, zero, zero)
+        self.x_mean = all_s[:self.n].mean(0)
+        self.centered = all_s[:self.n] - self.x_mean
+        self.factor = torch.linalg.cholesky(
+            self.centered @ self.centered.T
+            + self.n * ridge * torch.eye(self.n, dtype=all_s.dtype, device=all_s.device))
+        self.additive_update()
+
+    def additive_update(self):
+        y = self.target - self.data[-1][2][:self.n, 0]
+        mean = y.mean()
+        weights = torch.cholesky_solve((y - mean)[:, None], self.factor)[:, 0]
+        self.model.beta.copy_(self.centered.T @ weights)
+        self.model.intercept.copy_(mean - self.x_mean @ self.model.beta)
+
+    def system(self, i, outside_data, outside_norm):
+        left, right = self.model.nodes[i]
+        phi = sum(torch.einsum('na,nb,nc->nabc', *parts).flatten(1)
+                  for parts in high_terms(outside_data, self.data[left], self.data[right]))
+        fit = phi[:self.n]
+        difference = torch.cat((phi[self.edges[:, 0]] - phi[self.n:],
+                                phi[self.edges[:, 1]] - phi[self.n:]))
+        regularizer = node_norm(outside_norm, self.norms[left], self.norms[right], self.eta)
+        q = fit.T @ fit / self.n + self.strength * (
+            regularizer + difference.T @ difference / (2 * len(self.edges)))
+        residual = self.target - self.model.intercept - self.s[:self.n] @ self.model.beta
+        return (q + q.T) / 2, fit.T @ residual / self.n
+
+    @torch.no_grad()
+    def sweep(self):
+        model = self.model
+
+        def visit(i, outside_data, outside_norm):
+            q, b = self.system(i, outside_data, outside_norm)
+            model.cores[i].copy_((torch.linalg.pinv(q, hermitian=True) @ b).reshape_as(model.cores[i]))
+            left, right = model.nodes[i]
+            for child, sibling, permutation in ((left, right, (1, 0, 2)),
+                                                 (right, left, (2, 0, 1))):
+                if child >= model.p:
+                    t = model.cores[i].permute(permutation)
+                    visit(child - model.p,
+                          data_message(t, outside_data, self.data[sibling]),
+                          norm_message(t, outside_norm, self.norms[sibling]))
+            if model.p + i in model.parents:
+                model.orthogonalize_node(i)
+            self.data[model.p + i] = data_message(model.cores[i], self.data[left], self.data[right])
+            self.norms[model.p + i] = norm_message(model.cores[i], self.norms[left], self.norms[right])
+
+        visit(len(model.cores) - 1, self.root_data, self.root_norm)
+        self.additive_update()
+
+    def objective(self):
+        h = self.data[-1][2][:, 0]
+        child = h[self.n:]
+        local = .5 * ((h[self.edges[:, 0]] - child).square()
+                      + (h[self.edges[:, 1]] - child).square()).mean()
+        uniform = self.norms[-1][2][0, 0, 0] + self.eta * self.norms[-1][4][0, 0, 0]
+        residual = self.target - self.model.intercept - self.s[:self.n] @ self.model.beta - h[:self.n]
+        return residual.square().mean() + self.ridge * self.model.beta.square().sum() + self.strength * (uniform + local)
+
+
+@torch.no_grad()
+def train(x_fit, y_fit, x_val, y_val, config, seed, _index, settings, device):
+    start = time.perf_counter()
+    torch.manual_seed(int(seed))
+    children, edges, mixed = geometry(x_fit)
+    model = TreeTensor(children, rank=config['rank'], seed=seed).to(device)
+    all_s = torch.as_tensor(2 * np.vstack((x_fit, mixed)) - 1, dtype=torch.float64, device=device)
+    val_s = torch.as_tensor(2 * x_val - 1, dtype=torch.float64, device=device)
+    graph = torch.as_tensor(edges, device=device)
+    mean, std = float(np.mean(y_fit)), float(np.std(y_fit))
+    if not np.isfinite(std) or std <= 0:
+        raise ValueError('Invalid fit phenotype scale')
+    target = torch.as_tensor((y_fit - mean) / std, dtype=torch.float64, device=device)
+    state = ALSState(model, all_s, graph, target, config['lambda_A'], config['lambda_I'], config['eta'])
+    training = settings['training']
+    best_score, best_sweep, best_prediction = -np.inf, -1, None
+    trace = []
+    for sweep in range(training['max_sweeps'] + 1):
+        if sweep:
+            state.sweep()
+        objective = float(state.objective())
+        val_interaction = model.interaction(val_s)
+        prediction = (model.intercept + val_s @ model.beta + val_interaction).cpu().numpy() * std + mean
+        score = pcc(y_val, prediction)
+        if not np.isfinite(objective) or not np.isfinite(score):
+            raise FloatingPointError('Nonfinite ALS objective or undefined validation PCC')
+        trace.append({'sweep': sweep, 'objective': objective, 'pcc': score,
+                      'interaction_fit_rms': float(state.data[-1][2][:len(target), 0].square().mean().sqrt()),
+                      'interaction_val_rms': float(val_interaction.square().mean().sqrt()),
+                      'seconds': time.perf_counter() - start})
+        if score > best_score + training.get('tie_tolerance', 1e-12):
+            best_score, best_sweep, best_prediction = score, sweep, prediction.copy()
+        elif sweep - best_sweep >= training['patience']:
+            break
+    return best_prediction, dict(best_epoch=best_sweep, epochs_run=sweep, iteration_unit='als_sweep',
+        best_pcc=best_score, parameters=sum(p.numel() for p in model.parameters()),
+        seconds=time.perf_counter() - start, trace=trace)

@@ -1,0 +1,335 @@
+{
+  "scope": "six exploratory fits on one existing validation split, one seed; not a development macro or outer result",
+  "status": "complete",
+  "fold": 0,
+  "inner": 0,
+  "environment": "1",
+  "seed": 42,
+  "configurations": [
+    {
+      "rank": 4,
+      "lambda_A": 1.0,
+      "lambda_I": 0.1,
+      "eta": 0.1
+    },
+    {
+      "rank": 4,
+      "lambda_A": 1.0,
+      "lambda_I": 0.1,
+      "eta": 1.0
+    },
+    {
+      "rank": 4,
+      "lambda_A": 1.0,
+      "lambda_I": 1.0,
+      "eta": 0.1
+    },
+    {
+      "rank": 4,
+      "lambda_A": 1.0,
+      "lambda_I": 1.0,
+      "eta": 1.0
+    },
+    {
+      "rank": 4,
+      "lambda_A": 1.0,
+      "lambda_I": 10.0,
+      "eta": 0.1
+    },
+    {
+      "rank": 4,
+      "lambda_A": 1.0,
+      "lambda_I": 10.0,
+      "eta": 1.0
+    }
+  ],
+  "settings": {
+    "training": {
+      "max_sweeps": 5,
+      "patience": 2,
+      "tie_tolerance": 1e-12
+    }
+  },
+  "device": "cuda",
+  "dtype": "float64",
+  "gpu_memory_fraction": 0.25,
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "source_sha256": "14c7c4d4701836880d7aaa0e70cc2f2e037adde5de36afeed80c1db41a7ff404",
+  "source_snapshot": ".state/tree_tensor_shrinkage_source_20261116.tar.gz",
+  "git_commit": "fca88675c88f2843a23cf4f585078811cb8e0aa3",
+  "fits": [
+    {
+      "index": 0,
+      "config": {
+        "rank": 4,
+        "lambda_A": 1.0,
+        "lambda_I": 0.1,
+        "eta": 0.1
+      },
+      "info": {
+        "best_epoch": 0,
+        "epochs_run": 2,
+        "iteration_unit": "als_sweep",
+        "best_pcc": 0.4767241563486314,
+        "parameters": 50288,
+        "seconds": 11.207861315997434,
+        "trace": [
+          {
+            "sweep": 0,
+            "objective": 0.43725467169358045,
+            "pcc": 0.4767241563486314,
+            "interaction_fit_rms": 0.0015096086211654348,
+            "interaction_val_rms": 0.0014156535346513369,
+            "seconds": 1.587234937993344
+          },
+          {
+            "sweep": 1,
+            "objective": 0.11457175637923883,
+            "pcc": 0.09419475256270503,
+            "interaction_fit_rms": 0.47831015296108165,
+            "interaction_val_rms": 1.7131819373799086,
+            "seconds": 6.448420681990683
+          },
+          {
+            "sweep": 2,
+            "objective": 0.06878412943570306,
+            "pcc": 0.1081994295781351,
+            "interaction_fit_rms": 0.6218211530096611,
+            "interaction_val_rms": 1.8256658370025522,
+            "seconds": 11.207369209994795
+          }
+        ]
+      },
+      "maximum_allocated_mib": 130.69384765625,
+      "maximum_reserved_mib": 148.0
+    },
+    {
+      "index": 1,
+      "config": {
+        "rank": 4,
+        "lambda_A": 1.0,
+        "lambda_I": 0.1,
+        "eta": 1.0
+      },
+      "info": {
+        "best_epoch": 0,
+        "epochs_run": 2,
+        "iteration_unit": "als_sweep",
+        "best_pcc": 0.4767241563486314,
+        "parameters": 50288,
+        "seconds": 10.743398413003888,
+        "trace": [
+          {
+            "sweep": 0,
+            "objective": 0.5529882506743254,
+            "pcc": 0.4767241563486314,
+            "interaction_fit_rms": 0.0015096086211654348,
+            "interaction_val_rms": 0.0014156535346513369,
+            "seconds": 1.228845667996211
+          },
+          {
+            "sweep": 1,
+            "objective": 0.11196640871575685,
+            "pcc": 0.27021936263734,
+            "interaction_fit_rms": 0.4810271102928443,
+            "interaction_val_rms": 0.7608565957857226,
+            "seconds": 5.992882974009262
+          },
+          {
+            "sweep": 2,
+            "objective": 0.06882674856945097,
+            "pcc": 0.0615294950719619,
+            "interaction_fit_rms": 0.6220255790139908,
+            "interaction_val_rms": 8.3133569659484,
+            "seconds": 10.74288679700112
+          }
+        ]
+      },
+      "maximum_allocated_mib": 130.69384765625,
+      "maximum_reserved_mib": 150.0
+    },
+    {
+      "index": 2,
+      "config": {
+        "rank": 4,
+        "lambda_A": 1.0,
+        "lambda_I": 1.0,
+        "eta": 0.1
+      },
+      "info": {
+        "best_epoch": 0,
+        "epochs_run": 2,
+        "iteration_unit": "als_sweep",
+        "best_pcc": 0.4767241563486314,
+        "parameters": 50288,
+        "seconds": 10.726058105006814,
+        "trace": [
+          {
+            "sweep": 0,
+            "objective": 0.5530570330885767,
+            "pcc": 0.4767241563486314,
+            "interaction_fit_rms": 0.0015096086211654348,
+            "interaction_val_rms": 0.0014156535346513369,
+            "seconds": 1.2018765890097711
+          },
+          {
+            "sweep": 1,
+            "objective": 0.20557629904724328,
+            "pcc": 0.32510010413227935,
+            "interaction_fit_rms": 0.35834474290874885,
+            "interaction_val_rms": 0.5059844521048086,
+            "seconds": 5.971018683005241
+          },
+          {
+            "sweep": 2,
+            "objective": 0.1758955518761391,
+            "pcc": 0.1174587754678154,
+            "interaction_fit_rms": 0.4685836240472838,
+            "interaction_val_rms": 2.33022373478837,
+            "seconds": 10.725580678001279
+          }
+        ]
+      },
+      "maximum_allocated_mib": 130.69384765625,
+      "maximum_reserved_mib": 150.0
+    },
+    {
+      "index": 3,
+      "config": {
+        "rank": 4,
+        "lambda_A": 1.0,
+        "lambda_I": 1.0,
+        "eta": 1.0
+      },
+      "info": {
+        "best_epoch": 0,
+        "epochs_run": 2,
+        "iteration_unit": "als_sweep",
+        "best_pcc": 0.4767241563486314,
+        "parameters": 50288,
+        "seconds": 11.00455288500234,
+        "trace": [
+          {
+            "sweep": 0,
+            "objective": 1.710392822896027,
+            "pcc": 0.4767241563486314,
+            "interaction_fit_rms": 0.0015096086211654348,
+            "interaction_val_rms": 0.0014156535346513369,
+            "seconds": 1.2639996560028521
+          },
+          {
+            "sweep": 1,
+            "objective": 0.2124832975189154,
+            "pcc": 0.1823210961195253,
+            "interaction_fit_rms": 0.3507789338634213,
+            "interaction_val_rms": 2.112932445660905,
+            "seconds": 6.121791489000316
+          },
+          {
+            "sweep": 2,
+            "objective": 0.18155861964885656,
+            "pcc": 0.359449427966313,
+            "interaction_fit_rms": 0.4609582659912869,
+            "interaction_val_rms": 0.7002886681237022,
+            "seconds": 11.003993067002739
+          }
+        ]
+      },
+      "maximum_allocated_mib": 244.55126953125,
+      "maximum_reserved_mib": 272.0
+    },
+    {
+      "index": 4,
+      "config": {
+        "rank": 4,
+        "lambda_A": 1.0,
+        "lambda_I": 10.0,
+        "eta": 0.1
+      },
+      "info": {
+        "best_epoch": 0,
+        "epochs_run": 2,
+        "iteration_unit": "als_sweep",
+        "best_pcc": 0.4767241563486314,
+        "parameters": 50288,
+        "seconds": 10.853952381003182,
+        "trace": [
+          {
+            "sweep": 0,
+            "objective": 1.711080647038539,
+            "pcc": 0.4767241563486314,
+            "interaction_fit_rms": 0.0015096086211654348,
+            "interaction_val_rms": 0.0014156535346513369,
+            "seconds": 1.3116105780063663
+          },
+          {
+            "sweep": 1,
+            "objective": 0.34737009824076814,
+            "pcc": 0.34087780309550414,
+            "interaction_fit_rms": 0.16832014978539495,
+            "interaction_val_rms": 0.5236986209622113,
+            "seconds": 6.063892398000462
+          },
+          {
+            "sweep": 2,
+            "objective": 0.3346902123774481,
+            "pcc": 0.21641718989192568,
+            "interaction_fit_rms": 0.22853252884326397,
+            "interaction_val_rms": 1.9372220473547033,
+            "seconds": 10.853457869001431
+          }
+        ]
+      },
+      "maximum_allocated_mib": 235.83984375,
+      "maximum_reserved_mib": 272.0
+    },
+    {
+      "index": 5,
+      "config": {
+        "rank": 4,
+        "lambda_A": 1.0,
+        "lambda_I": 10.0,
+        "eta": 1.0
+      },
+      "info": {
+        "best_epoch": 0,
+        "epochs_run": 2,
+        "iteration_unit": "als_sweep",
+        "best_pcc": 0.4767241563486314,
+        "parameters": 50288,
+        "seconds": 10.795777961000567,
+        "trace": [
+          {
+            "sweep": 0,
+            "objective": 13.284438545113042,
+            "pcc": 0.4767241563486314,
+            "interaction_fit_rms": 0.0015096086211654348,
+            "interaction_val_rms": 0.0014156535346513369,
+            "seconds": 1.2440619460103335
+          },
+          {
+            "sweep": 1,
+            "objective": 0.350332018068078,
+            "pcc": 0.3931707647479732,
+            "interaction_fit_rms": 0.1628023120472934,
+            "interaction_val_rms": 0.30662806014667665,
+            "seconds": 6.035338893008884
+          },
+          {
+            "sweep": 2,
+            "objective": 0.3369062029224004,
+            "pcc": 0.17906817133259184,
+            "interaction_fit_rms": 0.2244717576482369,
+            "interaction_val_rms": 1.0238830837001645,
+            "seconds": 10.795266234999872
+          }
+        ]
+      },
+      "maximum_allocated_mib": 130.69384765625,
+      "maximum_reserved_mib": 272.0
+    }
+  ],
+  "failures": [],
+  "wall_seconds": 65.34064731899707
+}

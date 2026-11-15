@@ -1,0 +1,10 @@
+{
+  "scope": "Six exploratory fits on one existing inner validation split and one seed; not a development macro or outer comparison",
+  "objective": "Fit-standardized MSE + lambda_A * ||beta||^2 + lambda_I * (Omega_uniform(eta) + Gamma_MST_block)",
+  "interaction_rms_units": "Fit phenotype standard deviation units, before inverse target scaling",
+  "original_run_directory": ".state/tree_tensor_shrinkage_pilot_20261116",
+  "summary": "summary.json is an unchanged copy of the original runtime record",
+  "metadata_archive": "raw_metadata.tar.gz retains original .state paths for the pilot, preceding cost fit, and exact source snapshots",
+  "predictions": "Six NPZ prediction files remain in the original local runtime directory; excluded from this export",
+  "formal_outer_evaluations": 0
+}
