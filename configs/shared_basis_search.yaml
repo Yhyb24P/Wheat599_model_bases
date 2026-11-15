@@ -1,0 +1,7 @@
+configurations:
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, basis_rank: 2, basis_penalty: 0.0}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, basis_rank: 2, basis_penalty: 100000.0}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, basis_rank: 4, basis_penalty: 0.0}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, basis_rank: 4, basis_penalty: 100000.0}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, basis_rank: 8, basis_penalty: 0.0}
+  - {n_blocks: 3, d_block: 256, dropout: 0.1, k: 32, learning_rate: 0.0005, weight_decay: 0.0003, basis_rank: 8, basis_penalty: 100000.0}

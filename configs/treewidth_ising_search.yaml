@@ -1,0 +1,5 @@
+configurations:
+  - {spins: 64, width: 64, learning_rate: 0.0005, weight_decay: 0.0003}
+  - {spins: 64, width: 64, learning_rate: 0.0005, weight_decay: 0.01}
+  - {spins: 64, width: 64, learning_rate: 0.002, weight_decay: 0.0003}
+  - {spins: 64, width: 64, learning_rate: 0.002, weight_decay: 0.01}

@@ -76,3 +76,5 @@ results/query_quantile_*/predictions_*.npz
 results/adaptive_anova_*/predictions_*.npz
 
 results/supervised_ising_*/predictions_*.npz
+results/treewidth_ising_*/predictions_*.npz
+results/*_basis_*/predictions_*.npz

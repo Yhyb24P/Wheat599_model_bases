@@ -1,0 +1,25 @@
+{
+  "candidate": "width-64 two-hidden-layer additive MLP control",
+  "summary_candidate_key": "quantile",
+  "evaluation": "development selection only; no outer test predictions",
+  "verified_trajectories": 960,
+  "verified_config_selections": 40,
+  "verified_prediction_files": 30,
+  "prediction_hashes": "predictions.sha256",
+  "provenance_source_hashes_verified": true,
+  "max_trajectory_pcc_error": 6.661338147750939e-16,
+  "fold_and_macro_metric_tolerance": 1e-12,
+  "per_environment_pcc_rmse_mae": [
+    [0.5449186878594007, 0.8517740322922694, 0.6658926268077693],
+    [0.48381957910154105, 0.8905975909582601, 0.6766969846303804],
+    [0.3978648358817153, 0.9330726336102849, 0.7185399673251557],
+    [0.47709524395250646, 0.8984218813231891, 0.6941462295528389]
+  ],
+  "seed_order": [42, 2026],
+  "single_seed_macro_at_ensemble_selected_configs": [
+    [0.4651273094815842, 0.9030389716261773, 0.698606814503384],
+    [0.4659900721894806, 0.9055478202894834, 0.6980535412043956]
+  ],
+  "fold_pcc_wins_vs_original_quantile": 0,
+  "trainable_parameters": 87424
+}

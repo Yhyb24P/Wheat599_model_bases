@@ -32,24 +32,29 @@ def build_model(x_fit, y_fit, config, seed, settings, device):
     return model.to(device)
 
 
-def update_epoch(model, x, y, q, opt, generator, spec, device):
+def update_epoch(model, x, y, q, opt, generator, spec, device, *, loss_fn=None):
     model.train()
     optimizers=opt if isinstance(opt,list) else [opt]
     order = torch.randperm(len(x), generator=generator).to(device)
     for batch in order.split(spec['batch_size']):
         for optimizer in optimizers:optimizer.zero_grad(set_to_none=True)
-        output = model(x[batch])
-        if spec.get('objective', 'pinball') == 'mse':
-            if output.shape != (len(batch), 1, 1):
-                raise ValueError('Point-MSE model must return [batch,1,1]')
-            loss = torch.nn.functional.mse_loss(output[:, 0, :], y[batch])
-        elif spec.get('objective') == 'shape':
-            output, penalty = model.shape_transform(output)
-            loss = (2 / len(q)) * quantile_loss(output, y[batch], q) + spec['shape_penalty'] * penalty
-        elif spec.get('objective') == 'midpoint':
-            loss = (2 / len(q)) * quantile_loss(output, y[batch], q)
+        if loss_fn is not None:
+            if torch.device(device).type == 'cuda':
+                torch.compiler.cudagraph_mark_step_begin()
+            loss = loss_fn(model, x[batch], y[batch], q, spec['basis_penalty'])
         else:
-            loss = quantile_loss(output, y[batch], q)
+            output = model(x[batch])
+            if spec.get('objective', 'pinball') == 'mse':
+                if output.shape != (len(batch), 1, 1):
+                    raise ValueError('Point-MSE model must return [batch,1,1]')
+                loss = torch.nn.functional.mse_loss(output[:, 0, :], y[batch])
+            elif spec.get('objective') == 'shape':
+                output, penalty = model.shape_transform(output)
+                loss = (2 / len(q)) * quantile_loss(output, y[batch], q) + spec['shape_penalty'] * penalty
+            elif spec.get('objective') == 'midpoint':
+                loss = (2 / len(q)) * quantile_loss(output, y[batch], q)
+            else:
+                loss = quantile_loss(output, y[batch], q)
         if not torch.isfinite(loss):
             raise FloatingPointError('Nonfinite quantile loss')
         loss.backward()
@@ -65,7 +70,16 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
         raise ValueError('Unknown training objective')
     if variant.startswith('shape_') and objective != ('midpoint' if variant == 'shape_midpoint' else 'shape'):
         raise ValueError('Shape model and loss do not match')
-    if variant in ('ising', 'ising_independent', 'ising_mlp'):
+    if variant in ('shared_basis', 'independent_basis') and objective != 'pinball':
+        raise ValueError('Connection-basis models require the original pinball objective')
+    if variant in ('treewidth_ising', 'treewidth_independent'):
+        from wheat599.treewidth_ising import TreewidthIsing
+        if objective != 'mse':
+            raise ValueError('Treewidth Ising comparisons require point MSE')
+        torch.manual_seed(int(seed))
+        model = TreewidthIsing(x_fit, y_fit, spins=config['spins'],
+                              coupled=variant == 'treewidth_ising').to(device)
+    elif variant in ('ising', 'ising_independent', 'ising_mlp'):
         from wheat599.supervised_ising import SupervisedIsing, AdditiveMLP
         if settings['training'].get('objective') != 'mse':
             raise ValueError('Supervised Ising comparisons require point MSE')
@@ -98,6 +112,12 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
         # Preserve the original CPU RNG stream after initializing the new modules.
         with torch.random.fork_rng(devices=[]):
             model.backbone=MemberInteractionBackbone(model.backbone,x_fit.shape[1]).to(device)
+    if variant in ('shared_basis', 'independent_basis'):
+        from wheat599.shared_basis_tabm import ConnectionBasis
+        with torch.random.fork_rng(devices=[]):
+            model.backbone.backbone.blocks[0][0] = ConnectionBasis(
+                model.backbone.backbone.blocks[0][0], config['basis_rank'],
+                shared=variant == 'shared_basis').to(device)
     x = torch.as_tensor(x_fit, dtype=torch.float32, device=device)
     xv = torch.as_tensor(x_val, dtype=torch.float32, device=device)
     y = model.standardize_y(torch.as_tensor(y_fit[:, None], dtype=torch.float32, device=device))
@@ -107,6 +127,8 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
          torch.linspace(settings['quantile_min'], settings['quantile_max'],
                         settings['n_quantiles'], device=device))
     if variant in ('adam','member_conditional','conditional','query','ising','ising_independent','ising_mlp',
+                   'treewidth_ising','treewidth_independent',
+                   'shared_basis','independent_basis',
                    'shape_midpoint','shape_free','shape_shared','shape_shrink'):
         opt = torch.optim.AdamW(model.parameters(), lr=config['learning_rate'],weight_decay=config['weight_decay'])
     else:
@@ -114,14 +136,21 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
         opt=make_optimizers(model,config,variant)
     generator = torch.Generator().manual_seed(int(seed) * 1000 + config.get('batch_seed_index', index))
     spec = {**settings['training'], 'shape_penalty': config.get('shape_penalty', 0.)}
+    loss_fn = None
+    if variant in ('shared_basis', 'independent_basis'):
+        from wheat599.shared_basis_tabm import basis_loss
+        spec['basis_penalty'] = config['basis_penalty']
+        loss_fn = (torch.compile(basis_loss, mode='reduce-overhead', dynamic=True)
+                   if torch.device(device).type == 'cuda' else basis_loss)
     probabilistic = variant in ('shape_midpoint', 'shape_free', 'shape_shared', 'shape_shrink')
     best_score, best_epoch, best_prediction, best_distribution = -np.inf, -1, None, None
+    best_basis = None
     fixed_epochs = settings.get('fixed_epochs')
     if fixed_epochs is not None and (not isinstance(fixed_epochs, int) or fixed_epochs < 0):
         raise ValueError('Invalid fixed epoch count')
     for epoch in range((spec['max_epochs'] if fixed_epochs is None else fixed_epochs) + 1):
         if epoch:
-            update_epoch(model, x, y, q, opt, generator, spec, device)
+            update_epoch(model, x, y, q, opt, generator, spec, device, loss_fn=loss_fn)
         if fixed_epochs is not None and epoch != fixed_epochs:
             continue
         model.eval()
@@ -135,6 +164,15 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
             raise ValueError('Nonfinite validation PCC')
         if fixed_epochs is not None or score > best_score + spec['tie_tolerance']:
             best_score, best_epoch, best_prediction = score, epoch, prediction.copy()
+            if loss_fn is not None:
+                layer = model.backbone.backbone.blocks[0][0]
+                with torch.no_grad():
+                    delta_rms = layer.penalty().sqrt().item()
+                    best_basis = {'delta_rms': delta_rms,
+                                  'relative_delta_rms': delta_rms / layer.base.weight.square().mean().sqrt().item()}
+                    if layer.shared:
+                        c = layer.coefficients - layer.coefficients.mean(0, keepdim=True)
+                        best_basis['coefficient_rms'] = c.square().mean().sqrt().item()
             if probabilistic:
                 best_distribution = model.inverse_y(output).cpu().numpy()
             if fixed_epochs is not None:
@@ -143,6 +181,9 @@ def train(x_fit, y_fit, x_val, y_val, config, seed, index, settings, device):
             break
     details = dict(best_pcc=best_score, best_epoch=best_epoch, epochs_run=epoch,
                    parameters=sum(p.numel() for p in model.parameters()),seconds=time.perf_counter()-start)
+    if best_basis is not None:
+        details['best_basis'] = best_basis
+        details['compiled_training_loss'] = torch.device(device).type == 'cuda'
     if probabilistic:
         details['_distribution'] = best_distribution
     return best_prediction, details
@@ -232,6 +273,10 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
         sources.extend(Path(__file__).with_name(name) for name in ('query_quantile.py','induced_ftt.py'))
     if cfg.get('optimizer_variant') in ('ising','ising_independent','ising_mlp'):
         sources.append(Path(__file__).with_name('supervised_ising.py'))
+    if cfg.get('optimizer_variant') in ('treewidth_ising','treewidth_independent'):
+        sources.extend(Path(__file__).with_name(name) for name in ('treewidth_ising.py','supervised_ising.py'))
+    if cfg.get('optimizer_variant') in ('shared_basis','independent_basis'):
+        sources.append(Path(__file__).with_name('shared_basis_tabm.py'))
     if cfg.get('optimizer_variant') in ('shape_free','shape_shared','shape_shrink'):
         sources.append(Path(__file__).with_name('shape_quantile.py'))
     sources.extend(Path(p) for p in extra_sources)

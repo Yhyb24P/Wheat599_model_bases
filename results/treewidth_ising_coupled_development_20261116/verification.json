@@ -1,0 +1,41 @@
+{
+  "candidate": "64-node width-two Ising, learned 125-edge coupling, node and edge-product readout",
+  "summary_candidate_key": "quantile",
+  "evaluation": "development selection only; no outer test predictions",
+  "verified_trajectory_key_coverage": 960,
+  "verified_config_selections": 40,
+  "verified_prediction_files": 30,
+  "prediction_shapes_and_finite_values_checked": true,
+  "prediction_hashes": "predictions.sha256",
+  "fold_and_macro_metric_tolerance": 1e-6,
+  "per_environment_pcc_rmse_mae": [
+    [0.5451899938614659, 0.8528842143308205, 0.66759576728516],
+    [0.4953186216012904, 0.8815106400090604, 0.6760506873692294],
+    [0.40431866570791736, 0.9318200670725083, 0.720932246939493],
+    [0.49175104580249984, 0.8917577740740918, 0.69119930109847]
+  ],
+  "seed_order": [42, 2026],
+  "single_seed_macro_at_ensemble_selected_configs": [
+    [0.4716198530624093, 0.902307308618376, 0.700837036136125],
+    [0.47101778189774557, 0.9037908410409982, 0.6997498413585272]
+  ],
+  "trainable_parameters": 83514,
+  "affected_tests_passed": 28,
+  "comparison_metric_order": ["pcc", "rmse", "mae"],
+  "versus_zero_coupling": {
+    "matching_selected_configurations": 39,
+    "macro_delta": [0.000217363088719634, 0.00032014924420732395, 0.00017039346404274235],
+    "fold_pcc_wins": 9,
+    "per_fold_pcc_delta": [0.0006096495743228153, 0.0001151226703025865, 0.00016288417663790078, 0.000019839094092824472, 0.000023977978850037163, 0.00017446153133167386, 0.00013365156143591017, 0.0008983720263700951, 0.0000467981870316686, -0.000011125913179171887]
+  },
+  "versus_width64_mlp": {
+    "macro_delta": [0.008219995044502534, -0.003973360674380502, 0.00012554859405203566],
+    "fold_pcc_wins": 10
+  },
+  "versus_original_quantile": {
+    "macro_delta": [-0.010420850367762746, 0.01825154428423359, 0.016234456502792094],
+    "fold_pcc_wins": 0
+  },
+  "interpretation": "A small coupling-associated PCC increment with worse aggregate errors; no stronger candidate under this fixed budget. Development scores include selection and are not independent test evidence. The original quantile reference searched eight configurations; each new arm searched four. No general model-family failure or biological mechanism is established.",
+  "handoff": "Recommend ending this configuration without outer evaluation; coordinator decides further work."
+}

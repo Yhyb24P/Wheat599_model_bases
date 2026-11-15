@@ -1,0 +1,26 @@
+{
+  "candidate": "64-node width-two chain, fixed J=0, node and 125-edge product readout",
+  "summary_candidate_key": "quantile",
+  "evaluation": "development selection only; no outer test predictions",
+  "verified_trajectories": 960,
+  "verified_config_selections": 40,
+  "verified_prediction_files": 30,
+  "prediction_hashes": "predictions.sha256",
+  "provenance_source_hashes_verified": true,
+  "max_trajectory_pcc_error": 6.661338147750939e-16,
+  "fold_and_macro_metric_tolerance": 1e-12,
+  "per_environment_pcc_rmse_mae": [
+    [0.5448709469407783, 0.8532071709868255, 0.6678620679225011],
+    [0.49513062060686786, 0.8814340351475456, 0.676090995226416],
+    [0.4040564696957101, 0.9318788772603164, 0.7211660148358353],
+    [0.4916508373749388, 0.8901720151149644, 0.6899773508514289]
+  ],
+  "seed_order": [42, 2026],
+  "single_seed_macro_at_ensemble_selected_configs": [
+    [0.4716081697258554, 0.9018069769422661, 0.7002601990304644],
+    [0.4711761227114647, 0.9026514817480301, 0.6989960746973677]
+  ],
+  "fold_pcc_wins_vs_original_quantile": 0,
+  "trainable_parameters": 83389,
+  "parameters_including_fixed_coupling": 83514
+}
