@@ -32,15 +32,30 @@ OUT = Path(__file__).resolve().parent
 
 
 def reml_h2(eigenvalues, ut_y, ut_one):
-    def nll(log_delta):
+    # Profile both intercept and sigma_g^2 (free two-component REML). With
+    # W = K + delta I, the profiled restricted objective replaces the quadratic
+    # Q by (n-1) log(Q/(n-1)); sigma_g^2 = Q/(n-1), sigma_e^2 = delta sigma_g^2.
+    n = len(eigenvalues)
+
+    def terms(log_delta):
         cov = eigenvalues + np.exp(log_delta)
         info = (ut_one ** 2 / cov).sum()
         b = (ut_one * ut_y / cov).sum() / info
         resid = ut_y - ut_one * b
-        return 0.5 * (np.log(cov).sum() + np.log(info) + (resid ** 2 / cov).sum())
+        q = (resid ** 2 / cov).sum()
+        return cov, info, q
+
+    def nll(log_delta):
+        cov, info, q = terms(log_delta)
+        return 0.5 * (np.log(cov).sum() + np.log(info) + (n - 1) * np.log(q / (n - 1)))
+
     res = minimize_scalar(nll, bounds=(-14, 14), method='bounded')
     delta = float(np.exp(res.x))
-    return 1.0 / (1.0 + delta), delta
+    _, _, q = terms(res.x)
+    sigma_g2 = float(q / (n - 1))
+    sigma_e2 = delta * sigma_g2
+    h2 = sigma_g2 / (sigma_g2 + sigma_e2)
+    return h2, delta, sigma_g2, sigma_e2
 
 
 def main():
@@ -54,9 +69,9 @@ def main():
     w = np.maximum(w, 0.0)
     ut_y = U.T @ Y
     ut_one = U.T @ np.ones(n)
-    h2, deltas = {}, {}
+    h2, deltas, sigma_g2, sigma_e2 = {}, {}, {}, {}
     for e, env in enumerate(data.environments):
-        h2[env], deltas[env] = reml_h2(w, ut_y[:, e], ut_one)
+        h2[env], deltas[env], sigma_g2[env], sigma_e2[env] = reml_h2(w, ut_y[:, e], ut_one)
     r_max = {env: float(np.sqrt(h2[env])) for env in h2}
     pheno_corr = np.corrcoef(Y.T).tolist()
 
@@ -88,8 +103,11 @@ def main():
 
     summary = {
         'scope': 'H1 diagnostic, not a protocol comparison; GRM uses all materials for variance components',
-        'estimand': 'h_X^2 = sigma_X^2/(sigma_X^2+sigma_eps^2) of the additive marker GRM; r_max=sqrt(h_X^2), no extra capture fraction',
-        'h2_per_env': h2, 'reml_delta_per_env': deltas, 'r_max_per_env': r_max,
+        'estimand': 'h_X^2 = sigma_X^2/(sigma_X^2+sigma_eps^2) of the additive marker GRM, concentrated REML profiling both intercept and sigma_g^2; r_max=sqrt(h_X^2), no extra capture fraction',
+        'revision': 'corrects b59bd26 which fixed sigma_g^2=1 (linear Q); now profiles sigma_g^2 with (n-1)log(Q/(n-1)). Still exploratory/oracle-reference, not an identifiable real ceiling.',
+        'h2_per_env': h2, 'reml_delta_per_env': deltas,
+        'reml_sigma_g2_per_env': sigma_g2, 'reml_sigma_e2_per_env': sigma_e2,
+        'r_max_per_env': r_max,
         'fusion_outer_pcc_reference': FUSION_REF,
         'gap_r_max_minus_fusion': {e: r_max[e] - FUSION_REF[e] for e in r_max},
         'phenotype_correlation': {'envs': list(data.environments), 'matrix': pheno_corr},

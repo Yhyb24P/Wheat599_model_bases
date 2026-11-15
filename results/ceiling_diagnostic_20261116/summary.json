@@ -1,23 +1,36 @@
 {
   "scope": "H1 diagnostic, not a protocol comparison; GRM uses all materials for variance components",
-  "estimand": "h_X^2 = sigma_X^2/(sigma_X^2+sigma_eps^2) of the additive marker GRM; r_max=sqrt(h_X^2), no extra capture fraction",
+  "estimand": "h_X^2 = sigma_X^2/(sigma_X^2+sigma_eps^2) of the additive marker GRM, concentrated REML profiling both intercept and sigma_g^2; r_max=sqrt(h_X^2), no extra capture fraction",
+  "revision": "corrects b59bd26 which fixed sigma_g^2=1 (linear Q); now profiles sigma_g^2 with (n-1)log(Q/(n-1)). Still exploratory/oracle-reference, not an identifiable real ceiling.",
   "h2_per_env": {
-    "1": 0.6754612948213968,
-    "2": 0.6701323703453971,
-    "4": 0.6451373173731084,
-    "5": 0.6638954583350434
+    "1": 0.5270841227991344,
+    "2": 0.4863302807366917,
+    "4": 0.3981836046335163,
+    "5": 0.45232065017556494
   },
   "reml_delta_per_env": {
-    "1": 0.4804697288605063,
-    "2": 0.4922424945456429,
-    "4": 0.5500575971513061,
-    "5": 0.5062612455699874
+    "1": 0.897230359908011,
+    "2": 1.0562157850529126,
+    "4": 1.5114042576423725,
+    "5": 1.21082101737309
+  },
+  "reml_sigma_g2_per_env": {
+    "1": 0.6029652851103079,
+    "2": 0.5350272571101198,
+    "4": 0.43164368954073207,
+    "5": 0.4885556478580446
+  },
+  "reml_sigma_e2_per_env": {
+    "1": 0.540998759771558,
+    "2": 0.5651042343932716,
+    "4": 0.6523881101563249,
+    "5": 0.5915534465828467
   },
   "r_max_per_env": {
-    "1": 0.821864523398715,
-    "2": 0.8186161312516368,
-    "4": 0.8032044057231686,
-    "5": 0.8147978021172144
+    "1": 0.7260055941927269,
+    "2": 0.6973738457503921,
+    "4": 0.6310179114997579,
+    "5": 0.6725478794670049
   },
   "fusion_outer_pcc_reference": {
     "1": 0.587756,
@@ -26,10 +39,10 @@
     "5": 0.542173
   },
   "gap_r_max_minus_fusion": {
-    "1": 0.23410852339871502,
-    "2": 0.3125781312516368,
-    "4": 0.33314740572316864,
-    "5": 0.2726248021172144
+    "1": 0.13824959419272698,
+    "2": 0.1913358457503921,
+    "4": 0.16096091149975794,
+    "5": 0.13037487946700488
   },
   "phenotype_correlation": {
     "envs": [
