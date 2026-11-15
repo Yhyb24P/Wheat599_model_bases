@@ -20,15 +20,7 @@ python3 tests/test_report.py
 
 结果页构建使用 Python 标准库和 Pandoc（含原生 MathML 输出），文献页仅需标准库。上述命令不调用训练入口、不读取原始表型、不重新计算模型成绩；测试在安装 BibTeX 时检查书目能否实际解析。文献内容统一维护在 `ref/build.py`。
 
-最新完成的是[完整 Mul-PheG2P 同协议适配](docs/methods/MULPHE_UNIFIED.md)：1,920 个开发单元、320 次外层重拟合、0 运行失败；调优标量融合 PCC 0.438225，默认配置 0.443596。目标编码器已包含；适配差异见原记录。该批结束，不自动追加实验。
-
-形状收缩分位数 TabM 的四臂比较已完成：有限收缩外层 PCC 0.511737，未超过自由形状、共享形状或现役参照；概率指标和区间覆盖见[结果记录](docs/RESULTS.md#形状收缩分位数-tabm2026-11-14)。
-
-分阶自适应互作核 GP 已完成开发比较，宏 PCC 为 0.479039，低于原分位数 TabM 的 0.494565；见[结果记录](docs/RESULTS.md#分阶自适应互作核-gp-开发比较2026-11-14)。
-
-新实现：[查询条件分位数候选](docs/methods/QUERY_QUANTILE.md)，在标记汇总前由连续 τ 读取证据；两机开发均已完成，PCC分别为0.465247/0.463586，低于原分位数0.494565；未进入外层。
-
-[监督条件 Ising 比较](docs/methods/SUPERVISED_ISING.md)三臂均已完成，各1,920次、0失败；耦合/J=0/MLP开发PCC为0.458179/0.457658/0.482152，未超过现役参照。新执行器支持独立拟合的进程池并发，Ising配置明确使用4个worker；首批已完成成绩仍按串行版本记录。
+近期完成的比较（[Mul-PheG2P 同协议适配](docs/methods/MULPHE_UNIFIED.md)、形状收缩分位数 TabM、分阶自适应互作核 GP、[查询条件分位数](docs/methods/QUERY_QUANTILE.md)、[监督条件 Ising](docs/methods/SUPERVISED_ISING.md)）的数字、停止原因与适配差异统一见[结果记录](docs/RESULTS.md)；各批已结束，不自动追加实验。
 
 ## 环境
 
@@ -101,7 +93,9 @@ PYTHONPATH=src python -m pytest tests/ -q
 
 | 路径 | 职责 |
 |---|---|
-| `src/wheat599/` | 唯一正式模型、训练与汇总实现 |
+| `src/wheat599/` | 唯一正式实现：平铺 `.py` 为各实验 runner/适配，`models/` 为模型类库，`dnawhisper/`、`bayesian_trees/` 为带 NOTICE 的 vendored 适配 |
+| `tests/` | 实现的验证测试（含基线配套测试），保留，非可删 |
+| `vendor/` | 上游原始代码与 LICENSE（如 WheatGP）；与 `src/` 的项目适配分层，不重复 |
 | `scripts/` | 现有 CLI、数据获取及离线报告构建 |
 | `configs/` | 各次运行配置；由原运行 provenance/manifest 确定版本 |
 | `results/<run>/` | 原始运行产物；保留路径、命名与来源，不为展示搬移或重复复制 |
@@ -116,6 +110,8 @@ PYTHONPATH=src python -m pytest tests/ -q
 | `env/` | 依赖与已授权机器环境 |
 | `local/incoming/` | 本机附件、旧未整合副本与交接包；整体不入 Git |
 | `local/test-residue/` | 已有测试残留，供追溯，不是正式结果 |
+
+`src/wheat599/` 文件较多是因为现役 `quantile_tabm.py` 的 `train()` 是统一变体分发器：按 `optimizer_variant` 条件加载 ising/query/conditional/shape/gated/member_conditional 等历史变体；这些变体已冻结到 Git 标签（见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)），分发分支仍留现役树，并非冗余副本。`models/`（模型类库）、`vendor/`（上游原件）与平铺 runner 是分层而非重复；`tests/` 是验证这些实现的测试，应保留。
 
 新运行沿用 `results/<方法>_<阶段>_<日期>/`，无需重命名既有目录。主表只接收已核对统一协议的结果；开发选模、历史不同协议、模拟、其他数据集、停止与失败记录各保留原口径。常见 `summary` 保存指标，`provenance` / `manifest` 保存数据 SHA、源码、配置、种子和划分，`execution_status` / `failures` / `interruption` 保存执行状态；不同历史文件格式不强制重写。逐材料与逐种子预测保留原位置，不能因导航整理而丢弃。
 
