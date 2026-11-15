@@ -8,3 +8,6 @@
 {"after": 10868, "before": 10791, "by": "YHyb24P", "lines": 77, "reason": "User approved 2026-11-16: gpt shared connection-basis quantile ensemble implementation", "target": "source", "ts": "2026-11-15T17:21:44Z"}
 {"after": 3180, "before": 3107, "by": "YHyb24P", "lines": 73, "reason": "User approved 2026-11-16: tests for gpt shared connection-basis model", "target": "tests", "ts": "2026-11-15T17:21:44Z"}
 {"after": 4685, "before": 4628, "by": "YHyb24P", "lines": 57, "reason": "User approved 2026-11-16: configs for gpt shared connection-basis model", "target": "maintenance", "ts": "2026-11-15T17:21:44Z"}
+{"after": 11009, "before": 10868, "by": "YHyb24P", "lines": 141, "reason": "User approved 2026-11-16: tree-tensor genotype operator prototype (fit-only geometry, order projection, Gamma, QR)", "target": "source", "ts": "2026-11-15T18:53:08Z"}
+{"after": 3218, "before": 3180, "by": "YHyb24P", "lines": 38, "reason": "User approved 2026-11-16: tree-tensor operator self-check test", "target": "tests", "ts": "2026-11-15T18:53:08Z"}
+{"after": 4722, "before": 4685, "by": "YHyb24P", "lines": 37, "reason": "User approved 2026-11-16: H2 median-heads control config and dev CLI", "target": "maintenance", "ts": "2026-11-15T18:53:08Z"}
