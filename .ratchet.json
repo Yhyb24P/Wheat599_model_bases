@@ -217,7 +217,7 @@
     }
   },
   "ceilings": {
-    "tests": 2370,
+    "tests": 3031,
     "docs": 3760,
     "maintenance": 4551,
     "source": 10715
