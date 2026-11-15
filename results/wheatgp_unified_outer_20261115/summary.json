@@ -1,0 +1,44 @@
+{
+  "n_runs": 40,
+  "failures": [],
+  "seeds": [
+    42,
+    2026
+  ],
+  "jobs": 8,
+  "per_environment": {
+    "1": {
+      "undefined_pcc": 0,
+      "pcc": 0.5569612507548984,
+      "rmse": 0.8358952153950352,
+      "mae": 0.6358223857827042
+    },
+    "2": {
+      "undefined_pcc": 0,
+      "pcc": 0.4825938135466177,
+      "rmse": 0.8759858559763259,
+      "mae": 0.6672914196995057
+    },
+    "4": {
+      "undefined_pcc": 0,
+      "pcc": 0.441449212234352,
+      "rmse": 0.9115562983246213,
+      "mae": 0.7073795604808208
+    },
+    "5": {
+      "undefined_pcc": 0,
+      "pcc": 0.5340648809458401,
+      "rmse": 0.8527060896558597,
+      "mae": 0.6596063369559898
+    }
+  },
+  "macro": {
+    "pcc": 0.503767289370427,
+    "rmse": 0.8690358648379605,
+    "mae": 0.6675249257297552
+  },
+  "undefined_pcc_count": 0,
+  "pcc_defined_only_mean": 0.5037672893704271,
+  "pcc_constant_as_zero": 0.5037672893704271,
+  "note": "macro pcc is null when any outer fold prediction is constant; pcc_constant_as_zero is the author training convention, not the standard Pearson macro"
+}

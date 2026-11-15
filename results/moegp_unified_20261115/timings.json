@@ -1,0 +1,25 @@
+{
+  "dev": {
+    "jobs": 8,
+    "wall_seconds_approx": 5353
+  },
+  "test": {
+    "jobs": 8,
+    "wall_seconds_approx": 117
+  },
+  "unit_timing": {
+    "serial_seconds": 178,
+    "parallel_seconds": [
+      111,
+      112,
+      105,
+      121,
+      131,
+      133,
+      141,
+      148,
+      135
+    ]
+  },
+  "note": "dev ended with joblib memmap cleanup KeyError tracebacks after the summary; fits and files completed"
+}

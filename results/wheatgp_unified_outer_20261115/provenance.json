@@ -1,0 +1,44 @@
+{
+  "config": {
+    "model": "wheatgp_unified",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "source": "vendor/WheatGP/model/WheatGP_base.py",
+    "source_sha256": "840ac4cdbeadfef430b88b9cbdff6192e3fecb56ab41fe1bb5a653672af9bbc0",
+    "source_commit": "a061b8be1d231e21fc89ed7179ae58c2a3048819",
+    "seeds": [
+      42,
+      2026
+    ],
+    "jobs": 8,
+    "pca_components": 250,
+    "learning_rates": [
+      0.0005,
+      0.002,
+      0.005
+    ],
+    "weight_decay": 0.0001,
+    "batch_size": 64,
+    "max_epochs": 300,
+    "patience": 50,
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.5,
+    "device": "cuda"
+  },
+  "git_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "sha256": {
+    "vendor/WheatGP/model/WheatGP_base.py": "840ac4cdbeadfef430b88b9cbdff6192e3fecb56ab41fe1bb5a653672af9bbc0",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "configs/wheatgp_unified.yaml": "977fae06d1efff070b1c15f5587c71c8cb8de1508549eb6c1530ab616c590aa6",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/wheatgp_unified.py": "07c3a66b093fa710a7f436b1015bc647c17d26b480ef0e2176a64b57a64e5683",
+    "/home/hsy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "dfc3e8ec45812d148b22c0f2accede851ab57537fb10a4e6005cc7fbfd8654d6"
+  },
+  "seeds": [
+    42,
+    2026
+  ],
+  "jobs": 8,
+  "parallel": "joblib loky processes; per-fit seeding",
+  "rule": "mean inner PCC of seed-averaged predictions; per-seed median best epoch; full dev refit; constant PCC undefined and retained"
+}

@@ -167,6 +167,16 @@ RUNNERS = {
     'bh_lmc': ('bh_lmc', 'run'),
     'multienv_kernel': ('multienv_kernel', 'run'),
     'kernel_baselines': ('kernel_baselines', 'run'),
+    'classical_baselines': ('classical_baselines', 'run'),
+    'ragp_outer': ('ragp_run', 'run_outer'),
+    'deepgs': ('deep_baselines', 'run'),
+    'dnngp': ('deep_baselines', 'run'),
+    'soydngp': ('deep_baselines', 'run'),
+    'wheatgp_unified': ('wheatgp_unified', 'run'),
+    'mtcro_unified': ('mtcro_unified', 'run'),
+    'gsformer_csa': ('gsformer_unified', 'run'),
+    'gsformer_nsa': ('gsformer_unified', 'run'),
+    'wheat2000_gblup': ('wheat2000_gblup', 'run'),
 }
 
 

@@ -1,0 +1,58 @@
+{
+  "config": {
+    "model": "mtcro_unified",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seeds": [
+      42,
+      2026
+    ],
+    "jobs": 6,
+    "architecture": {
+      "experts": 4,
+      "expert_dims": [
+        4096
+      ],
+      "tower_dims": [
+        4096
+      ],
+      "dropout": 0.0
+    },
+    "training": {
+      "learning_rate": 0.0001,
+      "weight_decay": 1e-05,
+      "epochs": 100,
+      "batch_size": 640,
+      "patience": 30
+    },
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.3,
+    "device": "cuda"
+  },
+  "phase": "outer",
+  "seeds": [
+    42,
+    2026
+  ],
+  "jobs": 6,
+  "versions": {
+    "torch": "2.14.1+cu130",
+    "torch_rechub": "1.0.0"
+  },
+  "git_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "source": {
+    "url": "https://github.com/chaodian12/mtcro",
+    "upstream": "torch_rechub MMOE"
+  },
+  "adaptations": [
+    "raw 1279 markers instead of the author 250-PC template",
+    "canonical manifest folds instead of the author 90/10 split",
+    "four environments as four regression tasks",
+    "early stopping on inner macro PCC, patience 30"
+  ],
+  "rule": "inner macro PCC; per-seed median best epoch; full dev refit; seed-averaged test prediction",
+  "parallel": "joblib loky processes; per-fit seeding"
+}

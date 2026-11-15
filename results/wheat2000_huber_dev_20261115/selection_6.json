@@ -1,0 +1,30 @@
+{
+  "fold": 6,
+  "base": {
+    "bandwidth": 1.0,
+    "fraction": 0.0,
+    "ridge": [
+      0.01,
+      0.01,
+      0.01,
+      0.01,
+      0.01,
+      0.01,
+      0.01,
+      0.01
+    ],
+    "base_pcc": 0.6031293435001499
+  },
+  "squared": {
+    "eta": 0.8,
+    "delta": null,
+    "multiplier": 1.0,
+    "inner_pcc": 0.32620847713267104
+  },
+  "huber": {
+    "eta": 0.8,
+    "delta": 1.345,
+    "multiplier": 3.0,
+    "inner_pcc": 0.33450190297105387
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "jobs": 24,
+  "folds": [
+    {
+      "fold": 0,
+      "phase": "outer",
+      "seconds": 3.3,
+      "jobs": 16
+    },
+    {
+      "fold": 1,
+      "phase": "outer",
+      "seconds": 7.1,
+      "jobs": 16
+    },
+    {
+      "fold": 2,
+      "phase": "outer",
+      "seconds": 6.2,
+      "jobs": 16
+    },
+    {
+      "fold": 3,
+      "phase": "outer",
+      "seconds": 10.6,
+      "jobs": 16
+    },
+    {
+      "fold": 4,
+      "phase": "outer",
+      "seconds": 10.7,
+      "jobs": 16
+    },
+    {
+      "fold": 5,
+      "phase": "outer",
+      "seconds": 4.4,
+      "jobs": 16
+    },
+    {
+      "fold": 6,
+      "phase": "outer",
+      "seconds": 10.6,
+      "jobs": 16
+    },
+    {
+      "fold": 7,
+      "phase": "outer",
+      "seconds": 6.2,
+      "jobs": 16
+    },
+    {
+      "fold": 8,
+      "phase": "outer",
+      "seconds": 1.8,
+      "jobs": 16
+    },
+    {
+      "fold": 9,
+      "phase": "outer",
+      "seconds": 4.1,
+      "jobs": 16
+    }
+  ]
+}

@@ -2,7 +2,9 @@
 
 2026-11-05新附件要求优先检验原候选的跨数据集表现，全部八性状保留，比较GBLUP、BiMSGP、DeepGS，并报告完整选择与训练成本。四方向旋转先在Wheat599完成预定开发比较，未通过则结束该变换；原TabM不依赖旋转成功才推进。
 
-**当前已暂缓（2026-11-05，用户收缩范围）：** 用户明确Wheat599才是现阶段主要任务，且不跑BiMSGP。已停止omen TabM（494/3840fit）和本机DeepGS（1/480fit），进程均已退出，各原运行目录附`interruption.json`，状态为`stopped_by_user_scope_change`；保留原轨迹，不重启、不进入final。这是范围调整，不是算法失败或完整评价。已完成的GBLUP宏PCC0.602837仅为历史结果，不能替代Wheat599主任务。以下数据/协议/准备说明保留为历史，不授权继续运行。
+**当前状态（2026-11-15，用户重新授权）：** 用户授权 Wheat2000 跨数据集评价，与 Wheat599 收尾并行。范围＝最优候选（分位数TabM+Huber ICM 固定等权融合适配八性状，ds）＋经典基线（GBLUP 核验复用＋RR-BLUP/RBF-SVR/Random Forest/XGBoost/LightGBM/Gaussian与加性+RBF核岭，gb）＋SOTA 作者官方实现（WheatGP/MoEGP/MtCro/Gsformer CSA+NSA/RAGP/DeepGS/DNNGP/SoyDNGP，ds；仅做数据/协议最小忠实适配，保留官方架构与配方，不用 Wheat599 本地魔改变体）。BiMSGP 仍按硬边界排除。算力 Dell（双 3090）。数据/协议/划分沿用下文冻结版本；官方代码不可得或无法忠实运行时如实报阻塞，不自搭同名网络。
+
+**历史暂缓（2026-11-05，用户收缩范围）：** 当时用户明确 Wheat599 才是现阶段主要任务，停止 omen TabM（494/3840fit）和本机 DeepGS（1/480fit），进程均已退出，各原运行目录附 `interruption.json`，状态 `stopped_by_user_scope_change`；保留原轨迹。这是范围调整，不是算法失败或完整评价。已完成的 GBLUP 宏 PCC 0.602837 为历史结果，本轮核验复用。
 
 GBLUP开发结果位于`results/wheat2000_gblup_development_20261105/`，80项选择完整、0失败，三内折按PCC选择的lambda均在预定19点网格内，数据/配置/核心源码SHA已逐项复核。内层PCC按性状分别为TKW 0.649510、TW 0.611970、GL 0.730294、GW 0.727540、GH 0.681616、GP 0.537472、SDS 0.519290、PHT 0.319667。CPU开发墙钟7.32秒；它是共享核分解、各性状独立系数/选择的完整八性状成本。尚未完成的TabM开发及任何外层结果不与这一条件选模分数混排。
 

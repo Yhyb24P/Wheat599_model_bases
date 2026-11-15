@@ -1,0 +1,15 @@
+{
+  "status": "completed_with_degenerate_scale",
+  "observation": "Outer predictions have SD ~17 and range [-63, 91] on the released wheat.Y scale (truth SD ~1); macro PCC 0.025961, macro RMSE 12.48. Inner selection PCC mean 0.242.",
+  "diagnosis": [
+    "FP32 official recipe (Adam lr=1e-3 default, SmoothL1, batch 20, xavier init, no clipping) is unstable on Wheat599: per-epoch validation predictions oscillate in scale from epoch ~6 onward; train-mode (batch-stat) outputs also diverge, so this is training divergence, not only BN running-stat mismatch.",
+    "AMP fp16 makes it worse (first run marked INVALID, run_invalid_amp directories).",
+    "Lower-lr probes (1e-4, 1e-5) keep scale sane but inner PCC stays <=0.08 on the probe split; the official default recipe was kept per protocol (no post-hoc tuning).",
+    "Upstream context: SoyDNGP targets soybean panels with ~20k SNPs and larger n; Wheat599 has 1279 DArT markers tiled by np.resize into 3x206x206 and 359-539 fit rows. The mapping and tiling follow upstream reader_cpu exactly; DArT 0/1 -> VCF 0/0 and 1/1 (channel 1 constant)."
+  ],
+  "kept": "All 40 outer units completed, 0 fit failures; per-seed predictions, selection, trajectories and provenance retained. Numbers reported as-is; not filtered.",
+  "invalid_runs": [
+    "results/soydngp_development_20261115/run_invalid_amp",
+    "results/soydngp_final_20261115/run_invalid_amp"
+  ]
+}

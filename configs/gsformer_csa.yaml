@@ -1,0 +1,16 @@
+model: gsformer_csa
+variant: csa
+source_dir: /tmp/gsformer-official
+source_commit: 214c3831044ebcfce30db8e6825460bf8831bf1f
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/get_icm_protocol_20261103/splits_manifest.json
+seeds: [42, 2026]
+jobs: 8
+# 1279 markers zero-padded to 1280 = 32 x 40 so that d_model*seq_length/seq_num is integral.
+pad_to: 1280
+architecture: {seq_num: 32, seq_length: 40, d_model: 72, d_ff: 144, heads: 4, dropout: 0.3}
+training: {learning_rate: 0.00005, weight_decay: 0.001, epochs: 25, batch_size: 48, patience: 5, min_loss_reduction: 1.0e-6}
+cpu_threads: 2
+gpu_memory_fraction: 0.3
+device: cuda

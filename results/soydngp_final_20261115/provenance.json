@@ -1,0 +1,75 @@
+{
+  "config": {
+    "model": "soydngp",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seeds": [
+      42,
+      2026
+    ],
+    "device": "cuda",
+    "gpu_memory_fraction": 0.4,
+    "cpu_threads": 2,
+    "workers": 1,
+    "amp": false,
+    "upstream": {
+      "repository": "https://github.com/IndigoFloyd/SoyDNGPNext",
+      "commit": "ebda01d0b160f5adfada6f90834925312d4395d1",
+      "path": "/home/hsy/overlays/ws2_upstreams/SoyDNGPNext"
+    },
+    "configurations": [
+      {
+        "lr": 0.001,
+        "weight_decay": 1e-05
+      }
+    ],
+    "training": {
+      "max_epochs": 200,
+      "early_stopping_patience": 20,
+      "batch_size": 20
+    },
+    "adaptation_notes": [
+      {
+        "FP32 training (AMP disabled for this model)": "the official SmoothL1/Adam recipe diverges under fp16 autocast on this network (verified 2026-11-15); no gradient clipping, matching upstream train_n."
+      },
+      "Official SoyDNGPNext model.yaml network (18.1M params) built by official remodel(); official one_hot_CPU + np.resize to 3x206x206.",
+      "DArT 0/1 markers are mapped to VCF codes 0/0 -> 3 and 1/1 -> 1 (no heterozygous or missing calls in wheat.X); the 1279 markers are tiled by np.resize exactly as upstream does for shorter panels.",
+      "Target min/max normalization uses the current fit subset only (upstream normalizes with the whole trait column); predictions are mapped back to the released wheat.Y scale.",
+      "Official train_n uses a random 70/30 split, min-r checkpointing and a fixed epoch count; replaced by protocol inner folds, validation-PCC selection and median-epoch full-dev refit.",
+      "Package __init__ imports cupy/matplotlib/onnxruntime; adapter loads SoyDNGP.py/remodel.py/reader_cpu.py directly without those GPU-report dependencies."
+    ]
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selection_sha256": "00db38cfa6bccde4fc6f86aaefdda91e34644cabd04bcb09a977383bdc4e9bd8",
+  "sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/deep_baselines.py": "4ee098e84845dbe0bef0b3a8f9d4c09177b8be0e64512f3a19903fdfed459d6f",
+    "configs/soydngp_wheat599.yaml": "3393bc7a56d5c35691750d54d38f8bf25e111c36b675028e92a85d8fba77b216",
+    "scripts/run_background_nested.py": "dfc3e8ec45812d148b22c0f2accede851ab57537fb10a4e6005cc7fbfd8654d6",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2"
+  },
+  "upstream_files": {
+    "/home/hsy/overlays/ws2_upstreams/SoyDNGPNext/soydngpnext/SoyDNGP.py": "d6be4c284bd9ec135758445c0791c063fd843cb94e29589d77c7faed86c7ce19",
+    "/home/hsy/overlays/ws2_upstreams/SoyDNGPNext/soydngpnext/remodel.py": "d6622d4895119a4224ea39c4e9ee8b1b76abce0af83ef2a3477b6fd7816808c2",
+    "/home/hsy/overlays/ws2_upstreams/SoyDNGPNext/soydngpnext/reader_cpu.py": "e00cb85fc817e4fcfef94b00fc5b8cf88691f60cf2f3e041614dd2eb3ced1879",
+    "/home/hsy/overlays/ws2_upstreams/SoyDNGPNext/soydngpnext/train.py": "0c60234fa7cb7f11c116a175c777d7837a463f98b5837fa4e1a10d1b8baca518",
+    "/home/hsy/overlays/ws2_upstreams/SoyDNGPNext/soydngpnext/data/model.yaml": "22b854750b5e2dffbeff3815aa0554729751b4e997c548aafee5d0c783bddced"
+  },
+  "torch_version": "2.14.1+cu130",
+  "dnngp_tensorflow": null,
+  "git_head": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "git_status_porcelain_tracked": "M scripts/run_background_nested.py\n M src/wheat599/ragp_run.py\n M tests/test_ragp.py",
+  "workers": 1,
+  "amp": false,
+  "rule": "mean inner PCC of seed-averaged predictions; first configuration on tie; per-seed median best epoch and per-epoch median learning rate; full dev refit; outer test scored once",
+  "adaptation": [
+    {
+      "FP32 training (AMP disabled for this model)": "the official SmoothL1/Adam recipe diverges under fp16 autocast on this network (verified 2026-11-15); no gradient clipping, matching upstream train_n."
+    },
+    "Official SoyDNGPNext model.yaml network (18.1M params) built by official remodel(); official one_hot_CPU + np.resize to 3x206x206.",
+    "DArT 0/1 markers are mapped to VCF codes 0/0 -> 3 and 1/1 -> 1 (no heterozygous or missing calls in wheat.X); the 1279 markers are tiled by np.resize exactly as upstream does for shorter panels.",
+    "Target min/max normalization uses the current fit subset only (upstream normalizes with the whole trait column); predictions are mapped back to the released wheat.Y scale.",
+    "Official train_n uses a random 70/30 split, min-r checkpointing and a fixed epoch count; replaced by protocol inner folds, validation-PCC selection and median-epoch full-dev refit.",
+    "Package __init__ imports cupy/matplotlib/onnxruntime; adapter loads SoyDNGP.py/remodel.py/reader_cpu.py directly without those GPU-report dependencies."
+  ]
+}

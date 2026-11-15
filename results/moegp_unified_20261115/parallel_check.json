@@ -1,0 +1,28 @@
+{
+  "serial_unit": {
+    "unit": "fold0_env1",
+    "seconds": 178,
+    "source": "results/moegp_unified_20261115_serial_aborted.log"
+  },
+  "parallel_unit": {
+    "unit": "fold0_env1",
+    "jobs": 8,
+    "seconds_smoke": 111,
+    "seconds_full_run": 112
+  },
+  "speedup": 1.59,
+  "consistency": {
+    "inner_pcc_serial": 0.574309123380143,
+    "inner_pcc_parallel": 0.574309123380143,
+    "refit_epochs_serial": {
+      "42": 33,
+      "2026": 14
+    },
+    "refit_epochs_parallel": {
+      "42": 33,
+      "2026": 14
+    },
+    "interpretation": "identical per-fit results; order-independent because every fit seeds itself"
+  },
+  "worker_memory_cap": "gpu_memory_fraction 0.2 per worker (cap, not allocation)"
+}

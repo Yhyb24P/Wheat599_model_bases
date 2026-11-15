@@ -1,0 +1,135 @@
+{
+  "config": {
+    "model": "ragp_outer",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "dev_trajectories": "results/ragp_development_20261105/trajectories.json",
+    "frozen_tag": "ragp-protocol-20261105",
+    "verify_frozen_config": "configs/ragp.yaml",
+    "verify_frozen_config_sha256": "e3f25c38f46d993f100e529dc5ccdc3447d74648b5d2efee4d656aaf5910dd3b",
+    "device": "cuda",
+    "dtype": "float32",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.3,
+    "seeds": [
+      42,
+      2026
+    ],
+    "architecture": {
+      "hidden_dims": [
+        2500,
+        3000,
+        3000,
+        1500
+      ],
+      "n_blocks": 3,
+      "dropout": 0.5,
+      "pca_variance": 0.95,
+      "neighbors": 5,
+      "fusion_alpha": 0.4,
+      "label_scale": 0.01,
+      "loss_alpha": [
+        0.9,
+        0.8,
+        0.5,
+        0.1
+      ],
+      "triplet_anchors": 32,
+      "triplet_positives": 5,
+      "triplet_negatives": 5,
+      "triplet_margin": 1.0
+    },
+    "configurations": [
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 15,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 50,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.002,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0003,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.01,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.3
+      }
+    ],
+    "training": {
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "patience": 30,
+      "scheduler_gamma": 0.95,
+      "tie_tolerance": 1e-12
+    },
+    "selection_metric": "seed_prediction_ensemble_macro_pcc",
+    "checkpoint_storage": "hash_only"
+  },
+  "frozen_tag": "ragp-protocol-20261105",
+  "git_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selection_sha256": "f03f3f00a47d639785e82cb8f9c22bd04c29618994ee9b2d4d1a9a05ad31685c",
+  "dev_trajectories_sha256": "5cdca5fef74fbcb8df540b28f6edb122359e471befd8ab1dce2dd8d9ecc68f66",
+  "source_sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/ragp_run.py": "0c5a959607db1bdec6baff01d032d54c92af8e89181207de249c6952a7664c09",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/ragp.py": "020df0486c5e0488dfe56f896046cddc5bd4b6f3d4139cbfae93cb5e9439394d",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/data.py": "6c17f9df2994733738bc0b6d16f43ec65908aacb432c6e8192307bb5ec3acade",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/metrics.py": "efcb4f8b1fd9cfc1735c2b43906027bc43ec03c59f4f2f296ef303a53e6176a2",
+    "configs/ragp_outer.yaml": "40cf090420a3c2789f57b79c15d02d18a1732e08a8e6c6dde34c27e465425806",
+    "/home/hsy/git_files/Wheat599_model_bases/scripts/run_background_nested.py": "fab295ffd87c9fe583292d3990487b8f843cf994e6eedb95d4a37898b678e59b"
+  },
+  "package_versions": {
+    "torch": "2.14.1",
+    "numpy": "2.5.3",
+    "scikit-learn": "1.9.1"
+  },
+  "environment": {
+    "python_executable": "/home/hsy/venvs/wheat599/bin/python",
+    "python_version": "3.12.14 | packaged by Anaconda, Inc. | (main, Aug 27 2026, 14:46:43) [GCC 14.3.0]",
+    "torch_version": "2.14.1+cu130",
+    "torch_cuda": "13.0",
+    "numpy_version": "2.5.3",
+    "scikit_learn_version": "1.9.1",
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 3090"
+  },
+  "device": "cuda",
+  "rule": "chosen config per fold; per seed median best epoch over its three inner runs; full development refit; inverse_y once; no post-hoc calibration",
+  "scope": "Outer test rows are never indexed; the retrieval library holds development materials and labels only"
+}

@@ -1,0 +1,65 @@
+{
+  "jobs": 24,
+  "folds": [
+    {
+      "fold": 0,
+      "phase": "selection",
+      "seconds": 38.1,
+      "jobs": 600
+    },
+    {
+      "fold": 1,
+      "phase": "selection",
+      "seconds": 39.8,
+      "jobs": 600
+    },
+    {
+      "fold": 2,
+      "phase": "selection",
+      "seconds": 40.0,
+      "jobs": 600
+    },
+    {
+      "fold": 3,
+      "phase": "selection",
+      "seconds": 40.4,
+      "jobs": 600
+    },
+    {
+      "fold": 4,
+      "phase": "selection",
+      "seconds": 40.4,
+      "jobs": 600
+    },
+    {
+      "fold": 5,
+      "phase": "selection",
+      "seconds": 40.5,
+      "jobs": 600
+    },
+    {
+      "fold": 6,
+      "phase": "selection",
+      "seconds": 39.7,
+      "jobs": 600
+    },
+    {
+      "fold": 7,
+      "phase": "selection",
+      "seconds": 39.5,
+      "jobs": 600
+    },
+    {
+      "fold": 8,
+      "phase": "selection",
+      "seconds": 39.7,
+      "jobs": 600
+    },
+    {
+      "fold": 9,
+      "phase": "selection",
+      "seconds": 41.0,
+      "jobs": 600
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+{
+ "n_units": 40,
+ "n_failures": 0,
+ "n_valid": 40,
+ "complete": true,
+ "per_environment": {
+  "1": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.5491050211985058,
+    "sd_ddof1": 0.0736968667883548
+   },
+   "rmse": {
+    "mean": 0.8507982741771988,
+    "sd_ddof1": 0.0744919284565784
+   },
+   "mae": {
+    "mean": 0.6557022932429616,
+    "sd_ddof1": 0.061095358246216994
+   }
+  },
+  "2": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.4733665706416025,
+    "sd_ddof1": 0.10940680815007124
+   },
+   "rmse": {
+    "mean": 0.8817399343845793,
+    "sd_ddof1": 0.0923312879068453
+   },
+   "mae": {
+    "mean": 0.6774674731505933,
+    "sd_ddof1": 0.07114167451281603
+   }
+  },
+  "4": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.4192448584828362,
+    "sd_ddof1": 0.06199631312530912
+   },
+   "rmse": {
+    "mean": 0.9251428039991385,
+    "sd_ddof1": 0.12830176409776609
+   },
+   "mae": {
+    "mean": 0.7143400386123655,
+    "sd_ddof1": 0.10403845996625144
+   }
+  },
+  "5": {
+   "n_valid": 10,
+   "n_total": 10,
+   "pcc": {
+    "mean": 0.48389161550442567,
+    "sd_ddof1": 0.07981493089949455
+   },
+   "rmse": {
+    "mean": 0.8884404768790317,
+    "sd_ddof1": 0.07017003894748397
+   },
+   "mae": {
+    "mean": 0.6804157956346563,
+    "sd_ddof1": 0.058179197550423306
+   }
+  }
+ },
+ "selection_counts": {
+  "B5_experts20": 9,
+  "B4_hidden1024_512": 9,
+  "B2_dropout0p5": 2,
+  "B3_experts10": 14,
+  "B0_official": 6
+ },
+ "macro": {
+  "pcc": 0.4814020164568426,
+  "rmse": 0.8865303723599871,
+  "mae": 0.6819814001601442
+ },
+ "limits": [
+  "10 outer folds share materials; descriptive only (no p-values/CIs)",
+  "seeds 42 and 2026: predictions averaged; per-seed predictions kept",
+  "six pre-registered candidates; no grid expansion",
+  "fold0/env1 test was observed by earlier smokes (RR/MoEGP) and the same outer folds were used across rounds; results are not an independent confirmation"
+ ],
+ "seeds": [
+  42,
+  2026
+ ],
+ "per_seed": {
+  "42": {
+   "pcc": 0.4645735635649027,
+   "rmse": 0.900645193347312,
+   "mae": 0.691353807763607
+  },
+  "2026": {
+   "pcc": 0.4572874079842711,
+   "rmse": 0.9114490608579906,
+   "mae": 0.7103565567045125
+  }
+ }
+}

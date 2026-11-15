@@ -1,0 +1,57 @@
+{
+  "fold": 6,
+  "epochs": {
+    "42": 35,
+    "2026": 44
+  },
+  "inner": [
+    {
+      "fold": 6,
+      "inner": 0,
+      "seed": 42,
+      "best_epoch": 35,
+      "n_params": 88199204,
+      "inner_pcc": 0.40194065788242545
+    },
+    {
+      "fold": 6,
+      "inner": 0,
+      "seed": 2026,
+      "best_epoch": 44,
+      "n_params": 88199204,
+      "inner_pcc": 0.4312095853302376
+    },
+    {
+      "fold": 6,
+      "inner": 1,
+      "seed": 42,
+      "best_epoch": 35,
+      "n_params": 88199204,
+      "inner_pcc": 0.3683511957566229
+    },
+    {
+      "fold": 6,
+      "inner": 1,
+      "seed": 2026,
+      "best_epoch": 48,
+      "n_params": 88199204,
+      "inner_pcc": 0.44656932192975973
+    },
+    {
+      "fold": 6,
+      "inner": 2,
+      "seed": 42,
+      "best_epoch": 37,
+      "n_params": 88199204,
+      "inner_pcc": 0.48447204573301084
+    },
+    {
+      "fold": 6,
+      "inner": 2,
+      "seed": 2026,
+      "best_epoch": 41,
+      "n_params": 88199204,
+      "inner_pcc": 0.4761669644498321
+    }
+  ]
+}

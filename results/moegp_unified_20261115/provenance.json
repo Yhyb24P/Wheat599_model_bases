@@ -1,0 +1,119 @@
+{
+ "config": {
+  "source": "/tmp/wheat599-moegp-official-d3a3c44",
+  "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+  "data": "data/raw/wheat.RData",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+  "seeds": [
+   42,
+   2026
+  ],
+  "model": {
+   "independent_experts": false,
+   "top_k": 2,
+   "loss_coef": 0.1,
+   "weight_decay": 1e-06
+  },
+  "training": {
+   "batch_size": 32,
+   "epochs": 100,
+   "inner_folds": 3,
+   "jobs": 8,
+   "x_scaling": "none",
+   "y_scaling": "fit_subset_only",
+   "checkpoint": "inner_val_pcc",
+   "gpu_memory_fraction": 0.2
+  },
+  "candidates": [
+   {
+    "name": "B0_official",
+    "experts": 6,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   },
+   {
+    "name": "B1_lr1e5",
+    "experts": 6,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 1e-05
+   },
+   {
+    "name": "B2_dropout0p5",
+    "experts": 6,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.5,
+    "lr": 0.0001
+   },
+   {
+    "name": "B3_experts10",
+    "experts": 10,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   },
+   {
+    "name": "B4_hidden1024_512",
+    "experts": 6,
+    "hidden": [
+     1024,
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   },
+   {
+    "name": "B5_experts20",
+    "experts": 20,
+    "hidden": [
+     512
+    ],
+    "dropout": 0.3,
+    "lr": 0.0001
+   }
+  ],
+  "budget": {
+   "dev_fits": "10 outer x 4 env x 3 inner x 6 candidates x 2 seeds = 1440",
+   "test_refits": "40 units x 2 seeds = 80",
+   "total_fits": 1520,
+   "gpu_estimate": "~2.5-4 GPU-h (measured 10.2 s per 100-epoch fit at n=485 for B0; B3 x1.7, B4 x2, B5 x3.3)"
+  },
+  "notes": [
+   "fold0/env1 test was observed by earlier RR/MoEGP smokes; the same outer folds were used across rounds; results are not an independent confirmation",
+   "failures are recorded per fit; any failure => summary is marked INCOMPLETE and macro is omitted",
+   "seeds 42/2026: inner early stopping per seed; selection scores the seed-averaged validation prediction; each seed refits with its own median inner epoch budget and a replayed per-seed lr trajectory",
+   "no model weights are saved; the test phase refits from the recorded selection"
+  ]
+ },
+ "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+ "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+ "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+ "device": "cuda",
+ "seeds": [
+  42,
+  2026
+ ],
+ "phase": "dev",
+ "jobs": 8,
+ "inner_cv": "KFold(shuffle=True, random_state=42+outer_fold)",
+ "selection_metric": "inner_val_pcc; tie (<=1e-12) -> earlier candidate in the pre-registered config order",
+ "refit": "test phase refits on the full dev; best_epoch is 0-based, recorded refit epochs = ceil(median(best_epoch + 1)), capped",
+ "weights_saved": false,
+ "independent_experts": true,
+ "official_loss": "mse + aux (loss_coef fixed)",
+ "x_scaling": "none",
+ "y_scaling": "fit_subset_only",
+ "checkpoint": "inner_val_pcc",
+ "test_contact": "none in this phase",
+ "timestamp": "2026-11-15T03:00:16+0800"
+}

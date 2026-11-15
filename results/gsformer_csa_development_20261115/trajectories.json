@@ -1,0 +1,1922 @@
+[
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 15,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 0,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 12,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 17,
+    "epochs_run": 20
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 14,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 1,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 13,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 16,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 8,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 5,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 6,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 2,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 19,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 20,
+    "epochs_run": 20
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 21,
+    "epochs_run": 21
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 19,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 11,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 3,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 15,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 4,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 15,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 19,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 15,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 14,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 16,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 5,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 13,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 6,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 20,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 16,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 17,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 2,
+    "epochs_run": 10
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 2,
+    "epochs_run": 12
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 18,
+    "epochs_run": 20
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 7,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 20,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 19,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 20,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 20,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 18,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 13,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 17,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 8,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 21,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 24,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 8,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 23,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 0,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 18,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 20,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 1,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 0,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 1,
+    "seed": 2026,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 2,
+    "seed": 2026,
+    "best_epoch": 22,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "seed": 42,
+    "best_epoch": 25,
+    "epochs_run": 25
+  },
+  {
+    "fold": 9,
+    "inner": 2,
+    "environment": 3,
+    "seed": 2026,
+    "best_epoch": 24,
+    "epochs_run": 25
+  }
+]

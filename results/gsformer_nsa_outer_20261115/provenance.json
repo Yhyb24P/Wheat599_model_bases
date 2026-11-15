@@ -1,0 +1,64 @@
+{
+  "config": {
+    "model": "gsformer_nsa",
+    "variant": "nsa",
+    "source_dir": "/tmp/gsformer-official",
+    "source_commit": "214c3831044ebcfce30db8e6825460bf8831bf1f",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seeds": [
+      42,
+      2026
+    ],
+    "jobs": 8,
+    "pad_to": 1440,
+    "architecture": {
+      "dim": 72,
+      "dim_head": 18,
+      "heads": 4,
+      "dropout": 0.3,
+      "compress_block_size": 4,
+      "selection_block_size": 4,
+      "num_selected_blocks": 4
+    },
+    "training": {
+      "learning_rate": 5e-05,
+      "weight_decay": 0.001,
+      "epochs": 25,
+      "batch_size": 48,
+      "patience": 5,
+      "min_loss_reduction": 1e-06
+    },
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.3,
+    "device": "cuda"
+  },
+  "variant": "nsa",
+  "seeds": [
+    42,
+    2026
+  ],
+  "jobs": 8,
+  "git_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "source": {
+    "url": "https://github.com/hajudien/GSformer",
+    "commit": "214c3831044ebcfce30db8e6825460bf8831bf1f",
+    "files": {
+      "CSAformer.py": "c104479c34667bf80ea245ffe7d1a8fa6816a6058691d248168cace24e6d5699",
+      "NSAformer.py": "85815e427029542ea8482b460fd3b6385c395aa1be36227a9756e64587f0c0c5",
+      "native_sparse_attention.py": "46ceb12714a09486cc6c164484a8bc066a0bd9c64a9c3c7bbf9c0ce3d666f288"
+    }
+  },
+  "adaptations": [
+    "raw markers zero-padded to the architecture shape instead of SNP/PC inputs",
+    "published wheat.Y four-environment target; GY1-GY4 mapping not assumed",
+    "canonical manifest folds instead of an undisclosed author split",
+    "early stop on validation loss (author rule); refit epoch = median best-PCC epoch",
+    "matplotlib import is stubbed when absent because NSAformer imports it without using it; no numerical path affected"
+  ],
+  "rule": "per-seed early stop; median best epoch; full dev refit; seed-averaged test prediction",
+  "parallel": "joblib loky processes; per-fit seeding"
+}

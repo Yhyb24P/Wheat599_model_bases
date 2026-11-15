@@ -1,0 +1,6 @@
+{
+  "head": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "fetch": "failed: GnuTLS recv error (-110) at 2026-11-15T02:2x+08:00; checkout not updated",
+  "venv": "~/venvs/wheat599",
+  "note": "historical untracked files ignored; only declared new dirs written"
+}
