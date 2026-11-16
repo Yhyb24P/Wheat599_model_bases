@@ -52,3 +52,39 @@ ALL_METRICS = (pcc, rmse, mae, r2)
 
 def compute_all(truth: np.ndarray, pred: np.ndarray) -> dict[str, float]:
     return {fn.__name__: fn(truth, pred) for fn in ALL_METRICS}
+
+
+# --- classification metrics (SoyBase qualitative traits) ---
+
+def balanced_accuracy(truth: np.ndarray, pred: np.ndarray) -> float:
+    """Mean of per-class recall (sklearn balanced_accuracy_score)."""
+    from sklearn.metrics import balanced_accuracy_score
+    truth, pred = _check(truth, pred)
+    return float(balanced_accuracy_score(truth.astype(int), pred.astype(int)))
+
+
+def macro_f1(truth: np.ndarray, pred: np.ndarray) -> float:
+    from sklearn.metrics import f1_score
+    truth, pred = _check(truth, pred)
+    return float(f1_score(truth.astype(int), pred.astype(int), average='macro'))
+
+
+def compute_classification(truth: np.ndarray, pred: np.ndarray, n_classes: int) -> dict:
+    """BA, macro-F1, per-class precision/recall/f1/support, confusion matrix."""
+    from sklearn.metrics import (balanced_accuracy_score, confusion_matrix,
+                                 f1_score, precision_recall_fscore_support)
+    truth, pred = _check(truth, pred)
+    truth, pred = truth.astype(int), pred.astype(int)
+    labels = list(range(n_classes))
+    precision, recall, f1, support = precision_recall_fscore_support(
+        truth, pred, labels=labels, zero_division=0)
+    return {
+        'balanced_accuracy': float(balanced_accuracy_score(truth, pred)),
+        'macro_f1': float(f1_score(truth, pred, labels=labels, average='macro', zero_division=0)),
+        'per_class': {
+            str(c): {'precision': float(precision[c]), 'recall': float(recall[c]),
+                     'f1': float(f1[c]), 'support': int(support[c])}
+            for c in labels
+        },
+        'confusion_matrix': confusion_matrix(truth, pred, labels=labels).tolist(),
+    }

@@ -1,0 +1,31 @@
+model: soybase_classical
+source: data/raw/soybase/source.json
+cache: data/raw/soybase/soybase_cache.npz
+seeds:
+- 42
+- 2026
+jobs: 12
+min_call_rate: 0.9
+min_maf: 0.05
+search:
+  xgb:
+    n_estimators:
+    - 500
+    max_depth:
+    - 4
+    - 6
+    learning_rate:
+    - 0.05
+    subsample:
+    - 0.8
+    colsample_bytree:
+    - 0.8
+  logistic:
+    C:
+    - 0.01
+    - 0.1
+    - 1.0
+    max_iter:
+    - 1000
+trait: ST
+splits: protocols/soybase/ST_splits_manifest.json

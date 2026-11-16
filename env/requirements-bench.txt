@@ -21,6 +21,6 @@ rtdl-revisiting-models
 # TabM (yandex-research/tabm), Apache-2.0.
 tabm
 
-# LightGBM/XGBoost only needed for the LassoNet extension comparison; deferred.
-# lightgbm
-# xgboost
+# LightGBM/XGBoost: classical baselines and SoyBase classification (XGBClassifier).
+lightgbm
+xgboost

@@ -49,6 +49,7 @@ RUNNERS = {
     'wheat2000_wheatgp': ('genopred.models.comparators.wheat2000_wheatgp', 'run'),
     'wheat2000_moegp': ('genopred.models.comparators.wheat2000_moegp', 'run'),
     'moegp_unified': ('genopred.experiments.wheat599.moegp', 'run'),
+    'soybase_classical': ('genopred.experiments.soybase.classification', 'run'),
 }
 
 
