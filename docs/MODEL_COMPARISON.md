@@ -344,7 +344,7 @@ Wheat2000（2000 材料×33709 二值标记，8 性状 TKW/TW/GL/GW/GH/GP/SDS/PH
 | MoEGP 独立专家 | 0.459201 | 0.911229 | 0.702165 |
 | 固定分位数 TabM–Huber | 0.526506 | 0.849242 | 0.651063 |
 
-上游固定 `d3a3c44f649fadf95af34d63f069fc8dfd85af38`，保留 `Gating` 原始专家共享引用；架构、网络对象共享及预测与官方构造核对一致。冻结本项目适配 `ecd149e`，按原 MoEGP 协议六配置及三内折完成 720/720 次开发拟合、40/40 次外层重拟合，0 失败。已核对三模型 2,396 个外层材料–环境键及真值一致并独立复算，见 `results/moegp_shared_nested_20261106/test/paired_audit.json`；逐材料预测留 omen，不入 Git。
+上游固定 `d3a3c44f649fadf95af34d63f069fc8dfd85af38`，保留 `Gating` 原始专家共享引用；架构、网络对象共享及预测与官方构造核对一致。冻结本项目适配 `ecd149e`，按原 MoEGP 协议六配置及三内折完成 720/720 次开发拟合、40/40 次外层重拟合，0 失败。已核对三模型 2,396 个外层材料–环境键及真值一致并独立复算，见 `results/wheat599/baselines/moegp/moegp_shared_nested_20261106/test/paired_audit.json`；逐材料预测留 omen，不入 Git。
 
 ### WheatGP 公开网络：Wheat599 同协议外层比较（2026-11-06）
 
@@ -428,7 +428,7 @@ Wheat2000（2000 材料×33709 二值标记，8 性状 TKW/TW/GL/GW/GH/GP/SDS/PH
 
 [结果原文](RESULTS.md#四独立tabm同协议外层评价2026-11-05)
 
-**四独立全标记TabM超过本项目同协议BiMSGP适配，但仍低于强ICM。** 这次比较使用相同测试材料，不再将TabM开发分数与ICM外层分数混排。源码冻结`4111e58`／`independent-tabm-final-protocol-20261105`，配置`configs/independent_tabm_final.yaml`；80行清单提前冻结于`238fe14`，训练轮数取已选配置的三个内层best_epoch中位数，保留轮数，不按测试成绩调整。
+**四独立全标记TabM超过本项目同协议BiMSGP适配，但仍低于强ICM。** 这次比较使用相同测试材料，不再将TabM开发分数与ICM外层分数混排。源码冻结`4111e58`／`independent-tabm-final-protocol-20261105`，配置`configs/wheat599/tabm/independent_tabm_final.yaml`；80行清单提前冻结于`238fe14`，训练轮数取已选配置的三个内层best_epoch中位数，保留轮数，不按测试成绩调整。
 
 | 方法 | 40环境折等权PCC | RMSE | MAE |
 |---|---:|---:|---:|
@@ -528,7 +528,7 @@ DNAwhisper 同协议适配版完成 **40/40 环境折，0 失败**，折均宏 P
 
 [结果原文](RESULTS.md#get-icm结构化残差核回归2026-11-03)
 
-按 `configs/get_icm_nested.yaml` 冻结的 16 个 `(η,β)` 候选完成四环境 CV1 嵌套评价，40/40 环境折完成、0 失败。原始外层与内部 ID 已物化并提交于 `results/get_icm_protocol_20261103/splits_manifest.json`；基础核网格、内层再次选模、训练表型标准化和 GLS 截距沿用匹配范围 ICM。条件 GLS-LOO 误差比截断 `[0.4,0.9]`，以预测和误差相关矩阵构造信号与残差任务协方差，广义特征分解执行精确 GLS 求解。
+按 `configs/wheat599/kernels/get_icm_nested.yaml` 冻结的 16 个 `(η,β)` 候选完成四环境 CV1 嵌套评价，40/40 环境折完成、0 失败。原始外层与内部 ID 已物化并提交于 `results/get_icm_protocol_20261103/splits_manifest.json`；基础核网格、内层再次选模、训练表型标准化和 GLS 截距沿用匹配范围 ICM。条件 GLS-LOO 误差比截断 `[0.4,0.9]`，以预测和误差相关矩阵构造信号与残差任务协方差，广义特征分解执行精确 GLS 求解。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -559,7 +559,7 @@ GET 减匹配 ICM：宏均 PCC **−0.000561**、RMSE **+0.000358**、MAE **+0.0
 
 [结果原文](RESULTS.md#bh-lmc-与匹配范围-icm2026-11-02)
 
-BH-LMC 和匹配范围 ICM 各完成 40/40 环境折、0 失败。历史 ICM 实际使用训练标准化和 GLS 无惩罚截距，本轮按 GLS 投影计算固定核条件 LOO；训练标记核、表型统计、基础核选择及校准均仅使用当前拟合子集。48 组候选与匹配 ICM 子集按三折四环境平均 PCC 选定，完整开发集重拟合后评价 CV1。方案和固定阈值见 [Wheat599_BH-LMC.md](methods/Wheat599_BH-LMC.md)，配置见 `configs/bh_lmc_nested.yaml`。
+BH-LMC 和匹配范围 ICM 各完成 40/40 环境折、0 失败。历史 ICM 实际使用训练标准化和 GLS 无惩罚截距，本轮按 GLS 投影计算固定核条件 LOO；训练标记核、表型统计、基础核选择及校准均仅使用当前拟合子集。48 组候选与匹配 ICM 子集按三折四环境平均 PCC 选定，完整开发集重拟合后评价 CV1。方案和固定阈值见 [Wheat599_BH-LMC.md](methods/Wheat599_BH-LMC.md)，配置见 `configs/wheat599/kernels/bh_lmc_nested.yaml`。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -575,7 +575,7 @@ BH-LMC 相对历史 ICM 的折均差：PCC **−0.000878**、RMSE **+0.000612**�
 
 [结果原文](RESULTS.md#谱选择性-icm2026-11-02)
 
-在普通 ICM 的基础核与环境矩阵上，以 `K_s=K(K+τI)⁻¹K` 和 `K_p=K−K_s` 分别构造共享核和私有核；测试交叉核使用同一训练集谱滤波。开发集内三折按四环境平均 PCC 联合选择 `τ/mean_eigenvalue∈{0,1,4}` 和 `η∈{0,0.3,0.6}`，基础核参数按既有 ICM 规则在各训练子集选定。完整开发集重拟合后评价 CV1 外层折，40/40 环境折完成、0 失败。配置见 `configs/spectral_icm_nested.yaml`。
+在普通 ICM 的基础核与环境矩阵上，以 `K_s=K(K+τI)⁻¹K` 和 `K_p=K−K_s` 分别构造共享核和私有核；测试交叉核使用同一训练集谱滤波。开发集内三折按四环境平均 PCC 联合选择 `τ/mean_eigenvalue∈{0,1,4}` 和 `η∈{0,0.3,0.6}`，基础核参数按既有 ICM 规则在各训练子集选定。完整开发集重拟合后评价 CV1 外层折，40/40 环境折完成、0 失败。配置见 `configs/wheat599/kernels/spectral_icm_nested.yaml`。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -589,7 +589,7 @@ BH-LMC 相对历史 ICM 的折均差：PCC **−0.000878**、RMSE **+0.000612**�
 
 [结果原文](RESULTS.md#四环境-cv1-多输出核回归2026-11-02)
 
-每个测试材料的四环境表型均未用于训练或选模。内部三折按四环境平均 PCC 选共享强度，基础核参数只在各内部训练子集再次三折选择，随后用完整外层开发集重新选基础参数并拟合。两种多输出方法各完成 40/40 环境折，0 失败。普通 ICM 使用共同加性＋RBF 核、训练表型相关矩阵和同一共享强度；选择性模型使用环境专属基础核参数，并以训练子集的单核三折 OOF 预测构造加性、RBF 各自的可靠性加权任务相关矩阵。详细规则和范围见 `configs/multienv_kernel_nested.yaml` 及 [研究计划](history/RESEARCH_PLAN.md)。
+每个测试材料的四环境表型均未用于训练或选模。内部三折按四环境平均 PCC 选共享强度，基础核参数只在各内部训练子集再次三折选择，随后用完整外层开发集重新选基础参数并拟合。两种多输出方法各完成 40/40 环境折，0 失败。普通 ICM 使用共同加性＋RBF 核、训练表型相关矩阵和同一共享强度；选择性模型使用环境专属基础核参数，并以训练子集的单核三折 OOF 预测构造加性、RBF 各自的可靠性加权任务相关矩阵。详细规则和范围见 `configs/wheat599/kernels/multienv_kernel_nested.yaml` 及 [研究计划](history/RESEARCH_PLAN.md)。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -603,7 +603,7 @@ ICM 相对单环境基线的同折宏均差：PCC +0.0110、RMSE −0.0057、MAE
 
 [结果原文](RESULTS.md#经典核岭对照2026-11-02)
 
-Gaussian kernel ridge 与加性＋RBF kernel ridge 均采用当前外层十折、开发集内三折 PCC 选模及完整开发集重拟合，各 40/40 环境折完成、0 失败。训练集标记中心化后，加性核按平均对角线归一化；RBF 使用训练集两两 Hamming 距离中位数；两个方法都有无惩罚截距。预设带宽、ridge 参数和核混合比例见 `configs/kernel_baselines_nested.yaml`。Gaussian kernel ridge 不是 Crossa 2010 年 Bayesian RKHS 的精确复现。
+Gaussian kernel ridge 与加性＋RBF kernel ridge 均采用当前外层十折、开发集内三折 PCC 选模及完整开发集重拟合，各 40/40 环境折完成、0 失败。训练集标记中心化后，加性核按平均对角线归一化；RBF 使用训练集两两 Hamming 距离中位数；两个方法都有无惩罚截距。预设带宽、ridge 参数和核混合比例见 `configs/wheat599/kernels/kernel_baselines_nested.yaml`。Gaussian kernel ridge 不是 Crossa 2010 年 Bayesian RKHS 的精确复现。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -620,7 +620,7 @@ Gaussian kernel ridge 与加性＋RBF kernel ridge 均采用当前外层十折�
 
 [结果原文](RESULTS.md#背景条件化--rbf-核2026-11-02)
 
-固定 PCA16、四门控，联合拟合非负加性、背景条件化和全标记 Hamming RBF 核；内部三折从三个带宽中按 PCC 选择，完整开发集重拟合。40/40 环境折完成，0 失败。精确训练设置见 `configs/background_rbf_nested.yaml`，开发选择和最终结果分别位于 `results/background_rbf_nested_selection_20261102/` 和 `results/background_rbf_nested_final_20261102/`。
+固定 PCA16、四门控，联合拟合非负加性、背景条件化和全标记 Hamming RBF 核；内部三折从三个带宽中按 PCC 选择，完整开发集重拟合。40/40 环境折完成，0 失败。精确训练设置见 `configs/wheat599/baselines/background_rbf_nested.yaml`，开发选择和最终结果分别位于 `results/background_rbf_nested_selection_20261102/` 和 `results/background_rbf_nested_final_20261102/`。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -643,7 +643,7 @@ Gaussian kernel ridge 与加性＋RBF kernel ridge 均采用当前外层十折�
 
 [结果原文](RESULTS.md#背景条件化联合收缩2026-11-02)
 
-全部标记训练折中心化；训练折 PCA 16 维、4 个 softmax 门控；全局与背景标记效应联合核 ridge。训练门控使用固定 PCA 和门控下的解析条件留一预测误差，不逐留一样本重新拟合 PCA 或门控。两种收缩系数各从 {0.1, 1, 10} 选择，验证 RMSE 选定组合，每折 test 评价一次；门控优化 12 步。配置与核的精确定义见 `configs/background_ridge.yaml` 和结果 provenance。40/40 完成，0 失败。
+全部标记训练折中心化；训练折 PCA 16 维、4 个 softmax 门控；全局与背景标记效应联合核 ridge。训练门控使用固定 PCA 和门控下的解析条件留一预测误差，不逐留一样本重新拟合 PCA 或门控。两种收缩系数各从 {0.1, 1, 10} 选择，验证 RMSE 选定组合，每折 test 评价一次；门控优化 12 步。配置与核的精确定义见 `configs/wheat599/baselines/background_ridge.yaml` 和结果 provenance。40/40 完成，0 失败。
 
 | 环境 | PCC | RMSE | MAE | 相对 RR ΔPCC | ΔRMSE |
 |---|---:|---:|---:|---:|---:|
@@ -683,7 +683,7 @@ Gaussian kernel ridge 与加性＋RBF kernel ridge 均采用当前外层十折�
 
 **状态（2026-10-30）：** 已固定 `build_model()` 前的初始化种子；完成 A 架构的 40 次正式训练、同一训练轨迹内的 val-PCC / val-RMSE 双 checkpoint 比较、同折 RR-BLUP 对照、固定 RR-BLUP + A 骨干的残差修正首轮，以及共享低秩编码 + 双向诱导注意力 + 多槽读出的完整 FT-T 重构首轮。残差修正未观察到相对 RR-BLUP 的可复现增量（点估计 PCC −0.0011、RMSE +0.0218）；完整重构宏均 test PCC 0.3382、RMSE 0.9764，预注册 GO=False。旧 C-order 结果全部无效；D 保留为探索性结果。
 
-第四个候选（原 FT 仿射编码 + 一层完整标记交互 + 位置相关因子化线性读出，210,749 参数）已完成正式 40 次运行，配置与预注册 GO 判据见 `configs/bimsgp_direct.yaml`。
+第四个候选（原 FT 仿射编码 + 一层完整标记交互 + 位置相关因子化线性读出，210,749 参数）已完成正式 40 次运行，配置与预注册 GO 判据见 `configs/wheat599/baselines/bimsgp_direct.yaml`。
 
 ### A 架构：val-PCC 规则（正式基线）
 
@@ -1101,9 +1101,9 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 
 [结果原文](RESULTS.md#固定融合配置重选开发层2026-11-06)
 
-只复用已保存 checkpoint 预测，按每环境固定等权融合的三个内层 PCC 选配置：开发宏 PCC **0.494730**，原单模型选配置的融合为 **0.494512**，增加 0.000217；40 个环境配置中改变 10 个。RMSE 从 0.870235 变为 0.870342。候选包含原配置，所用开发分数不降低由选择规则保证，不证明泛化增益；没有重新选择 checkpoint 或新增训练。见 `results/fusion_reselect_20261106/summary.json`。
+只复用已保存 checkpoint 预测，按每环境固定等权融合的三个内层 PCC 选配置：开发宏 PCC **0.494730**，原单模型选配置的融合为 **0.494512**，增加 0.000217；40 个环境配置中改变 10 个。RMSE 从 0.870235 变为 0.870342。候选包含原配置，所用开发分数不降低由选择规则保证，不证明泛化增益；没有重新选择 checkpoint 或新增训练。见 `results/wheat599/neural/fusion/core/fusion_reselect_20261106/summary.json`。
 
-只复用已保存 checkpoint 预测，按每环境固定等权融合的三个内层 PCC 选配置：开发宏 PCC **0.494730**，原单模型选配置的融合为 **0.494512**，增加 0.000217；40 个环境配置中改变 10 个。RMSE 从 0.870235 变为 0.870342。候选包含原配置，所用开发分数不降低由选择规则保证，不证明泛化增益；没有重新选择 checkpoint 或新增训练。见 `results/fusion_reselect_20261106/summary.json`。
+只复用已保存 checkpoint 预测，按每环境固定等权融合的三个内层 PCC 选配置：开发宏 PCC **0.494730**，原单模型选配置的融合为 **0.494512**，增加 0.000217；40 个环境配置中改变 10 个。RMSE 从 0.870235 变为 0.870342。候选包含原配置，所用开发分数不降低由选择规则保证，不证明泛化增益；没有重新选择 checkpoint 或新增训练。见 `results/wheat599/neural/fusion/core/fusion_reselect_20261106/summary.json`。
 
 ### 99 输出 MSE 对照：开发层（2026-11-06）
 
@@ -1194,13 +1194,13 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 | Env3（4） | 0.401205 | 0.401205 | 0.401870 |
 | Env4（5） | 0.494948 | 0.495123 | 0.494847 |
 
-完整逐环境PCC/RMSE/MAE及逐折差见 [summary](../results/grouped_weights_development_20261105/summary.json)，90条单元记录见 [units](../results/grouped_weights_development_20261105/units.json)。非可分求解器在identity下相对第一阶段保存预测最大差6.84e-7；独立重算90份预测的1080项指标最大差6.67e-16，全部源码/配置/源记录SHA一致，最大求解梯度1.88e-6，见 [audit](../results/grouped_weights_development_20261105/audit.json)。预测和完整权重诊断留在本机/omen，不提交Git；任务进程退出并释放本次GPU显存。
+完整逐环境PCC/RMSE/MAE及逐折差见 [summary](../results/wheat599/diagnostics/kernel/grouped_weights_development_20261105/summary.json)，90条单元记录见 [units](../results/wheat599/diagnostics/kernel/grouped_weights_development_20261105/units.json)。非可分求解器在identity下相对第一阶段保存预测最大差6.84e-7；独立重算90份预测的1080项指标最大差6.67e-16，全部源码/配置/源记录SHA一致，最大求解梯度1.88e-6，见 [audit](../results/wheat599/diagnostics/kernel/grouped_weights_development_20261105/audit.json)。预测和完整权重诊断留在本机/omen，不提交Git；任务进程退出并释放本次GPU显存。
 
 ### Wheat599固定分组核第一阶段（2026-11-05）
 
 [结果原文](RESULTS.md#wheat599固定分组核第一阶段2026-11-05)
 
-冻结`0ecd4d3`（tag `grouped-kernel-stage1-20261105`），omen CPU两线程完成30内层单元×8系统＝240个不同的多环境Huber拟合、0失败，单次24.91秒。协调者在收到gb完成回执前误判未启动，重复执行同一240fit，实际共480fit；两次summary/units/metadata完全一致，不作为两组证据。执行记录见 [accounting](../results/grouped_kernel_development_20261105/execution_accounting.json)。固定tau=0.25、64相关性组、原已选基础参数及Huber四环境阈值；六个频率匹配随机组分别拟合后平均指标。分组仅使用fit材料，未使用外层评分。协议见 [GROUPED_KERNEL](methods/GROUPED_KERNEL.md)，结果见 [summary](../results/grouped_kernel_development_20261105/summary.json)。
+冻结`0ecd4d3`（tag `grouped-kernel-stage1-20261105`），omen CPU两线程完成30内层单元×8系统＝240个不同的多环境Huber拟合、0失败，单次24.91秒。协调者在收到gb完成回执前误判未启动，重复执行同一240fit，实际共480fit；两次summary/units/metadata完全一致，不作为两组证据。执行记录见 [accounting](../results/wheat599/diagnostics/kernel/grouped_kernel_development_20261105/execution_accounting.json)。固定tau=0.25、64相关性组、原已选基础参数及Huber四环境阈值；六个频率匹配随机组分别拟合后平均指标。分组仅使用fit材料，未使用外层评分。协议见 [GROUPED_KERNEL](methods/GROUPED_KERNEL.md)，结果见 [summary](../results/wheat599/diagnostics/kernel/grouped_kernel_development_20261105/summary.json)。
 
 | 系统 | 开发宏PCC | RMSE | MAE |
 |---|---:|---:|---:|
@@ -1215,13 +1215,13 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 | Env3（4） | 0.402049 | 0.401205 | 0.401320 |
 | Env4（5） | 0.492802 | 0.494948 | 0.493047 |
 
-第三环境略降，不把宏均改善解释为所有环境获益。原Huber宏PCC与原记录差4.64e-13；从240份保存预测独立重算2880项环境指标，最大差7.78e-16，源码/配置/源记录SHA已核对，见 [audit](../results/grouped_kernel_development_20261105/audit.json)。保存预测及完整组分配留在本机/omen，不提交Git；小结果与运行证据随仓库发布。
+第三环境略降，不把宏均改善解释为所有环境获益。原Huber宏PCC与原记录差4.64e-13；从240份保存预测独立重算2880项环境指标，最大差7.78e-16，源码/配置/源记录SHA已核对，见 [audit](../results/wheat599/diagnostics/kernel/grouped_kernel_development_20261105/audit.json)。保存预测及完整组分配留在本机/omen，不提交Git；小结果与运行证据随仓库发布。
 
 ### 四方向表型目标开发比较（2026-11-05，已结束）
 
 [结果原文](RESULTS.md#四方向表型目标开发比较2026-11-05已结束)
 
-**正交目标旋转未改善强独立TabM，本变换结束，不进入外层或Wheat2000。** 冻结`e4b92a8`／`phenotype-rotation-protocol-20261105`，配置`configs/phenotype_rotation.yaml`；omen完成1920/1920新增fit、0失败，原目标1920条按SHA只读复用。每inner只在fit上标准化Y、求相关矩阵全部四个正交方向，四个单输出官方TabM按方向验证PCC独立早停，预测inverse到Z后再inverse到原四环境；共同配置选择只看还原后的三inner、双seed向量集成宏PCC，不按原环境拼不同候选配置。
+**正交目标旋转未改善强独立TabM，本变换结束，不进入外层或Wheat2000。** 冻结`e4b92a8`／`phenotype-rotation-protocol-20261105`，配置`configs/diagnostics/phenotype_rotation.yaml`；omen完成1920/1920新增fit、0失败，原目标1920条按SHA只读复用。每inner只在fit上标准化Y、求相关矩阵全部四个正交方向，四个单输出官方TabM按方向验证PCC独立早停，预测inverse到Z后再inverse到原四环境；共同配置选择只看还原后的三inner、双seed向量集成宏PCC，不按原环境拼不同候选配置。
 
 | 完整系统 | 开发宏PCC | RMSE | MAE |
 |---|---:|---:|---:|
@@ -1257,7 +1257,7 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 
 [结果原文](RESULTS.md#固定checkpoint的配置选择四格重汇总2026-11-05无新训练)
 
-**逐环境配置选择解释部分差异，但共享模型仅放宽配置选择仍未追平独立系统。** 使用omen保存的shared和independent全配置预测，冻结各原始轨迹checkpoint，不重新训练或早停。代码 `e3708ca`，配置 `configs/environment_selection.yaml`。每开发集按三内层seed平均预测的环境PCC选共同配置或各环境配置；不逐inner取优。两已知角点复现误差小于1e-8，输入SHA／全部材料ID、环境、seed、配置键及划分一致，失败记录为空。
+**逐环境配置选择解释部分差异，但共享模型仅放宽配置选择仍未追平独立系统。** 使用omen保存的shared和independent全配置预测，冻结各原始轨迹checkpoint，不重新训练或早停。代码 `e3708ca`，配置 `configs/wheat599/tabm/environment_selection.yaml`。每开发集按三内层seed平均预测的环境PCC选共同配置或各环境配置；不逐inner取优。两已知角点复现误差小于1e-8，输入SHA／全部材料ID、环境、seed、配置键及划分一致，失败记录为空。
 
 | 训练方式 | 配置选择 | 开发集成宏PCC | RMSE | 逐seed PCC均分 |
 |---|---|---:|---:|---:|
@@ -1272,7 +1272,7 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 
 [结果原文](RESULTS.md#环境共享方式比较2026-11-05开发完成)
 
-**独立单环境完整系统提高开发PCC；环境乘性条件化未提高PCC。** 冻结 `d10c9cb`／`environment-tabm-protocol-20261105`，配置 `configs/environment_tabm.yaml`。omen完成conditioned 480次、四环境independent 1920次，共 **2400/2400新增fit、0失败**，墙钟2232.25秒；shared的480条旧记录按数据／划分／模型源码／配置／种子核验后只读复用，抽样checkpoint重载与保存预测最大差4.84e-10。未运行外层测试。
+**独立单环境完整系统提高开发PCC；环境乘性条件化未提高PCC。** 冻结 `d10c9cb`／`environment-tabm-protocol-20261105`，配置 `configs/wheat599/tabm/environment_tabm.yaml`。omen完成conditioned 480次、四环境independent 1920次，共 **2400/2400新增fit、0失败**，墙钟2232.25秒；shared的480条旧记录按数据／划分／模型源码／配置／种子核验后只读复用，抽样checkpoint重载与保存预测最大差4.84e-10。未运行外层测试。
 
 | 完整预测系统 | 开发宏PCC | RMSE | MAE | 逐seed PCC均分 |
 |---|---:|---:|---:|---:|
@@ -1288,13 +1288,13 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 | Env3（4） | 0.416267 | 0.410268 | −0.005999 | +0.000066 |
 | Env4（5） | 0.487111 | 0.502786 | +0.015675 | +0.000071 |
 
-独立系统的改善不一致，第三输出环境的PCC降低、RMSE增加0.004002；不把宏均提升表述为所有环境受益。逐环境原始指标、逐折分数和共同选择见 `results/environment_tabm_development_20261105/summary.json`、`selection.json`。汇总已由gpt66在omen直接读取保存CSV、按共同配置和材料ID重新计算，PCC/RMSE/MAE与summary一致（1e-8内）；未重训或重新选配置。
+独立系统的改善不一致，第三输出环境的PCC降低、RMSE增加0.004002；不把宏均提升表述为所有环境受益。逐环境原始指标、逐折分数和共同选择见 `results/wheat599/neural/tabm/environment/environment_tabm_development_20261105/summary.json`、`selection.json`。汇总已由gpt66在omen直接读取保存CSV、按共同配置和材料ID重新计算，PCC/RMSE/MAE与summary一致（1e-8内）；未重训或重新选配置。
 
 ### RAGP 同协议参照与本轮完整比较（2026-11-05，已完成）
 
 [结果原文](RESULTS.md#ragp-同协议参照与本轮完整比较2026-11-05已完成)
 
-**材料级检索本轮未建立优于简单融合的架构收益。** RAGP独立适配在omen完成480/480条、0失败，冻结 `15c630e`／`ragp-protocol-20261105`，配置 `configs/ragp.yaml`；墙钟3536.57秒，19623个训练epoch，峰值reserved 3826 MiB。与下节三臂使用同一划分、fit-only预处理与参考库，按每开发集三内层的种子预测集成PCC选择共同配置，未评价外层测试。
+**材料级检索本轮未建立优于简单融合的架构收益。** RAGP独立适配在omen完成480/480条、0失败，冻结 `15c630e`／`ragp-protocol-20261105`，配置 `configs/wheat599/baselines/ragp.yaml`；墙钟3536.57秒，19623个训练epoch，峰值reserved 3826 MiB。与下节三臂使用同一划分、fit-only预处理与参考库，按每开发集三内层的种子预测集成PCC选择共同配置，未评价外层测试。
 
 | 方法 | 开发宏 PCC | 开发 RMSE | 开发 MAE |
 |---|---:|---:|---:|
@@ -1311,7 +1311,7 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 
 [结果原文](RESULTS.md#全标记-tabm-材料级检索与预测融合2026-11-05开发完成)
 
-**多成员检索未建立架构收益；当前最高开发 PCC 来自简单 TabM–ICM 融合。** 冻结代码 `22faf5b`、标签 `retrieval-tabm-protocol-20261105`；配置 `configs/retrieval_tabm.yaml` 与 `configs/retrieval_fusion.yaml`。在 omen 完成三臂各 8 配置 × 2 种子 × 10 开发集 × 3 内层，共 **1440/1440 条、0 失败**，墙钟 2233.06 秒。未运行外层测试。
+**多成员检索未建立架构收益；当前最高开发 PCC 来自简单 TabM–ICM 融合。** 冻结代码 `22faf5b`、标签 `retrieval-tabm-protocol-20261105`；配置 `configs/wheat599/tabm/retrieval_tabm.yaml` 与 `configs/wheat599/tabm/retrieval_fusion.yaml`。在 omen 完成三臂各 8 配置 × 2 种子 × 10 开发集 × 3 内层，共 **1440/1440 条、0 失败**，墙钟 2233.06 秒。未运行外层测试。
 
 | 方法 | 种子预测集成后的开发宏 PCC | 集成 RMSE | 集成 MAE | 逐种子 PCC 均分 |
 |---|---:|---:|---:|---:|
@@ -1327,7 +1327,7 @@ Wheat599 的 30 个内层单元、四环境全部完成，60 次续训各 50 步
 
 [结果原文](RESULTS.md#真实-wheat599-tabm-正式开发训练2026-11-04已完成)
 
-**原始 TabM 已接近强核开发参照；分组＋加性适配版没有预测收益。** 按用户最新目标，采用成熟架构任务适配与预测／效率验证，未要求模拟任务准入。本轮仅开发选模，未训练或评价外层测试。代码 `8c30ca9`、标签 `genomic-tabm-development-20261104`、配置 `configs/genomic_tabm.yaml`。
+**原始 TabM 已接近强核开发参照；分组＋加性适配版没有预测收益。** 按用户最新目标，采用成熟架构任务适配与预测／效率验证，未要求模拟任务准入。本轮仅开发选模，未训练或评价外层测试。代码 `8c30ca9`、标签 `genomic-tabm-development-20261104`、配置 `configs/wheat599/tabm/genomic_tabm.yaml`。
 
 | 方法 | 开发宏PCC ↑ | RMSE ↓ |
 |---|---:|---:|
@@ -1533,7 +1533,7 @@ Huber 损失、训练残差 MAD 阈值与相对正则强度组成的完整候选
 
 [结果原文](RESULTS.md#相关冗余加权-rbf2026-11-02)
 
-冻结配置 `configs/background_weighted_rbf_nested.yaml`：仅用当前训练材料的原始 0/1 标记估计相关矩阵和收缩 0.5 的标记权重，按加权 Hamming 距离构造 RBF；内部三折选带宽、完整开发集重拟合。40/40 环境折完成，0 失败。
+冻结配置 `configs/wheat599/baselines/background_weighted_rbf_nested.yaml`：仅用当前训练材料的原始 0/1 标记估计相关矩阵和收缩 0.5 的标记权重，按加权 Hamming 距离构造 RBF；内部三折选带宽、完整开发集重拟合。40/40 环境折完成，0 失败。
 
 | 模型 | 环境 1 PCC | 环境 2 PCC | 环境 4 PCC | 环境 5 PCC | 宏均 PCC | 宏均 RMSE | 宏均 MAE |
 |---|---:|---:|---:|---:|---:|---:|---:|
@@ -1590,7 +1590,7 @@ Huber 损失、训练残差 MAD 阈值与相对正则强度组成的完整候选
 
 [结果原文](RESULTS.md#固定候选多环境读出诊断2026-11-04已结束)
 
-**未通过预定继续条件，不据此开发向量网络。** 标量读出的代数限制成立，但本轮可估计方向方案没有稳定的额外预测价值。代码冻结 `4470ebe`，标签 `vector-readout-diagnostic-20261104`；预算见 `configs/vector_diagnostic.yaml`、定义见 [JOINT_INFERENCE.md](methods/JOINT_INFERENCE.md)。完整记录为 `results/vector_diagnostic_20261104/`。
+**未通过预定继续条件，不据此开发向量网络。** 标量读出的代数限制成立，但本轮可估计方向方案没有稳定的额外预测价值。代码冻结 `4470ebe`，标签 `vector-readout-diagnostic-20261104`；预算见 `configs/diagnostics/vector_diagnostic.yaml`、定义见 [JOINT_INFERENCE.md](methods/JOINT_INFERENCE.md)。完整记录为 `results/vector_diagnostic_20261104/`。
 
 | 方法 | seed 42 | seed 2026 |
 |---|---:|---:|

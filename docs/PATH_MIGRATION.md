@@ -66,4 +66,4 @@ JSON 顶层的 `src`、`imports`、`configs`、`results`、`site` 保存第一�
 
 ## round3（组织树扇出治理，2026-11-17）
 
-`round3` 节 `{base_commit, results}` 把分组 run 目录深层归类到 `数据集/家族/方法组/[子组]/run`（method-first，每组织文件夹直接子文件夹≤6），run 名逐字保留、冻结字节不动。`_frozen_source_ok` 沿 round3→round2→round1 链式反查历史 blob（多对一保留所有旧源候选，refs 含各轮 base_commit）。豁免机器生成目录、repo 根、本机附件区与 run 目录内部证据叶；`scripts/check_layout.py`＋`tests/test_data_layout.py` 守护扇出规则。
+`round3` 节 `{base_commit, results}` 把分组 run 目录深层归类到 `数据集/家族/方法组/[子组]/run`（method-first，每组织文件夹直接子文件夹≤6），run 名逐字保留、冻结字节不动。`_frozen_source_ok` 沿 round3→round2→round1 链式反查历史 blob（多对一保留所有旧源候选，refs 含各轮 base_commit）。扇出豁免与规则见 AGENTS「组织树扇出治理」；`scripts/check_layout.py`＋`tests/test_data_layout.py` 守护。

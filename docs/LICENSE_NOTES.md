@@ -8,7 +8,7 @@
 |----|-------------|------|
 | BGLR 包（含 `wheat.RData`） | GPL-3 | `DESCRIPTION` 字段 `License: GPL-3`。数据通过 `scripts/fetch_data.py` 从官方仓库获取，不在本仓库重新分发。 |
 | wheat 数据本身 | 未发现独立许可声明 | 数据来自 CIMMYT，经 BGLR 包发布；使用与再分发遵循 BGLR 的 GPL-3 与来源方要求。发表时引用 BGLR 与 CIMMYT 来源。 |
-| Wheat2000公开`wheat_GS.RData`（2026-11-05） | DeepGS包DESCRIPTION为GPL-2或GPL-3；数据无独立许可声明 | 固定`cma2015/DeepGS@33ae2dc1ed7bda4e38b76460b18756649d4478a5`原件SHA `e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696`；原件/NPZ只读留`data/raw/wheat2000`，不在Git重新分发。R/Python与源头记录见`results/wheat2000_protocol_20261105/data_provenance.json`。 |
+| Wheat2000公开`wheat_GS.RData`（2026-11-05） | DeepGS包DESCRIPTION为GPL-2或GPL-3；数据无独立许可声明 | 固定`cma2015/DeepGS@33ae2dc1ed7bda4e38b76460b18756649d4478a5`原件SHA `e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696`；原件/NPZ只读留`data/raw/wheat2000`，不在Git重新分发。R/Python与源头记录见`protocols/wheat2000_protocol_20261105/data_provenance.json`。 |
 
 ## 代码与权重
 
@@ -21,7 +21,7 @@
 | `direct_42.pt` | `30c18195a70605b5aa986751b3ee9fbc608ec327f3ef55894703862233064015` |
 | `direct_2026.pt` | `4816e2d527e38e23cd59c6521d7d510867ee353ba1f64d474056e1fa0dbceafc` |
 
-DNAwhisper 从外部固定源码 `Marxin1992/Whisperer_of_DNA@7a657cc00d44263c4b1085d3991ecc0e935c14e5` 加载，2026-11-04 核对本地固定副本的 `LICENSE` 为 Apache-2.0；本仓库只提交协议适配器，不复制上游代码或权重。所导入源码及配置的 Git blob 摘要固定在 `configs/dnawhisper_nested.yaml`，运行时逐项核验。没有使用上游预训练权重，各折从头执行训练子集内预训练；如后续保存本项目权重，权重不入 Git，其 SHA 另行记录。
+DNAwhisper 从外部固定源码 `Marxin1992/Whisperer_of_DNA@7a657cc00d44263c4b1085d3991ecc0e935c14e5` 加载，2026-11-04 核对本地固定副本的 `LICENSE` 为 Apache-2.0；本仓库只提交协议适配器，不复制上游代码或权重。所导入源码及配置的 Git blob 摘要固定在 `configs/wheat599/baselines/dnawhisper_nested.yaml`，运行时逐项核验。没有使用上游预训练权重，各折从头执行训练子集内预训练；如后续保存本项目权重，权重不入 Git，其 SHA 另行记录。
 
 MoEGP 官方仓库在提交 `d3a3c44f649fadf95af34d63f069fc8dfd85af38` 未发现许可证文件；本项目从本地官方副本加载代码，不复制或重新分发该源码。
 
@@ -65,23 +65,23 @@ Wheat2000神经参照准备（2026-11-05）：DeepGS为公开R/mxnet网络的独
 
 四独立TabM外层评价（2026-11-05）：本项目从头训练80个权重，无外部预训练权重，依赖沿用Apache-2.0官方TabM；未另行指定权重分发许可。权重总计132809168字节，仅保留omen `results/independent_tabm_final_20261105/weights/`，不入Git；80个逐文件SHA见同名结果目录`weights_sha256.txt`，该清单SHA为`fd50608fb67fd09740b2bb919d3c53e1357b081162a6e91773122116fd319f56`。此为文件SHA，不是内存state摘要。
 
-云端后期迁移交接（2026-11-05）：30个本项目固定配置专家checkpoint已逐文件核验，仅留用户交接包，不入Git；原清单见`results/late_transfer_development_20261105/cloud_artifact_sha256.txt`、核验说明见`handoff_verification.json`。未使用外部预训练权重，不将交接数据重新分发。
+云端后期迁移交接（2026-11-05）：30个本项目固定配置专家checkpoint已逐文件核验，仅留用户交接包，不入Git；原清单见`results/wheat599/neural/tabm/genomic/late_transfer_development_20261105/cloud_artifact_sha256.txt`、核验说明见`handoff_verification.json`。未使用外部预训练权重，不将交接数据重新分发。
 
-环境共享研究（2026-11-05）：沿用上述官方Apache-2.0 TabM依赖，无外部预训练权重。新增2400次fit仅内存best state、无持久化权重；state摘要清单为 `results/environment_tabm_development_20261105/checkpoint_sha256.txt`，清单自身SHA-256 `d2cfd53a77265183c72906b54de8900d0227ba4418069f0a73e1d73af95af5ed`。摘要规则为排序key／dtype／shape／tensor bytes，不是checkpoint文件哈希。
+环境共享研究（2026-11-05）：沿用上述官方Apache-2.0 TabM依赖，无外部预训练权重。新增2400次fit仅内存best state、无持久化权重；state摘要清单为 `results/wheat599/neural/tabm/environment/environment_tabm_development_20261105/checkpoint_sha256.txt`，清单自身SHA-256 `d2cfd53a77265183c72906b54de8900d0227ba4418069f0a73e1d73af95af5ed`。摘要规则为排序key／dtype／shape／tensor bytes，不是checkpoint文件哈希。
 
 2026-11-05 检索开发生成的1440个本项目训练权重留 omen `/home/hsy/git_files/Wheat599_model_bases/results/retrieval_tabm_development_20261105/`，不入Git。逐文件SHA见同名结果目录的 `weights_sha256.txt`，清单SHA-256为 `9389be175483b37280480c84f37ab5f0a92e142e9e49f1f83e7f4dc0f955fe7e`；未使用外部预训练权重。
 
-RAGP 同协议参照（2026-11-05）：固定上游 `l00907l/RAGP` 提交 `85675b1e8054fe3e91fdb3e974150f1dde81eee3` 无 LICENSE 文件。`src/wheat599/ragp.py` 为所发表机制的独立实现，不复制或分发上游源码、example-data 或权重。fit-only PCA／标准化、严格自身排除及 triplet 索引修正等差异记录于模块说明。未使用外部预训练权重；本轮最优 state 只暂存内存，流式 SHA 随轨迹记录，不持久化权重。
+RAGP 同协议参照（2026-11-05）：固定上游 `l00907l/RAGP` 提交 `85675b1e8054fe3e91fdb3e974150f1dde81eee3` 无 LICENSE 文件。`src/genopred/models/comparators/ragp.py` 为所发表机制的独立实现，不复制或分发上游源码、example-data 或权重。fit-only PCA／标准化、严格自身排除及 triplet 索引修正等差异记录于模块说明。未使用外部预训练权重；本轮最优 state 只暂存内存，流式 SHA 随轨迹记录，不持久化权重。
 
-RAGP 480条已完成；state哈希清单 `results/ragp_development_20261105/checkpoint_sha256.txt` 自身SHA-256为 `a77fe1523e33414bf564f3fd08241469a322a47d8cc1d5ee05e8f78b97a66307`。该SHA为排序key／dtype／shape／tensor bytes的流式state摘要，不是不存在的checkpoint文件哈希。预测和轨迹原件留omen同名目录，路径与预测SHA见summary.json。
+RAGP 480条已完成；state哈希清单 `results/wheat599/baselines/comparators/ragp/ragp_development_20261105/checkpoint_sha256.txt` 自身SHA-256为 `a77fe1523e33414bf564f3fd08241469a322a47d8cc1d5ee05e8f78b97a66307`。该SHA为排序key／dtype／shape／tensor bytes的流式state摘要，不是不存在的checkpoint文件哈希。预测和轨迹原件留omen同名目录，路径与预测SHA见summary.json。
 
-使用官方 `tabm==0.0.3` 与 `rtdl_num_embeddings==0.0.12`，均为 Apache-2.0，来源 https://github.com/yandex-research/tabm 与 PyPI 固定发布包。当前不复制或改写上游骨干源码，不使用预训练权重。模块SHA-256：tabm.py `fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade`；rtdl_num_embeddings.py `48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1`。正式训练480个权重仅留omen `/home/hsy/git_files/Wheat599_model_bases/results/genomic_tabm_development_20261104/`，不入Git；每个权重SHA见 `results/genomic_tabm_development_20261104/weights_sha256.txt`，该清单自身SHA-256为 `e5a7e89d64e71561cf369ee44cbba38af7b03ad156ad15c1cb43ab3bb065bb09`。未使用外部预训练权重。
+使用官方 `tabm==0.0.3` 与 `rtdl_num_embeddings==0.0.12`，均为 Apache-2.0，来源 https://github.com/yandex-research/tabm 与 PyPI 固定发布包。当前不复制或改写上游骨干源码，不使用预训练权重。模块SHA-256：tabm.py `fc654af6a16bac53d893a8265c79d7af4ebddcb95ad0d600cc6b6bc6b7317ade`；rtdl_num_embeddings.py `48dfc019d447e0cd225deb8b8145b3efa8b42cde9aa314772d6e234753e1cee1`。正式训练480个权重仅留omen `/home/hsy/git_files/Wheat599_model_bases/results/genomic_tabm_development_20261104/`，不入Git；每个权重SHA见 `results/wheat599/neural/tabm/genomic/genomic_tabm_development_20261104/weights_sha256.txt`，该清单自身SHA-256为 `e5a7e89d64e71561cf369ee44cbba38af7b03ad156ad15c1cb43ab3bb065bb09`。未使用外部预训练权重。
 
 ## MeNet 双表示分位数适配（2026-11-09）
 
 运行时原样加载 GANLAB/MENET Version2.0 `06456e4542ab26716c4db8dd8f17517aa5155ff4` 中的性状编码器、关系MLP及双向残差融合类，源文件仅存 `models/menet_source/`，不进入Git。Copyright, GANLAB。上游 `LICENCE.txt` 为 Academic Use Licence，仅用于本项目内部非商业学术研究；不能把这些依赖描述为可自由再分发。文件SHA：network/menet.py `1ac6461f7d19e87b23947eced7749588e391b68349991fd7a4c3ab6e25f7123c`；network/contrastive_learning.py `ed2d4512b00b740940218850d60477b833b59c6ecd1431cbc2bab315248e0f98`；LICENCE.txt `a004722858ac90342c3804a95503f8b0a318051e0d569e8473ddd1121dd05cf4`。无外部预训练权重；训练得到的编码器权重不推送，逐文件SHA随正式pretraining记录保存。
 
-MeNet适配开发已完成240份性状关系编码器权重（无外部预训练权重），仅存omen冻结工作树结果目录的`relations/`；240个文件SHA记录于 `results/menet_quantile_development_20261109/pretraining.json`，该清单SHA-256为`b836b419e33c044aa44767aa0e8bc03d4825ab08886cff91175af86af54ac447`。阶段二最优state只保存内存摘要，不把摘要称为持久化权重文件。
+MeNet适配开发已完成240份性状关系编码器权重（无外部预训练权重），仅存omen冻结工作树结果目录的`relations/`；240个文件SHA记录于 `results/wheat599/neural/tabm/heads/menet_quantile_development_20261109/pretraining.json`，该清单SHA-256为`b836b419e33c044aa44767aa0e8bc03d4825ab08886cff91175af86af54ac447`。阶段二最优state只保存内存摘要，不把摘要称为持久化权重文件。
 
 ## suBART 稀疏多基因背景适配（2026-11-10）
 

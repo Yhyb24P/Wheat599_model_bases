@@ -78,6 +78,8 @@ PYTHONPATH=src python -m pytest tests/ -q
 
 分位数训练配方见 [开发说明](docs/methods/QUANTILE_TABM.md) 与 [最终重拟合](docs/methods/QUANTILE_TABM_FINAL.md)；其他方法的运行命令在各自方案中，可从架构 HTML 查找。大预测、数据与权重不随 Git 分发，因此仅克隆仓库不足以复现依赖历史预测的运行。当前任务不跑 TabPFN、BiMSGP 或新数据集；TabPFN 测试依赖缺失时会跳过。
 
+治理执行机制：pre-commit 钩子经 `.cache/ratchet-env` 跑 `.yi/yi.py check`，按组（source/tests/maintenance/docs）约束暂存行数预算（`.ratchet.json` ceiling）；超限须记 `.ratchet-grants.jsonl` grant（reason/by，计数范围变更另需 `scope_sha256`），不自行放宽；清理后 `yi.py tighten` 收紧 ceiling。组织树扇出≤6 由 `scripts/check_layout.py`＋`tests/test_data_layout.py` 守护（规则见 AGENTS）。冻结源 SHA 经 `_frozen_source_ok` 链式历史 blob 校验（见 [PATH_MIGRATION](docs/PATH_MIGRATION.md)），不以最新文件 SHA 覆盖历史值。
+
 ## 入口、实现与配置的对应
 
 | 用途 | 唯一入口 / 实现 | 配置 |

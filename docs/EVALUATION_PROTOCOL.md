@@ -1,6 +1,6 @@
 # Wheat599 统一评价协议
 
-本文件是 Wheat599 主比较的现役协议。历史五折、单次验证和其他设置保留原始结果，不自动归入主表。唯一划分来源为 [`splits_manifest.json`](../results/get_icm_protocol_20261103/splits_manifest.json)；不重新抽取折或从测试结果挑选划分。
+本文件是 Wheat599 主比较的现役协议。历史五折、单次验证和其他设置保留原始结果，不自动归入主表。唯一划分来源为 [`splits_manifest.json`](../protocols/get_icm_protocol_20261103/splits_manifest.json)；不重新抽取折或从测试结果挑选划分。
 
 ## 数据、任务与划分
 
@@ -61,4 +61,4 @@
 | Huber ICM | 0.564132 | 0.502300 | 0.431907 | 0.520914 |
 | 预固定等权分位数–Huber 融合 | 0.584843 | 0.505890 | 0.447197 | 0.530990 |
 
-来源：[`summary.json`](../results/quantile_tabm_final_20261106/summary.json)、[基线核对](../results/mulphe_unified_baselines_20261112/verification.json)。
+来源：[`summary.json`](../results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/summary.json)、[基线核对](../results/wheat599/baselines/comparators/mulphe/mulphe_unified_baselines_20261112/verification.json)。
