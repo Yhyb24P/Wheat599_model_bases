@@ -25,3 +25,4 @@
 {"after": 11895, "before": 11608, "by": "YHyb24P", "lines": 287, "reason": "User standing default approval 2026-11-16: Wheat2000 Gsformer CSA/NSA adaptation", "target": "source", "ts": "2026-11-16T00:31:03Z"}
 {"after": 4805, "before": 4746, "by": "YHyb24P", "lines": 59, "reason": "User standing default approval 2026-11-16: Wheat2000 Gsformer configs and CLI", "target": "maintenance", "ts": "2026-11-16T00:31:03Z"}
 {"after": 3765, "before": 3760, "by": "YHyb24P", "lines": 5, "reason": "User standing default approval 2026-11-16: consolidated research exploration and limit-analysis section in RESULTS", "target": "docs", "ts": "2026-11-16T00:48:54Z"}
+{"after": 3785, "before": 3765, "by": "YHyb24P", "lines": 20, "reason": "User standing default approval 2026-11-16: Wheat2000 cross-dataset comparison table in MODEL_COMPARISON", "target": "docs", "ts": "2026-11-16T00:53:05Z"}
