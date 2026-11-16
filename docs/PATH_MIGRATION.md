@@ -54,7 +54,7 @@ JSON 顶层的 `src`、`imports`、`configs`、`results`、`site` 保存第一�
 
 ## 脚本、配置与结果
 
-`scripts/run_background_nested.py` 的参数解析和路由由 `src/genopred/cli.py` 承接；`run_background_ridge.py` 的核与候选求解由 `models/classical/background_ridge.py` 承接。背景岭的实验编排合入 `experiments/wheat599/background_ridge.py`。七个 quantile/Wheat2000 薄转发的实现去向逐项见 `round2.scripts`，可用路由以 `genopred.cli.RUNNERS` 和各执行模块参数为准。
+`scripts/run_background_nested.py` 的参数解析和路由由 `src/genopred/cli.py` 承接；`run_background_ridge.py` 的核与候选求解由 `models/classical/background_ridge.py` 承接。背景岭的实验编排合入 `experiments/wheat599/background_ridge.py`。七个 quantile/Wheat2000 薄转发的实现去向逐项见 `round2.scripts`，当前均由 `python -m genopred run` 路由到相应实现；Wheat2000 的阶段与冻结配置边界见 [WHEAT2000](methods/WHEAT2000.md)。
 
 配置与结果的旧位置按顶层 `configs`、`results` 读取，第二轮不更名冻结运行。固定划分在 `protocols/`；展示页按顶层 `site` 映射到 `site/`。运行索引由 `PYTHONPATH=src python -m genopred index` 派生，不改历史 provenance。
 
