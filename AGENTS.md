@@ -19,7 +19,7 @@
 
 ## 实现与文件职责
 
-- 正式实现只有 `src/wheat599/` 与既有 CLI；先搜函数、调用方、配置、动态引用和测试，再改共同实现。变体用现有 `configs/`，不复制训练/汇总代码，不新增平行入口、只有一种实现的接口、纯转发包装或未来预留选项。
+- 正式实现只有 `src/genopred/`（2026-11-16 由 `src/wheat599/` 重组改名，按 data/models/evaluation/adapters 分层）与既有 CLI；先搜函数、调用方、配置、动态引用和测试，再改共同实现。变体用现有 `configs/`（按数据集/家族分层），不复制训练/汇总代码，不新增平行入口、只有一种实现的接口、纯转发包装或未来预留选项。
 - 优先顺序：是否必需 → 仓库已有能力 → 标准库/平台原生 → 已装依赖 → 最少自定义代码。删重复、无消费者兼容和过时设计，但不削减完整模型、公开默认配方、必要异常处理与已经授权的比较。内部不重复验证上游已经保证、期间未改变的事实。
 - HTML 报告（`scripts/build_report.py`）离线自包含，不引 CDN/外部依赖/polyfill；浏览器支持允许 Newly available 特性（如 `light-dark()`、`scrollbar-color`），按 modern-web-guidance 带 `prefers-color-scheme` 等回退；配色用 `:root` 设计令牌，图表随主题自适应。
 - README 说明使用与目录；AGENTS 只放执行边界；`docs/` 根目录保存现役协议、数据事实、结果、许可与冻结索引；`docs/methods/` 保存现役方法配方，冻结配方移入 `docs/history/methods/`；`docs/history/` 保存历史方案与原始证据，不再执行其中的旧流程；`ref/` 保存文献来源和讲解。
