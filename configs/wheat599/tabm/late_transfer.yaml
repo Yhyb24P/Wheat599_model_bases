@@ -1,7 +1,7 @@
 model: late_transfer
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 profile_source: configs/wheat599/tabm/environment_tabm.yaml
 # One prespecified profile for all systems, to isolate late transfer at feasible CPU cost.
 profile_indices: [2, 2, 2, 2]
@@ -18,8 +18,8 @@ device: auto
 cpu_workers: 2
 threads_per_worker: 4
 gpu_memory_fraction: 0.35
-historical_scores: results/wheat599/tabm/environment_selection_development_20261105/per_fold.json
-fusion_scores: results/wheat599/tabm/environment_tabm_development_20261105/summary.json
+historical_scores: results/wheat599/neural/environment_selection_development_20261105/per_fold.json
+fusion_scores: results/wheat599/neural/environment_tabm_development_20261105/summary.json
 versions:
   tabm: 0.0.3
   rtdl_num_embeddings: 0.0.12

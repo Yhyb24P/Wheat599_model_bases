@@ -1,7 +1,7 @@
 model: wheatgp_unified
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 source: vendor/WheatGP/model/WheatGP_base.py
 source_sha256: 840ac4cdbeadfef430b88b9cbdff6192e3fecb56ab41fe1bb5a653672af9bbc0
 source_commit: a061b8be1d231e21fc89ed7179ae58c2a3048819

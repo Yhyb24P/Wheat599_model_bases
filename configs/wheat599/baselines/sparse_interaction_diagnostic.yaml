@@ -67,4 +67,4 @@ held_out:
   - pairwise
   seed: 900000000
   tasks_per_family: 8
-neural_reference: results/diagnostics/matrix_inference_learning_20261104/training.json
+neural_reference: results/wheat599/diagnostics/matrix_inference_learning_20261104/training.json

@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'src'))
-from genopred.adapters.wheat2000_gsformer import run  # noqa: E402
+from genopred.models.neural.wheat2000_gsformer import run  # noqa: E402
 
 
 def main():

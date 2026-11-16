@@ -158,12 +158,12 @@ RUNNERS = {
     'polygenic_simulation': ('genopred.evaluation.polygenic_simulation', 'run'),
     'kernel_gcv': ('genopred.models.kernels.kernel_baselines', 'run_gcv'),
     'extrapolation_diagnostic': ('genopred.evaluation.extrapolation_diagnostic', 'run'),
-    'quantile_tabm_final': ('genopred.models.tabular.quantile_tabm_final', 'run'),
-    'member_interaction_freeze': ('genopred.models.tabular.quantile_tabm_final', 'freeze_member_manifest'),
-    'quantile_tabm': ('genopred.models.tabular.quantile_tabm', 'run'),
+    'quantile_tabm_final': ('genopred.models.neural.quantile_tabm_final', 'run'),
+    'member_interaction_freeze': ('genopred.models.neural.quantile_tabm_final', 'freeze_member_manifest'),
+    'quantile_tabm': ('genopred.models.neural.quantile_tabm', 'run'),
     'robust_icm': ('genopred.models.kernels.robust_icm', 'run'),
-    'genomic_tabm': ('genopred.models.tabular.genomic_tabm_run', 'run'),
-    'independent_tabm_final': ('genopred.models.tabular.independent_final', 'run'),
+    'genomic_tabm': ('genopred.models.neural.genomic_tabm_run', 'run'),
+    'independent_tabm_final': ('genopred.models.neural.independent_final', 'run'),
     'heterogeneous_icm': ('genopred.models.kernels.heterogeneous_icm', 'run'),
     'reml_icm': ('genopred.models.kernels.reml_icm', 'run'),
     'get_icm': ('genopred.models.kernels.get_icm', 'run'),
@@ -171,15 +171,15 @@ RUNNERS = {
     'multienv_kernel': ('genopred.models.kernels.multienv_kernel', 'run'),
     'kernel_baselines': ('genopred.models.kernels.kernel_baselines', 'run'),
     'classical_baselines': ('genopred.models.classical.classical_baselines', 'run'),
-    'ragp_outer': ('genopred.models.deep.ragp_run', 'run_outer'),
-    'deepgs': ('genopred.models.deep.deep_baselines', 'run'),
-    'dnngp': ('genopred.models.deep.deep_baselines', 'run'),
-    'soydngp': ('genopred.models.deep.deep_baselines', 'run'),
-    'wheatgp_unified': ('genopred.models.deep.wheatgp_unified', 'run'),
-    'mtcro_unified': ('genopred.models.deep.mtcro_unified', 'run'),
-    'gsformer_csa': ('genopred.models.deep.gsformer_unified', 'run'),
-    'gsformer_nsa': ('genopred.models.deep.gsformer_unified', 'run'),
-    'wheat2000_gblup': ('genopred.adapters.wheat2000_gblup', 'run'),
+    'ragp_outer': ('genopred.models.neural.ragp_run', 'run_outer'),
+    'deepgs': ('genopred.models.neural.deep_baselines', 'run'),
+    'dnngp': ('genopred.models.neural.deep_baselines', 'run'),
+    'soydngp': ('genopred.models.neural.deep_baselines', 'run'),
+    'wheatgp_unified': ('genopred.models.neural.wheatgp_unified', 'run'),
+    'mtcro_unified': ('genopred.models.neural.mtcro_unified', 'run'),
+    'gsformer_csa': ('genopred.models.neural.gsformer_unified', 'run'),
+    'gsformer_nsa': ('genopred.models.neural.gsformer_unified', 'run'),
+    'wheat2000_gblup': ('genopred.models.kernels.wheat2000_gblup', 'run'),
 }
 
 
@@ -198,7 +198,7 @@ def main():
     if model is not None and not isinstance(model, str):
         p.error('model must be a name, not a nested architecture configuration')
     if args.selection is not None and model == 'quantile_tabm' and cfg.get('optimizer_variant', '').startswith('shape_'):
-        return import_module('genopred.models.tabular.shape_quantile_final').run(cfg, args, Path(__file__))
+        return import_module('genopred.models.neural.shape_quantile_final').run(cfg, args, Path(__file__))
     if model in RUNNERS:
         module, function = RUNNERS[model]
         return getattr(import_module(module), function)(cfg, args, Path(__file__))

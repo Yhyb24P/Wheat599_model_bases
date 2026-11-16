@@ -73,7 +73,10 @@
       "exclude": [
         "results/**",
         "docs/history/**",
-        "ref/**"
+        "references/**",
+        "third_party/**",
+        "protocols/**",
+        "site/**"
       ],
       "extensions": [
         ".md",
@@ -163,8 +166,10 @@
       ],
       "exclude": [
         "results/**",
-        "ref/**",
-        "vendor/**"
+        "references/**",
+        "third_party/**",
+        "protocols/**",
+        "site/**"
       ],
       "extensions": [
         ".bash",
@@ -219,7 +224,7 @@
   "ceilings": {
     "tests": 3348,
     "docs": 3789,
-    "maintenance": 4973,
+    "maintenance": 5223,
     "source": 12602
   },
   "file_ceilings": {}

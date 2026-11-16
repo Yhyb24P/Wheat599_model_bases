@@ -16,7 +16,7 @@ source: /tmp/wheat599-moegp-official-d3a3c44
 source_commit: d3a3c44f649fadf95af34d63f069fc8dfd85af38
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 seeds: [42, 2026]
 
 # Fixed official gating/loss knobs (not searched).

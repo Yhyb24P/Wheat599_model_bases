@@ -9,7 +9,7 @@ import numpy as np
 from scipy.linalg import cho_factor, cho_solve
 
 from genopred.data.wheat599 import load, sha256_of
-from genopred.adapters.wheat2000_gblup import predict_grid, raw_marker_kernel
+from genopred.models.kernels.wheat2000_gblup import predict_grid, raw_marker_kernel
 
 
 def draw(eigenvalues, vectors, h2, seeds, environment):

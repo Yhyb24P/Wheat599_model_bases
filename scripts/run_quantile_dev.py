@@ -9,7 +9,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from genopred.models.tabular import quantile_tabm
+from genopred.models.neural import quantile_tabm
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', required=True)

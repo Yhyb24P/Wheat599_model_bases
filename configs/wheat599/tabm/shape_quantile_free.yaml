@@ -1,7 +1,7 @@
 model: quantile_tabm
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 architecture_config: configs/wheat599/tabm/shape_quantile_search.yaml
 reference_source: results/wheat599/kernels/joint_tabm_icm_development_20261106
 seeds:
@@ -20,7 +20,7 @@ training:
   gradient_clip: 5.0
   tie_tolerance: 1.0e-12
   objective: shape
-baseline_source: results/wheat599/tabm/quantile_tabm_development_20261106_v2
-baseline_audit: results/diagnostics/tabicl_compare_20261106/summary.json
+baseline_source: results/wheat599/neural/quantile_tabm_development_20261106_v2
+baseline_audit: results/wheat599/diagnostics/tabicl_compare_20261106/summary.json
 workers: 2
 optimizer_variant: shape_free

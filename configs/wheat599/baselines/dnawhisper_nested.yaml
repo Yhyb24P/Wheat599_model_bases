@@ -1,7 +1,7 @@
 model: dnawhisper
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 
 source_url: https://github.com/Marxin1992/Whisperer_of_DNA
 source_commit: 7a657cc00d44263c4b1085d3991ecc0e935c14e5
@@ -67,7 +67,7 @@ deviations:
     decision: project CV1 requirement
   - item: data partition
     official_yaml: 'internal np.random.shuffle split, use_cv_folds: false, train/val/test ratios'
-    effective: 'material splits come from results/diagnostics/get_icm_protocol_20261103/splits_manifest.json; inner three folds for epoch selection, full development refit, single test pass'
+    effective: 'material splits come from protocols/get_icm_protocol_20261103/splits_manifest.json; inner three folds for epoch selection, full development refit, single test pass'
     decision: project CV1 requirement
   - item: batch dropping
     official_yaml: 'DataLoader(drop_last=True)'

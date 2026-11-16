@@ -1,7 +1,7 @@
 model: structured_coefficient
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 workers: 2
 seeds:
 - 42
@@ -45,6 +45,6 @@ optimizer:
   accepted_gradient: 1.0e-05
 relative_gap_tolerance: 1.0e-06
 tie_tolerance: 1.0e-12
-quantile_source: results/wheat599/tabm/quantile_tabm_development_20261106_v2
+quantile_source: results/wheat599/neural/quantile_tabm_development_20261106_v2
 huber_reference: results/wheat599/kernels/joint_tabm_icm_development_20261106
-upstream_verification: results/diagnostics/structured_coefficient_upstream_20261110/verification.json
+upstream_verification: results/wheat599/diagnostics/structured_coefficient_upstream_20261110/verification.json

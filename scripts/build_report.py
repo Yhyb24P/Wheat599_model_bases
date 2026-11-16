@@ -331,7 +331,7 @@ def markdown(text, directory=None):
             if url.scheme or not url.path:
                 return match[0]
             target = directory / unquote(url.path)
-            href = os.path.relpath(target, ROOT/'docs').replace(os.sep, '/')
+            href = os.path.relpath(target, ROOT/'site').replace(os.sep, '/')
             if url.fragment:
                 href += '#' + url.fragment
             if url.query:
@@ -356,7 +356,7 @@ def page(title, body, destination, css, js):
 
 
 ARCHITECTURES = {
-    '形状分解分位数 TabM': (['全标记标准化 → TabM 成员', '成员位置、正尺度与有序标准形状', '共享或收缩形状 → 99 个位置', '成员和种子点预测平均／分布混合'], '自由、强制共享和有限收缩的形状臂采用相同骨干；分布覆盖来自成员与种子的等权混合。', '../src/wheat599/shape_quantile.py'),
+    '形状分解分位数 TabM': (['全标记标准化 → TabM 成员', '成员位置、正尺度与有序标准形状', '共享或收缩形状 → 99 个位置', '成员和种子点预测平均／分布混合'], '自由、强制共享和有限收缩的形状臂采用相同骨干；分布覆盖来自成员与种子的等权混合。', '../src/genopred/models/neural/shape_quantile.py'),
     '分阶自适应互作核 GP': (['二值标记映射到 ±1', '完整一、二、三阶组合核＋高阶尾核', '二、三阶各 8 个模板调整方向方差', '单环境 GP 后验预测'], '保留完整互作空间，模板调整少量方向的收缩；开发比较低于原分位数 TabM。', '../src/wheat599/adaptive_anova.py'),
     '监督 Ising': (['全标记拟合标准化','输入场 a = Wz + b','T=1 精确枚举隐状态期望','线性直连 + 条件均值读出'], '隐维8/12，J只连接隐状态；有限温度期望由全部状态计算，不调用退火或量子设备。本预算开发未超过强参照。', 'methods/SUPERVISED_ISING.md'),
     'Ising J=0': (['同样的全标记标准化','与耦合臂匹配的输入场','解析 tanh(a)，J 固定为0','同样的线性直连与读出'], 'J=0是条件独立退化形式；同种子W/b/β/c/μ初值与耦合臂一致，分别按相同预算选模。', 'methods/SUPERVISED_ISING.md'),
@@ -368,28 +368,28 @@ ARCHITECTURES = {
     'Mul-PheG2P': (['源与目标环境编码器', '预训练 · 目标适配', '标量或隐藏表示注意力融合', '预测 · 可选折内校准'], '完整适配允许目标编码器参与。标量、隐藏表示及有无校准分列；公开默认与内层选配置分列，不以外层结果择优拼接。', 'methods/MULPHE_UNIFIED.md'),
     'WheatGP': (['原标记 / 拟合集 PCA', '五段标记 · CNN', 'LSTM 序列建模', '回归输出'], '公开 CNN–LSTM 网络的本项目适配；按实际卷积输出长度调整输入维度。原重建流程出现的常数预测和汇总失败保留在表中。', 'methods/WHEATGP.md'),
     'MoEGP': (['全标记输入', '门控网络选择专家', 'MLP 专家预测', '加权专家输出'], '独立初始化专家与官方共享专家引用是两套不同运行；按每行的系统名称与来源识别。', 'methods/WHEATGP_MOEGP_FOLLOWUP.md'),
-    'BiMSGP': (['单标记线性嵌入', '正向 / 反向 Mamba', '对齐后拼接并展平', 'MLP 解码器'], '历史已运行的 BiMSGP 适配，不是文件名中 bimsgp 协议的 FT-Transformer。当前不重启该模型。', '../configs/bimsgp_nested.yaml'),
-    'DNAwhisper': (['卷积标记嵌入', 'GFI 编码与交叉注意力', '专家与池化模块', '四表型输出'], '拟合集内监督预训练与微调，预训练包含表型；不能称为无标签预训练。', '../configs/dnawhisper_nested.yaml'),
-    'RAGP': (['拟合集 PCA95 / 编码', '检索五个拟合材料邻居', '特征与参考标签融合', '残差网络回归'], '按材料 ID 排除自检索，参考库逐轮更新。历史适配误差尺度未校准，需结合来源解释 RMSE/MAE。', '../src/wheat599/ragp.py'),
+    'BiMSGP': (['单标记线性嵌入', '正向 / 反向 Mamba', '对齐后拼接并展平', 'MLP 解码器'], '历史已运行的 BiMSGP 适配，不是文件名中 bimsgp 协议的 FT-Transformer。当前不重启该模型。', '../configs/wheat599/baselines/bimsgp_nested.yaml'),
+    'DNAwhisper': (['卷积标记嵌入', 'GFI 编码与交叉注意力', '专家与池化模块', '四表型输出'], '拟合集内监督预训练与微调，预训练包含表型；不能称为无标签预训练。', '../configs/wheat599/baselines/dnawhisper_nested.yaml'),
+    'RAGP': (['拟合集 PCA95 / 编码', '检索五个拟合材料邻居', '特征与参考标签融合', '残差网络回归'], '按材料 ID 排除自检索，参考库逐轮更新。历史适配误差尺度未校准，需结合来源解释 RMSE/MAE。', '../src/genopred/models/neural/ragp.py'),
     'TabICLv2': (['拟合材料作为上下文', '预训练表格模型', '原权重 / 合成任务续训', '查询材料回归'], '当前仅开发比较：官方权重、通用合成任务续训和遗传合成任务续训分开记录。', 'methods/TABICL_GENOMIC.md'),
-    'FT-Transformer': (['逐标记 token', '自注意力 / 诱导注意力', '池化或因子化读出', '表型回归'], 'FT 家族示意。A 架构、Direct FT-T、诱导注意力和固定 RR 残差修正分别保留实际配方，A 不指谱系矩阵。', '../configs/bimsgp.yaml'),
-    'RR-BLUP': (['拟合集中心化标记', '线性标记效应', 'L2 正则 / 加性核岭', '表型点预测'], '基础线性参照；不同历史运行的训练材料预算、正则选择和划分不能自动合并。', '../src/wheat599/kernel_baselines.py'),
+    'FT-Transformer': (['逐标记 token', '自注意力 / 诱导注意力', '池化或因子化读出', '表型回归'], 'FT 家族示意。A 架构、Direct FT-T、诱导注意力和固定 RR 残差修正分别保留实际配方，A 不指谱系矩阵。', '../configs/wheat599/baselines/bimsgp.yaml'),
+    'RR-BLUP': (['拟合集中心化标记', '线性标记效应', 'L2 正则 / 加性核岭', '表型点预测'], '基础线性参照；不同历史运行的训练材料预算、正则选择和划分不能自动合并。', '../src/genopred/models/kernels/kernel_baselines.py'),
     'RFM': (['标准化全标记', 'Laplace 核回归', 'AGOP 更新特征度量', '重新拟合核预测器'], '四环境独立，完整 1,279×1,279 特征矩阵；配置与迭代次数在开发集内选择。', 'methods/RFM_DEVELOPMENT.md'),
     '稀疏 / 条件网络': (['全标记与环境任务', '条件单元 / 双线性残差', '逐成员 99 分位点', '成员与种子平均'], '两类具体网络须区分：层级条件网络读取先前单元输出；稀疏残差网络使用双线性残差块。完整定义见各行结果与架构库。', 'methods/SPARSE_RESIDUAL_QUANTILE.md'),
     '贝叶斯树': (['全标记线性背景', '环境专属稀疏森林', '联合采样残差协方差', '保留样本预测平均'], '固定预算 Monte Carlo 预测；部分链混合不足，结果不代表已收敛后验或整个模型家族失败。', 'methods/SPARSE_POLYGENIC_BART.md'),
     '其他研究变体': (['该运行的拟合材料', '按具体配置构建模型', '开发集选模 / 固定规则', '对应评价层的结果'], '这一行无法仅凭系统简称确定完整网络；请打开本行原记录，架构库保留其详细方案，不把家族示意冒充实际配置。', '#architectures'),
-    'SVR': (['拟合集标准化标记', 'RBF 核支持向量回归', '内折验证 PCC 选超参', '完整开发集重拟合 → 预测'], 'Cortes & Vapnik 1995 的经典基线；marker-only，预处理与选模限于拟合集；本运行单种子 42。', '../ref/index.html#cortes1995support'),
-    'Random Forest': (['拟合集标准化标记', 'Bagging 决策树＋随机特征', '内折验证 PCC 选超参', '双种子预测平均'], 'Breiman 2001 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#breiman2001random'),
-    'XGBoost': (['拟合集标准化标记', '正则化梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Chen & Guestrin 2016 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#chen2016xgboost'),
-    'LightGBM': (['拟合集标准化标记', 'GOSS＋EFB 梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Ke 等 2017 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#ke2017lightgbm'),
-    'DeepGS': (['全标记输入', '官方深度卷积网络结构', 'PyTorch 结构适配', '逐环境预测'], '官方 cma2015/DeepGS（33ae2dc1）网络结构与训练默认值的 PyTorch 适配；Wheat2000 运行记录不迁移。发表版题名不含 DeepGS，见 ref 书目。', '../ref/index.html#ma2018deepgs'),
-    'DNNGP': (['拟合集 PCA95', '官方编译训练器（TF 2.6）', '协议划分直接传入', '深度网络预测'], 'AIBreeding/DNNGP 官方训练器（3bbac096），固定 Python 3.9/TF 2.6 环境；绕过官方 KFold，使用协议划分。外层已完成（宏 PCC 0.444488）；CPU 阶段源码副本未定位、LR 记录非逐 epoch 精确，待进一步核验。', '../ref/index.html#wang2023dnngp'),
-    'SoyDNGP': (['DArT 标记 → VCF one-hot/resize', '官方 SoyDNGPNext 网络', 'SmoothL1＋Adam', '拟合集 min/max 目标缩放'], 'IndigoFloyd/SoyDNGPNext（ebda01d0）官方 remodel；目标 min/max 仅取拟合集（上游用全数据）。本运行预测尺度发散，RMSE/MAE 按原值保留。', '../ref/index.html#gao2023soydngp'),
-    'Gsformer': (['原始 1279 标记零填充', 'CSA 32×40 块 / NSA 20×72 token', '作者模型类未改动', '双种子中位轮次重拟合'], '作者仓库提供 CSA/NSA 架构与训练规则但无 Wheat599 训练文件，本运行提供项目划分。论文输入为 DNNGP 风格 SNP/PC，此处用原始标记，差异已记录。', '../ref/index.html#yang2026gsformer'),
-    'MtCro': (['原始 1279 标记', 'MMOE：4 专家/4 门/4 塔', '作者配方（4096 宽，Adam 1e-4）', '双种子中位轮次重拟合'], 'torch_rechub MMOE；作者玉米脚本把任务数传在 n_expert 位置，四环境运行用 4 专家。作者模板用 250 PC，本运行用原始标记；划分用 canonical manifest。', '../ref/index.html#chao2025mtcro'),
-    'PNNGS': (['多卷积并行 Inception1d', 'BN＋Dropout', '线性读出', '逐环境预测'], '待复现：公开仓库 996184745/code-for-PNNGS 与论文架构不符（分支/超参/损失），不作忠实适配基座（WS4 核查）。', '../ref/index.html#xie2024pnngs'),
-    'MDNN': (['Memetic 架构搜索', 'CBAM＋树结构解码', '神经网络训练', '逐环境预测'], '待复现：仓库 xxXPCSC/MDNN 作者归属未确认、无数据与依赖说明（WS4 核查）。', '../ref/index.html#mao2025mdnn'),
-    'CWAGS': (['通道加权注意力', '卷积网络', '多性状输出', '逐环境预测'], '待复现：未找到作者实现；论文报告 Wheat599 四环境平均 PCC 0.5368（原文划分，非本协议，不参与排名）。', '../ref/index.html#cwags2026'),
+    'SVR': (['拟合集标准化标记', 'RBF 核支持向量回归', '内折验证 PCC 选超参', '完整开发集重拟合 → 预测'], 'Cortes & Vapnik 1995 的经典基线；marker-only，预处理与选模限于拟合集；本运行单种子 42。', '../references/index.html#cortes1995support'),
+    'Random Forest': (['拟合集标准化标记', 'Bagging 决策树＋随机特征', '内折验证 PCC 选超参', '双种子预测平均'], 'Breiman 2001 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../references/index.html#breiman2001random'),
+    'XGBoost': (['拟合集标准化标记', '正则化梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Chen & Guestrin 2016 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../references/index.html#chen2016xgboost'),
+    'LightGBM': (['拟合集标准化标记', 'GOSS＋EFB 梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Ke 等 2017 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../references/index.html#ke2017lightgbm'),
+    'DeepGS': (['全标记输入', '官方深度卷积网络结构', 'PyTorch 结构适配', '逐环境预测'], '官方 cma2015/DeepGS（33ae2dc1）网络结构与训练默认值的 PyTorch 适配；Wheat2000 运行记录不迁移。发表版题名不含 DeepGS，见 ref 书目。', '../references/index.html#ma2018deepgs'),
+    'DNNGP': (['拟合集 PCA95', '官方编译训练器（TF 2.6）', '协议划分直接传入', '深度网络预测'], 'AIBreeding/DNNGP 官方训练器（3bbac096），固定 Python 3.9/TF 2.6 环境；绕过官方 KFold，使用协议划分。外层已完成（宏 PCC 0.444488）；CPU 阶段源码副本未定位、LR 记录非逐 epoch 精确，待进一步核验。', '../references/index.html#wang2023dnngp'),
+    'SoyDNGP': (['DArT 标记 → VCF one-hot/resize', '官方 SoyDNGPNext 网络', 'SmoothL1＋Adam', '拟合集 min/max 目标缩放'], 'IndigoFloyd/SoyDNGPNext（ebda01d0）官方 remodel；目标 min/max 仅取拟合集（上游用全数据）。本运行预测尺度发散，RMSE/MAE 按原值保留。', '../references/index.html#gao2023soydngp'),
+    'Gsformer': (['原始 1279 标记零填充', 'CSA 32×40 块 / NSA 20×72 token', '作者模型类未改动', '双种子中位轮次重拟合'], '作者仓库提供 CSA/NSA 架构与训练规则但无 Wheat599 训练文件，本运行提供项目划分。论文输入为 DNNGP 风格 SNP/PC，此处用原始标记，差异已记录。', '../references/index.html#yang2026gsformer'),
+    'MtCro': (['原始 1279 标记', 'MMOE：4 专家/4 门/4 塔', '作者配方（4096 宽，Adam 1e-4）', '双种子中位轮次重拟合'], 'torch_rechub MMOE；作者玉米脚本把任务数传在 n_expert 位置，四环境运行用 4 专家。作者模板用 250 PC，本运行用原始标记；划分用 canonical manifest。', '../references/index.html#chao2025mtcro'),
+    'PNNGS': (['多卷积并行 Inception1d', 'BN＋Dropout', '线性读出', '逐环境预测'], '待复现：公开仓库 996184745/code-for-PNNGS 与论文架构不符（分支/超参/损失），不作忠实适配基座（WS4 核查）。', '../references/index.html#xie2024pnngs'),
+    'MDNN': (['Memetic 架构搜索', 'CBAM＋树结构解码', '神经网络训练', '逐环境预测'], '待复现：仓库 xxXPCSC/MDNN 作者归属未确认、无数据与依赖说明（WS4 核查）。', '../references/index.html#mao2025mdnn'),
+    'CWAGS': (['通道加权注意力', '卷积网络', '多性状输出', '逐环境预测'], '待复现：未找到作者实现；论文报告 Wheat599 四环境平均 PCC 0.5368（原文划分，非本协议，不参与排名）。', '../references/index.html#cwags2026'),
 }
 
 
@@ -472,6 +472,16 @@ LEGACY_ENV = {
 }
 
 
+def run_dir(run, required=True):
+    matches=[d for d in (ROOT/'results').rglob(run) if d.is_dir()]
+    if not matches:
+        if required: raise FileNotFoundError(f'results run {run} not found')
+        return None
+    if len(matches)!=1:
+        raise FileNotFoundError(f'results run {run} ambiguous: {matches}')
+    return matches[0]
+
+
 def unified_sota_records():
     """2026-11-15 统一协议 SOTA 外层：数字一律取各运行 summary.json。"""
     records = []
@@ -488,21 +498,21 @@ def unified_sota_records():
             ('ragp_outer_20261115', 'summary.json', None, 'RAGP 同协议适配（外层）', 'RAGP', 15, 'SOTA 公开模型', '预测尺度未校准（预测 SD≈40–101，真值≈1）；RMSE/MAE 按原值保留，不与他行误差直接比较。'),
             ('gsformer_csa_outer_20261115', 'summary.json', None, 'Gsformer CSA（CNN-自注意力）', 'Gsformer', 16, 'SOTA 公开模型', '原始标记零填充至 1280（32×40 块）。'),
             ('soydngp_final_20261115', 'summary.json', None, 'SoyDNGP 同协议适配', 'SoyDNGP', 17, 'SOTA 公开模型', '预测偏离表型尺度（宏 RMSE≈12.5）；按原值保留，PCC 近 0。')]:
-        j = json.loads((ROOT / 'results' / run / rel).read_text())
+        j = json.loads((run_dir(run) / rel).read_text())
         m = j['models'][key] if key else j
         env = m['per_environment']
         pcc = lambda v: v['mean'] if isinstance(v, dict) else v
         records.append(dict(name=name, stage='统一协议外层', pcc=f'{m["macro"]["pcc"]:.6f}',
                             rmse=f'{m["macro"]["rmse"]:.6f}', mae=f'{m["macro"]["mae"]:.6f}',
                             env=[f'{pcc(env[e]["pcc"]):.6f}' for e in ['1', '2', '4', '5']],
-                            source=f'results/{run}/{rel}（2026-11-15）', link=f'../results/{run}/{rel}',
+                            source=f'{run_dir(run).relative_to(ROOT)}/{rel}（2026-11-15）', link=f'../{run_dir(run).relative_to(ROOT)}/{rel}',
                             role=role, priority=priority, primary=False, note=note))
-    dnngp = json.loads((ROOT / 'results/dnngp_final_20261115/run/summary.json').read_text())
+    dnngp = json.loads((ROOT / 'results/wheat599/baselines/dnngp_final_20261115/run/summary.json').read_text())
     denv = dnngp['per_environment']
     records.append(dict(name='DNNGP 同协议适配', stage='统一协议外层',
                         pcc=f'{dnngp["macro"]["pcc"]:.6f}', rmse=f'{dnngp["macro"]["rmse"]:.6f}', mae=f'{dnngp["macro"]["mae"]:.6f}',
                         env=[f'{denv[e]["pcc"]["mean"]:.6f}' for e in ['1', '2', '4', '5']],
-                        source='results/dnngp_final_20261115/run/summary.json（2026-11-16）', link='../results/dnngp_final_20261115/run/summary.json',
+                        source='results/wheat599/baselines/dnngp_final_20261115/run/summary.json（2026-11-16）', link='../results/wheat599/baselines/dnngp_final_20261115/run/summary.json',
                         role='SOTA 公开模型', priority=26, primary=False, status='待核验',
                         note='同协议适配，待进一步核验：CPU 开发阶段源码 SHA 已记录但副本未定位，不能精确复现该阶段；EpochRecorder 在 LR 调度后记录 epoch 末学习率，非逐 epoch 精确重放。限制见 evidence_notes.json，不视为原论文精确复现或已确认主表结果。'))
     for name, family, priority, status, note in [
@@ -510,7 +520,7 @@ def unified_sota_records():
             ('MDNN（待复现）', 'MDNN', 28, '待复现', '仓库作者归属未确认、无数据与依赖说明（WS4 核查）；无同协议结果。'),
             ('CWAGS（待复现）', 'CWAGS', 29, '待复现', '未找到作者实现；论文报告 Wheat599 四环境平均 PCC 0.5368（原文划分，非本协议，不参与排名）。')]:
         records.append(dict(name=name, stage='统一协议外层', pcc='—', rmse='—', mae='—', env=['—'] * 4,
-                            source='状态行：无已完成外层结果', link='../ref/index.html',
+                            source='状态行：无已完成外层结果', link='../references/index.html',
                             role='SOTA 公开模型', priority=priority, primary=False, note=note, status=status))
     return records
 
@@ -625,7 +635,7 @@ def result_workbench(systems):
         records, 'model', ['env1','env2','env3','env4'], ['Env1 PCC','Env2 PCC','Env3 PCC','Env4 PCC'], 'env',
         '模型结果总表', '默认顺序：主候选 → 强参照与公开模型 → 其余研究。点击模型查看结构，点击表头排序。',
         f'{len(records)} 条系统记录 · Env1–4 为折均 PCC（原表型列 1、2、4、5）；— 表示该汇总行未记录该指标',
-        '期刊/年份经一手来源核验（Crossref、NeurIPS 官方页、Europe PMC；书目见 <a href="../ref/index.html">ref/</a>）。公开模型是本项目的同协议适配，不是论文原结果；SoyDNGP/RAGP 预测尺度未校准，误差按原值保留。开发、外层、历史重建与种子指标均值保留原口径，请按评价口径筛选后比较。无定义与缺失指标保留原文字，不当作 0。筛选和排序不改变模型选择。',
+        '期刊/年份经一手来源核验（Crossref、NeurIPS 官方页、Europe PMC；书目见 <a href="../references/index.html">ref/</a>）。公开模型是本项目的同协议适配，不是论文原结果；SoyDNGP/RAGP 预测尺度未校准，误差按原值保留。开发、外层、历史重建与种子指标均值保留原口径，请按评价口径筛选后比较。无定义与缺失指标保留原文字，不当作 0。筛选和排序不改变模型选择。',
         ARCHITECTURES, section_id='comparison', title_id='comparison-title',
         inspector_title='固定等权分位数–Huber 融合', jump='<a href="#best">跳到最优候选图解 ↓</a>', best_href='#best')
 
@@ -656,9 +666,9 @@ def candidate_diagram():
 
 
 def mechanism_atlas():
-    manifest_path = ROOT/'results/quantile_tabm_final_manifest_20261106/manifest.json'
+    manifest_path = ROOT/'results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json'
     manifest = json.loads(manifest_path.read_text())
-    configurations = json.loads((ROOT/'results/environment_tabm_development_20261105/provenance.json').read_text())['config']['configurations']
+    configurations = json.loads((ROOT/'results/wheat599/neural/environment_tabm_development_20261105/provenance.json').read_text())['config']['configurations']
     models = []
     for fold in range(10):
         for environment in range(4):
@@ -696,7 +706,7 @@ def mechanism_atlas():
 </section><section id="fit-mechanism"><h3>⑥ 学习、选模与最终融合：信息在哪一步进入？</h3>
 <div class="fit-steps"><div><b>1 · 外折留出材料</b><p>测试 59–60 份材料的四环境表型全部留出；其余 539–540 份为开发材料。</p></div><div><b>2 · 三内折选择</b><p>仅用拟合集估计预处理与核。神经模型逐环境按双种子平均预测 PCC 选八配置之一；各自记录最佳 epoch。</p></div><div><b>3 · 完整开发集重拟合</b><p>每环境、每种子取三个内折最佳 epoch 的中位数。该外折包含 4 × 2 个神经网络，另有一个四环境 Huber ICM。</p></div><div><b>4 · 冻结后预测</b><p>先分别还原原表型尺度；神经两种子平均，再与 Huber 各半融合。每份材料只使用其对应外折的留出预测。</p></div></div>
 <p>80 次神经外层拟合是 10 折 × 4 环境 × 2 种子，<strong>不是把 80 个网络同时集成到每份材料上</strong>。固定融合的增量属于完整系统结果，以上结构图不把参数共享、核非线性或稳健损失单独宣称为已证实的增益机制。</p>
-<p class="muted">核对来源：<a href="../src/wheat599/quantile_tabm.py">神经构建与损失</a> · <a href="../src/wheat599/genomic_tabm.py">标准化与 raw 路径</a> · <a href="../src/wheat599/robust_icm.py">核特征与 Huber 求解</a> · <a href="../results/quantile_tabm_final_manifest_20261106/manifest.json">冻结外层清单</a> · <a href="LICENSE_NOTES.md">tabm 0.0.3 源码 SHA</a>。</p></section>
+<p class="muted">核对来源：<a href="../src/genopred/models/neural/quantile_tabm.py">神经构建与损失</a> · <a href="../src/genopred/models/neural/genomic_tabm.py">标准化与 raw 路径</a> · <a href="../src/genopred/models/kernels/robust_icm.py">核特征与 Huber 求解</a> · <a href="../results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json">冻结外层清单</a> · <a href="LICENSE_NOTES.md">tabm 0.0.3 源码 SHA</a>。</p></section>
 <script id="mechanism-data" type="application/json">''' + data + '''</script></section>'''
 
 
@@ -733,7 +743,10 @@ def wheat2000_section():
         return v.get('pcc') if isinstance(v, dict) else (v if isinstance(v, (int, float)) else None)
     collected = []
     for run, name, key in runs:
-        path = ROOT / 'results' / run / 'summary.json'
+        d = run_dir(run, required=False)
+        if d is None:
+            continue
+        path = d / 'summary.json'
         if not path.is_file():
             continue
         data = json.loads(path.read_text())
@@ -774,8 +787,8 @@ def wheat2000_section():
 def build():
     global SECTION_IDS
     SECTION_IDS = itertools.count()
-    qpath = ROOT/'results/quantile_tabm_final_20261106/summary.json'
-    mpath = ROOT/'results/mulphe_unified_parallel_20261112/summary.json'
+    qpath = ROOT/'results/wheat599/neural/quantile_tabm_final_20261106/summary.json'
+    mpath = ROOT/'results/wheat599/baselines/mulphe_unified_parallel_20261112/summary.json'
     q = json.loads(qpath.read_text())
     m = json.loads(mpath.read_text())
     systems = [(name, q['macro'][key], q['per_environment'][key]) for key, name in [
@@ -789,7 +802,7 @@ def build():
     rows = ''.join('<tr><th scope="row">'+esc(name)+'</th>'+''.join(f'<td>{values[k]:.6f}</td>' for k in ['pcc','rmse','mae'])+
                    ''.join(f'<td>{env[e]["pcc"]:.6f}</td>' for e in ['1','2','4','5'])+'</tr>' for name,values,env in systems)
     bars = ''.join(f'<div class="barrow"><span>{esc(name)}</span><div class="track"><div class="bar" style="width:{values["pcc"]*100:.6f}%"></div></div><strong>{values["pcc"]:.6f}</strong></div>' for name,values,_ in systems)
-    head = '''<header><nav><a href="../README.md">项目说明</a><a href="../ref/index.html">参考文献</a><a href="../results/index.html">运行目录</a><a href="#comparison">模型总表</a><a href="#wheat2000">Wheat2000</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a>''' + THEME_TOGGLE + '''</nav>
+    head = '''<header><nav><a href="../README.md">项目说明</a><a href="../references/index.html">参考文献</a><a href="../site/runs.html">运行目录</a><a href="#comparison">模型总表</a><a href="#wheat2000">Wheat2000</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a>''' + THEME_TOGGLE + '''</nav>
 <p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-15</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
     body = head + result_workbench(systems) + '''<details class="legacy-overview"><summary>已核对统一协议：完整指标与来源</summary><section aria-labelledby="overview"><h2 id="overview">统一协议下的结果</h2><div class="grid">
 <article class="card best"><span class="tag">当前固定融合 · 折均宏 PCC</span><div class="big">0.526506</div><p>相对 Huber ICM 增加 0.004761；是项目内描述性差值。</p></article>
@@ -798,7 +811,7 @@ def build():
 <p>主指标是 40 个环境–外折 PCC 等权平均；折均与合并 OOF 不同。外层划分已多轮用于研究，不是新的独立验证，不计算独立折 p 值或置信区间，也不根据本页重选融合权重。不同预算的完整系统比较不单独归因于架构。</p>
 <figure>''' + bars + '''<figcaption><b>图 2 · 固定融合的折均宏 PCC 高于本页已核对的强参照及完整 Mul-PheG2P 适配。</b>n = 599，四环境、十外折；横条从 0 起、满宽为 PCC = 1，无误差条。来源：2026-11-06 分位数最终汇总与 2026-11-13 Mul-PheG2P 汇总；不是文献成绩排名。确切值见下表。</figcaption></figure>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="统一协议指标"><table><caption>折均指标；Env1–4 对应原表型列 1、2、4、5</caption><thead><tr><th scope="col">完整系统</th><th scope="col">PCC ↑</th><th scope="col">RMSE ↓</th><th scope="col">MAE ↓</th><th scope="col">Env1 PCC</th><th scope="col">Env2 PCC</th><th scope="col">Env3 PCC</th><th scope="col">Env4 PCC</th></tr></thead><tbody>''' + rows + '''</tbody></table></div>
-<p>来源：<a href="../results/quantile_tabm_final_20261106/summary.json">分位数与参照 JSON</a> · <a href="../results/mulphe_unified_parallel_20261112/summary.json">Mul-PheG2P JSON</a> · <a href="EVALUATION_PROTOCOL.md">统一协议与搜索预算</a></p></section></details>'''
+<p>来源：<a href="../results/wheat599/neural/quantile_tabm_final_20261106/summary.json">分位数与参照 JSON</a> · <a href="../results/wheat599/baselines/mulphe_unified_parallel_20261112/summary.json">Mul-PheG2P JSON</a> · <a href="EVALUATION_PROTOCOL.md">统一协议与搜索预算</a></p></section></details>'''
     body += wheat2000_section()
     body += '''<section id="best"><h2>最优候选是什么，如何工作？</h2>
 <p>这是两个已经独立训练的预测器的平均，不是一张端到端联合网络。神经分支为每个环境学习单独的非线性标记函数；统计分支通过材料相似性和四环境相关性联合预测。融合在原表型尺度进行，权重在外层评价前固定为各 50%。</p>
@@ -815,7 +828,7 @@ def build():
 <p>实现先将材料核分解为特征，将 B 分解为环境因子，再求带截距和岭惩罚的凸 Huber 回归。小残差用平方损失，大残差转为线性增长，限制其梯度影响而不删除材料。阈值由拟合集初始平方损失解的残差 MAD 与折内选定倍数组成，使用 L-BFGS-B 求解；这是惩罚风险最小化，不是完整贝叶斯 Huber GP 后验采样。基础核/正则 420 配置与稳健阶段 24 配置依次选择，不是一次联合网格。</p>
 <h3>融合的证据与解释边界</h3>
 <p>融合 PCC 0.526506，分位数 TabM 为 0.518829，Huber 为 0.521745；RMSE / MAE 同时见主表。平均两种不同函数可以改变误差方向与尺度，本次完整系统获得小幅提升；这些数字本身不能证明某个生物学互作、稳健损失机制或跨数据集领先。主候选仍是固定系统，不把各环境外层最优配置拼成新模型。</p>
-<p>实现：<a href="../src/wheat599/quantile_tabm.py">分位数训练</a> · <a href="../src/wheat599/genomic_tabm.py">TabM 适配</a> · <a href="../src/wheat599/robust_icm.py">Huber ICM</a> · <a href="../configs/environment_tabm.yaml">八配置</a> · <a href="methods/QUANTILE_TABM_FINAL.md">重拟合协议</a>。文献：<a href="https://arxiv.org/abs/2410.24210">TabM</a>、<a href="https://github.com/yandex-research/tabular-regression">官方分位数回归</a>；全部参考资料见 <a href="../ref/index.html">文献讲解</a>。</p></details></section>'''
+<p>实现：<a href="../src/genopred/models/neural/quantile_tabm.py">分位数训练</a> · <a href="../src/genopred/models/neural/genomic_tabm.py">TabM 适配</a> · <a href="../src/genopred/models/kernels/robust_icm.py">Huber ICM</a> · <a href="../configs/wheat599/tabm/environment_tabm.yaml">八配置</a> · <a href="methods/QUANTILE_TABM_FINAL.md">重拟合协议</a>。文献：<a href="https://arxiv.org/abs/2410.24210">TabM</a>、<a href="https://github.com/yandex-research/tabular-regression">官方分位数回归</a>；全部参考资料见 <a href="../references/index.html">文献讲解</a>。</p></details></section>'''
     # Render every result section, including failures and interruptions, without numeric reinterpretation.
     result_text = (ROOT/'docs/RESULTS.md').read_text()
     sections = re.split(r'^## ', result_text, flags=re.M)[1:]
@@ -829,17 +842,17 @@ def build():
 
 | 系统 | 从输入到预测的实际路径 | 关键区别与实现 |
 |---|---|---|
-| RR-BLUP / 加性核岭 | 拟合集中心化的标记 → 带 L2 惩罚的线性效应 → 产量 | 正则在训练/验证内选择；[核实现](../src/wheat599/kernel_baselines.py) |
-| Gaussian / 加性＋RBF 核岭 | 标记距离 → Gaussian 核，或与加性核混合 → 带截距核岭预测 | 非线性来自距离核，不等同证明生物学上位性；[实现](../src/wheat599/kernel_baselines.py) |
-| A 架构 FT-Transformer | 标记逐列编码 → Transformer 交互 → 回归输出 | 历史配置宽度 64、2 层、4 头，单种子 42；[配置](../configs/bimsgp.yaml)。A 是架构标签，不是谱系 |
+| RR-BLUP / 加性核岭 | 拟合集中心化的标记 → 带 L2 惩罚的线性效应 → 产量 | 正则在训练/验证内选择；[核实现](../src/genopred/models/kernels/kernel_baselines.py) |
+| Gaussian / 加性＋RBF 核岭 | 标记距离 → Gaussian 核，或与加性核混合 → 带截距核岭预测 | 非线性来自距离核，不等同证明生物学上位性；[实现](../src/genopred/models/kernels/kernel_baselines.py) |
+| A 架构 FT-Transformer | 标记逐列编码 → Transformer 交互 → 回归输出 | 历史配置宽度 64、2 层、4 头，单种子 42；[配置](../configs/wheat599/baselines/bimsgp.yaml)。A 是架构标签，不是谱系 |
 | RR＋A 残差修正 | 固定 RR 预测＋FT 网络预测残差 | 输出层零初始化，验证 PCC 选择 RR-only 或修正分支；[实现](../scripts/run_residual.py) |
 | Direct FT-T | 每标记仿射 token → 一层全标记自注意力 → 位点相关的低秩线性读出 | 没有 query-key 池化；[实现](../src/wheat599/direct_ftt.py) |
-| 诱导注意力 FT-T | 共享低秩 tokenizer → 标记与诱导槽双向注意力 → 多查询池化＋MLP | 诱导槽不解释为基因通路；[实现](../src/wheat599/induced_ftt.py) |
+| 诱导注意力 FT-T | 共享低秩 tokenizer → 标记与诱导槽双向注意力 → 多查询池化＋MLP | 诱导槽不解释为基因通路；[实现](../src/genopred/models/neural/induced_ftt.py) |
 | MoEGP | 标记 → 门控选择 MLP 专家 → 加权专家输出 | 独立专家与上游共享专家引用两种完整系统分开记录；[适配入口](../scripts/run_moegp.py)、[对照说明](methods/WHEATGP_MOEGP_FOLLOWUP.md) |
 | WheatGP | 五段标记 → 公开 CNN–LSTM 网络 → 回归 | 对实际卷积输出长度适配；原标记/PCA 250 在内层选择；[说明](methods/WHEATGP.md) |
-| BiMSGP（历史运行） | 单标记线性嵌入 → 正/反向 Mamba 残差块 → 对齐后拼接 → 展平与 MLP 解码 | 固定源码 71084c8，内层比较宽度/状态 32 或 64；[原配置](../configs/bimsgp_nested.yaml)、[适配入口](../scripts/run_bimsgp_nested.py)。本轮不运行 |
-| DNAwhisper | 卷积标记嵌入 → GFI 编码/交叉注意力解码与专家、池化 → 四表型输出 | 拟合集内监督预训练后微调，不能称无标签预训练；[配置与适配差异](../configs/dnawhisper_nested.yaml)、[适配实现](../src/wheat599/dnawhisper/adapter.py) |
-| RAGP | 每环境编码器 → 检索五个拟合材料邻居 → 编码均值与标签均值融合 → 残差回归 | PCA95 仅拟合集拟合，参考库按 epoch 更新，按材料 ID 排除自检索；[实现及与上游差异](../src/wheat599/ragp.py) |
+| BiMSGP（历史运行） | 单标记线性嵌入 → 正/反向 Mamba 残差块 → 对齐后拼接 → 展平与 MLP 解码 | 固定源码 71084c8，内层比较宽度/状态 32 或 64；[原配置](../configs/wheat599/baselines/bimsgp_nested.yaml)、[适配入口](../scripts/run_bimsgp_nested.py)。本轮不运行 |
+| DNAwhisper | 卷积标记嵌入 → GFI 编码/交叉注意力解码与专家、池化 → 四表型输出 | 拟合集内监督预训练后微调，不能称无标签预训练；[配置与适配差异](../configs/wheat599/baselines/dnawhisper_nested.yaml)、[适配实现](../src/genopred/adapters/dnawhisper/adapter.py) |
+| RAGP | 每环境编码器 → 检索五个拟合材料邻居 → 编码均值与标签均值融合 → 残差回归 | PCA95 仅拟合集拟合，参考库按 epoch 更新，按材料 ID 排除自检索；[实现及与上游差异](../src/genopred/models/neural/ragp.py) |
 | 检索 TabM | TabM 第一层成员表示 → 成员特异的参考材料聚合 → 后续 TabM 层 | 参考键与查询共用当前表示，参考标签只来自拟合集；[说明](methods/RETRIEVAL_TABM.md) |
 | TabICLv2 | 已预训练表格模型＋拟合材料作为上下文 → 查询材料回归 | 官方权重、通用合成任务续训、遗传合成任务续训分开比较，仅开发；[说明](methods/TABICL_GENOMIC.md) |
 | Laplace RFM | 拉普拉斯核回归 → 梯度外积更新完整特征矩阵 → 再拟合核预测器 | 四环境独立，1,279×1,279 度量矩阵，9 配置与 0–5 次更新在内层选；[说明](methods/RFM_DEVELOPMENT.md) |
@@ -861,18 +874,19 @@ def build():
     for path in [qpath,mpath,ROOT/'docs/RESULTS.md'] + sota_paths:
         body += f'<li>{esc(path.relative_to(ROOT))}<br><code>{hashlib.sha256(path.read_bytes()).hexdigest()}</code></li>'
     body += '</ul></section></main>'
-    page('Wheat599 · 模型结果与架构',body,ROOT/'docs/models.html', CSS, JS)
+    page('Wheat599 · 模型结果与架构',body,ROOT/'site/models.html', CSS, JS)
     # Inventory is a navigation view, not an inferred completion verdict.
-    inventory = '<header><nav><a href="../docs/models.html">结果与架构</a><a href="../ref/index.html">参考文献</a><a href="../README.md">项目说明</a>' + THEME_TOGGLE + '</nav><p class="kicker">WHEAT599 / ARTIFACTS</p><h1>运行目录与证据文件</h1><p>保持 results/&lt;run&gt;/ 原路径，避免改动清单、配置与哈希引用。目录存在不等于运行完成；状态按原记录阅读。冒烟、无效及中断条目仅供追溯，不用于性能排名。</p></header><main id="main"><div class="controls"><label>检索目录 <input type="search" data-filter=".run-folder" data-count="folder-count"></label><span id="folder-count" role="status"></span></div>'
-    for directory in sorted((ROOT/'results').iterdir()):
+    inventory = '<header><nav><a href="../site/models.html">结果与架构</a><a href="../references/index.html">参考文献</a><a href="../README.md">项目说明</a>' + THEME_TOGGLE + '</nav><p class="kicker">WHEAT599 / ARTIFACTS</p><h1>运行目录与证据文件</h1><p>保持 results/&lt;run&gt;/ 原路径，避免改动清单、配置与哈希引用。目录存在不等于运行完成；状态按原记录阅读。冒烟、无效及中断条目仅供追溯，不用于性能排名。</p></header><main id="main"><div class="controls"><label>检索目录 <input type="search" data-filter=".run-folder" data-count="folder-count"></label><span id="folder-count" role="status"></span></div>'
+    run_dirs=sorted(d for d in (ROOT/'results').rglob('*') if d.is_dir() and ((d/'summary.json').exists() or (d/'provenance.json').exists() or (d/'execution_status.json').exists()))
+    for directory in run_dirs:
         if not directory.is_dir() or directory.name.startswith('.'):
             continue
         filenames = [p for p in sorted(directory.iterdir()) if p.is_file() and p.suffix in ('.json','.md','.yaml','.txt','.csv') and not re.search(r'oof|prediction|trajectory|trajector|validation.csv',p.name)]
-        links = ' · '.join(f'<a href="{esc(p.relative_to(ROOT/"results"))}">{esc(p.name)}</a>' for p in filenames)
+        links = ' · '.join(f'<a href="../results/{esc(p.relative_to(ROOT/"results"))}">{esc(p.name)}</a>' for p in filenames)
         inventory += f'<details class="run-folder"><summary>{esc(directory.name)}</summary><div>{links or "本地目录；无顶层小型说明文件"}</div></details>'
     inventory += '</main>'
-    page('Wheat599 · 运行目录',inventory,ROOT/'results/index.html', BASE_CSS, BASE_JS)
-    print(f'Built docs/models.html ({len(sections)} result sections) and results/index.html')
+    page('Wheat599 · 运行目录',inventory,ROOT/'site/runs.html', BASE_CSS, BASE_JS)
+    print(f'Built site/models.html ({len(sections)} result sections) and site/runs.html')
 
 
 if __name__ == '__main__':

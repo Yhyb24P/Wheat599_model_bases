@@ -46,7 +46,7 @@ ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / "src"))
 from genopred.data.wheat599 import load, sha256_of  # noqa: E402
 from genopred.evaluation.metrics import mae, pcc, rmse  # noqa: E402
-from genopred.models.deep.moegp_worker import init_worker, inner_job, refit_job  # noqa: E402
+from genopred.models.neural.moegp_worker import init_worker, inner_job, refit_job  # noqa: E402
 
 
 
