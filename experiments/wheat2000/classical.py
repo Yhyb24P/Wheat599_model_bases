@@ -17,6 +17,7 @@ import torch
 from joblib import Parallel, delayed
 from threadpoolctl import threadpool_limits
 
+import genopred
 from genopred.models.classical.classical_baselines import (RANDOM_MODELS, candidates, inner_score,
                                           model_seeds, outer_predict)
 from genopred.data.wheat599 import sha256_of
@@ -77,6 +78,18 @@ def write(path, fields, rows):
         writer.writerows(rows)
 
 
+def _read_csv(path, types):
+    if not path.exists():
+        return []
+    with path.open(newline='') as handle:
+        rows = list(csv.DictReader(handle))
+    for r in rows:
+        for field, cast in types.items():
+            if field in r and r[field] != '':
+                r[field] = cast(r[field])
+    return rows
+
+
 def run(cfg, args, runner_path):
     torch.set_num_threads(1)
     data = load_wheat2000(cfg['data'], cfg['data_sha256'], cfg['cache'], cfg['cache_sha256'])
@@ -87,16 +100,21 @@ def run(cfg, args, runner_path):
     if list(data.trait_names) != cfg['traits'] or splits['trait_names'] != cfg['traits']:
         raise ValueError('All eight traits and their order must match the frozen protocol')
     folds, traits = splits['folds'], data.trait_names
-    models = tuple(cfg['search']) + KERNEL_MODELS
-    space = {m: candidates(cfg, m) for m in cfg['search']}
-    kspace = kernel_space(cfg)
+    all_models = tuple(cfg['search']) + KERNEL_MODELS
+    subset = tuple(args.models) if getattr(args, 'models', None) else all_models
+    search_models = tuple(m for m in cfg['search'] if m in subset)
+    kernel_models = tuple(m for m in KERNEL_MODELS if m in subset)
+    models = search_models + kernel_models
+    space = {m: candidates(cfg, m) for m in search_models}
+    kspace = {m: v for m, v in kernel_space(cfg).items() if m in kernel_models}
     config_sha = hashlib.sha256(json.dumps(cfg, sort_keys=True).encode()).hexdigest()
+    _pkg = Path(genopred.__file__).parent
     sources = {str(p): sha256_of(Path(p)) for p in
                (Path(__file__), Path(runner_path), Path(args.config),
-                Path(__file__).with_name('classical_baselines.py'),
-                Path(__file__).with_name('kernel_baselines.py'),
-                Path(__file__).parents[2]/'data'/'wheat2000.py',
-                Path(__file__).parents[2]/'evaluation'/'metrics.py', Path(__file__).parents[2]/'data'/'wheat599.py')}
+                _pkg/'models'/'classical'/'classical_baselines.py',
+                _pkg/'models'/'kernels'/'kernel_baselines.py',
+                _pkg/'data'/'wheat2000.py',
+                _pkg/'evaluation'/'metrics.py', _pkg/'data'/'wheat599.py')}
     frozen = json.loads(args.selection.read_text()) if args.selection else None
     if frozen:
         if (frozen['config_sha256'] != config_sha or frozen['splits_sha256'] != cfg['splits_sha256']
@@ -106,7 +124,7 @@ def run(cfg, args, runner_path):
         if ({(v['model'], v['trait'], v['fold']) for v in frozen['selected']} != expected
                 or len(frozen['selected']) != len(expected)):
             raise ValueError('Frozen selection incomplete or duplicated')
-    args.out.mkdir(parents=True, exist_ok=False)
+    args.out.mkdir(parents=True, exist_ok=True)
     versions = {n: importlib.metadata.version(n)
                 for n in ('numpy', 'scikit-learn', 'xgboost', 'lightgbm', 'torch', 'joblib')}
     (args.out / 'provenance.json').write_text(json.dumps({
@@ -120,12 +138,36 @@ def run(cfg, args, runner_path):
         'gblup_rrblup': 'reused from results/wheat2000/wheat2000_gblup_final_20261105 (same centered linear kernel)',
     }, indent=2))
     selected, valrows, rows, seedrows, oof, seedoof, failures, timing = [], [], [], [], [], [], [], []
-    state = {'status': 'running', 'phase': 'final' if frozen else 'development', 'folds_complete': []}
+    fold_ids = [f['fold'] for f in folds]
+    if frozen is None:
+        sel_path = args.out / 'selection.json'
+        if sel_path.exists():
+            selected = json.loads(sel_path.read_text())['selected']
+            valrows = _read_csv(args.out / 'validation.csv',
+                                {'fold': int, 'inner_fold': int, 'candidate': int, 'pcc': float, 'seconds': float})
+        done = {(s['model'], s['trait'], s['fold']) for s in selected}
+        completed_folds = {k for k in fold_ids if all((m, t, k) in done for m in models for t in traits)}
+    else:
+        rows = _read_csv(args.out / 'per_fold.csv',
+                         {'fold': int, 'candidate': int, 'pcc': float, 'rmse': float, 'mae': float,
+                          'inner_pcc': float, 'fit_seconds': float})
+        seedrows = _read_csv(args.out / 'per_fold_seed.csv',
+                             {'fold': int, 'seed': int, 'pcc': float, 'rmse': float, 'mae': float})
+        oof = _read_csv(args.out / 'oof.csv',
+                        {'fold': int, 'material_index': int, 'y_true': float, 'y_pred': float})
+        seedoof = _read_csv(args.out / 'oof_seed.csv',
+                            {'fold': int, 'seed': int, 'material_index': int, 'y_true': float, 'y_pred': float})
+        completed_folds = {k for k in fold_ids
+                           if sum(1 for r in rows if r['fold'] == k) == len(models) * len(traits)}
+    state = {'status': 'running', 'phase': 'final' if frozen else 'development',
+             'folds_complete': sorted(completed_folds)}
     (args.out / 'execution_status.json').write_text(json.dumps(state, indent=2))
     try:
         with threadpool_limits(limits=1):
             for fold in folds:
                 k = fold['fold']
+                if k in completed_folds:
+                    continue
                 dev, test = np.asarray(fold['dev_idx']), np.asarray(fold['test_idx'])
                 inner = [(np.asarray(v['train_idx']), np.asarray(v['val_idx'])) for v in fold['inner']]
                 if len(set(dev) & set(test)) or len(set(dev) | set(test)) != len(data.X):
@@ -134,7 +176,7 @@ def run(cfg, args, runner_path):
                 start = time.time()
                 if frozen is None:
                     jobs, keys = [], []
-                    for m in cfg['search']:
+                    for m in search_models:
                         for e, trait in enumerate(traits):
                             for j, (train, valid) in enumerate(inner):
                                 for i, spec in enumerate(space[m]):
@@ -150,14 +192,14 @@ def run(cfg, args, runner_path):
                         valrows.append({'model': m, 'trait': traits[e], 'fold': k, 'inner_fold': j,
                                         'candidate': i, 'pcc': float(score), 'seconds': round(seconds, 3)})
                     kjobs = [(data.X, data.Y, train, valid, h,
-                              [(m, r, f) for m in KERNEL_MODELS for (hh, r, f) in kspace[m] if hh == h])
+                              [(m, r, f) for m in kernel_models for (hh, r, f) in kspace[m] if hh == h])
                              for j, (train, valid) in enumerate(inner) for h in cfg['bandwidths']]
                     kresults = Parallel(n_jobs=cfg['jobs'], backend='loky')(
                         delayed(kernel_inner)(job) for job in kjobs)
                     for j, (train, valid) in enumerate(inner):
                         for h, (kscores, seconds) in zip(cfg['bandwidths'], kresults[j * len(cfg['bandwidths']):
                                                                              (j + 1) * len(cfg['bandwidths'])]):
-                            for m in KERNEL_MODELS:
+                            for m in kernel_models:
                                 for i, (hh, r, f) in enumerate(kspace[m]):
                                     if hh != h:
                                         continue
@@ -195,18 +237,18 @@ def run(cfg, args, runner_path):
                                     raise ValueError('Frozen kernel spec does not match candidate order')
                             entries[(m, e)] = entry
                     cjobs = [(m, entries[(m, e)]['spec'], model_seeds(cfg, m), data.X, data.Y[:, e], dev, test)
-                             for m in cfg['search'] for e in range(len(traits))]
+                             for m in search_models for e in range(len(traits))]
                     cresults = Parallel(n_jobs=cfg['jobs'], backend='loky')(
                         delayed(outer_predict)(job) for job in cjobs)
                     kentries = [(e, m, entries[(m, e)]['spec']['bandwidth'], entries[(m, e)]['spec']['ridge'],
                                  entries[(m, e)]['spec']['additive_fraction'])
-                                for m in KERNEL_MODELS for e in range(len(traits))]
+                                for m in kernel_models for e in range(len(traits))]
                     kpred, kseconds = kernel_outer((data.X, data.Y, dev, test, kentries))
                     fold_preds = {}
                     for (m, e), (preds, seconds) in zip(
-                            [(m, e) for m in cfg['search'] for e in range(len(traits))], cresults):
+                            [(m, e) for m in search_models for e in range(len(traits))], cresults):
                         fold_preds[(m, e)] = (preds, seconds)
-                    for m in KERNEL_MODELS:
+                    for m in kernel_models:
                         for e in range(len(traits)):
                             fold_preds[(m, e)] = ({None: kpred[:, e]}, kseconds)
                     for (m, e), (preds, seconds) in fold_preds.items():
@@ -249,13 +291,16 @@ def run(cfg, args, runner_path):
                       ['model', 'trait', 'fold', 'seed', 'material_index', 'y_true', 'y_pred'], seedoof)
                 write(args.out / 'failures.csv', ['fold', 'reason'], failures)
                 (args.out / 'timing.json').write_text(json.dumps({'jobs': cfg['jobs'], 'folds': timing}, indent=2))
-        expected_runs = len(models) * len(traits) * len(folds)
-        if failures or (len(selected) != expected_runs if frozen is None else len(rows) != expected_runs):
+        expected_keys = {(m, t, k) for m in models for t in traits for k in fold_ids}
+        have = ({(s['model'], s['trait'], s['fold']) for s in selected} if frozen is None
+                else {(r['model'], r['trait'], r['fold']) for r in rows})
+        if failures or not expected_keys <= have:
             raise RuntimeError('Incomplete run')
         if frozen is None:
+            sel_subset = [s for s in selected if s['model'] in models]
             (args.out / 'summary.json').write_text(json.dumps(
-                {'n_trait_folds': len(selected),
-                 'macro_development_pcc': float(np.mean([r['inner_pcc'] for r in selected])),
+                {'n_trait_folds': len(sel_subset),
+                 'macro_development_pcc': float(np.mean([r['inner_pcc'] for r in sel_subset])),
                  'scope': 'Conditional inner validation only; no test predictions'}, indent=2))
             state['status'] = 'complete'
             (args.out / 'execution_status.json').write_text(json.dumps(state, indent=2))
