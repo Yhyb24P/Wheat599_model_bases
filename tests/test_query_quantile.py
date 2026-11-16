@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 import torch
 
-from genopred.models.neural.query_quantile import QueryQuantile
-from genopred.models.neural.quantile_tabm import quantile_loss, train
+from genopred.models.tabm.quantile import QueryQuantile
+from genopred.models.tabm.quantile import quantile_loss, train
 
 
 def data():
@@ -102,7 +102,7 @@ def test_checkpoint_and_marker_identity_permutation(tmp_path):
 def test_development_runner_saves_seed_predictions_and_original_references(tmp_path,monkeypatch,variant):
     import json
     from types import SimpleNamespace
-    from genopred.models.neural import quantile_tabm as runner
+    from genopred.experiments.wheat599 import quantile_tabm_dev as runner
     from genopred.data.wheat599 import sha256_of
     n=20
     x=np.arange(n,dtype=float)[:,None]

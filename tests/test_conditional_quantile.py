@@ -1,5 +1,5 @@
 import torch
-from genopred.models.neural.conditional_quantile import ConditionalQuantile, entmax15
+from genopred.models.tabm.quantile import ConditionalQuantile, entmax15
 
 
 def test_connections_and_continuous_training():

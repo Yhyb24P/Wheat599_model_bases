@@ -71,7 +71,7 @@ def test_large_fields_are_finite():
 
 @pytest.mark.parametrize('variant', ['treewidth_ising', 'treewidth_independent'])
 def test_training_seed_and_fixed_epoch_refit(variant):
-    from genopred.models.neural.quantile_tabm import train
+    from genopred.models.tabm.quantile import train
     x, y = data()
     config = dict(spins=5, learning_rate=.002, weight_decay=.01)
     settings = dict(optimizer_variant=variant, n_quantiles=1, quantile_min=.001, quantile_max=.999,
