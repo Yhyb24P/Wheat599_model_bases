@@ -1,8 +1,0 @@
-model: extrapolation_diagnostic
-data: data/raw/wheat.RData
-data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
-splits: results/get_icm_protocol_20261103/splits_manifest.json
-raw_source: results/quantile_tabm_final_20261106
-kernel_source: results/kernel_baselines_final_20261102
-reml_source: results/reml_icm_final_20261103
-huber_selection: results/robust_icm_development_20261103/selection.json

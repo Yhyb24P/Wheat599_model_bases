@@ -1,0 +1,41 @@
+model: wheat2000_classical
+data: data/raw/wheat2000/wheat_GS.RData
+data_sha256: e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696
+cache: data/raw/wheat2000/wheat2000.npz
+cache_sha256: 6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733
+splits: results/wheat2000/wheat2000_protocol_20261105/splits_manifest.json
+splits_sha256: 4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c
+source_git_commit: d343b0981669cec278097f9213e32bfcc14946d4
+traits: [TKW, TW, GL, GW, GH, GP, SDS, PHT]
+seeds: [42, 2026]
+jobs: 12
+# Search grids reused from the frozen Wheat599 classical/kernel configs;
+# candidate order is the product order below and ties take the first candidate.
+# SVR and kernel ridge are deterministic (single run); rf/xgb/lgbm use both seeds.
+# Wheat2000 adaptation (declared 2026-11-15, gb-w2000-budget-20261115): SVR
+# epsilon fixed at the Wheat599 middle value 0.1 because one 1200x33709 RBF fit
+# measures 107.8s; the full 27-point grid would cost ~194 core-hours.
+search:
+  svr:
+    C: [1.0, 10.0, 100.0]
+    gamma: [scale, auto, 0.001]
+    epsilon: [0.1]
+  rf:
+    n_estimators: [500]
+    max_features: [sqrt, 0.1, 0.3]
+    min_samples_leaf: [1, 3, 5]
+  xgb:
+    n_estimators: [400]
+    max_depth: [2, 3, 4, 6]
+    learning_rate: [0.05]
+    subsample: [0.8]
+    colsample_bytree: [0.3, 0.6]
+  lgbm:
+    n_estimators: [400]
+    num_leaves: [15, 31, 63]
+    learning_rate: [0.05]
+    feature_fraction: [0.3, 0.6]
+    bagging_fraction: [0.8]
+bandwidths: [0.25, 1.0, 4.0]
+ridge: [0.001, 0.01, 0.1, 1.0, 10.0, 100.0, 1000.0]
+additive_fractions: [0.0, 0.25, 0.5, 0.75, 1.0]

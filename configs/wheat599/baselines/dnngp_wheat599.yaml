@@ -1,0 +1,43 @@
+model: dnngp
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+seeds: [42, 2026]
+device: cpu
+gpu_memory_fraction: 0.25
+cpu_threads: 1
+workers: 6
+amp: false
+upstream:
+  repository: https://github.com/AIBreeding/DNNGP
+  commit: 3bbac096969fb2b46958a672d342297cb4457116
+  path: /home/hsy/overlays/ws2_upstreams/DNNGP
+  python: /home/hsy/overlays/ws2_envs/dnngp3/bin/python
+# Official pc95 recipe: PCA to 95% explained variance, refitted on the current
+# training rows only (upstream ships a whole-dataset pc95 matrix).
+pca_variance: 0.95
+# README-recommended tuning ranges, fixed grid (batch_size x lr x dropout1 x
+# dropout2); patience/earlystopping at official defaults.
+configurations:
+  - {batch_size: 128, lr: 0.1,   dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 128, lr: 0.1,   dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 128, lr: 0.01,  dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 128, lr: 0.01,  dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 128, lr: 0.001, dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 128, lr: 0.001, dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 512, lr: 0.1,   dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 512, lr: 0.1,   dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 512, lr: 0.01,  dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 512, lr: 0.01,  dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 512, lr: 0.001, dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 512, lr: 0.001, dropout1: 0.5, dropout2: 0.5, patience: 25}
+training:
+  max_epochs: 10000
+  early_stopping: 100
+adaptation_notes:
+  - Official compiled trainer (dnngp.cpython-39 .so) called directly with protocol splits; the official internal KFold(shuffle, random_state=SEED) path is bypassed.
+  - Official network captured from the compiled trainer at runtime; three Conv1D(64, k=4, swish, L2) blocks, Dense(3), dropout 0.3, Dense(1); Adadelta; CCC loss; ReduceLROnPlateau(factor 0.8, min_delta 1e-4, min_lr 1e-6) and EarlyStopping(val_loss, restore_best_weights).
+  - Input PCA at 95% variance is refitted on each inner/dev training subset (upstream example uses a whole-dataset pc95 matrix from plink2); raw markers not used directly.
+  - Targets are the released wheat.Y standardized yields used as-is (upstream paper predicts preprocessed EBVs; no EBV step here).
+  - The compiled prepare() hardcodes tf.random.set_seed(123)/PYTHONHASHSEED; protocol seeds are applied immediately before each fit and to numpy shuffle order.
+  - Inner best epoch is argmin of per-epoch val_loss matching EarlyStopping(restore_best_weights); refit replays the frozen per-epoch median lr for the median epoch count on merged dev rows.
