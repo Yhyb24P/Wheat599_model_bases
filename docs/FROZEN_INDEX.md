@@ -11,7 +11,7 @@
 
 ## 现役主候选
 
-四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合；最新形状收缩分位数 TabM 四臂比较已完成（有限收缩外层 PCC 0.511737，未超过自由/共享形状或现役参照）。数字与停止原因见 [RESULTS](RESULTS.md)。现役入口 `scripts/run_background_nested.py`，`RUNNERS` 映射 25 条现役路由。
+四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合；最新形状收缩分位数 TabM 四臂比较已完成（有限收缩外层 PCC 0.511737，未超过自由/共享形状或现役参照）。数字与停止原因见 [RESULTS](RESULTS.md)。现役入口 `python -m genopred run`（`genopred.cli`），`RUNNERS` 映射 25 条现役路由（机制 `models/`、编排 `experiments/`）。
 
 ## 标签按家族
 
