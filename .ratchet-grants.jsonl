@@ -29,3 +29,5 @@
 {"after": 4852, "before": 4805, "by": "YHyb24P", "lines": 47, "reason": "User standing default approval 2026-11-16: Wheat2000 cross-dataset section in build_report", "target": "maintenance", "ts": "2026-11-16T00:55:16Z"}
 {"after": 4863, "before": 4852, "by": "YHyb24P", "lines": 11, "reason": "User standing default approval 2026-11-16: align Wheat2000 HTML section with Wheat599 workbench style", "target": "maintenance", "ts": "2026-11-16T00:59:10Z"}
 {"after": 4896, "before": 4863, "by": "YHyb24P", "lines": 33, "reason": "Reusable interactive workbench (workbench_html + initWorkbench) for Wheat2000 HTML, matching Wheat599 sort/filter/search/inspector/CSV", "target": "maintenance", "ts": "2026-11-16T01:11:50Z"}
+{"after": 3786, "before": 3785, "by": "YHyb24P", "lines": 1, "reason": "AGENTS browser-support policy line for offline modern-web report", "target": "docs", "ts": "2026-11-16T02:27:57Z"}
+{"after": 4966, "before": 4896, "by": "YHyb24P", "lines": 70, "reason": "Design-token palette, dark-mode toggle, themed chart remake in build_report.py per modern-web-guidance", "target": "maintenance", "ts": "2026-11-16T02:27:57Z"}
