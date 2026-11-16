@@ -9,7 +9,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'src'))
 
-from wheat599.wheat2000_classical import run
+from genopred.adapters.wheat2000_classical import run
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--config', required=True)

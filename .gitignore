@@ -7,7 +7,7 @@ venv/
 data/raw/
 data/processed/
 data/*.RData
-models/
+/models/
 *.safetensors
 *.pt
 *.pth

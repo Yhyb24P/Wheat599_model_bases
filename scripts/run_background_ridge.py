@@ -15,9 +15,9 @@ from sklearn.decomposition import PCA
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'src'))
-from wheat599.data import load, sha256_of
-from wheat599.metrics import pcc, rmse, mae
-from wheat599.kernel_ridge import gates, solve
+from genopred.data.wheat599 import load, sha256_of
+from genopred.evaluation.metrics import pcc, rmse, mae
+from genopred.models.classical.kernel_ridge import gates, solve
 
 
 def kernel(g, h, gram, global_penalty, background_penalty):
@@ -54,7 +54,7 @@ def write_csv(path, fields, rows):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--config', type=Path, default=ROOT / 'configs/background_ridge.yaml')
+    parser.add_argument('--config', type=Path, default=ROOT / 'configs/wheat599/baselines/background_ridge.yaml')
     parser.add_argument('--out', type=Path, required=True)
     args = parser.parse_args()
     cfg = yaml.safe_load(args.config.read_text())

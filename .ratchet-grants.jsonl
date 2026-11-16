@@ -34,3 +34,4 @@
 {"after": 3789, "before": 3786, "by": "YHyb24P", "lines": 3, "reason": "RESULTS DNNGP Wheat599 outer section with provenance limits", "target": "docs", "ts": "2026-11-16T02:44:16Z"}
 {"after": 4973, "before": 4966, "by": "YHyb24P", "lines": 7, "reason": "DNNGP outer record integration in build_report.py (\u5f85\u6838\u9a8c + limits)", "target": "maintenance", "ts": "2026-11-16T02:44:16Z"}
 {"after": 3348, "before": 3342, "by": "YHyb24P", "lines": 6, "reason": "Report test covers DNNGP \u5f85\u6838\u9a8c record and copies its summary", "target": "tests", "ts": "2026-11-16T02:44:25Z"}
+{"after": 12602, "before": 11895, "by": "YHyb24P", "lines": 707, "reason": "Track previously-ignored models/ adapter framework at genopred/models/library during structural refactor", "target": "source", "ts": "2026-11-16T08:06:38Z"}

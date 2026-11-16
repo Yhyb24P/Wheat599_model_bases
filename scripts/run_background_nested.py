@@ -18,10 +18,10 @@ from sklearn.model_selection import KFold
 
 ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(ROOT / 'src'))
-from wheat599.data import load, sha256_of
-from wheat599.metrics import pcc, rmse, mae
+from genopred.data.wheat599 import load, sha256_of
+from genopred.evaluation.metrics import pcc, rmse, mae
 from run_background_ridge import fit_candidate, gates, kernel, write_csv
-from wheat599.background_rbf import inputs as hybrid_inputs, fit_predict as hybrid_predict
+from genopred.models.classical.background_rbf import inputs as hybrid_inputs, fit_predict as hybrid_predict
 
 
 def design(cfg):
@@ -84,8 +84,8 @@ def run_hybrid(cfg, args):
     (args.out / 'provenance.json').write_text(json.dumps({
         'config': cfg, 'splits_sha256': split_hash,
         'runner_sha256': sha256_of(Path(__file__)),
-        'model_sha256': sha256_of(ROOT/'src/wheat599/background_rbf.py'),
-        'solver_sha256': sha256_of(ROOT/'src/wheat599/kernel_ridge.py'),
+        'model_sha256': sha256_of(ROOT/'src/genopred/models/classical/background_rbf.py'),
+        'solver_sha256': sha256_of(ROOT/'src/genopred/models/classical/kernel_ridge.py'),
         'selection_sha256': sha256_of(args.selection) if args.selection else None,
         'selection': 'mean inner-fold PCC; ties use first bandwidth',
         'refit': 'entire outer development set',
@@ -155,37 +155,37 @@ def run_hybrid(cfg, args):
 
 # Active routes only; frozen experiments are reproduced by checking out their tag.
 RUNNERS = {
-    'polygenic_simulation': ('polygenic_simulation', 'run'),
-    'kernel_gcv': ('kernel_baselines', 'run_gcv'),
-    'extrapolation_diagnostic': ('extrapolation_diagnostic', 'run'),
-    'quantile_tabm_final': ('quantile_tabm_final', 'run'),
-    'member_interaction_freeze': ('quantile_tabm_final', 'freeze_member_manifest'),
-    'quantile_tabm': ('quantile_tabm', 'run'),
-    'robust_icm': ('robust_icm', 'run'),
-    'genomic_tabm': ('genomic_tabm_run', 'run'),
-    'independent_tabm_final': ('independent_final', 'run'),
-    'heterogeneous_icm': ('heterogeneous_icm', 'run'),
-    'reml_icm': ('reml_icm', 'run'),
-    'get_icm': ('get_icm', 'run'),
-    'bh_lmc': ('bh_lmc', 'run'),
-    'multienv_kernel': ('multienv_kernel', 'run'),
-    'kernel_baselines': ('kernel_baselines', 'run'),
-    'classical_baselines': ('classical_baselines', 'run'),
-    'ragp_outer': ('ragp_run', 'run_outer'),
-    'deepgs': ('deep_baselines', 'run'),
-    'dnngp': ('deep_baselines', 'run'),
-    'soydngp': ('deep_baselines', 'run'),
-    'wheatgp_unified': ('wheatgp_unified', 'run'),
-    'mtcro_unified': ('mtcro_unified', 'run'),
-    'gsformer_csa': ('gsformer_unified', 'run'),
-    'gsformer_nsa': ('gsformer_unified', 'run'),
-    'wheat2000_gblup': ('wheat2000_gblup', 'run'),
+    'polygenic_simulation': ('genopred.evaluation.polygenic_simulation', 'run'),
+    'kernel_gcv': ('genopred.models.kernels.kernel_baselines', 'run_gcv'),
+    'extrapolation_diagnostic': ('genopred.evaluation.extrapolation_diagnostic', 'run'),
+    'quantile_tabm_final': ('genopred.models.tabular.quantile_tabm_final', 'run'),
+    'member_interaction_freeze': ('genopred.models.tabular.quantile_tabm_final', 'freeze_member_manifest'),
+    'quantile_tabm': ('genopred.models.tabular.quantile_tabm', 'run'),
+    'robust_icm': ('genopred.models.kernels.robust_icm', 'run'),
+    'genomic_tabm': ('genopred.models.tabular.genomic_tabm_run', 'run'),
+    'independent_tabm_final': ('genopred.models.tabular.independent_final', 'run'),
+    'heterogeneous_icm': ('genopred.models.kernels.heterogeneous_icm', 'run'),
+    'reml_icm': ('genopred.models.kernels.reml_icm', 'run'),
+    'get_icm': ('genopred.models.kernels.get_icm', 'run'),
+    'bh_lmc': ('genopred.models.kernels.bh_lmc', 'run'),
+    'multienv_kernel': ('genopred.models.kernels.multienv_kernel', 'run'),
+    'kernel_baselines': ('genopred.models.kernels.kernel_baselines', 'run'),
+    'classical_baselines': ('genopred.models.classical.classical_baselines', 'run'),
+    'ragp_outer': ('genopred.models.deep.ragp_run', 'run_outer'),
+    'deepgs': ('genopred.models.deep.deep_baselines', 'run'),
+    'dnngp': ('genopred.models.deep.deep_baselines', 'run'),
+    'soydngp': ('genopred.models.deep.deep_baselines', 'run'),
+    'wheatgp_unified': ('genopred.models.deep.wheatgp_unified', 'run'),
+    'mtcro_unified': ('genopred.models.deep.mtcro_unified', 'run'),
+    'gsformer_csa': ('genopred.models.deep.gsformer_unified', 'run'),
+    'gsformer_nsa': ('genopred.models.deep.gsformer_unified', 'run'),
+    'wheat2000_gblup': ('genopred.adapters.wheat2000_gblup', 'run'),
 }
 
 
 def main():
     p = argparse.ArgumentParser()
-    p.add_argument('--config', type=Path, default=ROOT/'configs/background_ridge_nested.yaml')
+    p.add_argument('--config', type=Path, default=ROOT/'configs/wheat599/baselines/background_ridge_nested.yaml')
     p.add_argument('--out', type=Path, required=True)
     p.add_argument('--selection', type=Path, default=None, help='Frozen development-only selections; omit for selection phase')
     p.add_argument('--resume-summary', action='store_true',
@@ -198,10 +198,10 @@ def main():
     if model is not None and not isinstance(model, str):
         p.error('model must be a name, not a nested architecture configuration')
     if args.selection is not None and model == 'quantile_tabm' and cfg.get('optimizer_variant', '').startswith('shape_'):
-        return import_module('wheat599.shape_quantile_final').run(cfg, args, Path(__file__))
+        return import_module('genopred.models.tabular.shape_quantile_final').run(cfg, args, Path(__file__))
     if model in RUNNERS:
         module, function = RUNNERS[model]
-        return getattr(import_module('wheat599.' + module), function)(cfg, args, Path(__file__))
+        return getattr(import_module(module), function)(cfg, args, Path(__file__))
     if model not in (None, 'background_rbf'):
         p.error(f'Unknown model: {model!r}; check --config')
     if cfg.get('model') == 'background_rbf':
