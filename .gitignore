@@ -23,60 +23,60 @@ results/**/predictions/*.npy
 .vscode/
 
 # Raw runtime copy; exact compressed archive is committed.
-results/genomic_tabm_development_20261104/trajectories.json
-results/late_transfer*/predictions/
-results/grouped_*/*.npz
-results/grouped_kernel_*/metadata.json
-results/grouped_weights_*/diagnostics.json
-results/mulphe_reevaluation_*/predictions.csv
-results/mulphe_reevaluation_*/development_predictions.csv
-results/environment_tabm_development_20261105/predictions.csv
-results/joint_tabm_icm_*/predictions_*.npz
-results/joint_tabm_icm_*/references_*.npz
-results/quantile_tabm_*/predictions_*.npz
-results/quantile_tabm_final_*/weights/
-results/quantile_tabm_final_*/seed_predictions.npz
-results/quantile_tabm_final_*/oof.csv
-results/multihead_mse_*/predictions_*.npz
-results/mean_quantile_*/predictions_*.npz
-results/midpoint_quantile_*/predictions_*.npz
-results/tabicl_genomic_*/predictions_*.npz
-results/tabicl_genomic_*/weights/
-results/fusion_refit_*/weights/
-results/fusion_refit_*/predictions.npz
-results/fusion_refit_*/oof.csv
-results/rfm_development_*/predictions_*.npz
+results/**/genomic_tabm_development_20261104/trajectories.json
+results/**/late_transfer*/predictions/
+results/**/grouped_*/*.npz
+results/**/grouped_kernel_*/metadata.json
+results/**/grouped_weights_*/diagnostics.json
+results/**/mulphe_reevaluation_*/predictions.csv
+results/**/mulphe_reevaluation_*/development_predictions.csv
+results/**/environment_tabm_development_20261105/predictions.csv
+results/**/joint_tabm_icm_*/predictions_*.npz
+results/**/joint_tabm_icm_*/references_*.npz
+results/**/quantile_tabm_*/predictions_*.npz
+results/**/quantile_tabm_final_*/weights/
+results/**/quantile_tabm_final_*/seed_predictions.npz
+results/**/quantile_tabm_final_*/oof.csv
+results/**/multihead_mse_*/predictions_*.npz
+results/**/mean_quantile_*/predictions_*.npz
+results/**/midpoint_quantile_*/predictions_*.npz
+results/**/tabicl_genomic_*/predictions_*.npz
+results/**/tabicl_genomic_*/weights/
+results/**/fusion_refit_*/weights/
+results/**/fusion_refit_*/predictions.npz
+results/**/fusion_refit_*/oof.csv
+results/**/rfm_development_*/predictions_*.npz
 
 # 本地附件、未整合副本与临时产物
 local/
 # 冒烟结果与本地遗留
-results/a_rr_nested_smoke/
-results/bimsgp_nested_smoke/
+results/**/a_rr_nested_smoke/
+results/**/bimsgp_nested_smoke/
 
-results/menet_quantile_*/predictions_*.npz
-results/menet_quantile_*/curves/
-results/menet_quantile_*/relations/
+results/**/menet_quantile_*/predictions_*.npz
+results/**/menet_quantile_*/curves/
+results/**/menet_quantile_*/relations/
 
-results/distill_quantile_*/predictions_*.npz
-results/distill_quantile_*/unit_*/
+results/**/distill_quantile_*/predictions_*.npz
+results/**/distill_quantile_*/unit_*/
 
-results/anchored_quantile_*/unit_*/
+results/**/anchored_quantile_*/unit_*/
 
-results/structured_coefficient_*/unit_*/
+results/**/structured_coefficient_*/unit_*/
 
-results/sparse_polygenic_bart_*/unit_*/
-results/sparse_polygenic_bart_*/compile/
+results/**/sparse_polygenic_bart_*/unit_*/
+results/**/sparse_polygenic_bart_*/compile/
 
-results/conditional_quantile_*/predictions_*.npz
+results/**/conditional_quantile_*/predictions_*.npz
 
-results/sparse_residual_quantile_*/predictions_*.npz
+results/**/sparse_residual_quantile_*/predictions_*.npz
 
-results/query_quantile_*/predictions_*.npz
+results/**/query_quantile_*/predictions_*.npz
 
-results/adaptive_anova_*/predictions_*.npz
+results/**/adaptive_anova_*/predictions_*.npz
 
-results/supervised_ising_*/predictions_*.npz
-results/treewidth_ising_*/predictions_*.npz
-results/*_basis_*/predictions_*.npz
+results/**/supervised_ising_*/predictions_*.npz
+results/**/treewidth_ising_*/predictions_*.npz
+results/**/*_basis_*/predictions_*.npz
 
-results/polygenic_simulation_*/simulation_arrays.npz
+results/**/polygenic_simulation_*/simulation_arrays.npz

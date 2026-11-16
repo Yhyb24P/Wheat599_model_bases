@@ -1,0 +1,10 @@
+model: member_interaction_freeze
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+development_source: results/wheat599/tabm/quantile_member_interaction_development_20261109
+development_config: configs/wheat599/tabm/quantile_member_interaction.yaml
+architecture_config: configs/wheat599/tabm/environment_tabm.yaml
+huber_oof: results/wheat599/kernels/robust_icm_final_20261103/oof.csv
+mse_oof: results/wheat599/tabm/independent_tabm_final_20261105/oof.csv
+original_oof: results/wheat599/tabm/quantile_tabm_final_20261106/oof.csv

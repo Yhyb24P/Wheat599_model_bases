@@ -1,0 +1,19 @@
+model: gsformer_nsa
+variant: nsa
+source_dir: /tmp/gsformer-official
+source_commit: 214c3831044ebcfce30db8e6825460bf8831bf1f
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+seeds: [42, 2026]
+jobs: 8
+# 1279 markers zero-padded to 1440 = 20 x 72 so the token reshape is integral
+# and 20 tokens divide into five 4-token fine blocks (the author code requires it).
+# num_selected_blocks lowered from the author default 20 to 4 because topk needs
+# at least that many 4-token compressed blocks (floor(20/4) = 5).
+pad_to: 1440
+architecture: {dim: 72, dim_head: 18, heads: 4, dropout: 0.3, compress_block_size: 4, selection_block_size: 4, num_selected_blocks: 4}
+training: {learning_rate: 0.00005, weight_decay: 0.001, epochs: 25, batch_size: 48, patience: 5, min_loss_reduction: 1.0e-6}
+cpu_threads: 2
+gpu_memory_fraction: 0.3
+device: cuda

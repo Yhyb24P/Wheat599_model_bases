@@ -1,0 +1,20 @@
+model: mtcro_unified
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+seeds: [42, 2026]
+jobs: 6
+architecture:
+  experts: 4
+  expert_dims: [4096]
+  tower_dims: [4096]
+  dropout: 0.0
+training:
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  epochs: 100
+  batch_size: 640
+  patience: 30
+cpu_threads: 2
+gpu_memory_fraction: 0.3
+device: cuda

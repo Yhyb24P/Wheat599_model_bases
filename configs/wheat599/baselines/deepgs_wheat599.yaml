@@ -1,0 +1,29 @@
+model: deepgs
+data: data/raw/wheat.RData
+data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
+splits: results/diagnostics/get_icm_protocol_20261103/splits_manifest.json
+seeds: [42, 2026]
+device: cuda
+gpu_memory_fraction: 0.15
+cpu_threads: 1
+workers: 4
+amp: true
+# Official cma2015/DeepGS 1.2 defaults (train_deepGSModel man page); single
+# public recipe, no hyperparameter search.  Wheat2000 records are not reused.
+upstream:
+  repository: https://github.com/cma2015/DeepGS
+  commit: 33ae2dc1ed7bda4e38b76460b18756649d4478a5
+  path: /home/hsy/overlays/ws2_upstreams/DeepGS
+configurations:
+  - architecture: {conv_channels: 8, kernel_size: 18, pool_size: 4, hidden: 32, dropouts: [0.2, 0.1, 0.05]}
+    optimizer: {lr: 0.01, momentum: 0.5, weight_decay: 0.00001}
+training:
+  max_epochs: 6000
+  early_stopping_patience: 600
+  batch_size: 30
+  initialization_scale: 0.01
+adaptation_notes:
+  - Independent PyTorch structure adaptation of the official R/mxnet network (same as frozen tag wheat2000-deepgs-protocol-20261105); not a bitwise mxnet reproduction.
+  - Official defaults num_round=6000, batch=30, SGD lr=0.01 momentum=0.5 wd=1e-5, uniform init 0.01, early stop after 600 non-improving epochs (official monitor mae on training batches; here validation PCC per protocol).
+  - Raw 0/1 markers, fit-only phenotype standardization, MSE loss; official mxnet uses LinearRegressionOutput (L2) on raw targets.
+  - Selection by validation PCC and median-epoch full-dev refit follow the Wheat599 protocol, not the official workflow.
