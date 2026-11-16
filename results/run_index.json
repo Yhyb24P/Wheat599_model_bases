@@ -1,8 +1,20 @@
 {
   "schema": "genopred-run-index/1",
-  "generated_from_commit": "48ff6f018866ba42ce915c66923895fa4c4ff991",
-  "n_runs": 178,
+  "generated_from_commit": "902d53c4f5cb443bff76cfaa4d83ff963d62bd03",
+  "n_runs": 181,
   "runs": [
+    {
+      "run_id": "soybase/FC/soybase_fc_selection_20261117",
+      "dataset": "soybase",
+      "family": "FC",
+      "method": "soybase_classical",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": null,
+      "protocol": "protocols/soybase/FC_splits_manifest.json",
+      "result_path": "soybase/FC/soybase_fc_selection_20261117"
+    },
     {
       "run_id": "wheat2000/candidate/wheat2000_candidate_final_20261115",
       "dataset": "wheat2000",
@@ -88,7 +100,7 @@
       "result_path": "wheat2000/classical/wheat2000_mtcro_final_20261115"
     },
     {
-      "run_id": "wheat2000/neural/wheat2000_deepgs_development_20261105",
+      "run_id": "wheat2000/neural/deepgs/wheat2000_deepgs_development_20261105",
       "dataset": "wheat2000",
       "family": "neural",
       "method": "wheat2000_deepgs",
@@ -97,10 +109,10 @@
       "role": "cross_dataset",
       "source_commit": "f6f96e73b37c61098527be27ae122457261596d7",
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/neural/wheat2000_deepgs_development_20261105"
+      "result_path": "wheat2000/neural/deepgs/wheat2000_deepgs_development_20261105"
     },
     {
-      "run_id": "wheat2000/neural/wheat2000_gsformer_csa_dev_20261116",
+      "run_id": "wheat2000/neural/gsformer/wheat2000_gsformer_csa_dev_20261116",
       "dataset": "wheat2000",
       "family": "neural",
       "method": "wheat2000_gsformer_csa",
@@ -109,10 +121,10 @@
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/neural/wheat2000_gsformer_csa_dev_20261116"
+      "result_path": "wheat2000/neural/gsformer/wheat2000_gsformer_csa_dev_20261116"
     },
     {
-      "run_id": "wheat2000/neural/wheat2000_gsformer_csa_final_20261116",
+      "run_id": "wheat2000/neural/gsformer/wheat2000_gsformer_csa_final_20261116",
       "dataset": "wheat2000",
       "family": "neural",
       "method": "wheat2000_gsformer_csa",
@@ -121,10 +133,34 @@
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/neural/wheat2000_gsformer_csa_final_20261116"
+      "result_path": "wheat2000/neural/gsformer/wheat2000_gsformer_csa_final_20261116"
     },
     {
-      "run_id": "wheat2000/neural/wheat2000_wheatgp_dev_20261115",
+      "run_id": "wheat2000/neural/moegp/wheat2000_moegp_dev_20261116",
+      "dataset": "wheat2000",
+      "family": "neural",
+      "method": "wheat2000_moegp",
+      "phase": "development",
+      "status": "unknown",
+      "role": "cross_dataset",
+      "source_commit": null,
+      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
+      "result_path": "wheat2000/neural/moegp/wheat2000_moegp_dev_20261116"
+    },
+    {
+      "run_id": "wheat2000/neural/moegp/wheat2000_moegp_final_20261116",
+      "dataset": "wheat2000",
+      "family": "neural",
+      "method": "wheat2000_moegp",
+      "phase": "refit",
+      "status": "complete",
+      "role": "cross_dataset",
+      "source_commit": null,
+      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
+      "result_path": "wheat2000/neural/moegp/wheat2000_moegp_final_20261116"
+    },
+    {
+      "run_id": "wheat2000/neural/wheatgp/wheat2000_wheatgp_dev_20261115",
       "dataset": "wheat2000",
       "family": "neural",
       "method": "wheat2000_wheatgp",
@@ -133,10 +169,10 @@
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/neural/wheat2000_wheatgp_dev_20261115"
+      "result_path": "wheat2000/neural/wheatgp/wheat2000_wheatgp_dev_20261115"
     },
     {
-      "run_id": "wheat2000/neural/wheat2000_wheatgp_final_20261115",
+      "run_id": "wheat2000/neural/wheatgp/wheat2000_wheatgp_final_20261115",
       "dataset": "wheat2000",
       "family": "neural",
       "method": "wheat2000_wheatgp",
@@ -145,7 +181,7 @@
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/neural/wheat2000_wheatgp_final_20261115"
+      "result_path": "wheat2000/neural/wheatgp/wheat2000_wheatgp_final_20261115"
     },
     {
       "run_id": "wheat599/baselines/background/nested/background_nested_final_20261102",

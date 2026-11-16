@@ -641,13 +641,15 @@
       "results/wheat2000/wheat2000_huber_final_20261115": "results/wheat2000/classical/wheat2000_huber_final_20261115",
       "results/wheat2000/wheat2000_mtcro_dev_20261115": "results/wheat2000/classical/wheat2000_mtcro_dev_20261115",
       "results/wheat2000/wheat2000_mtcro_final_20261115": "results/wheat2000/classical/wheat2000_mtcro_final_20261115",
-      "results/wheat2000/wheat2000_deepgs_development_20261105": "results/wheat2000/neural/wheat2000_deepgs_development_20261105",
-      "results/wheat2000/wheat2000_gsformer_csa_dev_20261116": "results/wheat2000/neural/wheat2000_gsformer_csa_dev_20261116",
-      "results/wheat2000/wheat2000_gsformer_csa_final_20261116": "results/wheat2000/neural/wheat2000_gsformer_csa_final_20261116",
-      "results/wheat2000/wheat2000_wheatgp_dev_20261115": "results/wheat2000/neural/wheat2000_wheatgp_dev_20261115",
-      "results/wheat2000/wheat2000_wheatgp_final_20261115": "results/wheat2000/neural/wheat2000_wheatgp_final_20261115",
+      "results/wheat2000/wheat2000_deepgs_development_20261105": "results/wheat2000/neural/deepgs/wheat2000_deepgs_development_20261105",
+      "results/wheat2000/wheat2000_gsformer_csa_dev_20261116": "results/wheat2000/neural/gsformer/wheat2000_gsformer_csa_dev_20261116",
+      "results/wheat2000/wheat2000_gsformer_csa_final_20261116": "results/wheat2000/neural/gsformer/wheat2000_gsformer_csa_final_20261116",
+      "results/wheat2000/wheat2000_wheatgp_dev_20261115": "results/wheat2000/neural/wheatgp/wheat2000_wheatgp_dev_20261115",
+      "results/wheat2000/wheat2000_wheatgp_final_20261115": "results/wheat2000/neural/wheatgp/wheat2000_wheatgp_final_20261115",
       "results/wheat2000/wheat2000_candidate_dev_20261115": "results/wheat2000/candidate/wheat2000_candidate_dev_20261115",
-      "results/wheat2000/wheat2000_candidate_final_20261115": "results/wheat2000/candidate/wheat2000_candidate_final_20261115"
+      "results/wheat2000/wheat2000_candidate_final_20261115": "results/wheat2000/candidate/wheat2000_candidate_final_20261115",
+      "results/wheat2000_moegp_dev_20261116": "results/wheat2000/neural/moegp/wheat2000_moegp_dev_20261116",
+      "results/wheat2000_moegp_final_20261116": "results/wheat2000/neural/moegp/wheat2000_moegp_final_20261116"
     }
   }
 }
