@@ -20,7 +20,7 @@ splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 seeds: [42, 2026]
 
 # Fixed official gating/loss knobs (not searched).
-model:
+model: moegp_unified
   independent_experts: false
   top_k: 2
   loss_coef: 0.1
