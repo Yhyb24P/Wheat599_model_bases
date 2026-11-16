@@ -222,7 +222,7 @@
     }
   },
   "ceilings": {
-    "tests": 3350,
+    "tests": 3425,
     "docs": 3862,
     "maintenance": 5223,
     "source": 12602
