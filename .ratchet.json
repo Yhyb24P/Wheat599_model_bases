@@ -217,9 +217,9 @@
     }
   },
   "ceilings": {
-    "tests": 3342,
-    "docs": 3786,
-    "maintenance": 4966,
+    "tests": 3348,
+    "docs": 3789,
+    "maintenance": 4973,
     "source": 11895
   },
   "file_ceilings": {}

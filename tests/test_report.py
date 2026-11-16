@@ -98,7 +98,8 @@ class ReportTest(unittest.TestCase):
                          ('moegp_unified_20261115', 'test/summary.json'),
                          ('mtcro_unified_outer_20261115', 'summary.json'),
                          ('ragp_outer_20261115', 'summary.json'),
-                         ('wheatgp_unified_outer_20261115', 'summary.json')]:
+                         ('wheatgp_unified_outer_20261115', 'summary.json'),
+                         ('dnngp_final_20261115', 'run/summary.json')]:
             target = tmp_path/'results'/run/rel
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/'results'/run/rel, target)
@@ -166,8 +167,13 @@ class ReportTest(unittest.TestCase):
             self.assertNotEqual(r['journal'], '本项目', r['name'])
             self.assertTrue(r['journal_url'], r['name'])
         pending = {r['name']: r['status'] for r in records if r['status'] in ('运行中', '待复现')}
-        self.assertEqual(pending, {'DNNGP 同协议适配': '运行中', 'PNNGS（待复现）': '待复现',
+        self.assertEqual(pending, {'PNNGS（待复现）': '待复现',
                                    'MDNN（待复现）': '待复现', 'CWAGS（待复现）': '待复现'})
+        dnngp = next(r for r in records if r['name'] == 'DNNGP 同协议适配')
+        self.assertEqual(dnngp['status'], '待核验')
+        self.assertEqual(dnngp['pcc'], '0.444488')
+        self.assertEqual(dnngp['env'][0], '0.464628')
+        self.assertIn('CPU', dnngp['note'])
         moegp = next(r for r in records if r['name'] == 'MoEGP 统一适配（外层）')
         self.assertEqual(moegp['pcc'], '0.481402')
         self.assertEqual(moegp['env'][0], '0.549105')

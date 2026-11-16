@@ -383,7 +383,7 @@ ARCHITECTURES = {
     'XGBoost': (['拟合集标准化标记', '正则化梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Chen & Guestrin 2016 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#chen2016xgboost'),
     'LightGBM': (['拟合集标准化标记', 'GOSS＋EFB 梯度提升树', '内折验证 PCC 选超参', '双种子预测平均'], 'Ke 等 2017 的经典基线；种子 42/2026，内层按种子平均验证预测选模。', '../ref/index.html#ke2017lightgbm'),
     'DeepGS': (['全标记输入', '官方深度卷积网络结构', 'PyTorch 结构适配', '逐环境预测'], '官方 cma2015/DeepGS（33ae2dc1）网络结构与训练默认值的 PyTorch 适配；Wheat2000 运行记录不迁移。发表版题名不含 DeepGS，见 ref 书目。', '../ref/index.html#ma2018deepgs'),
-    'DNNGP': (['拟合集 PCA95', '官方编译训练器（TF 2.6）', '协议划分直接传入', '深度网络预测'], 'AIBreeding/DNNGP 官方训练器（3bbac096），固定 Python 3.9/TF 2.6 环境；绕过官方 KFold，使用协议划分。运行进行中，暂无外层结果。', '../ref/index.html#wang2023dnngp'),
+    'DNNGP': (['拟合集 PCA95', '官方编译训练器（TF 2.6）', '协议划分直接传入', '深度网络预测'], 'AIBreeding/DNNGP 官方训练器（3bbac096），固定 Python 3.9/TF 2.6 环境；绕过官方 KFold，使用协议划分。外层已完成（宏 PCC 0.444488）；CPU 阶段源码副本未定位、LR 记录非逐 epoch 精确，待进一步核验。', '../ref/index.html#wang2023dnngp'),
     'SoyDNGP': (['DArT 标记 → VCF one-hot/resize', '官方 SoyDNGPNext 网络', 'SmoothL1＋Adam', '拟合集 min/max 目标缩放'], 'IndigoFloyd/SoyDNGPNext（ebda01d0）官方 remodel；目标 min/max 仅取拟合集（上游用全数据）。本运行预测尺度发散，RMSE/MAE 按原值保留。', '../ref/index.html#gao2023soydngp'),
     'Gsformer': (['原始 1279 标记零填充', 'CSA 32×40 块 / NSA 20×72 token', '作者模型类未改动', '双种子中位轮次重拟合'], '作者仓库提供 CSA/NSA 架构与训练规则但无 Wheat599 训练文件，本运行提供项目划分。论文输入为 DNNGP 风格 SNP/PC，此处用原始标记，差异已记录。', '../ref/index.html#yang2026gsformer'),
     'MtCro': (['原始 1279 标记', 'MMOE：4 专家/4 门/4 塔', '作者配方（4096 宽，Adam 1e-4）', '双种子中位轮次重拟合'], 'torch_rechub MMOE；作者玉米脚本把任务数传在 n_expert 位置，四环境运行用 4 专家。作者模板用 250 PC，本运行用原始标记；划分用 canonical manifest。', '../ref/index.html#chao2025mtcro'),
@@ -497,8 +497,15 @@ def unified_sota_records():
                             env=[f'{pcc(env[e]["pcc"]):.6f}' for e in ['1', '2', '4', '5']],
                             source=f'results/{run}/{rel}（2026-11-15）', link=f'../results/{run}/{rel}',
                             role=role, priority=priority, primary=False, note=note))
+    dnngp = json.loads((ROOT / 'results/dnngp_final_20261115/run/summary.json').read_text())
+    denv = dnngp['per_environment']
+    records.append(dict(name='DNNGP 同协议适配', stage='统一协议外层',
+                        pcc=f'{dnngp["macro"]["pcc"]:.6f}', rmse=f'{dnngp["macro"]["rmse"]:.6f}', mae=f'{dnngp["macro"]["mae"]:.6f}',
+                        env=[f'{denv[e]["pcc"]["mean"]:.6f}' for e in ['1', '2', '4', '5']],
+                        source='results/dnngp_final_20261115/run/summary.json（2026-11-16）', link='../results/dnngp_final_20261115/run/summary.json',
+                        role='SOTA 公开模型', priority=26, primary=False, status='待核验',
+                        note='同协议适配，待进一步核验：CPU 开发阶段源码 SHA 已记录但副本未定位，不能精确复现该阶段；EpochRecorder 在 LR 调度后记录 epoch 末学习率，非逐 epoch 精确重放。限制见 evidence_notes.json，不视为原论文精确复现或已确认主表结果。'))
     for name, family, priority, status, note in [
-            ('DNNGP 同协议适配', 'DNNGP', 26, '运行中', '官方训练器运行进行中（约 6–8 小时）；暂无外层结果，完成后重建纳入，不编造数字。'),
             ('PNNGS（待复现）', 'PNNGS', 27, '待复现', '公开实现与论文架构不符（WS4 核查）；无同协议结果。'),
             ('MDNN（待复现）', 'MDNN', 28, '待复现', '仓库作者归属未确认、无数据与依赖说明（WS4 核查）；无同协议结果。'),
             ('CWAGS（待复现）', 'CWAGS', 29, '待复现', '未找到作者实现；论文报告 Wheat599 四环境平均 PCC 0.5368（原文划分，非本协议，不参与排名）。')]:
@@ -787,7 +794,7 @@ def build():
     body = head + result_workbench(systems) + '''<details class="legacy-overview"><summary>已核对统一协议：完整指标与来源</summary><section aria-labelledby="overview"><h2 id="overview">统一协议下的结果</h2><div class="grid">
 <article class="card best"><span class="tag">当前固定融合 · 折均宏 PCC</span><div class="big">0.526506</div><p>相对 Huber ICM 增加 0.004761；是项目内描述性差值。</p></article>
 <article class="card"><span class="tag">训练与评价</span><h3>10 外折 × 3 内折</h3><p>神经模型使用种子 42、2026，先平均预测再评分。所有预处理和选择限于拟合集及内层验证集。</p></article>
-<article class="card"><span class="tag">最新完成 · 统一 SOTA 基线（2026-11-15）</span><h3>12 项外层 · 0 失败</h3><p>经典 SVR/RF/XGBoost/LightGBM 与 DeepGS、SoyDNGP、Gsformer CSA/NSA、MoEGP、MtCro、RAGP、WheatGP 统一适配；逐环境指标与来源期刊见总表。DNNGP 运行中。</p></article></div>
+<article class="card"><span class="tag">最新完成 · 统一 SOTA 基线（2026-11-15）</span><h3>12 项外层 · 0 失败</h3><p>经典 SVR/RF/XGBoost/LightGBM 与 DeepGS、SoyDNGP、Gsformer CSA/NSA、MoEGP、MtCro、RAGP、WheatGP 统一适配；逐环境指标与来源期刊见总表。DNNGP 外层已完成（待核验）。</p></article></div>
 <p>主指标是 40 个环境–外折 PCC 等权平均；折均与合并 OOF 不同。外层划分已多轮用于研究，不是新的独立验证，不计算独立折 p 值或置信区间，也不根据本页重选融合权重。不同预算的完整系统比较不单独归因于架构。</p>
 <figure>''' + bars + '''<figcaption><b>图 2 · 固定融合的折均宏 PCC 高于本页已核对的强参照及完整 Mul-PheG2P 适配。</b>n = 599，四环境、十外折；横条从 0 起、满宽为 PCC = 1，无误差条。来源：2026-11-06 分位数最终汇总与 2026-11-13 Mul-PheG2P 汇总；不是文献成绩排名。确切值见下表。</figcaption></figure>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="统一协议指标"><table><caption>折均指标；Env1–4 对应原表型列 1、2、4、5</caption><thead><tr><th scope="col">完整系统</th><th scope="col">PCC ↑</th><th scope="col">RMSE ↓</th><th scope="col">MAE ↓</th><th scope="col">Env1 PCC</th><th scope="col">Env2 PCC</th><th scope="col">Env3 PCC</th><th scope="col">Env4 PCC</th></tr></thead><tbody>''' + rows + '''</tbody></table></div>
