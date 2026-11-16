@@ -4,7 +4,7 @@ cache: data/raw/soybase/soybase_cache.npz
 seeds:
 - 42
 - 2026
-jobs: 12
+jobs: 4
 min_call_rate: 0.9
 min_maf: 0.05
 search:
