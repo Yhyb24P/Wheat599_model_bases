@@ -7,7 +7,7 @@ import pytest
 import torch
 from sklearn.decomposition import PCA
 
-from genopred.models.neural.ragp import (OFFICIAL_HIDDEN_DIMS, RAGPGenomic, pearson_loss,
+from genopred.models.comparators.ragp import (OFFICIAL_HIDDEN_DIMS, RAGPGenomic, pearson_loss,
                            triplet_loss)
 
 torch.set_num_threads(1)
@@ -264,7 +264,7 @@ def test_forward_has_no_query_label_argument():
 
 
 def test_outer_epoch_budgets_median_and_validation():
-    from genopred.models.neural.ragp_run import outer_epoch_budgets
+    from experiments.wheat599.ragp_dev import outer_epoch_budgets
     configurations = [
         {'learning_rate': 0.001, 'weight_decay': 0.0, 'max_epochs': 15, 'dropout': 0.5},
         {'learning_rate': 0.001, 'weight_decay': 0.0, 'max_epochs': 50, 'dropout': 0.5},

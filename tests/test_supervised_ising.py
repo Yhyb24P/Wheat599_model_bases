@@ -79,7 +79,7 @@ def test_fit_boundaries_and_training_loop(kind):
 def test_parallel_fits_match_serial_predictions_and_epochs(device):
     import multiprocessing
     from concurrent.futures import ProcessPoolExecutor
-    from genopred.experiments.wheat599.quantile_tabm_dev import _init_fit_worker, _fit_worker
+    from experiments.wheat599.quantile_tabm_dev import _init_fit_worker, _fit_worker
     x,y=data();x=np.asfortranarray(x.astype(np.float64));ys=np.asfortranarray(np.column_stack([y,np.roll(y,1),-y,2*y]).astype(np.float64))
     folds=[dict(fold=0,inner=[dict(train_idx=list(range(16)),val_idx=list(range(16,24)))]),
            dict(fold=1,inner=[dict(train_idx=list(range(8,24)),val_idx=list(range(8)))])]
