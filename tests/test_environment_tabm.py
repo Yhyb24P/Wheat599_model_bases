@@ -12,7 +12,7 @@ if TABM_DEPENDENCIES not in sys.path:
 
 import tabm  # noqa: E402
 
-from genopred.models.neural.environment_tabm import (EnvironmentLinearBatchEnsemble,  # noqa: E402
+from genopred.models.tabm.backbone import (EnvironmentLinearBatchEnsemble,  # noqa: E402
                                         EnvironmentTabM, IndependentTabM, SharedTabM)
 
 torch.set_num_threads(1)

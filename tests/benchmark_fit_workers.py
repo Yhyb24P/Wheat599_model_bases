@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import torch
 import hashlib
-from genopred.models.neural.quantile_tabm import _init_fit_worker,_fit_worker
+from genopred.experiments.wheat599.quantile_tabm_dev import _init_fit_worker,_fit_worker
 
 def main():
  rng=np.random.default_rng(91)
@@ -29,7 +29,7 @@ def main():
   np.testing.assert_array_equal(a[3],b[3])
   assert a[4]['best_epoch']==b[4]['best_epoch']
  result=dict(synthetic_only=True,predictions_identical=True,seed=91,torch_version=str(torch.__version__),gpu=torch.cuda.get_device_name(0),
-             implementation_sha256=hashlib.sha256(Path('src/genopred/models/neural/quantile_tabm.py').read_bytes()).hexdigest(),materials=540,markers=1279,spins=12,epochs=10,tasks=128,workers=4,
+             implementation_sha256=hashlib.sha256(Path('src/genopred/models/tabm/quantile.py').read_bytes()).hexdigest(),materials=540,markers=1279,spins=12,epochs=10,tasks=128,workers=4,
              serial_seconds=serial,parallel_seconds=parallel,pool_startup_and_warmup_seconds=startup,steady_speedup=serial/parallel)
  Path('.state').mkdir(exist_ok=True)
  Path('.state/ising_parallel_timing.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

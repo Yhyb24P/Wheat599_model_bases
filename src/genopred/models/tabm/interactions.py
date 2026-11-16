@@ -1,8 +1,10 @@
-"""Full-marker bi-interactions and four-stream gated TabM backbone."""
+"""TabM marker interactions, member connections and optimizer groups."""
 import math
 
 import torch
 from torch import nn
+
+from genopred.models.tabm.quantile import quantile_loss
 
 
 class InteractionBackbone(nn.Module):
@@ -73,3 +75,74 @@ def make_optimizers(model, config, variant):
     if not muon or len(ids)!=len(muon):raise ValueError('Invalid Muon parameter groups')
     return [torch.optim.Muon(muon,lr=config['muon_lr'],weight_decay=config['weight_decay']),
             torch.optim.AdamW(other,lr=config['learning_rate'],weight_decay=config['weight_decay'])]
+
+
+class MemberInteractionBackbone(nn.Module):
+    def __init__(self, backbone, markers, rank=32):
+        super().__init__()
+        self.base=backbone
+        first=backbone.backbone.blocks[0][0]
+        members,width=first.r.shape[0],first.weight.shape[0]
+        if first.r.shape!=(members,markers):raise ValueError('Unexpected first-layer member scaling')
+        self.factors=nn.Parameter(torch.randn(markers,rank)/math.sqrt(markers))
+        self.keys=nn.ModuleList([nn.Linear(rank,width,bias=False) for _ in backbone.backbone.blocks])
+        self.values=nn.ModuleList([nn.Linear(rank,width,bias=False) for _ in backbone.backbone.blocks])
+        self.norm=nn.RMSNorm(width,elementwise_affine=False)
+        self.alpha=nn.Parameter(torch.zeros(len(backbone.backbone.blocks)))
+
+    def forward(self,z):
+        first=self.base.backbone.blocks[0][0]
+        scaled=z[:,None,:]*first.r[None,:,:]
+        projected=scaled@self.factors
+        interactions=.5*(projected.square()-scaled.square()@self.factors.square())
+        h=self.base.ensemble_view(z)
+        for i,(block,key,value) in enumerate(zip(self.base.backbone.blocks,self.keys,self.values)):
+            u=block(h)
+            gate=torch.sigmoid((self.norm(u)*self.norm(key(interactions))).sum(dim=-1,keepdim=True)/math.sqrt(u.shape[-1]))
+            h=u+self.alpha[i]*gate*value(interactions)
+        return self.base.output(h)
+
+
+class ConnectionBasis(nn.Module):
+    def __init__(self, base, rank, *, shared=True):
+        super().__init__()
+        if not isinstance(rank, int) or rank < 1:
+            raise ValueError('Connection rank must be positive')
+        self.base, self.shared = base, shared
+        members, markers = base.r.shape
+        width = base.weight.shape[0]
+        shape = () if shared else (members,)
+        self.u = nn.Parameter(torch.randn(*shape, width, rank, dtype=base.weight.dtype, device='cpu'))
+        self.v = nn.Parameter(torch.randn(*shape, markers, rank, dtype=base.weight.dtype, device='cpu')
+                              if shared else torch.zeros(members, markers, rank, dtype=base.weight.dtype, device='cpu'))
+        if shared:
+            self.coefficients = nn.Parameter(torch.zeros(members, rank, dtype=base.weight.dtype, device='cpu'))
+
+    def delta(self):
+        if self.shared:
+            c = self.coefficients - self.coefficients.mean(0, keepdim=True)
+            modulation = (c[:, None, :] * self.u[None]) @ self.v.T
+            return self.base.weight[None] * modulation
+        change = self.base.weight[None] * (self.u @ self.v.transpose(-1, -2))
+        # Center actual changes; independent factors need not share directions.
+        return change - change.mean(0, keepdim=True)
+
+    def penalty(self):
+        return self.delta().square().mean()
+
+    def forward(self, x):
+        if self.shared:
+            c = self.coefficients - self.coefficients.mean(0, keepdim=True)
+            # GenomicTabM repeats the same standardized markers across members.
+            g = torch.nn.functional.linear(x[:, :1, :] * self.v.T[None], self.base.weight)
+            extra = torch.einsum('brh,mr->bmh', g * self.u.T[None], c)
+        else:
+            extra = torch.einsum('bmp,mhp->bmh', x, self.delta())
+        return self.base(x) + extra
+
+
+def basis_loss(model, x, y, quantiles, strength):
+    loss = quantile_loss(model(x), y, quantiles)
+    if strength:
+        loss = loss + strength * model.backbone.backbone.blocks[0][0].penalty()
+    return loss

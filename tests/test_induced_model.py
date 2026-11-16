@@ -7,7 +7,7 @@ import pytest
 
 torch = pytest.importorskip("torch")
 
-from genopred.models.neural.induced_ftt import InducedFTTransformer, build_induced_model
+from genopred.models.tabm.backbone import InducedFTTransformer, build_induced_model
 
 
 def _tiny_cfg():

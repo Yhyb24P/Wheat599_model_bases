@@ -21,7 +21,7 @@ from joblib import Parallel, delayed
 
 from genopred.data.wheat599 import sha256_of
 from genopred.evaluation.metrics import pcc, rmse, mae
-from genopred.models.neural.quantile_tabm import train as train_tabm
+from genopred.models.tabm.quantile import train as train_tabm
 from genopred.data.wheat2000 import load_wheat2000
 
 STATE = {}

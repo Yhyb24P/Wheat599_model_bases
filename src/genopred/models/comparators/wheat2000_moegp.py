@@ -19,7 +19,7 @@ from joblib import Parallel, delayed
 
 from genopred.data.wheat599 import sha256_of
 from genopred.evaluation.metrics import pcc, rmse, mae
-from genopred.models.neural.moegp_worker import fit_moegp
+from genopred.models.comparators.moegp_worker import fit_moegp
 from genopred.data.wheat2000 import load_wheat2000
 
 STATE = {}
