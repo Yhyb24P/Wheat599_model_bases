@@ -1,0 +1,151 @@
+{
+  "config": {
+    "model": "dnngp",
+    "data": "data/raw/wheat.RData",
+    "data_sha256": "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21",
+    "splits": "results/get_icm_protocol_20261103/splits_manifest.json",
+    "seeds": [
+      42,
+      2026
+    ],
+    "device": "cpu",
+    "gpu_memory_fraction": 0.25,
+    "cpu_threads": 1,
+    "workers": 6,
+    "amp": false,
+    "upstream": {
+      "repository": "https://github.com/AIBreeding/DNNGP",
+      "commit": "3bbac096969fb2b46958a672d342297cb4457116",
+      "path": "/home/hsy/overlays/ws2_upstreams/DNNGP",
+      "python": "/home/hsy/overlays/ws2_envs/dnngp3/bin/python"
+    },
+    "pca_variance": 0.95,
+    "configurations": [
+      {
+        "batch_size": 128,
+        "lr": 0.1,
+        "dropout1": 0.3,
+        "dropout2": 0.3,
+        "patience": 25
+      },
+      {
+        "batch_size": 128,
+        "lr": 0.1,
+        "dropout1": 0.5,
+        "dropout2": 0.5,
+        "patience": 25
+      },
+      {
+        "batch_size": 128,
+        "lr": 0.01,
+        "dropout1": 0.3,
+        "dropout2": 0.3,
+        "patience": 25
+      },
+      {
+        "batch_size": 128,
+        "lr": 0.01,
+        "dropout1": 0.5,
+        "dropout2": 0.5,
+        "patience": 25
+      },
+      {
+        "batch_size": 128,
+        "lr": 0.001,
+        "dropout1": 0.3,
+        "dropout2": 0.3,
+        "patience": 25
+      },
+      {
+        "batch_size": 128,
+        "lr": 0.001,
+        "dropout1": 0.5,
+        "dropout2": 0.5,
+        "patience": 25
+      },
+      {
+        "batch_size": 512,
+        "lr": 0.1,
+        "dropout1": 0.3,
+        "dropout2": 0.3,
+        "patience": 25
+      },
+      {
+        "batch_size": 512,
+        "lr": 0.1,
+        "dropout1": 0.5,
+        "dropout2": 0.5,
+        "patience": 25
+      },
+      {
+        "batch_size": 512,
+        "lr": 0.01,
+        "dropout1": 0.3,
+        "dropout2": 0.3,
+        "patience": 25
+      },
+      {
+        "batch_size": 512,
+        "lr": 0.01,
+        "dropout1": 0.5,
+        "dropout2": 0.5,
+        "patience": 25
+      },
+      {
+        "batch_size": 512,
+        "lr": 0.001,
+        "dropout1": 0.3,
+        "dropout2": 0.3,
+        "patience": 25
+      },
+      {
+        "batch_size": 512,
+        "lr": 0.001,
+        "dropout1": 0.5,
+        "dropout2": 0.5,
+        "patience": 25
+      }
+    ],
+    "training": {
+      "max_epochs": 10000,
+      "early_stopping": 100
+    },
+    "adaptation_notes": [
+      "Official compiled trainer (dnngp.cpython-39 .so) called directly with protocol splits; the official internal KFold(shuffle, random_state=SEED) path is bypassed.",
+      "Official network captured from the compiled trainer at runtime; three Conv1D(64, k=4, swish, L2) blocks, Dense(3), dropout 0.3, Dense(1); Adadelta; CCC loss; ReduceLROnPlateau(factor 0.8, min_delta 1e-4, min_lr 1e-6) and EarlyStopping(val_loss, restore_best_weights).",
+      "Input PCA at 95% variance is refitted on each inner/dev training subset (upstream example uses a whole-dataset pc95 matrix from plink2); raw markers not used directly.",
+      "Targets are the released wheat.Y standardized yields used as-is (upstream paper predicts preprocessed EBVs; no EBV step here).",
+      "The compiled prepare() hardcodes tf.random.set_seed(123)/PYTHONHASHSEED; protocol seeds are applied immediately before each fit and to numpy shuffle order.",
+      "Inner best epoch is argmin of per-epoch val_loss matching EarlyStopping(restore_best_weights); refit replays the frozen per-epoch median lr for the median epoch count on merged dev rows."
+    ]
+  },
+  "splits_sha256": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+  "selection_sha256": null,
+  "sha256": {
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/deep_baselines.py": "eb9621e3a7f6d1a392801907eb8f9253b8a54aac2c8ac74714b8e961bb0e517f",
+    "configs/dnngp_wheat599.yaml": "508477b759cfb0d280b23b4d6dacd97b17c3193fc97a7e36618306d7ce862230",
+    "scripts/run_background_nested.py": "dfc3e8ec45812d148b22c0f2accede851ab57537fb10a4e6005cc7fbfd8654d6",
+    "results/get_icm_protocol_20261103/splits_manifest.json": "e5766f83d0e3ecd5caeeb5a293aa016f5e60359fcf788b5f196f5879226e54b2",
+    "/home/hsy/git_files/Wheat599_model_bases/src/wheat599/dnngp_worker.py": "ac9e88adf89e2345d98db4a708ad566e4a43fbd3585b0d4722d49c84943a6efb"
+  },
+  "upstream_files": {
+    "/home/hsy/overlays/ws2_upstreams/DNNGP/Scripts/dnngp.cpython-39-x86_64-linux-gnu.so": "dd831d64a92765bc980b0743534e4baa55fcc35f4d297bc39eb71bd84a749264",
+    "/home/hsy/overlays/ws2_upstreams/DNNGP/Scripts/config_dnngp.cpython-39-x86_64-linux-gnu.so": "aec0c0e56c317624aeba9a9a2450cc8fcad197c18d31ac804f3073dacc33683d",
+    "/home/hsy/overlays/ws2_upstreams/DNNGP/Scripts/dnngp_runner.py": "36aa596cbb94126c0a7416ef3e362f535600f857615b3fe6882d70f8d60d7e5f"
+  },
+  "torch_version": "2.14.1+cu130",
+  "dnngp_tensorflow": "2.6.0",
+  "git_head": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+  "git_status_porcelain_tracked": "M scripts/run_background_nested.py\n M src/wheat599/ragp_run.py\n M tests/test_ragp.py",
+  "workers": 6,
+  "amp": false,
+  "rule": "mean inner PCC of seed-averaged predictions; first configuration on tie; per-seed median best epoch and per-epoch median learning rate; full dev refit; outer test scored once",
+  "adaptation": [
+    "Official compiled trainer (dnngp.cpython-39 .so) called directly with protocol splits; the official internal KFold(shuffle, random_state=SEED) path is bypassed.",
+    "Official network captured from the compiled trainer at runtime; three Conv1D(64, k=4, swish, L2) blocks, Dense(3), dropout 0.3, Dense(1); Adadelta; CCC loss; ReduceLROnPlateau(factor 0.8, min_delta 1e-4, min_lr 1e-6) and EarlyStopping(val_loss, restore_best_weights).",
+    "Input PCA at 95% variance is refitted on each inner/dev training subset (upstream example uses a whole-dataset pc95 matrix from plink2); raw markers not used directly.",
+    "Targets are the released wheat.Y standardized yields used as-is (upstream paper predicts preprocessed EBVs; no EBV step here).",
+    "The compiled prepare() hardcodes tf.random.set_seed(123)/PYTHONHASHSEED; protocol seeds are applied immediately before each fit and to numpy shuffle order.",
+    "Inner best epoch is argmin of per-epoch val_loss matching EarlyStopping(restore_best_weights); refit replays the frozen per-epoch median lr for the median epoch count on merged dev rows."
+  ]
+}

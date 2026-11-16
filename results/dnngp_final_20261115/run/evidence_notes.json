@@ -1,0 +1,10 @@
+{
+  "interpretation": "同协议适配结果待进一步核验，不视为原论文精确复现或已确认主表结果。",
+  "verified": "2396条外层预测及4792条单种子预测的材料覆盖、原始真值、有限值和两种子平均；外层与内层划分；40条选择及80条重拟合的配置和中位epoch；失败记录为空。",
+  "limitations": [
+    "开发从CPU切换GPU续跑，两个阶段的源码SHA不同，CPU阶段源码内容尚未定位；其预测在omen保留。",
+    "DNNGP的EpochRecorder在ReduceLROnPlateau之后记录每个epoch结束的学习率，降率时记录值可能用于下一epoch；不能称重拟合逐epoch精确重放内折实际训练学习率。",
+    "运行provenance中的HEAD是运行所在检出的HEAD，适配代码当时为未提交文件；需结合所记录的源码SHA识别。"
+  ],
+  "artifacts_on_omen": "~/git_files/Wheat599_model_bases/results/dnngp_development_20261115/run 和 results/dnngp_final_20261115/run；包括逐材料预测和完整轨迹。"
+}
