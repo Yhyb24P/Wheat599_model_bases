@@ -10,9 +10,10 @@ splits: protocols/wheat2000_protocol_20261105/splits_manifest.json
 splits_sha256: 4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c
 traits: [TKW, TW, GL, GW, GH, GP, SDS, PHT]
 seeds: [42, 2026]
-pad_to: 33768
-architecture: {dim: 72, dim_head: 18, heads: 4, dropout: 0.3}
+pad_to: 33984
+architecture: {dim: 72, dim_head: 18, heads: 4, dropout: 0.3, num_length: 591}
 training: {learning_rate: 0.00005, weight_decay: 0.001, epochs: 25, batch_size: 48, patience: 5, min_loss_reduction: 1.0e-6}
+adaptation_note: "num_length kept at the author default 591; 33984 = 472 x 72 keeps the token count divisible by the 4-token blocks"
 device: cuda
 cpu_threads: 2
 gpu_memory_fraction: 0.9

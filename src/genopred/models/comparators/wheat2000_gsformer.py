@@ -58,7 +58,7 @@ def build(variant, n_features, cfg, classes):
     if variant == 'nsa':
         return Transformer(num_tokens=n_features, add_num=0, dim=int(a['dim']), depth=1,
                            dim_head=int(a['dim_head']), heads=int(a['heads']),
-                           dropout=float(a['dropout']), num_length=n_features,
+                           dropout=float(a['dropout']), num_length=int(a.get('num_length', 591)),
                            ff_expansion_factor=2)
     raise ValueError('unknown variant')
 
@@ -154,6 +154,9 @@ def development(cfg, folds, traits, args, classes):
     init_worker(*initargs)
     for fold in folds:
         k = int(fold['fold'])
+        if (args.out / f'selection_{k}.json').exists():
+            print(f'fold {k} already complete; skipping', flush=True)
+            continue
         jobs, keys = [], []
         for trait in range(len(traits)):
             for seed in cfg['seeds']:
