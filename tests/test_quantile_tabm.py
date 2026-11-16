@@ -61,7 +61,7 @@ def test_shape_training_produces_member_distributions(variant):
 def test_parallel_midpoint_preserves_predictions_and_distributions():
     import multiprocessing
     from concurrent.futures import ProcessPoolExecutor
-    from genopred.experiments.wheat599.quantile_tabm_dev import _fit_worker, _init_fit_worker
+    from experiments.wheat599.quantile_tabm_dev import _fit_worker, _init_fit_worker
     rng = np.random.default_rng(35)
     x, y = rng.normal(size=(32, 8)), rng.normal(size=(32, 4))
     folds = [dict(fold=0, inner=[dict(train_idx=list(range(24)), val_idx=list(range(24,32)))])]

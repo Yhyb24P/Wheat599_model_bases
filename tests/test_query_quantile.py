@@ -102,7 +102,7 @@ def test_checkpoint_and_marker_identity_permutation(tmp_path):
 def test_development_runner_saves_seed_predictions_and_original_references(tmp_path,monkeypatch,variant):
     import json
     from types import SimpleNamespace
-    from genopred.experiments.wheat599 import quantile_tabm_dev as runner
+    from experiments.wheat599 import quantile_tabm_dev as runner
     from genopred.data.wheat599 import sha256_of
     n=20
     x=np.arange(n,dtype=float)[:,None]
@@ -156,8 +156,8 @@ def test_development_runner_saves_seed_predictions_and_original_references(tmp_p
     assert len(list(out.glob('predictions_*.npz')))==30
     provenance=json.loads((out/'provenance.json').read_text())
     if variant == 'query':
-        assert any(path.endswith('/query_quantile.py') for path in provenance['sha256'])
-        assert any(path.endswith('/induced_ftt.py') for path in provenance['sha256'])
+        assert any(path.endswith('/quantile.py') for path in provenance['sha256'])
+        assert any(path.endswith('/backbone.py') for path in provenance['sha256'])
     elif variant.startswith('ising'):
         assert any(path.endswith('/supervised_ising.py') for path in provenance['sha256'])
     else:

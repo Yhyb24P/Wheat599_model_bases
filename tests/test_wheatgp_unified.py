@@ -5,7 +5,7 @@ from pathlib import Path
 import numpy as np
 import torch
 
-from genopred.models.neural.wheatgp_unified import fit, prepare, segments
+from genopred.models.comparators.wheatgp_unified import fit, prepare, segments
 
 ROOT = Path(__file__).resolve().parents[1]
 spec = importlib.util.spec_from_file_location('wheatgp_vendor', ROOT/'third_party/WheatGP/model/WheatGP_base.py')
