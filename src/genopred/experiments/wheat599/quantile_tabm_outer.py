@@ -80,31 +80,50 @@ def freeze_member_manifest(cfg,args,runner):
 
 def _frozen_source_ok(name, digest, manifest):
     # Preserved files (results moved by git mv) match by current content. Source/config
-    # files evolved during the genopred refactor; verify their historical evidence via the
-    # frozen source_commit blob at the pre-migration path. Strict byte reproduction still
-    # requires checking out the original tag; this only confirms the frozen evidence is intact.
+    # files evolved across refactor rounds; verify their historical evidence via a frozen
+    # blob at an ancestor path. Round-1 reverse maps round-1 keys to original paths; round-2
+    # chains round-2 keys back through round-1 predecessors (many-to-one keeps every old
+    # candidate). Strict byte reproduction still requires checking out the original tag;
+    # this only confirms the frozen evidence is intact (enhance candidates, never relax SHA).
     path = Path(name)
     if path.exists() and sha256_of(path) == digest:
         return True
-    commit = manifest.get('source_commit')
+    commit = manifest.get('source_commit') or manifest.get('development_commit')
     if not commit:
         return False
     root = Path(__file__).resolve().parents[4]
     mig = json.loads((root / 'docs/PATH_MIGRATION.json').read_text())
     reverse = {new: old for section in ('src', 'configs', 'results') for old, new in mig[section].items()}
-    old = reverse.get(name)
-    if old is None:
+    round2 = mig.get('round2', {})
+    r2reverse = {}
+    for section in ('src', 'scripts', 'extracted'):
+        for old, new in round2.get(section, {}).items():
+            r2reverse.setdefault(new, []).append(old)
+
+    def round1_candidates(node):
+        found = []
+        old = reverse.get(node)
+        if old is not None:
+            found.append(old)
         for new, oldp in reverse.items():
-            if name.startswith(new + '/'):
-                old = oldp + name[len(new):]
-                break
-    if old is None:
-        return False
-    refs = [commit] + subprocess.run(['git', 'tag'], cwd=root, capture_output=True, text=True).stdout.split()
-    for ref in refs:
-        blob = subprocess.run(['git', 'show', f'{ref}:{old}'], cwd=root, capture_output=True)
-        if blob.returncode == 0 and hashlib.sha256(blob.stdout).hexdigest() == digest:
-            return True
+            if node.startswith(new + '/'):
+                found.append(oldp + node[len(new):])
+        return found
+
+    candidates = {name}
+    candidates.update(round1_candidates(name))
+    for pred in r2reverse.get(name, []):
+        candidates.add(pred)
+        candidates.update(round1_candidates(pred))
+    refs = [commit]
+    if round2.get('base_commit'):
+        refs.append(round2['base_commit'])
+    refs += subprocess.run(['git', 'tag'], cwd=root, capture_output=True, text=True).stdout.split()
+    for old in candidates:
+        for ref in refs:
+            blob = subprocess.run(['git', 'show', f'{ref}:{old}'], cwd=root, capture_output=True)
+            if blob.returncode == 0 and hashlib.sha256(blob.stdout).hexdigest() == digest:
+                return True
     return False
 
 
