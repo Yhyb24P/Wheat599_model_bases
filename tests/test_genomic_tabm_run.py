@@ -207,7 +207,7 @@ def test_tiny_run_writes_records_and_guards_its_inputs(tmp_path, monkeypatch):
     monkeypatch.setattr(runner, 'load', lambda path, sha: toy_data())
     monkeypatch.setattr(runner, 'build_model', stub_build)
     args = SimpleNamespace(out=tmp_path / 'out', selection=None, config=Path(config['splits']))
-    runner.run(config, args, Path('scripts/run_background_nested.py'))
+    runner.run(config, args, Path('src/genopred/cli.py'))
     produced = sorted(item.name for item in args.out.iterdir())
     assert 'provenance.json' in produced and 'trajectories.json' in produced
     assert 'selection.json' in produced and 'timings.json' in produced
@@ -224,11 +224,11 @@ def test_tiny_run_writes_records_and_guards_its_inputs(tmp_path, monkeypatch):
     with pytest.raises(ValueError, match='missing from the split manifest'):
         runner.run(missing, SimpleNamespace(out=tmp_path / 'bad', selection=None,
                                             config=Path(config['splits'])),
-                   Path('scripts/run_background_nested.py'))
+                   Path('src/genopred/cli.py'))
     with pytest.raises(ValueError, match='no selection-input'):
         runner.run(config, SimpleNamespace(out=tmp_path / 'bad2', selection=Path('x.json'),
                                            config=Path(config['splits'])),
-                   Path('scripts/run_background_nested.py'))
+                   Path('src/genopred/cli.py'))
 
 
 def test_epoch_zero_is_recorded_as_the_initialisation(monkeypatch):
@@ -317,7 +317,7 @@ def test_per_environment_metrics_and_execution_status_are_written(tmp_path, monk
     monkeypatch.setattr(runner, 'load', lambda path, sha: toy_data())
     monkeypatch.setattr(runner, 'build_model', stub_build)
     args = SimpleNamespace(out=tmp_path / 'out', selection=None, config=Path(config['splits']))
-    runner.run(config, args, Path('scripts/run_background_nested.py'))
+    runner.run(config, args, Path('src/genopred/cli.py'))
     records = json.loads((args.out / 'trajectories.json').read_text())
     for record in records:
         assert set(record['per_environment']) == {'1', '2'}
@@ -350,7 +350,7 @@ def test_a_failed_trajectory_keeps_its_error_and_does_not_certify_completion(tmp
     monkeypatch.setattr(runner, 'train_trajectory', failing)
     args = SimpleNamespace(out=tmp_path / 'out', selection=None, config=Path(config['splits']))
     with pytest.raises(FloatingPointError, match='synthetic trajectory failure'):
-        runner.run(config, args, Path('scripts/run_background_nested.py'))
+        runner.run(config, args, Path('src/genopred/cli.py'))
     status = json.loads((args.out / 'execution_status.json').read_text())
     assert status['status'] == 'failed' and status['completed_trajectories'] == 1
     assert status['folds_complete'] == []
@@ -368,5 +368,5 @@ def test_pinned_versions_are_verified_before_any_output(tmp_path, monkeypatch):
     monkeypatch.setattr(runner, 'load', lambda path, sha: toy_data())
     args = SimpleNamespace(out=tmp_path / 'out', selection=None, config=Path(config['splits']))
     with pytest.raises(RuntimeError, match='Pinned package versions'):
-        runner.run(config, args, Path('scripts/run_background_nested.py'))
+        runner.run(config, args, Path('src/genopred/cli.py'))
     assert not (tmp_path / 'out').exists()
