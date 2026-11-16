@@ -1,9 +1,14 @@
 # Dell 接入与独立环境记录；不是 conda env create 输入文件。
 # 2026-11-13；仅准备环境，不新增研究运行。
+# 2026-11-17 主机恢复，登录用户改为 pjy；服务器仅接受密码认证（PubkeyAuthentication
+# 禁用，ssh-copy-id 装入的密钥不被接受），保持密码登录。密码约 2026-11-18 过期，届时需续期。
+# 密码认证下无法自动化远程任务（需交互输入）；下列 /home/dell 路径与 conda 环境在 pjy
+# 用户下的可访问性待登录后核实，可能需调整。
 ssh_alias: dell
 proxy_jump: omen
 host: 10.88.103.185
-user: dell
+user: pjy
+auth_method: password
 allowed_root: /home/dell/mnt/data/projects/intern/active/pangjy
 repository: /home/dell/mnt/data/projects/intern/active/pangjy/Wheat599-research
 repository_commit_at_setup: 423bdb1
