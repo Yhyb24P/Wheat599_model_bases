@@ -13,7 +13,7 @@ from pathlib import Path
 import numpy as np
 import pytest
 
-from wheat599.data import load
+from genopred.data.wheat599 import load
 
 RDATA = Path(__file__).resolve().parent.parent / "data" / "raw" / "wheat.RData"
 SHA = "8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21"

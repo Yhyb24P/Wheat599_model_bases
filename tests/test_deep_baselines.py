@@ -6,7 +6,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 
-from wheat599 import deep_baselines as db
+from genopred.models.neural import deep_baselines as db
 
 
 def test_frozen_lr_median_and_padding():

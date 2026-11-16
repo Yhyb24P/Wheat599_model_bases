@@ -1,7 +1,7 @@
 import numpy as np
 
-from wheat599.polygenic_simulation import conditional_mean, draw
-from wheat599.wheat2000_gblup import predict_grid
+from genopred.evaluation.polygenic_simulation import conditional_mean, draw
+from genopred.models.kernels.wheat2000_gblup import predict_grid
 
 
 def test_simulation_reproducibility_conditional_mean_and_query_label_boundary():

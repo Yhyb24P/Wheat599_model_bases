@@ -5,13 +5,13 @@
 ## 保存与复现机制
 
 - **标签**：每个冻结实验对应一个或多个标签，保存当时的完整源码、配置、脚本与测试。`git tag` 列出全部 58 个。
-- **结果**：`results/<run>/` 保留原始运行产物；其中 `provenance.json` 固定数据 SHA、源码 SHA、配置、种子与划分，是运行与标签的对应凭证。
+- **结果**：`results/<数据集>/<家族>/<run>/` 保留原始运行产物（2026-11-16 按数据集/家族归档，旧→新路径见 [PATH_MIGRATION](PATH_MIGRATION.md)）；其中 `provenance.json` 固定数据 SHA、源码 SHA、配置、种子与划分，是运行与标签的对应凭证。
 - **精确复现**：`git checkout <标签>` 检出原提交，按该标签内的配置与入口运行；完成后 `git checkout main` 返回。被移除的模块/配置在标签中原路径仍在。
 - 现役树只保留共享核心、当前候选、统一入口与现役配置/测试；冻结配方文档见 `docs/history/methods/`。
 
 ## 现役主候选
 
-四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合；最新形状收缩分位数 TabM 四臂比较已完成（有限收缩外层 PCC 0.511737，未超过自由/共享形状或现役参照）。数字与停止原因见 [RESULTS](RESULTS.md)。现役入口 `scripts/run_background_nested.py`，`RUNNERS` 映射 12 条现役路由。
+四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合；最新形状收缩分位数 TabM 四臂比较已完成（有限收缩外层 PCC 0.511737，未超过自由/共享形状或现役参照）。数字与停止原因见 [RESULTS](RESULTS.md)。现役入口 `scripts/run_background_nested.py`，`RUNNERS` 映射 25 条现役路由。
 
 ## 标签按家族
 
@@ -25,5 +25,7 @@
 | Mul-PheG2P | `mulphe-reevaluation-20261105/-corrected/-v2`、`mulphe-unified-dev-20261112/-parallel/-parallel-v2` | `mulphe_*` |
 | Wheat2000 | `wheat2000-deepgs-protocol-20261105`、`wheat2000-gblup-selection-20261105`、`wheat2000-tabm-gblup-protocol-20261105` | `wheat2000_*` |
 | 其他 | `dnawhisper-protocol/selection-20261104`、`phenotype-rotation-protocol-20261105`、`ragp-protocol-20261105`、`rfm-dev-20261106`、`vector-readout-diagnostic-20261104`、`g0-stage1-20261029` | `dnawhisper_*`、`phenotype_rotation_*`、`ragp_*`、`rfm_*`、`vector_diagnostic_*` |
+
+表中"结果目录前缀"为 run 名模式；2026-11-16 起这些 run 已按数据集/家族归档到 `results/wheat599/{baselines,kernels,neural,diagnostics}/` 与 `results/wheat2000/` 下（固定划分在 `protocols/`），旧→新逐条映射见 [PATH_MIGRATION](PATH_MIGRATION.md)。标签内仍保存原路径快照。
 
 中断记录（Wheat2000、DeepGS、中点分位数）不作完整结果或算法失败；BiMSGP 为硬边界，不重启，历史适配记录保留。具体数字、失败与停止原因以 [RESULTS](RESULTS.md) 为准。

@@ -16,7 +16,7 @@ torch = pytest.importorskip("torch")
 rtdl = pytest.importorskip("rtdl_revisiting_models")
 tabpfn = pytest.importorskip("tabpfn")
 
-from wheat599.models import get_adapter
+from genopred.models import get_adapter
 
 
 def _synthetic(n=120, p=10, seed=0):
@@ -42,7 +42,7 @@ def test_ft_transformer_overfits_synthetic():
     # not constant
     assert pred.std() > 1e-3
     # overfit: training PCC high
-    from wheat599.metrics import pcc
+    from genopred.evaluation.metrics import pcc
     assert pcc(y, pred) > 0.8
 
 

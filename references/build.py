@@ -879,7 +879,7 @@ REFERENCES = [
          year=2026, venue='Genes, 17(9), 1156', doi='10.3390/genes17091156',
          url='https://doi.org/10.3390/genes17091156',
          brief='BiMSGP：基于双向 Mamba（选择性状态空间）的植物基因组预测模型。',
-         relation='仅书目标注（docs/models.html）；AGENTS.md 硬边界不跑 BiMSGP，历史条目本轮不运行。',
+         relation='仅书目标注（site/models.html）；AGENTS.md 硬边界不跑 BiMSGP，历史条目本轮不运行。',
          verification='本轮在线核验：Crossref 一手 API 确认题名/八位作者/Genes 17(9):1156，2026/DOI。',
          level='online', pdf=None),
     dict(key='xie2024pnngs', group='baseline', type='article',
@@ -1181,12 +1181,12 @@ def index_page():
 <header class="site">
   <h1>Wheat599 参考文献库</h1>
   <p>植物基因组表型预测方法论文 · 离线自包含中文研究页 · 共 {len(REFERENCES)} 条文献，{n_pdf} 篇本地全文 PDF。</p>
-  <p class="note">单一数据源 <code>ref/build.py</code> 生成；历史核验记录沿用 <code>docs/REFERENCES.md</code>，未覆盖。</p>
+  <p class="note">单一数据源 <code>references/build.py</code> 生成；历史核验记录沿用 <code>docs/REFERENCES.md</code>，未覆盖。</p>
 </header>
 <nav class="crumbs" aria-label="项目导航">
-  <a href="../site/models.html">模型与架构（docs/models.html）</a>
-  <a href="../site/runs.html">结果导航（results/index.html）</a>
-  <a href="references.bib">BibTeX 书目</a>
+  <a href="models.html">模型与架构（site/models.html）</a>
+  <a href="runs.html">结果导航（site/runs.html）</a>
+  <a href="../references/references.bib">BibTeX 书目</a>
 </nav>
 <nav class="toc" aria-label="文献分组目录">{toc}</nav>
 <main>
@@ -1216,7 +1216,7 @@ def index_page():
 </section>
 </main>
 <footer class="site">
-  <p>Wheat599 参考文献库 · 生成自 <code>ref/build.py</code> · 配色与导航对齐 site/models.html 与 results/index.html。</p>
+  <p>Wheat599 参考文献库 · 生成自 <code>references/build.py</code> · 配色与导航对齐 site/models.html 与 results/index.html。</p>
   <p>核验底线：不编造元数据；未在线核验项明确标注；全文不可获取不冒充。数据只读，本目录不含实验。</p>
 </footer>
 </div>
@@ -1239,9 +1239,11 @@ def main():
         raise ValueError('duplicate reference keys')
     page = index_page()
     bib = '\n\n'.join(bibtex(r) for r in REFERENCES) + '\n'
-    (ROOT / 'index.html').write_text(page, encoding='utf-8')
+    site = ROOT.parent / 'site'
+    site.mkdir(exist_ok=True)
+    (site / 'references.html').write_text(page, encoding='utf-8')
     (ROOT / 'references.bib').write_text(bib, encoding='utf-8')
-    print(f"generated index.html + references.bib: {len(REFERENCES)} entries, "
+    print(f"generated site/references.html + references/references.bib: {len(REFERENCES)} entries, "
           f"{sum(1 for r in REFERENCES if r.get('pdf'))} local PDFs")
     for g in GROUP_ORDER:
         print(f"  {GROUP_TITLE[g]}: {sum(1 for r in REFERENCES if r['group'] == g)}")

@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 import torch
 
-from wheat599.member_interaction_tabm import MemberInteractionBackbone
-from wheat599.quantile_tabm import build_model, quantile_loss, train, update_epoch
+from genopred.models.neural.member_interaction_tabm import MemberInteractionBackbone
+from genopred.models.neural.quantile_tabm import build_model, quantile_loss, train, update_epoch
 
 
 def model_inputs():

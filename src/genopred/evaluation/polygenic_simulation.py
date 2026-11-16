@@ -72,7 +72,7 @@ def run(cfg, args, runner):
         (args.out / name).write_text(json.dumps(value, indent=2, allow_nan=False) + '\n')
 
     paths = [Path(__file__), Path(runner), Path(args.config), Path(cfg['splits']),
-             Path(cfg['parameter_source']), Path(__file__).with_name('wheat2000_gblup.py')]
+             Path(cfg['parameter_source']), Path(__file__).parents[1]/'models'/'kernels'/'wheat2000_gblup.py']
     save('provenance.json', dict(config=cfg, git_commit=subprocess.check_output(
         ['git', 'rev-parse', 'HEAD'], text=True).strip(), sha256={str(p): sha256_of(p) for p in paths},
         generation='All-panel genotype-only centered marker GRM with mean diagonal one; known joint Gaussian simulation prior',

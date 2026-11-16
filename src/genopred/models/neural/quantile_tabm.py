@@ -272,9 +272,9 @@ def run(cfg, args, runner, *, trainer=None, paired_trainer=None, extra_sources=(
     if cfg.get('optimizer_variant')=='query':
         sources.extend(Path(__file__).with_name(name) for name in ('query_quantile.py','induced_ftt.py'))
     if cfg.get('optimizer_variant') in ('ising','ising_independent','ising_mlp'):
-        sources.append(Path(__file__).with_name('supervised_ising.py'))
+        sources.append(Path(__file__).parent.parent/'structured'/'supervised_ising.py')
     if cfg.get('optimizer_variant') in ('treewidth_ising','treewidth_independent'):
-        sources.extend(Path(__file__).with_name(name) for name in ('treewidth_ising.py','supervised_ising.py'))
+        sources.extend(Path(__file__).parent.parent/'structured'/name for name in ('treewidth_ising.py','supervised_ising.py'))
     if cfg.get('optimizer_variant') in ('shared_basis','independent_basis'):
         sources.append(Path(__file__).with_name('shared_basis_tabm.py'))
     if cfg.get('optimizer_variant') in ('shape_free','shape_shared','shape_shrink'):

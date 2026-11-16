@@ -7,8 +7,8 @@ import numpy as np
 import pytest
 import yaml
 
-from wheat599.data import sha256_of
-from wheat599.shape_quantile_final import manifest, reference
+from genopred.data.wheat599 import sha256_of
+from genopred.models.neural.shape_quantile_final import manifest, reference
 
 
 def test_manifest_uses_each_seed_median_for_selected_config():
@@ -42,7 +42,7 @@ def test_reference_maps_models_and_rejects_duplicate_material(tmp_path):
 
 
 def test_outer_run_scores_only_after_all_fixed_fits(tmp_path, monkeypatch):
-    from wheat599 import shape_quantile_final as final
+    from genopred.models.neural import shape_quantile_final as final
     n = 599
     x = np.arange(n, dtype=float)[:, None]
     y = np.column_stack([x[:, 0] / 100 + e for e in range(4)])
@@ -66,7 +66,7 @@ def test_outer_run_scores_only_after_all_fixed_fits(tmp_path, monkeypatch):
     (source/'summary.json').write_text(json.dumps({'folds':[{'fold':f,'selected':[0]*4} for f in range(10)]}))
     (source/'execution_status.json').write_text(json.dumps(dict(status='complete', completed=240, expected=240)))
     (source/'failures.json').write_text('[]')
-    paths = [config_file, arch, splits, Path('src/wheat599/quantile_tabm.py')]
+    paths = [config_file, arch, splits, Path('src/genopred/models/neural/quantile_tabm.py')]
     (source/'provenance.json').write_text(json.dumps({'config':cfg,'sha256':{str(p.resolve() if str(p).startswith('src/') else p):sha256_of(p) for p in paths}}))
     data = SimpleNamespace(X=x, Y=y, environments=names)
     monkeypatch.setattr(final, 'load', lambda *_: data)
@@ -96,7 +96,7 @@ def test_outer_run_scores_only_after_all_fixed_fits(tmp_path, monkeypatch):
     monkeypatch.setattr(final, '_fit_outer', fake_fit)
     monkeypatch.setattr(final, 'reference', fake_reference)
     real_hash = final.sha256_of
-    monkeypatch.setattr(final, 'sha256_of', lambda p: '0'*64 if Path(p) == Path('results/quantile_tabm_final_20261106/oof.csv') else real_hash(Path(p)))
+    monkeypatch.setattr(final, 'sha256_of', lambda p: '0'*64 if Path(p) == Path('results/wheat599/neural/quantile_tabm_final_20261106/oof.csv') else real_hash(Path(p)))
     out = tmp_path/'out'
     final.run(cfg, SimpleNamespace(selection=source/'summary.json', out=out, config=config_file), __file__)
     result = json.loads((out/'summary.json').read_text())

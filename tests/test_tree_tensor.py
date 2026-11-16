@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 
-from wheat599.tree_tensor import TreeTensor, geometry
+from genopred.models.structured.tree_tensor import TreeTensor, geometry
 
 
 def test_projection_uniform_degree_penalty_qr_and_local_graph_bound():
@@ -42,7 +42,7 @@ def test_projection_uniform_degree_penalty_qr_and_local_graph_bound():
 
 
 def test_als_coordinate_matches_explicit_walsh_system_and_sweep_decreases_loss():
-    from wheat599.tree_tensor import ALSState, data_message, norm_message
+    from genopred.models.structured.tree_tensor import ALSState, data_message, norm_message
     torch.set_num_threads(1)
     rng = np.random.default_rng(17)
     cube = (2 * ((np.arange(64)[:, None] >> np.arange(6)) & 1) - 1).astype(float)

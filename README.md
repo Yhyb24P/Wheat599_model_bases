@@ -4,21 +4,22 @@
 
 ## 阅读结果与模型
 
-- [结果与架构 HTML](docs/models.html)：可搜索、筛选、排序并导出 CSV 的模型总表；默认候选与公开强模型置前，最优候选提供可按外折/环境切换的真实网络层级图，以及参数共享、分位数监督、ICM 核与损失机理图。
-- [参考文献与逐篇讲解](ref/index.html)：文献、来源及其与本项目的关系。
-- [运行目录索引](results/index.html)：按原始运行目录查找摘要、配置、划分与状态。
+- [结果与架构 HTML](site/models.html)：可搜索、筛选、排序并导出 CSV 的模型总表；默认候选与公开强模型置前，最优候选提供可按外折/环境切换的真实网络层级图，以及参数共享、分位数监督、ICM 核与损失机理图。
+- [参考文献与逐篇讲解](site/references.html)：文献、来源及其与本项目的关系。
+- [运行目录索引](site/runs.html)：按数据集/家族归档的运行目录查找摘要、配置、划分与状态。
 - [结果原文](docs/RESULTS.md)、[评价协议](docs/EVALUATION_PROTOCOL.md)、[历史模型对比](docs/MODEL_COMPARISON.md)：可视化的事实来源。
 - [冻结证据索引](docs/FROZEN_INDEX.md)：已结束实验的代码/配置由 58 个 Git 标签逐字保存，按家族导航到标签与 `results/`；精确复现检出原标签。
+- [路径迁移索引](docs/PATH_MIGRATION.md)：2026-11-16 结构性重构的旧→新路径映射。
 
 HTML 可直接用浏览器打开，不需要联网或启动服务；外部论文链接需要联网。页面是生成视图，修订证据后在仓库根目录重建：
 
 ```bash
 python3 scripts/build_report.py
-python3 ref/build.py
-python3 tests/test_report.py
+python3 references/build.py
+PYTHONPATH=src python3 -m pytest tests/test_report.py -q
 ```
 
-结果页构建使用 Python 标准库和 Pandoc（含原生 MathML 输出），文献页仅需标准库。上述命令不调用训练入口、不读取原始表型、不重新计算模型成绩；测试在安装 BibTeX 时检查书目能否实际解析。文献内容统一维护在 `ref/build.py`。
+结果页构建使用 Python 标准库和 Pandoc（含原生 MathML 输出），文献页仅需标准库。上述命令不调用训练入口、不读取原始表型、不重新计算模型成绩；测试在安装 BibTeX 时检查书目能否实际解析。文献内容统一维护在 `references/build.py`。
 
 近期完成的比较（[Mul-PheG2P 同协议适配](docs/methods/MULPHE_UNIFIED.md)、形状收缩分位数 TabM、分阶自适应互作核 GP、[查询条件分位数](docs/methods/QUERY_QUANTILE.md)、[监督条件 Ising](docs/methods/SUPERVISED_ISING.md)）的数字、停止原因与适配差异统一见[结果记录](docs/RESULTS.md)；各批已结束，不自动追加实验。
 
@@ -55,18 +56,18 @@ python scripts/fetch_data.py
 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 ```
 
-数据事实、R 列主序读取要求与旧 C-order 故障见 [docs/DATA_FACTS.md](docs/DATA_FACTS.md)。`data/raw/` 不入 Git。
+数据事实、R 列主序读取要求与旧 C-order 故障见 [docs/DATA_FACTS.md](docs/DATA_FACTS.md)。`data/raw/` 不入 Git。固定划分与实验协议输入在 `protocols/`。
 
 ## 运行与验证
 
-正式实现保留在 `src/wheat599/`，运行配置保留在 `configs/`；多数当前方法复用 `scripts/run_background_nested.py`。以下命令供复现使用，不表示本轮整理会启动训练。输出必须指定新目录；不要覆盖历史运行。涉及冻结清单的精确复现，先在对应提交/标签的检出中准备数据和既有产物，再使用以下命令；当前主分支不改写历史 SHA 来绕过版本校验。
+正式实现在 `src/genopred/`（按 data/models/evaluation 分层），运行配置在 `configs/`（按数据集/家族归档）；多数当前方法复用 `scripts/run_background_nested.py`。以下命令供复现使用，不表示本轮整理会启动训练。输出必须指定新目录；不要覆盖历史运行。涉及冻结清单的精确复现，先在对应提交/标签的检出中准备数据和既有产物，再使用以下命令；当前主分支不改写历史 SHA 来绕过版本校验。
 
 ```bash
 # Huber ICM：复用已冻结选择，完整开发集重拟合
-OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/run_background_nested.py --config configs/robust_icm.yaml --selection results/robust_icm_development_20261103/selection.json --out results/robust_icm_reproduction
+OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 python scripts/run_background_nested.py --config configs/wheat599/kernels/robust_icm.yaml --selection results/wheat599/kernels/robust_icm_development_20261103/selection.json --out results/wheat599/kernels/robust_icm_reproduction
 
 # 分位数 TabM：使用已冻结外层清单（需要本地数据与基线 OOF）
-python scripts/run_background_nested.py --config configs/quantile_tabm_final.yaml --out results/quantile_tabm_reproduction
+python scripts/run_background_nested.py --config configs/wheat599/tabm/quantile_tabm_final.yaml --out results/wheat599/tabm/quantile_tabm_reproduction
 
 # 现有代码测试
 PYTHONPATH=src python -m pytest tests/ -q
@@ -78,41 +79,40 @@ PYTHONPATH=src python -m pytest tests/ -q
 
 | 用途 | 唯一入口 / 实现 | 配置 |
 |---|---|---|
-| 当前模型开发、重拟合与汇总 | `scripts/run_background_nested.py`；`RUNNERS` 明确映射到 `src/wheat599/`，只导入所选模型 | `model: <名称>` 的运行配置，如 `robust_icm.yaml`、`quantile_tabm_final.yaml`、`heterogeneous_icm.yaml` |
+| 当前模型开发、重拟合与汇总 | `scripts/run_background_nested.py`；`RUNNERS` 明确映射到 `src/genopred/`，只导入所选模型 | `model: <名称>` 的运行配置，如 `robust_icm.yaml`、`quantile_tabm_final.yaml`、`heterogeneous_icm.yaml` |
 | 原背景岭回归 | 同一入口；保留无 `model` 字段的历史约定 | `background_ridge_nested.yaml` |
 | 数据下载 | `scripts/fetch_data.py` | 固定来源与 SHA，不改 `data/raw/` |
-| 展示与文献 | `scripts/build_report.py`、`ref/build.py` | 只读取已有结果、配置及文献，不训练 |
+| 展示与文献 | `scripts/build_report.py`、`references/build.py` | 只读取已有结果、配置及文献，不训练 |
 | 历史独立入口 | `run_bimsgp*`、`run_moegp*`、`run_a_rr_nested.py`、`run_stage1.py`、`run_benchmark.py` 等已移出现役树，由冻结标签保存 | 检出对应标签后沿用各自配置结构；不是统一入口的新运行许可 |
 | 已有独立核验 | `verify_*.py` 已移出现役树，由冻结标签保存 | 检出对应标签后保留独立复算口径，不改成调用被核验的汇总函数 |
 
-`configs/` 中的运行配置、搜索空间和架构配方职责不同，不能把所有 YAML 都直接交给训练入口。统一入口拒绝未知模型名及误传的嵌套架构字典。`src/wheat599/models/` 是历史通用基线适配器；当前方法的实际实现由统一入口的映射确定。
+`configs/` 中的运行配置、搜索空间和架构配方职责不同，不能把所有 YAML 都直接交给训练入口。统一入口拒绝未知模型名及误传的嵌套架构字典。`src/genopred/models/` 含通用基线适配器框架（`base.py` 注册表）与按家族归档的实现；当前方法的实际实现由统一入口的映射确定。
 
-源码、配置和运行目录的既有路径保留，因为冻结清单记录了路径与 SHA；历史精确复现应检出原记录的提交/标签，而不是改写旧清单来适应最新代码。完整 Mul-PheG2P 实现及测试由冻结标签 `mulphe-unified-*`（源自 `742132f`）保存，结果留在 `results/mulphe_*`；此前本地未跟踪版本保存在 `local/incoming/mulphe_unified_pre_final/`，不混作正式运行源码。
+2026-11-16 经用户授权按数据集/方法家族用 `git mv` 迁移源码/配置/结果到结构化目录（包名 `genopred`）：保留文件内容与 SHA 值、provenance 字节不变，冻结清单的路径键与现役引用同步到新路径，旧→新映射见 [PATH_MIGRATION](docs/PATH_MIGRATION.md)。历史精确复现仍检出原记录的提交/标签，不改写旧清单 SHA 值来适应最新代码。完整 Mul-PheG2P 实现及测试由冻结标签 `mulphe-unified-*`（源自 `742132f`）保存，结果留在 `results/wheat599/baselines/mulphe_*`。
 
 ## 文件与结果约定
 
 | 路径 | 职责 |
 |---|---|
-| `src/wheat599/` | 唯一正式实现：平铺 `.py` 为各实验 runner/适配，`models/` 为模型类库，`dnawhisper/`、`bayesian_trees/` 为带 NOTICE 的 vendored 适配 |
+| `src/genopred/` | 唯一正式实现：`data/` 数据读取，`models/{classical,kernels,neural,structured}` 按算法家族，`evaluation/` 划分/选模/指标/诊断 |
 | `tests/` | 实现的验证测试（含基线配套测试），保留，非可删 |
-| `vendor/` | 上游原始代码与 LICENSE（如 WheatGP）；与 `src/` 的项目适配分层，不重复 |
+| `third_party/` | 上游原始代码与 LICENSE（WheatGP、dnawhisper、bayesian_trees）；与 `src/` 的项目适配分层，不重复 |
 | `scripts/` | 现有 CLI、数据获取及离线报告构建 |
-| `configs/` | 各次运行配置；由原运行 provenance/manifest 确定版本 |
-| `results/<run>/` | 原始运行产物；保留路径、命名与来源，不为展示搬移或重复复制 |
-| `results/index.html` | 从本地运行目录生成的导航，不作运行成功判定 |
+| `configs/` | 运行配置，按 `wheat599/{baselines,kernels,tabm,structured}`、`wheat2000/`、`diagnostics/` 归档；由原运行 provenance/manifest 确定版本 |
+| `protocols/` | 固定划分与实验协议输入（splits_manifest 等） |
+| `results/<数据集>/<家族>/<run>/` | 原始运行产物；保留 run 命名与来源，按数据集/家族归档 |
+| `site/` | 生成的离线展示：`models.html`、`runs.html`、`references.html` |
 | `docs/RESULTS.md` | 结果、失败、停止原因和证据限制的主记录 |
-| `docs/models.html` | 从结果与方案生成的离线展示 |
-| `ref/` | 参考文献和简要 HTML 讲解 |
-| `docs/` | 评价协议、数据事实、结果、许可和展示入口 |
+| `references/` | 参考文献源（`build.py`）与 BibTeX 书目 |
+| `docs/` | 评价协议、数据事实、结果、许可和冻结索引 |
 | `docs/methods/` | 各模型的实际配方、输入、训练与适配说明 |
 | `docs/history/` | 已结束阶段、旧交接、迁移与原始 ARS 记录；不作为当前运行要求 |
-| `data/raw/`、`models/` | 本地只读数据与权重，不入 Git |
+| `data/raw/`、`checkpoints/` | 本地只读数据与权重，不入 Git |
 | `env/` | 依赖与已授权机器环境 |
-| `local/incoming/` | 本机附件、旧未整合副本与交接包；整体不入 Git |
-| `local/test-residue/` | 已有测试残留，供追溯，不是正式结果 |
+| `workspace/` | 本机附件、旧未整合副本、交接包与测试残留；整体不入 Git |
 
-`src/wheat599/` 文件较多是因为现役 `quantile_tabm.py` 的 `train()` 是统一变体分发器：按 `optimizer_variant` 条件加载 ising/query/conditional/shape/gated/member_conditional 等历史变体；这些变体已冻结到 Git 标签（见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)），分发分支仍留现役树，并非冗余副本。`models/`（模型类库）、`vendor/`（上游原件）与平铺 runner 是分层而非重复；`tests/` 是验证这些实现的测试，应保留。
+`src/genopred/models/neural/quantile_tabm.py` 的 `train()` 是统一变体分发器：按 `optimizer_variant` 条件加载 ising/query/conditional/shape/gated/member_conditional 等历史变体；这些变体已冻结到 Git 标签（见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)），分发分支仍留现役树，并非冗余副本。`models/`（适配器框架）、`third_party/`（上游原件）与家族实现是分层而非重复；`tests/` 是验证这些实现的测试，应保留。
 
-新运行沿用 `results/<方法>_<阶段>_<日期>/`，无需重命名既有目录。主表只接收已核对统一协议的结果；开发选模、历史不同协议、模拟、其他数据集、停止与失败记录各保留原口径。常见 `summary` 保存指标，`provenance` / `manifest` 保存数据 SHA、源码、配置、种子和划分，`execution_status` / `failures` / `interruption` 保存执行状态；不同历史文件格式不强制重写。逐材料与逐种子预测保留原位置，不能因导航整理而丢弃。
+新运行沿用 `results/<数据集>/<家族>/<方法>_<阶段>_<日期>/`。主表只接收已核对统一协议的结果；开发选模、历史不同协议、模拟、其他数据集、停止与失败记录各保留原口径。常见 `summary` 保存指标，`provenance` / `manifest` 保存数据 SHA、源码、配置、种子和划分，`execution_status` / `failures` / `interruption` 保存执行状态；不同历史文件格式不强制重写。逐材料与逐种子预测保留原位置，不能因导航整理而丢弃。
 
-[AGENTS.md](AGENTS.md) 保存执行边界；[DATA_FACTS](docs/DATA_FACTS.md) 保存数据事实；[LICENSE_NOTES](docs/LICENSE_NOTES.md) 保存许可；[REFERENCES](docs/REFERENCES.md) 保留历史文献核验记录。旧路径 `RC_CKRR_semisynth` 是本仓库软链接，见 [迁移记录](docs/history/MIGRATION.md)。旧评审、G0、Stage 1/2 与交接文档只作历史，不重新启用其流程。
+[AGENTS.md](AGENTS.md) 保存执行边界；[DATA_FACTS](docs/DATA_FACTS.md) 保存数据事实；[LICENSE_NOTES](docs/LICENSE_NOTES.md) 保存许可；[REFERENCES](docs/REFERENCES.md) 保留历史文献核验记录。旧评审、G0、Stage 1/2 与交接文档只作历史，不重新启用其流程。

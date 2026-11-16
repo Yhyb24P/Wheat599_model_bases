@@ -4,8 +4,8 @@ import pytest
 import torch
 
 pytest.importorskip('tabm')
-from wheat599.quantile_tabm import train
-from wheat599.quantile_tabm_final import fit_one, member_manifest_rows, summarize
+from genopred.models.neural.quantile_tabm import train
+from genopred.models.neural.quantile_tabm_final import fit_one, member_manifest_rows, summarize
 
 
 def test_outer_zero_epoch_reuses_development_initialization(tmp_path):

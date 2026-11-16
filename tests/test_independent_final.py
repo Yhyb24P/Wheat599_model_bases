@@ -16,7 +16,7 @@ TABM_DEPENDENCIES = '/tmp/wheat599_tabm_deps'
 if TABM_DEPENDENCIES not in sys.path:
     sys.path.insert(0, TABM_DEPENDENCIES)
 
-from wheat599 import independent_final as runner  # noqa: E402
+from genopred.models.neural import independent_final as runner  # noqa: E402
 
 torch.set_num_threads(1)
 

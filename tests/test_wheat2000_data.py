@@ -8,7 +8,7 @@ import subprocess
 import numpy as np
 import pytest
 
-from wheat599.wheat2000_data import (Wheat2000Data, file_sha256, load_wheat2000,
+from genopred.data.wheat2000 import (Wheat2000Data, file_sha256, load_wheat2000,
                                      make_splits, prepare)
 
 RSCRIPT = shutil.which('Rscript')

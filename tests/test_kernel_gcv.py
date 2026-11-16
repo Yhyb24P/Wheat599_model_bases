@@ -1,7 +1,7 @@
 import json
 import numpy as np
 
-from wheat599.kernel_baselines import gcv, gcv_summary
+from genopred.models.kernels.kernel_baselines import gcv, gcv_summary
 
 
 def test_gcv_matches_dense_hat_matrix_with_unpenalized_intercept():

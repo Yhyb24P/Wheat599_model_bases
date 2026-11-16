@@ -5,7 +5,7 @@ import numpy as np
 import pytest
 import torch
 
-from wheat599.gsformer_unified import build, fit, load_classes
+from genopred.models.neural.gsformer_unified import build, fit, load_classes
 
 SOURCE = Path('/tmp/gsformer-official')
 pytestmark = pytest.mark.skipif(not SOURCE.exists(), reason='pinned GSformer checkout not present')

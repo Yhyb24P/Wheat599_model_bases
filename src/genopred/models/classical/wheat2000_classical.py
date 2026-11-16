@@ -95,8 +95,8 @@ def run(cfg, args, runner_path):
                (Path(__file__), Path(runner_path), Path(args.config),
                 Path(__file__).with_name('classical_baselines.py'),
                 Path(__file__).with_name('kernel_baselines.py'),
-                Path(__file__).with_name('wheat2000_data.py'),
-                Path(__file__).with_name('metrics.py'), Path(__file__).with_name('data.py'))}
+                Path(__file__).parents[2]/'data'/'wheat2000.py',
+                Path(__file__).parents[2]/'evaluation'/'metrics.py', Path(__file__).parents[2]/'data'/'wheat599.py')}
     frozen = json.loads(args.selection.read_text()) if args.selection else None
     if frozen:
         if (frozen['config_sha256'] != config_sha or frozen['splits_sha256'] != cfg['splits_sha256']

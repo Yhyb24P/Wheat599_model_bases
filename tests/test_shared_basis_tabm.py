@@ -4,8 +4,8 @@ import numpy as np
 import pytest
 import torch
 
-from wheat599.quantile_tabm import build_model, quantile_loss, train
-from wheat599.shared_basis_tabm import ConnectionBasis, basis_loss
+from genopred.models.neural.quantile_tabm import build_model, quantile_loss, train
+from genopred.models.neural.shared_basis_tabm import ConnectionBasis, basis_loss
 
 
 def model_inputs():

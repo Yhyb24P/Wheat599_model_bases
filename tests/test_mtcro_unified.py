@@ -2,7 +2,7 @@
 import numpy as np
 import torch
 
-from wheat599.mtcro_unified import build, fit_predict
+from genopred.models.neural.mtcro_unified import build, fit_predict
 
 
 def test_build_and_fit_tiny():

@@ -1,8 +1,8 @@
 import numpy as np
 import pytest
 
-from wheat599.robust_icm import features, fit_predict
-from wheat599.kernel_baselines import kernels
+from genopred.models.kernels.robust_icm import features, fit_predict
+from genopred.models.kernels.kernel_baselines import kernels
 
 
 def test_injected_original_kernel_and_saved_thresholds_reproduce_prediction():

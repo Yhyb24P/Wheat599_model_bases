@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from wheat599.data import _read_flat
+from genopred.data.wheat599 import _read_flat
 
 
 def test_read_flat_fortran_order_non_square(tmp_path):

@@ -2,8 +2,8 @@ import numpy as np
 import pytest
 import torch
 
-from wheat599.supervised_ising import AdditiveMLP
-from wheat599.treewidth_ising import TreewidthIsing
+from genopred.models.structured.supervised_ising import AdditiveMLP
+from genopred.models.structured.treewidth_ising import TreewidthIsing
 
 
 def data(p=9):
@@ -71,7 +71,7 @@ def test_large_fields_are_finite():
 
 @pytest.mark.parametrize('variant', ['treewidth_ising', 'treewidth_independent'])
 def test_training_seed_and_fixed_epoch_refit(variant):
-    from wheat599.quantile_tabm import train
+    from genopred.models.neural.quantile_tabm import train
     x, y = data()
     config = dict(spins=5, learning_rate=.002, weight_decay=.01)
     settings = dict(optimizer_variant=variant, n_quantiles=1, quantile_min=.001, quantile_max=.999,

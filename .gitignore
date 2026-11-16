@@ -48,7 +48,7 @@ results/**/fusion_refit_*/oof.csv
 results/**/rfm_development_*/predictions_*.npz
 
 # 本地附件、未整合副本与临时产物
-local/
+workspace/
 # 冒烟结果与本地遗留
 results/**/a_rr_nested_smoke/
 results/**/bimsgp_nested_smoke/
@@ -80,3 +80,6 @@ results/**/treewidth_ising_*/predictions_*.npz
 results/**/*_basis_*/predictions_*.npz
 
 results/**/polygenic_simulation_*/simulation_arrays.npz
+
+# 本地权重，不入 Git
+checkpoints/

@@ -1,6 +1,6 @@
 import numpy as np
 
-from wheat599.extrapolation_diagnostic import aggregate, quartiles, spectral_summary
+from genopred.evaluation.extrapolation_diagnostic import aggregate, quartiles, spectral_summary
 
 
 def test_spectral_trace_matches_dense_smoother_and_bins_preserve_ties():

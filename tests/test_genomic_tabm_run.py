@@ -8,7 +8,7 @@ import pytest
 import torch
 from torch import nn
 
-from wheat599 import genomic_tabm_run as runner
+from genopred.models.neural import genomic_tabm_run as runner
 
 
 class StubModel(nn.Module):
@@ -82,7 +82,7 @@ CONFIG = {
                  'tie_tolerance': 1e-12},
     'efficiency': {'batch_size': 8, 'warmup': 1, 'repeats': 2, 'include_preprocessing': True},
     'data': 'unused', 'data_sha256': '0' * 64, 'splits': 'unused',
-    'reference': 'results/robust_icm_development_20261103/development_comparison.csv',
+    'reference': 'results/wheat599/kernels/robust_icm_development_20261103/development_comparison.csv',
 }
 
 

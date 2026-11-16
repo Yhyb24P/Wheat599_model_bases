@@ -3,7 +3,7 @@ import pytest
 import torch
 
 pytest.importorskip('tabm')
-from wheat599.quantile_tabm import mixture_scores, quantile_loss, train
+from genopred.models.neural.quantile_tabm import mixture_scores, quantile_loss, train
 
 
 def test_quantile_loss_sums_quantiles_and_trains_members_separately():
@@ -61,7 +61,7 @@ def test_shape_training_produces_member_distributions(variant):
 def test_parallel_midpoint_preserves_predictions_and_distributions():
     import multiprocessing
     from concurrent.futures import ProcessPoolExecutor
-    from wheat599.quantile_tabm import _fit_worker, _init_fit_worker
+    from genopred.models.neural.quantile_tabm import _fit_worker, _init_fit_worker
     rng = np.random.default_rng(35)
     x, y = rng.normal(size=(32, 8)), rng.normal(size=(32, 4))
     folds = [dict(fold=0, inner=[dict(train_idx=list(range(24)), val_idx=list(range(24,32)))])]
@@ -82,7 +82,7 @@ def test_parallel_midpoint_preserves_predictions_and_distributions():
 
 
 def test_fixed_epoch_refit_never_scores_query_labels(monkeypatch):
-    from wheat599 import quantile_tabm
+    from genopred.models.neural import quantile_tabm
     rng = np.random.default_rng(36)
     x, y = rng.normal(size=(32, 8)), rng.normal(size=32)
     config = dict(n_blocks=2, d_block=16, dropout=.1, k=2, learning_rate=.001, weight_decay=.001)

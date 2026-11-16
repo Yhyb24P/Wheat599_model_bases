@@ -37,7 +37,7 @@ class ReportTest(unittest.TestCase):
 
     @unittest.skipUnless(shutil.which('bibtex'), 'BibTeX parser is not installed')
     def test_reference_export_is_valid_bibtex(self):
-        spec = importlib.util.spec_from_file_location('references', ROOT/'ref/build.py')
+        spec = importlib.util.spec_from_file_location('references', ROOT/'references/build.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         keys = [r['key'] for r in module.REFERENCES]
@@ -63,7 +63,7 @@ class ReportTest(unittest.TestCase):
             self.assertEqual(bibliography.count(r'\bibitem{'), len(keys))
 
     def test_invalid_bibliography_does_not_replace_existing_files(self):
-        spec = importlib.util.spec_from_file_location('references', ROOT/'ref/build.py')
+        spec = importlib.util.spec_from_file_location('references', ROOT/'references/build.py')
         module = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(module)
         with tempfile.TemporaryDirectory() as directory:
@@ -81,15 +81,15 @@ class ReportTest(unittest.TestCase):
         report = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(report)
         # Build against a copy so the check cannot replace the checked-in reports.
-        for folder in ['docs', 'results']:
+        for folder in ['docs', 'results', 'site']:
             (tmp_path/folder).mkdir()
         for path in (ROOT/'docs').rglob('*.md'):
             target = tmp_path/path.relative_to(ROOT)
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, target)
-        for name in ['quantile_tabm_final_20261106', 'mulphe_unified_parallel_20261112']:
-            (tmp_path/'results'/name).mkdir()
-            shutil.copyfile(ROOT/'results'/name/'summary.json', tmp_path/'results'/name/'summary.json')
+        for fam, name in [('wheat599/neural', 'quantile_tabm_final_20261106'), ('wheat599/baselines', 'mulphe_unified_parallel_20261112')]:
+            (tmp_path/'results'/fam/name).mkdir(parents=True)
+            shutil.copyfile(ROOT/'results'/fam/name/'summary.json', tmp_path/'results'/fam/name/'summary.json')
         for run, rel in [('classical_baselines_final_20261115', 'summary.json'),
                          ('deepgs_final_20261115', 'summary.json'),
                          ('soydngp_final_20261115', 'summary.json'),
@@ -100,24 +100,24 @@ class ReportTest(unittest.TestCase):
                          ('ragp_outer_20261115', 'summary.json'),
                          ('wheatgp_unified_outer_20261115', 'summary.json'),
                          ('dnngp_final_20261115', 'run/summary.json')]:
-            target = tmp_path/'results'/run/rel
+            target = tmp_path/'results/wheat599/baselines'/run/rel
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(ROOT/'results'/run/rel, target)
-        for name in ['results/quantile_tabm_final_manifest_20261106/manifest.json',
-                     'results/environment_tabm_development_20261105/provenance.json']:
+            shutil.copyfile(ROOT/'results/wheat599/baselines'/run/rel, target)
+        for name in ['results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json',
+                     'results/wheat599/neural/environment_tabm_development_20261105/provenance.json']:
             target = tmp_path/name
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/name, target)
         report.ROOT = tmp_path
         report.build()
-        output = (tmp_path/'docs/models.html').read_text()
-        inventory = (tmp_path/'results/index.html').read_text()
+        output = (tmp_path/'site/models.html').read_text()
+        inventory = (tmp_path/'site/runs.html').read_text()
         self.assertNotIn('model-data', inventory)
         self.assertNotIn('drawNetwork', inventory)
         self.assertIn('filterGroup', inventory)
         report.build()
-        self.assertEqual(output, (tmp_path/'docs/models.html').read_text())
-        self.assertEqual(inventory, (tmp_path/'results/index.html').read_text())
+        self.assertEqual(output, (tmp_path/'site/models.html').read_text())
+        self.assertEqual(inventory, (tmp_path/'site/runs.html').read_text())
         document = Document()
         document.feed(output)
         expected = len(re.findall(r'^## ', (ROOT/'docs/RESULTS.md').read_text(), re.M))
@@ -126,7 +126,7 @@ class ReportTest(unittest.TestCase):
         assert document.math >= 5
         mechanisms = json.loads(re.search(r'<script id="mechanism-data" type="application/json">(.*?)</script>', output, re.S)[1])
         self.assertEqual(len(mechanisms), 40)
-        frozen = json.loads((ROOT/'results/quantile_tabm_final_manifest_20261106/manifest.json').read_text())
+        frozen = json.loads((ROOT/'results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json').read_text())
         for model in mechanisms:
             source = [r for r in frozen['rows'] if r['fold'] == model['fold'] and r['environment_index'] == model['environment']]
             self.assertEqual({r['config_index'] for r in source}, {model['config_index']})
@@ -134,7 +134,7 @@ class ReportTest(unittest.TestCase):
         self.assertEqual((mechanisms[0]['n_blocks'], mechanisms[0]['d_block'], mechanisms[0]['k']), (4,128,32))
         self.assertIn('LinearBatchEnsemble', output)
         self.assertIn('最后输出头不共享', output)
-        q = json.loads((ROOT/'results/quantile_tabm_final_20261106/summary.json').read_text())
+        q = json.loads((ROOT/'results/wheat599/neural/quantile_tabm_final_20261106/summary.json').read_text())
         for key, label in [('quantile_huber', '固定等权分位数–Huber 融合'), ('quantile', '四独立分位数 TabM'), ('huber', 'Huber ICM')]:
             row = '<tr><th scope="row">' + label + '</th>'
             row += ''.join(f'<td>{q["macro"][key][metric]:.6f}</td>' for metric in ['pcc', 'rmse', 'mae'])
@@ -142,7 +142,7 @@ class ReportTest(unittest.TestCase):
             assert row + '</tr>' in output
             for metric in ['pcc', 'rmse', 'mae']:
                 assert f'{q["macro"][key][metric]:.6f}' in output
-        m = json.loads((ROOT/'results/mulphe_unified_parallel_20261112/summary.json').read_text())
+        m = json.loads((ROOT/'results/wheat599/baselines/mulphe_unified_parallel_20261112/summary.json').read_text())
         for system in m['systems'].values():
             for metric in ['pcc', 'rmse', 'mae']:
                 assert f'{system["macro"][metric]:.6f}' in output
@@ -181,11 +181,11 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(report.model_family('单成员检索网络', 'RAGP 同协议参照'), 'TabM')
         anova = next(r for r in records if r['name'] == '分阶自适应互作核 GP')
         self.assertEqual(anova['family'], '分阶自适应互作核 GP')
-        for metric, value in json.loads((ROOT/'results/adaptive_anova_development_20261114/summary.json').read_text())['macro']['quantile'].items():
+        for metric, value in json.loads((ROOT/'results/wheat599/neural/adaptive_anova_development_20261114/summary.json').read_text())['macro']['quantile'].items():
             self.assertEqual(anova[metric], f'{value:.6f}')
         shape = next(r for r in records if r['stage'] == '外层' and r['name'] == '有限形状收缩分位数 TabM')
         self.assertEqual(shape['family'], '形状分解分位数 TabM')
-        for metric, value in json.loads((ROOT/'results/shape_quantile_shrink_outer_20261114/summary.json').read_text())['macro']['quantile'].items():
+        for metric, value in json.loads((ROOT/'results/wheat599/neural/shape_quantile_shrink_outer_20261114/summary.json').read_text())['macro']['quantile'].items():
             self.assertEqual(shape[metric], f'{value:.6f}')
         undefined = [r for r in records if '无定义' in r['pcc']]
         self.assertTrue(undefined)
@@ -201,7 +201,7 @@ class ReportTest(unittest.TestCase):
         assert '中点分位数批次按研究范围调整停止' in output
         assert '无效结果' in output
         assert 'https://cdn' not in output
-        assert (tmp_path/'results/index.html').exists()
+        assert (tmp_path/'site/runs.html').exists()
 
 if __name__ == '__main__':
     unittest.main()

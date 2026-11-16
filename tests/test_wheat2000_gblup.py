@@ -1,6 +1,6 @@
 import numpy as np
 
-from wheat599.wheat2000_gblup import predict_grid, raw_marker_kernel
+from genopred.models.kernels.wheat2000_gblup import predict_grid, raw_marker_kernel
 
 
 def test_centered_kernel_matches_primal_marker_ridge():
@@ -33,8 +33,10 @@ def test_development_then_frozen_final_all_eight_traits(tmp_path, monkeypatch):
     import json
     from pathlib import Path
     from types import SimpleNamespace
-    from wheat599 import wheat2000_data, wheat2000_gblup, independent_final
-    from wheat599.data import sha256_of
+    from genopred.data import wheat2000 as wheat2000_data
+    from genopred.models.kernels import wheat2000_gblup
+    from genopred.models.neural import independent_final
+    from genopred.data.wheat599 import sha256_of
     rng = np.random.default_rng(25)
     traits = ('TKW', 'TW', 'GL', 'GW', 'GH', 'GP', 'SDS', 'PHT')
     data = wheat2000_data.Wheat2000Data(

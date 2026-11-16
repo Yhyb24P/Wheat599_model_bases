@@ -91,9 +91,9 @@ def run(config, args, runner):
     config_sha = hashlib.sha256(json.dumps(config, sort_keys=True).encode()).hexdigest()
     sources = {str(p): sha256_of(Path(p)) for p in
                (Path(__file__), Path(runner), Path(args.config),
-                Path(__file__).with_name('wheat2000_data.py'),
-                Path(__file__).with_name('environment_selection.py'),
-                Path(__file__).with_name('metrics.py'))}
+                Path(__file__).parents[2]/'data'/'wheat2000.py',
+                Path(__file__).parents[2]/'evaluation'/'environment_selection.py',
+                Path(__file__).parents[2]/'evaluation'/'metrics.py')}
     selected = None
     if args.selection is not None:
         from genopred.models.neural.independent_final import ensure_frozen_manifest

@@ -9,7 +9,7 @@ TABM_DEPENDENCIES = '/tmp/wheat599_tabm_deps'
 if TABM_DEPENDENCIES not in sys.path:
     sys.path.insert(0, TABM_DEPENDENCIES)
 
-from wheat599.genomic_tabm import GenomicTabM  # noqa: E402
+from genopred.models.neural.genomic_tabm import GenomicTabM  # noqa: E402
 
 torch.set_num_threads(1)
 

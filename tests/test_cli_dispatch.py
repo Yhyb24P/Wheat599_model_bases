@@ -21,7 +21,7 @@ def runner(monkeypatch):
 
 def test_all_routes_have_existing_implementations(runner):
     for name, (module, function) in runner.RUNNERS.items():
-        path = ROOT/'src/wheat599'/Path(*module.split('.')).with_suffix('.py')
+        path = ROOT/'src'/Path(*module.split('.')).with_suffix('.py')
         definitions = ast.parse(path.read_text()).body
         assert any(isinstance(node, ast.FunctionDef) and node.name == function for node in definitions), name
 
@@ -39,7 +39,7 @@ def test_dispatch_is_lazy_and_keeps_cli_arguments(runner, monkeypatch, tmp_path,
         seen.append((cfg, args.out, script))
         return 'dispatched'
     def load_module(actual):
-        assert actual == 'wheat599.' + module
+        assert actual == runner.RUNNERS[name][0]
         return SimpleNamespace(**{function: call})
     monkeypatch.setattr(runner, 'import_module', load_module)
     monkeypatch.setattr('sys.argv', ['runner', '--config', str(config), '--out', str(tmp_path/'out')])

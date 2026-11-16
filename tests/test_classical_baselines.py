@@ -2,8 +2,8 @@
 import numpy as np
 import pytest
 
-from wheat599.classical_baselines import candidates, fit_predict, model_seeds
-from wheat599.metrics import pcc
+from genopred.models.classical.classical_baselines import candidates, fit_predict, model_seeds
+from genopred.evaluation.metrics import pcc
 
 
 CFG = {
