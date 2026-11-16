@@ -47,8 +47,9 @@ results/**/fusion_refit_*/predictions.npz
 results/**/fusion_refit_*/oof.csv
 results/**/rfm_development_*/predictions_*.npz
 
-# 本地附件、未整合副本与临时产物
+# 本地附件、未整合副本与临时产物（旧名 local/，成员同步时改名 workspace/）
 workspace/
+local/
 # 冒烟结果与本地遗留
 results/**/a_rr_nested_smoke/
 results/**/bimsgp_nested_smoke/
