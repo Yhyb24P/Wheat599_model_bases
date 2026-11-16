@@ -23,7 +23,7 @@
 - 优先顺序：是否必需 → 仓库已有能力 → 标准库/平台原生 → 已装依赖 → 最少自定义代码。删重复、无消费者兼容和过时设计，但不削减完整模型、公开默认配方、必要异常处理与已经授权的比较。内部不重复验证上游已经保证、期间未改变的事实。
 - HTML 报告（`scripts/build_report.py`）离线自包含，不引 CDN/外部依赖/polyfill；浏览器支持允许 Newly available 特性（如 `light-dark()`、`scrollbar-color`），按 modern-web-guidance 带 `prefers-color-scheme` 等回退；配色用 `:root` 设计令牌，图表随主题自适应。
 - README 说明使用与目录；AGENTS 只放执行边界；`docs/` 根目录保存现役协议、数据事实、结果、许可与冻结索引；`docs/methods/` 保存现役方法配方，冻结配方移入 `docs/history/methods/`；`docs/history/` 保存历史方案与原始证据，不再执行其中的旧流程；`ref/` 保存文献来源和讲解。
-- `results/<run>/` 保留原始运行路径、状态与 provenance；不把“有目录/有文件”当作运行完成。配置、源码与结果的路径/SHA 是冻结证据，不为目录外观重写旧清单。已结束实验的代码/配置/脚本由 58 个 Git 标签逐字保存，现役树只留共享核心与当前候选；实验→标签→results 导航见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)，精确历史复现检出原标签。不会因路线停止就丢弃不可重建证据与不利记录，也不重建 archive/legacy 实现。
+- `results/<run>/` 保留原始运行目录名、状态与 provenance 字节；不把“有目录/有文件”当作运行完成。经用户直接授权（2026-11-16）按数据集/方法家族用 `git mv` 迁移源码/配置/结果到结构化目录（包名 `genopred`）：保留文件内容与 SHA 值、provenance 字节不变，冻结清单的路径键与现役引用同步到新路径，并建新旧路径映射索引 [PATH_MIGRATION](docs/PATH_MIGRATION.md)；历史复现经 58 个 Git 标签＋映射，精确复现检出原标签。不伪造 SHA、不改证据内容、不重建 archive/legacy 实现；不因路线停止丢弃不可重建证据与不利记录。实验→标签→results 导航见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)。
 - `local/` 是不入 Git 的本机附件、旧未整合副本与临时残留区；唯一资料先保留再处理，不按名字判断可删除。`models/` 的权重不入 Git；权重 SHA/许可见 `docs/LICENSE_NOTES.md`，数据事实见 `docs/DATA_FACTS.md`。
 - 非平凡数值、选模、保存或接口改动补一个能复现问题的现有测试/小型自检，跑受影响检查；检查通过且疑点解决即停止。文案和简单搬移不新建测试工程，不把诊断升级成未经授权的运行门槛。
 
