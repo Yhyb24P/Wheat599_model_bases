@@ -417,5 +417,54 @@
   "ref/index.html": "site/references.html"
  },
  "unmapped_configs": [],
- "unmapped_results": []
+ "unmapped_results": [],
+ "round2": {
+  "base_commit": "bc724f7",
+  "src": {
+   "src/genopred/models/neural/genomic_tabm.py": "src/genopred/models/tabm/backbone.py",
+   "src/genopred/models/neural/environment_tabm.py": "src/genopred/models/tabm/backbone.py",
+   "src/genopred/models/neural/induced_ftt.py": "src/genopred/models/tabm/backbone.py",
+   "src/genopred/models/neural/quantile_tabm.py": "src/genopred/models/tabm/quantile.py",
+   "src/genopred/models/neural/query_quantile.py": "src/genopred/models/tabm/quantile.py",
+   "src/genopred/models/neural/conditional_quantile.py": "src/genopred/models/tabm/quantile.py",
+   "src/genopred/models/neural/shape_quantile.py": "src/genopred/models/tabm/shape.py",
+   "src/genopred/models/neural/interaction_tabm.py": "src/genopred/models/tabm/interactions.py",
+   "src/genopred/models/neural/member_interaction_tabm.py": "src/genopred/models/tabm/interactions.py",
+   "src/genopred/models/neural/shared_basis_tabm.py": "src/genopred/models/tabm/interactions.py",
+   "src/genopred/models/neural/deep_baselines.py": "src/genopred/models/comparators/deep_baselines.py",
+   "src/genopred/models/neural/gsformer_unified.py": "src/genopred/models/comparators/gsformer_unified.py",
+   "src/genopred/models/neural/mtcro_unified.py": "src/genopred/models/comparators/mtcro_unified.py",
+   "src/genopred/models/neural/wheatgp_unified.py": "src/genopred/models/comparators/wheatgp_unified.py",
+   "src/genopred/models/neural/ragp.py": "src/genopred/models/comparators/ragp.py",
+   "src/genopred/models/neural/wheat2000_gsformer.py": "src/genopred/models/comparators/wheat2000_gsformer.py",
+   "src/genopred/models/neural/wheat2000_moegp.py": "src/genopred/models/comparators/wheat2000_moegp.py",
+   "src/genopred/models/neural/wheat2000_mtcro.py": "src/genopred/models/comparators/wheat2000_mtcro.py",
+   "src/genopred/models/neural/wheat2000_wheatgp.py": "src/genopred/models/comparators/wheat2000_wheatgp.py",
+   "src/genopred/models/neural/wheat2000_candidate.py": "src/genopred/models/comparators/wheat2000_candidate.py",
+   "src/genopred/models/neural/dnngp_worker.py": "src/genopred/models/comparators/dnngp_worker.py",
+   "src/genopred/models/neural/moegp_worker.py": "src/genopred/models/comparators/moegp_worker.py",
+   "src/genopred/models/neural/quantile_tabm_final.py": "src/genopred/experiments/wheat599/quantile_tabm_outer.py",
+   "src/genopred/models/neural/shape_quantile_final.py": "src/genopred/experiments/wheat599/shape_quantile_outer.py",
+   "src/genopred/models/neural/independent_final.py": "src/genopred/experiments/wheat599/independent_tabm_outer.py",
+   "src/genopred/models/neural/genomic_tabm_run.py": "src/genopred/experiments/wheat599/genomic_tabm_dev.py",
+   "src/genopred/models/neural/ragp_run.py": "src/genopred/experiments/wheat599/ragp_dev.py",
+   "src/genopred/models/classical/wheat2000_classical.py": "src/genopred/experiments/wheat2000/classical.py"
+  },
+  "scripts": {
+   "scripts/run_background_nested.py": "src/genopred/cli.py",
+   "scripts/run_background_ridge.py": "src/genopred/models/classical/background_ridge.py",
+   "scripts/run_quantile_dev.py": "src/genopred/experiments/wheat599/quantile_tabm_dev.py",
+   "scripts/run_wheat2000_classical.py": "src/genopred/experiments/wheat2000/classical.py",
+   "scripts/run_wheat2000_candidate.py": "src/genopred/models/comparators/wheat2000_candidate.py",
+   "scripts/run_wheat2000_gsformer.py": "src/genopred/models/comparators/wheat2000_gsformer.py",
+   "scripts/run_wheat2000_huber.py": "src/genopred/models/kernels/wheat2000_huber.py",
+   "scripts/run_wheat2000_mtcro.py": "src/genopred/models/comparators/wheat2000_mtcro.py",
+   "scripts/run_wheat2000_wheatgp.py": "src/genopred/models/comparators/wheat2000_wheatgp.py"
+  },
+  "extracted": {
+   "src/genopred/models/neural/quantile_tabm.py": "src/genopred/experiments/wheat599/quantile_tabm_dev.py",
+   "scripts/run_background_nested.py": "src/genopred/experiments/wheat599/background_ridge.py",
+   "scripts/run_background_ridge.py": "src/genopred/experiments/wheat599/background_ridge.py"
+  }
+ }
 }

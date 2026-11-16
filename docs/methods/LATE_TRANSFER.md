@@ -17,10 +17,12 @@
 
 首次比较预先固定源配置为既有列表中的索引 2，四环境一致，两个种子，24 epochs。它以相同训练预算比较四种读出。历史强参照保留了独立选模与早停，另列于结果中。迁移头按中心化隐藏 Gram 平均对角归一后使用岭系数 1。二层特征用其交叉拟合均值和标准差缩放，按平均残差平方损失使用岭系数 0.1。全十个开发集、三内层，原型和配置在观测本轮成绩前冻结。
 
+下列为历史命令，须检出 provenance 记录的原执行提交 `7d979b8`；现役 CLI 不提供 `late_transfer`。
+
 ```bash
 python scripts/run_background_nested.py --config configs/late_transfer.yaml --out results/late_transfer_development_20261105
 ```
 
-结果记录每个 inner 单元的指标、预测文件 SHA 和可重新加载的完整预测器。模型与材料级预测保存在运行端。使用 `wheat599.late_transfer.load_predictor(path)` 可直接根据新材料的标记矩阵推断。
+结果记录每个 inner 单元的指标、预测文件 SHA 和可重新加载的完整预测器。模型与材料级预测保存在运行端。在该历史提交中使用 `wheat599.late_transfer.load_predictor(path)` 可直接根据新材料的标记矩阵推断。
 
 方法近邻包括 [Mul-PheG2P](https://doi.org/10.1111/nph.71461) 的独立编码与后期融合，以及[堆叠式多目标回归](https://arxiv.org/abs/1211.6581) 的折外预测训练。按源学习目标尺度的迁移头、固定独立预测残差和同源读出对照是本次适配的具体选择。

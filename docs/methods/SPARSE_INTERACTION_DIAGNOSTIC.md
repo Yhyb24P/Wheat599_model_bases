@@ -39,7 +39,7 @@ $K_{pair}(z,q)=\tfrac12[(z^\top q)^2-(z^2)^\top q^2]$
 
 ## 固定预算与数值证书
 
-配置为 `configs/sparse_interaction_diagnostic.yaml`，统一入口：
+配置为 `configs/sparse_interaction_diagnostic.yaml`，历史入口（检出标签 `sparse-interaction-diagnostic-20261104`，现役 CLI 不提供 `sparse_interaction_diagnostic`）：
 
 ```bash
 OPENBLAS_NUM_THREADS=2 OMP_NUM_THREADS=2 MKL_NUM_THREADS=2 PYTHONPATH=src \

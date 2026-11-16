@@ -42,7 +42,7 @@ p(\pi\mid T,\theta)\propto Dir(\pi;\theta/p+N_j)
 
 各配置完成全部3个内部单元后，每个开发折按四环境平均PCC选择一个完整配置，平分取列表先者。所有配置与选中配置的分数分别保存。参照沿用同材料原分位数TabM（0.494565432）、Huber（0.481082622）和固定融合（0.494512272，RMSE0.870234699），不新训参照。
 
-正式入口：
+历史入口（检出标签 `sparse-polygenic-bart-dev-v2`，现役 CLI 不提供 `sparse_polygenic_bart`）：
 
 ```bash
 WHEAT599_R_PREFIX=/home/hsy/venvs/wheat599-r \

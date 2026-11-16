@@ -22,10 +22,12 @@ J 连接的是隐表示，不是已知基因；隐状态概率不等于已校准
 
 复用同材料的原分位数TabM、Huber和原固定融合。沿用现有开发执行器，`quantile` 是执行器沿用的候选指标键，在本轮三个目录里对应各自的**标量MSE预测器**，不表示分位数监督；`original_quantile`/`original_fusion` 才是原分位数参照。历史 `fixed_fusion` 键仍是 MSE TabM 的融合，不能混称。
 
+当前入口（仅供复现，均输出新目录）：
+
 ```bash
-python scripts/run_background_nested.py --config configs/supervised_ising_coupled.yaml --out results/supervised_ising_coupled_development_20261114
-python scripts/run_background_nested.py --config configs/supervised_ising_independent.yaml --out results/supervised_ising_independent_development_20261114
-python scripts/run_background_nested.py --config configs/supervised_ising_mlp.yaml --out results/supervised_ising_mlp_development_20261114
+PYTHONPATH=src python -m genopred run --config configs/wheat599/structured/supervised_ising_coupled.yaml --out results/wheat599/neural/supervised_ising_coupled_reproduction
+PYTHONPATH=src python -m genopred run --config configs/wheat599/structured/supervised_ising_independent.yaml --out results/wheat599/neural/supervised_ising_independent_reproduction
+PYTHONPATH=src python -m genopred run --config configs/wheat599/structured/supervised_ising_mlp.yaml --out results/wheat599/neural/supervised_ising_mlp_reproduction
 ```
 
 首批冻结 `1011915` 使用一个进程顺序运行三臂。根据用户的效率要求，当前配置明确设置 `workers: 4`，以后通过4个独立进程执行同一内折内的独立拟合；不改变每次拟合的种子、batch、更新、早停或选模规则。作业 CUDA 显存比例0.3由worker均分（每worker 0.075）。自定义 trainer / paired trainer 默认仍为1个worker，未改变其他任务。首批结果保留原串行来源，不为展示加速重跑或冒充并行结果。不安装或调用Kaiwu SDK。数据与基线预测沿用现有只读文件，原始预测不入Git。若发生失败，保留失败和已完成产物，不以默认结果替换。

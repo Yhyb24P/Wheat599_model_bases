@@ -1,114 +1,65 @@
-# 路径迁移索引（2026-11-16 结构性重构）
+# 路径迁移索引
 
-经用户直接授权，按数据集/方法家族用 `git mv` 迁移源码/配置/结果到结构化目录（包名 `genopred`）。**保留文件内容与 SHA 值、provenance 字节不变**；冻结清单路径键与现役引用同步到新路径。历史精确复现经 58 个 Git 标签＋本索引。机器可读映射见 [PATH_MIGRATION.json](PATH_MIGRATION.json)。
+机器可读映射见 [PATH_MIGRATION.json](PATH_MIGRATION.json)。第一轮将包名由 `wheat599` 改为 `genopred`，按数据集和方法家族整理目录；第二轮以 `bc724f7` 为基点，分开模型机制、训练方法与实验编排，沿用第一轮结果位置，不重新搬迁冻结运行。
 
-## 目标结构
+运行目录保留原名，provenance 保留原始字节，冻结清单保留历史 SHA 值。源码和配置随 import、路径及职责调整而演化，其现役文件不承诺仍有历史 SHA；精确复现检出对应标签或提交。
 
-```
-src/genopred/{data,models/{classical,kernels,neural,structured},evaluation}
-configs/{wheat599/{baselines,kernels,tabm,structured},wheat2000,diagnostics}
-protocols/                      # 固定划分与协议输入
+## 当前目录
+
+```text
+src/genopred/
+  models/{tabm,comparators,classical,kernels,structured,neural}/
+  experiments/{wheat599,wheat2000}/
+  data/  evaluation/  cli.py  __main__.py
+configs/{wheat599/{baselines,kernels,tabm,structured},wheat2000,diagnostics}/
+protocols/                     # 固定划分与协议输入
 results/{wheat599/{baselines,kernels,neural,diagnostics},wheat2000}/<原run名>
-third_party/                    # 上游源码（WheatGP/dnawhisper/bayesian_trees）
-references/                     # 文献源与 BibTeX
+results/run_index.json         # 从运行元数据派生的索引
+third_party/  references/      # 上游原件 / 文献源
 site/{models.html,runs.html,references.html}
-checkpoints/  workspace/        # 本地权重 / 临时材料（不入 Git）
+checkpoints/  workspace/       # 本机权重 / 临时材料，不入 Git
 ```
 
-## 规模
+`models/tabm/` 保存骨干、分位数训练、形状变换和互作机制；`models/comparators/` 保存公开对照及其紧耦合上游配方。`kernels/`、`classical/`、`structured/` 按算法家族保留，`neural/` 保留注册适配器。`experiments/` 负责划分、开发选模、重拟合、清单及产物保存，统一入口为 `PYTHONPATH=src python -m genopred run`。
 
-- 源码文件 67（含子包）；import 映射 53
-- 配置 100；结果目录 184；展示页 3
+## 两轮映射的读取方式
 
-## 结果目录家族分布
+JSON 顶层的 `src`、`imports`、`configs`、`results`、`site` 保存第一轮映射，逐项保留。第二轮映射放在 `round2`：
 
-- `wheat2000`：13
-- `wheat2000_protocol_20261105`：1
-- `wheat599/baselines`：56
-- `wheat599/diagnostics`：21
-- `wheat599/kernels`：31
-- `wheat599/neural`：62
+- `base_commit`：第一轮完成时的 `bc724f7`。
+- `src`：28 个第一轮源码路径到当前主要实现路径的映射；多个旧模块可以合入同一文件。
+- `scripts`：9 个旧脚本到当前承接职责的源码文件；该表记录实现去向，不表示保留旧命令。
+- `extracted`：从原文件另外抽出的实验编排。旧 `quantile_tabm.py` 的主要实现归分位数训练，`run`、worker 初始化和任务执行另归 `experiments/wheat599/quantile_tabm_dev.py`；两个背景岭脚本的编排归 `experiments/wheat599/background_ridge.py`。
 
-## 源码模块映射（旧 → 新）
+从旧包定位当前源码时，先查顶层 `src`，再查 `round2.src`；查运行入口还需看 `round2.extracted`。例如 `src/wheat599/quantile_tabm.py` 先对应 `src/genopred/models/neural/quantile_tabm.py`，再分为 `models/tabm/quantile.py` 与 `experiments/wheat599/quantile_tabm_dev.py`。
 
-| 旧 | 新 |
-|---|---|
-| `src/wheat599/__init__.py` | `src/genopred/__init__.py` |
-| `src/wheat599/background_rbf.py` | `src/genopred/models/classical/background_rbf.py` |
-| `src/wheat599/bh_lmc.py` | `src/genopred/models/kernels/bh_lmc.py` |
-| `src/wheat599/classical_baselines.py` | `src/genopred/models/classical/classical_baselines.py` |
-| `src/wheat599/conditional_quantile.py` | `src/genopred/models/neural/conditional_quantile.py` |
-| `src/wheat599/data.py` | `src/genopred/data/wheat599.py` |
-| `src/wheat599/deep_baselines.py` | `src/genopred/models/neural/deep_baselines.py` |
-| `src/wheat599/dnngp_worker.py` | `src/genopred/models/neural/dnngp_worker.py` |
-| `src/wheat599/environment_selection.py` | `src/genopred/evaluation/environment_selection.py` |
-| `src/wheat599/environment_tabm.py` | `src/genopred/models/neural/environment_tabm.py` |
-| `src/wheat599/extrapolation_diagnostic.py` | `src/genopred/evaluation/extrapolation_diagnostic.py` |
-| `src/wheat599/genomic_tabm.py` | `src/genopred/models/neural/genomic_tabm.py` |
-| `src/wheat599/genomic_tabm_run.py` | `src/genopred/models/neural/genomic_tabm_run.py` |
-| `src/wheat599/get_icm.py` | `src/genopred/models/kernels/get_icm.py` |
-| `src/wheat599/gsformer_unified.py` | `src/genopred/models/neural/gsformer_unified.py` |
-| `src/wheat599/heterogeneous_icm.py` | `src/genopred/models/kernels/heterogeneous_icm.py` |
-| `src/wheat599/independent_final.py` | `src/genopred/models/neural/independent_final.py` |
-| `src/wheat599/induced_ftt.py` | `src/genopred/models/neural/induced_ftt.py` |
-| `src/wheat599/interaction_tabm.py` | `src/genopred/models/neural/interaction_tabm.py` |
-| `src/wheat599/kernel_baselines.py` | `src/genopred/models/kernels/kernel_baselines.py` |
-| `src/wheat599/kernel_ridge.py` | `src/genopred/models/classical/kernel_ridge.py` |
-| `src/wheat599/member_interaction_tabm.py` | `src/genopred/models/neural/member_interaction_tabm.py` |
-| `src/wheat599/metrics.py` | `src/genopred/evaluation/metrics.py` |
-| `src/wheat599/models/__init__.py` | `src/genopred/models/library/__init__.py` |
-| `src/wheat599/models/base.py` | `src/genopred/models/base.py` |
-| `src/wheat599/models/ft_transformer.py` | `src/genopred/models/neural/ft_transformer.py` |
-| `src/wheat599/models/kernel_ridge_gblup.py` | `src/genopred/models/classical/kernel_ridge_gblup.py` |
-| `src/wheat599/models/linear.py` | `src/genopred/models/classical/linear.py` |
-| `src/wheat599/models/rkhs_gaussian.py` | `src/genopred/models/kernels/rkhs_gaussian.py` |
-| `src/wheat599/models/svr_rbf.py` | `src/genopred/models/classical/svr_rbf.py` |
-| `src/wheat599/models/tabm.py` | `src/genopred/models/neural/tabm.py` |
-| `src/wheat599/models/tabpfn_v3_5.py` | `src/genopred/models/neural/tabpfn_v3_5.py` |
-| `src/wheat599/moegp_worker.py` | `src/genopred/models/neural/moegp_worker.py` |
-| `src/wheat599/mtcro_unified.py` | `src/genopred/models/neural/mtcro_unified.py` |
-| `src/wheat599/multienv_kernel.py` | `src/genopred/models/kernels/multienv_kernel.py` |
-| `src/wheat599/polygenic_simulation.py` | `src/genopred/evaluation/polygenic_simulation.py` |
-| `src/wheat599/quantile_tabm.py` | `src/genopred/models/neural/quantile_tabm.py` |
-| `src/wheat599/quantile_tabm_final.py` | `src/genopred/models/neural/quantile_tabm_final.py` |
-| `src/wheat599/query_quantile.py` | `src/genopred/models/neural/query_quantile.py` |
-| `src/wheat599/ragp.py` | `src/genopred/models/neural/ragp.py` |
-| `src/wheat599/ragp_run.py` | `src/genopred/models/neural/ragp_run.py` |
-| `src/wheat599/reml_icm.py` | `src/genopred/models/kernels/reml_icm.py` |
-| `src/wheat599/robust_icm.py` | `src/genopred/models/kernels/robust_icm.py` |
-| `src/wheat599/shape_quantile.py` | `src/genopred/models/neural/shape_quantile.py` |
-| `src/wheat599/shape_quantile_final.py` | `src/genopred/models/neural/shape_quantile_final.py` |
-| `src/wheat599/shared_basis_tabm.py` | `src/genopred/models/neural/shared_basis_tabm.py` |
-| `src/wheat599/supervised_ising.py` | `src/genopred/models/structured/supervised_ising.py` |
-| `src/wheat599/tree_tensor.py` | `src/genopred/models/structured/tree_tensor.py` |
-| `src/wheat599/treewidth_ising.py` | `src/genopred/models/structured/treewidth_ising.py` |
-| `src/wheat599/wheat2000_candidate.py` | `src/genopred/models/neural/wheat2000_candidate.py` |
-| `src/wheat599/wheat2000_classical.py` | `src/genopred/models/classical/wheat2000_classical.py` |
-| `src/wheat599/wheat2000_data.py` | `src/genopred/data/wheat2000.py` |
-| `src/wheat599/wheat2000_gblup.py` | `src/genopred/models/kernels/wheat2000_gblup.py` |
-| `src/wheat599/wheat2000_gsformer.py` | `src/genopred/models/neural/wheat2000_gsformer.py` |
-| `src/wheat599/wheat2000_huber.py` | `src/genopred/models/kernels/wheat2000_huber.py` |
-| `src/wheat599/wheat2000_moegp.py` | `src/genopred/models/neural/wheat2000_moegp.py` |
-| `src/wheat599/wheat2000_mtcro.py` | `src/genopred/models/neural/wheat2000_mtcro.py` |
-| `src/wheat599/wheat2000_wheatgp.py` | `src/genopred/models/neural/wheat2000_wheatgp.py` |
-| `src/wheat599/wheatgp_unified.py` | `src/genopred/models/neural/wheatgp_unified.py` |
+## 第二轮源码职责
 
-子包：`models/`→`models/`（base.py 注册表）＋按家族分发适配器；`dnawhisper/`、`bayesian_trees/`→`third_party/`。逐文件见 JSON。
+以下路径均相对 `src/genopred/`；旧列均为第一轮路径。
 
-## 配置与结果映射
+| 原模块 | 当前实现 |
+| --- | --- |
+| `models/neural/{genomic_tabm,environment_tabm,induced_ftt}.py` | `models/tabm/backbone.py` |
+| `models/neural/{quantile_tabm,query_quantile,conditional_quantile}.py` | `models/tabm/quantile.py`；实验编排另见上述 `extracted` |
+| `models/neural/shape_quantile.py` | `models/tabm/shape.py` |
+| `models/neural/{interaction_tabm,member_interaction_tabm,shared_basis_tabm}.py` | `models/tabm/interactions.py` |
+| `models/neural/quantile_tabm_final.py` | `experiments/wheat599/quantile_tabm_outer.py` |
+| `models/neural/shape_quantile_final.py` | `experiments/wheat599/shape_quantile_outer.py` |
+| `models/neural/independent_final.py` | `experiments/wheat599/independent_tabm_outer.py` |
+| `models/neural/genomic_tabm_run.py` | `experiments/wheat599/genomic_tabm_dev.py` |
+| `models/neural/ragp_run.py` | `experiments/wheat599/ragp_dev.py` |
+| `models/classical/wheat2000_classical.py` | `experiments/wheat2000/classical.py` |
 
-逐条旧→新见 [PATH_MIGRATION.json](PATH_MIGRATION.json) 的 `configs`/`results` 键。结果保留原 run 目录名，仅加数据集/家族前缀；固定划分移入 `protocols/`。
+公开对照的 12 个模块由 `models/neural/` 原名移入 `models/comparators/`：`deep_baselines`、`gsformer_unified`、`mtcro_unified`、`wheatgp_unified`、`ragp`、`wheat2000_gsformer`、`wheat2000_moegp`、`wheat2000_mtcro`、`wheat2000_wheatgp`、`wheat2000_candidate`、`dnngp_worker`、`moegp_worker`。保留方法名、数值计算和紧耦合配方；文件名中的历史 `unified` 不表示另建一套算法。
 
-## 展示页迁移
+## 脚本、配置与结果
 
-| 旧 | 新 |
-|---|---|
-| `docs/models.html` | `site/models.html` |
-| `results/index.html` | `site/runs.html` |
-| `ref/index.html` | `site/references.html` |
+`scripts/run_background_nested.py` 的参数解析和路由由 `src/genopred/cli.py` 承接；`run_background_ridge.py` 的核与候选求解由 `models/classical/background_ridge.py` 承接。背景岭的实验编排合入 `experiments/wheat599/background_ridge.py`。七个 quantile/Wheat2000 薄转发的实现去向逐项见 `round2.scripts`，可用路由以 `genopred.cli.RUNNERS` 和各执行模块参数为准。
 
-## 复现说明
+配置与结果的旧位置按顶层 `configs`、`results` 读取，第二轮不更名冻结运行。固定划分在 `protocols/`；展示页按顶层 `site` 映射到 `site/`。运行索引由 `PYTHONPATH=src python -m genopred index` 派生，不改历史 provenance。
 
-- 精确历史复现：`git checkout <标签>` 检出原提交（原路径仍在），按标签内配置运行。
-- 现役复现：用新路径＋更新后的清单路径键（SHA 值不变）；`validate_manifest` 对演化源文件按历史 Git blob 核验。
-- provenance.json 保留原始字节（记录旧路径），经本索引解析到新位置。
+`unmapped_configs` 为空，当前 99 个已跟踪配置均有第一轮映射；映射中的 `wheat2000_moegp.yaml` 当时未跟踪，不能以条目存在证明文件已交付。已冻结配方和现役公开对照配置继续保留，未因缺少文件名引用而删除。
+
+## 复现
+
+精确历史复现按 [FROZEN_INDEX](FROZEN_INDEX.md) 检出原标签或 provenance 指定提交，使用其中的原路径、入口和配方。58 个冻结标签不因迁移改写。现役文件定位沿两轮映射；冻结源校验使用历史 Git blob，不能用最新文件的 SHA 覆盖历史值来通过校验。数据、权重与大预测仍需在本机准备。

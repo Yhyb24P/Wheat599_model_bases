@@ -9,7 +9,7 @@
 - [运行目录索引](site/runs.html)：按数据集/家族归档的运行目录查找摘要、配置、划分与状态。
 - [结果原文](docs/RESULTS.md)、[评价协议](docs/EVALUATION_PROTOCOL.md)、[历史模型对比](docs/MODEL_COMPARISON.md)：可视化的事实来源。
 - [冻结证据索引](docs/FROZEN_INDEX.md)：已结束实验的代码/配置由 58 个 Git 标签逐字保存，按家族导航到标签与 `results/`；精确复现检出原标签。
-- [路径迁移索引](docs/PATH_MIGRATION.md)：2026-11-16 结构性重构的旧→新路径映射。
+- [路径迁移索引](docs/PATH_MIGRATION.md)：包名与目录迁移，以及模型机制／实验编排拆分的两轮旧→新路径映射。
 
 HTML 可直接用浏览器打开，不需要联网或启动服务；外部论文链接需要联网。页面是生成视图，修订证据后在仓库根目录重建：
 
@@ -67,7 +67,7 @@ python scripts/fetch_data.py
 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1 PYTHONPATH=src python -m genopred run --config configs/wheat599/kernels/robust_icm.yaml --selection results/wheat599/kernels/robust_icm_development_20261103/selection.json --out results/wheat599/kernels/robust_icm_reproduction
 
 # 分位数 TabM：使用已冻结外层清单（需要本地数据与基线 OOF）
-PYTHONPATH=src python -m genopred run --config configs/wheat599/tabm/quantile_tabm_final.yaml --out results/wheat599/tabm/quantile_tabm_reproduction
+PYTHONPATH=src python -m genopred run --config configs/wheat599/tabm/quantile_tabm_final.yaml --out results/wheat599/neural/quantile_tabm_reproduction
 
 # 机器可读运行索引（只读派生自 provenance/execution_status，不动冻结目录）
 PYTHONPATH=src python -m genopred index
@@ -93,9 +93,9 @@ PYTHONPATH=src python -m pytest tests/ -q
 
 `configs/` 中的运行配置、搜索空间和架构配方职责不同，不能把所有 YAML 都直接交给训练入口。统一入口拒绝未知模型名及误传的嵌套架构字典，`--resume-summary` 仅限 independent TabM。`src/genopred/models/` 含通用基线适配器框架（`base.py` 注册表）、`tabm/`（backbone/quantile/shape/interactions 机制）、`comparators/`（公开方法对照）与按家族归档的 kernels/classical/structured；实验编排（划分/选模/重拟合/清单/输出）在 `experiments/{wheat599,wheat2000}/`。
 
-2026-11-16 经用户授权按数据集/方法家族用 `git mv` 迁移源码/配置/结果到结构化目录（包名 `genopred`）：保留文件内容与 SHA 值、provenance 字节不变，冻结清单的路径键与现役引用同步到新路径，旧→新映射见 [PATH_MIGRATION](docs/PATH_MIGRATION.md)。历史精确复现仍检出原记录的提交/标签，不改写旧清单 SHA 值来适应最新代码。完整 Mul-PheG2P 实现及测试由冻结标签 `mulphe-unified-*`（源自 `742132f`）保存，结果留在 `results/wheat599/baselines/mulphe_*`。
+2026-11-16 经用户授权按数据集/方法家族用 `git mv` 迁移源码/配置/结果到结构化目录（包名 `genopred`）：保留结果内容、provenance 字节与历史 SHA 值；源码的 import 和配置中的路径随迁移更新，冻结清单仅同步路径键，旧→新映射见 [PATH_MIGRATION](docs/PATH_MIGRATION.md)。历史精确复现仍检出原记录的提交/标签，不改写旧清单 SHA 值来适应最新代码。完整 Mul-PheG2P 实现及测试由冻结标签 `mulphe-unified-*`（源自 `742132f`）保存，结果留在 `results/wheat599/baselines/mulphe_*`。
 
-同日第二轮语义重构（协作）：把模型机制（`models/tabm` 四拆、`models/comparators`）与实验编排（`experiments/{wheat599,wheat2000}`）分离，统一入口收敛为 `python -m genopred run|index`，删除薄转发脚本；冻结运行目录与 provenance 字节/SHA 不动，冻结清单经历史 blob 链式校验，旧→新映射补 round2 节。不重训、不改 PCC/选模规则。
+第二轮重构（基于 `bc724f7`）：把模型机制（`models/tabm` 四拆、`models/comparators`）与实验编排（`experiments/{wheat599,wheat2000}`）分离，实验运行与索引分别使用 `python -m genopred run`、`python -m genopred index`；冻结运行目录与 provenance 字节/SHA 不动，冻结清单经历史 blob 链式校验，旧→新路径与拆出函数记录在映射的 `round2` 节。不重训、不改 PCC/选模规则。
 
 ## 文件与结果约定
 
@@ -120,6 +120,6 @@ PYTHONPATH=src python -m pytest tests/ -q
 
 `src/genopred/models/tabm/quantile.py` 的 `train()` 是统一变体分发器（训练方法核心）：按 `optimizer_variant` 条件加载 ising/query/conditional/shape/gated/member_conditional 等历史变体；这些变体已冻结到 Git 标签（见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)），分发分支仍留现役树，并非冗余副本。实验编排（`run()`/workers/选模/重拟合/清单）在 `experiments/wheat599/`，与机制分离。`models/`（适配器框架）、`third_party/`（上游原件）与家族实现是分层而非重复；`tests/` 是验证这些实现的测试，应保留。
 
-命名三维：**算法身份**用稳定方法名（`quantile_tabm`、`robust_icm`、`gsformer`）；**实验阶段**用 `development`/`selection`/`refit`/`outer_eval`/`diagnostic`（写入运行配置与结果，`nested`/`outer` 保留评价语义）；**执行身份**用日期＋必要运行号，状态与来源写入元数据。源码模块不再以 `final`/`unified` 作长期身份（`*_final`→`*_outer`/`*_dev`，`*_unified` 对照归 `comparators/`）。新运行沿用 `results/<数据集>/<家族>/<方法>_<阶段>_<日期>_r<N>/`；`python -m genopred index` 派生 `results/run_index.json`（dataset/method/phase/status/role/source_commit/protocol/result_path），冻结历史目录不再物理搬迁，role/phase 由索引表达。主表只接收已核对统一协议的结果；开发选模、历史不同协议、模拟、其他数据集、停止与失败记录各保留原口径。常见 `summary` 保存指标，`provenance` / `manifest` 保存数据 SHA、源码、配置、种子和划分，`execution_status` / `failures` / `interruption` 保存执行状态；不同历史文件格式不强制重写。逐材料与逐种子预测保留原位置，不能因导航整理而丢弃。
+命名三维：**算法身份**用稳定方法名（`quantile_tabm`、`robust_icm`、`gsformer`）；**实验阶段**用 `development`/`selection`/`refit`/`outer_eval`/`diagnostic`（写入运行配置与结果，`nested`/`outer` 保留评价语义）；**执行身份**用日期＋必要运行号，状态与来源写入元数据。本轮将独立实验模块的 `*_final` 改为 `*_outer`；公开对照移入 `comparators/` 后保留原名，包括 `*_unified`。新运行沿用 `results/<数据集>/<家族>/<方法>_<阶段>_<日期>_r<N>/`；`python -m genopred index` 派生 `results/run_index.json`（dataset/method/phase/status/role/source_commit/protocol/result_path），冻结历史目录不再物理搬迁，role/phase 由索引表达。主表只接收已核对统一协议的结果；开发选模、历史不同协议、模拟、其他数据集、停止与失败记录各保留原口径。常见 `summary` 保存指标，`provenance` / `manifest` 保存数据 SHA、源码、配置、种子和划分，`execution_status` / `failures` / `interruption` 保存执行状态；不同历史文件格式不强制重写。逐材料与逐种子预测保留原位置，不能因导航整理而丢弃。
 
 [AGENTS.md](AGENTS.md) 保存执行边界；[DATA_FACTS](docs/DATA_FACTS.md) 保存数据事实；[LICENSE_NOTES](docs/LICENSE_NOTES.md) 保存许可；[REFERENCES](docs/REFERENCES.md) 保留历史文献核验记录。旧评审、G0、Stage 1/2 与交接文档只作历史，不重新启用其流程。
