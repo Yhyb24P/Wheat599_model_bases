@@ -594,6 +594,54 @@ def mechanism_atlas():
 <script id="mechanism-data" type="application/json">''' + data + '''</script></section>'''
 
 
+def wheat2000_section():
+    runs = [
+        ('wheat2000_candidate_final_20261115', '分位数 TabM–Huber 固定融合', 'primary'),
+        ('wheat2000_candidate_final_20261115', '四独立分位数 TabM', 'tabm_only'),
+        ('wheat2000_gblup_final_20261105', 'GBLUP', 'macro'),
+        ('wheat2000_mtcro_final_20261115', 'MtCro（官方）', 'macro'),
+        ('wheat2000_gsformer_csa_final_20261116', 'Gsformer-CSA（官方）', 'macro'),
+        ('wheat2000_gsformer_nsa_final_20261116', 'Gsformer-NSA（官方）', 'macro'),
+        ('wheat2000_wheatgp_final_20261115', 'WheatGP（官方）', 'macro'),
+    ]
+    traits = ['TKW', 'TW', 'GL', 'GW', 'GH', 'GP', 'SDS', 'PHT']
+    records = []
+    for run, name, key in runs:
+        path = ROOT / 'results' / run / 'summary.json'
+        if not path.is_file():
+            continue
+        data = json.loads(path.read_text())
+        if key == 'tabm_only':
+            block = data.get('tabm_only', {})
+            macro, per_trait = block.get('primary', {}), block.get('per_trait', {})
+        elif key == 'primary':
+            macro, per_trait = data.get('primary', {}), data.get('per_trait', {})
+        else:
+            macro = data.get('macro') or data.get('primary') or {}
+            per_trait = data.get('per_trait') or data.get('per_environment') or {}
+        if macro:
+            records.append((name, macro, per_trait))
+    records.sort(key=lambda r: r[1].get('pcc', 0), reverse=True)
+    macro_rows = ''.join('<tr><th scope="row">' + esc(n) + '</th>' +
+                         f'<td>{m["pcc"]:.6f}</td><td>{m["rmse"]:.6f}</td><td>{m["mae"]:.6f}</td></tr>'
+                         for n, m, _ in records)
+    def trait_cell(pt, t):
+        v = pt.get(t)
+        if isinstance(v, dict):
+            return f'<td>{v["pcc"]:.4f}</td>'
+        if isinstance(v, (int, float)):
+            return f'<td>{v:.4f}</td>'
+        return '<td>—</td>'
+    trait_rows = ''.join('<tr><th scope="row">' + esc(n) + '</th>' +
+                         ''.join(trait_cell(pt, t) for t in traits) + '</tr>'
+                         for n, _, pt in records)
+    return '''<section id="wheat2000"><h2>Wheat2000 跨数据集对比</h2>
+<p>2000 材料 × 33709 二值标记，8 性状（TKW/TW/GL/GW/GH/GP/SDS/PHT）。统一协议：canonical 十外折、种子 42/2026 先平均预测、fit-only 预处理、内折选模、完整开发集重拟合、测试一次；主指标为 80 个 trait×fold 等权 PCC。公开模型为同协议＋官方配方适配，不等同论文原结果复现；本表是跨数据集证据链，不构成跨数据集 SOTA 证明。</p>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Wheat2000 宏指标"><table><caption>宏指标（80 trait×fold 等权）</caption><thead><tr><th scope="col">模型</th><th scope="col">PCC ↑</th><th scope="col">RMSE ↓</th><th scope="col">MAE ↓</th></tr></thead><tbody>''' + macro_rows + '''</tbody></table></div>
+<div class="table-wrapper" tabindex="0" role="region" aria-label="Wheat2000 逐性状 PCC"><table><caption>逐性状 PCC</caption><thead><tr><th scope="col">模型</th>''' + ''.join(f'<th scope="col">{t}</th>' for t in traits) + '''</tr></thead><tbody>''' + trait_rows + '''</tbody></table></div>
+<p>融合 PCC 未超 TabM 单模型，融合主要改善 RMSE/MAE。WheatGP 官方配方在 Wheat2000 明显低于候选（GP/PHT 近零或负），是该配方同协议真实阴性结果，不视为家族失败。MtCro 按作者 Wheat599 模板 fit 内 PCA-95（作者无 Wheat2000 PC 文件）；Gsformer 33709 标记零填充到 33768。待交付模型（Gsformer-NSA/MoEGP/RAGP/DeepGS/DNNGP/SoyDNGP/经典基线）完成后补入。详见 <a href="MODEL_COMPARISON.md">MODEL_COMPARISON</a>。</p></section>'''
+
+
 def build():
     global SECTION_IDS
     SECTION_IDS = itertools.count()
@@ -612,7 +660,7 @@ def build():
     rows = ''.join('<tr><th scope="row">'+esc(name)+'</th>'+''.join(f'<td>{values[k]:.6f}</td>' for k in ['pcc','rmse','mae'])+
                    ''.join(f'<td>{env[e]["pcc"]:.6f}</td>' for e in ['1','2','4','5'])+'</tr>' for name,values,env in systems)
     bars = ''.join(f'<div class="barrow"><span>{esc(name)}</span><div class="track"><div class="bar" style="width:{values["pcc"]*100:.6f}%"></div></div><strong>{values["pcc"]:.6f}</strong></div>' for name,values,_ in systems)
-    head = '''<header><nav><a href="../README.md">项目说明</a><a href="../ref/index.html">参考文献</a><a href="../results/index.html">运行目录</a><a href="#comparison">模型总表</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a></nav>
+    head = '''<header><nav><a href="../README.md">项目说明</a><a href="../ref/index.html">参考文献</a><a href="../results/index.html">运行目录</a><a href="#comparison">模型总表</a><a href="#wheat2000">Wheat2000</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a></nav>
 <p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-15</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
     body = head + result_workbench(systems) + '''<details class="legacy-overview"><summary>已核对统一协议：完整指标与来源</summary><section aria-labelledby="overview"><h2 id="overview">统一协议下的结果</h2><div class="grid">
 <article class="card best"><span class="tag">当前固定融合 · 折均宏 PCC</span><div class="big">0.526506</div><p>相对 Huber ICM 增加 0.004761；是项目内描述性差值。</p></article>
@@ -622,6 +670,7 @@ def build():
 <figure>''' + bars + '''<figcaption><b>图 2 · 固定融合的折均宏 PCC 高于本页已核对的强参照及完整 Mul-PheG2P 适配。</b>n = 599，四环境、十外折；横条从 0 起、满宽为 PCC = 1，无误差条。来源：2026-11-06 分位数最终汇总与 2026-11-13 Mul-PheG2P 汇总；不是文献成绩排名。确切值见下表。</figcaption></figure>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="统一协议指标"><table><caption>折均指标；Env1–4 对应原表型列 1、2、4、5</caption><thead><tr><th scope="col">完整系统</th><th scope="col">PCC ↑</th><th scope="col">RMSE ↓</th><th scope="col">MAE ↓</th><th scope="col">Env1 PCC</th><th scope="col">Env2 PCC</th><th scope="col">Env3 PCC</th><th scope="col">Env4 PCC</th></tr></thead><tbody>''' + rows + '''</tbody></table></div>
 <p>来源：<a href="../results/quantile_tabm_final_20261106/summary.json">分位数与参照 JSON</a> · <a href="../results/mulphe_unified_parallel_20261112/summary.json">Mul-PheG2P JSON</a> · <a href="EVALUATION_PROTOCOL.md">统一协议与搜索预算</a></p></section></details>'''
+    body += wheat2000_section()
     body += '''<section id="best"><h2>最优候选是什么，如何工作？</h2>
 <p>这是两个已经独立训练的预测器的平均，不是一张端到端联合网络。神经分支为每个环境学习单独的非线性标记函数；统计分支通过材料相似性和四环境相关性联合预测。融合在原表型尺度进行，权重在外层评价前固定为各 50%。</p>
 ''' + candidate_diagram() + mechanism_atlas() + '''
