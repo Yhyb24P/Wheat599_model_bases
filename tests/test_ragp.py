@@ -264,7 +264,7 @@ def test_forward_has_no_query_label_argument():
 
 
 def test_outer_epoch_budgets_median_and_validation():
-    from experiments.wheat599.ragp_dev import outer_epoch_budgets
+    from genopred.experiments.wheat599.ragp_dev import outer_epoch_budgets
     configurations = [
         {'learning_rate': 0.001, 'weight_decay': 0.0, 'max_epochs': 15, 'dropout': 0.5},
         {'learning_rate': 0.001, 'weight_decay': 0.0, 'max_epochs': 50, 'dropout': 0.5},

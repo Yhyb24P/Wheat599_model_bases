@@ -49,14 +49,14 @@ def freeze_member_manifest(cfg,args,runner):
     if read(source/'execution_status.json')!={'status':'complete','completed':1920,'expected':1920} or read(source/'failures.json'):raise ValueError('Development incomplete')
     if settings.get('optimizer_variant')!='member_conditional' or settings['n_quantiles']!=99:raise ValueError('Wrong development model')
     provenance=read(source/'provenance.json')
-    for path in (Path(cfg['development_config']),Path('src/genopred/models/tabm/quantile.py'), Path('experiments/wheat599/quantile_tabm_dev.py'),Path('src/genopred/models/tabm/interactions.py'),Path(cfg['splits'])):
+    for path in (Path(cfg['development_config']),Path('src/genopred/models/tabm/quantile.py'), Path('src/genopred/experiments/wheat599/quantile_tabm_dev.py'),Path('src/genopred/models/tabm/interactions.py'),Path(cfg['splits'])):
         matches=[value for name,value in provenance['sha256'].items() if name==str(path) or name.endswith('/'+str(path))]
         if len(matches)!=1 or matches[0]!=sha256_of(path):raise ValueError('Development source mismatch')
     folds=read(cfg['splits'])['folds'];selections=read(source/'summary.json')['folds'];records=read(source/'trajectories.json')
     test_ids=[i for fold in folds for i in fold['test_idx']]
     if len(test_ids)!=599 or set(test_ids)!=set(range(599)) or any(set(f['dev_idx'])|set(f['test_idx'])!=set(range(599)) for f in folds):raise ValueError('Invalid outer material coverage')
     rows=member_manifest_rows(folds,selections,records,settings['seeds'])
-    paths=[Path(args.config),Path(cfg['splits']),Path(cfg['development_config']),Path(cfg['architecture_config']),Path('src/genopred/models/tabm/quantile.py'), Path('experiments/wheat599/quantile_tabm_dev.py'),Path('src/genopred/models/tabm/interactions.py'),Path(__file__),Path(runner),source/'summary.json',source/'trajectories.json',source/'provenance.json',source/'execution_status.json',source/'failures.json',Path(cfg['huber_oof']),Path(cfg['mse_oof']),Path(cfg['original_oof'])]
+    paths=[Path(args.config),Path(cfg['splits']),Path(cfg['development_config']),Path(cfg['architecture_config']),Path('src/genopred/models/tabm/quantile.py'), Path('src/genopred/experiments/wheat599/quantile_tabm_dev.py'),Path('src/genopred/models/tabm/interactions.py'),Path(__file__),Path(runner),source/'summary.json',source/'trajectories.json',source/'provenance.json',source/'execution_status.json',source/'failures.json',Path(cfg['huber_oof']),Path(cfg['mse_oof']),Path(cfg['original_oof'])]
     data=load(Path(cfg['data']),cfg['data_sha256'])
     for fold in folds:
         f=fold['fold'];saved=next(r['selected'] for r in selections if r['fold']==f)

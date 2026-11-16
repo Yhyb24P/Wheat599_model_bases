@@ -29,6 +29,7 @@ import numpy as np
 import torch
 import torch.nn.functional as F
 
+import genopred
 from genopred.data.wheat599 import load, sha256_of
 from genopred.evaluation.metrics import mae, pcc, rmse
 
@@ -382,7 +383,7 @@ def run(config, args, runner):
     if len(folds) != len(wanted):
         raise ValueError('Configured outer folds are missing from the split manifest')
     args.out.mkdir(parents=True, exist_ok=False)
-    here = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+    here = Path(genopred.__file__).parent
     sources = [Path(__file__), here/'models'/'tabm'/'backbone.py', here/'data'/'wheat599.py',
                here/'evaluation'/'metrics.py'] + [Path(args.config), Path(runner)]
     configurations = [{'learning_rate': float(lr), 'weight_decay': float(wd)}

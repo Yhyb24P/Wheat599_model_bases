@@ -11,13 +11,13 @@ import numpy as np
 import yaml
 
 from genopred.data.wheat599 import load, sha256_of
-from experiments.wheat599.quantile_tabm_dev import _init_fit_worker
+from genopred.experiments.wheat599.quantile_tabm_dev import _init_fit_worker
 from genopred.models.tabm.quantile import mixture_scores, train
-from experiments.wheat599.quantile_tabm_outer import summarize
+from genopred.experiments.wheat599.quantile_tabm_outer import summarize
 
 
 def _fit_outer(task):
-    from experiments.wheat599 import quantile_tabm_dev as quantile_tabm
+    from genopred.experiments.wheat599 import quantile_tabm_dev as quantile_tabm
     fold, environment, config, seed, epochs = task
     x, y, folds, configs, settings, device = quantile_tabm._FIT_CONTEXT
     split = folds[fold]
@@ -81,7 +81,7 @@ def run(cfg, args, runner):
     if read(source/'execution_status.json') != {'status': 'complete', 'completed': expected, 'expected': expected} or read(source/'failures.json'):
         raise ValueError('Incomplete development experiment')
     provenance = read(source/'provenance.json')
-    paths = [Path(args.config), Path(cfg['architecture_config']), Path(cfg['splits']), Path('src/genopred/models/tabm/quantile.py'), Path('experiments/wheat599/quantile_tabm_dev.py')]
+    paths = [Path(args.config), Path(cfg['architecture_config']), Path(cfg['splits']), Path('src/genopred/models/tabm/quantile.py'), Path('src/genopred/experiments/wheat599/quantile_tabm_dev.py')]
     if cfg['optimizer_variant'] != 'shape_midpoint':
         paths.append(Path('src/genopred/models/tabm/shape.py'))
     def matches(p):

@@ -24,6 +24,7 @@ import numpy as np
 import torch
 import yaml
 
+import genopred
 from genopred.data.wheat599 import load, sha256_of
 from genopred.evaluation.metrics import mae, pcc, rmse
 from genopred.models.comparators.ragp import OFFICIAL_HIDDEN_DIMS, RAGPGenomic
@@ -458,7 +459,7 @@ def run(config, args, runner):
     if len(folds) != len(wanted):
         raise ValueError('Configured outer folds are missing from the split manifest')
     args.out.mkdir(parents=True, exist_ok=False)
-    here = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+    here = Path(genopred.__file__).parent
     sources = [Path(__file__), here/'models'/'comparators'/'ragp.py', here/'data'/'wheat599.py', here/'evaluation'/'metrics.py'] \
         + [Path(args.config), Path(runner)]
     configurations = [dict(entry) for entry in config['configurations']]
@@ -663,7 +664,7 @@ def run_outer(config, args, runner):
     config = {**config, 'configurations': configurations}
     budgets = outer_epoch_budgets(selection, trajectories, config)
     args.out.mkdir(parents=True, exist_ok=False)
-    here = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+    here = Path(genopred.__file__).parent
     sources = [Path(__file__), here/'models'/'comparators'/'ragp.py', here/'data'/'wheat599.py', here/'evaluation'/'metrics.py'] \
         + [Path(args.config), Path(runner)]
     (args.out / 'provenance.json').write_text(json.dumps({
