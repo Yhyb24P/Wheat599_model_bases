@@ -41,7 +41,7 @@ LOSS_DESCRIPTION = ('mean over batch, ensemble members and environments of squar
 # -- model adapter ---------------------------------------------------------
 def build_model(config, variant, seed, train_x, train_y, beta=None, bias=None, device='cpu'):
     """Seeded construction on the raw fit rows; the model owns its preprocessing."""
-    from genopred.models.neural import genomic_tabm
+    from genopred.models.tabm import backbone as genomic_tabm
     builder = getattr(genomic_tabm, 'GenomicTabM', None)
     if builder is None:
         raise RuntimeError('genopred.models.neural.genomic_tabm.GenomicTabM is unavailable')
@@ -382,9 +382,9 @@ def run(config, args, runner):
     if len(folds) != len(wanted):
         raise ValueError('Configured outer folds are missing from the split manifest')
     args.out.mkdir(parents=True, exist_ok=False)
-    here = Path(__file__).parent
-    sources = [here / name for name in ('genomic_tabm_run.py', 'genomic_tabm.py', 'data.py',
-                                       'metrics.py')] + [Path(args.config), Path(runner)]
+    here = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+    sources = [Path(__file__), here/'models'/'tabm'/'backbone.py', here/'data'/'wheat599.py',
+               here/'evaluation'/'metrics.py'] + [Path(args.config), Path(runner)]
     configurations = [{'learning_rate': float(lr), 'weight_decay': float(wd)}
                       for lr in config['training']['learning_rates']
                       for wd in config['training']['weight_decays']]

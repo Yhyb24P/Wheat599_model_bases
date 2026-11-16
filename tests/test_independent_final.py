@@ -16,7 +16,7 @@ TABM_DEPENDENCIES = '/tmp/wheat599_tabm_deps'
 if TABM_DEPENDENCIES not in sys.path:
     sys.path.insert(0, TABM_DEPENDENCIES)
 
-from genopred.models.neural import independent_final as runner  # noqa: E402
+from experiments.wheat599 import independent_tabm_outer as runner  # noqa: E402
 
 torch.set_num_threads(1)
 
@@ -226,7 +226,7 @@ def test_eighty_row_manifest_runs_all_fits(tmp_path, monkeypatch):
     comparison_summary = json.loads((args.out / 'comparison_summary.json').read_text())
     assert 'primary_delta' in comparison_summary and 'fold_macro' in comparison_summary
     provenance = json.loads((args.out / 'provenance.json').read_text())
-    assert any(key.endswith('genomic_tabm.py') for key in provenance['source_sha256'])
+    assert any(key.endswith('backbone.py') for key in provenance['source_sha256'])
     assert 'tabm' in provenance['model_source']
     fits = json.loads((args.out / 'fits.json').read_text())
     assert min(row['epochs'] for row in fits) == 0

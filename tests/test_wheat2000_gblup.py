@@ -35,7 +35,7 @@ def test_development_then_frozen_final_all_eight_traits(tmp_path, monkeypatch):
     from types import SimpleNamespace
     from genopred.data import wheat2000 as wheat2000_data
     from genopred.models.kernels import wheat2000_gblup
-    from genopred.models.neural import independent_final
+    from experiments.wheat599 import independent_tabm_outer as independent_final
     from genopred.data.wheat599 import sha256_of
     rng = np.random.default_rng(25)
     traits = ('TKW', 'TW', 'GL', 'GW', 'GH', 'GP', 'SDS', 'PHT')

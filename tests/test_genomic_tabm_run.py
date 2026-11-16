@@ -8,7 +8,7 @@ import pytest
 import torch
 from torch import nn
 
-from genopred.models.neural import genomic_tabm_run as runner
+from experiments.wheat599 import genomic_tabm_dev as runner
 
 
 class StubModel(nn.Module):

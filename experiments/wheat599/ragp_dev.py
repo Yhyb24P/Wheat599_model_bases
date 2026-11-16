@@ -26,7 +26,7 @@ import yaml
 
 from genopred.data.wheat599 import load, sha256_of
 from genopred.evaluation.metrics import mae, pcc, rmse
-from genopred.models.neural.ragp import OFFICIAL_HIDDEN_DIMS, RAGPGenomic
+from genopred.models.comparators.ragp import OFFICIAL_HIDDEN_DIMS, RAGPGenomic
 
 METRICS = ('pcc', 'rmse', 'mae')
 SELECTION_METRICS = ('seed_prediction_ensemble_macro_pcc',)
@@ -73,7 +73,7 @@ def training_settings(config, configuration):
 
 def build_model(config, seed, train_x, train_y, configuration, device):
     """Seeded construction; PCA and the reference library use the fit rows only."""
-    from genopred.models.neural import ragp
+    from genopred.models.comparators import ragp
     builder = getattr(ragp, 'RAGPGenomic', None)
     if builder is None:
         raise RuntimeError('genopred.models.neural.ragp.RAGPGenomic is unavailable')
@@ -458,8 +458,8 @@ def run(config, args, runner):
     if len(folds) != len(wanted):
         raise ValueError('Configured outer folds are missing from the split manifest')
     args.out.mkdir(parents=True, exist_ok=False)
-    here = Path(__file__).parent
-    sources = [here / name for name in ('ragp_run.py', 'ragp.py', 'data.py', 'metrics.py')] \
+    here = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+    sources = [Path(__file__), here/'models'/'comparators'/'ragp.py', here/'data'/'wheat599.py', here/'evaluation'/'metrics.py'] \
         + [Path(args.config), Path(runner)]
     configurations = [dict(entry) for entry in config['configurations']]
     config = {**config, 'configurations': configurations}
@@ -663,8 +663,8 @@ def run_outer(config, args, runner):
     config = {**config, 'configurations': configurations}
     budgets = outer_epoch_budgets(selection, trajectories, config)
     args.out.mkdir(parents=True, exist_ok=False)
-    here = Path(__file__).parent
-    sources = [here / name for name in ('ragp_run.py', 'ragp.py', 'data.py', 'metrics.py')] \
+    here = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+    sources = [Path(__file__), here/'models'/'comparators'/'ragp.py', here/'data'/'wheat599.py', here/'evaluation'/'metrics.py'] \
         + [Path(args.config), Path(runner)]
     (args.out / 'provenance.json').write_text(json.dumps({
         'config': config,

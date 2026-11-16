@@ -96,7 +96,7 @@ def run(config, args, runner):
                 Path(__file__).parents[2]/'evaluation'/'metrics.py')}
     selected = None
     if args.selection is not None:
-        from genopred.models.neural.independent_final import ensure_frozen_manifest
+        from experiments.wheat599.independent_tabm_outer import ensure_frozen_manifest
         ensure_frozen_manifest(args.selection)
         payload = json.loads(args.selection.read_text())
         if payload['config_sha256'] != config_sha:

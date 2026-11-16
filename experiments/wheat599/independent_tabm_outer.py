@@ -28,7 +28,7 @@ import torch
 import torch.nn.functional as F
 
 from genopred.data.wheat599 import load, sha256_of
-from genopred.models.neural.environment_tabm import SharedTabM
+from genopred.models.tabm.backbone import SharedTabM
 from genopred.evaluation.metrics import mae, pcc, rmse
 
 METRICS = ('pcc', 'rmse', 'mae')
@@ -778,11 +778,11 @@ def run(config, args, runner):
             'summary_recovery': 'success',
             'resume_source_sha256': {},
         }
-        for path in (Path(__file__).parent / 'independent_final.py',
-                     Path(__file__).parent / 'environment_tabm.py',
-                     Path(__file__).parent / 'genomic_tabm.py',
-                     Path(__file__).parent / 'data.py',
-                     Path(__file__).parent / 'metrics.py',
+        _pkg = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+        for path in (Path(__file__),
+                     _pkg/'models'/'tabm'/'backbone.py',
+                     _pkg/'data'/'wheat599.py',
+                     _pkg/'evaluation'/'metrics.py',
                      Path(args.config), Path(runner)):
             if Path(path).exists():
                 resume_info['resume_source_sha256'][str(path)] = sha256_of(Path(path))
@@ -809,16 +809,16 @@ def run(config, args, runner):
             'protocol': 'CV1 outer test; full-dev refit; fixed manifest epochs; '
                         'member-mean then seed-mean; no test selection',
         }
-        for path in (Path(__file__).parent / 'independent_final.py',
-                     Path(__file__).parent / 'environment_tabm.py',
-                     Path(__file__).parent / 'genomic_tabm.py',
-                     Path(__file__).parent / 'data.py',
-                     Path(__file__).parent / 'metrics.py',
+        _pkg = Path(__file__).resolve().parents[2] / 'src' / 'genopred'
+        for path in (Path(__file__),
+                     _pkg/'models'/'tabm'/'backbone.py',
+                     _pkg/'data'/'wheat599.py',
+                     _pkg/'evaluation'/'metrics.py',
                      Path(args.config), Path(runner)):
             if Path(path).exists():
                 provenance['source_sha256'][str(path)] = sha256_of(Path(path))
         try:
-            from genopred.models.neural.genomic_tabm_run import model_source_sha
+            from experiments.wheat599.genomic_tabm_dev import model_source_sha
             provenance['model_source'] = model_source_sha()
         except Exception as error:
             provenance['model_source'] = {'error': repr(error)}
