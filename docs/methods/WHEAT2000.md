@@ -12,6 +12,12 @@ GBLUP外层证据位于`results/wheat2000_gblup_final_20261105/`，完整重拟�
 
 GBLUP的7.32/5.03秒均从加载数据与校验选择之后开始，包含原始标记核构造、拟合、相应选模/评分和结果写入；不包含Python启动、依赖导入、数据缓存加载及前置SHA校验，不能称完整进程端到端耗时。原运行未保存后一口径，不为补计时重复训练；后续正式运行另记进程总墙钟，与runner内部计时分列。
 
+## 当前入口与历史配置
+
+配置现位于 `configs/wheat2000/`。统一入口 `PYTHONPATH=src python -m genopred run --config <配置> --out <新目录>` 已路由 GBLUP、Huber ICM、经典基线、分位数候选、Gsformer CSA/NSA、MtCro、WheatGP 和 MoEGP。分阶段执行器须显式传 `--phase`，允许值由各模型规定；`--selection` 传冻结选择，候选的 `--huber` 传 Huber 预测目录，`--folds`、`--traits` 供相应执行器选择已有划分／性状。MtCro 仍需可选依赖 `torch_rechub`；入口迁移不代表已完成新的训练或评价。
+
+`wheat2000_tabm.yaml`、`wheat2000_deepgs.yaml` 保留为冻结协议配置，现役 CLI 不提供这两个模型。原 TabM 按 `wheat2000-tabm-gblup-protocol-20261105`、原 DeepGS 按 `wheat2000-deepgs-protocol-20261105` 标签中的路径与入口复现；其历史中断状态不因迁移改变。下文保留原执行路径及配方，当前进展以 [RESULTS](../RESULTS.md) 为准。
+
 ## 明确的数据版本
 
 采用[官方DeepGS仓库](https://github.com/cma2015/DeepGS/tree/33ae2dc1ed7bda4e38b76460b18756649d4478a5)发布的`wheat_GS.RData`，SHA256为`e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696`。它是2000×33709二值标记和2000×8表型矩阵，顺序固定为TKW、TW、GL、GW、GH、GP、SDS、PHT，八性状均2000条完整记录，不作完整表型交集筛选。原文件已是发布方处理后的矩阵，本项目不从中声称重建了原始测量或标记质控。
