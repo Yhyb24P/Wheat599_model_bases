@@ -1,8 +1,8 @@
 import numpy as np
 import torch
 
-from genopred.models.neural.interaction_tabm import InteractionBackbone, LayerInteractionBackbone, make_optimizers
-from genopred.models.neural.quantile_tabm import build_model, train
+from genopred.models.tabm.interactions import InteractionBackbone, LayerInteractionBackbone, make_optimizers
+from genopred.models.tabm.quantile import build_model, train
 
 
 def test_bi_interaction_equals_explicit_pairs():

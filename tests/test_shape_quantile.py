@@ -2,7 +2,7 @@ import pytest
 import torch
 from torch.nn import functional as F
 
-from genopred.models.neural.shape_quantile import (
+from genopred.models.tabm.shape import (
     ShapeTransform, midpoint_pinball, normalized_crps, standardized_shape,
 )
 
