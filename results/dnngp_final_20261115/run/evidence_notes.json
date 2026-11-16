@@ -2,7 +2,7 @@
   "interpretation": "同协议适配结果待进一步核验，不视为原论文精确复现或已确认主表结果。",
   "verified": "2396条外层预测及4792条单种子预测的材料覆盖、原始真值、有限值和两种子平均；外层与内层划分；40条选择及80条重拟合的配置和中位epoch；失败记录为空。",
   "limitations": [
-    "开发从CPU切换GPU续跑，两个阶段的源码SHA不同，CPU阶段源码内容尚未定位；其预测在omen保留。",
+    "开发从CPU切换GPU续跑，两个阶段的源码SHA不同。CPU阶段deep_baselines.py SHA-256为eb9621e3a7f6d1a392801907eb8f9253b8a54aac2c8ac74714b8e961bb0e517f，dnngp_worker.py为ac9e88adf89e2345d98db4a708ad566e4a43fbd3585b0d4722d49c84943a6efb；检查本机local、omen项目树及相关临时目录后未找到匹配源码副本，无法据此声称精确复现CPU阶段。其预测在omen保留。",
     "DNNGP的EpochRecorder在ReduceLROnPlateau之后记录每个epoch结束的学习率，降率时记录值可能用于下一epoch；不能称重拟合逐epoch精确重放内折实际训练学习率。",
     "运行provenance中的HEAD是运行所在检出的HEAD，适配代码当时为未提交文件；需结合所记录的源码SHA识别。"
   ],
