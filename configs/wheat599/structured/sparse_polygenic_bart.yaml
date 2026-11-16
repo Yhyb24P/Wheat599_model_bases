@@ -12,5 +12,5 @@ mcmc:
   warmup: 2000
   draws: 4000
 reference_seeds: [42, 2026]
-quantile_source: results/wheat599/neural/quantile_tabm_development_20261106_v2
-huber_reference: results/wheat599/kernels/joint_tabm_icm_development_20261106
+quantile_source: results/wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2
+huber_reference: results/wheat599/kernels/icm/other/joint_tabm_icm_development_20261106

@@ -99,6 +99,10 @@ def _frozen_source_ok(name, digest, manifest):
     for section in ('src', 'scripts', 'extracted'):
         for old, new in round2.get(section, {}).items():
             r2reverse.setdefault(new, []).append(old)
+    round3 = mig.get('round3', {})
+    r3reverse = {}
+    for old, new in round3.get('results', {}).items():
+        r3reverse.setdefault(new, []).append(old)
 
     def round1_candidates(node):
         found = []
@@ -110,14 +114,31 @@ def _frozen_source_ok(name, digest, manifest):
                 found.append(oldp + node[len(new):])
         return found
 
+    def round3_candidates(node):
+        found = []
+        for new, olds in r3reverse.items():
+            if node == new:
+                found.extend(olds)
+            elif node.startswith(new + '/'):
+                found.extend(old + node[len(new):] for old in olds)
+        return found
+
     candidates = {name}
     candidates.update(round1_candidates(name))
     for pred in r2reverse.get(name, []):
         candidates.add(pred)
         candidates.update(round1_candidates(pred))
+    for p3 in round3_candidates(name):
+        candidates.add(p3)
+        candidates.update(round1_candidates(p3))
+        for p2 in r2reverse.get(p3, []):
+            candidates.add(p2)
+            candidates.update(round1_candidates(p2))
     refs = [commit]
     if round2.get('base_commit'):
         refs.append(round2['base_commit'])
+    if round3.get('base_commit'):
+        refs.append(round3['base_commit'])
     refs += subprocess.run(['git', 'tag'], cwd=root, capture_output=True, text=True).stdout.split()
     for old in candidates:
         for ref in refs:
@@ -133,7 +154,7 @@ def validate_manifest(cfg, manifest, folds, settings, configs):
     for name, digest in manifest['sha256'].items():
         if not _frozen_source_ok(name, digest, manifest):
             raise ValueError(f'Frozen source changed: {name}')
-    source = Path(cfg.get('development_source','results/wheat599/neural/quantile_tabm_development_20261106_v2'))
+    source = Path(cfg.get('development_source','results/wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2'))
     status = read(source/'execution_status.json')
     if status != {'status': 'complete', 'completed': 1920, 'expected': 1920} or read(source/'failures.json'):
         raise ValueError('Development incomplete')

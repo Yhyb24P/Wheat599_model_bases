@@ -15,8 +15,8 @@ model_config:
   direct_epochs: 200
 references:
   huber:
-    oof: results/wheat599/kernels/robust_icm_final_20261103/oof.csv
+    oof: results/wheat599/kernels/icm/robust/robust_icm_final_20261103/oof.csv
     oof_sha256: 1b892f525f13e3d7c94a64cd3cd8a5a65d5e66bafe88c460ce6e2732abdd9ac5
   independent_tabm:
-    oof: results/wheat599/neural/independent_tabm_final_20261105/oof.csv
+    oof: results/wheat599/neural/tabm/independent/independent_tabm_final_20261105/oof.csv
     oof_sha256: 315f16d0024039802fdd485e7d9a25894b892e1307c530d4af70c258a8c572da

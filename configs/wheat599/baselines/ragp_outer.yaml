@@ -2,7 +2,7 @@ model: ragp_outer
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 splits: protocols/get_icm_protocol_20261103/splits_manifest.json
-dev_trajectories: results/wheat599/baselines/ragp_development_20261105/trajectories.json
+dev_trajectories: results/wheat599/baselines/comparators/ragp/ragp_development_20261105/trajectories.json
 frozen_tag: ragp-protocol-20261105
 # The outer recipe must stay identical to the frozen development recipe.
 verify_frozen_config: configs/wheat599/baselines/ragp.yaml

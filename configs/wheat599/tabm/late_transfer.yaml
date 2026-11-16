@@ -18,8 +18,8 @@ device: auto
 cpu_workers: 2
 threads_per_worker: 4
 gpu_memory_fraction: 0.35
-historical_scores: results/wheat599/neural/environment_selection_development_20261105/per_fold.json
-fusion_scores: results/wheat599/neural/environment_tabm_development_20261105/summary.json
+historical_scores: results/wheat599/neural/tabm/environment/environment_selection_development_20261105/per_fold.json
+fusion_scores: results/wheat599/neural/tabm/environment/environment_tabm_development_20261105/summary.json
 versions:
   tabm: 0.0.3
   rtdl_num_embeddings: 0.0.12

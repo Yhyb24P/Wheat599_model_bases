@@ -3,7 +3,7 @@ data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 architecture_config: configs/wheat599/tabm/environment_tabm.yaml
-reference_source: results/wheat599/kernels/joint_tabm_icm_development_20261106
+reference_source: results/wheat599/kernels/icm/other/joint_tabm_icm_development_20261106
 seeds:
 - 42
 - 2026
@@ -19,10 +19,10 @@ training:
   batch_size: 128
   gradient_clip: 5.0
   tie_tolerance: 1.0e-12
-baseline_source: results/wheat599/neural/quantile_tabm_development_20261106_v2
-baseline_audit: results/wheat599/diagnostics/tabicl_compare_20261106/summary.json
+baseline_source: results/wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2
+baseline_audit: results/wheat599/diagnostics/meta/tabicl_compare_20261106/summary.json
 huber_config: configs/wheat599/kernels/robust_icm.yaml
-fusion_reference: results/wheat599/neural/menet_quantile_development_20261109
+fusion_reference: results/wheat599/neural/tabm/heads/menet_quantile_development_20261109
 split_seed: 20261109
 strengths:
 - 0.0

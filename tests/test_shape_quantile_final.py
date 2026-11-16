@@ -96,7 +96,7 @@ def test_outer_run_scores_only_after_all_fixed_fits(tmp_path, monkeypatch):
     monkeypatch.setattr(final, '_fit_outer', fake_fit)
     monkeypatch.setattr(final, 'reference', fake_reference)
     real_hash = final.sha256_of
-    monkeypatch.setattr(final, 'sha256_of', lambda p: '0'*64 if Path(p) == Path('results/wheat599/neural/quantile_tabm_final_20261106/oof.csv') else real_hash(Path(p)))
+    monkeypatch.setattr(final, 'sha256_of', lambda p: '0'*64 if Path(p) == Path('results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/oof.csv') else real_hash(Path(p)))
     out = tmp_path/'out'
     final.run(cfg, SimpleNamespace(selection=source/'summary.json', out=out, config=config_file), __file__)
     result = json.loads((out/'summary.json').read_text())

@@ -507,12 +507,12 @@ def unified_sota_records():
                             env=[f'{pcc(env[e]["pcc"]):.6f}' for e in ['1', '2', '4', '5']],
                             source=f'{run_dir(run).relative_to(ROOT)}/{rel}（2026-11-15）', link=f'../{run_dir(run).relative_to(ROOT)}/{rel}',
                             role=role, priority=priority, primary=False, note=note))
-    dnngp = json.loads((ROOT / 'results/wheat599/baselines/dnngp_final_20261115/run/summary.json').read_text())
+    dnngp = json.loads((ROOT / 'results/wheat599/baselines/deep/dnngp/dnngp_final_20261115/run/summary.json').read_text())
     denv = dnngp['per_environment']
     records.append(dict(name='DNNGP 同协议适配', stage='统一协议外层',
                         pcc=f'{dnngp["macro"]["pcc"]:.6f}', rmse=f'{dnngp["macro"]["rmse"]:.6f}', mae=f'{dnngp["macro"]["mae"]:.6f}',
                         env=[f'{denv[e]["pcc"]["mean"]:.6f}' for e in ['1', '2', '4', '5']],
-                        source='results/wheat599/baselines/dnngp_final_20261115/run/summary.json（2026-11-16）', link='../results/wheat599/baselines/dnngp_final_20261115/run/summary.json',
+                        source='results/wheat599/baselines/deep/dnngp/dnngp_final_20261115/run/summary.json（2026-11-16）', link='../results/wheat599/baselines/deep/dnngp/dnngp_final_20261115/run/summary.json',
                         role='SOTA 公开模型', priority=26, primary=False, status='待核验',
                         note='同协议适配，待进一步核验：CPU 开发阶段源码 SHA 已记录但副本未定位，不能精确复现该阶段；EpochRecorder 在 LR 调度后记录 epoch 末学习率，非逐 epoch 精确重放。限制见 evidence_notes.json，不视为原论文精确复现或已确认主表结果。'))
     for name, family, priority, status, note in [
@@ -666,9 +666,9 @@ def candidate_diagram():
 
 
 def mechanism_atlas():
-    manifest_path = ROOT/'results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json'
+    manifest_path = ROOT/'results/wheat599/neural/tabm/quantile/quantile_tabm_final_manifest_20261106/manifest.json'
     manifest = json.loads(manifest_path.read_text())
-    configurations = json.loads((ROOT/'results/wheat599/neural/environment_tabm_development_20261105/provenance.json').read_text())['config']['configurations']
+    configurations = json.loads((ROOT/'results/wheat599/neural/tabm/environment/environment_tabm_development_20261105/provenance.json').read_text())['config']['configurations']
     models = []
     for fold in range(10):
         for environment in range(4):
@@ -706,7 +706,7 @@ def mechanism_atlas():
 </section><section id="fit-mechanism"><h3>⑥ 学习、选模与最终融合：信息在哪一步进入？</h3>
 <div class="fit-steps"><div><b>1 · 外折留出材料</b><p>测试 59–60 份材料的四环境表型全部留出；其余 539–540 份为开发材料。</p></div><div><b>2 · 三内折选择</b><p>仅用拟合集估计预处理与核。神经模型逐环境按双种子平均预测 PCC 选八配置之一；各自记录最佳 epoch。</p></div><div><b>3 · 完整开发集重拟合</b><p>每环境、每种子取三个内折最佳 epoch 的中位数。该外折包含 4 × 2 个神经网络，另有一个四环境 Huber ICM。</p></div><div><b>4 · 冻结后预测</b><p>先分别还原原表型尺度；神经两种子平均，再与 Huber 各半融合。每份材料只使用其对应外折的留出预测。</p></div></div>
 <p>80 次神经外层拟合是 10 折 × 4 环境 × 2 种子，<strong>不是把 80 个网络同时集成到每份材料上</strong>。固定融合的增量属于完整系统结果，以上结构图不把参数共享、核非线性或稳健损失单独宣称为已证实的增益机制。</p>
-<p class="muted">核对来源：<a href="../src/genopred/models/neural/quantile_tabm.py">神经构建与损失</a> · <a href="../src/genopred/models/neural/genomic_tabm.py">标准化与 raw 路径</a> · <a href="../src/genopred/models/kernels/robust_icm.py">核特征与 Huber 求解</a> · <a href="../results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json">冻结外层清单</a> · <a href="LICENSE_NOTES.md">tabm 0.0.3 源码 SHA</a>。</p></section>
+<p class="muted">核对来源：<a href="../src/genopred/models/neural/quantile_tabm.py">神经构建与损失</a> · <a href="../src/genopred/models/neural/genomic_tabm.py">标准化与 raw 路径</a> · <a href="../src/genopred/models/kernels/robust_icm.py">核特征与 Huber 求解</a> · <a href="../results/wheat599/neural/tabm/quantile/quantile_tabm_final_manifest_20261106/manifest.json">冻结外层清单</a> · <a href="LICENSE_NOTES.md">tabm 0.0.3 源码 SHA</a>。</p></section>
 <script id="mechanism-data" type="application/json">''' + data + '''</script></section>'''
 
 
@@ -787,8 +787,8 @@ def wheat2000_section():
 def build():
     global SECTION_IDS
     SECTION_IDS = itertools.count()
-    qpath = ROOT/'results/wheat599/neural/quantile_tabm_final_20261106/summary.json'
-    mpath = ROOT/'results/wheat599/baselines/mulphe_unified_parallel_20261112/summary.json'
+    qpath = ROOT/'results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/summary.json'
+    mpath = ROOT/'results/wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/summary.json'
     q = json.loads(qpath.read_text())
     m = json.loads(mpath.read_text())
     systems = [(name, q['macro'][key], q['per_environment'][key]) for key, name in [
@@ -811,7 +811,7 @@ def build():
 <p>主指标是 40 个环境–外折 PCC 等权平均；折均与合并 OOF 不同。外层划分已多轮用于研究，不是新的独立验证，不计算独立折 p 值或置信区间，也不根据本页重选融合权重。不同预算的完整系统比较不单独归因于架构。</p>
 <figure>''' + bars + '''<figcaption><b>图 2 · 固定融合的折均宏 PCC 高于本页已核对的强参照及完整 Mul-PheG2P 适配。</b>n = 599，四环境、十外折；横条从 0 起、满宽为 PCC = 1，无误差条。来源：2026-11-06 分位数最终汇总与 2026-11-13 Mul-PheG2P 汇总；不是文献成绩排名。确切值见下表。</figcaption></figure>
 <div class="table-wrapper" tabindex="0" role="region" aria-label="统一协议指标"><table><caption>折均指标；Env1–4 对应原表型列 1、2、4、5</caption><thead><tr><th scope="col">完整系统</th><th scope="col">PCC ↑</th><th scope="col">RMSE ↓</th><th scope="col">MAE ↓</th><th scope="col">Env1 PCC</th><th scope="col">Env2 PCC</th><th scope="col">Env3 PCC</th><th scope="col">Env4 PCC</th></tr></thead><tbody>''' + rows + '''</tbody></table></div>
-<p>来源：<a href="../results/wheat599/neural/quantile_tabm_final_20261106/summary.json">分位数与参照 JSON</a> · <a href="../results/wheat599/baselines/mulphe_unified_parallel_20261112/summary.json">Mul-PheG2P JSON</a> · <a href="EVALUATION_PROTOCOL.md">统一协议与搜索预算</a></p></section></details>'''
+<p>来源：<a href="../results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/summary.json">分位数与参照 JSON</a> · <a href="../results/wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/summary.json">Mul-PheG2P JSON</a> · <a href="EVALUATION_PROTOCOL.md">统一协议与搜索预算</a></p></section></details>'''
     body += wheat2000_section()
     body += '''<section id="best"><h2>最优候选是什么，如何工作？</h2>
 <p>这是两个已经独立训练的预测器的平均，不是一张端到端联合网络。神经分支为每个环境学习单独的非线性标记函数；统计分支通过材料相似性和四环境相关性联合预测。融合在原表型尺度进行，权重在外层评价前固定为各 50%。</p>

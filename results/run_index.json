@@ -1,154 +1,154 @@
 {
   "schema": "genopred-run-index/1",
-  "generated_from_commit": "501c3e89367d40f1765667e17ebc1e2438a1f63f",
+  "generated_from_commit": "48ff6f018866ba42ce915c66923895fa4c4ff991",
   "n_runs": 178,
   "runs": [
     {
-      "run_id": "wheat2000/wheat2000_candidate_final_20261115",
+      "run_id": "wheat2000/candidate/wheat2000_candidate_final_20261115",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "candidate",
       "method": "wheat2000_candidate",
       "phase": "refit",
       "status": "complete",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat2000/wheat2000_candidate_final_20261115"
+      "result_path": "wheat2000/candidate/wheat2000_candidate_final_20261115"
     },
     {
-      "run_id": "wheat2000/wheat2000_deepgs_development_20261105",
+      "run_id": "wheat2000/classical/wheat2000_gblup_development_20261105",
       "dataset": "wheat2000",
-      "family": "",
-      "method": "wheat2000_deepgs",
-      "phase": "development",
-      "status": "stopped_by_user_scope_change",
-      "role": "cross_dataset",
-      "source_commit": "f6f96e73b37c61098527be27ae122457261596d7",
-      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_deepgs_development_20261105"
-    },
-    {
-      "run_id": "wheat2000/wheat2000_gblup_development_20261105",
-      "dataset": "wheat2000",
-      "family": "",
+      "family": "classical",
       "method": "wheat2000_gblup",
       "phase": "development",
       "status": "complete",
       "role": "cross_dataset",
       "source_commit": "48dc9082038e23456598280137c1c3d6504eb704",
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_gblup_development_20261105"
+      "result_path": "wheat2000/classical/wheat2000_gblup_development_20261105"
     },
     {
-      "run_id": "wheat2000/wheat2000_gblup_final_20261105",
+      "run_id": "wheat2000/classical/wheat2000_gblup_final_20261105",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "classical",
       "method": "wheat2000_gblup",
       "phase": "refit",
       "status": "complete",
       "role": "cross_dataset",
       "source_commit": "cb6d142b592710ac66d4c31fd50bcefd1afd3b9f",
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_gblup_final_20261105"
+      "result_path": "wheat2000/classical/wheat2000_gblup_final_20261105"
     },
     {
-      "run_id": "wheat2000/wheat2000_gsformer_csa_dev_20261116",
+      "run_id": "wheat2000/classical/wheat2000_huber_dev_20261115",
       "dataset": "wheat2000",
-      "family": "",
-      "method": "wheat2000_gsformer_csa",
-      "phase": "development",
-      "status": "unknown",
-      "role": "cross_dataset",
-      "source_commit": null,
-      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_gsformer_csa_dev_20261116"
-    },
-    {
-      "run_id": "wheat2000/wheat2000_gsformer_csa_final_20261116",
-      "dataset": "wheat2000",
-      "family": "",
-      "method": "wheat2000_gsformer_csa",
-      "phase": "refit",
-      "status": "complete",
-      "role": "cross_dataset",
-      "source_commit": null,
-      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_gsformer_csa_final_20261116"
-    },
-    {
-      "run_id": "wheat2000/wheat2000_huber_dev_20261115",
-      "dataset": "wheat2000",
-      "family": "",
+      "family": "classical",
       "method": "wheat2000_huber",
       "phase": "development",
       "status": "unknown",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_huber_dev_20261115"
+      "result_path": "wheat2000/classical/wheat2000_huber_dev_20261115"
     },
     {
-      "run_id": "wheat2000/wheat2000_huber_final_20261115",
+      "run_id": "wheat2000/classical/wheat2000_huber_final_20261115",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "classical",
       "method": "wheat2000_huber",
       "phase": "refit",
       "status": "complete",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_huber_final_20261115"
+      "result_path": "wheat2000/classical/wheat2000_huber_final_20261115"
     },
     {
-      "run_id": "wheat2000/wheat2000_mtcro_dev_20261115",
+      "run_id": "wheat2000/classical/wheat2000_mtcro_dev_20261115",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "classical",
       "method": "wheat2000_mtcro",
       "phase": "development",
       "status": "unknown",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_mtcro_dev_20261115"
+      "result_path": "wheat2000/classical/wheat2000_mtcro_dev_20261115"
     },
     {
-      "run_id": "wheat2000/wheat2000_mtcro_final_20261115",
+      "run_id": "wheat2000/classical/wheat2000_mtcro_final_20261115",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "classical",
       "method": "wheat2000_mtcro",
       "phase": "refit",
       "status": "complete",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_mtcro_final_20261115"
+      "result_path": "wheat2000/classical/wheat2000_mtcro_final_20261115"
     },
     {
-      "run_id": "wheat2000/wheat2000_wheatgp_dev_20261115",
+      "run_id": "wheat2000/neural/wheat2000_deepgs_development_20261105",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "neural",
+      "method": "wheat2000_deepgs",
+      "phase": "development",
+      "status": "stopped_by_user_scope_change",
+      "role": "cross_dataset",
+      "source_commit": "f6f96e73b37c61098527be27ae122457261596d7",
+      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
+      "result_path": "wheat2000/neural/wheat2000_deepgs_development_20261105"
+    },
+    {
+      "run_id": "wheat2000/neural/wheat2000_gsformer_csa_dev_20261116",
+      "dataset": "wheat2000",
+      "family": "neural",
+      "method": "wheat2000_gsformer_csa",
+      "phase": "development",
+      "status": "unknown",
+      "role": "cross_dataset",
+      "source_commit": null,
+      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
+      "result_path": "wheat2000/neural/wheat2000_gsformer_csa_dev_20261116"
+    },
+    {
+      "run_id": "wheat2000/neural/wheat2000_gsformer_csa_final_20261116",
+      "dataset": "wheat2000",
+      "family": "neural",
+      "method": "wheat2000_gsformer_csa",
+      "phase": "refit",
+      "status": "complete",
+      "role": "cross_dataset",
+      "source_commit": null,
+      "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
+      "result_path": "wheat2000/neural/wheat2000_gsformer_csa_final_20261116"
+    },
+    {
+      "run_id": "wheat2000/neural/wheat2000_wheatgp_dev_20261115",
+      "dataset": "wheat2000",
+      "family": "neural",
       "method": "wheat2000_wheatgp",
       "phase": "development",
       "status": "unknown",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_wheatgp_dev_20261115"
+      "result_path": "wheat2000/neural/wheat2000_wheatgp_dev_20261115"
     },
     {
-      "run_id": "wheat2000/wheat2000_wheatgp_final_20261115",
+      "run_id": "wheat2000/neural/wheat2000_wheatgp_final_20261115",
       "dataset": "wheat2000",
-      "family": "",
+      "family": "neural",
       "method": "wheat2000_wheatgp",
       "phase": "refit",
       "status": "complete",
       "role": "cross_dataset",
       "source_commit": null,
       "protocol": "results/wheat2000_protocol_20261105/splits_manifest.json",
-      "result_path": "wheat2000/wheat2000_wheatgp_final_20261115"
+      "result_path": "wheat2000/neural/wheat2000_wheatgp_final_20261115"
     },
     {
-      "run_id": "wheat599/baselines/background_nested_final_20261102",
+      "run_id": "wheat599/baselines/background/nested/background_nested_final_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "background_ridge",
@@ -157,10 +157,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_nested_final_20261102"
+      "result_path": "wheat599/baselines/background/nested/background_nested_final_20261102"
     },
     {
-      "run_id": "wheat599/baselines/background_nested_selection_20261102",
+      "run_id": "wheat599/baselines/background/nested/background_nested_selection_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "background_ridge",
@@ -169,10 +169,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_nested_selection_20261102"
+      "result_path": "wheat599/baselines/background/nested/background_nested_selection_20261102"
     },
     {
-      "run_id": "wheat599/baselines/background_rbf_nested_final_20261102",
+      "run_id": "wheat599/baselines/background/rbf/background_rbf_nested_final_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "background_rbf",
@@ -181,10 +181,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_rbf_nested_final_20261102"
+      "result_path": "wheat599/baselines/background/rbf/background_rbf_nested_final_20261102"
     },
     {
-      "run_id": "wheat599/baselines/background_rbf_nested_selection_20261102",
+      "run_id": "wheat599/baselines/background/rbf/background_rbf_nested_selection_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "background_rbf",
@@ -193,10 +193,34 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_rbf_nested_selection_20261102"
+      "result_path": "wheat599/baselines/background/rbf/background_rbf_nested_selection_20261102"
     },
     {
-      "run_id": "wheat599/baselines/background_ridge_20261102",
+      "run_id": "wheat599/baselines/background/rbf/background_weighted_rbf_final_20261102",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "background_rbf",
+      "phase": "refit",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/background/rbf/background_weighted_rbf_final_20261102"
+    },
+    {
+      "run_id": "wheat599/baselines/background/rbf/background_weighted_rbf_selection_20261102",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "background_rbf",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/background/rbf/background_weighted_rbf_selection_20261102"
+    },
+    {
+      "run_id": "wheat599/baselines/background/ridge/background_ridge_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "background_ridge",
@@ -205,34 +229,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_ridge_20261102"
+      "result_path": "wheat599/baselines/background/ridge/background_ridge_20261102"
     },
     {
-      "run_id": "wheat599/baselines/background_weighted_rbf_final_20261102",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "background_rbf",
-      "phase": "refit",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_weighted_rbf_final_20261102"
-    },
-    {
-      "run_id": "wheat599/baselines/background_weighted_rbf_selection_20261102",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "background_rbf",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/background_weighted_rbf_selection_20261102"
-    },
-    {
-      "run_id": "wheat599/baselines/bimsgp_ckpt_rules_20261030",
+      "run_id": "wheat599/baselines/bimsgp/diagnostics/bimsgp_ckpt_rules_20261030",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_ckpt_rules",
@@ -241,10 +241,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_ckpt_rules_20261030"
+      "result_path": "wheat599/baselines/bimsgp/diagnostics/bimsgp_ckpt_rules_20261030"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_diag_fixed_20261029",
+      "run_id": "wheat599/baselines/bimsgp/diagnostics/bimsgp_diag_fixed_20261029",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp",
@@ -253,10 +253,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_diag_fixed_20261029"
+      "result_path": "wheat599/baselines/bimsgp/diagnostics/bimsgp_diag_fixed_20261029"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_diag_ftt_20261029",
+      "run_id": "wheat599/baselines/bimsgp/diagnostics/bimsgp_diag_ftt_20261029",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp",
@@ -265,10 +265,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_diag_ftt_20261029"
+      "result_path": "wheat599/baselines/bimsgp/diagnostics/bimsgp_diag_ftt_20261029"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_diag_ftt_fixed_20261029",
+      "run_id": "wheat599/baselines/bimsgp/diagnostics/bimsgp_diag_ftt_fixed_20261029",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp",
@@ -277,34 +277,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_diag_ftt_fixed_20261029"
+      "result_path": "wheat599/baselines/bimsgp/diagnostics/bimsgp_diag_ftt_fixed_20261029"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_direct_20261030",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "bimsgp_direct",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_direct_20261030"
-    },
-    {
-      "run_id": "wheat599/baselines/bimsgp_induced_20261030",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "bimsgp_induced",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_induced_20261030"
-    },
-    {
-      "run_id": "wheat599/baselines/bimsgp_nested_final_20261102",
+      "run_id": "wheat599/baselines/bimsgp/nested/bimsgp_nested_final_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_nested",
@@ -313,10 +289,10 @@
       "role": "baseline",
       "source_commit": "71084c8fa5444fbc747b0291ace627b1f2d6ef33",
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/bimsgp_nested_final_20261102"
+      "result_path": "wheat599/baselines/bimsgp/nested/bimsgp_nested_final_20261102"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_nested_fp32_selection_20261102",
+      "run_id": "wheat599/baselines/bimsgp/nested/bimsgp_nested_fp32_selection_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_nested_fp32",
@@ -325,10 +301,10 @@
       "role": "baseline",
       "source_commit": "71084c8fa5444fbc747b0291ace627b1f2d6ef33",
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/bimsgp_nested_fp32_selection_20261102"
+      "result_path": "wheat599/baselines/bimsgp/nested/bimsgp_nested_fp32_selection_20261102"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_nested_selection_20261102",
+      "run_id": "wheat599/baselines/bimsgp/nested/bimsgp_nested_selection_20261102",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_nested",
@@ -337,10 +313,34 @@
       "role": "baseline",
       "source_commit": "71084c8fa5444fbc747b0291ace627b1f2d6ef33",
       "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/bimsgp_nested_selection_20261102"
+      "result_path": "wheat599/baselines/bimsgp/nested/bimsgp_nested_selection_20261102"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_residual_20261030",
+      "run_id": "wheat599/baselines/bimsgp/variants/bimsgp_direct_20261030",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "bimsgp_direct",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": null,
+      "result_path": "wheat599/baselines/bimsgp/variants/bimsgp_direct_20261030"
+    },
+    {
+      "run_id": "wheat599/baselines/bimsgp/variants/bimsgp_induced_20261030",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "bimsgp_induced",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": null,
+      "result_path": "wheat599/baselines/bimsgp/variants/bimsgp_induced_20261030"
+    },
+    {
+      "run_id": "wheat599/baselines/bimsgp/variants/bimsgp_residual_20261030",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_residual",
@@ -349,10 +349,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_residual_20261030"
+      "result_path": "wheat599/baselines/bimsgp/variants/bimsgp_residual_20261030"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_selected_test_20261030",
+      "run_id": "wheat599/baselines/bimsgp/variants/bimsgp_selected_test_20261030",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_selected_test",
@@ -361,10 +361,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_selected_test_20261030"
+      "result_path": "wheat599/baselines/bimsgp/variants/bimsgp_selected_test_20261030"
     },
     {
-      "run_id": "wheat599/baselines/bimsgp_trajectory_20261030",
+      "run_id": "wheat599/baselines/bimsgp/variants/bimsgp_trajectory_20261030",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "bimsgp_trajectory",
@@ -373,10 +373,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/bimsgp_trajectory_20261030"
+      "result_path": "wheat599/baselines/bimsgp/variants/bimsgp_trajectory_20261030"
     },
     {
-      "run_id": "wheat599/baselines/classical_baselines_final_20261115",
+      "run_id": "wheat599/baselines/comparators/classical/classical_baselines_final_20261115",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "classical_baselines",
@@ -385,10 +385,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/classical_baselines_final_20261115"
+      "result_path": "wheat599/baselines/comparators/classical/classical_baselines_final_20261115"
     },
     {
-      "run_id": "wheat599/baselines/classical_baselines_selection_20261115",
+      "run_id": "wheat599/baselines/comparators/classical/classical_baselines_selection_20261115",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "classical_baselines",
@@ -397,226 +397,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/classical_baselines_selection_20261115"
+      "result_path": "wheat599/baselines/comparators/classical/classical_baselines_selection_20261115"
     },
     {
-      "run_id": "wheat599/baselines/deepgs_development_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "deepgs",
-      "phase": "development",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/deepgs_development_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/deepgs_final_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "deepgs",
-      "phase": "refit",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/deepgs_final_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/dnawhisper_final_20261104",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "dnawhisper",
-      "phase": "refit",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "81a4a56a3222dbff32b353dea16377b3de781045",
-      "protocol": "CV1; pretraining, fine-tuning and standardization fitted on the current fitting subset only; test labels never used for fitting or selection",
-      "result_path": "wheat599/baselines/dnawhisper_final_20261104"
-    },
-    {
-      "run_id": "wheat599/baselines/dnawhisper_selection_20261104",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "dnawhisper",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "f3a4c91a1fdc61a0190f010b4bd1afd4f1633d75",
-      "protocol": "CV1; pretraining, fine-tuning and standardization fitted on the current fitting subset only; test labels never used for fitting or selection",
-      "result_path": "wheat599/baselines/dnawhisper_selection_20261104"
-    },
-    {
-      "run_id": "wheat599/baselines/dnngp_development_20261115/run",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "dnngp",
-      "phase": "unknown",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/dnngp_development_20261115/run"
-    },
-    {
-      "run_id": "wheat599/baselines/dnngp_final_20261115/run",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "dnngp",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/dnngp_final_20261115/run"
-    },
-    {
-      "run_id": "wheat599/baselines/gsformer_csa_development_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "gsformer_csa",
-      "phase": "development",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/gsformer_csa_development_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/gsformer_csa_outer_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "gsformer_csa",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/gsformer_csa_outer_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/gsformer_nsa_development_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "gsformer_nsa",
-      "phase": "development",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/gsformer_nsa_development_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/gsformer_nsa_outer_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "gsformer_nsa",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/gsformer_nsa_outer_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_nested_20261102",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "moegp_nested",
-      "phase": "unknown",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_nested_20261102"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_nested_dev_20261102",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "moegp_nested",
-      "phase": "development",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_nested_dev_20261102"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_nested_dev_20261102/test",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "test",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_nested_dev_20261102/test"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_shared_nested_20261106",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "moegp_shared_nested",
-      "phase": "development",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_shared_nested_20261106"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_shared_nested_20261106/test",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "test",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_shared_nested_20261106/test"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_unified_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "moegp_unified",
-      "phase": "development",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_unified_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_unified_20261115/test",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "test",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_unified_20261115/test"
-    },
-    {
-      "run_id": "wheat599/baselines/moegp_wheat599_20261102",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "moegp_wheat599",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/baselines/moegp_wheat599_20261102"
-    },
-    {
-      "run_id": "wheat599/baselines/mtcro_unified_development_20261115",
+      "run_id": "wheat599/baselines/comparators/mtcro/mtcro_unified_development_20261115",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "mtcro_unified",
@@ -625,10 +409,10 @@
       "role": "baseline",
       "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/mtcro_unified_development_20261115"
+      "result_path": "wheat599/baselines/comparators/mtcro/mtcro_unified_development_20261115"
     },
     {
-      "run_id": "wheat599/baselines/mtcro_unified_outer_20261115",
+      "run_id": "wheat599/baselines/comparators/mtcro/mtcro_unified_outer_20261115",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "mtcro_unified",
@@ -637,10 +421,10 @@
       "role": "baseline",
       "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/mtcro_unified_outer_20261115"
+      "result_path": "wheat599/baselines/comparators/mtcro/mtcro_unified_outer_20261115"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_reevaluation_fivefold_20261106",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_reevaluation_fivefold_20261106",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "mulphe",
@@ -649,10 +433,10 @@
       "role": "baseline",
       "source_commit": "4e2b84060dd50aaf3b46b7df7e66c5745193c691",
       "protocol": "results/mulphe_splits_20261105/manifest.json",
-      "result_path": "wheat599/baselines/mulphe_reevaluation_fivefold_20261106"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_reevaluation_fivefold_20261106"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_reevaluation_tenfold_20261106",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_reevaluation_tenfold_20261106",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "mulphe",
@@ -661,10 +445,10 @@
       "role": "baseline",
       "source_commit": "4e2b84060dd50aaf3b46b7df7e66c5745193c691",
       "protocol": "results/mulphe_splits_20261105/tenfold_manifest.json",
-      "result_path": "wheat599/baselines/mulphe_reevaluation_tenfold_20261106"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_reevaluation_tenfold_20261106"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "mulphe_unified_parallel",
@@ -673,10 +457,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_0",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_0",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_0",
@@ -685,10 +469,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_0"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_0"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_1",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_1",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_1",
@@ -697,10 +481,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_1"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_1"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_2",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_2",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_2",
@@ -709,10 +493,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_2"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_2"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_3",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_3",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_3",
@@ -721,10 +505,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_3"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_3"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_4",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_4",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_4",
@@ -733,10 +517,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_4"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_4"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_5",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_5",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_5",
@@ -745,10 +529,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_5"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_5"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_6",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_6",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_6",
@@ -757,10 +541,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_6"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_6"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_7",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_7",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_7",
@@ -769,10 +553,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_7"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_7"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_8",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_8",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_8",
@@ -781,10 +565,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_8"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_8"
     },
     {
-      "run_id": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_9",
+      "run_id": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_9",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "fold_9",
@@ -793,10 +577,10 @@
       "role": "baseline",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/baselines/mulphe_unified_parallel_20261112/folds/fold_9"
+      "result_path": "wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/folds/fold_9"
     },
     {
-      "run_id": "wheat599/baselines/ragp_development_20261105",
+      "run_id": "wheat599/baselines/comparators/ragp/ragp_development_20261105",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "ragp",
@@ -805,10 +589,10 @@
       "role": "baseline",
       "source_commit": "15c630ec98f47fede2216527f9f9e780017833f8",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/ragp_development_20261105"
+      "result_path": "wheat599/baselines/comparators/ragp/ragp_development_20261105"
     },
     {
-      "run_id": "wheat599/baselines/ragp_outer_20261115",
+      "run_id": "wheat599/baselines/comparators/ragp/ragp_outer_20261115",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "ragp_outer",
@@ -817,34 +601,10 @@
       "role": "baseline",
       "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/ragp_outer_20261115"
+      "result_path": "wheat599/baselines/comparators/ragp/ragp_outer_20261115"
     },
     {
-      "run_id": "wheat599/baselines/soydngp_development_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "soydngp",
-      "phase": "development",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/soydngp_development_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/soydngp_final_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "soydngp",
-      "phase": "refit",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/soydngp_final_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/sparse_interaction_diagnostic_20261104",
+      "run_id": "wheat599/baselines/comparators/sparse/sparse_interaction_diagnostic_20261104",
       "dataset": "wheat599",
       "family": "baselines",
       "method": "sparse_interaction_diagnostic",
@@ -853,142 +613,322 @@
       "role": "baseline",
       "source_commit": "30ee9ea6f2705ef7d508171aa4ce20a682aad186",
       "protocol": null,
-      "result_path": "wheat599/baselines/sparse_interaction_diagnostic_20261104"
+      "result_path": "wheat599/baselines/comparators/sparse/sparse_interaction_diagnostic_20261104"
     },
     {
-      "run_id": "wheat599/baselines/wheatgp_development_20261106",
+      "run_id": "wheat599/baselines/deep/deepgs/deepgs_development_20261115",
       "dataset": "wheat599",
       "family": "baselines",
-      "method": "wheatgp_nested",
+      "method": "deepgs",
       "phase": "development",
       "status": "unknown",
       "role": "baseline",
-      "source_commit": "3e2296913058a3fde470775c2f8ca5b767ae7bc8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/wheatgp_development_20261106"
-    },
-    {
-      "run_id": "wheat599/baselines/wheatgp_outer_20261106",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "wheatgp_nested",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "3e2296913058a3fde470775c2f8ca5b767ae7bc8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/wheatgp_outer_20261106"
-    },
-    {
-      "run_id": "wheat599/baselines/wheatgp_rebuilt_development_20261106",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "wheatgp_rebuilt",
-      "phase": "development",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "92c200592736b153e5549cdda5b89c0216c0f362",
-      "protocol": null,
-      "result_path": "wheat599/baselines/wheatgp_rebuilt_development_20261106"
-    },
-    {
-      "run_id": "wheat599/baselines/wheatgp_rebuilt_outer_20261106",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "wheatgp_rebuilt",
-      "phase": "outer_eval",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "92c200592736b153e5549cdda5b89c0216c0f362",
-      "protocol": null,
-      "result_path": "wheat599/baselines/wheatgp_rebuilt_outer_20261106"
-    },
-    {
-      "run_id": "wheat599/baselines/wheatgp_unified_development_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "wheatgp_unified",
-      "phase": "development",
-      "status": "unknown",
-      "role": "baseline",
-      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/wheatgp_unified_development_20261115"
-    },
-    {
-      "run_id": "wheat599/baselines/wheatgp_unified_outer_20261115",
-      "dataset": "wheat599",
-      "family": "baselines",
-      "method": "wheatgp_unified",
-      "phase": "outer_eval",
-      "status": "complete",
-      "role": "baseline",
-      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/baselines/wheatgp_unified_outer_20261115"
-    },
-    {
-      "run_id": "wheat599/diagnostics/ceiling_diagnostic_20261116",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "ceiling",
-      "phase": "diagnostic",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": null,
-      "protocol": null,
-      "result_path": "wheat599/diagnostics/ceiling_diagnostic_20261116"
-    },
-    {
-      "run_id": "wheat599/diagnostics/extrapolation_diagnostic_20261116",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "extrapolation_diagnostic",
-      "phase": "diagnostic",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": "bdc920eb016d23748f347ec9f27615e5c43c6242",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/extrapolation_diagnostic_20261116"
-    },
-    {
-      "run_id": "wheat599/diagnostics/grouped_kernel_development_20261105",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "grouped_kernel",
-      "phase": "development",
-      "status": "complete",
-      "role": "diagnostic",
       "source_commit": null,
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/grouped_kernel_development_20261105"
+      "result_path": "wheat599/baselines/deep/deepgs/deepgs_development_20261115"
     },
     {
-      "run_id": "wheat599/diagnostics/grouped_kernel_final_20261105",
+      "run_id": "wheat599/baselines/deep/deepgs/deepgs_final_20261115",
       "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "grouped_kernel_final",
+      "family": "baselines",
+      "method": "deepgs",
       "phase": "refit",
       "status": "complete",
-      "role": "diagnostic",
+      "role": "baseline",
       "source_commit": null,
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/grouped_kernel_final_20261105"
+      "result_path": "wheat599/baselines/deep/deepgs/deepgs_final_20261115"
     },
     {
-      "run_id": "wheat599/diagnostics/grouped_weights_development_20261105",
+      "run_id": "wheat599/baselines/deep/dnawhisper/dnawhisper_final_20261104",
       "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "grouped_weights",
+      "family": "baselines",
+      "method": "dnawhisper",
+      "phase": "refit",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "81a4a56a3222dbff32b353dea16377b3de781045",
+      "protocol": "CV1; pretraining, fine-tuning and standardization fitted on the current fitting subset only; test labels never used for fitting or selection",
+      "result_path": "wheat599/baselines/deep/dnawhisper/dnawhisper_final_20261104"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/dnawhisper/dnawhisper_selection_20261104",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "dnawhisper",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "f3a4c91a1fdc61a0190f010b4bd1afd4f1633d75",
+      "protocol": "CV1; pretraining, fine-tuning and standardization fitted on the current fitting subset only; test labels never used for fitting or selection",
+      "result_path": "wheat599/baselines/deep/dnawhisper/dnawhisper_selection_20261104"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/dnngp/dnngp_development_20261115/run",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "dnngp",
+      "phase": "unknown",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/dnngp/dnngp_development_20261115/run"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/dnngp/dnngp_final_20261115/run",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "dnngp",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/dnngp/dnngp_final_20261115/run"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/gsformer/gsformer_csa_development_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "gsformer_csa",
+      "phase": "development",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/gsformer/gsformer_csa_development_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/gsformer/gsformer_csa_outer_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "gsformer_csa",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/gsformer/gsformer_csa_outer_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/gsformer/gsformer_nsa_development_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "gsformer_nsa",
+      "phase": "development",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/gsformer/gsformer_nsa_development_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/gsformer/gsformer_nsa_outer_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "gsformer_nsa",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/gsformer/gsformer_nsa_outer_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/soydngp/soydngp_development_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "soydngp",
+      "phase": "development",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/soydngp/soydngp_development_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/deep/soydngp/soydngp_final_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "soydngp",
+      "phase": "refit",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/deep/soydngp/soydngp_final_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_nested_20261102",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "moegp_nested",
+      "phase": "unknown",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_nested_20261102"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_nested_dev_20261102",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "moegp_nested",
       "phase": "development",
       "status": "complete",
-      "role": "diagnostic",
-      "source_commit": null,
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/grouped_weights_development_20261105"
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_nested_dev_20261102"
     },
     {
-      "run_id": "wheat599/diagnostics/joint_inference_20261104",
+      "run_id": "wheat599/baselines/moegp/moegp_nested_dev_20261102/test",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "test",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_nested_dev_20261102/test"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_shared_nested_20261106",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "moegp_shared_nested",
+      "phase": "development",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_shared_nested_20261106"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_shared_nested_20261106/test",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "test",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_shared_nested_20261106/test"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_unified_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "moegp_unified",
+      "phase": "development",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_unified_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_unified_20261115/test",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "test",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_unified_20261115/test"
+    },
+    {
+      "run_id": "wheat599/baselines/moegp/moegp_wheat599_20261102",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "moegp_wheat599",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "d3a3c44f649fadf95af34d63f069fc8dfd85af38",
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/baselines/moegp/moegp_wheat599_20261102"
+    },
+    {
+      "run_id": "wheat599/baselines/wheatgp/original/wheatgp_development_20261106",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "wheatgp_nested",
+      "phase": "development",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "3e2296913058a3fde470775c2f8ca5b767ae7bc8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/wheatgp/original/wheatgp_development_20261106"
+    },
+    {
+      "run_id": "wheat599/baselines/wheatgp/original/wheatgp_outer_20261106",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "wheatgp_nested",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "3e2296913058a3fde470775c2f8ca5b767ae7bc8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/wheatgp/original/wheatgp_outer_20261106"
+    },
+    {
+      "run_id": "wheat599/baselines/wheatgp/rebuilt/wheatgp_rebuilt_development_20261106",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "wheatgp_rebuilt",
+      "phase": "development",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "92c200592736b153e5549cdda5b89c0216c0f362",
+      "protocol": null,
+      "result_path": "wheat599/baselines/wheatgp/rebuilt/wheatgp_rebuilt_development_20261106"
+    },
+    {
+      "run_id": "wheat599/baselines/wheatgp/rebuilt/wheatgp_rebuilt_outer_20261106",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "wheatgp_rebuilt",
+      "phase": "outer_eval",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "92c200592736b153e5549cdda5b89c0216c0f362",
+      "protocol": null,
+      "result_path": "wheat599/baselines/wheatgp/rebuilt/wheatgp_rebuilt_outer_20261106"
+    },
+    {
+      "run_id": "wheat599/baselines/wheatgp/unified/wheatgp_unified_development_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "wheatgp_unified",
+      "phase": "development",
+      "status": "unknown",
+      "role": "baseline",
+      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/wheatgp/unified/wheatgp_unified_development_20261115"
+    },
+    {
+      "run_id": "wheat599/baselines/wheatgp/unified/wheatgp_unified_outer_20261115",
+      "dataset": "wheat599",
+      "family": "baselines",
+      "method": "wheatgp_unified",
+      "phase": "outer_eval",
+      "status": "complete",
+      "role": "baseline",
+      "source_commit": "2e9098b7deca6b498d2499856b94ffc82b3fc6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/baselines/wheatgp/unified/wheatgp_unified_outer_20261115"
+    },
+    {
+      "run_id": "wheat599/diagnostics/inference/joint_inference_20261104",
       "dataset": "wheat599",
       "family": "diagnostics",
       "method": "joint_inference",
@@ -997,10 +937,10 @@
       "role": "diagnostic",
       "source_commit": "8ce68a696d89e6c63e68f09b0b2016717375dcde",
       "protocol": null,
-      "result_path": "wheat599/diagnostics/joint_inference_20261104"
+      "result_path": "wheat599/diagnostics/inference/joint_inference_20261104"
     },
     {
-      "run_id": "wheat599/diagnostics/locus_context_selection_20261104",
+      "run_id": "wheat599/diagnostics/inference/locus_context_selection_20261104",
       "dataset": "wheat599",
       "family": "diagnostics",
       "method": "locus_context",
@@ -1009,10 +949,10 @@
       "role": "diagnostic",
       "source_commit": "15400cc3692ef21e170634a37324315a2641301e",
       "protocol": "CV1; fit-only neural episodes; inner macro PCC selection; frozen refit",
-      "result_path": "wheat599/diagnostics/locus_context_selection_20261104"
+      "result_path": "wheat599/diagnostics/inference/locus_context_selection_20261104"
     },
     {
-      "run_id": "wheat599/diagnostics/matrix_inference_learning_20261104",
+      "run_id": "wheat599/diagnostics/inference/matrix_inference_learning_20261104",
       "dataset": "wheat599",
       "family": "diagnostics",
       "method": "matrix_inference",
@@ -1021,70 +961,10 @@
       "role": "diagnostic",
       "source_commit": "e3c7369ee7b2b7087809bc57f030ff623faa1cea",
       "protocol": null,
-      "result_path": "wheat599/diagnostics/matrix_inference_learning_20261104"
+      "result_path": "wheat599/diagnostics/inference/matrix_inference_learning_20261104"
     },
     {
-      "run_id": "wheat599/diagnostics/phenotype_rotation_development_20261105",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "phenotype_rotation",
-      "phase": "development",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": "e4b92a8386b84bb2eab76a5f6f9ff0d33f174e9b",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/phenotype_rotation_development_20261105"
-    },
-    {
-      "run_id": "wheat599/diagnostics/polygenic_simulation_20261116",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "polygenic_simulation",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": "96f028e6c792e3af697f4e7c8494f4e87b5d2ace",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/polygenic_simulation_20261116"
-    },
-    {
-      "run_id": "wheat599/diagnostics/seed_stability_20261106",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "seed_stability",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": "5256ddaa6752ece51fed222ff72a34713be7bc90",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/diagnostics/seed_stability_20261106"
-    },
-    {
-      "run_id": "wheat599/diagnostics/tabicl_compare_20261106",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "tabicl_compare",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": null,
-      "protocol": null,
-      "result_path": "wheat599/diagnostics/tabicl_compare_20261106"
-    },
-    {
-      "run_id": "wheat599/diagnostics/tree_tensor_shrinkage_pilot_20261116",
-      "dataset": "wheat599",
-      "family": "diagnostics",
-      "method": "tree_tensor_shrinkage_pilot",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "diagnostic",
-      "source_commit": null,
-      "protocol": null,
-      "result_path": "wheat599/diagnostics/tree_tensor_shrinkage_pilot_20261116"
-    },
-    {
-      "run_id": "wheat599/diagnostics/vector_diagnostic_20261104",
+      "run_id": "wheat599/diagnostics/inference/vector_diagnostic_20261104",
       "dataset": "wheat599",
       "family": "diagnostics",
       "method": "vector_diagnostic",
@@ -1093,58 +973,178 @@
       "role": "diagnostic",
       "source_commit": "4470ebe7c438c5f9835fec22efcee4fa03c5b903",
       "protocol": null,
-      "result_path": "wheat599/diagnostics/vector_diagnostic_20261104"
+      "result_path": "wheat599/diagnostics/inference/vector_diagnostic_20261104"
     },
     {
-      "run_id": "wheat599/kernels/bh_lmc_final_20261102",
+      "run_id": "wheat599/diagnostics/kernel/grouped_kernel_development_20261105",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "grouped_kernel",
+      "phase": "development",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/kernel/grouped_kernel_development_20261105"
+    },
+    {
+      "run_id": "wheat599/diagnostics/kernel/grouped_kernel_final_20261105",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "grouped_kernel_final",
+      "phase": "refit",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/kernel/grouped_kernel_final_20261105"
+    },
+    {
+      "run_id": "wheat599/diagnostics/kernel/grouped_weights_development_20261105",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "grouped_weights",
+      "phase": "development",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": null,
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/kernel/grouped_weights_development_20261105"
+    },
+    {
+      "run_id": "wheat599/diagnostics/meta/ceiling_diagnostic_20261116",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "ceiling",
+      "phase": "diagnostic",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": null,
+      "protocol": null,
+      "result_path": "wheat599/diagnostics/meta/ceiling_diagnostic_20261116"
+    },
+    {
+      "run_id": "wheat599/diagnostics/meta/extrapolation_diagnostic_20261116",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "extrapolation_diagnostic",
+      "phase": "diagnostic",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": "bdc920eb016d23748f347ec9f27615e5c43c6242",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/meta/extrapolation_diagnostic_20261116"
+    },
+    {
+      "run_id": "wheat599/diagnostics/meta/tabicl_compare_20261106",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "tabicl_compare",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": null,
+      "protocol": null,
+      "result_path": "wheat599/diagnostics/meta/tabicl_compare_20261106"
+    },
+    {
+      "run_id": "wheat599/diagnostics/simulation/phenotype_rotation_development_20261105",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "phenotype_rotation",
+      "phase": "development",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": "e4b92a8386b84bb2eab76a5f6f9ff0d33f174e9b",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/simulation/phenotype_rotation_development_20261105"
+    },
+    {
+      "run_id": "wheat599/diagnostics/simulation/polygenic_simulation_20261116",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "polygenic_simulation",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": "96f028e6c792e3af697f4e7c8494f4e87b5d2ace",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/simulation/polygenic_simulation_20261116"
+    },
+    {
+      "run_id": "wheat599/diagnostics/simulation/seed_stability_20261106",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "seed_stability",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": "5256ddaa6752ece51fed222ff72a34713be7bc90",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/diagnostics/simulation/seed_stability_20261106"
+    },
+    {
+      "run_id": "wheat599/diagnostics/simulation/tree_tensor_shrinkage_pilot_20261116",
+      "dataset": "wheat599",
+      "family": "diagnostics",
+      "method": "tree_tensor_shrinkage_pilot",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "diagnostic",
+      "source_commit": null,
+      "protocol": null,
+      "result_path": "wheat599/diagnostics/simulation/tree_tensor_shrinkage_pilot_20261116"
+    },
+    {
+      "run_id": "wheat599/kernels/baselines/kernel_baselines_final_20261102",
       "dataset": "wheat599",
       "family": "kernels",
-      "method": "bh_lmc",
+      "method": "kernel_baselines",
       "phase": "refit",
       "status": "complete",
       "role": "candidate",
       "source_commit": null,
-      "protocol": "CV1; nested macro PCC; full development refit",
-      "result_path": "wheat599/kernels/bh_lmc_final_20261102"
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/kernels/baselines/kernel_baselines_final_20261102"
     },
     {
-      "run_id": "wheat599/kernels/bh_lmc_original_final_20261102",
+      "run_id": "wheat599/kernels/baselines/kernel_baselines_selection_20261102",
       "dataset": "wheat599",
       "family": "kernels",
-      "method": "bh_lmc",
+      "method": "kernel_baselines",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": null,
+      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
+      "result_path": "wheat599/kernels/baselines/kernel_baselines_selection_20261102"
+    },
+    {
+      "run_id": "wheat599/kernels/baselines/multienv_kernel_final_20261102",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "multienv_kernel",
       "phase": "refit",
       "status": "complete",
       "role": "candidate",
       "source_commit": null,
-      "protocol": "CV1; nested macro PCC; full development refit",
-      "result_path": "wheat599/kernels/bh_lmc_original_final_20261102"
+      "protocol": "CV1; full development refit",
+      "result_path": "wheat599/kernels/baselines/multienv_kernel_final_20261102"
     },
     {
-      "run_id": "wheat599/kernels/bh_lmc_original_selection_20261102",
+      "run_id": "wheat599/kernels/baselines/multienv_kernel_selection_20261102",
       "dataset": "wheat599",
       "family": "kernels",
-      "method": "bh_lmc",
+      "method": "multienv_kernel",
       "phase": "selection",
       "status": "unknown",
       "role": "candidate",
       "source_commit": null,
-      "protocol": "CV1; nested macro PCC; full development refit",
-      "result_path": "wheat599/kernels/bh_lmc_original_selection_20261102"
+      "protocol": "CV1; full development refit",
+      "result_path": "wheat599/kernels/baselines/multienv_kernel_selection_20261102"
     },
     {
-      "run_id": "wheat599/kernels/bh_lmc_selection_20261102",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "bh_lmc",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": null,
-      "protocol": "CV1; nested macro PCC; full development refit",
-      "result_path": "wheat599/kernels/bh_lmc_selection_20261102"
-    },
-    {
-      "run_id": "wheat599/kernels/get_icm_final_20261103",
+      "run_id": "wheat599/kernels/icm/get/get_icm_final_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "get_icm",
@@ -1153,10 +1153,10 @@
       "role": "candidate",
       "source_commit": "89abb5a21fe2b2a2d3f4e9622145efc793bf850f",
       "protocol": "CV1; training-standardized Y; GLS intercept; conditional GLS-LOO",
-      "result_path": "wheat599/kernels/get_icm_final_20261103"
+      "result_path": "wheat599/kernels/icm/get/get_icm_final_20261103"
     },
     {
-      "run_id": "wheat599/kernels/get_icm_joint_final_20261103",
+      "run_id": "wheat599/kernels/icm/get/get_icm_joint_final_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "get_icm_joint",
@@ -1165,10 +1165,10 @@
       "role": "candidate",
       "source_commit": "d228e236ecde52aecf7e581867f58aeeef6bacb2",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/get_icm_joint_final_20261103"
+      "result_path": "wheat599/kernels/icm/get/get_icm_joint_final_20261103"
     },
     {
-      "run_id": "wheat599/kernels/get_icm_joint_selection_20261103",
+      "run_id": "wheat599/kernels/icm/get/get_icm_joint_selection_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "get_icm_joint",
@@ -1177,10 +1177,10 @@
       "role": "candidate",
       "source_commit": "0d3fafc26c7bee6f90192d0e5d377a5d6b672e33",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/get_icm_joint_selection_20261103"
+      "result_path": "wheat599/kernels/icm/get/get_icm_joint_selection_20261103"
     },
     {
-      "run_id": "wheat599/kernels/get_icm_selection_20261103",
+      "run_id": "wheat599/kernels/icm/get/get_icm_selection_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "get_icm",
@@ -1189,10 +1189,10 @@
       "role": "candidate",
       "source_commit": "08bb915a301991e828174b0af6dba8b4c1cf1318",
       "protocol": "CV1; training-standardized Y; GLS intercept; conditional GLS-LOO",
-      "result_path": "wheat599/kernels/get_icm_selection_20261103"
+      "result_path": "wheat599/kernels/icm/get/get_icm_selection_20261103"
     },
     {
-      "run_id": "wheat599/kernels/heterogeneous_icm_development_20261103",
+      "run_id": "wheat599/kernels/icm/other/heterogeneous_icm_development_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "heterogeneous_icm",
@@ -1201,10 +1201,10 @@
       "role": "candidate",
       "source_commit": "d593e081566e11a70e35de9d5720ccd7e012e5ec",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/heterogeneous_icm_development_20261103"
+      "result_path": "wheat599/kernels/icm/other/heterogeneous_icm_development_20261103"
     },
     {
-      "run_id": "wheat599/kernels/joint_tabm_icm_development_20261106",
+      "run_id": "wheat599/kernels/icm/other/joint_tabm_icm_development_20261106",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "joint_tabm_icm",
@@ -1213,166 +1213,10 @@
       "role": "candidate",
       "source_commit": "1c55f262abba2dc4402d062737be4c202df530ca",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/joint_tabm_icm_development_20261106"
+      "result_path": "wheat599/kernels/icm/other/joint_tabm_icm_development_20261106"
     },
     {
-      "run_id": "wheat599/kernels/kernel_averaging_development_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "kernel_averaging",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "2307f0c0c54855165669af053736c1d2975c08e9",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/kernel_averaging_development_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/kernel_baselines_final_20261102",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "kernel_baselines",
-      "phase": "refit",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": null,
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/kernels/kernel_baselines_final_20261102"
-    },
-    {
-      "run_id": "wheat599/kernels/kernel_baselines_selection_20261102",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "kernel_baselines",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": null,
-      "protocol": "results/bimsgp_ftt_fixed_20261029/splits_manifest.json",
-      "result_path": "wheat599/kernels/kernel_baselines_selection_20261102"
-    },
-    {
-      "run_id": "wheat599/kernels/kernel_gcv_20261116",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "kernel_gcv",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "302ae4996d1ad2f4d59a2a0e1cfabf6a952e0387",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/kernel_gcv_20261116"
-    },
-    {
-      "run_id": "wheat599/kernels/lcm_gp_final_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "lcm_gp",
-      "phase": "refit",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "0b9371dafcddadc102d6403764a760b68fb5a7ee",
-      "protocol": "CV1 material-level; centering, standardization and ridge initialization from the fitting rows only; float32 training with float64 analytic references; test evaluated once after the frozen selection",
-      "result_path": "wheat599/kernels/lcm_gp_final_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/lcm_gp_selection_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "lcm_gp",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": "aabcc55da7c14a2e767dcacad4d04b38d51a4404",
-      "protocol": "CV1 material-level; centering, standardization and ridge initialization from the fitting rows only; float32 training with float64 analytic references; test evaluated once after the frozen selection",
-      "result_path": "wheat599/kernels/lcm_gp_selection_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/matrix_kernel_reference_20261104",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "matrix_kernel_reference",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "e7f3612b21f40bccbfd6b1a472ffda92d34db4e4",
-      "protocol": null,
-      "result_path": "wheat599/kernels/matrix_kernel_reference_20261104"
-    },
-    {
-      "run_id": "wheat599/kernels/multienv_kernel_final_20261102",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "multienv_kernel",
-      "phase": "refit",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": null,
-      "protocol": "CV1; full development refit",
-      "result_path": "wheat599/kernels/multienv_kernel_final_20261102"
-    },
-    {
-      "run_id": "wheat599/kernels/multienv_kernel_selection_20261102",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "multienv_kernel",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": null,
-      "protocol": "CV1; full development refit",
-      "result_path": "wheat599/kernels/multienv_kernel_selection_20261102"
-    },
-    {
-      "run_id": "wheat599/kernels/non_gaussian_selection_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "non_gaussian_icm",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": "3bed25744635feb8217cad5a6259251515b7a728",
-      "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass",
-      "result_path": "wheat599/kernels/non_gaussian_selection_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/non_gaussian_spectral_control_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "non_gaussian_control",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "1899c215a9c1e612a65dea7a0fc7d4782d809e7f",
-      "protocol": "CV1 development only; no test predictions",
-      "result_path": "wheat599/kernels/non_gaussian_spectral_control_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/non_gaussian_spectral_final_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "non_gaussian_icm",
-      "phase": "refit",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "1899c215a9c1e612a65dea7a0fc7d4782d809e7f",
-      "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass",
-      "result_path": "wheat599/kernels/non_gaussian_spectral_final_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/non_gaussian_spectral_selection_20261103",
-      "dataset": "wheat599",
-      "family": "kernels",
-      "method": "non_gaussian_icm",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": "3bed25744635feb8217cad5a6259251515b7a728",
-      "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass",
-      "result_path": "wheat599/kernels/non_gaussian_spectral_selection_20261103"
-    },
-    {
-      "run_id": "wheat599/kernels/reml_icm_final_20261103",
+      "run_id": "wheat599/kernels/icm/reml/reml_icm_final_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "reml_icm",
@@ -1381,10 +1225,10 @@
       "role": "candidate",
       "source_commit": "f607fc1e9d9bacea3d0bfca5d461172f68a367a4",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/reml_icm_final_20261103"
+      "result_path": "wheat599/kernels/icm/reml/reml_icm_final_20261103"
     },
     {
-      "run_id": "wheat599/kernels/reml_icm_selection_20261103",
+      "run_id": "wheat599/kernels/icm/reml/reml_icm_selection_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "reml_icm",
@@ -1393,10 +1237,10 @@
       "role": "candidate",
       "source_commit": "f072cd09cfce638dbdee402fa8a74b2bbad4c5ea",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/reml_icm_selection_20261103"
+      "result_path": "wheat599/kernels/icm/reml/reml_icm_selection_20261103"
     },
     {
-      "run_id": "wheat599/kernels/robust_icm_development_20261103",
+      "run_id": "wheat599/kernels/icm/robust/robust_icm_development_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "robust_icm",
@@ -1405,10 +1249,10 @@
       "role": "candidate",
       "source_commit": "deed0db1778d339f1d9942465a3efce845299c4d",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/robust_icm_development_20261103"
+      "result_path": "wheat599/kernels/icm/robust/robust_icm_development_20261103"
     },
     {
-      "run_id": "wheat599/kernels/robust_icm_final_20261103",
+      "run_id": "wheat599/kernels/icm/robust/robust_icm_final_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "robust_icm",
@@ -1417,10 +1261,10 @@
       "role": "candidate",
       "source_commit": "1b9701050ed1966522148bab8d6f1669ffc4cead",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/robust_icm_final_20261103"
+      "result_path": "wheat599/kernels/icm/robust/robust_icm_final_20261103"
     },
     {
-      "run_id": "wheat599/kernels/spectral_icm_final_20261102",
+      "run_id": "wheat599/kernels/icm/spectral/spectral_icm_final_20261102",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "spectral_icm",
@@ -1429,10 +1273,10 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": "CV1; inner macro PCC selection, full development refit",
-      "result_path": "wheat599/kernels/spectral_icm_final_20261102"
+      "result_path": "wheat599/kernels/icm/spectral/spectral_icm_final_20261102"
     },
     {
-      "run_id": "wheat599/kernels/spectral_icm_selection_20261102",
+      "run_id": "wheat599/kernels/icm/spectral/spectral_icm_selection_20261102",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "spectral_icm",
@@ -1441,10 +1285,10 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": "CV1; inner macro PCC selection, full development refit",
-      "result_path": "wheat599/kernels/spectral_icm_selection_20261102"
+      "result_path": "wheat599/kernels/icm/spectral/spectral_icm_selection_20261102"
     },
     {
-      "run_id": "wheat599/kernels/target_icm_final_20261103",
+      "run_id": "wheat599/kernels/icm/target/target_icm_final_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "target_icm",
@@ -1453,10 +1297,10 @@
       "role": "candidate",
       "source_commit": "43f11b76358d2bbf86abaecfdbf0c3385e6927d3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/target_icm_final_20261103"
+      "result_path": "wheat599/kernels/icm/target/target_icm_final_20261103"
     },
     {
-      "run_id": "wheat599/kernels/target_icm_selection_20261103",
+      "run_id": "wheat599/kernels/icm/target/target_icm_selection_20261103",
       "dataset": "wheat599",
       "family": "kernels",
       "method": "target_icm",
@@ -1465,106 +1309,166 @@
       "role": "candidate",
       "source_commit": "1951636f25f43aa8b847f7132fe1594d42645f41",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/kernels/target_icm_selection_20261103"
+      "result_path": "wheat599/kernels/icm/target/target_icm_selection_20261103"
     },
     {
-      "run_id": "wheat599/neural/adaptive_anova_development_20261114",
+      "run_id": "wheat599/kernels/lmc/bh_lmc_final_20261102",
       "dataset": "wheat599",
-      "family": "neural",
-      "method": "adaptive_anova",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "7b6e09d89c9ba62dee54621cbc3bec44054ba6c8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/adaptive_anova_development_20261114"
-    },
-    {
-      "run_id": "wheat599/neural/anchored_quantile_development_20261110",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "anchored_quantile",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "54c605751b59326b38837003967966c733c3fcff",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/anchored_quantile_development_20261110"
-    },
-    {
-      "run_id": "wheat599/neural/conditional_quantile_development_20261110_v2",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "c4990a3095f9232c2ed85e5a318f6dec30113ba6",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/conditional_quantile_development_20261110_v2"
-    },
-    {
-      "run_id": "wheat599/neural/distill_correlation_final_20261109",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "distill_correlation_final",
+      "family": "kernels",
+      "method": "bh_lmc",
       "phase": "refit",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "beee56e5ca62bf85248956fec1d902b357d52a07",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/distill_correlation_final_20261109"
+      "source_commit": null,
+      "protocol": "CV1; nested macro PCC; full development refit",
+      "result_path": "wheat599/kernels/lmc/bh_lmc_final_20261102"
     },
     {
-      "run_id": "wheat599/neural/distill_quantile_correlation_development_20261109",
+      "run_id": "wheat599/kernels/lmc/bh_lmc_original_final_20261102",
       "dataset": "wheat599",
-      "family": "neural",
-      "method": "distill_quantile",
+      "family": "kernels",
+      "method": "bh_lmc",
+      "phase": "refit",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": null,
+      "protocol": "CV1; nested macro PCC; full development refit",
+      "result_path": "wheat599/kernels/lmc/bh_lmc_original_final_20261102"
+    },
+    {
+      "run_id": "wheat599/kernels/lmc/bh_lmc_original_selection_20261102",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "bh_lmc",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": null,
+      "protocol": "CV1; nested macro PCC; full development refit",
+      "result_path": "wheat599/kernels/lmc/bh_lmc_original_selection_20261102"
+    },
+    {
+      "run_id": "wheat599/kernels/lmc/bh_lmc_selection_20261102",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "bh_lmc",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": null,
+      "protocol": "CV1; nested macro PCC; full development refit",
+      "result_path": "wheat599/kernels/lmc/bh_lmc_selection_20261102"
+    },
+    {
+      "run_id": "wheat599/kernels/lmc/lcm_gp_final_20261103",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "lcm_gp",
+      "phase": "refit",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "0b9371dafcddadc102d6403764a760b68fb5a7ee",
+      "protocol": "CV1 material-level; centering, standardization and ridge initialization from the fitting rows only; float32 training with float64 analytic references; test evaluated once after the frozen selection",
+      "result_path": "wheat599/kernels/lmc/lcm_gp_final_20261103"
+    },
+    {
+      "run_id": "wheat599/kernels/lmc/lcm_gp_selection_20261103",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "lcm_gp",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": "aabcc55da7c14a2e767dcacad4d04b38d51a4404",
+      "protocol": "CV1 material-level; centering, standardization and ridge initialization from the fitting rows only; float32 training with float64 analytic references; test evaluated once after the frozen selection",
+      "result_path": "wheat599/kernels/lmc/lcm_gp_selection_20261103"
+    },
+    {
+      "run_id": "wheat599/kernels/misc/kernel_averaging_development_20261103",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "kernel_averaging",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "32d10adeff0cfa942de4c9bdb78572e06ec8ac85",
+      "source_commit": "2307f0c0c54855165669af053736c1d2975c08e9",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/distill_quantile_correlation_development_20261109"
+      "result_path": "wheat599/kernels/misc/kernel_averaging_development_20261103"
     },
     {
-      "run_id": "wheat599/neural/distill_quantile_development_20261109_parallel",
+      "run_id": "wheat599/kernels/misc/kernel_gcv_20261116",
       "dataset": "wheat599",
-      "family": "neural",
-      "method": "distill_quantile",
-      "phase": "development",
+      "family": "kernels",
+      "method": "kernel_gcv",
+      "phase": "unknown",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "0d411e8941a1a73416131ab18488237ff6559319",
+      "source_commit": "302ae4996d1ad2f4d59a2a0e1cfabf6a952e0387",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/distill_quantile_development_20261109_parallel"
+      "result_path": "wheat599/kernels/misc/kernel_gcv_20261116"
     },
     {
-      "run_id": "wheat599/neural/environment_selection_development_20261105",
+      "run_id": "wheat599/kernels/misc/matrix_kernel_reference_20261104",
       "dataset": "wheat599",
-      "family": "neural",
-      "method": "environment_selection",
-      "phase": "development",
+      "family": "kernels",
+      "method": "matrix_kernel_reference",
+      "phase": "unknown",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "e3708ca3bfde8643632a04f1225c4a41db39ca2f",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/environment_selection_development_20261105"
+      "source_commit": "e7f3612b21f40bccbfd6b1a472ffda92d34db4e4",
+      "protocol": null,
+      "result_path": "wheat599/kernels/misc/matrix_kernel_reference_20261104"
     },
     {
-      "run_id": "wheat599/neural/environment_tabm_development_20261105",
+      "run_id": "wheat599/kernels/non_gaussian/non_gaussian_selection_20261103",
       "dataset": "wheat599",
-      "family": "neural",
-      "method": "environment_tabm",
-      "phase": "development",
+      "family": "kernels",
+      "method": "non_gaussian_icm",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": "3bed25744635feb8217cad5a6259251515b7a728",
+      "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass",
+      "result_path": "wheat599/kernels/non_gaussian/non_gaussian_selection_20261103"
+    },
+    {
+      "run_id": "wheat599/kernels/non_gaussian/non_gaussian_spectral_control_20261103",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "non_gaussian_control",
+      "phase": "unknown",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "d10c9cb63ff4bfffefdcc59ec9862bc876bbc872",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/environment_tabm_development_20261105"
+      "source_commit": "1899c215a9c1e612a65dea7a0fc7d4782d809e7f",
+      "protocol": "CV1 development only; no test predictions",
+      "result_path": "wheat599/kernels/non_gaussian/non_gaussian_spectral_control_20261103"
     },
     {
-      "run_id": "wheat599/neural/fusion_outer_20261105",
+      "run_id": "wheat599/kernels/non_gaussian/non_gaussian_spectral_final_20261103",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "non_gaussian_icm",
+      "phase": "refit",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "1899c215a9c1e612a65dea7a0fc7d4782d809e7f",
+      "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass",
+      "result_path": "wheat599/kernels/non_gaussian/non_gaussian_spectral_final_20261103"
+    },
+    {
+      "run_id": "wheat599/kernels/non_gaussian/non_gaussian_spectral_selection_20261103",
+      "dataset": "wheat599",
+      "family": "kernels",
+      "method": "non_gaussian_icm",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": "3bed25744635feb8217cad5a6259251515b7a728",
+      "protocol": "CV1; gamma=0 branch is the retained ICM base; full development refit before one test pass",
+      "result_path": "wheat599/kernels/non_gaussian/non_gaussian_spectral_selection_20261103"
+    },
+    {
+      "run_id": "wheat599/neural/fusion/core/fusion_outer_20261105",
       "dataset": "wheat599",
       "family": "neural",
       "method": "fusion",
@@ -1573,10 +1477,10 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/neural/fusion_outer_20261105"
+      "result_path": "wheat599/neural/fusion/core/fusion_outer_20261105"
     },
     {
-      "run_id": "wheat599/neural/fusion_refit_final_20261106",
+      "run_id": "wheat599/neural/fusion/core/fusion_refit_final_20261106",
       "dataset": "wheat599",
       "family": "neural",
       "method": "fusion_refit",
@@ -1585,10 +1489,10 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/neural/fusion_refit_final_20261106"
+      "result_path": "wheat599/neural/fusion/core/fusion_refit_final_20261106"
     },
     {
-      "run_id": "wheat599/neural/fusion_reselect_20261106",
+      "run_id": "wheat599/neural/fusion/core/fusion_reselect_20261106",
       "dataset": "wheat599",
       "family": "neural",
       "method": "fusion_reselect",
@@ -1597,82 +1501,10 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/neural/fusion_reselect_20261106"
+      "result_path": "wheat599/neural/fusion/core/fusion_reselect_20261106"
     },
     {
-      "run_id": "wheat599/neural/genomic_tabm_development_20261104",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "genomic_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "8c30ca91c64b6a9773d88f2fb9068d4cadf65be1",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/genomic_tabm_development_20261104"
-    },
-    {
-      "run_id": "wheat599/neural/independent_basis_development_20261116",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "1af75126ebb6918d7791ef303465556b3f543fee",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/independent_basis_development_20261116"
-    },
-    {
-      "run_id": "wheat599/neural/independent_tabm_final_20261105",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "independent_tabm_final",
-      "phase": "refit",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "4111e588706068cf689c60ab71f38a1eb0437125",
-      "protocol": "CV1 outer test; full-dev refit; fixed manifest epochs; member-mean then seed-mean; no test selection",
-      "result_path": "wheat599/neural/independent_tabm_final_20261105"
-    },
-    {
-      "run_id": "wheat599/neural/independent_tabm_refit_manifest_20261105",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "independent_tabm_freeze",
-      "phase": "selection",
-      "status": "unknown",
-      "role": "candidate",
-      "source_commit": "8e6d07b7136660238499690c3f80a3808c87c047",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/independent_tabm_refit_manifest_20261105"
-    },
-    {
-      "run_id": "wheat599/neural/joint_kernel_quantile_development_20261108_resume",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "joint_kernel_quantile",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "e4232aa0d12123bb0f96bbef7f9e335a5757a76a",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/joint_kernel_quantile_development_20261108_resume"
-    },
-    {
-      "run_id": "wheat599/neural/late_transfer_development_20261105",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "late_transfer",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "7d979b899740d05c4a54fa5a0f1ebfe35d803a7a",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/late_transfer_development_20261105"
-    },
-    {
-      "run_id": "wheat599/neural/mean_fusion_reselect_20261106",
+      "run_id": "wheat599/neural/fusion/core/mean_fusion_reselect_20261106",
       "dataset": "wheat599",
       "family": "neural",
       "method": "mean_fusion_reselect",
@@ -1681,202 +1513,46 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": null,
-      "result_path": "wheat599/neural/mean_fusion_reselect_20261106"
+      "result_path": "wheat599/neural/fusion/core/mean_fusion_reselect_20261106"
     },
     {
-      "run_id": "wheat599/neural/mean_quantile_development_20261106",
+      "run_id": "wheat599/neural/fusion/distill/distill_correlation_final_20261109",
       "dataset": "wheat599",
       "family": "neural",
-      "method": "mean_quantile",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "93aec943b0b2322b34ebe7b3ef825148a42c123c",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/mean_quantile_development_20261106"
-    },
-    {
-      "run_id": "wheat599/neural/menet_quantile_development_20261109",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "menet_quantile",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "97c9f0f543e4bed9ae3fd57f2e7e7759e8a1cfbc",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/menet_quantile_development_20261109"
-    },
-    {
-      "run_id": "wheat599/neural/multihead_mse_development_20261106",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "multihead_mse",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "0e8963942438f69cc58a507bbd6020f1c282509b",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/multihead_mse_development_20261106"
-    },
-    {
-      "run_id": "wheat599/neural/quantile_gated_interaction_development_20261109",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "69091550856d14ead6ed5a8a6086788bfd531fc9",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_gated_interaction_development_20261109"
-    },
-    {
-      "run_id": "wheat599/neural/quantile_layer_interaction_development_20261109",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "9944edcc81db9eb30a119adc24f38e9ea120889e",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_layer_interaction_development_20261109"
-    },
-    {
-      "run_id": "wheat599/neural/quantile_median_heads_development_20261116",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "526c1fcc6fccad4eecc52d1e3d0cdcfc4fdbe284",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_median_heads_development_20261116"
-    },
-    {
-      "run_id": "wheat599/neural/quantile_member_interaction_development_20261109",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "55921ecbc1456300ae63fef7f7963f197607b1ea",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_member_interaction_development_20261109"
-    },
-    {
-      "run_id": "wheat599/neural/quantile_member_interaction_final_20261109",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm_final",
+      "method": "distill_correlation_final",
       "phase": "refit",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "2399687586974005c0a1157c70af1d40fdb29360",
+      "source_commit": "beee56e5ca62bf85248956fec1d902b357d52a07",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_member_interaction_final_20261109"
+      "result_path": "wheat599/neural/fusion/distill/distill_correlation_final_20261109"
     },
     {
-      "run_id": "wheat599/neural/quantile_muon_tabm_development_20261109",
+      "run_id": "wheat599/neural/fusion/distill/distill_quantile_correlation_development_20261109",
       "dataset": "wheat599",
       "family": "neural",
-      "method": "quantile_tabm",
+      "method": "distill_quantile",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "69091550856d14ead6ed5a8a6086788bfd531fc9",
+      "source_commit": "32d10adeff0cfa942de4c9bdb78572e06ec8ac85",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_muon_tabm_development_20261109"
+      "result_path": "wheat599/neural/fusion/distill/distill_quantile_correlation_development_20261109"
     },
     {
-      "run_id": "wheat599/neural/quantile_tabm_development_20261106_v2",
+      "run_id": "wheat599/neural/fusion/distill/distill_quantile_development_20261109_parallel",
       "dataset": "wheat599",
       "family": "neural",
-      "method": "quantile_tabm",
+      "method": "distill_quantile",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "f87cd35efb2391ed2f175385a56e29fef983aa88",
+      "source_commit": "0d411e8941a1a73416131ab18488237ff6559319",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_tabm_development_20261106_v2"
+      "result_path": "wheat599/neural/fusion/distill/distill_quantile_development_20261109_parallel"
     },
     {
-      "run_id": "wheat599/neural/quantile_tabm_final_20261106",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm_final",
-      "phase": "refit",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "8b728b923cf4e85f8863233d87c8ceca5f8f34cf",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/quantile_tabm_final_20261106"
-    },
-    {
-      "run_id": "wheat599/neural/query_quantile_development_20261114",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "c0f369229f98855215015c9ab12a4380452a565c",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/query_quantile_development_20261114"
-    },
-    {
-      "run_id": "wheat599/neural/query_quantile_development_local_20261114",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "c0f369229f98855215015c9ab12a4380452a565c",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/query_quantile_development_local_20261114"
-    },
-    {
-      "run_id": "wheat599/neural/relation_quantile_controls_20261107",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "relation_quantile_controls",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "856567ef161fa2bb3cd9bb27b2912b85c36756fa",
-      "protocol": null,
-      "result_path": "wheat599/neural/relation_quantile_controls_20261107"
-    },
-    {
-      "run_id": "wheat599/neural/relation_quantile_curve_permutation_20261108",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "relation_quantile_controls",
-      "phase": "unknown",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "147c2ceecb07431d8201c01cf7edf8aa825c0652",
-      "protocol": null,
-      "result_path": "wheat599/neural/relation_quantile_curve_permutation_20261108"
-    },
-    {
-      "run_id": "wheat599/neural/relation_quantile_development_20261107_v2",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "relation_quantile",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "92aecee95837320fd1b11135b82740111964197f",
-      "protocol": null,
-      "result_path": "wheat599/neural/relation_quantile_development_20261107_v2"
-    },
-    {
-      "run_id": "wheat599/neural/retrieval_fusion_development_20261105",
+      "run_id": "wheat599/neural/fusion/retrieval/retrieval_fusion_development_20261105",
       "dataset": "wheat599",
       "family": "neural",
       "method": "retrieval_fusion",
@@ -1885,34 +1561,94 @@
       "role": "candidate",
       "source_commit": null,
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/retrieval_fusion_development_20261105"
+      "result_path": "wheat599/neural/fusion/retrieval/retrieval_fusion_development_20261105"
     },
     {
-      "run_id": "wheat599/neural/retrieval_tabm_development_20261105",
+      "run_id": "wheat599/neural/interaction/gated/quantile_gated_interaction_development_20261109",
       "dataset": "wheat599",
       "family": "neural",
-      "method": "retrieval_tabm",
+      "method": "quantile_tabm",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "22faf5b9205b6d53e2aa85fa19a3063eda5f3235",
+      "source_commit": "69091550856d14ead6ed5a8a6086788bfd531fc9",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/retrieval_tabm_development_20261105"
+      "result_path": "wheat599/neural/interaction/gated/quantile_gated_interaction_development_20261109"
     },
     {
-      "run_id": "wheat599/neural/rfm_development_20261106",
+      "run_id": "wheat599/neural/interaction/gated/quantile_layer_interaction_development_20261109",
       "dataset": "wheat599",
       "family": "neural",
-      "method": "rfm_development",
+      "method": "quantile_tabm",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "33881ba18c2719553e84e9f8c3e20a34d13ca5e1",
+      "source_commit": "9944edcc81db9eb30a119adc24f38e9ea120889e",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/rfm_development_20261106"
+      "result_path": "wheat599/neural/interaction/gated/quantile_layer_interaction_development_20261109"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_free_development_20261114",
+      "run_id": "wheat599/neural/interaction/member/quantile_member_interaction_development_20261109",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "55921ecbc1456300ae63fef7f7963f197607b1ea",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/interaction/member/quantile_member_interaction_development_20261109"
+    },
+    {
+      "run_id": "wheat599/neural/interaction/member/quantile_member_interaction_final_20261109",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm_final",
+      "phase": "refit",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "2399687586974005c0a1157c70af1d40fdb29360",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/interaction/member/quantile_member_interaction_final_20261109"
+    },
+    {
+      "run_id": "wheat599/neural/interaction/relation/relation_quantile_controls_20261107",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "relation_quantile_controls",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "856567ef161fa2bb3cd9bb27b2912b85c36756fa",
+      "protocol": null,
+      "result_path": "wheat599/neural/interaction/relation/relation_quantile_controls_20261107"
+    },
+    {
+      "run_id": "wheat599/neural/interaction/relation/relation_quantile_curve_permutation_20261108",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "relation_quantile_controls",
+      "phase": "unknown",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "147c2ceecb07431d8201c01cf7edf8aa825c0652",
+      "protocol": null,
+      "result_path": "wheat599/neural/interaction/relation/relation_quantile_curve_permutation_20261108"
+    },
+    {
+      "run_id": "wheat599/neural/interaction/relation/relation_quantile_development_20261107_v2",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "relation_quantile",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "92aecee95837320fd1b11135b82740111964197f",
+      "protocol": null,
+      "result_path": "wheat599/neural/interaction/relation/relation_quantile_development_20261107_v2"
+    },
+    {
+      "run_id": "wheat599/neural/shape/free/shape_quantile_free_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1921,10 +1657,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_free_development_20261114"
+      "result_path": "wheat599/neural/shape/free/shape_quantile_free_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_free_outer_20261114",
+      "run_id": "wheat599/neural/shape/free/shape_quantile_free_outer_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1933,10 +1669,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_free_outer_20261114"
+      "result_path": "wheat599/neural/shape/free/shape_quantile_free_outer_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_midpoint_development_20261114",
+      "run_id": "wheat599/neural/shape/midpoint/shape_quantile_midpoint_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1945,10 +1681,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_midpoint_development_20261114"
+      "result_path": "wheat599/neural/shape/midpoint/shape_quantile_midpoint_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_midpoint_outer_20261114",
+      "run_id": "wheat599/neural/shape/midpoint/shape_quantile_midpoint_outer_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1957,10 +1693,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_midpoint_outer_20261114"
+      "result_path": "wheat599/neural/shape/midpoint/shape_quantile_midpoint_outer_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_shared_development_20261114",
+      "run_id": "wheat599/neural/shape/shared/shape_quantile_shared_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1969,10 +1705,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_shared_development_20261114"
+      "result_path": "wheat599/neural/shape/shared/shape_quantile_shared_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_shared_outer_20261114",
+      "run_id": "wheat599/neural/shape/shared/shape_quantile_shared_outer_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1981,10 +1717,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_shared_outer_20261114"
+      "result_path": "wheat599/neural/shape/shared/shape_quantile_shared_outer_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_shrink_development_20261114",
+      "run_id": "wheat599/neural/shape/shrink/shape_quantile_shrink_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -1993,10 +1729,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_shrink_development_20261114"
+      "result_path": "wheat599/neural/shape/shrink/shape_quantile_shrink_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/shape_quantile_shrink_outer_20261114",
+      "run_id": "wheat599/neural/shape/shrink/shape_quantile_shrink_outer_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -2005,46 +1741,10 @@
       "role": "candidate",
       "source_commit": "eb2cf67beef1b99a6fd8b17f37f09f17a35775c3",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shape_quantile_shrink_outer_20261114"
+      "result_path": "wheat599/neural/shape/shrink/shape_quantile_shrink_outer_20261114"
     },
     {
-      "run_id": "wheat599/neural/shared_basis_development_20261116",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "quantile_tabm",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "1af75126ebb6918d7791ef303465556b3f543fee",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/shared_basis_development_20261116"
-    },
-    {
-      "run_id": "wheat599/neural/sparse_polygenic_bart_development_20261110",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "sparse_polygenic_bart",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "d2cd6b1d63d5c05252a9aa30dec0706413c72dd8",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/sparse_polygenic_bart_development_20261110"
-    },
-    {
-      "run_id": "wheat599/neural/sparse_residual_quantile_development_20261112",
-      "dataset": "wheat599",
-      "family": "neural",
-      "method": "sparse_residual_quantile",
-      "phase": "development",
-      "status": "complete",
-      "role": "candidate",
-      "source_commit": "4acdcc27f4b82d82d4a641dc56b59dcc5331cadf",
-      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/sparse_residual_quantile_development_20261112"
-    },
-    {
-      "run_id": "wheat599/neural/structured_coefficient_development_20261110_v2",
+      "run_id": "wheat599/neural/structured/coefficient/structured_coefficient_development_20261110_v2",
       "dataset": "wheat599",
       "family": "neural",
       "method": "structured_coefficient",
@@ -2053,10 +1753,58 @@
       "role": "candidate",
       "source_commit": "5eabab42d1e704020a342fb6396ddfce8356949e",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/structured_coefficient_development_20261110_v2"
+      "result_path": "wheat599/neural/structured/coefficient/structured_coefficient_development_20261110_v2"
     },
     {
-      "run_id": "wheat599/neural/supervised_ising_coupled_development_20261114",
+      "run_id": "wheat599/neural/structured/sparse/joint_kernel_quantile_development_20261108_resume",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "joint_kernel_quantile",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "e4232aa0d12123bb0f96bbef7f9e335a5757a76a",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/sparse/joint_kernel_quantile_development_20261108_resume"
+    },
+    {
+      "run_id": "wheat599/neural/structured/sparse/rfm_development_20261106",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "rfm_development",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "33881ba18c2719553e84e9f8c3e20a34d13ca5e1",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/sparse/rfm_development_20261106"
+    },
+    {
+      "run_id": "wheat599/neural/structured/sparse/sparse_polygenic_bart_development_20261110",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "sparse_polygenic_bart",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "d2cd6b1d63d5c05252a9aa30dec0706413c72dd8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/sparse/sparse_polygenic_bart_development_20261110"
+    },
+    {
+      "run_id": "wheat599/neural/structured/sparse/sparse_residual_quantile_development_20261112",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "sparse_residual_quantile",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "4acdcc27f4b82d82d4a641dc56b59dcc5331cadf",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/sparse/sparse_residual_quantile_development_20261112"
+    },
+    {
+      "run_id": "wheat599/neural/structured/supervised_ising/supervised_ising_coupled_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -2065,10 +1813,10 @@
       "role": "candidate",
       "source_commit": "101191573a746c50ecf1d7894043b13c569a81b7",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/supervised_ising_coupled_development_20261114"
+      "result_path": "wheat599/neural/structured/supervised_ising/supervised_ising_coupled_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/supervised_ising_independent_development_20261114",
+      "run_id": "wheat599/neural/structured/supervised_ising/supervised_ising_independent_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -2077,10 +1825,10 @@
       "role": "candidate",
       "source_commit": "101191573a746c50ecf1d7894043b13c569a81b7",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/supervised_ising_independent_development_20261114"
+      "result_path": "wheat599/neural/structured/supervised_ising/supervised_ising_independent_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/supervised_ising_mlp_development_20261114",
+      "run_id": "wheat599/neural/structured/supervised_ising/supervised_ising_mlp_development_20261114",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
@@ -2089,10 +1837,106 @@
       "role": "candidate",
       "source_commit": "101191573a746c50ecf1d7894043b13c569a81b7",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/supervised_ising_mlp_development_20261114"
+      "result_path": "wheat599/neural/structured/supervised_ising/supervised_ising_mlp_development_20261114"
     },
     {
-      "run_id": "wheat599/neural/tabicl_genomic_development_20261106",
+      "run_id": "wheat599/neural/structured/treewidth_ising/treewidth_ising_coupled_development_20261116",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "26cc3d9bdf3ab50489f22e3ef533a4cfdc365e6b",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/treewidth_ising/treewidth_ising_coupled_development_20261116"
+    },
+    {
+      "run_id": "wheat599/neural/structured/treewidth_ising/treewidth_ising_independent_development_20261116",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "26cc3d9bdf3ab50489f22e3ef533a4cfdc365e6b",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/treewidth_ising/treewidth_ising_independent_development_20261116"
+    },
+    {
+      "run_id": "wheat599/neural/structured/treewidth_ising/treewidth_ising_mlp_development_20261116",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "26cc3d9bdf3ab50489f22e3ef533a4cfdc365e6b",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/structured/treewidth_ising/treewidth_ising_mlp_development_20261116"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/environment/environment_selection_development_20261105",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "environment_selection",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "e3708ca3bfde8643632a04f1225c4a41db39ca2f",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/environment/environment_selection_development_20261105"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/environment/environment_tabm_development_20261105",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "environment_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "d10c9cb63ff4bfffefdcc59ec9862bc876bbc872",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/environment/environment_tabm_development_20261105"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/genomic/genomic_tabm_development_20261104",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "genomic_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "8c30ca91c64b6a9773d88f2fb9068d4cadf65be1",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/genomic/genomic_tabm_development_20261104"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/genomic/late_transfer_development_20261105",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "late_transfer",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "7d979b899740d05c4a54fa5a0f1ebfe35d803a7a",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/genomic/late_transfer_development_20261105"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/genomic/retrieval_tabm_development_20261105",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "retrieval_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "22faf5b9205b6d53e2aa85fa19a3063eda5f3235",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/genomic/retrieval_tabm_development_20261105"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/genomic/tabicl_genomic_development_20261106",
       "dataset": "wheat599",
       "family": "neural",
       "method": "tabicl_genomic",
@@ -2101,43 +1945,199 @@
       "role": "candidate",
       "source_commit": "6e998451abb98120ef0dd2cb96eddad71db28a9c",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/tabicl_genomic_development_20261106"
+      "result_path": "wheat599/neural/tabm/genomic/tabicl_genomic_development_20261106"
     },
     {
-      "run_id": "wheat599/neural/treewidth_ising_coupled_development_20261116",
+      "run_id": "wheat599/neural/tabm/heads/adaptive_anova_development_20261114",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "adaptive_anova",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "7b6e09d89c9ba62dee54621cbc3bec44054ba6c8",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/heads/adaptive_anova_development_20261114"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/heads/mean_quantile_development_20261106",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "mean_quantile",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "93aec943b0b2322b34ebe7b3ef825148a42c123c",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/heads/mean_quantile_development_20261106"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/heads/menet_quantile_development_20261109",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "menet_quantile",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "97c9f0f543e4bed9ae3fd57f2e7e7759e8a1cfbc",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/heads/menet_quantile_development_20261109"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/heads/multihead_mse_development_20261106",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "multihead_mse",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "0e8963942438f69cc58a507bbd6020f1c282509b",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/heads/multihead_mse_development_20261106"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/independent/independent_basis_development_20261116",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "26cc3d9bdf3ab50489f22e3ef533a4cfdc365e6b",
+      "source_commit": "1af75126ebb6918d7791ef303465556b3f543fee",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/treewidth_ising_coupled_development_20261116"
+      "result_path": "wheat599/neural/tabm/independent/independent_basis_development_20261116"
     },
     {
-      "run_id": "wheat599/neural/treewidth_ising_independent_development_20261116",
+      "run_id": "wheat599/neural/tabm/independent/independent_tabm_final_20261105",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "independent_tabm_final",
+      "phase": "refit",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "4111e588706068cf689c60ab71f38a1eb0437125",
+      "protocol": "CV1 outer test; full-dev refit; fixed manifest epochs; member-mean then seed-mean; no test selection",
+      "result_path": "wheat599/neural/tabm/independent/independent_tabm_final_20261105"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/independent/independent_tabm_refit_manifest_20261105",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "independent_tabm_freeze",
+      "phase": "selection",
+      "status": "unknown",
+      "role": "candidate",
+      "source_commit": "8e6d07b7136660238499690c3f80a3808c87c047",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/independent/independent_tabm_refit_manifest_20261105"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/independent/shared_basis_development_20261116",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "26cc3d9bdf3ab50489f22e3ef533a4cfdc365e6b",
+      "source_commit": "1af75126ebb6918d7791ef303465556b3f543fee",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/treewidth_ising_independent_development_20261116"
+      "result_path": "wheat599/neural/tabm/independent/shared_basis_development_20261116"
     },
     {
-      "run_id": "wheat599/neural/treewidth_ising_mlp_development_20261116",
+      "run_id": "wheat599/neural/tabm/quantile/quantile_median_heads_development_20261116",
       "dataset": "wheat599",
       "family": "neural",
       "method": "quantile_tabm",
       "phase": "development",
       "status": "complete",
       "role": "candidate",
-      "source_commit": "26cc3d9bdf3ab50489f22e3ef533a4cfdc365e6b",
+      "source_commit": "526c1fcc6fccad4eecc52d1e3d0cdcfc4fdbe284",
       "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
-      "result_path": "wheat599/neural/treewidth_ising_mlp_development_20261116"
+      "result_path": "wheat599/neural/tabm/quantile/quantile_median_heads_development_20261116"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/quantile/quantile_muon_tabm_development_20261109",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "69091550856d14ead6ed5a8a6086788bfd531fc9",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/quantile/quantile_muon_tabm_development_20261109"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "f87cd35efb2391ed2f175385a56e29fef983aa88",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/quantile/quantile_tabm_final_20261106",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm_final",
+      "phase": "refit",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "8b728b923cf4e85f8863233d87c8ceca5f8f34cf",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/quantile/quantile_tabm_final_20261106"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/query/anchored_quantile_development_20261110",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "anchored_quantile",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "54c605751b59326b38837003967966c733c3fcff",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/query/anchored_quantile_development_20261110"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/query/conditional_quantile_development_20261110_v2",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "c4990a3095f9232c2ed85e5a318f6dec30113ba6",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/query/conditional_quantile_development_20261110_v2"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/query/query_quantile_development_20261114",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "c0f369229f98855215015c9ab12a4380452a565c",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/query/query_quantile_development_20261114"
+    },
+    {
+      "run_id": "wheat599/neural/tabm/query/query_quantile_development_local_20261114",
+      "dataset": "wheat599",
+      "family": "neural",
+      "method": "quantile_tabm",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "c0f369229f98855215015c9ab12a4380452a565c",
+      "protocol": "results/get_icm_protocol_20261103/splits_manifest.json",
+      "result_path": "wheat599/neural/tabm/query/query_quantile_development_local_20261114"
     }
   ]
 }

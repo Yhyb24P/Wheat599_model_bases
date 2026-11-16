@@ -69,7 +69,7 @@ statistical:
 seeds:
 - 42
 - 2026
-checkpoint_root: results/wheat599/diagnostics/joint_inference_20261104
+checkpoint_root: results/wheat599/diagnostics/inference/joint_inference_20261104
 checkpoints:
   joint_42.pt: 96771761a2ff31ad8cf9ae8013da9e114f6b474451635996875893a4f591fbfa
   joint_2026.pt: f6cd45f7cff58f062f0102d84227f76201df04b428408768cac3846a7bdb876c

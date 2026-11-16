@@ -82,7 +82,7 @@ CONFIG = {
                  'tie_tolerance': 1e-12},
     'efficiency': {'batch_size': 8, 'warmup': 1, 'repeats': 2, 'include_preprocessing': True},
     'data': 'unused', 'data_sha256': '0' * 64, 'splits': 'unused',
-    'reference': 'results/wheat599/kernels/robust_icm_development_20261103/development_comparison.csv',
+    'reference': 'results/wheat599/kernels/icm/robust/robust_icm_development_20261103/development_comparison.csv',
 }
 
 

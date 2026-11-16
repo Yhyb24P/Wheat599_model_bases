@@ -87,24 +87,24 @@ class ReportTest(unittest.TestCase):
             target = tmp_path/path.relative_to(ROOT)
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(path, target)
-        for fam, name in [('wheat599/neural', 'quantile_tabm_final_20261106'), ('wheat599/baselines', 'mulphe_unified_parallel_20261112')]:
+        for fam, name in [('wheat599/neural/tabm/quantile', 'quantile_tabm_final_20261106'), ('wheat599/baselines/comparators/mulphe', 'mulphe_unified_parallel_20261112')]:
             (tmp_path/'results'/fam/name).mkdir(parents=True)
             shutil.copyfile(ROOT/'results'/fam/name/'summary.json', tmp_path/'results'/fam/name/'summary.json')
-        for run, rel in [('classical_baselines_final_20261115', 'summary.json'),
-                         ('deepgs_final_20261115', 'summary.json'),
-                         ('soydngp_final_20261115', 'summary.json'),
-                         ('gsformer_csa_outer_20261115', 'summary.json'),
-                         ('gsformer_nsa_outer_20261115', 'summary.json'),
-                         ('moegp_unified_20261115', 'test/summary.json'),
-                         ('mtcro_unified_outer_20261115', 'summary.json'),
-                         ('ragp_outer_20261115', 'summary.json'),
-                         ('wheatgp_unified_outer_20261115', 'summary.json'),
-                         ('dnngp_final_20261115', 'run/summary.json')]:
-            target = tmp_path/'results/wheat599/baselines'/run/rel
+        for run, rel in [('wheat599/baselines/comparators/classical/classical_baselines_final_20261115', 'summary.json'),
+                         ('wheat599/baselines/deep/deepgs/deepgs_final_20261115', 'summary.json'),
+                         ('wheat599/baselines/deep/soydngp/soydngp_final_20261115', 'summary.json'),
+                         ('wheat599/baselines/deep/gsformer/gsformer_csa_outer_20261115', 'summary.json'),
+                         ('wheat599/baselines/deep/gsformer/gsformer_nsa_outer_20261115', 'summary.json'),
+                         ('wheat599/baselines/moegp/moegp_unified_20261115', 'test/summary.json'),
+                         ('wheat599/baselines/comparators/mtcro/mtcro_unified_outer_20261115', 'summary.json'),
+                         ('wheat599/baselines/comparators/ragp/ragp_outer_20261115', 'summary.json'),
+                         ('wheat599/baselines/wheatgp/unified/wheatgp_unified_outer_20261115', 'summary.json'),
+                         ('wheat599/baselines/deep/dnngp/dnngp_final_20261115', 'run/summary.json')]:
+            target = tmp_path/'results'/run/rel
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(ROOT/'results/wheat599/baselines'/run/rel, target)
-        for name in ['results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json',
-                     'results/wheat599/neural/environment_tabm_development_20261105/provenance.json']:
+            shutil.copyfile(ROOT/'results'/run/rel, target)
+        for name in ['results/wheat599/neural/tabm/quantile/quantile_tabm_final_manifest_20261106/manifest.json',
+                     'results/wheat599/neural/tabm/environment/environment_tabm_development_20261105/provenance.json']:
             target = tmp_path/name
             target.parent.mkdir(parents=True, exist_ok=True)
             shutil.copyfile(ROOT/name, target)
@@ -126,7 +126,7 @@ class ReportTest(unittest.TestCase):
         assert document.math >= 5
         mechanisms = json.loads(re.search(r'<script id="mechanism-data" type="application/json">(.*?)</script>', output, re.S)[1])
         self.assertEqual(len(mechanisms), 40)
-        frozen = json.loads((ROOT/'results/wheat599/neural/quantile_tabm_final_manifest_20261106/manifest.json').read_text())
+        frozen = json.loads((ROOT/'results/wheat599/neural/tabm/quantile/quantile_tabm_final_manifest_20261106/manifest.json').read_text())
         for model in mechanisms:
             source = [r for r in frozen['rows'] if r['fold'] == model['fold'] and r['environment_index'] == model['environment']]
             self.assertEqual({r['config_index'] for r in source}, {model['config_index']})
@@ -134,7 +134,7 @@ class ReportTest(unittest.TestCase):
         self.assertEqual((mechanisms[0]['n_blocks'], mechanisms[0]['d_block'], mechanisms[0]['k']), (4,128,32))
         self.assertIn('LinearBatchEnsemble', output)
         self.assertIn('最后输出头不共享', output)
-        q = json.loads((ROOT/'results/wheat599/neural/quantile_tabm_final_20261106/summary.json').read_text())
+        q = json.loads((ROOT/'results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/summary.json').read_text())
         for key, label in [('quantile_huber', '固定等权分位数–Huber 融合'), ('quantile', '四独立分位数 TabM'), ('huber', 'Huber ICM')]:
             row = '<tr><th scope="row">' + label + '</th>'
             row += ''.join(f'<td>{q["macro"][key][metric]:.6f}</td>' for metric in ['pcc', 'rmse', 'mae'])
@@ -142,7 +142,7 @@ class ReportTest(unittest.TestCase):
             assert row + '</tr>' in output
             for metric in ['pcc', 'rmse', 'mae']:
                 assert f'{q["macro"][key][metric]:.6f}' in output
-        m = json.loads((ROOT/'results/wheat599/baselines/mulphe_unified_parallel_20261112/summary.json').read_text())
+        m = json.loads((ROOT/'results/wheat599/baselines/comparators/mulphe/mulphe_unified_parallel_20261112/summary.json').read_text())
         for system in m['systems'].values():
             for metric in ['pcc', 'rmse', 'mae']:
                 assert f'{system["macro"][metric]:.6f}' in output
@@ -181,11 +181,11 @@ class ReportTest(unittest.TestCase):
         self.assertEqual(report.model_family('单成员检索网络', 'RAGP 同协议参照'), 'TabM')
         anova = next(r for r in records if r['name'] == '分阶自适应互作核 GP')
         self.assertEqual(anova['family'], '分阶自适应互作核 GP')
-        for metric, value in json.loads((ROOT/'results/wheat599/neural/adaptive_anova_development_20261114/summary.json').read_text())['macro']['quantile'].items():
+        for metric, value in json.loads((ROOT/'results/wheat599/neural/tabm/heads/adaptive_anova_development_20261114/summary.json').read_text())['macro']['quantile'].items():
             self.assertEqual(anova[metric], f'{value:.6f}')
         shape = next(r for r in records if r['stage'] == '外层' and r['name'] == '有限形状收缩分位数 TabM')
         self.assertEqual(shape['family'], '形状分解分位数 TabM')
-        for metric, value in json.loads((ROOT/'results/wheat599/neural/shape_quantile_shrink_outer_20261114/summary.json').read_text())['macro']['quantile'].items():
+        for metric, value in json.loads((ROOT/'results/wheat599/neural/shape/shrink/shape_quantile_shrink_outer_20261114/summary.json').read_text())['macro']['quantile'].items():
             self.assertEqual(shape[metric], f'{value:.6f}')
         undefined = [r for r in records if '无定义' in r['pcc']]
         self.assertTrue(undefined)

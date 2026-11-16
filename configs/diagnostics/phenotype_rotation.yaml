@@ -2,7 +2,7 @@ model: phenotype_rotation
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 splits: protocols/get_icm_protocol_20261103/splits_manifest.json
-original_source: results/wheat599/neural/environment_tabm_development_20261105
+original_source: results/wheat599/neural/tabm/environment/environment_tabm_development_20261105
 original_artifact_sha256:
   predictions.csv: 9d45b905cd2eaaee0f8ed0f4e754efd0f3f323534cc2d8ffeba1f16c798b6ce7
   trajectories.json: 3cfff8451c44f18b54b30f4581c9002178c3234927123cb05698e1c61a2a5028

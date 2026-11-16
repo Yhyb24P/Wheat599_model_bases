@@ -9,8 +9,8 @@ gpu_memory_fraction: 0.5
 seeds: [42, 2026]
 outer_folds: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 variants: [shared, independent, conditioned]
-shared_source: results/wheat599/neural/retrieval_tabm_development_20261105
-fusion_source: results/wheat599/neural/retrieval_fusion_development_20261105
+shared_source: results/wheat599/neural/tabm/genomic/retrieval_tabm_development_20261105
+fusion_source: results/wheat599/neural/fusion/retrieval/retrieval_fusion_development_20261105
 fixed_fusion_weight: 0.5
 environment_scale_l2: 0.001
 # Identical architecture/optimizer list to the previous raw TabM arm.

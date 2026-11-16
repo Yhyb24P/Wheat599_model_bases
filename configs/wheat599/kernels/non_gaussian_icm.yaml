@@ -2,8 +2,8 @@ model: non_gaussian_icm
 data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 splits: protocols/get_icm_protocol_20261103/splits_manifest.json
-base_source: results/wheat599/kernels/heterogeneous_icm_development_20261103
-comparator_selection: results/wheat599/kernels/robust_icm_development_20261103/selection.json
+base_source: results/wheat599/kernels/icm/other/heterogeneous_icm_development_20261103
+comparator_selection: results/wheat599/kernels/icm/robust/robust_icm_development_20261103/selection.json
 comparator_etas: [0.0, 0.3, 0.6, 0.8]
 gpu_memory_fraction: 0.35
 gammas: [0.0, 0.25, 0.5, 1.0]

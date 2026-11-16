@@ -4,13 +4,13 @@ data: data/raw/wheat.RData
 data_sha256: 8710523389007dd8b7c88a5deb74ee16aea0bae158496bc11f0626fb43b5ea21
 splits: protocols/get_icm_protocol_20261103/splits_manifest.json
 architecture_config: configs/wheat599/tabm/environment_tabm.yaml
-reference_source: results/wheat599/kernels/joint_tabm_icm_development_20261106
-baseline_source: results/wheat599/neural/quantile_tabm_development_20261106_v2
-baseline_audit: results/wheat599/diagnostics/tabicl_compare_20261106/summary.json
+reference_source: results/wheat599/kernels/icm/other/joint_tabm_icm_development_20261106
+baseline_source: results/wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2
+baseline_audit: results/wheat599/diagnostics/meta/tabicl_compare_20261106/summary.json
 comparison_sources:
-  muon_tabm: results/wheat599/neural/quantile_muon_tabm_development_20261109
-  fourstream_tabm: results/wheat599/neural/quantile_gated_interaction_development_20261109
-  layer_tabm: results/wheat599/neural/quantile_layer_interaction_development_20261109
+  muon_tabm: results/wheat599/neural/tabm/quantile/quantile_muon_tabm_development_20261109
+  fourstream_tabm: results/wheat599/neural/interaction/gated/quantile_gated_interaction_development_20261109
+  layer_tabm: results/wheat599/neural/interaction/gated/quantile_layer_interaction_development_20261109
 seeds: [42, 2026]
 n_quantiles: 99
 quantile_min: 0.001

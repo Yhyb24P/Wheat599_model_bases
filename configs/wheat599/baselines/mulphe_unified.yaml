@@ -6,8 +6,8 @@ seeds: [42, 2026]
 device: cuda
 cpu_threads: 2
 gpu_memory_fraction: 0.5
-reference_oof: results/wheat599/neural/quantile_tabm_final_20261106/oof.csv
-baseline_verification: results/wheat599/baselines/mulphe_unified_baselines_20261112/verification.json
+reference_oof: results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/oof.csv
+baseline_verification: results/wheat599/baselines/comparators/mulphe/mulphe_unified_baselines_20261112/verification.json
 author_default_index: 2
 # Candidate order is fixed before evaluation. Only hidden width and learning rate vary.
 configurations:

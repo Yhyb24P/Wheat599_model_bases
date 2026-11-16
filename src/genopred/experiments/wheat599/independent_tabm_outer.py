@@ -33,11 +33,11 @@ from genopred.models.tabm.backbone import SharedTabM
 from genopred.evaluation.metrics import mae, pcc, rmse
 
 METRICS = ('pcc', 'rmse', 'mae')
-DEFAULT_MANIFEST = Path('results/wheat599/neural/independent_tabm_refit_manifest_20261105/manifest.json')
-DEFAULT_SOURCE_RUN = Path('results/wheat599/neural/environment_tabm_development_20261105')
-DEFAULT_SELECTION_SOURCE = Path('results/wheat599/neural/environment_selection_development_20261105')
-DEFAULT_HUBER_SOURCE = Path('results/wheat599/kernels/robust_icm_final_20261103')
-DEFAULT_BIMSGP_SOURCE = Path('results/wheat599/baselines/bimsgp_nested_final_20261102')
+DEFAULT_MANIFEST = Path('results/wheat599/neural/tabm/independent/independent_tabm_refit_manifest_20261105/manifest.json')
+DEFAULT_SOURCE_RUN = Path('results/wheat599/neural/tabm/environment/environment_tabm_development_20261105')
+DEFAULT_SELECTION_SOURCE = Path('results/wheat599/neural/tabm/environment/environment_selection_development_20261105')
+DEFAULT_HUBER_SOURCE = Path('results/wheat599/kernels/icm/robust/robust_icm_final_20261103')
+DEFAULT_BIMSGP_SOURCE = Path('results/wheat599/baselines/bimsgp/nested/bimsgp_nested_final_20261102')
 DEFAULT_HISTORICAL_SPLITS = Path('protocols/bimsgp_ftt_fixed_20261029/splits_manifest.json')
 
 

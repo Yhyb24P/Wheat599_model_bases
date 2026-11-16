@@ -3,7 +3,7 @@
 Estimator helpers are reused from classical_baselines; kernel ridge reuses
 kernel_baselines.kernels with the same unpenalized-intercept solve batched
 over the eight traits. GBLUP/RR-BLUP is the existing centered linear-kernel
-run (results/wheat2000/wheat2000_gblup_final_20261105) and is not repeated here.
+run (results/wheat2000/classical/wheat2000_gblup_final_20261105) and is not repeated here.
 """
 import csv
 import hashlib
@@ -135,7 +135,7 @@ def run(cfg, args, runner_path):
         'versions': versions, 'jobs': cfg['jobs'],
         'parallel': 'joblib loky processes; estimators and torch single-threaded',
         'rule': 'mean inner PCC of seed-averaged predictions; first candidate on tie; full dev refit; test scored once',
-        'gblup_rrblup': 'reused from results/wheat2000/wheat2000_gblup_final_20261105 (same centered linear kernel)',
+        'gblup_rrblup': 'reused from results/wheat2000/classical/wheat2000_gblup_final_20261105 (same centered linear kernel)',
     }, indent=2))
     selected, valrows, rows, seedrows, oof, seedoof, failures, timing = [], [], [], [], [], [], [], []
     fold_ids = [f['fold'] for f in folds]

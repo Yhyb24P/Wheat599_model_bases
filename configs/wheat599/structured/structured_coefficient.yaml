@@ -45,6 +45,6 @@ optimizer:
   accepted_gradient: 1.0e-05
 relative_gap_tolerance: 1.0e-06
 tie_tolerance: 1.0e-12
-quantile_source: results/wheat599/neural/quantile_tabm_development_20261106_v2
-huber_reference: results/wheat599/kernels/joint_tabm_icm_development_20261106
-upstream_verification: results/wheat599/diagnostics/structured_coefficient_upstream_20261110/verification.json
+quantile_source: results/wheat599/neural/tabm/quantile/quantile_tabm_development_20261106_v2
+huber_reference: results/wheat599/kernels/icm/other/joint_tabm_icm_development_20261106
+upstream_verification: results/wheat599/diagnostics/kernel/structured_coefficient_upstream_20261110/verification.json

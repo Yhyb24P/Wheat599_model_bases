@@ -25,6 +25,7 @@
 - README 说明使用与目录；AGENTS 只放执行边界；`docs/` 根目录保存现役协议、数据事实、结果、许可与冻结索引；`docs/methods/` 保存现役方法配方，冻结配方移入 `docs/history/methods/`；`docs/history/` 保存历史方案与原始证据，不再执行其中的旧流程；`ref/` 保存文献来源和讲解。
 - `results/<run>/` 保留原始运行目录名、状态与 provenance 字节；不把“有目录/有文件”当作运行完成。经用户直接授权（2026-11-16）按数据集/方法家族用 `git mv` 迁移源码/配置/结果到结构化目录（包名 `genopred`）：保留文件内容与 SHA 值、provenance 字节不变，冻结清单的路径键与现役引用同步到新路径，并建新旧路径映射索引 [PATH_MIGRATION](docs/PATH_MIGRATION.md)；历史复现经 58 个 Git 标签＋映射，精确复现检出原标签。不伪造 SHA、不改证据内容、不重建 archive/legacy 实现；不因路线停止丢弃不可重建证据与不利记录。实验→标签→results 导航见 [FROZEN_INDEX](docs/FROZEN_INDEX.md)。
 - `workspace/`（成员同步前旧名 `local/` 亦忽略）是不入 Git 的本机附件、旧未整合副本与临时残留区；唯一资料先保留再处理，不按名字判断可删除。`models/` 的权重不入 Git；权重 SHA/许可见 `docs/LICENSE_NOTES.md`，数据事实见 `docs/DATA_FACTS.md`。
+- 组织树扇出治理（用户授权 2026-11-17）：每个组织文件夹的直接子文件夹≤6。豁免机器生成目录（`.git/.state/.cache/.pytest_cache/.qoder/.yi/node_modules/__pycache__`，工具自动再生）、repo 根（标准顶层布局）、本机附件区（`workspace/`、`local/`）、以及 run 目录内部（含 provenance/execution_status/manifest/summary 的目录视为不透明证据叶，内部布局是冻结字节）；run 目录本身计入父级扇出。results 按 `数据集/家族/方法组/[子组]/run` 深层分组（round3，见 PATH_MIGRATION）；新 run 落入合规槽，组满则先建语义子组而非第 7 个兄弟。`scripts/check_layout.py` 扫描违例，`tests/test_data_layout.py` 纳入 pytest 门。
 - 非平凡数值、选模、保存或接口改动补一个能复现问题的现有测试/小型自检，跑受影响检查；检查通过且疑点解决即停止。文案和简单搬移不新建测试工程，不把诊断升级成未经授权的运行门槛。
 
 ## 工作与交付

@@ -92,7 +92,7 @@ def run(cfg, args, runner):
     selections, records = read(args.selection), read(source/'trajectories.json')
     tasks = manifest(folds, cfg['seeds'], configs, selections, records, cfg['training']['max_epochs'])
     data = load(Path(cfg['data']), cfg['data_sha256'])
-    reference_path = Path('results/wheat599/neural/quantile_tabm_final_20261106/oof.csv')
+    reference_path = Path('results/wheat599/neural/tabm/quantile/quantile_tabm_final_20261106/oof.csv')
     args.out.mkdir(parents=True, exist_ok=False)
     def write(name, value):
         (args.out/name).write_text(json.dumps(value, indent=2, allow_nan=False)+'\n')
