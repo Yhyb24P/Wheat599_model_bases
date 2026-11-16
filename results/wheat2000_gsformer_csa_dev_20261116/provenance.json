@@ -1,0 +1,96 @@
+{
+  "config": {
+    "model": "wheat2000_gsformer_csa",
+    "variant": "csa",
+    "source_dir": "upstream/gsformer",
+    "source_commit": "214c3831044ebcfce30db8e6825460bf8831bf1f",
+    "data": "data/raw/wheat2000/wheat_GS.RData",
+    "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+    "cache": "data/raw/wheat2000/wheat2000.npz",
+    "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+    "splits": "results/wheat2000_protocol_20261105/splits_manifest.json",
+    "splits_sha256": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c",
+    "traits": [
+      "TKW",
+      "TW",
+      "GL",
+      "GW",
+      "GH",
+      "GP",
+      "SDS",
+      "PHT"
+    ],
+    "seeds": [
+      42,
+      2026
+    ],
+    "pad_to": 33768,
+    "architecture": {
+      "seq_num": 8,
+      "seq_length": 469,
+      "d_model": 72,
+      "d_ff": 144,
+      "heads": 4,
+      "dropout": 0.3
+    },
+    "training": {
+      "learning_rate": 5e-05,
+      "weight_decay": 0.001,
+      "epochs": 25,
+      "batch_size": 48,
+      "patience": 5,
+      "min_loss_reduction": 1e-06
+    },
+    "device": "cuda",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.9,
+    "workers": 1
+  },
+  "variant": "csa",
+  "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+  "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+  "splits_sha256": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c",
+  "traits": [
+    "TKW",
+    "TW",
+    "GL",
+    "GW",
+    "GH",
+    "GP",
+    "SDS",
+    "PHT"
+  ],
+  "phase": "merge",
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "seeds": [
+    42,
+    2026
+  ],
+  "source": {
+    "url": "https://github.com/hajudien/GSformer",
+    "commit": "214c3831044ebcfce30db8e6825460bf8831bf1f",
+    "files": {
+      "CSAformer.py": "c104479c34667bf80ea245ffe7d1a8fa6816a6058691d248168cace24e6d5699",
+      "NSAformer.py": "85815e427029542ea8482b460fd3b6385c395aa1be36227a9756e64587f0c0c5",
+      "native_sparse_attention.py": "46ceb12714a09486cc6c164484a8bc066a0bd9c64a9c3c7bbf9c0ce3d666f288"
+    }
+  },
+  "adaptations": [
+    "all 33709 markers zero-padded to 33768 = 469 x 72",
+    "CSA eight chunks of 4221; NSA 469 tokens with default 20 selected blocks",
+    "published wheat.Y as target; GY1-GY4 mapping not assumed",
+    "canonical folds, seeds 42/2026, median best-PCC epoch refit",
+    "matplotlib import stubbed when absent (unused by NSAformer)"
+  ]
+}
