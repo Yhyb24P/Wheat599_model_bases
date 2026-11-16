@@ -48,6 +48,7 @@ RUNNERS = {
     'wheat2000_mtcro': ('genopred.models.comparators.wheat2000_mtcro', 'run'),
     'wheat2000_wheatgp': ('genopred.models.comparators.wheat2000_wheatgp', 'run'),
     'wheat2000_moegp': ('genopred.models.comparators.wheat2000_moegp', 'run'),
+    'moegp_unified': ('genopred.experiments.wheat599.moegp', 'run'),
 }
 
 
@@ -62,6 +63,7 @@ def run(argv=None):
     p.add_argument('--huber', type=Path, default=None, help='Wheat2000 candidate: Huber prediction directory')
     p.add_argument('--folds', nargs='*', type=int, default=None, help='Wheat2000: subset of outer folds')
     p.add_argument('--traits', nargs='*', default=None, help='Wheat2000: subset of traits')
+    p.add_argument('--environments', nargs='*', default=None, help='MoEGP: subset of environments')
     args = p.parse_args(argv)
     cfg = yaml.safe_load(args.config.read_text())
     if args.resume_summary and cfg.get('model') != 'independent_tabm_final':
