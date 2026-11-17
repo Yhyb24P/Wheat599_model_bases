@@ -1,5 +1,5 @@
 # Full-marker synthetic calibration completed on the local RTX 5090 D.
-model: wheat2000_deepgs
+model: deepgs
 data: data/raw/wheat2000/wheat_GS.RData
 data_sha256: e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696
 cache: data/raw/wheat2000/wheat2000.npz

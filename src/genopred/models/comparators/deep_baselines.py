@@ -38,6 +38,7 @@ import torch
 from torch import nn
 
 from genopred.data.wheat599 import load, sha256_of
+from genopred.data.wheat2000 import load_wheat2000
 from genopred.evaluation.metrics import pcc, rmse, mae
 
 TIE_TOLERANCE = 1e-12
@@ -432,7 +433,13 @@ def run(cfg, args, runner):
     device = torch.device(cfg['device'])
     if device.type == 'cuda':
         torch.cuda.set_per_process_memory_fraction(cfg['gpu_memory_fraction'])
-    data = load(Path(cfg['data']), cfg['data_sha256'])
+    if 'cache_sha256' in cfg:
+        d = load_wheat2000(Path(cfg['data']), cfg['data_sha256'],
+                           Path(cfg['cache']), cfg['cache_sha256'])
+        data = SimpleNamespace(X=d.X, Y=d.Y, n=int(d.X.shape[0]),
+                               n_env=int(d.Y.shape[1]), environments=tuple(d.trait_names))
+    else:
+        data = load(Path(cfg['data']), cfg['data_sha256'])
     folds = json.loads(Path(cfg['splits']).read_text())['folds']
     split_hash = sha256_of(Path(cfg['splits']))
     if len(folds) != 10 or any(len(f['inner']) != 3 for f in folds):
