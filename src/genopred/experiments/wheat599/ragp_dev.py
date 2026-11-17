@@ -19,6 +19,7 @@ import sys
 import time
 from dataclasses import dataclass
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import torch
@@ -26,6 +27,7 @@ import yaml
 
 import genopred
 from genopred.data.wheat599 import load, sha256_of
+from genopred.data.wheat2000 import load_wheat2000
 from genopred.evaluation.metrics import mae, pcc, rmse
 from genopred.models.comparators.ragp import OFFICIAL_HIDDEN_DIMS, RAGPGenomic
 
@@ -38,6 +40,25 @@ TRAINING_KEYS = ('learning_rate', 'weight_decay', 'max_epochs', 'patience',
                  'scheduler_gamma', 'tie_tolerance', 'batch_size', 'eval_batch_size',
                  'gradient_clip')
 CHECKPOINT_STORAGE = 'hash_only'
+
+
+def load_data(config):
+    """Wheat599 loader by default; a cache_sha256 selects the Wheat2000 cache."""
+    if 'cache_sha256' in config:
+        d = load_wheat2000(Path(config['data']), config['data_sha256'],
+                           Path(config['cache']), config['cache_sha256'])
+        return SimpleNamespace(X=d.X, Y=d.Y, environments=tuple(d.trait_names))
+    return load(Path(config['data']), config['data_sha256'])
+
+
+def subset_folds(folds, args):
+    if getattr(args, 'folds', None):
+        smoke = {int(value) for value in args.folds}
+        subset = [fold for fold in folds if int(fold['fold']) in smoke]
+        if len(subset) != len(smoke):
+            raise ValueError('--folds selected outer folds missing from the manifest')
+        return subset
+    return folds
 
 
 # -- configuration ---------------------------------------------------------
@@ -452,12 +473,13 @@ def run(config, args, runner):
     if device.type == 'cuda':
         torch.cuda.set_per_process_memory_fraction(float(config['gpu_memory_fraction']))
     verified_versions = verify_versions(config)
-    data = load(Path(config['data']), config['data_sha256'])
+    data = load_data(config)
     manifest = json.loads(Path(config['splits']).read_text())
     wanted = {int(value) for value in config['outer_folds']}
     folds = [fold for fold in manifest['folds'] if int(fold['fold']) in wanted]
     if len(folds) != len(wanted):
         raise ValueError('Configured outer folds are missing from the split manifest')
+    folds = subset_folds(folds, args)
     args.out.mkdir(parents=True, exist_ok=False)
     here = Path(genopred.__file__).parent
     sources = [Path(__file__), here/'models'/'comparators'/'ragp.py', here/'data'/'wheat599.py', here/'evaluation'/'metrics.py'] \
@@ -584,7 +606,7 @@ def outer_epoch_budgets(selection, trajectories, config):
         if index < 0 or index >= len(config['configurations']):
             raise ValueError('Frozen config index is outside the configured grid')
         if entry['configuration'] != config['configurations'][index]:
-            raise ValueError('Frozen selection configuration does not match configs/wheat599/baselines/ragp.yaml')
+            raise ValueError('Frozen selection configuration does not match the configured grid')
         for seed in config['seeds']:
             epochs = observed.get((int(fold), int(seed), index))
             if not epochs or len(epochs) != 3:
@@ -645,11 +667,12 @@ def run_outer(config, args, runner):
     torch.set_num_threads(int(config.get('cpu_threads', 2)))
     if device.type == 'cuda':
         torch.cuda.set_per_process_memory_fraction(float(config['gpu_memory_fraction']))
-    data = load(Path(config['data']), config['data_sha256'])
+    data = load_data(config)
     manifest = json.loads(Path(config['splits']).read_text())
     folds = sorted(manifest['folds'], key=lambda fold: int(fold['fold']))
     if len(folds) != 10:
         raise ValueError('Expected ten outer folds')
+    folds = subset_folds(folds, args)
     selection = json.loads(args.selection.read_text())
     trajectories_path = Path(config['dev_trajectories'])
     trajectories = json.loads(trajectories_path.read_text())

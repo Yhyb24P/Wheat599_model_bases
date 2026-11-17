@@ -31,6 +31,7 @@ RUNNERS = {
     'multienv_kernel': ('genopred.models.kernels.multienv_kernel', 'run'),
     'kernel_baselines': ('genopred.models.kernels.kernel_baselines', 'run'),
     'classical_baselines': ('genopred.models.classical.classical_baselines', 'run'),
+    'ragp': ('genopred.experiments.wheat599.ragp_dev', 'run'),
     'ragp_outer': ('genopred.experiments.wheat599.ragp_dev', 'run_outer'),
     'deepgs': ('genopred.models.comparators.deep_baselines', 'run'),
     'dnngp': ('genopred.models.comparators.deep_baselines', 'run'),

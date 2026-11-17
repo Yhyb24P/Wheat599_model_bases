@@ -3,6 +3,7 @@
 import copy
 import inspect
 
+import numpy as np
 import pytest
 import torch
 from sklearn.decomposition import PCA
@@ -284,3 +285,24 @@ def test_outer_epoch_budgets_median_and_validation():
         outer_epoch_budgets(mismatch, trajectories, config)
     with pytest.raises(ValueError):
         outer_epoch_budgets(selection, [], config)
+
+
+def test_wheat2000_dispatch_and_fold_subset(monkeypatch, tmp_path):
+    from types import SimpleNamespace
+    import genopred.experiments.wheat599.ragp_dev as dev
+    from genopred.data.wheat2000 import Wheat2000Data
+    fake = Wheat2000Data(X=np.zeros((4, 3)), Y=np.zeros((4, 2)),
+                         trait_names=('TKW', 'TW'), sample_ids=np.arange(4),
+                         genotype_ids=np.arange(4).astype(str),
+                         phenotype_ids=np.arange(4).astype(str))
+    monkeypatch.setattr(dev, 'load_wheat2000', lambda *a: fake)
+    config = {'data': 'raw', 'data_sha256': 'x', 'cache': 'cache', 'cache_sha256': 'y'}
+    data = dev.load_data(config)
+    assert data.environments == ('TKW', 'TW') and data.Y.shape == (4, 2)
+    monkeypatch.setattr(dev, 'load', lambda *a: 'wheat599')
+    assert dev.load_data({'data': 'raw', 'data_sha256': 'x'}) == 'wheat599'
+    folds = [{'fold': value} for value in range(10)]
+    assert dev.subset_folds(folds, SimpleNamespace(folds=None)) is folds
+    assert dev.subset_folds(folds, SimpleNamespace(folds=[0, 9])) == [folds[0], folds[9]]
+    with pytest.raises(ValueError):
+        dev.subset_folds(folds, SimpleNamespace(folds=[11]))

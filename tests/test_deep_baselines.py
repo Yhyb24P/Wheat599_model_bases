@@ -109,3 +109,33 @@ def test_soydngp_encoding_matches_upstream_rules():
     # marker 0 (DArT 0 -> code 3): channels (0,1,1); marker 1 (code 1): (1,1,0)
     assert encoded[0, 0, 0, 0] == 0 and encoded[0, 1, 0, 0] == 1 and encoded[0, 2, 0, 0] == 1
     assert encoded[0, 0, 0, 1] == 1 and encoded[0, 1, 0, 1] == 1 and encoded[0, 2, 0, 1] == 0
+
+
+def test_smoke_subset_selection_then_single_scoring(tmp_path, monkeypatch):
+    cfg, config_path, folds = _fake_run(tmp_path, monkeypatch)
+    args = SimpleNamespace(selection=None, config=config_path, folds=[0, 3], traits=['2'])
+    dev_out = tmp_path / 'dev'
+    db.run(cfg, SimpleNamespace(out=dev_out, **vars(args)), config_path)
+    selection = json.loads((dev_out / 'selection.json').read_text())
+    assert [(e['fold'], e['environment']) for e in selection['selected']] == [(0, 1), (3, 1)]
+    final_out = tmp_path / 'final'
+    db.run(cfg, SimpleNamespace(out=final_out, selection=dev_out / 'selection.json',
+                                config=config_path, folds=[0, 3], traits=['2']), config_path)
+    summary = json.loads((final_out / 'summary.json').read_text())
+    assert summary['n_runs'] == 2 and summary['n_failures'] == 0
+    import csv
+    oof = list(csv.DictReader((final_out / 'oof.csv').open()))
+    assert len(oof) == 12 and {r['environment'] for r in oof} == {'2'}
+    assert {int(r['fold']) for r in oof} == {0, 3}
+
+
+def test_subset_rejects_unknown_names(tmp_path):
+    data = SimpleNamespace(X=np.zeros((4, 2)), Y=np.zeros((4, 2)), n=4, n_env=2,
+                           environments=('TKW', 'TW'))
+    folds = [{'fold': 0}, {'fold': 1}]
+    with pytest.raises(ValueError):
+        db._subset(data, folds, SimpleNamespace(folds=[7], traits=None))
+    with pytest.raises(ValueError):
+        db._subset(data, folds, SimpleNamespace(folds=None, traits=['PHT']))
+    kept, kept_folds, envs = db._subset(data, folds, SimpleNamespace(folds=None, traits=None))
+    assert kept is data and kept_folds is folds and envs == [0, 1]

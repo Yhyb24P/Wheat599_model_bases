@@ -397,6 +397,22 @@ def write_csv(path, fields, rows):
         writer.writerows(rows)
 
 
+def _subset(data, folds, args):
+    """Explicit --folds/--traits smoke subsets; full runs pass neither flag."""
+    if getattr(args, 'folds', None):
+        wanted = {int(f) for f in args.folds}
+        folds = [f for f in folds if int(f['fold']) in wanted]
+        if len(folds) != len(wanted):
+            raise ValueError('--folds selected folds missing from the manifest')
+    envs = list(range(len(data.environments)))
+    if getattr(args, 'traits', None):
+        names = list(data.environments)
+        envs = [i for i, name in enumerate(names) if name in set(args.traits)]
+        if len(envs) != len(set(args.traits)):
+            raise ValueError('--traits names are not environment columns')
+    return data, folds, envs
+
+
 def _validate(cfg):
     if cfg['model'] not in ('deepgs', 'dnngp', 'soydngp'):
         raise ValueError('model must be deepgs, dnngp or soydngp')
@@ -444,6 +460,7 @@ def run(cfg, args, runner):
     split_hash = sha256_of(Path(cfg['splits']))
     if len(folds) != 10 or any(len(f['inner']) != 3 for f in folds):
         raise ValueError('Expected ten outer folds with three inner splits')
+    data, folds, envs = _subset(data, folds, args)
     configs = cfg['configurations']
     seeds = [int(s) for s in cfg['seeds']]
     frozen = json.loads(args.selection.read_text()) if args.selection else None
@@ -466,6 +483,8 @@ def run(cfg, args, runner):
         sources.append(Path(__file__).with_name('dnngp_worker.py'))
     provenance = {
         'config': cfg, 'splits_sha256': split_hash,
+        'folds': [int(f['fold']) for f in folds],
+        'environments': [data.environments[e] for e in envs],
         'selection_sha256': sha256_of(args.selection) if args.selection else None,
         'sha256': {str(p): sha256_of(p) for p in sources},
         'upstream_files': _upstream_files(cfg),
@@ -485,9 +504,9 @@ def run(cfg, args, runner):
     start = time.perf_counter()
     try:
         if frozen is None:
-            _development(cfg, args, data, folds, configs, seeds, device, encoded, client, records)
+            _development(cfg, args, data, folds, envs, configs, seeds, device, encoded, client, records)
         else:
-            _final(cfg, args, data, folds, configs, seeds, device, encoded, client, frozen, records)
+            _final(cfg, args, data, folds, envs, configs, seeds, device, encoded, client, frozen, records)
     except Exception as exc:
         failures.append({'stage': 'selection' if frozen is None else 'final', 'error': repr(exc)})
         raise
@@ -546,7 +565,7 @@ def _refit(cfg, data, encoded, client, dev, test, env, spec, seed, epochs, lr_se
     return dnngp_refit(client, data.X, y, dev, test, spec, seed, epochs, lr_sequence, cfg, device)
 
 
-def _development(cfg, args, data, folds, configs, seeds, device, encoded, client, records):
+def _development(cfg, args, data, folds, envs, configs, seeds, device, encoded, client, records):
     selected = []
     workers = int(cfg.get('workers', 1))
     resume = bool(cfg.get('resume', False))
@@ -580,7 +599,7 @@ def _development(cfg, args, data, folds, configs, seeds, device, encoded, client
             if set(fit) & set(val) or set(fit) | set(val) != set(dev):
                 raise ValueError('Invalid inner split')
             tasks = [(inner, env, c, seed, fit, val)
-                     for env in range(data.n_env) for c in range(len(configs)) for seed in seeds]
+                     for env in envs for c in range(len(configs)) for seed in seeds]
             if resume:
                 predictions = {key: done[(f, inner, key)] for key in
                                (f'e{e}_c{c}_s{s}' for e in range(data.n_env)
@@ -613,7 +632,7 @@ def _development(cfg, args, data, folds, configs, seeds, device, encoded, client
             write_json(args.out / 'trajectories.json', records)
             predictions = {}
         arrays = [np.load(args.out / f'predictions_{f}_{j}.npz') for j in range(3)]
-        for env in range(data.n_env):
+        for env in envs:
             scores = [np.mean([pcc(data.Y[split['val_idx'], env],
                                    np.mean([arrays[j][f'e{env}_c{c}_s{seed}'] for seed in seeds], axis=0))
                                for j, split in enumerate(fold['inner'])])
@@ -643,22 +662,23 @@ def _development(cfg, args, data, folds, configs, seeds, device, encoded, client
         print(f'fold {f}: selection complete', flush=True)
     if pool is not None:
         pool.shutdown(wait=True)
-    if len(selected) != len(folds) * data.n_env:
+    if len(selected) != len(folds) * len(envs):
         raise RuntimeError('Incomplete development selection')
     print('Development selection complete; no test predictions made.', flush=True)
 
 
-def _final(cfg, args, data, folds, configs, seeds, device, encoded, client, frozen, records):
-    expected = {(f['fold'], e) for f in folds for e in range(data.n_env)}
+def _final(cfg, args, data, folds, envs, configs, seeds, device, encoded, client, frozen, records):
+    expected = {(f['fold'], e) for f in folds for e in envs}
     keys = [(v['fold'], v['environment']) for v in frozen['selected']]
-    if len(keys) != len(expected) or set(keys) != expected:
+    if len(keys) != len(set(keys)) or not expected <= set(keys):
         raise ValueError('Frozen selection is incomplete or duplicated')
     rows, seed_rows, oof, seed_oof = [], [], [], []
     for fold in folds:
         f = fold['fold']
         dev, test = np.asarray(fold['dev_idx']), np.asarray(fold['test_idx'])
-        for env in range(data.n_env):
+        for env in envs:
             entry = next(v for v in frozen['selected'] if v['fold'] == f and v['environment'] == env)
+            env_name = data.environments[env]
             spec = configs[entry['config_index']]
             preds = {}
             for seed in seeds:
@@ -677,19 +697,19 @@ def _final(cfg, args, data, folds, configs, seeds, device, encoded, client, froz
             mean_pred = np.mean([preds[seed] for seed in seeds], axis=0)
             metrics = {'pcc': pcc(truth, mean_pred), 'rmse': rmse(truth, mean_pred),
                        'mae': mae(truth, mean_pred)}
-            rows.append({'fold': f, 'environment': data.environments[env], **metrics,
+            rows.append({'fold': f, 'environment': env_name, **metrics,
                          'config_index': entry['config_index'], 'inner_pcc': entry['inner_pcc']})
             for seed in seeds:
-                seed_rows.append({'fold': f, 'environment': data.environments[env], 'seed': seed,
+                seed_rows.append({'fold': f, 'environment': env_name, 'seed': seed,
                                   'pcc': pcc(truth, preds[seed]), 'rmse': rmse(truth, preds[seed]),
                                   'mae': mae(truth, preds[seed])})
-                seed_oof.extend({'fold': f, 'environment': data.environments[env], 'seed': seed,
+                seed_oof.extend({'fold': f, 'environment': env_name, 'seed': seed,
                                  'material_index': int(i), 'y_true': float(t), 'y_pred': float(p)}
                                 for i, t, p in zip(test, truth, preds[seed]))
-            oof.extend({'fold': f, 'environment': data.environments[env],
+            oof.extend({'fold': f, 'environment': env_name,
                         'material_index': int(i), 'y_true': float(t), 'y_pred': float(p)}
                        for i, t, p in zip(test, truth, mean_pred))
-            print(f'fold {f} env {data.environments[env]}: pcc={metrics["pcc"]:.4f}', flush=True)
+            print(f'fold {f} env {env_name}: pcc={metrics["pcc"]:.4f}', flush=True)
         write_csv(args.out / 'per_fold.csv',
                   ['fold', 'environment', 'pcc', 'rmse', 'mae', 'config_index', 'inner_pcc'], rows)
         write_csv(args.out / 'per_fold_seed.csv',
@@ -699,10 +719,11 @@ def _final(cfg, args, data, folds, configs, seeds, device, encoded, client, froz
         write_csv(args.out / 'oof_seed.csv',
                   ['fold', 'environment', 'seed', 'material_index', 'y_true', 'y_pred'], seed_oof)
         write_json(args.out / 'refit_records.json', records)
-    if len(rows) != len(folds) * data.n_env or len(oof) != data.n_env * data.n:
+    if len(rows) != len(folds) * len(envs) or len(oof) != len(envs) * sum(
+            len(f['test_idx']) for f in folds):
         raise RuntimeError('Incomplete outer evaluation')
     summary = {'n_runs': len(rows), 'n_failures': 0, 'per_environment': {}, 'pooled': {}}
-    for env in data.environments:
+    for env in dict.fromkeys(r['environment'] for r in rows):
         env_rows = [r for r in rows if r['environment'] == env]
         summary['per_environment'][env] = {
             m: {'mean': float(np.mean([r[m] for r in env_rows])),
@@ -714,7 +735,7 @@ def _final(cfg, args, data, folds, configs, seeds, device, encoded, client, froz
             'rmse': rmse([r['y_true'] for r in pooled], [r['y_pred'] for r in pooled]),
             'mae': mae([r['y_true'] for r in pooled], [r['y_pred'] for r in pooled])}
     summary['macro'] = {m: float(np.mean([summary['per_environment'][e][m]['mean']
-                                          for e in data.environments]))
+                                          for e in summary['per_environment']]))
                         for m in ('pcc', 'rmse', 'mae')}
     write_json(args.out / 'summary.json', summary)
     print(json.dumps(summary['macro']), flush=True)

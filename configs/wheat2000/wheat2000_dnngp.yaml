@@ -1,0 +1,42 @@
+model: dnngp
+data: data/raw/wheat2000/wheat_GS.RData
+data_sha256: e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696
+cache: data/raw/wheat2000/wheat2000.npz
+cache_sha256: 6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733
+splits: protocols/wheat2000_protocol_20261105/splits_manifest.json
+seeds: [42, 2026]
+device: cpu
+gpu_memory_fraction: 0.25
+cpu_threads: 1
+workers: 6
+amp: false
+upstream:
+  repository: https://github.com/AIBreeding/DNNGP
+  commit: 3bbac096969fb2b46958a672d342297cb4457116
+  path: /home/tim/projects/Wheat599-research/upstream/DNNGP
+  python: /home/tim/projects/Wheat599-research/conda-envs/dnngp3/bin/python
+# Official pc95 recipe refitted on each inner/dev training subset only.
+pca_variance: 0.95
+# Same fixed grid as the frozen Wheat599 run (README tuning ranges).
+configurations:
+  - {batch_size: 128, lr: 0.1,   dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 128, lr: 0.1,   dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 128, lr: 0.01,  dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 128, lr: 0.01,  dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 128, lr: 0.001, dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 128, lr: 0.001, dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 512, lr: 0.1,   dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 512, lr: 0.1,   dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 512, lr: 0.01,  dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 512, lr: 0.01,  dropout1: 0.5, dropout2: 0.5, patience: 25}
+  - {batch_size: 512, lr: 0.001, dropout1: 0.3, dropout2: 0.3, patience: 25}
+  - {batch_size: 512, lr: 0.001, dropout1: 0.5, dropout2: 0.5, patience: 25}
+training:
+  max_epochs: 10000
+  early_stopping: 100
+adaptation_notes:
+  - Official compiled trainer (dnngp.cpython-39 .so) called directly with Wheat2000 protocol splits; official internal KFold path bypassed. Same protocol adaptation as the frozen Wheat599 DNNGP run, not a reproduction of the paper's wheat dataset numbers.
+  - Input PCA at 95% variance refitted on each inner/dev training subset of the 33709-marker Wheat2000 panel; raw markers not used directly.
+  - Targets are the released Wheat2000 pheno columns (TKW/TW/GL/GW/GH/GP/SDS/PHT) used as-is; the driver standardizes nothing for DNNGP, matching the Wheat599 adaptation.
+  - The compiled prepare() hardcodes tf.random.set_seed(123); protocol seeds are applied immediately before each fit and to numpy shuffle order.
+  - Inner best epoch is argmin of per-epoch val_loss; refit replays the frozen per-epoch median lr for the median epoch count on merged dev rows.
