@@ -222,10 +222,10 @@
     }
   },
   "ceilings": {
-    "tests": 3457,
+    "tests": 3540,
     "docs": 3867,
     "maintenance": 5223,
-    "source": 12932
+    "source": 13266
   },
   "file_ceilings": {}
 }

@@ -38,13 +38,29 @@ class MarkerRegressor(nn.Module):
 
 class SupervisedIsing(MarkerRegressor):
     """E(h|x)=-a(x)·h-sum_{k<l} J_kl h_k h_l; return [batch,1,1]."""
-    def __init__(self, fit_x, fit_y, *, spins=12, coupled=True):
-        super().__init__(fit_x, fit_y)
+    def __init__(self, fit_x, fit_y, *, spins=12, coupled=True, n_classes=None):
+        if n_classes is None:
+            super().__init__(fit_x, fit_y)
+        else:
+            # Classification: fit-only x scaling only; the y-scale guard and
+            # additive beta/intercept path do not apply to logits.
+            nn.Module.__init__(self)
+            x = torch.as_tensor(fit_x, dtype=torch.float32).detach().cpu()
+            if x.ndim != 2 or len(x) < 2 or not torch.isfinite(x).all():
+                raise ValueError('Expected finite fit materials by markers')
+            std = x.std(0, unbiased=False)
+            self.register_buffer('x_mean', x.mean(0))
+            self.register_buffer('x_constant', std == 0)
+            self.register_buffer('x_std', torch.where(std == 0, torch.ones_like(std), std))
+            self.n_markers = x.shape[1]
+        self.n_classes = n_classes
         if not isinstance(spins, int) or not 1 <= spins <= 12:
             raise ValueError('Exact enumeration budget permits 1..12 hidden spins')
         self.coupled = coupled
-        self.field = nn.Linear(len(self.beta), spins)
-        self.readout = nn.Parameter(torch.empty(spins))
+        markers = len(self.beta) if n_classes is None else self.n_markers
+        self.field = nn.Linear(markers, spins)
+        self.readout = nn.Parameter(torch.empty(spins) if n_classes is None
+                                    else torch.empty(spins, n_classes))
         # A nonzero readout lets the hidden parameters learn from the first step.
         nn.init.normal_(self.readout, std=0.02)
         left, right = torch.triu_indices(spins, spins, offset=1)
@@ -65,8 +81,17 @@ class SupervisedIsing(MarkerRegressor):
 
     def forward(self, x):
         z = self.standardize_x(x)
+        if self.n_classes is not None:
+            return self.hidden_mean(self.field(z)) @ self.readout
         prediction = self.intercept + z @ self.beta + self.hidden_mean(self.field(z)) @ self.readout
         return prediction[:, None, None]
+
+    def standardize_x(self, x):
+        if self.n_classes is None:
+            return super().standardize_x(x)
+        if x.ndim != 2 or x.shape[1] != self.n_markers:
+            raise ValueError('Material-by-marker shape mismatch')
+        return ((x - self.x_mean) / self.x_std).masked_fill(self.x_constant, 0)
 
 
 class AdditiveMLP(MarkerRegressor):

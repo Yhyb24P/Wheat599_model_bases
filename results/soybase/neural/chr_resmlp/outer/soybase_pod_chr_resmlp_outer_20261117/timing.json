@@ -1,0 +1,55 @@
+{
+  "device": "cuda",
+  "folds": [
+    {
+      "fold": 0,
+      "phase": "outer",
+      "seconds": 14.4
+    },
+    {
+      "fold": 1,
+      "phase": "outer",
+      "seconds": 11.7
+    },
+    {
+      "fold": 2,
+      "phase": "outer",
+      "seconds": 10.2
+    },
+    {
+      "fold": 3,
+      "phase": "outer",
+      "seconds": 9.1
+    },
+    {
+      "fold": 4,
+      "phase": "outer",
+      "seconds": 12.5
+    },
+    {
+      "fold": 5,
+      "phase": "outer",
+      "seconds": 11.9
+    },
+    {
+      "fold": 6,
+      "phase": "outer",
+      "seconds": 13.9
+    },
+    {
+      "fold": 7,
+      "phase": "outer",
+      "seconds": 10.2
+    },
+    {
+      "fold": 8,
+      "phase": "outer",
+      "seconds": 8.6
+    },
+    {
+      "fold": 9,
+      "phase": "outer",
+      "seconds": 9.2
+    }
+  ]
+}

@@ -211,6 +211,27 @@ def load_soybase(hmp_path, hmp_sha, obs_path, obs_sha, cache_path, cache_sha):
     return SoyBaseData(X, Y, trait_names, CLASS_MAPS, sample_ids, snp_ids)
 
 
+def load_chromosomes(marker_map_path, snp_ids):
+    """Per-SNP chromosome labels from the official markerMap (verified order).
+
+    Gm01..Gm20 keep their names; every scaffold_* maps to one 'scaffold' group
+    (unplaced markers, ~1% of SNPs). Raises if any cached SNP is unmapped.
+    """
+    import gzip
+    chrom = {}
+    with gzip.open(marker_map_path, 'rt') as handle:
+        for line in handle:
+            parts = line.split()
+            chrom[parts[0]] = parts[1]
+    labels = []
+    for snp in snp_ids:
+        if snp not in chrom:
+            raise ValueError(f'SNP {snp} missing from markerMap')
+        name = chrom[snp]
+        labels.append(name if name.startswith('Gm') else 'scaffold')
+    return np.asarray(labels)
+
+
 def make_stratified_splits(data, trait, n_splits=10, seed=42, inner_splits=3):
     """StratifiedKFold outer/inner splits over accessions with a valid label for trait.
 

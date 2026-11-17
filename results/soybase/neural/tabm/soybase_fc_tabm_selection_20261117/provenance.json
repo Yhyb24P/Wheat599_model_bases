@@ -1,0 +1,70 @@
+{
+  "config": {
+    "model": "soybase_classical",
+    "source": "data/raw/soybase/source.json",
+    "cache": "data/raw/soybase/soybase_cache.npz",
+    "seeds": [
+      42,
+      2026
+    ],
+    "min_call_rate": 0.9,
+    "min_maf": 0.05,
+    "trait": "FC",
+    "splits": "protocols/soybase/FC_splits_manifest.json",
+    "device": "cuda",
+    "cpu_threads": 2,
+    "search": {
+      "tabm": {
+        "n_blocks": [
+          3
+        ],
+        "d_block": [
+          256
+        ],
+        "dropout": [
+          0.1
+        ],
+        "k": [
+          32
+        ],
+        "learning_rate": [
+          0.0005,
+          0.002
+        ],
+        "weight_decay": [
+          0.0003,
+          0.01
+        ]
+      }
+    },
+    "train": {
+      "max_epochs": 200,
+      "patience": 20,
+      "batch_size": 256,
+      "eval_batch_size": 2048,
+      "gradient_clip": 5.0
+    }
+  },
+  "trait": "FC",
+  "splits_sha256": "7b9b18fd07fec291e75067b9424666446f7b1d23fa65ce4d2541ef0edfe1f172",
+  "cache_sha256": "5600dc661ba0493e3c0cda41a2896831645b199406c836c9196db6dc5a17ff77",
+  "runner_sha256": "e80758f30f57a2ac0b6fb714a057831c943d58153c42795240ca4f6800cabdc1",
+  "model_sha256": "57658d874e613c3c5431c3468c5ec714e66bbe67afa0fbcb1ad7fb9eca266a7f",
+  "backbone_sha256": "1740fc98c1463dd20bce5233aacfba91c62950e98bf34f91f1a8675c31bb2603",
+  "selection_sha256": null,
+  "versions": {
+    "numpy": "2.2.6",
+    "scikit-learn": "1.7.2",
+    "torch": "2.9.0+cu130",
+    "tabm": "0.0.3"
+  },
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 5090 D",
+  "n_labeled": 18529,
+  "n_classes": 2,
+  "class_map": {
+    "W": 0,
+    "P": 1
+  },
+  "rule": "mean inner BA of seed-averaged member-mean probabilities; first candidate on tie; early stop on inner validation BA (patience), best-epoch state; full dev refit with the selected epoch count; fit-only SNP filter/impute/scale; per-member CE mean, per-member softmax mean"
+}

@@ -1,0 +1,67 @@
+{
+  "config": {
+    "model": "soybase_classical",
+    "source": "data/raw/soybase/source.json",
+    "cache": "data/raw/soybase/soybase_cache.npz",
+    "marker_map": "data/raw/soybase/glyma.Wm82.gnm2.div.Song_Hyten_2015.markerMap.txt.gz",
+    "seeds": [
+      42,
+      2026
+    ],
+    "min_call_rate": 0.9,
+    "min_maf": 0.05,
+    "trait": "POD",
+    "splits": "protocols/soybase/POD_splits_manifest.json",
+    "device": "cuda",
+    "cpu_threads": 2,
+    "search": {
+      "chr_resmlp": {
+        "d_group": [
+          8
+        ],
+        "d_fuse": [
+          64
+        ],
+        "learning_rate": [
+          0.002
+        ],
+        "weight_decay": [
+          0.0003
+        ]
+      }
+    },
+    "train": {
+      "max_epochs": 200,
+      "patience": 20,
+      "batch_size": 4096,
+      "eval_batch_size": 4096,
+      "gradient_clip": 5.0
+    }
+  },
+  "trait": "POD",
+  "splits_sha256": "458e7a641cb024704ef29b103277144a9681b8edb4c492c381ac54d752b3e0d9",
+  "cache_sha256": "5600dc661ba0493e3c0cda41a2896831645b199406c836c9196db6dc5a17ff77",
+  "marker_map_sha256": "b96e7058085af5f297667e8552f7b4f3522b6b6e72687bb6cfc029b281346220",
+  "runner_sha256": "e80758f30f57a2ac0b6fb714a057831c943d58153c42795240ca4f6800cabdc1",
+  "model_sha256": "3831aaecd40e478a70455c68e81392825d1aee54fa6e99d71676e27c1a62f5f3",
+  "backbone_sha256": {
+    "chr_resmlp": "b3eacb2e2c5c86a9c5e1640cf726d67a10919de1d232e6c26921d620ccb1ca0c"
+  },
+  "selection_sha256": "7828f676cca095f8501ed20bf0e64b0c671933f0c05004af60aa9bf0607d2eb9",
+  "versions": {
+    "numpy": "2.2.6",
+    "scikit-learn": "1.7.2",
+    "torch": "2.9.0+cu130",
+    "tabm": "0.0.3"
+  },
+  "device": "cuda",
+  "device_name": "NVIDIA GeForce RTX 5090 D",
+  "n_labeled": 19094,
+  "n_classes": 3,
+  "class_map": {
+    "Tn": 0,
+    "Br": 1,
+    "Bl": 2
+  },
+  "rule": "mean inner BA of seed-averaged member-mean probabilities; first candidate on tie; early stop on inner validation BA (patience), best-epoch state; full dev refit with the selected epoch count; fit-only SNP filter/impute/scale; per-member CE mean, per-member softmax mean"
+}

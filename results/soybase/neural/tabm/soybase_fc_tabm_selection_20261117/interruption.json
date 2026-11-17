@@ -1,0 +1,20 @@
+{
+  "status": "paused_by_user",
+  "time": "2026-11-17T16:51:25+08:00",
+  "reason": "User ordered GPU tasks paused to develop Chr-ResMLP lightweight classifier",
+  "completed_folds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "remaining_folds": [
+    8,
+    9
+  ],
+  "resume": "rerun selection to a new out dir (runner has no mid-phase resume); frozen folds 0-7 preserved here as evidence"
+}
