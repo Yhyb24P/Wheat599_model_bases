@@ -2,7 +2,7 @@
 
 ## 当前范围
 
-目标是植物基因组表型预测方法论文，整体论文目标尚未完成。成熟架构的有效适配可以成为贡献；Wheat599 为主，跨数据集领先尚无证据。SoyBase 分类已授权（用户 2026-11-17）：官方 SoySNP50K 原始数据自行筛选＋现成分类器（XGBoost/Logistic）最小基线，四性状 FC/P_DENS/POD/ST，分层 CV＋BA/混淆；本机运行、冷存储 E 盘。云端那套区域编码/层次概率分解新架构、校准/亲缘分组/Precision@K、SoyDNGP 本轮不做（避免过度实验）。
+目标是植物基因组表型预测方法论文，整体论文目标尚未完成。成熟架构的有效适配可以成为贡献；Wheat599 为主，跨数据集领先尚无证据。SoyBase 分类基准已授权（用户 2026-11-17，本轮多次改令扩展为复用已有模型）：TabM 分类适配（官方 tabm 0.0.3 主体不动＋d_out 头＋CE/成员概率均值，GPU，已暂停为证据 folds0-7＋interruption.json）；Chr-ResMLP（染色体分组残差 MLP，21 组 Gm01-20＋scaffold 合并，官方 markerMap 逐 SNP 对齐，局部 MLP＋全基因组主效应通路，用户与云端方案授权，GPU 运行）；Ising 分类 P1 已评估（精度低于 TabM/Chr-ResMLP，未跑满）；XGBoost/Logistic 经典对照（云端管理员主机独立跑，交付包见 workspace/soybase_handoff）。官方 SoySNP50K 原始自行筛选，四性状 FC/P_DENS/POD/ST，分层 CV＋BA/混淆；fit-only 过滤/填补/标准化＋42/2026 概率平均＋内层 BA 选模＋完整 dev 重拟合＋外层一次测试，严禁测试标签参与选模/早停（select_best 开关）。冷存储 E 盘。BiMSGP/SoyDNGP 未解禁；云端那套区域编码/层次概率分解 elaborate 新架构、校准/亲缘分组/Precision@K 本轮不做（Chr-ResMLP 为用户明确授权的例外，避免过度实验）。
 
 形状收缩分位数 TabM 的四臂开发与外层比较已完成，结果见 [RESULTS](docs/RESULTS.md)；不自动扩展网格。现役主候选是四独立分位数 TabM 与多环境 Huber ICM 的预固定等权融合。最新完整 Mul-PheG2P 比较已结束；数字、失败、停止原因和适配限制统一见结果记录，协议见 [EVALUATION_PROTOCOL](docs/EVALUATION_PROTOCOL.md)。不因目录整理或新发现重开历史路线、追加消融、外层评价或新数据集。
 
