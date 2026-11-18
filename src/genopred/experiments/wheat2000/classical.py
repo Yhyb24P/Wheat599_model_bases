@@ -49,44 +49,46 @@ def kernel_predict_multi(mats, y, fraction, ridge):
 
 
 def kernel_inner(job):
-    torch.set_num_threads(1)
-    X, Y, train, valid, h, specs, labeled = job
+    X, Y, train, valid, h, specs, labeled, threads = job
     start = time.time()
-    if labeled is None:
-        mats = kernels(X, train, valid, h, CPU)
-        scores = {spec: [pcc(y, p) for y, p in zip(
-            Y[valid].T, kernel_predict_multi(mats, Y[train], spec[2], spec[1]).T)] for spec in specs}
-    else:
-        scores = {spec: [] for spec in specs}
-        for e in range(Y.shape[1]):
-            tr = train[labeled[train, e]]
-            va = valid[labeled[valid, e]]
-            mats = kernels(X, tr, va, h, CPU)
-            for spec in specs:
-                pred = kernel_predict_multi(mats, Y[tr, e, None], spec[2], spec[1])[:, 0]
-                scores[spec].append(pcc(Y[va, e], pred))
+    with threadpool_limits(limits=threads):
+        torch.set_num_threads(threads)
+        if labeled is None:
+            mats = kernels(X, train, valid, h, CPU)
+            scores = {spec: [pcc(y, p) for y, p in zip(
+                Y[valid].T, kernel_predict_multi(mats, Y[train], spec[2], spec[1]).T)] for spec in specs}
+        else:
+            scores = {spec: [] for spec in specs}
+            for e in range(Y.shape[1]):
+                tr = train[labeled[train, e]]
+                va = valid[labeled[valid, e]]
+                mats = kernels(X, tr, va, h, CPU)
+                for spec in specs:
+                    pred = kernel_predict_multi(mats, Y[tr, e, None], spec[2], spec[1])[:, 0]
+                    scores[spec].append(pcc(Y[va, e], pred))
     return scores, time.time() - start
 
 
 def kernel_outer(job):
-    torch.set_num_threads(1)
-    X, Y, dev, test, entries, labeled = job
+    X, Y, dev, test, entries, labeled, threads = job
     start = time.time()
     pred = {m: np.full((len(test), Y.shape[1]), np.nan) for _, m, *_ in entries}
     test_pos = np.full(len(Y), -1, dtype=np.int64)
     test_pos[test] = np.arange(len(test))
-    if labeled is None:
-        for h, r, f in sorted({(e[2], e[3], e[4]) for e in entries}):
-            p = kernel_predict_multi(kernels(X, dev, test, h, CPU), Y[dev], f, r)
+    with threadpool_limits(limits=threads):
+        torch.set_num_threads(threads)
+        if labeled is None:
+            for h, r, f in sorted({(e[2], e[3], e[4]) for e in entries}):
+                p = kernel_predict_multi(kernels(X, dev, test, h, CPU), Y[dev], f, r)
+                for e in entries:
+                    if (e[2], e[3], e[4]) == (h, r, f):
+                        pred[e[1]][:, e[0]] = p[:, e[0]]
+        else:
             for e in entries:
-                if (e[2], e[3], e[4]) == (h, r, f):
-                    pred[e[1]][:, e[0]] = p[:, e[0]]
-    else:
-        for e in entries:
-            tr = dev[labeled[dev, e[0]]]
-            te = test[labeled[test, e[0]]]
-            p = kernel_predict_multi(kernels(X, tr, te, e[2], CPU), Y[tr, e[0], None], e[4], e[3])
-            pred[e[1]][test_pos[te], e[0]] = p[:, 0]
+                tr = dev[labeled[dev, e[0]]]
+                te = test[labeled[test, e[0]]]
+                p = kernel_predict_multi(kernels(X, tr, te, e[2], CPU), Y[tr, e[0], None], e[4], e[3])
+                pred[e[1]][test_pos[te], e[0]] = p[:, 0]
     return pred, time.time() - start
 
 
@@ -121,6 +123,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
     id columns for oof rows, named by oof_id_fields (default none).
     """
     torch.set_num_threads(1)
+    kthreads = int(cfg.get('kernel_threads', 1))
     if oof_ids is None:
         oof_ids = lambda data, idx: [{} for _ in idx]
     kspace = kernel_space(cfg)
@@ -147,8 +150,8 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
         'data_sha256': cfg['data_sha256'], 'cache_sha256': cfg['cache_sha256'],
         'source_sha256': sources,
         'selection_sha256': sha256_of(args.selection) if args.selection else None,
-        'versions': versions, 'jobs': cfg['jobs'],
-        'parallel': 'joblib loky processes; estimators and torch single-threaded',
+        'versions': versions, 'jobs': cfg['jobs'], 'kernel_threads': kthreads,
+        'parallel': 'joblib loky processes; estimators single-threaded; kernel jobs use kernel_threads Torch/BLAS threads',
         'rule': 'mean inner PCC of seed-averaged predictions; first candidate on tie; full dev refit; test scored once',
     }
     if 'source_git_commit' in cfg:
@@ -218,7 +221,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
                                         'candidate': i, 'pcc': float(score), 'seconds': round(seconds, 3)})
                     kjobs = [(X_fit, data.Y, train, valid, h,
                               [(m, r, f) for m in kernel_models for (hh, r, f) in kspace[m] if hh == h],
-                              labeled)
+                              labeled, kthreads)
                              for (train, valid), X_fit in zip(inner, prepared)
                              for h in cfg['bandwidths'] if kernel_models]
                     # SoyBase's float64 kernel matrices already take several GB per task.
@@ -279,7 +282,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
                     kentries = [(e, m, entries[(m, e)]['spec']['bandwidth'], entries[(m, e)]['spec']['ridge'],
                                  entries[(m, e)]['spec']['additive_fraction'])
                                 for m in kernel_models for e in range(len(traits))]
-                    kpred, kseconds = kernel_outer((X, data.Y, dev, test, kentries, labeled))
+                    kpred, kseconds = kernel_outer((X, data.Y, dev, test, kentries, labeled, kthreads))
                     fold_preds = {}
                     for (m, e), (preds, seconds) in zip(ckeys, cresults):
                         fold_preds[(m, e)] = (preds, seconds)

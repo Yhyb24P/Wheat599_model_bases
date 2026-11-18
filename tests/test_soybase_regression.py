@@ -124,3 +124,49 @@ def test_kernel_distance_median_above_torch_quantile_limit():
     X[n // 2:] = 1
     _, _, _, cross = kernels(X, np.arange(n), np.array([0]), 1.0, 'cpu')
     np.testing.assert_allclose(cross.numpy()[0], np.repeat([1.0, np.exp(-1)], n // 2))
+
+
+def test_kernel_threads_recorded_and_selection_stable(tmp_path):
+    from genopred.experiments.wheat2000.classical import nested_classical
+    rng = np.random.default_rng(5)
+    n, p = 48, 8
+    X = rng.normal(size=(n, p)).astype(np.float32)
+    Y = X @ rng.normal(size=(p, 2)) + rng.normal(scale=0.5, size=(n, 2))
+    data = SimpleNamespace(X=X, Y=Y)
+    folds, _ = make_regression_splits(SimpleNamespace(X=X, Y=np.hstack([Y, np.zeros((n, 5))])),
+                                      n_splits=3, seed=42, inner_splits=2)
+    base = {'search': {'rf': {'n_estimators': [40], 'max_features': [1.0],
+                              'min_samples_leaf': [1]}},
+            'seeds': [42], 'jobs': 1, 'splits_sha256': 'x', 'data_sha256': 'x',
+            'cache_sha256': 'x', 'source_git_commit': 'x', 'gblup': True,
+            'bandwidths': [0.5, 1.0], 'ridge': [0.1, 1.0], 'additive_fractions': [0.0, 1.0]}
+    options = dict(sources={}, config_sha='x', labeled=np.isfinite(Y))
+
+    def run(threads, name):
+        cfg = dict(base)
+        if threads is not None:
+            cfg['kernel_threads'] = threads
+        sel = SimpleNamespace(out=tmp_path / name / 'sel', selection=None, models=None, config=None)
+        nested_classical(cfg, sel, data, folds, ['t0', 't1'], **options)
+        out = SimpleNamespace(out=tmp_path / name / 'outer', selection=sel.out / 'selection.json',
+                              models=None, config=None)
+        nested_classical(cfg, out, data, folds, ['t0', 't1'], **options)
+        return sel.out, out.out
+
+    s1, o1 = run(None, 't1')
+    s4, o4 = run(4, 't4')
+    assert json.loads((o1 / 'provenance.json').read_text())['kernel_threads'] == 1
+    assert json.loads((o4 / 'provenance.json').read_text())['kernel_threads'] == 4
+    key = lambda v: (v['model'], v['trait'], v['fold'], v['spec'])
+    assert [key(v) for v in json.loads((s1 / 'selection.json').read_text())['selected']] == \
+           [key(v) for v in json.loads((s4 / 'selection.json').read_text())['selected']]
+    import csv
+
+    def preds(path):
+        with (path / 'oof.csv').open() as handle:
+            return {(r['model'], r['trait'], r['fold'], r['material_index']): float(r['y_pred'])
+                    for r in csv.DictReader(handle)}
+
+    p1, p4 = preds(o1), preds(o4)
+    assert p1.keys() == p4.keys()
+    assert max(abs(p1[k] - p4[k]) for k in p1) < 1e-8
