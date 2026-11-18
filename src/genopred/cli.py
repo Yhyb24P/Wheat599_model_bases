@@ -43,6 +43,7 @@ RUNNERS = {
     'wheat2000_gblup': ('genopred.models.kernels.wheat2000_gblup', 'run'),
     'wheat2000_huber': ('genopred.models.kernels.wheat2000_huber', 'run'),
     'wheat2000_classical': ('genopred.experiments.wheat2000.classical', 'run'),
+    'soybase_regression': ('genopred.experiments.soybase.regression', 'run'),
     'wheat2000_candidate': ('genopred.models.comparators.wheat2000_candidate', 'run'),
     'wheat2000_gsformer_csa': ('genopred.models.comparators.wheat2000_gsformer', 'run'),
     'wheat2000_gsformer_nsa': ('genopred.models.comparators.wheat2000_gsformer', 'run'),

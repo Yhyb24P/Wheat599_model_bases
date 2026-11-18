@@ -49,25 +49,43 @@ def kernel_predict_multi(mats, y, fraction, ridge):
 
 def kernel_inner(job):
     torch.set_num_threads(1)
-    X, Y, train, valid, h, specs = job
+    X, Y, train, valid, h, specs, labeled = job
     start = time.time()
-    mats = kernels(X, train, valid, h, CPU)
-    scores = {(m, r, f): [pcc(Y[valid, e], pred[:, e]) for e in range(Y.shape[1])]
-              for m, r, f in specs
-              for pred in [kernel_predict_multi(mats, Y[train], f, r)]}
+    if labeled is None:
+        mats = kernels(X, train, valid, h, CPU)
+        scores = {spec: [pcc(y, p) for y, p in zip(
+            Y[valid].T, kernel_predict_multi(mats, Y[train], spec[2], spec[1]).T)] for spec in specs}
+    else:
+        scores = {spec: [] for spec in specs}
+        for e in range(Y.shape[1]):
+            tr = train[labeled[train, e]]
+            va = valid[labeled[valid, e]]
+            mats = kernels(X, tr, va, h, CPU)
+            for spec in specs:
+                pred = kernel_predict_multi(mats, Y[tr, e, None], spec[2], spec[1])[:, 0]
+                scores[spec].append(pcc(Y[va, e], pred))
     return scores, time.time() - start
 
 
 def kernel_outer(job):
     torch.set_num_threads(1)
-    X, Y, dev, test, entries = job
+    X, Y, dev, test, entries, labeled = job
     start = time.time()
-    pred = np.empty((len(test), Y.shape[1]))
-    for h, r, f in sorted({(e[2], e[3], e[4]) for e in entries}):
-        p = kernel_predict_multi(kernels(X, dev, test, h, CPU), Y[dev], f, r)
+    pred = {m: np.full((len(test), Y.shape[1]), np.nan) for _, m, *_ in entries}
+    test_pos = np.full(len(Y), -1, dtype=np.int64)
+    test_pos[test] = np.arange(len(test))
+    if labeled is None:
+        for h, r, f in sorted({(e[2], e[3], e[4]) for e in entries}):
+            p = kernel_predict_multi(kernels(X, dev, test, h, CPU), Y[dev], f, r)
+            for e in entries:
+                if (e[2], e[3], e[4]) == (h, r, f):
+                    pred[e[1]][:, e[0]] = p[:, e[0]]
+    else:
         for e in entries:
-            if (e[2], e[3], e[4]) == (h, r, f):
-                pred[:, e[0]] = p[:, e[0]]
+            tr = dev[labeled[dev, e[0]]]
+            te = test[labeled[test, e[0]]]
+            p = kernel_predict_multi(kernels(X, tr, te, e[2], CPU), Y[tr, e[0], None], e[4], e[3])
+            pred[e[1]][test_pos[te], e[0]] = p[:, 0]
     return pred, time.time() - start
 
 
@@ -90,16 +108,20 @@ def _read_csv(path, types):
     return rows
 
 
-def run(cfg, args, runner_path):
+def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
+                     provenance_extra=None, prepare=None, labeled=None, oof_ids=None,
+                     oof_id_fields=()):
+    """Shared nested selection/refit/scoring loop for classical+kernel baselines.
+
+    prepare(X, fit_idx) -> X: fit-only preprocessing applied before any model
+    sees the data (default identity). labeled: boolean (n, n_traits) mask of
+    usable labels; when given, fits and scores use only labeled rows per trait
+    (default None = all rows labeled). oof_ids(data, idx) -> extra per-material
+    id columns for oof rows, named by oof_id_fields (default none).
+    """
     torch.set_num_threads(1)
-    data = load_wheat2000(cfg['data'], cfg['data_sha256'], cfg['cache'], cfg['cache_sha256'])
-    split_path = Path(cfg['splits'])
-    if sha256_of(split_path) != cfg['splits_sha256']:
-        raise ValueError('Frozen Wheat2000 splits SHA differs')
-    splits = json.loads(split_path.read_text())
-    if list(data.trait_names) != cfg['traits'] or splits['trait_names'] != cfg['traits']:
-        raise ValueError('All eight traits and their order must match the frozen protocol')
-    folds, traits = splits['folds'], data.trait_names
+    if oof_ids is None:
+        oof_ids = lambda data, idx: [{} for _ in idx]
     all_models = tuple(cfg['search']) + KERNEL_MODELS
     subset = tuple(args.models) if getattr(args, 'models', None) else all_models
     search_models = tuple(m for m in cfg['search'] if m in subset)
@@ -107,14 +129,6 @@ def run(cfg, args, runner_path):
     models = search_models + kernel_models
     space = {m: candidates(cfg, m) for m in search_models}
     kspace = {m: v for m, v in kernel_space(cfg).items() if m in kernel_models}
-    config_sha = hashlib.sha256(json.dumps(cfg, sort_keys=True).encode()).hexdigest()
-    _pkg = Path(genopred.__file__).parent
-    sources = {str(p): sha256_of(Path(p)) for p in
-               (Path(__file__), Path(runner_path), Path(args.config),
-                _pkg/'models'/'classical'/'classical_baselines.py',
-                _pkg/'models'/'kernels'/'kernel_baselines.py',
-                _pkg/'data'/'wheat2000.py',
-                _pkg/'evaluation'/'metrics.py', _pkg/'data'/'wheat599.py')}
     frozen = json.loads(args.selection.read_text()) if args.selection else None
     if frozen:
         if (frozen['config_sha256'] != config_sha or frozen['splits_sha256'] != cfg['splits_sha256']
@@ -127,16 +141,21 @@ def run(cfg, args, runner_path):
     args.out.mkdir(parents=True, exist_ok=True)
     versions = {n: importlib.metadata.version(n)
                 for n in ('numpy', 'scikit-learn', 'xgboost', 'lightgbm', 'torch', 'joblib')}
-    (args.out / 'provenance.json').write_text(json.dumps({
+    provenance = {
         'config': cfg, 'config_sha256': config_sha, 'splits_sha256': cfg['splits_sha256'],
         'data_sha256': cfg['data_sha256'], 'cache_sha256': cfg['cache_sha256'],
-        'source_git_commit': cfg['source_git_commit'], 'source_sha256': sources,
+        'source_sha256': sources,
         'selection_sha256': sha256_of(args.selection) if args.selection else None,
         'versions': versions, 'jobs': cfg['jobs'],
         'parallel': 'joblib loky processes; estimators and torch single-threaded',
         'rule': 'mean inner PCC of seed-averaged predictions; first candidate on tie; full dev refit; test scored once',
         'gblup_rrblup': 'reused from results/wheat2000/classical/wheat2000_gblup_final_20261105 (same centered linear kernel)',
-    }, indent=2))
+    }
+    if 'source_git_commit' in cfg:
+        provenance['source_git_commit'] = cfg['source_git_commit']
+    if provenance_extra:
+        provenance.update(provenance_extra)
+    (args.out / 'provenance.json').write_text(json.dumps(provenance, indent=2))
     selected, valrows, rows, seedrows, oof, seedoof, failures, timing = [], [], [], [], [], [], [], []
     fold_ids = [f['fold'] for f in folds]
     if frozen is None:
@@ -172,15 +191,21 @@ def run(cfg, args, runner_path):
                 inner = [(np.asarray(v['train_idx']), np.asarray(v['val_idx'])) for v in fold['inner']]
                 if len(set(dev) & set(test)) or len(set(dev) | set(test)) != len(data.X):
                     raise ValueError('Invalid outer split')
+                X = data.X
                 print(f'fold {k}: dev={len(dev)} test={len(test)}', flush=True)
                 start = time.time()
                 if frozen is None:
                     jobs, keys = [], []
-                    for m in search_models:
-                        for e, trait in enumerate(traits):
-                            for j, (train, valid) in enumerate(inner):
+                    prepared = [prepare(X, fit) if prepare else X for fit, _ in inner]
+                    for j, ((fit, target), X_fit) in enumerate(zip(inner, prepared)):
+                        for m in search_models:
+                            for e in range(len(traits)):
+                                train, valid = fit, target
+                                if labeled is not None:
+                                    train = train[labeled[train, e]]
+                                    valid = valid[labeled[valid, e]]
                                 for i, spec in enumerate(space[m]):
-                                    jobs.append((m, spec, model_seeds(cfg, m), data.X, data.Y[:, e], train, valid))
+                                    jobs.append((m, spec, model_seeds(cfg, m), X_fit, data.Y[:, e], train, valid))
                                     keys.append((m, e, j, i))
                     scores = {}
                     results = Parallel(n_jobs=cfg['jobs'], backend='loky')(
@@ -191,12 +216,15 @@ def run(cfg, args, runner_path):
                         scores.setdefault((m, e), np.zeros((len(space[m]), len(inner))))[i, j] = score
                         valrows.append({'model': m, 'trait': traits[e], 'fold': k, 'inner_fold': j,
                                         'candidate': i, 'pcc': float(score), 'seconds': round(seconds, 3)})
-                    kjobs = [(data.X, data.Y, train, valid, h,
-                              [(m, r, f) for m in kernel_models for (hh, r, f) in kspace[m] if hh == h])
-                             for j, (train, valid) in enumerate(inner) for h in cfg['bandwidths']]
-                    kresults = Parallel(n_jobs=cfg['jobs'], backend='loky')(
+                    kjobs = [(X_fit, data.Y, train, valid, h,
+                              [(m, r, f) for m in kernel_models for (hh, r, f) in kspace[m] if hh == h],
+                              labeled)
+                             for (train, valid), X_fit in zip(inner, prepared)
+                             for h in cfg['bandwidths'] if kernel_models]
+                    # SoyBase's float64 kernel matrices already take several GB per task.
+                    kresults = Parallel(n_jobs=1 if labeled is not None else cfg['jobs'], backend='loky')(
                         delayed(kernel_inner)(job) for job in kjobs)
-                    for j, (train, valid) in enumerate(inner):
+                    for j in range(len(inner)):
                         for h, (kscores, seconds) in zip(cfg['bandwidths'], kresults[j * len(cfg['bandwidths']):
                                                                              (j + 1) * len(cfg['bandwidths'])]):
                             for m in kernel_models:
@@ -223,6 +251,7 @@ def run(cfg, args, runner_path):
                     timing.append({'fold': k, 'phase': 'selection', 'seconds': round(time.time() - start, 1)})
                     print(f'  selection complete in {time.time() - start:.1f}s', flush=True)
                 else:
+                    X = prepare(X, dev) if prepare else X
                     entries = {}
                     for m in models:
                         for e, trait in enumerate(traits):
@@ -236,27 +265,41 @@ def run(cfg, args, runner_path):
                                 if dict(zip(('bandwidth', 'ridge', 'additive_fraction'), spec)) != entry['spec']:
                                     raise ValueError('Frozen kernel spec does not match candidate order')
                             entries[(m, e)] = entry
-                    cjobs = [(m, entries[(m, e)]['spec'], model_seeds(cfg, m), data.X, data.Y[:, e], dev, test)
-                             for m in search_models for e in range(len(traits))]
+                    cjobs, ckeys = [], []
+                    for m in search_models:
+                        for e in range(len(traits)):
+                            dv, te = dev, test
+                            if labeled is not None:
+                                dv = dev[labeled[dev, e]]
+                                te = test[labeled[test, e]]
+                            cjobs.append((m, entries[(m, e)]['spec'], model_seeds(cfg, m), X, data.Y[:, e], dv, te))
+                            ckeys.append((m, e))
                     cresults = Parallel(n_jobs=cfg['jobs'], backend='loky')(
                         delayed(outer_predict)(job) for job in cjobs)
                     kentries = [(e, m, entries[(m, e)]['spec']['bandwidth'], entries[(m, e)]['spec']['ridge'],
                                  entries[(m, e)]['spec']['additive_fraction'])
                                 for m in kernel_models for e in range(len(traits))]
-                    kpred, kseconds = kernel_outer((data.X, data.Y, dev, test, kentries))
+                    kpred, kseconds = kernel_outer((X, data.Y, dev, test, kentries, labeled))
                     fold_preds = {}
-                    for (m, e), (preds, seconds) in zip(
-                            [(m, e) for m in search_models for e in range(len(traits))], cresults):
+                    for (m, e), (preds, seconds) in zip(ckeys, cresults):
                         fold_preds[(m, e)] = (preds, seconds)
                     for m in kernel_models:
                         for e in range(len(traits)):
-                            fold_preds[(m, e)] = ({None: kpred[:, e]}, kseconds)
+                            fold_preds[(m, e)] = ({None: kpred[m][:, e]}, kseconds)
                     for (m, e), (preds, seconds) in fold_preds.items():
                         trait = traits[e]
                         entry = entries[(m, e)]
+                        if labeled is None:
+                            te = test
+                        else:
+                            te = test[labeled[test, e]]
+                            if m in kernel_models:
+                                pos = np.full(len(data.Y), -1, dtype=np.int64)
+                                pos[test] = np.arange(len(test))
+                                preds = {None: preds[None][pos[te]]}
                         mean_pred = np.mean(list(preds.values()), axis=0)
-                        met = {'pcc': pcc(data.Y[test, e], mean_pred), 'rmse': rmse(data.Y[test, e], mean_pred),
-                               'mae': mae(data.Y[test, e], mean_pred)}
+                        met = {'pcc': pcc(data.Y[te, e], mean_pred), 'rmse': rmse(data.Y[te, e], mean_pred),
+                               'mae': mae(data.Y[te, e], mean_pred)}
                         if not all(np.isfinite(v) for v in met.values()):
                             raise ValueError(f'non-finite or undefined outer metric {m} trait={trait}')
                         rows.append({'model': m, 'trait': trait, 'fold': k, **met,
@@ -266,16 +309,15 @@ def run(cfg, args, runner_path):
                             if seed is None:
                                 continue
                             seedrows.append({'model': m, 'trait': trait, 'fold': k, 'seed': seed,
-                                             'pcc': pcc(data.Y[test, e], pred), 'rmse': rmse(data.Y[test, e], pred),
-                                             'mae': mae(data.Y[test, e], pred)})
+                                             'pcc': pcc(data.Y[te, e], pred), 'rmse': rmse(data.Y[te, e], pred),
+                                             'mae': mae(data.Y[te, e], pred)})
                             seedoof.extend({'model': m, 'trait': trait, 'fold': k, 'seed': seed,
                                             'material_index': int(idx), 'y_true': float(data.Y[idx, e]),
-                                            'y_pred': float(v)} for idx, v in zip(test, pred))
+                                            'y_pred': float(v)} for idx, v in zip(te, pred))
+                        ids = oof_ids(data, te)
                         oof.extend({'model': m, 'trait': trait, 'fold': k, 'material_index': int(idx),
-                                    'genotype_id': str(data.genotype_ids[idx]),
-                                    'phenotype_id': str(data.phenotype_ids[idx]),
-                                    'y_true': float(data.Y[idx, e]), 'y_pred': float(v)}
-                                   for idx, v in zip(test, mean_pred))
+                                    **idc, 'y_true': float(data.Y[idx, e]), 'y_pred': float(v)}
+                                   for idx, v, idc in zip(te, mean_pred, ids))
                     timing.append({'fold': k, 'phase': 'outer', 'seconds': round(time.time() - start, 1)})
                     print(f'  outer evaluation complete in {time.time() - start:.1f}s', flush=True)
                 state['folds_complete'].append(k)
@@ -286,7 +328,7 @@ def run(cfg, args, runner_path):
                       ['model', 'trait', 'fold', 'pcc', 'rmse', 'mae', 'candidate', 'inner_pcc', 'fit_seconds'], rows)
                 write(args.out / 'per_fold_seed.csv', ['model', 'trait', 'fold', 'seed', 'pcc', 'rmse', 'mae'], seedrows)
                 write(args.out / 'oof.csv',
-                      ['model', 'trait', 'fold', 'material_index', 'genotype_id', 'phenotype_id', 'y_true', 'y_pred'], oof)
+                      ['model', 'trait', 'fold', 'material_index', *oof_id_fields, 'y_true', 'y_pred'], oof)
                 write(args.out / 'oof_seed.csv',
                       ['model', 'trait', 'fold', 'seed', 'material_index', 'y_true', 'y_pred'], seedoof)
                 write(args.out / 'failures.csv', ['fold', 'reason'], failures)
@@ -336,3 +378,26 @@ def run(cfg, args, runner_path):
         (args.out / 'execution_status.json').write_text(json.dumps(state, indent=2))
         write(args.out / 'failures.csv', ['fold', 'reason'], failures)
         raise
+
+
+def run(cfg, args, runner_path):
+    data = load_wheat2000(cfg['data'], cfg['data_sha256'], cfg['cache'], cfg['cache_sha256'])
+    split_path = Path(cfg['splits'])
+    if sha256_of(split_path) != cfg['splits_sha256']:
+        raise ValueError('Frozen Wheat2000 splits SHA differs')
+    splits = json.loads(split_path.read_text())
+    if list(data.trait_names) != cfg['traits'] or splits['trait_names'] != cfg['traits']:
+        raise ValueError('All eight traits and their order must match the frozen protocol')
+    config_sha = hashlib.sha256(json.dumps(cfg, sort_keys=True).encode()).hexdigest()
+    _pkg = Path(genopred.__file__).parent
+    sources = {str(p): sha256_of(Path(p)) for p in
+               (Path(__file__), Path(runner_path), Path(args.config),
+                _pkg/'models'/'classical'/'classical_baselines.py',
+                _pkg/'models'/'kernels'/'kernel_baselines.py',
+                _pkg/'data'/'wheat2000.py',
+                _pkg/'evaluation'/'metrics.py', _pkg/'data'/'wheat599.py')}
+    nested_classical(cfg, args, data, splits['folds'], data.trait_names,
+                     sources=sources, config_sha=config_sha,
+                     oof_ids=lambda d, idx: [{'genotype_id': str(d.genotype_ids[i]),
+                                              'phenotype_id': str(d.phenotype_ids[i])} for i in idx],
+                     oof_id_fields=('genotype_id', 'phenotype_id'))

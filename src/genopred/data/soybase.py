@@ -280,6 +280,66 @@ def load_chromosomes(marker_map_path, snp_ids):
     return np.asarray(labels)
 
 
+def load_soybase_regression(cache_path, cache_sha):
+    """Load and verify the seven-trait regression cache (float64 Y, NaN missing)."""
+    cache_path = Path(cache_path)
+    if not cache_path.is_file():
+        raise FileNotFoundError(cache_path)
+    if file_sha256(cache_path) != str(cache_sha):
+        raise ValueError(f'SoyBase regression cache sha256 mismatch: {cache_path}')
+    with np.load(cache_path, allow_pickle=False) as archive:
+        required = {'X', 'Y', 'trait_names', 'sample_ids', 'snp_ids'}
+        if set(archive.files) != required:
+            raise ValueError('SoyBase regression cache has unexpected arrays')
+        X = np.asarray(archive['X'], dtype=np.float32)
+        Y = np.asarray(archive['Y'], dtype=np.float64)
+        trait_names = tuple(str(v) for v in archive['trait_names'])
+        sample_ids = np.asarray(archive['sample_ids']).astype(str)
+        snp_ids = np.asarray(archive['snp_ids']).astype(str)
+    if X.ndim != 2 or Y.ndim != 2 or X.shape[0] != Y.shape[0]:
+        raise ValueError('SoyBase regression cache X/Y shapes invalid')
+    if trait_names != REG_TRAITS:
+        raise ValueError('SoyBase regression cache trait names mismatch')
+    if X.shape[0] != sample_ids.size or X.shape[1] != snp_ids.size:
+        raise ValueError('SoyBase regression cache ID lengths disagree')
+    if not np.isin(X[~np.isnan(X)], (0, 1, 2)).all():
+        raise ValueError('SoyBase dosage not in {0,1,2}')
+    return SoyBaseData(X, Y, trait_names, REG_GRIN_NAME, sample_ids, snp_ids)
+
+
+def make_regression_splits(data, n_splits=10, seed=42, inner_splits=3):
+    """Material-level joint outer/inner splits shared by all seven regression traits.
+
+    Outer folds partition ALL accessions (KFold, shuffle, seed), so a test
+    accession's phenotypes for every trait stay out of training, including for
+    multi-trait fusion. Inner folds partition each outer dev set the same way.
+    Per-trait fitting masks NaN labels inside the current fit set; the split
+    itself never depends on labels.
+    """
+    from sklearn.model_selection import KFold
+    n = len(data.X)
+    if n < n_splits * inner_splits:
+        raise ValueError('too few accessions for the requested split counts')
+    folds = []
+    outer = KFold(n_splits=n_splits, shuffle=True, random_state=seed)
+    for fold, (dev_idx, test_idx) in enumerate(outer.split(np.arange(n))):
+        inner = []
+        inner_kf = KFold(n_splits=inner_splits, shuffle=True, random_state=seed + fold)
+        for train_local, val_local in inner_kf.split(dev_idx):
+            inner.append({'train_idx': dev_idx[train_local].tolist(),
+                          'val_idx': dev_idx[val_local].tolist()})
+        folds.append({'fold': fold, 'dev_idx': dev_idx.tolist(),
+                      'test_idx': test_idx.tolist(), 'inner': inner})
+    covered = sorted(v for f in folds for v in f['test_idx'])
+    if covered != list(range(n)):
+        raise ValueError('outer test folds do not cover all accessions once')
+    labeled = {t: int(np.isfinite(data.Y[:, j]).sum()) for j, t in enumerate(REG_TRAITS)}
+    info = {'n_accessions': n, 'traits': list(REG_TRAITS), 'labeled_per_trait': labeled,
+            'cv': 'KFold (material-level joint holdout, label-independent)',
+            'n_splits': n_splits, 'inner_splits': inner_splits, 'seed': seed}
+    return folds, info
+
+
 def make_stratified_splits(data, trait, n_splits=10, seed=42, inner_splits=3):
     """StratifiedKFold outer/inner splits over accessions with a valid label for trait.
 
