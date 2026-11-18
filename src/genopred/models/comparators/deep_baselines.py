@@ -39,6 +39,7 @@ from torch import nn
 
 from genopred.data.wheat599 import load, sha256_of
 from genopred.data.wheat2000 import load_wheat2000
+from genopred.evaluation import swanlab_tracking
 from genopred.evaluation.metrics import pcc, rmse, mae
 
 TIE_TOLERANCE = 1e-12
@@ -628,6 +629,8 @@ def _development(cfg, args, data, folds, envs, configs, seeds, device, encoded, 
                 print(f'fold {f} inner {inner_i} env {env} config {c} seed {seed}: '
                       f'pcc={result["best_pcc"]:.4f} epoch={result["best_epoch"]} '
                       f'({result["seconds"]:.1f}s)', flush=True)
+                swanlab_tracking.log({'fits_done': len(records),
+                                      'last_pcc': float(result['best_pcc'])}, step=len(records))
             np.savez_compressed(args.out / f'predictions_{f}_{inner}.npz', **predictions)
             write_json(args.out / 'trajectories.json', records)
             predictions = {}
@@ -656,6 +659,8 @@ def _development(cfg, args, data, folds, envs, configs, seeds, device, encoded, 
                              'inner_pcc': float(scores[winner]),
                              'all_config_inner_pcc': [float(s) for s in scores],
                              'seeds': seed_blocks})
+            swanlab_tracking.log(
+                {f'fold{f}/{data.environments[env]}/inner_pcc': float(scores[winner])}, step=f)
             write_json(args.out / 'selection.json',
                        {'config': cfg, 'splits_sha256': sha256_of(Path(cfg['splits'])),
                         'selected': selected})
@@ -697,6 +702,9 @@ def _final(cfg, args, data, folds, envs, configs, seeds, device, encoded, client
             mean_pred = np.mean([preds[seed] for seed in seeds], axis=0)
             metrics = {'pcc': pcc(truth, mean_pred), 'rmse': rmse(truth, mean_pred),
                        'mae': mae(truth, mean_pred)}
+            swanlab_tracking.log({f'fold{f}/{env_name}/pcc': metrics['pcc'],
+                                  f'fold{f}/{env_name}/rmse': metrics['rmse'],
+                                  f'fold{f}/{env_name}/mae': metrics['mae']}, step=f)
             rows.append({'fold': f, 'environment': env_name, **metrics,
                          'config_index': entry['config_index'], 'inner_pcc': entry['inner_pcc']})
             for seed in seeds:
