@@ -1,15 +1,22 @@
 """Opt-in SwanLab experiment tracking for genopred runs (cloud swanlab.cn).
 
-Enabled only when SWANLAB_ENABLE is truthy. Logs run config and final summary
-metrics; SwanLab auto-records system hardware (GPU/CPU/memory) and host info,
-so one project dashboard distinguishes runs across omen/tim/nhy. No-op when
-disabled or swanlab is absent, leaving existing runs unaffected.
+Enabled only when SWANLAB_ENABLE is truthy. Organizes runs by dataset project
+(wheat599/wheat2000/soybase) with host/model/dataset/phase tags so the dashboard
+groups many machines/models/tasks. Runners call log() for live per-fold/epoch
+curves; the cli.py hook inits the run and finish_run() logs the final summary.
+SwanLab auto-records GPU/CPU/memory while a run is active. No-op when disabled
+or swanlab absent, leaving existing runs unaffected.
 
-Host setup: pip install swanlab; swanlab login -k <API key from swanlab.cn/settings>.
+Host setup: pip install swanlab; swanlab login -k <key from swanlab.cn/settings>.
 """
 import json
 import os
+import socket
 from pathlib import Path
+
+
+def _enabled():
+    return os.environ.get('SWANLAB_ENABLE', '').lower() in ('1', 'true', 'yes')
 
 
 def _dataset(cfg):
@@ -21,23 +28,41 @@ def _dataset(cfg):
     return 'wheat599'
 
 
-def init_run(cfg, out):
-    if os.environ.get('SWANLAB_ENABLE', '').lower() not in ('1', 'true', 'yes'):
+def init_run(cfg, out, phase=None):
+    if not _enabled():
         return None
     try:
         import swanlab
     except ImportError:
         return None
     try:
+        dataset = _dataset(cfg)
+        model = str(cfg.get('model', 'unknown'))
+        tags = [socket.gethostname(), model, dataset]
+        if phase:
+            tags.append(str(phase))
+        if cfg.get('trait'):
+            tags.append(str(cfg['trait']))
         return swanlab.init(
-            project=os.environ.get('SWANLAB_PROJECT', 'wheat599'),
-            experiment_name=Path(out).name,
-            description=f"{cfg.get('model', 'unknown')} on {_dataset(cfg)}",
-            config={k: cfg[k] for k in ('model', 'seeds', 'traits', 'device', 'trait')
-                    if k in cfg},
+            project=os.environ.get('SWANLAB_PROJECT', dataset),
+            experiment_name=f'{model}-{Path(out).name}',
+            tags=tags,
+            config={k: cfg[k] for k in ('model', 'seeds', 'traits', 'trait', 'device',
+                                        'min_call_rate', 'min_maf', 'n_quantiles') if k in cfg},
         )
     except Exception:
         return None
+
+
+def log(metrics, step=None):
+    """Live metric logging for runners (per-fold/epoch). No-op if no active run."""
+    if not _enabled():
+        return
+    try:
+        import swanlab
+        swanlab.log(metrics, step=step)
+    except Exception:
+        pass
 
 
 def _flatten(obj, prefix=''):
