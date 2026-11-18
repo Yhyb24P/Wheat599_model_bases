@@ -715,6 +715,7 @@ def wheat2000_section():
         ('wheat2000_candidate_final_20261115', '分位数 TabM–Huber 固定融合', 'primary'),
         ('wheat2000_candidate_final_20261115', '四独立分位数 TabM', 'tabm_only'),
         ('wheat2000_gblup_final_20261105', 'GBLUP', 'macro'),
+        ('wheat2000_deepgs_final_tim_20261118', 'DeepGS', 'macro'),
         ('wheat2000_mtcro_final_20261115', 'MtCro（官方）', 'macro'),
         ('wheat2000_gsformer_csa_final_20261116', 'Gsformer-CSA（官方）', 'macro'),
         ('wheat2000_gsformer_nsa_final_20261116', 'Gsformer-NSA（官方）', 'macro'),
@@ -725,6 +726,7 @@ def wheat2000_section():
         '分位数 TabM–Huber 固定融合': ('主候选', '固定融合', '本项目', None, '候选融合与 TabM 单模型 PCC 接近，融合主要改善 RMSE/MAE；权重 0.5 固定，无额外选权。'),
         '四独立分位数 TabM': ('候选神经分支', 'TabM', 'ICLR 2025', 'https://arxiv.org/abs/2410.24210', '八性状各自训练的分位数 TabM；种子 42/2026 先平均预测再评分。'),
         'GBLUP': ('基础参照', 'GBLUP', 'J Dairy Sci 2008', 'https://doi.org/10.3168/jds.2007-0980', '加性基因组关系矩阵 GBLUP，经典基础参照。'),
+        'DeepGS': ('公开模型', 'DeepGS', 'Planta 2018', 'https://doi.org/10.1007/s00425-018-2976-9', 'PyTorch 结构适配，逐性状按内折最佳轮次重拟合。'),
         'MtCro（官方）': ('公开模型', 'MtCro', 'Plant Methods 2025', 'https://doi.org/10.1186/s13007-024-01321-0', '按作者 Wheat599 模板在拟合集内做 PCA-95（作者无 Wheat2000 PC 文件）。'),
         'Gsformer-CSA（官方）': ('公开模型', 'Gsformer', 'Genet Sel Evol 2026', 'https://doi.org/10.1186/s12711-026-01055-8', '33709 标记零填充到 33768；CNN-自注意力（CSA）官方配方。'),
         'Gsformer-NSA（官方）': ('公开模型', 'Gsformer', 'Genet Sel Evol 2026', 'https://doi.org/10.1186/s12711-026-01055-8', '33709 标记零填充到 33768；NSA 官方配方。'),
@@ -740,7 +742,8 @@ def wheat2000_section():
     }
     def trait_value(pt, t):
         v = pt.get(t)
-        return v.get('pcc') if isinstance(v, dict) else (v if isinstance(v, (int, float)) else None)
+        pcc = v.get('pcc') if isinstance(v, dict) else v
+        return pcc.get('mean') if isinstance(pcc, dict) else pcc
     collected = []
     for run, name, key in runs:
         d = run_dir(run, required=False)
@@ -759,17 +762,17 @@ def wheat2000_section():
             macro = data.get('macro') or data.get('primary') or {}
             per_trait = data.get('per_trait') or data.get('per_environment') or {}
         if macro:
-            collected.append((run, name, macro, per_trait))
+            collected.append((path.relative_to(ROOT).as_posix(), name, macro, per_trait))
     collected.sort(key=lambda r: r[2].get('pcc', 0), reverse=True)
     records = []
-    for i, (run, name, macro, pt) in enumerate(collected):
+    for i, (path, name, macro, pt) in enumerate(collected):
         role, family, journal, url, note = meta[name]
         trait_vals = [trait_value(pt, t) for t in traits]
         record = dict(id=i, name=name, role=role, family=family, stage='Wheat2000 外层',
                       journal=journal, journal_url=url, priority=i, note=note, status='有记录',
                       pcc=f'{macro["pcc"]:.6f}', rmse=f'{macro["rmse"]:.6f}', mae=f'{macro["mae"]:.6f}',
                       traits=[f'{v:.6f}' if v is not None else '—' for v in trait_vals],
-                      source=f'results/{run}/summary.json', link=f'../results/{run}/summary.json')
+                      source=path, link=f'../{path}')
         record['values'] = {k: float(record[k]) for k in ['pcc', 'rmse', 'mae']}
         for t, v in zip(traits, trait_vals):
             record['values'][t] = float(v) if v is not None else None
@@ -779,7 +782,7 @@ def wheat2000_section():
         'Wheat2000 跨数据集对比',
         '2000 材料 × 33709 二值标记，8 性状（TKW/TW/GL/GW/GH/GP/SDS/PHT）。统一协议：canonical 十外折、种子 42/2026 先平均预测、fit-only 预处理、内折选模、完整开发集重拟合、测试一次；主指标为 80 个 trait×fold 等权 PCC。点击模型查看结构，点击表头排序。',
         f'{len(records)} 条系统记录 · 宏指标为 80 trait×fold 等权；逐性状列为各性状折均 PCC；— 表示未记录',
-        '融合 PCC 未超 TabM 单模型，融合主要改善 RMSE/MAE。公开模型为同协议＋官方配方适配，不等同论文原结果复现；本表是跨数据集证据链，不构成跨数据集 SOTA 证明。WheatGP 官方配方在 Wheat2000 明显低于候选（GP/PHT 近零或负），是该配方同协议真实阴性结果，不视为家族失败。MtCro 按作者 Wheat599 模板 fit 内 PCA-95；Gsformer 33709 标记零填充到 33768。其余待交付模型（MoEGP/RAGP/DeepGS/DNNGP/SoyDNGP/经典基线）完成后补入。期刊/年份经 ref/ 核验。详见 <a href="MODEL_COMPARISON.md">MODEL_COMPARISON</a>。筛选和排序不改变模型选择。',
+        '融合 PCC 未超 TabM 单模型，融合主要改善 RMSE/MAE。公开模型为同协议＋官方配方适配，不等同论文原结果复现；本表是跨数据集证据链，不构成跨数据集 SOTA 证明。WheatGP 官方配方在 Wheat2000 明显低于候选（GP/PHT 近零或负），是该配方同协议真实阴性结果，不视为家族失败。MtCro 按作者 Wheat599 模板 fit 内 PCA-95；Gsformer 33709 标记零填充到 33768。其余待交付模型完成后补入。期刊/年份经 ref/ 核验。详见 <a href="MODEL_COMPARISON.md">MODEL_COMPARISON</a>。筛选和排序不改变模型选择。',
         architectures, section_id='wheat2000', title_id='wheat2000-title',
         inspector_title=records[0]['name'] if records else 'Wheat2000 模型')
 

@@ -1,5 +1,11 @@
 # Results — 植物基因组表型预测
 
+## Wheat2000 DeepGS 外层评价（2026-11-19）
+
+DeepGS 的 PyTorch 结构适配完成 480 次内折拟合和 160 次完整开发集重拟合。使用一个公开配方，按各性状、各折和各种子的三个内折最佳轮次中位数确定重拟合轮次，先平均种子 42、2026 的预测再评分。80 个性状折无失败，折均宏 PCC **0.600602**、RMSE **0.788628**、MAE **0.611912**。合并 OOF 指标按性状保存在汇总的 `pooled` 字段。外层运行器计时为 7185.1 秒，使用 tim 的 RTX 3090。 [运行汇总](../results/wheat2000/neural/deepgs/wheat2000_deepgs_final_tim_20261118/summary.json)
+
+核对了冻结划分中的测试材料、16,000 条 OOF 真值与两种子预测均值、160 条重拟合记录。运行使用 tim 上保留的提交 `caba0a9724d6ca9d3145348b190f4f7043d148c1`，内层选模文件保存在同机的 `results/wheat2000/neural/deepgs/wheat2000_deepgs_dev_tim_20261117/selection.json`，逐材料预测仍保留在外层运行目录。本批为 DeepGS 的同协议结构适配，早期中断批次另保留原记录。 [提交、配置与选模摘要](../results/wheat2000/neural/deepgs/wheat2000_deepgs_final_tim_20261118/provenance.json)
+
 ## DNNGP 同协议外层适配（2026-11-16，待进一步核验）
 
 DNNGP 官方编译训练器（AIBreeding/DNNGP 3bbac096，Python 3.9/TF 2.6）绕过官方 KFold、用协议划分，完成 Wheat599 十外折外层：40 环境折（10 折×4 环境）、0 失败，种子 42/2026 先平均预测再评分。折均宏 **PCC 0.444488 / RMSE 1.034948 / MAE 0.809615**；逐环境 PCC Env1–4 = 0.464628/0.480317/0.390029/0.442978。低于 Huber ICM（0.521745）与分位数 TabM（0.518829），按同协议真实结果记录，不视为家族失败。

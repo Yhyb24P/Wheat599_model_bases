@@ -18,7 +18,7 @@ GBLUP的7.32/5.03秒均从加载数据与校验选择之后开始，包含原始
 
 RAGP/DNNGP/SoyDNGP 的 Wheat2000 配置为 `wheat2000_ragp.yaml`（dev，`model: ragp`；outer 复用 `ragp_outer` 路由，届时以 dev 产物补 `dev_trajectories`/`verify_frozen_config`）、`wheat2000_dnngp.yaml`、`wheat2000_soydngp.yaml`。三者是 Wheat599 已冻结配方的同协议迁移：RAGP 每性状一个独立单输出网络，官方宽度模式 2500/3000/3000/1500 与 loss_alpha 0.9/0.8/0.5/0.1 按八性状重复，8 配置网格不变；DNNGP 沿用官方编译 trainer（Py3.9/TF2.6 独立 env）＋fit-only PCA95＋12 配置网格；SoyDNGP 沿用官方 model.yaml 网络、one-hot/np.resize 编码、FP32 SmoothL1/Adam 与 fit-only min/max。上游 checkout 与 env 位于 tim `~/projects/Wheat599-research/upstream/`、`conda-envs/`；数据边界、种子与选模规则与本协议一致，不改划分。
 
-`wheat2000_tabm.yaml`、`wheat2000_deepgs.yaml` 保留为冻结协议配置，现役 CLI 不提供这两个模型。原 TabM 按 `wheat2000-tabm-gblup-protocol-20261105`、原 DeepGS 按 `wheat2000-deepgs-protocol-20261105` 标签中的路径与入口复现；其历史中断状态不因迁移改变。下文保留原执行路径及配方，当前进展以 [RESULTS](../RESULTS.md) 为准。
+早期 TabM 和 DeepGS 中断批次的入口分别见 `wheat2000-tabm-gblup-protocol-20261105` 和 `wheat2000-deepgs-protocol-20261105`。现役 CLI 支持 `model: deepgs`。2026-11-19 完成的独立运行使用 tim 冻结提交 `caba0a9`，选模与重拟合记录见 [RESULTS](../RESULTS.md#wheat2000-deepgs-外层评价2026-11-19)。
 
 ## 明确的数据版本
 

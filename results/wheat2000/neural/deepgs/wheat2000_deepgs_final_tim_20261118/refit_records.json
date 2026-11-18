@@ -1,0 +1,1122 @@
+[
+  {
+    "fold": 0,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 44
+  },
+  {
+    "fold": 0,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 252
+  },
+  {
+    "fold": 0,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 595
+  },
+  {
+    "fold": 0,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 44
+  },
+  {
+    "fold": 0,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 348
+  },
+  {
+    "fold": 0,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 160
+  },
+  {
+    "fold": 0,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 544
+  },
+  {
+    "fold": 0,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 41
+  },
+  {
+    "fold": 0,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 43
+  },
+  {
+    "fold": 0,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 65
+  },
+  {
+    "fold": 0,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 65
+  },
+  {
+    "fold": 0,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 69
+  },
+  {
+    "fold": 0,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 323
+  },
+  {
+    "fold": 0,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 421
+  },
+  {
+    "fold": 0,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 92
+  },
+  {
+    "fold": 0,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 105
+  },
+  {
+    "fold": 1,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 2946
+  },
+  {
+    "fold": 1,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 49
+  },
+  {
+    "fold": 1,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1039
+  },
+  {
+    "fold": 1,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 35
+  },
+  {
+    "fold": 1,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 867
+  },
+  {
+    "fold": 1,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 1649
+  },
+  {
+    "fold": 1,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 808
+  },
+  {
+    "fold": 1,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 38
+  },
+  {
+    "fold": 1,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 277
+  },
+  {
+    "fold": 1,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 86
+  },
+  {
+    "fold": 1,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 56
+  },
+  {
+    "fold": 1,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 55
+  },
+  {
+    "fold": 1,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 597
+  },
+  {
+    "fold": 1,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 54
+  },
+  {
+    "fold": 1,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 109
+  },
+  {
+    "fold": 1,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 126
+  },
+  {
+    "fold": 2,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 936
+  },
+  {
+    "fold": 2,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 639
+  },
+  {
+    "fold": 2,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 641
+  },
+  {
+    "fold": 2,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 2218
+  },
+  {
+    "fold": 2,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 892
+  },
+  {
+    "fold": 2,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 461
+  },
+  {
+    "fold": 2,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 3017
+  },
+  {
+    "fold": 2,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 67
+  },
+  {
+    "fold": 2,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1756
+  },
+  {
+    "fold": 2,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 1224
+  },
+  {
+    "fold": 2,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 61
+  },
+  {
+    "fold": 2,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 66
+  },
+  {
+    "fold": 2,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 929
+  },
+  {
+    "fold": 2,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 64
+  },
+  {
+    "fold": 2,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 100
+  },
+  {
+    "fold": 2,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 107
+  },
+  {
+    "fold": 3,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1627
+  },
+  {
+    "fold": 3,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 48
+  },
+  {
+    "fold": 3,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 42
+  },
+  {
+    "fold": 3,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 895
+  },
+  {
+    "fold": 3,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1485
+  },
+  {
+    "fold": 3,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 328
+  },
+  {
+    "fold": 3,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 33
+  },
+  {
+    "fold": 3,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 49
+  },
+  {
+    "fold": 3,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 587
+  },
+  {
+    "fold": 3,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 905
+  },
+  {
+    "fold": 3,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 65
+  },
+  {
+    "fold": 3,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 47
+  },
+  {
+    "fold": 3,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 249
+  },
+  {
+    "fold": 3,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 88
+  },
+  {
+    "fold": 3,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 102
+  },
+  {
+    "fold": 3,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 883
+  },
+  {
+    "fold": 4,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 340
+  },
+  {
+    "fold": 4,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 43
+  },
+  {
+    "fold": 4,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 36
+  },
+  {
+    "fold": 4,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 37
+  },
+  {
+    "fold": 4,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 53
+  },
+  {
+    "fold": 4,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 149
+  },
+  {
+    "fold": 4,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 639
+  },
+  {
+    "fold": 4,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 35
+  },
+  {
+    "fold": 4,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 71
+  },
+  {
+    "fold": 4,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 44
+  },
+  {
+    "fold": 4,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 60
+  },
+  {
+    "fold": 4,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 56
+  },
+  {
+    "fold": 4,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 69
+  },
+  {
+    "fold": 4,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 52
+  },
+  {
+    "fold": 4,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 75
+  },
+  {
+    "fold": 4,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 77
+  },
+  {
+    "fold": 5,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1448
+  },
+  {
+    "fold": 5,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 843
+  },
+  {
+    "fold": 5,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 37
+  },
+  {
+    "fold": 5,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 37
+  },
+  {
+    "fold": 5,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 75
+  },
+  {
+    "fold": 5,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 592
+  },
+  {
+    "fold": 5,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 411
+  },
+  {
+    "fold": 5,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 686
+  },
+  {
+    "fold": 5,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 2123
+  },
+  {
+    "fold": 5,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 1006
+  },
+  {
+    "fold": 5,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 48
+  },
+  {
+    "fold": 5,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 58
+  },
+  {
+    "fold": 5,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 688
+  },
+  {
+    "fold": 5,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 53
+  },
+  {
+    "fold": 5,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 102
+  },
+  {
+    "fold": 5,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 84
+  },
+  {
+    "fold": 6,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 57
+  },
+  {
+    "fold": 6,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 1871
+  },
+  {
+    "fold": 6,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1095
+  },
+  {
+    "fold": 6,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 873
+  },
+  {
+    "fold": 6,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 61
+  },
+  {
+    "fold": 6,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 51
+  },
+  {
+    "fold": 6,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1033
+  },
+  {
+    "fold": 6,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 891
+  },
+  {
+    "fold": 6,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 2274
+  },
+  {
+    "fold": 6,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 455
+  },
+  {
+    "fold": 6,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 60
+  },
+  {
+    "fold": 6,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 62
+  },
+  {
+    "fold": 6,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 54
+  },
+  {
+    "fold": 6,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 68
+  },
+  {
+    "fold": 6,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 104
+  },
+  {
+    "fold": 6,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 110
+  },
+  {
+    "fold": 7,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 49
+  },
+  {
+    "fold": 7,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 205
+  },
+  {
+    "fold": 7,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1173
+  },
+  {
+    "fold": 7,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 2444
+  },
+  {
+    "fold": 7,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 627
+  },
+  {
+    "fold": 7,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 3240
+  },
+  {
+    "fold": 7,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 112
+  },
+  {
+    "fold": 7,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 44
+  },
+  {
+    "fold": 7,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 390
+  },
+  {
+    "fold": 7,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 44
+  },
+  {
+    "fold": 7,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 56
+  },
+  {
+    "fold": 7,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 54
+  },
+  {
+    "fold": 7,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 78
+  },
+  {
+    "fold": 7,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 70
+  },
+  {
+    "fold": 7,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 104
+  },
+  {
+    "fold": 7,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 93
+  },
+  {
+    "fold": 8,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 41
+  },
+  {
+    "fold": 8,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 1816
+  },
+  {
+    "fold": 8,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1656
+  },
+  {
+    "fold": 8,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 2186
+  },
+  {
+    "fold": 8,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 350
+  },
+  {
+    "fold": 8,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 243
+  },
+  {
+    "fold": 8,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 2972
+  },
+  {
+    "fold": 8,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 295
+  },
+  {
+    "fold": 8,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 1636
+  },
+  {
+    "fold": 8,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 43
+  },
+  {
+    "fold": 8,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 63
+  },
+  {
+    "fold": 8,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 65
+  },
+  {
+    "fold": 8,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 62
+  },
+  {
+    "fold": 8,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 68
+  },
+  {
+    "fold": 8,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 90
+  },
+  {
+    "fold": 8,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 96
+  },
+  {
+    "fold": 9,
+    "environment": 0,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 233
+  },
+  {
+    "fold": 9,
+    "environment": 0,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 44
+  },
+  {
+    "fold": 9,
+    "environment": 1,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 39
+  },
+  {
+    "fold": 9,
+    "environment": 1,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 40
+  },
+  {
+    "fold": 9,
+    "environment": 2,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 50
+  },
+  {
+    "fold": 9,
+    "environment": 2,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 336
+  },
+  {
+    "fold": 9,
+    "environment": 3,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 497
+  },
+  {
+    "fold": 9,
+    "environment": 3,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 41
+  },
+  {
+    "fold": 9,
+    "environment": 4,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 810
+  },
+  {
+    "fold": 9,
+    "environment": 4,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 1155
+  },
+  {
+    "fold": 9,
+    "environment": 5,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 70
+  },
+  {
+    "fold": 9,
+    "environment": 5,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 74
+  },
+  {
+    "fold": 9,
+    "environment": 6,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 62
+  },
+  {
+    "fold": 9,
+    "environment": 6,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 52
+  },
+  {
+    "fold": 9,
+    "environment": 7,
+    "seed": 42,
+    "config_index": 0,
+    "epochs": 100
+  },
+  {
+    "fold": 9,
+    "environment": 7,
+    "seed": 2026,
+    "config_index": 0,
+    "epochs": 91
+  }
+]
