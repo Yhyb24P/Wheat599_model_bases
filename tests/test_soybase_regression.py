@@ -71,6 +71,8 @@ def test_nested_classical_kernel_models_and_fit_sets(tmp_path, missing):
            'seeds': [42], 'jobs': 1, 'splits_sha256': 'x', 'data_sha256': 'x',
            'cache_sha256': 'x', 'source_git_commit': 'x',
            'bandwidths': [1.0], 'ridge': [0.1, 1.0], 'additive_fractions': [1.0]}
+    if missing:
+        cfg['gblup'] = True
     fit_sets = []
 
     def prepare(X, fit):
@@ -83,21 +85,32 @@ def test_nested_classical_kernel_models_and_fit_sets(tmp_path, missing):
     nested_classical(cfg, args, data, folds, ['t0', 't1'], **options)
     assert fit_sets == [v['train_idx'] for f in folds for v in f['inner']]
     sel = json.loads((args.out / 'selection.json').read_text())
-    assert len(sel['selected']) == 3 * 2 * (1 + 2)  # folds x traits x (lgbm + 2 kernel models)
+    gblup = [row for row in sel['selected'] if row['model'] == 'gblup']
+    assert len(gblup) == (6 if missing else 0)
+    assert all(row['spec']['additive_fraction'] == 1.0 and row['spec']['ridge'] in cfg['ridge']
+               for row in gblup)
     args2 = SimpleNamespace(out=tmp_path / 'outer', selection=args.out / 'selection.json',
                             models=None, config=None)
     fit_sets.clear()
     nested_classical(cfg, args2, data, folds, ['t0', 't1'], **options)
     assert fit_sets == [f['dev_idx'] for f in folds]
     summary = json.loads((args2.out / 'summary.json').read_text())
-    assert summary['n_runs'] == 3 * 2 * 3
+    models = {'rf', 'gaussian', 'additive_rbf'} | ({'gblup'} if missing else set())
+    assert set(summary['models']) == models
+    assert summary['n_runs'] == 3 * 2 * len(models)
     import csv
     with (args2.out / 'oof.csv').open() as handle:
         oof = list(csv.DictReader(handle))
     for row in oof:
         assert np.isfinite(float(row['y_true'])) and np.isfinite(float(row['y_pred']))
-    assert ([r['y_pred'] for r in oof if r['model'] == 'gaussian']
-            != [r['y_pred'] for r in oof if r['model'] == 'additive_rbf'])
+    predictions = {
+        model: {(r['trait'], r['fold'], r['material_index']): float(r['y_pred'])
+                for r in oof if r['model'] == model}
+        for model in models
+    }
+    assert predictions['gaussian'] != predictions['additive_rbf']
+    if missing:
+        assert predictions['gblup'] == predictions['additive_rbf']
     for t, e in (('t0', 0), ('t1', 1)):
         idx = sorted(int(r['material_index']) for r in oof if r['model'] == 'rf' and r['trait'] == t)
         assert idx == np.flatnonzero(np.isfinite(Y[:, e])).tolist()

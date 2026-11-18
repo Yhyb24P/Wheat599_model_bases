@@ -25,14 +25,15 @@ from genopred.models.kernels.kernel_baselines import kernels
 from genopred.evaluation.metrics import pcc, rmse, mae
 from genopred.data.wheat2000 import load_wheat2000
 
-KERNEL_MODELS = ('gaussian', 'additive_rbf')
 CPU = torch.device('cpu')
 
 
 def kernel_space(cfg):
-    return {'gaussian': [(h, r, 0.0) for h in cfg['bandwidths'] for r in cfg['ridge']],
-            'additive_rbf': [(h, r, f) for h in cfg['bandwidths'] for r in cfg['ridge']
-                             for f in cfg['additive_fractions']]}
+    space = {'gaussian': [(h, r, 0.0) for h in cfg['bandwidths'] for r in cfg['ridge']],
+             'additive_rbf': [(h, r, f) for h in cfg['bandwidths'] for r in cfg['ridge'] for f in cfg['additive_fractions']]}
+    if cfg.get('gblup'):
+        space['gblup'] = [(cfg['bandwidths'][0], ridge, 1.0) for ridge in cfg['ridge']]
+    return space
 
 
 def kernel_predict_multi(mats, y, fraction, ridge):
@@ -122,13 +123,13 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
     torch.set_num_threads(1)
     if oof_ids is None:
         oof_ids = lambda data, idx: [{} for _ in idx]
-    all_models = tuple(cfg['search']) + KERNEL_MODELS
-    subset = tuple(args.models) if getattr(args, 'models', None) else all_models
+    kspace = kernel_space(cfg)
+    subset = getattr(args, 'models', None) or (*cfg['search'], *kspace)
     search_models = tuple(m for m in cfg['search'] if m in subset)
-    kernel_models = tuple(m for m in KERNEL_MODELS if m in subset)
+    kspace = {m: grid for m, grid in kspace.items() if m in subset}
+    kernel_models = tuple(kspace)
     models = search_models + kernel_models
     space = {m: candidates(cfg, m) for m in search_models}
-    kspace = {m: v for m, v in kernel_space(cfg).items() if m in kernel_models}
     frozen = json.loads(args.selection.read_text()) if args.selection else None
     if frozen:
         if (frozen['config_sha256'] != config_sha or frozen['splits_sha256'] != cfg['splits_sha256']
@@ -149,7 +150,6 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
         'versions': versions, 'jobs': cfg['jobs'],
         'parallel': 'joblib loky processes; estimators and torch single-threaded',
         'rule': 'mean inner PCC of seed-averaged predictions; first candidate on tie; full dev refit; test scored once',
-        'gblup_rrblup': 'reused from results/wheat2000/classical/wheat2000_gblup_final_20261105 (same centered linear kernel)',
     }
     if 'source_git_commit' in cfg:
         provenance['source_git_commit'] = cfg['source_git_commit']
@@ -398,6 +398,7 @@ def run(cfg, args, runner_path):
                 _pkg/'evaluation'/'metrics.py', _pkg/'data'/'wheat599.py')}
     nested_classical(cfg, args, data, splits['folds'], data.trait_names,
                      sources=sources, config_sha=config_sha,
+                     provenance_extra={'gblup_rrblup': 'reused from results/wheat2000/classical/wheat2000_gblup_final_20261105 (same centered linear kernel)'},
                      oof_ids=lambda d, idx: [{'genotype_id': str(d.genotype_ids[i]),
                                               'phenotype_id': str(d.phenotype_ids[i])} for i in idx],
                      oof_id_fields=('genotype_id', 'phenotype_id'))

@@ -4,7 +4,7 @@ Reuses the wheat2000 classical/kernel loop with two SoyBase adaptations:
 strict fit-only SNP preprocessing per fit set (call-rate/MAF filter, mean
 imputation, standardization recomputed on the current fit rows, protocol §15)
 and per-trait NaN label masks on the material-level joint holdout splits.
-GBLUP is the additive_fraction=1.0 corner of the additive+RBF kernel grid.
+GBLUP is a standalone row (gblup: true): fixed fraction 1.0, ridge inner-selected.
 """
 import hashlib
 import json
@@ -68,7 +68,7 @@ def run(cfg, args, runner_path):
             'task': 'soybase_regression',
             'preprocessing': 'strict fit-only per fit set: call-rate/MAF filter, mean impute, standardize (protocol §15)',
             'splits_rule': 'material-level joint KFold holdout shared by all traits; per-trait NaN labels masked at fit/score',
-            'gblup': 'additive_rbf candidate with additive_fraction=1.0 (centered linear kernel ridge)',
+            'gblup': 'centered linear kernel with inner-selected ridge' if cfg.get('gblup') else None,
         },
         oof_ids=lambda d, idx: [{'sample_id': str(d.sample_ids[i])} for i in idx],
         oof_id_fields=('sample_id',))
