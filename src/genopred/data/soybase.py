@@ -121,6 +121,54 @@ def parse_phenotype(obs_path, accession_ids):
     return Y, stats
 
 
+# Seven quantitative regression traits (paper main SoyBase task). GRIN names map
+# to the trait keys used by BiMSGP-style regression configs (reference only).
+REG_TRAITS = ('Hgt', 'R1', 'R8', 'SdWgt', 'Yield', 'oil', 'protein')
+REG_GRIN_NAME = {'Hgt': 'Height', 'R1': 'Flowering', 'R8': 'Maturity date',
+                 'SdWgt': 'Seed weight', 'Yield': 'Yield', 'oil': 'Oil', 'protein': 'Protein'}
+
+
+def parse_regression_phenotype(obs_path, accession_ids):
+    """Match GRIN quantitative observations to accessions; average replicates.
+
+    Returns (Y float64 (n,7) with NaN unavailable, stats dict). Multiple numeric
+    records for one accession/trait are averaged (replicate field observations).
+    """
+    observations = json.loads(Path(obs_path).read_text())
+    index = {pi: i for i, pi in enumerate(accession_ids)}
+    name_to_trait = {v: k for k, v in REG_GRIN_NAME.items()}
+    values = {t: {} for t in REG_TRAITS}
+    raw_counts = {t: 0 for t in REG_TRAITS}
+    for rec in observations:
+        trait = name_to_trait.get(rec.get('trait_name'))
+        if trait is None:
+            continue
+        pi = _norm_pi(rec.get('cultivar_name', ''))
+        if pi not in index:
+            continue
+        try:
+            val = float(rec.get('value'))
+        except (TypeError, ValueError):
+            continue
+        if not np.isfinite(val):
+            continue
+        raw_counts[trait] += 1
+        values[trait].setdefault(pi, []).append(val)
+    n = len(accession_ids)
+    Y = np.full((n, len(REG_TRAITS)), np.nan, dtype=np.float64)
+    stats = {}
+    for j, trait in enumerate(REG_TRAITS):
+        for pi, vs in values[trait].items():
+            Y[index[pi], j] = float(np.mean(vs))
+        col = Y[:, j]
+        labeled = int(np.isfinite(col).sum())
+        stats[trait] = {'raw_matched_records': raw_counts[trait],
+                        'labeled_accessions': labeled,
+                        'mean': float(np.nanmean(col)) if labeled else None,
+                        'std': float(np.nanstd(col)) if labeled else None}
+    return Y, stats
+
+
 def prepare(hmp_path, hmp_sha, obs_path, obs_sha, out_npz, *, metadata_path=None,
             overwrite=False):
     """Build verified NPZ cache (full matched genotype + per-trait labels)."""
