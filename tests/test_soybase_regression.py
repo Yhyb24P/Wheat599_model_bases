@@ -114,3 +114,13 @@ def test_nested_classical_kernel_models_and_fit_sets(tmp_path, missing):
     for t, e in (('t0', 0), ('t1', 1)):
         idx = sorted(int(r['material_index']) for r in oof if r['model'] == 'rf' and r['trait'] == t)
         assert idx == np.flatnonzero(np.isfinite(Y[:, e])).tolist()
+
+
+def test_kernel_distance_median_above_torch_quantile_limit():
+    from genopred.models.kernels.kernel_baselines import kernels
+
+    n = 5794
+    X = np.zeros((n, 1), dtype=np.float32)
+    X[n // 2:] = 1
+    _, _, _, cross = kernels(X, np.arange(n), np.array([0]), 1.0, 'cpu')
+    np.testing.assert_allclose(cross.numpy()[0], np.repeat([1.0, np.exp(-1)], n // 2))

@@ -26,7 +26,13 @@ def kernels(X, train, target, bandwidth, device):
     norms = x.square().sum(1)
     d = (norms[:, None] + norms[None, :] - 2*x @ x.T).clamp_min(0)
     dc = (t.square().sum(1)[:, None] + norms[None, :] - 2*t @ x.T).clamp_min(0)
-    d0 = torch.quantile(d[torch.triu_indices(len(train), len(train), 1, device=device).unbind()], 0.5)
+    pairs = d[torch.triu_indices(len(train), len(train), 1, device=device).unbind()]
+    if pairs.numel() > 2**24:
+        # PyTorch quantile limits input size. The extracted pairs can be partitioned in place.
+        median = np.quantile(pairs.cpu().numpy(), 0.5, overwrite_input=True)
+        d0 = torch.as_tensor(median, dtype=d.dtype, device=device)
+    else:
+        d0 = torch.quantile(pairs, 0.5)
     if d0 <= 0:
         raise ValueError('zero distance median')
     return a/scale, ac/scale, torch.exp(-bandwidth*d/d0), torch.exp(-bandwidth*dc/d0)
