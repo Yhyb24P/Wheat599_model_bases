@@ -73,18 +73,23 @@ def run(argv=None):
     model = cfg.get('model')
     if model is not None and not isinstance(model, str):
         p.error('model must be a name, not a nested architecture configuration')
+    from genopred.evaluation import swanlab_tracking
+    _sl = swanlab_tracking.init_run(cfg, args.out)
     runner_path = Path(__file__)
-    if args.selection is not None and model == 'quantile_tabm' and cfg.get('optimizer_variant', '').startswith('shape_'):
-        return import_module('genopred.experiments.wheat599.shape_quantile_outer').run(cfg, args, runner_path)
-    if model in RUNNERS:
-        module, function = RUNNERS[model]
-        return getattr(import_module(module), function)(cfg, args, runner_path)
-    if model not in (None, 'background_rbf'):
-        p.error(f'Unknown model: {model!r}; check --config')
-    from genopred.experiments.wheat599 import background_ridge
-    if model == 'background_rbf':
-        return background_ridge.run_hybrid(cfg, args, runner_path)
-    return background_ridge.run_nested(cfg, args, runner_path)
+    try:
+        if args.selection is not None and model == 'quantile_tabm' and cfg.get('optimizer_variant', '').startswith('shape_'):
+            return import_module('genopred.experiments.wheat599.shape_quantile_outer').run(cfg, args, runner_path)
+        if model in RUNNERS:
+            module, function = RUNNERS[model]
+            return getattr(import_module(module), function)(cfg, args, runner_path)
+        if model not in (None, 'background_rbf'):
+            p.error(f'Unknown model: {model!r}; check --config')
+        from genopred.experiments.wheat599 import background_ridge
+        if model == 'background_rbf':
+            return background_ridge.run_hybrid(cfg, args, runner_path)
+        return background_ridge.run_nested(cfg, args, runner_path)
+    finally:
+        swanlab_tracking.finish_run(_sl, args.out)
 
 
 def main(argv=None):
