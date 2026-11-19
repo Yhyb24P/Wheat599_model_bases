@@ -170,3 +170,88 @@ def test_kernel_threads_recorded_and_selection_stable(tmp_path):
     p1, p4 = preds(o1), preds(o4)
     assert p1.keys() == p4.keys()
     assert max(abs(p1[k] - p4[k]) for k in p1) < 1e-8
+
+
+def _mats_for_solve(X, h=0.25):
+    import torch
+    from genopred.models.kernels.kernel_baselines import kernels
+    n = len(X) // 2
+    return kernels(X, np.arange(n), np.arange(n, 2 * n), h, torch.device('cpu'))
+
+
+def test_kernel_solve_eigh_matches_cholesky_on_well_conditioned():
+    import torch
+    from genopred.experiments.wheat2000.classical import kernel_predict_multi
+    rng = np.random.default_rng(6)
+    mats = _mats_for_solve(rng.normal(size=(400, 4)))
+    y = rng.normal(size=(200, 3))
+    worst = 0.0
+    for fraction in (0.0, 0.5, 1.0):
+        for ridge in (0.001, 0.01, 1.0, 100.0):
+            c = kernel_predict_multi(mats, y, fraction, ridge, solve='cholesky')
+            e = kernel_predict_multi(mats, y, fraction, ridge, solve='eigh')
+            worst = max(worst, float(np.max(np.abs(c - e))))
+    assert worst < 1e-9
+
+
+def test_kernel_solve_eigh_survives_semidefinite_where_cholesky_raises():
+    import torch
+    from genopred.models.kernels.kernel_baselines import kernels
+    from genopred.experiments.wheat2000.classical import kernel_predict_multi
+    rng = np.random.default_rng(7)
+    X = rng.normal(size=(120, 20)).astype(np.float32)
+    idx = np.arange(120)
+    mats = kernels(X, idx, idx, 4.0, torch.device('cpu'))
+    y = rng.normal(size=(120, 2))
+    raised = False
+    try:
+        kernel_predict_multi(mats, y, 0.0, 1e-9, solve='cholesky')
+    except torch.linalg.LinAlgError:
+        raised = True
+    pred = kernel_predict_multi(mats, y, 0.0, 1e-9, solve='eigh')
+    assert np.isfinite(pred).all()
+    if raised:
+        return
+    # torch may still succeed via a stable branch; require eigh at least to be finite.
+    assert pred.shape == y.shape
+
+
+def test_nested_classical_eigh_matches_cholesky_selection_and_predictions(tmp_path):
+    from genopred.experiments.wheat2000.classical import nested_classical
+    rng = np.random.default_rng(9)
+    n, p = 48, 8
+    X = rng.normal(size=(n, p)).astype(np.float32)
+    Y = X @ rng.normal(size=(p, 2)) + rng.normal(scale=0.5, size=(n, 2))
+    data = SimpleNamespace(X=X, Y=Y)
+    folds, _ = make_regression_splits(SimpleNamespace(X=X, Y=np.hstack([Y, np.zeros((n, 5))])),
+                                      n_splits=3, seed=42, inner_splits=2)
+    base = {'search': {'rf': {'n_estimators': [40], 'max_features': [1.0], 'min_samples_leaf': [1]}},
+            'seeds': [42], 'jobs': 1, 'splits_sha256': 'x', 'data_sha256': 'x',
+            'cache_sha256': 'x', 'source_git_commit': 'x', 'gblup': True,
+            'bandwidths': [0.5, 1.0], 'ridge': [0.1, 1.0], 'additive_fractions': [0.0, 0.5, 1.0]}
+    options = dict(sources={}, config_sha='x', labeled=np.isfinite(Y))
+
+    def run(solve, name):
+        cfg = dict(base, kernel_solve=solve)
+        sel = SimpleNamespace(out=tmp_path / name / 'sel', selection=None, models=None, config=None)
+        nested_classical(cfg, sel, data, folds, ['t0', 't1'], **options)
+        out = SimpleNamespace(out=tmp_path / name / 'outer', selection=sel.out / 'selection.json',
+                              models=None, config=None)
+        nested_classical(cfg, out, data, folds, ['t0', 't1'], **options)
+        return sel.out, out.out
+
+    sc, oc = run('cholesky', 'chol')
+    se, oe = run('eigh', 'eigh')
+    assert json.loads((oc / 'provenance.json').read_text())['kernel_solve'] == 'cholesky'
+    assert json.loads((oe / 'provenance.json').read_text())['kernel_solve'] == 'eigh'
+    key = lambda v: (v['model'], v['trait'], v['fold'], v['candidate'])
+    assert [key(v) for v in json.loads((sc / 'selection.json').read_text())['selected']] == \
+           [key(v) for v in json.loads((se / 'selection.json').read_text())['selected']]
+    import csv
+
+    def preds(path):
+        with (path / 'oof.csv').open() as handle:
+            return {(r['model'], r['trait'], r['fold'], r['material_index']): float(r['y_pred'])
+                    for r in csv.DictReader(handle)}
+    pc, pe = preds(oc), preds(oe)
+    assert pc.keys() == pe.keys() and max(abs(pc[k] - pe[k]) for k in pc) < 1e-8

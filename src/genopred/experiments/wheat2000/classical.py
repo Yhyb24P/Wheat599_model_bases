@@ -36,41 +36,76 @@ def kernel_space(cfg):
     return space
 
 
-def kernel_predict_multi(mats, y, fraction, ridge):
-    """kernel_baselines.predict with all traits as right-hand sides."""
+def kernel_predict_multi(mats, y, fraction, ridge, solve='cholesky'):
+    """kernel_baselines.predict with all traits as right-hand sides.
+
+    solve='eigh' uses the spectral factorization of the (fraction-mixed) kernel,
+    matching the cholesky solution when the matrix is numerically positive
+    definite and staying finite when RBF noise pushes eigenvalues slightly
+    negative (wheat2000 GCV precedent); the two paths are compared in tests.
+    """
     a, ac, r, rc = mats
     y = torch.as_tensor(y, dtype=a.dtype, device=a.device)
     k = fraction * a + (1 - fraction) * r
     cross = fraction * ac + (1 - fraction) * rc
-    chol = torch.linalg.cholesky(k + ridge * torch.eye(len(y), dtype=y.dtype, device=y.device))
-    both = torch.cholesky_solve(torch.cat([y, torch.ones(len(y), 1, dtype=y.dtype, device=y.device)], 1), chol)
+    rhs = torch.cat([y, torch.ones(len(y), 1, dtype=y.dtype, device=y.device)], 1)
+    if solve == 'eigh':
+        evals, evecs = torch.linalg.eigh(k)
+        both = evecs @ ((evecs.T @ rhs) / (evals + ridge)[:, None])
+    else:
+        chol = torch.linalg.cholesky(k + ridge * torch.eye(len(y), dtype=y.dtype, device=y.device))
+        both = torch.cholesky_solve(rhs, chol)
     intercept = both[:, :-1].sum(0) / both[:, -1].sum()
     return (intercept + cross @ (both[:, :-1] - intercept * both[:, -1:])).cpu().numpy()
 
 
+def _eigh_predict(mats, y, ridge_fracs):
+    """Shared spectral solve: one eigendecomposition per fraction, reused for
+    every ridge at that fraction. Returns {(ridge, fraction): predictions}."""
+    a, ac, r, rc = mats
+    y = torch.as_tensor(y, dtype=a.dtype, device=a.device)
+    rhs = torch.cat([y, torch.ones(len(y), 1, dtype=y.dtype, device=y.device)], 1)
+    out = {}
+    for fraction in sorted({f for _, f in ridge_fracs}):
+        k = fraction * a + (1 - fraction) * r
+        cross = fraction * ac + (1 - fraction) * rc
+        evals, evecs = torch.linalg.eigh(k)
+        projected = evecs.T @ rhs
+        for ridge in sorted({rg for rg, f in ridge_fracs if f == fraction}):
+            both = evecs @ (projected / (evals + ridge)[:, None])
+            intercept = both[:, :-1].sum(0) / both[:, -1].sum()
+            out[(ridge, fraction)] = (intercept + cross @ (both[:, :-1] - intercept * both[:, -1:])).cpu().numpy()
+    return out
+
+
 def kernel_inner(job):
-    X, Y, train, valid, h, specs, labeled, threads = job
+    X, Y, train, valid, h, specs, labeled, threads, solve = job
     start = time.time()
     with threadpool_limits(limits=threads):
         torch.set_num_threads(threads)
         if labeled is None:
             mats = kernels(X, train, valid, h, CPU)
             scores = {spec: [pcc(y, p) for y, p in zip(
-                Y[valid].T, kernel_predict_multi(mats, Y[train], spec[2], spec[1]).T)] for spec in specs}
+                Y[valid].T, kernel_predict_multi(mats, Y[train], spec[2], spec[1], solve).T)] for spec in specs}
         else:
             scores = {spec: [] for spec in specs}
             for e in range(Y.shape[1]):
                 tr = train[labeled[train, e]]
                 va = valid[labeled[valid, e]]
                 mats = kernels(X, tr, va, h, CPU)
-                for spec in specs:
-                    pred = kernel_predict_multi(mats, Y[tr, e, None], spec[2], spec[1])[:, 0]
-                    scores[spec].append(pcc(Y[va, e], pred))
+                if solve == 'eigh':
+                    preds = _eigh_predict(mats, Y[tr, e, None], [(spec[1], spec[2]) for spec in specs])
+                    for (m, rg, f) in specs:
+                        scores[(m, rg, f)].append(pcc(Y[va, e], preds[(rg, f)][:, 0]))
+                else:
+                    for spec in specs:
+                        pred = kernel_predict_multi(mats, Y[tr, e, None], spec[2], spec[1])[:, 0]
+                        scores[spec].append(pcc(Y[va, e], pred))
     return scores, time.time() - start
 
 
 def kernel_outer(job):
-    X, Y, dev, test, entries, labeled, threads = job
+    X, Y, dev, test, entries, labeled, threads, solve = job
     start = time.time()
     pred = {m: np.full((len(test), Y.shape[1]), np.nan) for _, m, *_ in entries}
     test_pos = np.full(len(Y), -1, dtype=np.int64)
@@ -79,7 +114,7 @@ def kernel_outer(job):
         torch.set_num_threads(threads)
         if labeled is None:
             for h, r, f in sorted({(e[2], e[3], e[4]) for e in entries}):
-                p = kernel_predict_multi(kernels(X, dev, test, h, CPU), Y[dev], f, r)
+                p = kernel_predict_multi(kernels(X, dev, test, h, CPU), Y[dev], f, r, solve)
                 for e in entries:
                     if (e[2], e[3], e[4]) == (h, r, f):
                         pred[e[1]][:, e[0]] = p[:, e[0]]
@@ -87,7 +122,7 @@ def kernel_outer(job):
             for e in entries:
                 tr = dev[labeled[dev, e[0]]]
                 te = test[labeled[test, e[0]]]
-                p = kernel_predict_multi(kernels(X, tr, te, e[2], CPU), Y[tr, e[0], None], e[4], e[3])
+                p = kernel_predict_multi(kernels(X, tr, te, e[2], CPU), Y[tr, e[0], None], e[4], e[3], solve)
                 pred[e[1]][test_pos[te], e[0]] = p[:, 0]
     return pred, time.time() - start
 
@@ -124,6 +159,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
     """
     torch.set_num_threads(1)
     kthreads = int(cfg.get('kernel_threads', 1))
+    ksolve = cfg.get('kernel_solve', 'cholesky')
     if oof_ids is None:
         oof_ids = lambda data, idx: [{} for _ in idx]
     kspace = kernel_space(cfg)
@@ -150,7 +186,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
         'data_sha256': cfg['data_sha256'], 'cache_sha256': cfg['cache_sha256'],
         'source_sha256': sources,
         'selection_sha256': sha256_of(args.selection) if args.selection else None,
-        'versions': versions, 'jobs': cfg['jobs'], 'kernel_threads': kthreads,
+        'versions': versions, 'jobs': cfg['jobs'], 'kernel_threads': kthreads, 'kernel_solve': ksolve,
         'parallel': 'joblib loky processes; estimators single-threaded; kernel jobs use kernel_threads Torch/BLAS threads',
         'rule': 'mean inner PCC of seed-averaged predictions; first candidate on tie; full dev refit; test scored once',
     }
@@ -221,7 +257,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
                                         'candidate': i, 'pcc': float(score), 'seconds': round(seconds, 3)})
                     kjobs = [(X_fit, data.Y, train, valid, h,
                               [(m, r, f) for m in kernel_models for (hh, r, f) in kspace[m] if hh == h],
-                              labeled, kthreads)
+                              labeled, kthreads, ksolve)
                              for (train, valid), X_fit in zip(inner, prepared)
                              for h in cfg['bandwidths'] if kernel_models]
                     # SoyBase's float64 kernel matrices already take several GB per task.
@@ -282,7 +318,7 @@ def nested_classical(cfg, args, data, folds, traits, *, sources, config_sha,
                     kentries = [(e, m, entries[(m, e)]['spec']['bandwidth'], entries[(m, e)]['spec']['ridge'],
                                  entries[(m, e)]['spec']['additive_fraction'])
                                 for m in kernel_models for e in range(len(traits))]
-                    kpred, kseconds = kernel_outer((X, data.Y, dev, test, kentries, labeled, kthreads))
+                    kpred, kseconds = kernel_outer((X, data.Y, dev, test, kentries, labeled, kthreads, ksolve))
                     fold_preds = {}
                     for (m, e), (preds, seconds) in zip(ckeys, cresults):
                         fold_preds[(m, e)] = (preds, seconds)
