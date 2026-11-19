@@ -730,20 +730,25 @@ def _final(cfg, args, data, folds, envs, configs, seeds, device, encoded, client
     if len(rows) != len(folds) * len(envs) or len(oof) != len(envs) * sum(
             len(f['test_idx']) for f in folds):
         raise RuntimeError('Incomplete outer evaluation')
-    summary = {'n_runs': len(rows), 'n_failures': 0, 'per_environment': {}, 'pooled': {}}
-    for env in dict.fromkeys(r['environment'] for r in rows):
-        env_rows = [r for r in rows if r['environment'] == env]
-        summary['per_environment'][env] = {
-            m: {'mean': float(np.mean([r[m] for r in env_rows])),
-                'sd': float(np.std([r[m] for r in env_rows], ddof=1))}
-            for m in ('pcc', 'rmse', 'mae')}
-        pooled = [r for r in oof if r['environment'] == env]
-        summary['pooled'][env] = {
-            'pcc': pcc([r['y_true'] for r in pooled], [r['y_pred'] for r in pooled]),
-            'rmse': rmse([r['y_true'] for r in pooled], [r['y_pred'] for r in pooled]),
-            'mae': mae([r['y_true'] for r in pooled], [r['y_pred'] for r in pooled])}
-    summary['macro'] = {m: float(np.mean([summary['per_environment'][e][m]['mean']
-                                          for e in summary['per_environment']]))
-                        for m in ('pcc', 'rmse', 'mae')}
+    summary = outer_summary(rows, oof)
     write_json(args.out / 'summary.json', summary)
     print(json.dumps(summary['macro']), flush=True)
+
+
+def outer_summary(rows, oof):
+    def stat(values):
+        if any(np.isnan(v) for v in values):
+            return {'mean': None, 'sd': None}
+        return {'mean': float(np.mean(values)),
+                'sd': float(np.std(values, ddof=1)) if len(values) > 1 else None}
+    envs = list(dict.fromkeys(r['environment'] for r in rows))
+    per_env = {e: {m: stat([r[m] for r in rows if r['environment'] == e]) for m in ('pcc', 'rmse', 'mae')} for e in envs}
+    pooled = {}
+    for e in envs:
+        truth = [r['y_true'] for r in oof if r['environment'] == e]
+        pred = [r['y_pred'] for r in oof if r['environment'] == e]
+        pooled[e] = {m: (v if np.isfinite(v) else None) for m, v in
+                     zip(('pcc', 'rmse', 'mae'), (pcc(truth, pred), rmse(truth, pred), mae(truth, pred)))}
+    macro = {m: (lambda v: None if None in v else float(np.mean(v)))(
+        [per_env[e][m]['mean'] for e in envs]) for m in ('pcc', 'rmse', 'mae')}
+    return {'n_runs': len(rows), 'n_failures': 0, 'per_environment': per_env, 'pooled': pooled, 'macro': macro}

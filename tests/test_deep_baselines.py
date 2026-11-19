@@ -139,3 +139,21 @@ def test_subset_rejects_unknown_names(tmp_path):
         db._subset(data, folds, SimpleNamespace(folds=None, traits=['PHT']))
     kept, kept_folds, envs = db._subset(data, folds, SimpleNamespace(folds=None, traits=None))
     assert kept is data and kept_folds is folds and envs == [0, 1]
+
+
+def test_one_fold_final_serializes_undefined_statistics(tmp_path, monkeypatch):
+    cfg, config_path, _ = _fake_run(tmp_path, monkeypatch)
+    arguments = {'config': config_path, 'folds': [0]}
+    dev_out = tmp_path / 'dev'
+    db.run(cfg, SimpleNamespace(out=dev_out, selection=None, **arguments), config_path)
+    monkeypatch.setattr(db, '_refit', lambda cfg, data, encoded, client, dev, test, *args:
+                        np.zeros(len(test)))
+    final_out = tmp_path / 'final'
+    db.run(cfg, SimpleNamespace(out=final_out, selection=dev_out / 'selection.json',
+                                **arguments), config_path)
+    summary = json.loads((final_out / 'summary.json').read_text())
+    assert summary['n_runs'] == 2
+    assert summary['per_environment']['1']['pcc'] == {'mean': None, 'sd': None}
+    assert summary['per_environment']['1']['rmse']['mean'] > 0
+    assert summary['per_environment']['1']['rmse']['sd'] is None
+    assert summary['pooled']['1']['pcc'] is None and summary['macro']['pcc'] is None
