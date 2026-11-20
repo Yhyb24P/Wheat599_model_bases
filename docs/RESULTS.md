@@ -2,7 +2,7 @@
 
 ## SoyBase 主模型过渡运行（2026-11-19）
 
-SoyBase 七性状共同 PI 十外折、各三内折的主模型过渡实现（quantile MLP 双种子均值＋截断特征 Huber 回归，固定 0.5/0.5 融合）完成 210 次内折拟合与 70 次完整开发集重拟合，外层每折一次评分。折均宏 PCC **0.4809**（主口径，描述性）；合并 OOF 宏 PCC **0.4487**、RMSE **131.98**、MAE **127.31**（单列）。fold0 首报 0.4945 仅为该折七性状外层宏 PCC，勿与十折口径混用。产物与逐折备份在 OMEN `results/soybase/main_models/`（dev `hgt_fold0_retry3`＋`fold_1_dev`…`fold_9_dev`，final `final/summary_final.json`），provenance 含数据/划分/selection/入口 SHA。本批为过渡入口结果，quantile 头非官方 TabM 骨干、Huber 非 ICM 核，正式独立实现替换后需重跑比较；失败目录 `hgt_fold0`/`retry`/`retry2` 保留原因记录。详见 `docs/SOYBASE_MAIN_MODELS_TRANSITION.md`（hsy 工作树）。
+SoyBase 七性状共同 PI 十外折、各三内折的主模型过渡实现（quantile MLP 双种子均值＋截断特征 Huber 回归，固定 0.5/0.5 融合）完成 210 次内折拟合与 70 次完整开发集重拟合，外层每折一次评分。折均宏 PCC **0.4809**（主口径，描述性）；合并 OOF 宏 PCC **0.4487**、RMSE **131.98**、MAE **127.31**（单列）。fold0 首报 0.4945 仅为该折七性状外层宏 PCC，勿与十折口径混用。产物与逐折备份在 OMEN `results/soybase/main_models/`（dev `hgt_fold0_retry3`＋`fold_1_dev`…`fold_9_dev`，final `final/summary_final.json`），provenance 含数据/划分/selection/入口 SHA。本批为过渡入口结果，quantile 头非官方 TabM 骨干、Huber 非 ICM 核，正式独立实现替换后需重跑比较；失败目录 `hgt_fold0`/`retry`/`retry2` 保留原因记录。详见 `docs/SOYBASE_MAIN_MODELS_TRANSITION.md`（hsy 工作树）。RAGP（2026-11-20）十折单源外层折均宏 PCC **0.593971**、OOF 合并 PCC **0.546839**，输出尺度偏离标准化表型，详见 `MODEL_COMPARISON.md`。
 
 ## Wheat2000 DeepGS 外层评价（2026-11-19）
 

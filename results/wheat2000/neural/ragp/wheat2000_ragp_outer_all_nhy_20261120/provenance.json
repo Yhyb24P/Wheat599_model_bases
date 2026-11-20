@@ -1,0 +1,156 @@
+{
+  "config": {
+    "model": "ragp_outer",
+    "data": "data/raw/wheat2000/wheat_GS.RData",
+    "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+    "cache": "data/raw/wheat2000/wheat2000.npz",
+    "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+    "splits": "protocols/wheat2000_protocol_20261105/splits_manifest.json",
+    "device": "cuda",
+    "dtype": "float32",
+    "cpu_threads": 2,
+    "gpu_memory_fraction": 0.5,
+    "seeds": [
+      42,
+      2026
+    ],
+    "outer_folds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "architecture": {
+      "hidden_dims": [
+        2500,
+        3000,
+        3000,
+        1500,
+        2500,
+        3000,
+        3000,
+        1500
+      ],
+      "n_blocks": 3,
+      "dropout": 0.5,
+      "pca_variance": 0.95,
+      "neighbors": 5,
+      "fusion_alpha": 0.4,
+      "label_scale": 0.01,
+      "loss_alpha": [
+        0.9,
+        0.8,
+        0.5,
+        0.1,
+        0.9,
+        0.8,
+        0.5,
+        0.1
+      ],
+      "triplet_anchors": 32,
+      "triplet_positives": 5,
+      "triplet_negatives": 5,
+      "triplet_margin": 1.0
+    },
+    "configurations": [
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 15,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 50,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.0005,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.002,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0003,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.01,
+        "max_epochs": 100,
+        "dropout": 0.5
+      },
+      {
+        "learning_rate": 0.001,
+        "weight_decay": 0.0,
+        "max_epochs": 100,
+        "dropout": 0.3
+      }
+    ],
+    "training": {
+      "batch_size": 128,
+      "eval_batch_size": 256,
+      "patience": 30,
+      "scheduler_gamma": 0.95,
+      "tie_tolerance": 1e-12
+    },
+    "selection_metric": "seed_prediction_ensemble_macro_pcc",
+    "checkpoint_storage": "hash_only",
+    "dev_trajectories": "workspace/nhy1_ragp_outer89_inputs/trajectories.json",
+    "verify_frozen_config": "workspace/nhy1_ragp_outer89_inputs/development.yaml",
+    "verify_frozen_config_sha256": "97944861bfcbef5912af3ab37b32b0c22f6443b599d875c4edf7ea359c9e3832"
+  },
+  "frozen_tag": null,
+  "git_commit": "9e2d62abb13457e0411ee728a2017437cbd86261",
+  "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+  "splits_sha256": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c",
+  "selection_sha256": "db47f99863d70a537712b3e29182f768dcb4fe0f36faa8ca71948abf9fc76aaf",
+  "dev_trajectories_sha256": "fbe2ade5d7a42835eee16e9691b471ef8661b05e8d9eb5548a2039d41a7a50fc",
+  "source_sha256": {
+    "/home/nhy/projects/Wheat599-research/src/genopred/experiments/wheat599/ragp_dev.py": "ffd7244f2a1908a5a72eae8393d3997b640a90700cfb1d1f1e5421a9e6c1da2c",
+    "/home/nhy/projects/Wheat599-research/src/genopred/models/comparators/ragp.py": "020df0486c5e0488dfe56f896046cddc5bd4b6f3d4139cbfae93cb5e9439394d",
+    "/home/nhy/projects/Wheat599-research/src/genopred/data/wheat599.py": "6c17f9df2994733738bc0b6d16f43ec65908aacb432c6e8192307bb5ec3acade",
+    "/home/nhy/projects/Wheat599-research/src/genopred/evaluation/metrics.py": "2d4326e99501f70d67f565bc28537128f0c5e303a3e4707bb634e584943ef156",
+    "workspace/nhy1_ragp_outer89_inputs/outer_all.yaml": "25ace58eaa9cb107da9ccb8771506793afb6271ac3f95074c629cd16db7c0e37",
+    "/home/nhy/projects/Wheat599-research/src/genopred/cli.py": "43039264710da6c3e3ba48a8e8ea281eebda7b5bba9296ed2ad7a909c817051d"
+  },
+  "package_versions": {
+    "torch": "2.9.1+cu128",
+    "numpy": "2.5.5",
+    "scikit-learn": "1.9.1"
+  },
+  "environment": {
+    "python_executable": "/home/nhy/projects/Wheat599-research/conda-envs/wheat599/bin/python",
+    "python_version": "3.12.16 (main, Oct 26 2026, 11:37:43) [GCC 15.3.0]",
+    "torch_version": "2.9.1+cu128",
+    "torch_cuda": "12.8",
+    "numpy_version": "2.5.5",
+    "scikit_learn_version": "1.9.1",
+    "device": "cuda",
+    "device_name": "NVIDIA GeForce RTX 3090"
+  },
+  "device": "cuda",
+  "rule": "chosen config per fold; per seed median best epoch over its three inner runs; full development refit; inverse_y once; no post-hoc calibration",
+  "scope": "Outer test rows are never indexed; the retrieval library holds development materials and labels only"
+}
