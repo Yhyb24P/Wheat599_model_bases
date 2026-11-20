@@ -806,7 +806,7 @@ def build():
                    ''.join(f'<td>{env[e]["pcc"]:.6f}</td>' for e in ['1','2','4','5'])+'</tr>' for name,values,env in systems)
     bars = ''.join(f'<div class="barrow"><span>{esc(name)}</span><div class="track"><div class="bar" style="width:{values["pcc"]*100:.6f}%"></div></div><strong>{values["pcc"]:.6f}</strong></div>' for name,values,_ in systems)
     head = '''<header><nav><a href="../README.md">项目说明</a><a href="../references/index.html">参考文献</a><a href="../site/runs.html">运行目录</a><a href="#comparison">模型总表</a><a href="#wheat2000">Wheat2000</a><a href="#best">最优候选图解</a><a href="#mechanisms">网络与机理</a><a href="#history">历次结果</a><a href="#architectures">架构库</a>''' + THEME_TOGGLE + '''</nav>
-<p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-15</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
+<p class="kicker">WHEAT599 / RESEARCH ATLAS / 2026-11-20</p><h1>Wheat599 · 模型结果与架构</h1><p class="lead">现役候选：独立分位数 TabM 与多环境 Huber ICM 的固定等权融合。</p><p>599 份材料 · 1,279 个二值 DArT 标记 · 4 个已知环境。预测完全留出的新材料；输入仅为标记，未使用谱系矩阵。</p></header><main id="main">'''
     body = head + result_workbench(systems) + '''<details class="legacy-overview"><summary>已核对统一协议：完整指标与来源</summary><section aria-labelledby="overview"><h2 id="overview">统一协议下的结果</h2><div class="grid">
 <article class="card best"><span class="tag">当前固定融合 · 折均宏 PCC</span><div class="big">0.526506</div><p>相对 Huber ICM 增加 0.004761；是项目内描述性差值。</p></article>
 <article class="card"><span class="tag">训练与评价</span><h3>10 外折 × 3 内折</h3><p>神经模型使用种子 42、2026，先平均预测再评分。所有预处理和选择限于拟合集及内层验证集。</p></article>
