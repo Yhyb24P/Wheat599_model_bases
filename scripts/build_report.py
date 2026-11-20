@@ -721,6 +721,7 @@ def wheat2000_section():
         ('wheat2000_gsformer_nsa_final_20261116', 'Gsformer-NSA（官方）', 'macro'),
         ('wheat2000_wheatgp_final_20261115', 'WheatGP（官方）', 'macro'),
         ('wheat2000_ragp_outer_all_nhy_20261120', 'RAGP（官方适配）', 'macro'),
+        ('wheat2000_soydngp_final_nhy2_20261120', 'SoyDNGP（官方适配）', 'macro'),
     ]
     traits = ['TKW', 'TW', 'GL', 'GW', 'GH', 'GP', 'SDS', 'PHT']
     meta = {
@@ -733,6 +734,7 @@ def wheat2000_section():
         'Gsformer-NSA（官方）': ('公开模型', 'Gsformer', 'Genet Sel Evol 2026', 'https://doi.org/10.1186/s12711-026-01055-8', '33709 标记零填充到 33768；NSA 官方配方。'),
         'WheatGP（官方）': ('公开模型', 'WheatGP', 'Brief Bioinform 2025', 'https://doi.org/10.1093/bib/bbaf191', '官方配方在 Wheat2000 明显低于候选（GP/PHT 近零或负），是该配方同协议真实阴性结果，不视为家族失败。'),
         'RAGP（官方适配）': ('公开模型', 'RAGP', 'Plant Methods · 2026', 'https://doi.org/10.1186/s13007-026-01574-x', '十折单源外层适配；预测尺度偏离标准化表型，RMSE/MAE 按原值保留。'),
+        'SoyDNGP（官方适配）': ('公开模型', 'SoyDNGP', 'Briefings in Bioinformatics · 2023', 'https://doi.org/10.1093/bib/bbad349', '十折单源外层适配；官方网络按 Wheat2000 标记面板重排，预测尺度发散，RMSE/MAE 按原值保留。'),
     }
     architectures = {
         '固定融合': ([['全标记输入', '四独立分位数 TabM ＋ Huber ICM', '各自反标准化 · 神经双种子平均', '固定各占 50% → 八性状预测'], 'Wheat2000 候选：神经分位数分支与多性状 Huber ICM 在原表型尺度固定等权融合；权重在外层评价前固定。', '#']),
@@ -742,6 +744,7 @@ def wheat2000_section():
         'Gsformer': ([['全标记输入', '零填充至 33768', 'CNN＋自注意力（CSA/NSA）', '逐性状预测'], 'Gsformer 官方配方，33709 标记零填充到 33768 后进入 CNN-自注意力网络。', 'https://doi.org/10.1186/s12711-026-01055-8']),
         'WheatGP': ([['全标记输入', '作者网络配方', '逐性状预测', '官方配方同协议适配'], 'WheatGP 官方实现同协议适配；在 Wheat2000 为真实阴性结果。', 'https://doi.org/10.1093/bib/bbaf191']),
         'RAGP': ([['全标记输入', '拟合集 PCA95', '五邻居检索＋残差网络', '逐性状预测'], 'RAGP 十折单源外层适配，参考库只含拟合材料。预测尺度偏离标准化表型，详见结果记录。', 'https://doi.org/10.1186/s13007-026-01574-x']),
+        'SoyDNGP': ([['全标记输入', '官方 SoyDNGPNext 网络', 'SmoothL1＋Adam', '逐性状预测'], 'SoyDNGPNext 官方网络在 Wheat2000 面板上的同协议适配，FP32 训练并按拟合集目标尺度还原。', 'https://doi.org/10.1093/bib/bbad349']),
     }
     def trait_value(pt, t):
         v = pt.get(t)

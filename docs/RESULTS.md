@@ -2,20 +2,14 @@
 
 ## SoyBase 主模型过渡运行（2026-11-19）
 
-SoyBase 七性状共同 PI 十外折、各三内折的主模型过渡实现（quantile MLP 双种子均值＋截断特征 Huber 回归，固定 0.5/0.5 融合）完成 210 次内折拟合与 70 次完整开发集重拟合，外层每折一次评分。折均宏 PCC **0.4809**（主口径，描述性）；合并 OOF 宏 PCC **0.4487**、RMSE **131.98**、MAE **127.31**（单列）。fold0 首报 0.4945 仅为该折七性状外层宏 PCC，勿与十折口径混用。产物与逐折备份在 OMEN `results/soybase/main_models/`（dev `hgt_fold0_retry3`＋`fold_1_dev`…`fold_9_dev`，final `final/summary_final.json`），provenance 含数据/划分/selection/入口 SHA。本批为过渡入口结果，quantile 头非官方 TabM 骨干、Huber 非 ICM 核，正式独立实现替换后需重跑比较；失败目录 `hgt_fold0`/`retry`/`retry2` 保留原因记录。详见 `docs/SOYBASE_MAIN_MODELS_TRANSITION.md`（hsy 工作树）。RAGP（2026-11-20）十折单源外层折均宏 PCC **0.593971**、OOF 合并 PCC **0.546839**，输出尺度偏离标准化表型，详见 `MODEL_COMPARISON.md`。
+SoyBase 七性状共同 PI 十外折、各三内折的主模型过渡实现（quantile MLP 双种子均值＋截断特征 Huber 回归，固定 0.5/0.5 融合）完成 210 次内折拟合与 70 次完整开发集重拟合，外层每折一次评分。折均宏 PCC **0.4809**（主口径，描述性）；合并 OOF 宏 PCC **0.4487**、RMSE **131.98**、MAE **127.31**（单列）。fold0 首报 0.4945 仅为该折七性状外层宏 PCC，勿与十折口径混用。产物与逐折备份在 OMEN `results/soybase/main_models/`（dev `hgt_fold0_retry3`＋`fold_1_dev`…`fold_9_dev`，final `final/summary_final.json`），provenance 含数据/划分/selection/入口 SHA。本批为过渡入口结果，quantile 头非官方 TabM 骨干、Huber 非 ICM 核，正式独立实现替换后需重跑比较；失败目录 `hgt_fold0`/`retry`/`retry2` 保留原因记录。详见 `docs/SOYBASE_MAIN_MODELS_TRANSITION.md`（hsy 工作树）。RAGP（2026-11-20）十折单源外层折均宏 PCC **0.593971**、OOF 合并 PCC **0.546839**，输出尺度偏离标准化表型，详见 `MODEL_COMPARISON.md`。Wheat2000 SoyDNGP 十折外层已完成，宏 PCC **0.064988**，无失败。
 
 ## Wheat2000 DeepGS 外层评价（2026-11-19）
 
 DeepGS 的 PyTorch 结构适配完成 480 次内折拟合和 160 次完整开发集重拟合。使用一个公开配方，按各性状、各折和各种子的三个内折最佳轮次中位数确定重拟合轮次，先平均种子 42、2026 的预测再评分。80 个性状折无失败，折均宏 PCC **0.600602**、RMSE **0.788628**、MAE **0.611912**。合并 OOF 指标按性状保存在汇总的 `pooled` 字段。外层运行器计时为 7185.1 秒，使用 tim 的 RTX 3090。 [运行汇总](../results/wheat2000/neural/deepgs/wheat2000_deepgs_final_tim_20261118/summary.json)
-
-核对了冻结划分中的测试材料、16,000 条 OOF 真值与两种子预测均值、160 条重拟合记录。运行使用 tim 上保留的提交 `caba0a9724d6ca9d3145348b190f4f7043d148c1`，内层选模文件保存在同机的 `results/wheat2000/neural/deepgs/wheat2000_deepgs_dev_tim_20261117/selection.json`，逐材料预测仍保留在外层运行目录。本批为 DeepGS 的同协议结构适配，早期中断批次另保留原记录。 [提交、配置与选模摘要](../results/wheat2000/neural/deepgs/wheat2000_deepgs_final_tim_20261118/provenance.json)
-
 ## DNNGP 同协议外层适配（2026-11-16，待进一步核验）
-
 DNNGP 官方编译训练器（AIBreeding/DNNGP 3bbac096，Python 3.9/TF 2.6）绕过官方 KFold、用协议划分，完成 Wheat599 十外折外层：40 环境折（10 折×4 环境）、0 失败，种子 42/2026 先平均预测再评分。折均宏 **PCC 0.444488 / RMSE 1.034948 / MAE 0.809615**；逐环境 PCC Env1–4 = 0.464628/0.480317/0.390029/0.442978。低于 Huber ICM（0.521745）与分位数 TabM（0.518829），按同协议真实结果记录，不视为家族失败。
-
 **限制（紧邻结论，改变核验状态）**：开发从 CPU 切换 GPU 续跑，两阶段源码 SHA 不同；CPU 阶段 deep_baselines.py SHA-256 `eb9621e3…`、dnngp_worker.py `ac9e88ad…`（完整值见结果目录 provenance），检查本机/omen/上游未找到匹配源码副本，**不能精确复现 CPU 阶段**；GPU 续跑与外层源码 SHA 与现役文件一致。EpochRecorder 在 ReduceLROnPlateau 之后记录 epoch 末学习率，降率时可能对应下一 epoch，**不称重拟合逐 epoch 精确重放内折实际训练学习率**。已核：2396 条外层预测/4792 条单种子预测的材料覆盖、原始真值、有限值、双种子平均、外内层划分、40 选择＋80 重拟合配置与中位 epoch、40 折指标复算。**暂不视为无条件通过主表协议核验或原论文精确复现**；逐材料预测与完整轨迹留 omen，不入 Git。来源 [`summary.json`](../results/wheat599/baselines/deep/dnngp/dnngp_final_20261115/run/summary.json)、[`evidence_notes.json`](../results/wheat599/baselines/deep/dnngp/dnngp_final_20261115/run/evidence_notes.json)（提交 a075535/b1b2348）。
-
 ## 共享连接基分位数集成：开发比较（2026-11-16）
 
 共享基 C 与成员独立调制 B 各完成 1,440/1,440 次拟合、0 正式失败；沿用十个开发集及各三内折、种子 42/2026 先平均预测再评分。固定原第 0 配置骨干，仅改变输入层，比较 R=2/4/8 与 λ=0/100000。C 的开发宏 PCC/RMSE/MAE 为 **0.491095/0.871603/0.672904**，B 为 **0.490976/0.871729/0.672957**；C−B PCC 仅 +0.000119。两者均在 0/10 个开发折超过原八配置分位数 TabM（0.494565），本批结束，不追加网格、外层或 Wheat2000。

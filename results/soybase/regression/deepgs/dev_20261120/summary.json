@@ -1,0 +1,5 @@
+{
+  "n_trait_folds": 7,
+  "macro_development_pcc": 0.7633777307977049,
+  "scope": "Conditional inner validation only; no test predictions"
+}

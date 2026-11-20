@@ -1,7 +1,7 @@
 {
   "schema": "genopred-run-index/1",
-  "generated_from_commit": "6ce9cc4dd5bb21edf839d612257c2298a9a7f3e4",
-  "n_runs": 192,
+  "generated_from_commit": "4380328be3783a1c6e473074d8673b12e3c7f91f",
+  "n_runs": 194,
   "runs": [
     {
       "run_id": "soybase/FC/soybase_fc_selection_20261117",
@@ -122,6 +122,18 @@
       "source_commit": null,
       "protocol": "protocols/soybase/FC_splits_manifest.json",
       "result_path": "soybase/neural/tabm/soybase_fc_tabm_selection_20261117"
+    },
+    {
+      "run_id": "soybase/regression/deepgs/dev_20261120",
+      "dataset": "soybase",
+      "family": "regression",
+      "method": "soybase_deepgs",
+      "phase": "development",
+      "status": "complete",
+      "role": "candidate",
+      "source_commit": "e11f9a9498c24f130ce78234efdf38db45b8020a",
+      "protocol": "protocols/soybase/regression_splits.json",
+      "result_path": "soybase/regression/deepgs/dev_20261120"
     },
     {
       "run_id": "wheat2000/candidate/wheat2000_candidate_final_20261115",
@@ -290,6 +302,18 @@
       "source_commit": "9e2d62abb13457e0411ee728a2017437cbd86261",
       "protocol": "protocols/wheat2000_protocol_20261105/splits_manifest.json",
       "result_path": "wheat2000/neural/ragp/wheat2000_ragp_outer_all_nhy_20261120"
+    },
+    {
+      "run_id": "wheat2000/neural/soydngp/wheat2000_soydngp_final_nhy2_20261120",
+      "dataset": "wheat2000",
+      "family": "neural",
+      "method": "soydngp",
+      "phase": "refit",
+      "status": "complete",
+      "role": "cross_dataset",
+      "source_commit": null,
+      "protocol": "protocols/wheat2000_protocol_20261105/splits_manifest.json",
+      "result_path": "wheat2000/neural/soydngp/wheat2000_soydngp_final_nhy2_20261120"
     },
     {
       "run_id": "wheat2000/neural/wheatgp/wheat2000_wheatgp_dev_20261115",

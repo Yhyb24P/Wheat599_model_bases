@@ -1,0 +1,97 @@
+{
+  "config": {
+    "model": "soydngp",
+    "data": "data/raw/wheat2000/wheat_GS.RData",
+    "data_sha256": "e9ebecc0c73b39f4747bf0eda036da92640f694938046de557f0c9e68f926696",
+    "cache": "data/raw/wheat2000/wheat2000.npz",
+    "cache_sha256": "6f729cec905abb4d5a1ebc59d634ef291e37f7a1605630a555897698a1123733",
+    "splits": "protocols/wheat2000_protocol_20261105/splits_manifest.json",
+    "seeds": [
+      42,
+      2026
+    ],
+    "device": "cuda",
+    "gpu_memory_fraction": 0.4,
+    "cpu_threads": 2,
+    "workers": 1,
+    "amp": false,
+    "upstream": {
+      "repository": "https://github.com/IndigoFloyd/SoyDNGPNext",
+      "commit": "ebda01d0b160f5adfada6f90834925312d4395d1",
+      "path": "/home/nhy/projects/Wheat599-research/upstream/SoyDNGPNext"
+    },
+    "configurations": [
+      {
+        "lr": 0.001,
+        "weight_decay": 1e-05
+      }
+    ],
+    "training": {
+      "max_epochs": 200,
+      "early_stopping_patience": 20,
+      "batch_size": 20
+    },
+    "adaptation_notes": [
+      {
+        "FP32 training (AMP disabled)": "the official SmoothL1/Adam recipe diverges under fp16 autocast on this network (verified 2026-11-15 on Wheat599); no gradient clipping, matching upstream train_n."
+      },
+      "Official SoyDNGPNext model.yaml network built by official remodel(); official one_hot_CPU + np.resize tiling to 3x206x206 applied to the 33709-marker Wheat2000 panel exactly as upstream tiles shorter panels.",
+      "Wheat2000 binary 0/1 markers map to VCF codes 0/0 -> 3 and 1/1 -> 1 (loader guarantees no missing/heterozygous calls).",
+      "Target min/max normalization uses the current fit subset only; predictions map back to the released pheno scale per trait.",
+      "Official random 70/30 split and fixed epoch count replaced by Wheat2000 protocol inner folds, validation-PCC selection and median-epoch full-dev refit; same-protocol adaptation, not a paper reproduction."
+    ]
+  },
+  "splits_sha256": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c",
+  "folds": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9
+  ],
+  "environments": [
+    "TKW",
+    "TW",
+    "GL",
+    "GW",
+    "GH",
+    "GP",
+    "SDS",
+    "PHT"
+  ],
+  "selection_sha256": "1de3ad3a407038672f1a5ed07da38e34c4afe2e6c771b6f45f56064e7f8a41ad",
+  "sha256": {
+    "/home/nhy/projects/Wheat599-research/src/genopred/models/comparators/deep_baselines.py": "14fd1fe59165094424046a90d2aa6cc60b828891bc41083e688c8e6c05e7bca0",
+    "workspace/62_soydngp.yaml": "182feb1bb6197e84562bc1be0b967b1e0409964fd6242935940b77d7c6d9ad43",
+    "/home/nhy/projects/Wheat599-research/src/genopred/cli.py": "43039264710da6c3e3ba48a8e8ea281eebda7b5bba9296ed2ad7a909c817051d",
+    "protocols/wheat2000_protocol_20261105/splits_manifest.json": "4fb82c0c875c1a6639e8547a5fe98e2c30433acca1c0c3ac74b8f6f8f4b2f08c"
+  },
+  "upstream_files": {
+    "/home/nhy/projects/Wheat599-research/upstream/SoyDNGPNext/soydngpnext/SoyDNGP.py": "d6be4c284bd9ec135758445c0791c063fd843cb94e29589d77c7faed86c7ce19",
+    "/home/nhy/projects/Wheat599-research/upstream/SoyDNGPNext/soydngpnext/remodel.py": "d6622d4895119a4224ea39c4e9ee8b1b76abce0af83ef2a3477b6fd7816808c2",
+    "/home/nhy/projects/Wheat599-research/upstream/SoyDNGPNext/soydngpnext/reader_cpu.py": "e00cb85fc817e4fcfef94b00fc5b8cf88691f60cf2f3e041614dd2eb3ced1879",
+    "/home/nhy/projects/Wheat599-research/upstream/SoyDNGPNext/soydngpnext/train.py": "0c60234fa7cb7f11c116a175c777d7837a463f98b5837fa4e1a10d1b8baca518",
+    "/home/nhy/projects/Wheat599-research/upstream/SoyDNGPNext/soydngpnext/data/model.yaml": "22b854750b5e2dffbeff3815aa0554729751b4e997c548aafee5d0c783bddced"
+  },
+  "torch_version": "2.9.1+cu128",
+  "dnngp_tensorflow": null,
+  "git_head": "568b564f73b74a7aeab4c8294f15072fc3f2cff9",
+  "git_status_porcelain_tracked": "",
+  "workers": 1,
+  "amp": false,
+  "rule": "mean inner PCC of seed-averaged predictions; first configuration on tie; per-seed median best epoch and per-epoch median learning rate; full dev refit; outer test scored once",
+  "adaptation": [
+    {
+      "FP32 training (AMP disabled)": "the official SmoothL1/Adam recipe diverges under fp16 autocast on this network (verified 2026-11-15 on Wheat599); no gradient clipping, matching upstream train_n."
+    },
+    "Official SoyDNGPNext model.yaml network built by official remodel(); official one_hot_CPU + np.resize tiling to 3x206x206 applied to the 33709-marker Wheat2000 panel exactly as upstream tiles shorter panels.",
+    "Wheat2000 binary 0/1 markers map to VCF codes 0/0 -> 3 and 1/1 -> 1 (loader guarantees no missing/heterozygous calls).",
+    "Target min/max normalization uses the current fit subset only; predictions map back to the released pheno scale per trait.",
+    "Official random 70/30 split and fixed epoch count replaced by Wheat2000 protocol inner folds, validation-PCC selection and median-epoch full-dev refit; same-protocol adaptation, not a paper reproduction."
+  ]
+}
